@@ -44,6 +44,7 @@ dependencies:
   intl:
   url_launcher:
   sign_in_with_apple: ^4.2.0
+  app_tracking_transparency: ^2.0.3
   crypto: ^3.0.1
   flutter:
     sdk: flutter

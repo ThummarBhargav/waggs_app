@@ -19,9 +19,6 @@ import '../../../constant/ConstantUrl.dart';
 import 'package:http/http.dart' as http;
 
 class HomeController extends GetxController {
-  //TODO: Implement HomeController
-  var scaffoldKey = GlobalKey<ScaffoldState>();
-
   GetAllproduct getAllproduct = GetAllproduct();
   CategoryModel categoryModel = CategoryModel();
   bannerModels bannerModel = bannerModels();

@@ -1,3 +1,4 @@
+import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
@@ -13,6 +14,10 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   setUp();
+
+  final TrackingStatus status =
+      await AppTrackingTransparency.requestTrackingAuthorization();
+
   LocationPermission permission = await Geolocator.checkPermission();
   if (permission == LocationPermission.denied ||
       permission == LocationPermission.deniedForever ||
@@ -23,7 +28,6 @@ void main() async {
       print(error);
     });
   }
-
   await GetStorage.init();
   runApp(
     GetMaterialApp(

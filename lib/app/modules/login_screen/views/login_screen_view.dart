@@ -137,7 +137,7 @@ class LoginScreenView extends GetWidget<LoginScreenController> {
                         child: getTextField(
                           textEditingController:
                               controller.passController.value,
-                          textInputType: TextInputType.name,
+                          textInputType: TextInputType.text,
                           validator: (input) => !isNullEmptyOrFalse(input)
                               ? null
                               : "Please Enter password",
