@@ -9,6 +9,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   get: 4.6.5
   google_fonts:
+  otp_text_field:
   http:
   flutter:
     sdk: flutter
