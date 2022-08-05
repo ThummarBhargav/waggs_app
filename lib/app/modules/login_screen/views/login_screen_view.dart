@@ -128,6 +128,28 @@ class LoginScreenView extends GetView<LoginScreenController> {
                       ),
                     ),
                   ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Don’t have an account?",
+                        style: GoogleFonts.roboto(
+                          fontSize: 16,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      TextButton(
+                        style: TextButton.styleFrom(
+                          textStyle: const TextStyle(fontSize: 20),
+                        ),
+                        onPressed: () {
+                          Get.offAndToNamed(Routes.SINGUP_SCREEN);
+                        },
+                        child: const Text('Sign Up'),
+                      ),
+                    ],
+                  )
                 ],
               ),
             ),
