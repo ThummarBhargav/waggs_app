@@ -10,8 +10,7 @@ dependencies:
   get: 4.6.5
   google_fonts:
   http:
-  flutter_native_splash:
-  flutter: 
+  flutter:
     sdk: flutter
 
 dev_dependencies: 
