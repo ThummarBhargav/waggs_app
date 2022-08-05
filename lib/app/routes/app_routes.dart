@@ -4,11 +4,15 @@ part of 'app_pages.dart';
 abstract class Routes {
   Routes._();
   static const HOME = _Paths.HOME;
+  static const LOGIN_SCREEN = _Paths.LOGIN_SCREEN;
   static const SINGUP_SCREEN = _Paths.SINGUP_SCREEN;
+  static const O_T_P_SCREEN = _Paths.O_T_P_SCREEN;
 }
 
 abstract class _Paths {
   _Paths._();
   static const HOME = '/home';
+  static const LOGIN_SCREEN = '/login-screen';
   static const SINGUP_SCREEN = '/singup-screen';
+  static const O_T_P_SCREEN = '/o-t-p-screen';
 }
