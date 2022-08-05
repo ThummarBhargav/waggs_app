@@ -9,6 +9,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   get: 4.6.5
   google_fonts:
+  http:
+  flutter_native_splash:
   flutter: 
     sdk: flutter
 
