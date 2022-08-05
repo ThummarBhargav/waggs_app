@@ -146,7 +146,7 @@ class LoginScreenView extends GetView<LoginScreenController> {
                         onPressed: () {
                           Get.offAndToNamed(Routes.SINGUP_SCREEN);
                         },
-                        child: const Text('Sign Up'),
+                        child: const Text(' Sign Up'),
                       ),
                     ],
                   )
