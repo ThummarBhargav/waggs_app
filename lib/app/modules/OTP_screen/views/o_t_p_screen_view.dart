@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
+import 'package:waggs_app/app/constant/SizeConstant.dart';
+import 'package:waggs_app/app/constant/text_field.dart';
 import 'package:waggs_app/app/modules/singup_screen/controllers/singup_screen_controller.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
 
@@ -64,18 +65,18 @@ class OTPScreenView extends GetView<SingupScreenController> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                child: OTPTextField(
-                  length: 6,
-                  width: 300,
-                  fieldWidth: 40,
-                  style: TextStyle(
-                      fontSize: 17
-                  ),
-                  textFieldAlignment: MainAxisAlignment.spaceAround,
-                  fieldStyle: FieldStyle.underline,
-                  onCompleted: (pin) {
-                    print("Completed: " + pin);
-                  },
+                padding: EdgeInsets.only(
+                  top: 20,
+                ),
+                width:350,
+                child: getTextField(
+                  textEditingController:
+                  controller.otpController.value,
+                  borderRadius: 20,
+                  hintText: "OTP",
+                  validator: (input) => !isNullEmptyOrFalse(input)
+                      ? null
+                      :"please enter otp ",
                 ),
               ),
             ],

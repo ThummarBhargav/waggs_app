@@ -17,10 +17,6 @@ class LoginScreenView extends GetView<LoginScreenController> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        // appBar: AppBar(
-        //   title: const Text('LoginScreenView'),
-        //   centerTitle: true,
-        // ),
         body: Center(
           child: Container(
             child: Form(
@@ -86,14 +82,6 @@ class LoginScreenView extends GetView<LoginScreenController> {
                               width: 25,
                             ),
                           ),
-                          // onSubmitted: (val) {
-                          //   FocusScope.of(context).unfocus();
-                          //   if (controller.formKey.currentState!
-                          //       .validate()) {
-                          //     // controller.getSingleUserData(
-                          //     //     context: context);
-                          //   }
-                          // },
                           suffixIcon: InkWell(
                             onTap: () {
                               controller.passwordVisible.toggle();

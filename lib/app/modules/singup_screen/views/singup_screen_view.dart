@@ -5,7 +5,6 @@ import 'package:waggs_app/app/constant/SizeConstant.dart';
 import 'package:waggs_app/app/constant/text_field.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
 import '../controllers/singup_screen_controller.dart';
-
 class SingupScreenView extends GetView<SingupScreenController> {
   const SingupScreenView({Key? key}) : super(key: key);
   @override
@@ -15,100 +14,60 @@ class SingupScreenView extends GetView<SingupScreenController> {
         body: Center(
           child: Form(
             key: controller.formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'CREATE ACCOUNT',
-                  style: GoogleFonts.roboto(
-                    fontSize: 16,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.only(
-                    top: 20,
-                  ),
-                  width:1000,
-                  child: getTextField(
-                    textEditingController:
-                    controller.firstnameController.value,
-                    borderRadius: 20,
-                    hintText: "First Name",
-                    validator: (input) => !isNullEmptyOrFalse(input)
-                        ? null
-                        : "please Enter your name",
-                    prefixIcon: Padding(
-                      padding: EdgeInsets.all(15),
-                      child: Image(
-                        image: AssetImage("assets/8888.png"),
-                        height: 20,
-                        width: 20,
-                        // height: ,
-                        // width: MySize.size25,
-                      ),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'CREATE ACCOUNT',
+                    style: GoogleFonts.roboto(
+                      fontSize: 16,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                ),
-                SizedBox(height: 5,),
-                Container(
-                  padding: EdgeInsets.only(
-                    top: 20,
-                  ),
-                  width:1000,
-                  child: getTextField(
-                    textEditingController:
-                    controller.emailController.value,
-                    borderRadius: 20,
-                    hintText: "Email Address",
-                    validator: (input) => !isNullEmptyOrFalse(input)
-                        ? null
-                        : "please Enter your Email",
-                    prefixIcon: Padding(
-                      padding: EdgeInsets.all(15),
-                      child: Image(
-                        image: AssetImage("assets/ic_mail.png"),
-                        height: 20,
-                        width: 20,
-                        // height: ,
-                        // width: MySize.size25,
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 5,),
-                Row(
-                  children: [
-                    Container(
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
                       padding: EdgeInsets.only(
                         top: 20,
                       ),
-                      width:100,
                       child: getTextField(
                         textEditingController:
-                        controller.countryController.value,
+                        controller.firstnameController.value,
                         borderRadius: 20,
-                        hintText: "+91",
+                        hintText: "First Name",
                         validator: (input) => !isNullEmptyOrFalse(input)
                             ? null
-                            :"Contry code",
+                            : "please Enter your name",
+                        prefixIcon: Padding(
+                          padding: EdgeInsets.all(15),
+                          child: Image(
+                            image: AssetImage("assets/8888.png"),
+                            height: 20,
+                            width: 20,
+                            // height: ,
+                            // width: MySize.size25,
+                          ),
+                        ),
                       ),
                     ),
-                    SizedBox(width: 20,),
-                    Container(
+                  ),
+                  SizedBox(),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
                       padding: EdgeInsets.only(
                         top: 20,
                       ),
-                      width:230,
                       child: getTextField(
                         textEditingController:
-                        controller.mobileController.value,
+                        controller.emailController.value,
                         borderRadius: 20,
-                        hintText: "Mobile Number",
+                        hintText: "Email Address",
                         validator: (input) => !isNullEmptyOrFalse(input)
                             ? null
-                            : "please Enter your Mobile number",
+                            : "please Enter your Email",
                         prefixIcon: Padding(
                           padding: EdgeInsets.all(15),
                           child: Image(
@@ -121,95 +80,153 @@ class SingupScreenView extends GetView<SingupScreenController> {
                         ),
                       ),
                     ),
-                  ],
-                ),
-                SizedBox(height: 8,),
-                Obx(() {
-                  return Container(
-                    padding: EdgeInsets.only(
-                      top: 20,
-                    ),
-
-                    child: getTextField(
-                      textEditingController:
-                      controller.passController.value,
-                      borderRadius: 20,
-                      hintText: "Password",
-                      validator: (input) => !isNullEmptyOrFalse(input)
-                          ? null
-                          : "Please Enter Password",
-                      textVisible: controller.passwordVisible.value,
-                      prefixIcon: Padding(
-                        padding: EdgeInsets.all(15),
-                        child: Image(
-                          image: AssetImage("assets/ic_lock.png"),
-                          height: 25,
-                          width: 25,
-                        ),
-                      ),
-                      suffixIcon: InkWell(
-                        onTap: () {
-                          controller.passwordVisible.toggle();
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.all(15),
-                          child: Image(
-                            image: AssetImage(
-                                (!controller.passwordVisible.value)
-                                    ? "assets/ic_eye_offf.png"
-                                    : "assets/ic_eye.png"),
-                            height: 20,
-                            width: 20,
+                  ),
+                  SizedBox(),
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          padding: EdgeInsets.only(
+                            top: 20,
+                          ),
+                          width:100,
+                          child: getTextField(
+                            textEditingController:
+                            controller.countryController.value,
+                            borderRadius: 20,
+                            hintText: "+91",
+                            validator: (input) => !isNullEmptyOrFalse(input)
+                                ? null
+                                :"Contry code",
                           ),
                         ),
                       ),
-                    ),
-                  );
-                }),
-                SizedBox(height: 8,),
-                Obx(() {
-                  return Container(
-                    padding: EdgeInsets.only(
-                      top: 20,
-                    ),
-
-                    child: getTextField(
-                      textEditingController:
-                      controller.confirmPassController.value,
-                      borderRadius: 20,
-                      hintText: "Conform Password",
-                      validator: (input) => !isNullEmptyOrFalse(input)
-                          ? null
-                          : "Please Enter Conform Password",
-                      prefixIcon: Padding(
-                        padding: EdgeInsets.all(15),
-                        child: Image(
-                          image: AssetImage("assets/ic_lock.png"),
-                          height: 25,
-                          width: 25,
+                      SizedBox(),
+                      Padding(
+                        padding: const EdgeInsets.all(6.0),
+                        child: Container(
+                          padding: EdgeInsets.only(
+                            top: 20,
+                          ),
+                          width:230,
+                          child: getTextField(
+                            textEditingController:
+                            controller.mobileController.value,
+                            borderRadius: 20,
+                            hintText: "Mobile Number",
+                            validator: (input) => !isNullEmptyOrFalse(input)
+                                ? null
+                                : "please Enter your Mobile number",
+                            prefixIcon: Padding(
+                              padding: EdgeInsets.all(15),
+                              child: Image(
+                                image: AssetImage("assets/88.png"),
+                                height: 20,
+                                width: 20,
+                                // height: ,
+                                // width: MySize.size25,
+                              ),
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  );
-                }),
-                SizedBox(height: 10,),
-                ElevatedButton(onPressed: () async {
-                  if (controller.formKey.currentState!.validate()) {
-                  }
-                  await controller.sendotpApi();
-                }, child: Text("SING UP")),
-                SizedBox(height: 5,),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text("Already have an account?",style: TextStyle(color: Colors.black),),
-                    TextButton(onPressed: () {
-                      Get.toNamed(Routes.LOGIN_SCREEN);
-                    }, child: Text("LOG IN",style: TextStyle(color: Colors.blue,fontSize:15),))
-                  ],
-                )
-              ],
+                    ],
+                  ),
+                  SizedBox(),
+                  Obx(() {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        padding: EdgeInsets.only(
+                          top: 20,
+                        ),
+                        child: getTextField(
+                          textEditingController:
+                          controller.passController.value,
+                          borderRadius: 20,
+                          hintText: "Password",
+                          validator: (input) => !isNullEmptyOrFalse(input)
+                              ? null
+                              : "Please Enter Password",
+                          textVisible: controller.passwordVisible.value,
+                          prefixIcon: Padding(
+                            padding: EdgeInsets.all(15),
+                            child: Image(
+                              image: AssetImage("assets/ic_lock.png"),
+                              height: 25,
+                              width: 25,
+                            ),
+                          ),
+                          suffixIcon: InkWell(
+                            onTap: () {
+                              controller.passwordVisible.toggle();
+                            },
+                            child: Padding(
+                              padding: EdgeInsets.all(15),
+                              child: Image(
+                                image: AssetImage(
+                                    (!controller.passwordVisible.value)
+                                        ? "assets/ic_eye_offf.png"
+                                        : "assets/ic_eye.png"),
+                                height: 20,
+                                width: 20,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  }),
+                  SizedBox(),
+                  Obx(() {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        padding: EdgeInsets.only(
+                          top: 20,
+                        ),
+
+                        child: getTextField(
+                          textEditingController:
+                          controller.confirmPassController.value,
+                          borderRadius: 20,
+                          hintText: "Conform Password",
+                          validator: (input) => !isNullEmptyOrFalse(input)
+                              ? null
+                              : "Please Enter Conform Password",
+                          prefixIcon: Padding(
+                            padding: EdgeInsets.all(15),
+                            child: Image(
+                              image: AssetImage("assets/ic_lock.png"),
+                              height: 25,
+                              width: 25,
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  }),
+                  SizedBox(height: 10,),
+                  ElevatedButton(onPressed: () async {
+                    if (controller.formKey.currentState!.validate()) {
+                    }
+                    Get.toNamed(Routes.O_T_P_SCREEN);
+                    await controller.sendotpApi();
+                  }, child: Text("SING UP")),
+                  SizedBox(height: 5,),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("Already have an account?",style: TextStyle(color: Colors.black),),
+                      TextButton(onPressed: () {
+                        Get.toNamed(Routes.LOGIN_SCREEN);
+                      }, child: Text("LOG IN",style: TextStyle(color: Colors.blue,fontSize:15),))
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
         ),

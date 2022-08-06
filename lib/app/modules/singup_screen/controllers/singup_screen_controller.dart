@@ -10,6 +10,8 @@ class SingupScreenController extends GetxController {
   Rx<TextEditingController> confirmPassController = TextEditingController().obs;
   Rx<TextEditingController> countryController = TextEditingController().obs;
   Rx<TextEditingController> mobileController = TextEditingController().obs;
+  Rx<TextEditingController> otpController = TextEditingController().obs;
+
 
   RxBool isChecked = false.obs;
   RxBool passwordVisible = true.obs;
@@ -36,7 +38,7 @@ class SingupScreenController extends GetxController {
         url, body: {'email': '${emailController.value.text.trim()}',
       'countryCode': '${countryController.value.text.trim()}',
       'mobile': '${mobileController.value.text.trim()}',
-      'otp': ''});
+      'otp': '${otpController.value.text.trim()}'});
     print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');
   }
