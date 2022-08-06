@@ -11,7 +11,7 @@ class SingupScreenController extends GetxController {
   Rx<TextEditingController> countryController = TextEditingController().obs;
   Rx<TextEditingController> mobileController = TextEditingController().obs;
   Rx<TextEditingController> otpController = TextEditingController().obs;
-
+  Rx<TextEditingController> emailvController = TextEditingController().obs;
 
   RxBool isChecked = false.obs;
   RxBool passwordVisible = true.obs;
@@ -54,11 +54,11 @@ class SingupScreenController extends GetxController {
     print('Response body: ${response.body}');
   }
 
-  Future<void> EmailApi() async {
+  Future<void>EmailApi() async {
     var url = Uri.parse(baseUrl + ApiConstant.verifyEmailUsers);
     var response = await http.post(url, body: {
       '_id': '${emailController.value.text.trim()}',
-      'emailVerificationToken':'',
+      'emailVerificationToken':'${emailvController.value.text.trim()}',
     });
     print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');
