@@ -20,26 +20,4 @@ class OTPScreenController extends GetxController {
     super.onClose();
   }
 
-  Future<void> otpApi()
-  async {
-    var url = Uri.parse(baseUrl+ApiConstant.verifyOtpUsers);
-    var response = await http.post(url, body: {'email': 'khilanvithani0080@gmail.com',
-      'countryCode': '+91', 'mobile': '8320915951' ,'otp':'098765'});
-    print('Response status: ${response.statusCode}');
-    print('Response body: ${response.body}');
-  }
-
-  Future<void> signupApi()
-  async {
-    var url = Uri.parse(baseUrl+ApiConstant.verifyOtpUsers);
-    var response = await http.post(url, body: {
-      'name': '',
-      'mobile': '',
-      'countryCode': '+91',
-      'email': 'khilanvithani0080@gmail.com',
-      'password':''});
-    print('Response status: ${response.statusCode}');
-    print('Response body: ${response.body}');
-  }
-
 }

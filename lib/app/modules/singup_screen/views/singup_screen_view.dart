@@ -196,7 +196,7 @@ class SingupScreenView extends GetView<SingupScreenController> {
                 ElevatedButton(onPressed: () async {
                   if (controller.formKey.currentState!.validate()) {
                   }
-                  await controller.signUpApi();
+                  await controller.sendotpApi();
                 }, child: Text("SING UP")),
                 SizedBox(height: 5,),
                 Row(

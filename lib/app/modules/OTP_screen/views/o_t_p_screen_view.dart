@@ -4,12 +4,10 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
+import 'package:waggs_app/app/modules/singup_screen/controllers/singup_screen_controller.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
 
-
-import '../controllers/o_t_p_screen_controller.dart';
-
-class OTPScreenView extends GetView<OTPScreenController> {
+class OTPScreenView extends GetView<SingupScreenController> {
   const OTPScreenView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -89,7 +87,7 @@ class OTPScreenView extends GetView<OTPScreenController> {
               InkWell(
                 onTap: () {
                   controller.otpApi();
-                  controller.signupApi();
+                  controller.signUpApi();
                   Get.toNamed(Routes.LOGIN_SCREEN);
                 },
                 child: Container(

@@ -29,12 +29,37 @@ class SingupScreenController extends GetxController {
   void onClose() {
     super.onClose();
   }
-  Future<void> signUpApi() async {
-    var url = Uri.parse(baseUrl+ApiConstant.sendOtpUsers);
+
+  void otpApi() async {
+    var url = Uri.parse(baseUrl + ApiConstant.verifyOtpUsers);
+    var response = await http.post(
+        url, body: {'email': '${emailController.value.text.trim()}',
+      'countryCode': '${countryController.value.text.trim()}',
+      'mobile': '${mobileController.value.text.trim()}',
+      'otp': ''});
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+  }
+
+  Future<void> sendotpApi() async {
+    var url = Uri.parse(baseUrl + ApiConstant.sendOtpUsers);
     var response = await http.post(url, body: {
       'mobile': '${mobileController.value.text.trim()}',
       'countryCode': '${countryController.value.text.trim()}',
       'email': '${emailController.value.text.trim()}',
+    });
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+  }
+
+  Future<void> signUpApi() async {
+    var url = Uri.parse(baseUrl + ApiConstant.signUpUsers);
+    var response = await http.post(
+        url, body: {'name': '${firstnameController.value.text.trim()}',
+      'mobile': '${mobileController.value.text.trim()}',
+      'countryCode': '${countryController.value.text.trim()}',
+      'email': '${emailController.value.text.trim()}',
+      'password': '${passController.value.text.trim()}'
     });
     print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');
