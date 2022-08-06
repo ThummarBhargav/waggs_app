@@ -1,10 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
-
 import '../../../constant/sizeConstant.dart';
 import '../../../constant/text_field.dart';
 import '../controllers/login_screen_controller.dart';
