@@ -108,7 +108,9 @@ class LoginScreenView extends GetView<LoginScreenController> {
                       ),
                       child: ElevatedButton(
                         onPressed: () {
-                          controller.LoginUser();
+                          if (controller.formKey.currentState!.validate()) {
+                            controller.LoginUser();
+                          }
                         },
                         child: Text("LOGIN"),
                       ),
