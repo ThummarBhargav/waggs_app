@@ -18,6 +18,7 @@ class LoginScreenView extends GetView<LoginScreenController> {
         body: Center(
           child: Container(
             child: Form(
+              key: controller.formKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
