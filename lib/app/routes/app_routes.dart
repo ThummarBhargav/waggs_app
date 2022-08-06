@@ -7,6 +7,7 @@ abstract class Routes {
   static const LOGIN_SCREEN = _Paths.LOGIN_SCREEN;
   static const SINGUP_SCREEN = _Paths.SINGUP_SCREEN;
   static const O_T_P_SCREEN = _Paths.O_T_P_SCREEN;
+  static const EMAIL_SCREEN = _Paths.EMAIL_SCREEN;
 }
 
 abstract class _Paths {
@@ -15,4 +16,5 @@ abstract class _Paths {
   static const LOGIN_SCREEN = '/login-screen';
   static const SINGUP_SCREEN = '/singup-screen';
   static const O_T_P_SCREEN = '/o-t-p-screen';
+  static const EMAIL_SCREEN = '/email-screen';
 }

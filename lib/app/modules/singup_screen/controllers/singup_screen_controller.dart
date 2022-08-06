@@ -54,6 +54,16 @@ class SingupScreenController extends GetxController {
     print('Response body: ${response.body}');
   }
 
+  Future<void> EmailApi() async {
+    var url = Uri.parse(baseUrl + ApiConstant.verifyEmailUsers);
+    var response = await http.post(url, body: {
+      '_id': '${emailController.value.text.trim()}',
+      'emailVerificationToken':'',
+    });
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+  }
+
   Future<void> signUpApi() async {
     var url = Uri.parse(baseUrl + ApiConstant.signUpUsers);
     var response = await http.post(
