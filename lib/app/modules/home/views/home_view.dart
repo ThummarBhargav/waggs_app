@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 
 import 'package:get/get.dart';
 import 'package:waggs_app/app/modules/view-product/views/view_product_view.dart';
@@ -41,59 +42,89 @@ class HomeView extends GetView<HomeController> {
                                 children: [
                                   TextButton(
                                       onPressed: () {
-                                    controller.categoryId[index];
-                                    print(controller.categoryId[index]);
-                                  },
-                                  child: Text(
-                                    controller.Category[index],
-                                    style: TextStyle(color: Colors.white),
-                                  )),
-                            ],
-                          );
-                        }),
-                      ),
-                    ),
-                  ),
-                  GridView.builder(
-                      itemCount: controller.UserList.length,
-                      physics: NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) {
-                        return GestureDetector(
-                          onTap: (){
-                            Get.to(ViewProductView(index));
-                            // print("sdasdasd");
-                          },
-                          child: Column(
-                            children: [
-                              Container(
-                                height: 100,
-                                width: 50,
-                                decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                        image: NetworkImage(
-                                            "${controller.UserList[index].images![0]}"))),
-                              ),
-                              Container(
-                                child:
-                                    Text("${controller.UserList[index].title}"),
-                              ),
-                              Container(),
+                                        controller.categoryId[index];
+                                        print(controller.categoryId[index]);
 
-                            ],
+                                      },
+                                      child: Text(
+                                        controller.Category[index],
+                                        style: TextStyle(color: Colors.white),
+                                      )),
+                                ],
+                              );
+                            }),
                           ),
-                        );
-                      },
+                        ),
+                      ),
+                      ImageSlideshow(
+                        width: double.infinity,
+                        height: 400,
+                        initialPage: 0,
+                        indicatorColor: Colors.blue,
+                        indicatorBackgroundColor: Colors.grey,
+                        onPageChanged: (value) {
+                          debugPrint('Page changed: $value');
+                        },
+                        autoPlayInterval: 3000,
+                        isLoop: true,
+                        children: [
+                          Image.asset(
+                            'assets/image1.png',
+                            fit: BoxFit.cover,
+                          ),
+                          Image.asset(
+                            'assets/image2.png',
+                            fit: BoxFit.cover,
+                          ),
+                          Image.asset(
+                            'assets/image3.png',
+                            fit: BoxFit.cover,
+                          ),
+                      ],
+                      ),
+                      Container(
+                        child: Text("-TOP SELLING STORES",style: TextStyle(color: Colors.orangeAccent),),
+                      ),
+                      GridView.builder(
+                          itemCount: controller.UserList.length,
+                          physics: NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            return GestureDetector(
+                              onTap: (){
+                                Get.to(ViewProductView(index));
+                                // print("sdasdasd");
+                              },
+                              child: Column(
+                                children: [
+                                  Container(
+                                    height: 100,
+                                    width: 50,
+                                    decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                            image: NetworkImage(
+                                                "${controller.UserList[index].images![0]}"))),
+                                  ),
+                                  Container(
+                                    child:
+                                    Text("${controller.UserList[index].title}"),
+                                  ),
+                                  Container(),
 
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 10,
-                          mainAxisSpacing: 10))
-                ],
+                                ],
+                              ),
+                            );
+                          },
+
+                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              crossAxisSpacing: 10,
+                              mainAxisSpacing: 10))
+                    ],
+                  ),
+                ),
               ),
-            ),
-          ),
-        ));
+            ));
       }),
     );
   }
