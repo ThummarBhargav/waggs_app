@@ -1,4 +1,5 @@
 const baseUrl = "https://waggs.in/api/v1/users/";
+const baseuel1="https://api-stg.waggs.in/api/v1/";
 
 class ApiConstant
 {

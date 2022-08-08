@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:get/get.dart';
+import 'package:waggs_app/app/constant/sizeConstant.dart';
 
 import '../../../Modal/GetAllProductModule.dart';
 import '../../../constant/ConstantUrl.dart';
@@ -8,11 +9,11 @@ import 'package:http/http.dart' as http;
 
 class HomeController extends GetxController {
   //TODO: Implement HomeController
-
-  var UserList = <GetAllproduct>[].obs;
-
+  GetAllproduct getAllproduct = GetAllproduct();
+  var UserList = <Products>[].obs;
   @override
   void onInit() {
+    getAllUserApi();
     super.onInit();
   }
 
@@ -27,22 +28,21 @@ class HomeController extends GetxController {
   }
 
   getAllUserApi() async {
-    var url = Uri.parse(baseUrl + ApiConstant.getAllProductUsers);
+    var url = Uri.parse(baseuel1 + ApiConstant.getAllProductUsers);
     var response = await http.get(url);
     print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');
+    dynamic result = jsonDecode(response.body);
+    getAllproduct =  GetAllproduct.fromJson(result);
+    if(!isNullEmptyOrFalse(getAllproduct.data)){
+      if(!isNullEmptyOrFalse(getAllproduct.data!.products)){
+        getAllproduct.data!.products!.forEach((element) {
 
-    if (response.statusCode == 200) {
-      print("Data := ${jsonDecode(response.body)}");
-      dynamic result = jsonDecode(response.body);
-      result.forEach((element) {
-        UserList.add(GetAllproduct.fromJson(element));
-      });
-      print("My Data := ${UserList}");
-    } else {
-      Get.snackbar('Error Loding Data!',
-          'Server responded:${response.statusCode}:${response.reasonPhrase.toString()}');
+          UserList.add(element);
+
+        });
+      }
     }
-  }
 
+  }
 }

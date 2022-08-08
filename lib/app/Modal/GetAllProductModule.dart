@@ -120,7 +120,7 @@ class Products {
     price = json['price'];
     discountedPrice = json['discountedPrice'];
     brand = json['brand'];
-    discount = json['discount'];
+    discount = (json['discount'].runtimeType == int )?double.parse(json['discount'].toString()):json['discount'];
     lifeStage = json['life_stage'];
     productType = json['product_type'];
     flavor = json['flavor'];
@@ -339,3 +339,4 @@ class SubCategory {
     return data;
   }
 }
+ 
