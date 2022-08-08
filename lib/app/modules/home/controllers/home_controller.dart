@@ -8,6 +8,8 @@ import 'package:http/http.dart' as http;
 class HomeController extends GetxController {
   //TODO: Implement HomeController
   GetAllproduct getAllproduct = GetAllproduct();
+  List Category = ["Accessories","Food","Health & Wellness","Treats and Chews"];
+  List categoryId = ["61e5662d2889b6b4933fa360","61d694038a92fef95dc20be1","61db117c5f39b415fbe32f01"];
   var UserList = <Products>[].obs;
   @override
   void onInit() {
