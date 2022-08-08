@@ -17,16 +17,23 @@ class LoginScreenView extends GetView<LoginScreenController> {
       child: Scaffold(
         body: SingleChildScrollView(
           child: Container(
+            margin: EdgeInsets.all(8),
             child: Form(
               key: controller.formKey,
               child: Column(
-                // mainAxisAlignment: MainAxisAlignment.center,
-                // crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(height: 50,),
-                  Image.asset("assets/logo111.png",width: 100,height: 100,),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Image.asset(
+                    "assets/logo111.png",
+                    width: 100,
+                    height: 100,
+                  ),
                   // sliverBox,
-                  SizedBox(height: 50,),
+                  SizedBox(
+                    height: 30,
+                  ),
                   Text(
                     " LOGIN TO YOUR ACCOUNT",
                     style: GoogleFonts.roboto(
@@ -40,20 +47,19 @@ class LoginScreenView extends GetView<LoginScreenController> {
                     padding: const EdgeInsets.all(8.0),
                     child: Align(
                       alignment: Alignment.centerLeft,
-                      child: Text("Email", style: GoogleFonts.roboto(
-                        fontSize: 16,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),),
+                      child: Text(
+                        "Email",
+                        style: GoogleFonts.roboto(
+                          fontSize: 16,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Container(
-                      // padding: EdgeInsets.only(
-                      //   top: 20,
-                      // ),
-                      // width:1000,
                       child: getTextField(
                         textEditingController: controller.emailController.value,
                         // borderRadius: 20,
@@ -68,20 +74,20 @@ class LoginScreenView extends GetView<LoginScreenController> {
                     padding: const EdgeInsets.all(8.0),
                     child: Align(
                       alignment: Alignment.centerLeft,
-                      child: Text("Password", style: GoogleFonts.roboto(
-                        fontSize: 16,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),),
+                      child: Text(
+                        "Password",
+                        style: GoogleFonts.roboto(
+                          fontSize: 16,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                   ),
                   Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Obx(() {
                       return Container(
-                        // padding: EdgeInsets.only(
-                        //   top: 20,
-                        // ),
                         child: getTextField(
                           textEditingController:
                               controller.passController.value,
@@ -114,27 +120,30 @@ class LoginScreenView extends GetView<LoginScreenController> {
                   ),
                   Align(
                     alignment: Alignment.centerRight,
-                    child: Text("Lost Your Password?",style: GoogleFonts.roboto(
-                      fontSize: 16,
-                      color: Colors.blue,
-                      fontWeight: FontWeight.bold,
-                    ),),
+                    child: Text(
+                      "Lost Your Password?",
+                      style: GoogleFonts.roboto(
+                        fontSize: 16,
+                        color: Colors.blue,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
-
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      padding: EdgeInsets.only(
-                        top: 20,
-                      ),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          if (controller.formKey.currentState!.validate()) {
-                            controller.LoginUser();
-                          }
-                        },
-                        child: Text("LOGIN"),
-                      ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(right: 40,left: 40),
+                    decoration: BoxDecoration(
+                        color: Colors.orange,
+                        borderRadius: BorderRadius.only(topRight: Radius.circular(30),bottomRight:Radius.circular(30),bottomLeft: Radius.circular(30) )),
+                    child: TextButton(
+                      onPressed: () {
+                        if (controller.formKey.currentState!.validate()) {
+                          controller.LoginUser();
+                        }
+                      },
+                      child: Text("Login",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
                     ),
                   ),
                   Row(
@@ -150,12 +159,13 @@ class LoginScreenView extends GetView<LoginScreenController> {
                       ),
                       TextButton(
                         style: TextButton.styleFrom(
-                          textStyle: const TextStyle(fontSize: 20),
+                          textStyle: const TextStyle(
+                              fontSize: 15, fontWeight: FontWeight.bold),
                         ),
                         onPressed: () {
                           Get.offAndToNamed(Routes.SINGUP_SCREEN);
                         },
-                        child: const Text(' Sign Up'),
+                        child: const Text('Sign Up'),
                       ),
                     ],
                   )
