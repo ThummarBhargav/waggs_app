@@ -18,12 +18,13 @@ class HomeView extends GetView<HomeController> {
                 child: Container(
                   child: Column(
                     children: [
+                      SizedBox(height: 10,),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          SizedBox(height: 10,width: 10,),
+                          SizedBox(width: 10,),
                           Image.asset(
-                            'assets/waggs.png',
+                            'assets/logo111.png',
                             width: 100,
                             height: 60,
                             alignment: Alignment.topLeft,
@@ -45,12 +46,9 @@ class HomeView extends GetView<HomeController> {
                                         controller.categoryId[index];
 
                                       },
-                                      child: Container(
-                                        margin: EdgeInsets.only(right: 30),
-                                        child: Text(
-                                          controller.Category[index],
-                                          style: TextStyle(color: Colors.white),
-                                        ),
+                                      child: Text(
+                                        controller.Category[index],
+                                        style: TextStyle(color: Colors.white),
                                       )),
                                 ],
                               );
@@ -95,7 +93,6 @@ class HomeView extends GetView<HomeController> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 10,),
                       GridView.builder(
                           itemCount: controller.UserList.length,
                           physics: NeverScrollableScrollPhysics(),
@@ -107,7 +104,6 @@ class HomeView extends GetView<HomeController> {
                                 // print("sdasdasd");
                               },
                               child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 children: [
                                   Container(
                                     height: 100,
