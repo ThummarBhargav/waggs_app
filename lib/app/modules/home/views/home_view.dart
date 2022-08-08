@@ -16,8 +16,25 @@ class HomeView extends GetView<HomeController> {
                 child: Container(
                   child: Column(
                     children: [
-                      Text("Top Selling Store",
-                        style: TextStyle(fontSize: 20, color: Colors.orange),),
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: [
+                            TextButton(onPressed: () {
+
+                            }, child: Text("ACCESSORIES +")),
+                            TextButton(onPressed: () {
+
+                            }, child: Text("FOOD +")),
+                            TextButton(onPressed: () {
+
+                            }, child: Text("HEALTH & WELLNESS +")),
+                            TextButton(onPressed: () {
+
+                            }, child: Text("TREATS AND CHEWS +")),
+                          ],
+                        ),
+                      ),
                       GridView.builder(
                           itemCount: controller.UserList.length,
                           physics: NeverScrollableScrollPhysics(),
