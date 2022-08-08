@@ -1,8 +1,6 @@
 import 'dart:convert';
-
 import 'package:get/get.dart';
 import 'package:waggs_app/app/constant/sizeConstant.dart';
-
 import '../../../Modal/GetAllProductModule.dart';
 import '../../../constant/ConstantUrl.dart';
 import 'package:http/http.dart' as http;
