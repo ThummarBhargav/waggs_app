@@ -18,6 +18,7 @@ class SingupScreenView extends GetView<SingupScreenController> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  Image.asset("assets/logo111.png",width: 100,height: 100,),
                   Text(
                     'CREATE ACCOUNT',
                     style: GoogleFonts.roboto(
@@ -40,16 +41,6 @@ class SingupScreenView extends GetView<SingupScreenController> {
                         validator: (input) => !isNullEmptyOrFalse(input)
                             ? null
                             : "please Enter your name",
-                        prefixIcon: Padding(
-                          padding: EdgeInsets.all(15),
-                          child: Image(
-                            image: AssetImage("assets/8888.png"),
-                            height: 20,
-                            width: 20,
-                            // height: ,
-                            // width: MySize.size25,
-                          ),
-                        ),
                       ),
                     ),
                   ),
@@ -68,16 +59,6 @@ class SingupScreenView extends GetView<SingupScreenController> {
                         validator: (input) => !isNullEmptyOrFalse(input)
                             ? null
                             : "please Enter your Email",
-                        prefixIcon: Padding(
-                          padding: EdgeInsets.all(15),
-                          child: Image(
-                            image: AssetImage("assets/ic_mail.png"),
-                            height: 20,
-                            width: 20,
-                            // height: ,
-                            // width: MySize.size25,
-                          ),
-                        ),
                       ),
                     ),
                   ),
@@ -131,8 +112,6 @@ class SingupScreenView extends GetView<SingupScreenController> {
                           ),
                         ),
                       ),
-                    ],
-                  ),
                   SizedBox(),
                   Obx(() {
                     return Padding(
@@ -144,20 +123,11 @@ class SingupScreenView extends GetView<SingupScreenController> {
                         child: getTextField(
                           textEditingController:
                           controller.passController.value,
-                          // borderRadius: 20,
                           hintText: "Password",
                           validator: (input) => !isNullEmptyOrFalse(input)
                               ? null
                               : "Please Enter Password",
                           textVisible: controller.passwordVisible.value,
-                          prefixIcon: Padding(
-                            padding: EdgeInsets.all(15),
-                            child: Image(
-                              image: AssetImage("assets/ic_lock.png"),
-                              height: 25,
-                              width: 25,
-                            ),
-                          ),
                           suffixIcon: InkWell(
                             onTap: () {
                               controller.passwordVisible.toggle();
@@ -186,21 +156,28 @@ class SingupScreenView extends GetView<SingupScreenController> {
                         padding: EdgeInsets.only(
                           top: 20,
                         ),
-
                         child: getTextField(
                           textEditingController:
                           controller.confirmPassController.value,
-                          // borderRadius: 20,
-                          hintText: "Conform Password",
+                          hintText: " Confirm Password",
                           validator: (input) => !isNullEmptyOrFalse(input)
                               ? null
-                              : "Please Enter Conform Password",
-                          prefixIcon: Padding(
-                            padding: EdgeInsets.all(15),
-                            child: Image(
-                              image: AssetImage("assets/ic_lock.png"),
-                              height: 25,
-                              width: 25,
+                              : "Please Enter Confirm Password",
+                          textVisible: controller.passwordVisible.value,
+                          suffixIcon: InkWell(
+                            onTap: () {
+                              controller.passwordVisible.toggle();
+                            },
+                            child: Padding(
+                              padding: EdgeInsets.all(15),
+                              child: Image(
+                                image: AssetImage(
+                                    (!controller.passwordVisible.value)
+                                        ? "assets/ic_eye_offf.png"
+                                        : "assets/ic_eye.png"),
+                                height: 20,
+                                width: 20,
+                              ),
                             ),
                           ),
                         ),
@@ -227,10 +204,10 @@ class SingupScreenView extends GetView<SingupScreenController> {
                   )
                 ],
               ),
+              ]
             ),
           ),
-        ),
-
+        ),)
       ),
     );
   }

@@ -14,11 +14,17 @@ dependencies:
   http:
   flutter:
     sdk: flutter
-
-dev_dependencies: 
+dev_dependencies:
+  flutter_native_splash:
   flutter_lints: ^2.0.0
   flutter_test: 
     sdk: flutter
+flutter_native_splash:
+  color: "#ffffff"
+  image: "assets/logo111.png"
+  android: true
+  web: true
+
 
 flutter: 
   uses-material-design: true
