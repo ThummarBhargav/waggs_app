@@ -91,14 +91,7 @@ class LoginScreenView extends GetView<LoginScreenController> {
                               ? null
                               : "Please Enter Password",
                           textVisible: controller.passwordVisible.value,
-                          prefixIcon: Padding(
-                            padding: EdgeInsets.all(15),
-                            child: Image(
-                              image: AssetImage("assets/ic_lock.png"),
-                              height: 25,
-                              width: 25,
-                            ),
-                          ),
+
                           suffixIcon: InkWell(
                             onTap: () {
                               controller.passwordVisible.toggle();
@@ -119,6 +112,15 @@ class LoginScreenView extends GetView<LoginScreenController> {
                       );
                     }),
                   ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Text("Lost Your Password?",style: GoogleFonts.roboto(
+                      fontSize: 16,
+                      color: Colors.blue,
+                      fontWeight: FontWeight.bold,
+                    ),),
+                  ),
+
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Container(
