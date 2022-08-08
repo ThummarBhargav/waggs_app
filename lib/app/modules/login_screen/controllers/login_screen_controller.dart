@@ -11,6 +11,7 @@ class LoginScreenController extends GetxController {
 Rx<TextEditingController> passController = TextEditingController().obs;
   RxBool isChecked = false.obs;
   RxBool passwordVisible = true.obs;
+  List respons =[];
   @override
   void onInit() {
     super.onInit();
@@ -27,18 +28,26 @@ Rx<TextEditingController> passController = TextEditingController().obs;
   }
 
   Future<void> LoginUser() async {
-    var url = Uri.parse(baseUrl+ApiConstant.loginUsers);
-    var response = await http.post(url, body: {
-      'email': '${emailController.value.text.trim()}',
-      'password': '${passController.value.text.trim()}',
-       }
-    );
-    print('Response status: ${response.statusCode}');
-    print('Response body: ${response.body}');
-    if(response.statusCode==200){
-      Get.toNamed(Routes.HOME);
-    }else{
-      Get.snackbar("Error", "Message",snackPosition: SnackPosition.BOTTOM,);
+    try{
+      var url = Uri.parse(baseUrl+ApiConstant.loginUsers);
+      var response = await http.post(url, body: {
+        'email': '${emailController.value.text.trim()}',
+        'password': '${passController.value.text.trim()}',
+      }
+      );
+      respons.add(response.body);
+      print('Response status: ${response.statusCode}');
+      print('Response body: ${response.body}');
+      if(response.statusCode==200){
+        Get.toNamed(Routes.HOME);
+      }
+      else{
+        Get.snackbar("Error", response.body,snackPosition: SnackPosition.BOTTOM);
+      }
+    }catch(e){
+
+    Get.snackbar("Error", e.toString(),snackPosition: SnackPosition.BOTTOM,);
+
     }
   }
 }
