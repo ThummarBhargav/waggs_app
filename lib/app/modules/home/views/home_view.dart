@@ -93,65 +93,67 @@ class HomeView extends GetView<HomeController> {
                           ),
                         ],
                       ),
-                      GridView.builder(
-                          itemCount: controller.UserList.length,
-                          physics: NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemBuilder: (context, index) {
-                            return GestureDetector(
-                              onTap: (){
-                                Get.to(ViewProductView(index));
-                                // print("sdasdasd");
-                              },
-                              child: Column(
-                                children: [
-                                  Container(
-                                    height: 100,
-                                    width: 50,
-                                    decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                            image: NetworkImage(
-                                                "${controller.UserList[index].images![0]}"))),
-                                  ),
-                                  Container(
-                                    child:
-                                    Text("${controller.UserList[index].title}"),
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
+                      Column(
+                        children: [
+                          GridView.builder(
+                              itemCount: controller.UserList.length,
+                              physics: NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemBuilder: (context, index) {
+                                return GestureDetector(
+                                  onTap: (){
+                                    Get.to(ViewProductView(index));
+                                  },
+                                  child: Column(
                                     children: [
-                                      Expanded(
-                                        child: Container(
-                                          alignment: Alignment.center,
-                                          decoration: BoxDecoration(
-                                            color: Colors.cyan,
-                                            borderRadius: BorderRadius.all(Radius.circular(50),),
-                                          ),
-                                          child: TextButton(onPressed: () {
+                                      Container(
+                                        height: 75,
+                                        width: 50,
+                                        decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                                image: NetworkImage(
+                                                    "${controller.UserList[index].images![0]}"))),
+                                      ),
+                                      Container(
+                                        height: 50,
+                                        child:
+                                        Text("${controller.UserList[index].title}"),
+                                      ),
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Expanded(
+                                            child: Container(
+                                              alignment: Alignment.center,
+                                              decoration: BoxDecoration(
+                                                color: Colors.cyan,
+                                                borderRadius: BorderRadius.all(Radius.circular(50),),
+                                              ),
+                                              child: TextButton(onPressed: () {
+                                              }, child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                children: [
+                                                  Icon(Icons.add_shopping_cart,color: Colors.white,),
+                                                  SizedBox(width: 10,),
+                                                  Text("ADD TO CART",style: TextStyle(color: Colors.white),)
+                                                ],
+                                              )),
+                                            ),
+                                          )
+                                        ],
+                                      ),
 
-                                          }, child: Row(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                            children: [
-                                              Icon(Icons.add_shopping_cart,color: Colors.white,),
-                                              SizedBox(width: 10,),
-                                              Text("ADD TO CART",style: TextStyle(color: Colors.white),)
-                                            ],
-                                          )),
-                                        ),
-                                      )
                                     ],
                                   ),
-
-                                ],
-                              ),
-                            );
-                          },
-
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              crossAxisSpacing: 10,
-                              mainAxisSpacing: 10))
+                                );
+                              },
+                              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  crossAxisSpacing: 10,
+                                  mainAxisSpacing: 10)),
+                        ],
+                      )
                     ],
                   ),
                 ),
