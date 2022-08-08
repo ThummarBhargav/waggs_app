@@ -6,7 +6,6 @@ import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -25,37 +24,18 @@ class HomeView extends GetView<HomeController> {
                           shrinkWrap: true,
                           itemBuilder: (context, index) {
                             return Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Container(
                                   height: 100,
-                                  width: 100,
-                                  alignment: Alignment.center,
+                                  width: 50,
                                   decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                        image: NetworkImage("${controller.UserList[index].images![0]}"),
-                                    ),
+                                    image: DecorationImage(image: NetworkImage("${controller.UserList[index].images![0]}"))
                                   ),
                                 ),
                                 Container(
-                                      child: Text("${controller.UserList[index].title}"),
+                                  child: Text("${controller.UserList[index].title}"),
                                 ),
                                 Container(
-                                  child: Text("${controller.UserList[index].category}",
-                                    style: TextStyle(fontSize: 10),),
-                                ),
-                                Container(
-                                  child: Text("${controller.UserList[index].brand}",
-                                    style: TextStyle(fontSize: 10),),
-                                ),
-                                Container(
-                                  child: Text("DiscountPrice - ${controller.UserList[index].discountedPrice}",
-                                    style: TextStyle(fontSize: 10),),
-                                ),
-                                Container(
-                                  child: Text("Price - ${controller.UserList[index].price}",
-                                    style: TextStyle(fontSize: 10),),
                                 ),
                               ],
                             );
