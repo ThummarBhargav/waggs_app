@@ -16,23 +16,27 @@ class HomeView extends GetView<HomeController> {
                 child: Container(
                   child: Column(
                     children: [
+                      SizedBox(height: 100,),
                       SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children: [
-                            TextButton(onPressed: () {
+                        child: Container(
+                          color: Colors.cyan,
+                          child: Row(
+                            children: [
+                              TextButton(onPressed: () {
 
-                            }, child: Text("ACCESSORIES +")),
-                            TextButton(onPressed: () {
+                              }, child: Text("ACCESSORIES +",style: TextStyle(color: Colors.white),)),
+                              TextButton(onPressed: () {
 
-                            }, child: Text("FOOD +")),
-                            TextButton(onPressed: () {
+                              }, child: Text("FOOD +",style: TextStyle(color: Colors.white),)),
+                              TextButton(onPressed: () {
 
-                            }, child: Text("HEALTH & WELLNESS +")),
-                            TextButton(onPressed: () {
+                              }, child: Text("HEALTH & WELLNESS +",style: TextStyle(color: Colors.white),)),
+                              TextButton(onPressed: () {
 
-                            }, child: Text("TREATS AND CHEWS +")),
-                          ],
+                              }, child: Text("TREATS AND CHEWS +",style: TextStyle(color: Colors.white),)),
+                            ],
+                          ),
                         ),
                       ),
                       GridView.builder(
