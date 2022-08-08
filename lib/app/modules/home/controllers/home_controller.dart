@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'package:get/get.dart';
+import 'package:waggs_app/app/Modal/CategoryModel.dart';
+import 'package:waggs_app/app/Modal/SubCategoryModel.dart';
 import 'package:waggs_app/app/constant/sizeConstant.dart';
 import '../../../Modal/GetAllProductModule.dart';
 import '../../../constant/ConstantUrl.dart';
@@ -8,9 +10,13 @@ import 'package:http/http.dart' as http;
 class HomeController extends GetxController {
   //TODO: Implement HomeController
   GetAllproduct getAllproduct = GetAllproduct();
+  Categorymodel categoryModel = Categorymodel();
+  SubCategorymodel subCategorymodel = SubCategorymodel();
   List Category = ["Accessories ","Food ","Health & Wellness ","Treats And Chews "];
   List categoryId = ["61e5662d2889b6b4933fa360","61d694038a92fef95dc20be1","61db117c5f39b415fbe32f01","61db0f775f39b415fbe32ee2"];
   var UserList = <Products>[].obs;
+  var CategoryList = <Categorymodel>[].obs;
+
   @override
   void onInit() {
     getAllUserApi();
@@ -26,9 +32,21 @@ class HomeController extends GetxController {
   void onClose() {
     super.onClose();
   }
+  AllCategory() async {
+    CategoryList.clear();
+    var url = Uri.parse(baseUrl + ApiConstant.AllCategory);
+    var response = await http.get(url);
+    print('response status:${response.request}');
+    dynamic result = jsonDecode(response.body);
+    print(result);
+      result.forEach((element) {
+        CategoryList.add(Categorymodel.fromJson(element));
+
+    });
+  }
 
   getAllUserApi() async {
-    var url = Uri.parse(baseuel1 + ApiConstant.getAllProductUsers);
+    var url = Uri.parse(baseuel1 + ApiConstant.AllCategory);
     var response = await http.get(url);
     print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');
@@ -37,10 +55,9 @@ class HomeController extends GetxController {
     if(!isNullEmptyOrFalse(getAllproduct.data)){
       if(!isNullEmptyOrFalse(getAllproduct.data!.products)){
         getAllproduct.data!.products!.forEach((element) {
-
           UserList.add(element);
-
-        });
+        }
+        );
       }
     }
 

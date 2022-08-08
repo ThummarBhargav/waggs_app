@@ -1,9 +1,8 @@
 const baseUrl = "https://waggs.in/api/v1/users/";
-const baseuel1="https://api-stg.waggs.in/api/v1/";
-const baserl2="https://api.waggs.in/api/v1/";
+const baseuel1 = "https://api-stg.waggs.in/api/v1/";
+const baserl2 = "https://api.waggs.in/api/v1/";
 
-class ApiConstant
-{
+class ApiConstant {
   static const signUpUsers = "signup";
   static const loginUsers = "login";
   static const logoutUsers = "logout";
@@ -15,4 +14,6 @@ class ApiConstant
   static const changePasswordUsers = "changePassword";
   static const bannerProductUsers = "banner";
   static const getAllProductUsers = "products?skip=0&limit=0&search=";
+  static const AllCategory = "category";
+  static const AllSubCategory = "subcategory";
 }
