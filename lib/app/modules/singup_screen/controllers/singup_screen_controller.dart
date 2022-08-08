@@ -63,7 +63,6 @@ class SingupScreenController extends GetxController {
     print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');
   }
-
   Future<void> signUpApi() async {
     var url = Uri.parse(baseUrl + ApiConstant.signUpUsers);
     var response = await http.post(

@@ -5,9 +5,6 @@ import 'package:waggs_app/app/constant/sizeConstant.dart';
 import 'package:waggs_app/app/constant/text_field.dart';
 import 'package:waggs_app/app/modules/singup_screen/controllers/singup_screen_controller.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
-
-import '../controllers/email_screen_controller.dart';
-
 class EmailScreenView extends GetView<SingupScreenController> {
   const EmailScreenView({Key? key}) : super(key: key);
   @override
