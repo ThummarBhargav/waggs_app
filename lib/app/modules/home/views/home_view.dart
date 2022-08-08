@@ -44,7 +44,7 @@ class HomeView extends GetView<HomeController> {
                                     print(controller.categoryId[index]);
                                   },
                                   child: Text(
-                                    controller.Category[index]+" +",
+                                    controller.Category[index],
                                     style: TextStyle(color: Colors.white),
                                   )),
                             ],
