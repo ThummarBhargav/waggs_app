@@ -181,14 +181,13 @@ class SingupScreenView extends GetView<SingupScreenController> {
                     return Container(
                       child: getTextField(
                         textEditingController:
-                        controller.passController.value,
+                        controller.confirmPassController.value,
                         // borderRadius: 20,
                         hintText: "Confirm Password",
                         validator: (input) => !isNullEmptyOrFalse(input)
                             ? null
                             : "Please Enter Confirm Password",
                         textVisible: controller.passwordVisible.value,
-
                         suffixIcon: InkWell(
                           onTap: () {
                             controller.passwordVisible.toggle();
@@ -276,7 +275,7 @@ class SingupScreenView extends GetView<SingupScreenController> {
                             fontSize: 15, fontWeight: FontWeight.bold),
                       ),
                       onPressed: () {
-                        Get.offAndToNamed(Routes.SINGUP_SCREEN);
+                        Get.offAndToNamed(Routes.LOGIN_SCREEN);
                       },
                       child: const Text('Login instead!'),
                     ),

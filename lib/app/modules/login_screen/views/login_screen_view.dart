@@ -132,6 +132,16 @@ class LoginScreenView extends GetView<LoginScreenController> {
                   SizedBox(
                     height: 10,
                   ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        "assets/grey.1.png",
+                        width: 200,
+                        height: 30,
+                      ),
+                    ],
+                  ),
                   Container(
                     padding: EdgeInsets.only(right: 40,left: 40),
                     decoration: BoxDecoration(
