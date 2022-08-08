@@ -13,69 +13,44 @@ class HomeView extends GetView<HomeController> {
       child: Obx(() {
         return Scaffold(
             body: SingleChildScrollView(
-          child: Expanded(
-            child: Container(
-              child: Column(
-                children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Image.asset(
-                      'assets/waggs.png',
-                      width: 100,
-                      height: 60,
-                      alignment: Alignment.topLeft,
-                    ),
-                  ],
-                ),
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Container(
-                      color: Colors.cyan,
-                      child: Row(
-                        children: List.generate(controller.Category.length, (index) {
-                          return Row(
-                            children: [
-                            TextButton(
-                                  onPressed: () {
+              child: Expanded(
+                child: Container(
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          SizedBox(height: 10,width: 10,),
+                          Image.asset(
+                            'assets/waggs.png',
+                            width: 100,
+                            height: 60,
+                            alignment: Alignment.topLeft,
+                          ),
+
+                        ],
+                      ),
+                      SizedBox(height: 10,),
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Container(
+                          color: Colors.cyan,
+                          child: Row(
+                            children: List.generate(controller.Category.length, (index) {
+                              return Row(
+                                children: [
+                                  TextButton(
+                                      onPressed: () {
                                     controller.categoryId[index];
                                     print(controller.categoryId[index]);
                                   },
                                   child: Text(
-                                    controller.Category[index]+" +",
+                                    controller.Category[index],
                                     style: TextStyle(color: Colors.white),
                                   )),
                             ],
                           );
                         }),
-                        // children: [
-                        //   TextButton(
-                        //       onPressed: () {
-                        //
-                        //       },
-                        //       child: Text(
-                        //         "ACCESSORIES +",
-                        //         style: TextStyle(color: Colors.white),
-                        //       )),
-                        //   TextButton(
-                        //       onPressed: () {},
-                        //       child: Text(
-                        //         "FOOD +",
-                        //         style: TextStyle(color: Colors.white),
-                        //       )),
-                        //   TextButton(
-                        //       onPressed: () {},
-                        //       child: Text(
-                        //         "HEALTH & WELLNESS +",
-                        //         style: TextStyle(color: Colors.white),
-                        //       )),
-                        //   TextButton(
-                        //       onPressed: () {},
-                        //       child: Text(
-                        //         "TREATS AND CHEWS +",
-                        //         style: TextStyle(color: Colors.white),
-                        //       )),
-                        // ],
                       ),
                     ),
                   ),
