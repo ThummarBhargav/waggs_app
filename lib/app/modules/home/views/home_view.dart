@@ -25,13 +25,37 @@ class HomeView extends GetView<HomeController> {
                           shrinkWrap: true,
                           itemBuilder: (context, index) {
                             return Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Container(
                                   height: 100,
-                                  width: 50,
-                                  child: Text("${controller.UserList[index].title}"),
+                                  width: 100,
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image: NetworkImage("${controller.UserList[index].images![0]}"),
+                                    ),
+                                  ),
                                 ),
                                 Container(
+                                      child: Text("${controller.UserList[index].title}"),
+                                ),
+                                Container(
+                                  child: Text("${controller.UserList[index].category}",
+                                    style: TextStyle(fontSize: 10),),
+                                ),
+                                Container(
+                                  child: Text("${controller.UserList[index].brand}",
+                                    style: TextStyle(fontSize: 10),),
+                                ),
+                                Container(
+                                  child: Text("DiscountPrice - ${controller.UserList[index].discountedPrice}",
+                                    style: TextStyle(fontSize: 10),),
+                                ),
+                                Container(
+                                  child: Text("Price - ${controller.UserList[index].price}",
+                                    style: TextStyle(fontSize: 10),),
                                 ),
                               ],
                             );
