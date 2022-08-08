@@ -3,9 +3,7 @@ import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 
 import 'package:get/get.dart';
 import 'package:waggs_app/app/modules/view-product/views/view_product_view.dart';
-
 import '../controllers/home_controller.dart';
-
 class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
   @override
@@ -52,7 +50,7 @@ class HomeView extends GetView<HomeController> {
                                     controller.categoryId[index];
                                   },
                                   child: Text(
-                                    controller.Category[index],
+                                    controller.Category[index]+"+",
                                     style: TextStyle(color: Colors.white),
                                   )),
                             ],
