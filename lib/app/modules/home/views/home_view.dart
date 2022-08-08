@@ -19,13 +19,14 @@ class HomeView extends GetView<HomeController> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          SizedBox(height: 10,),
+                          SizedBox(height: 10,width: 10,),
                           Image.asset(
                             'assets/waggs.png',
                             width: 100,
                             height: 60,
                             alignment: Alignment.topLeft,
                           ),
+
                         ],
                       ),
                       SizedBox(height: 10,),
@@ -41,86 +42,50 @@ class HomeView extends GetView<HomeController> {
                                       onPressed: () {
                                     controller.categoryId[index];
                                     print(controller.categoryId[index]);
-                                      },
-                                      child: Text(
-                                        controller.Category[index]+" +",
-                                        style: TextStyle(color: Colors.white),
-                                      )),
-                                ],
-                              );
-                            }),
-                            // children: [
-                            //   TextButton(
-                            //       onPressed: () {
-                            //
-                            //       },
-                            //       child: Text(
-                            //         "ACCESSORIES +",
-                            //         style: TextStyle(color: Colors.white),
-                            //       )),
-                            //   TextButton(
-                            //       onPressed: () {},
-                            //       child: Text(
-                            //         "FOOD +",
-                            //         style: TextStyle(color: Colors.white),
-                            //       )),
-                            //   TextButton(
-                            //       onPressed: () {},
-                            //       child: Text(
-                            //         "HEALTH & WELLNESS +",
-                            //         style: TextStyle(color: Colors.white),
-                            //       )),
-                            //   TextButton(
-                            //       onPressed: () {},
-                            //       child: Text(
-                            //         "TREATS AND CHEWS +",
-                            //         style: TextStyle(color: Colors.white),
-                            //       )),
-                            // ],
-                          ),
-                        ),
+                                  },
+                                  child: Text(
+                                    controller.Category[index]+" +",
+                                    style: TextStyle(color: Colors.white),
+                                  )),
+                            ],
+                          );
+                        }),
                       ),
-                      GridView.builder(
-                          itemCount: controller.UserList.length,
-                          physics: NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemBuilder: (context, index) {
-                            return Column(
-                              children: [
-                                Container(
-                                  height: 100,
-                                  width: 50,
-                                  decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                          image: NetworkImage(
-                                              "${controller.UserList[index].images![0]}"))),
-                                ),
-                                Container(
-                                  child:
-                                  Text("${controller.UserList[index].title}"),
-                                ),
-                                Container(),
-                              ],
-                            );
-                          },
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              crossAxisSpacing: 10,
-                              mainAxisSpacing: 10)),
-                    ],
+                    ),
                   ),
-                ),
+                  GridView.builder(
+                      itemCount: controller.UserList.length,
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        return Column(
+                          children: [
+                            Container(
+                              height: 100,
+                              width: 50,
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: NetworkImage(
+                                          "${controller.UserList[index].images![0]}"))),
+                            ),
+                            Container(
+                              child:
+                                  Text("${controller.UserList[index].title}"),
+                            ),
+                            Container(),
+                          ],
+                        );
+                      },
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 10,
+                          mainAxisSpacing: 10))
+                ],
               ),
-            ));
+            ),
+          ),
+        ));
       }),
-    );
-  }
-  AccessoriesScreen()
-  {
-    return Column(
-      children: [
-        Text("Assesories",style: TextStyle(fontSize: 50),),
-      ],
     );
   }
 }
