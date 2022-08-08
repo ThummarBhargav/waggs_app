@@ -46,9 +46,12 @@ class HomeView extends GetView<HomeController> {
                                         print(controller.categoryId[index]);
 
                                       },
-                                      child: Text(
-                                        controller.Category[index],
-                                        style: TextStyle(color: Colors.white),
+                                      child: Container(
+                                        margin: EdgeInsets.only(right: 30),
+                                        child: Text(
+                                          controller.Category[index],
+                                          style: TextStyle(color: Colors.white),
+                                        ),
                                       )),
                                 ],
                               );
@@ -82,9 +85,18 @@ class HomeView extends GetView<HomeController> {
                           ),
                       ],
                       ),
-                      Container(
-                        child: Text("-TOP SELLING STORES",style: TextStyle(color: Colors.orangeAccent),),
+                      SizedBox(height: 10,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Container(
+                            child: Text("-TOP SELLING STORES",style: TextStyle(color: Colors.orangeAccent,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 22),),
+                          ),
+                        ],
                       ),
+                      SizedBox(height: 10,),
                       GridView.builder(
                           itemCount: controller.UserList.length,
                           physics: NeverScrollableScrollPhysics(),
@@ -96,6 +108,7 @@ class HomeView extends GetView<HomeController> {
                                 // print("sdasdasd");
                               },
                               child: Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 children: [
                                   Container(
                                     height: 100,
@@ -109,7 +122,31 @@ class HomeView extends GetView<HomeController> {
                                     child:
                                     Text("${controller.UserList[index].title}"),
                                   ),
-                                  Container(),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Expanded(
+                                        child: Container(
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                            color: Colors.cyan,
+                                            borderRadius: BorderRadius.all(Radius.circular(50),),
+                                          ),
+                                          child: TextButton(onPressed: () {
+
+                                          }, child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                            children: [
+                                              Icon(Icons.add_shopping_cart,color: Colors.white,),
+                                              SizedBox(width: 10,),
+                                              Text("ADD TO CART",style: TextStyle(color: Colors.white),)
+                                            ],
+                                          )),
+                                        ),
+                                      )
+                                    ],
+                                  ),
 
                                 ],
                               ),
