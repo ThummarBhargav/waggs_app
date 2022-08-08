@@ -1,9 +1,11 @@
 import 'package:get/get.dart';
 
+import '../../../constant/ConstantUrl.dart';
+import 'package:http/http.dart' as http;
+
 class HomeController extends GetxController {
   //TODO: Implement HomeController
 
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
@@ -19,5 +21,11 @@ class HomeController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
+  getAllUserApi() async {
+    var url = Uri.parse(baseUrl + ApiConstant.getAllProductUsers);
+    var response = await http.get(url);
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+  }
+
 }

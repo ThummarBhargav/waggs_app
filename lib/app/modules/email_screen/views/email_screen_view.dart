@@ -88,21 +88,21 @@ class EmailScreenView extends GetView<SingupScreenController> {
                   onTap: () {
                     if (controller.formKey.currentState!.validate()) {
                       controller.otpApi();
-                      Get.defaultDialog(
-                          title: "VERIFICATION",
-                          titleStyle: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),
-                          middleText: "Verify your Account",
-                          middleTextStyle:  TextStyle(color: Colors.grey,fontWeight: FontWeight.w600),
-                          backgroundColor: Colors.blue[200],
-                          radius: 50,
-                          textConfirm: "Confirm",
-                          confirmTextColor: Colors.indigo,
-                          onConfirm: (){
-                            controller.signUpApi();
-                            Get.toNamed(Routes.LOGIN_SCREEN);
-                          },
-                          barrierDismissible: false
-                      );
+                      // Get.defaultDialog(
+                      //     title: "VERIFICATION",
+                      //     titleStyle: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),
+                      //     middleText: "Verify your Account",
+                      //     middleTextStyle:  TextStyle(color: Colors.grey,fontWeight: FontWeight.w600),
+                      //     backgroundColor: Colors.blue[200],
+                      //     radius: 50,
+                      //     textConfirm: "Confirm",
+                      //     confirmTextColor: Colors.indigo,
+                      //     onConfirm: (){
+                      //       controller.signUpApi();
+                      //       Get.toNamed(Routes.LOGIN_SCREEN);
+                      //     },
+                      //     barrierDismissible: false
+                      // );
                     }
                   },
                   child: Container(

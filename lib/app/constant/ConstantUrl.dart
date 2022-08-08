@@ -11,4 +11,6 @@ class ApiConstant
   static const verifyExistsUsers = "verifyExists";
   static const verifyNewPasswordUsers = "verifyOtpNewPassword";
   static const changePasswordUsers = "changePassword";
+  static const bannerProductUsers = "banner";
+  static const getAllProductUsers = "products?skip=0&limit=0&search=";
 }
