@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:waggs_app/app/modules/view-product/views/view_product_view.dart';
 
 import '../controllers/home_controller.dart';
 
@@ -83,24 +84,32 @@ class HomeView extends GetView<HomeController> {
                       physics: NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
-                        return Column(
-                          children: [
-                            Container(
-                              height: 100,
-                              width: 50,
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: NetworkImage(
-                                          "${controller.UserList[index].images![0]}"))),
-                            ),
-                            Container(
-                              child:
-                                  Text("${controller.UserList[index].title}"),
-                            ),
-                            Container(),
-                          ],
+                        return GestureDetector(
+                          onTap: (){
+                            Get.to(ViewProductView(index));
+                            // print("sdasdasd");
+                          },
+                          child: Column(
+                            children: [
+                              Container(
+                                height: 100,
+                                width: 50,
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image: NetworkImage(
+                                            "${controller.UserList[index].images![0]}"))),
+                              ),
+                              Container(
+                                child:
+                                    Text("${controller.UserList[index].title}"),
+                              ),
+                              Container(),
+
+                            ],
+                          ),
                         );
                       },
+
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                           crossAxisSpacing: 10,
