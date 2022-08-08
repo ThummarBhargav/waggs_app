@@ -37,7 +37,8 @@ class HomeView extends GetView<HomeController> {
                             children: [
                             TextButton(
                                   onPressed: () {
-
+                                    controller.categoryId[index];
+                                    print(controller.categoryId[index]);
                                   },
                                   child: Text(
                                     controller.Category[index]+" +",
