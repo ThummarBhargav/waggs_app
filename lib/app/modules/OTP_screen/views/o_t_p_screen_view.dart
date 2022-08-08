@@ -72,7 +72,7 @@ class OTPScreenView extends GetView<SingupScreenController> {
                   child: getTextField(
                     textEditingController:
                     controller.otpController.value,
-                    borderRadius: 20,
+                    // borderRadius: 20,
                     hintText: "OTP",
                     validator: (input) => !isNullEmptyOrFalse(input)
                         ? null

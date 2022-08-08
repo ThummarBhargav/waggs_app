@@ -7,7 +7,7 @@ TextFormField getTextField({
   String? hintText,
   TextEditingController? textEditingController,
   Widget? prefixIcon,
-  double? borderRadius,
+  // double? borderRadius,
   Widget? suffixIcon,
   double? size = 52,
   Widget? suffix,
@@ -44,20 +44,20 @@ TextFormField getTextField({
         borderSide: BorderSide(
             color:  Color(0xffE8E8E8)
                ),
-        borderRadius: BorderRadius.circular(
-            (borderRadius == null) ? 10 : borderRadius),
+        // borderRadius: BorderRadius.circular(
+        //     (borderRadius == null) ? 10 : borderRadius),
       ),
       focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(
-            (borderRadius == null) ? 10 : borderRadius),
+        // borderRadius: BorderRadius.circular(
+        //     (borderRadius == null) ? 10 : borderRadius),
         borderSide: BorderSide(
             color:
                  Colors.black
             ),
       ),
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(
-            (borderRadius == null) ? 10 : borderRadius),
+        // borderRadius: BorderRadius.circular(
+        //     (borderRadius == null) ? 10 : borderRadius),
       ),
       contentPadding: EdgeInsets.only(
         left: 20,

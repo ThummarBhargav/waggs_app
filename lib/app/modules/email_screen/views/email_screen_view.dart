@@ -71,7 +71,7 @@ class EmailScreenView extends GetView<SingupScreenController> {
                   child: getTextField(
                     textEditingController:
                     controller.emailvController.value,
-                    borderRadius: 20,
+                    // borderRadius: 20,
                     hintText: "Email Verification",
                     validator: (input) => !isNullEmptyOrFalse(input)
                         ? null

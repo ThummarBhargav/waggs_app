@@ -35,7 +35,7 @@ class SingupScreenView extends GetView<SingupScreenController> {
                       child: getTextField(
                         textEditingController:
                         controller.firstnameController.value,
-                        borderRadius: 20,
+                        // borderRadius: 20,
                         hintText: "First Name",
                         validator: (input) => !isNullEmptyOrFalse(input)
                             ? null
@@ -63,7 +63,7 @@ class SingupScreenView extends GetView<SingupScreenController> {
                       child: getTextField(
                         textEditingController:
                         controller.emailController.value,
-                        borderRadius: 20,
+                        // borderRadius: 20,
                         hintText: "Email Address",
                         validator: (input) => !isNullEmptyOrFalse(input)
                             ? null
@@ -94,7 +94,7 @@ class SingupScreenView extends GetView<SingupScreenController> {
                           child: getTextField(
                             textEditingController:
                             controller.countryController.value,
-                            borderRadius: 20,
+                            // borderRadius: 20,
                             hintText: "+91",
                             validator: (input) => !isNullEmptyOrFalse(input)
                                 ? null
@@ -113,7 +113,7 @@ class SingupScreenView extends GetView<SingupScreenController> {
                           child: getTextField(
                             textEditingController:
                             controller.mobileController.value,
-                            borderRadius: 20,
+                            // borderRadius: 20,
                             hintText: "Mobile Number",
                             validator: (input) => !isNullEmptyOrFalse(input)
                                 ? null
@@ -144,7 +144,7 @@ class SingupScreenView extends GetView<SingupScreenController> {
                         child: getTextField(
                           textEditingController:
                           controller.passController.value,
-                          borderRadius: 20,
+                          // borderRadius: 20,
                           hintText: "Password",
                           validator: (input) => !isNullEmptyOrFalse(input)
                               ? null
@@ -190,7 +190,7 @@ class SingupScreenView extends GetView<SingupScreenController> {
                         child: getTextField(
                           textEditingController:
                           controller.confirmPassController.value,
-                          borderRadius: 20,
+                          // borderRadius: 20,
                           hintText: "Conform Password",
                           validator: (input) => !isNullEmptyOrFalse(input)
                               ? null
