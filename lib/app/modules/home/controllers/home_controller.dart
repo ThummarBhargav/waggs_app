@@ -43,7 +43,6 @@ class HomeController extends GetxController {
         categoryModel.catagoryData!.forEach((element) {
           CatagoryList.add(element);
         }
-
         );
         CatagoryList[0].isSelected!.value = true;
         getAllUserApi();

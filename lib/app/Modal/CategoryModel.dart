@@ -10,9 +10,8 @@ class CategoryModel {
   CategoryModel.fromJson(Map<String, dynamic> json) {
     responseCode = json['responseCode'];
     if (json['data'] != null) {
-
       json['data'].forEach((v) {
-        catagoryData!.add( CategoryData.fromJson(v));
+        catagoryData!.add(CategoryData.fromJson(v));
       });
     }
     message = json['message'];
@@ -38,13 +37,15 @@ class CategoryData {
   int? iV;
   RxBool? isSelected;
 
-  CategoryData(
-      {this.isDeleted,
-        this.sId,
-        this.name,
-        this.createdAt,
-        this.updatedAt,
-        this.iV,this.isSelected,});
+  CategoryData({
+    this.isDeleted,
+    this.sId,
+    this.name,
+    this.createdAt,
+    this.updatedAt,
+    this.iV,
+    this.isSelected,
+  });
 
   CategoryData.fromJson(Map<String, dynamic> json) {
     isDeleted = json['isDeleted'];
