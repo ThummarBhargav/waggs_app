@@ -54,9 +54,6 @@ class HomeView extends GetView<HomeController> {
                                     onPressed: () {
                                       controller.CatagoryList[index].sId;
                                       print("sId: ${controller.CatagoryList[index].sId}");
-
-
-
                                       controller.productList.clear();
                                       controller.mainProductList.forEach((element) {
                                         if(element.category!.sId == controller.CatagoryList[index].sId&&element.subCategory!.categoryId == controller.CatagoryList[index].sId){

@@ -18,7 +18,7 @@ class HomeController extends GetxController {
 
   @override
   void onInit() {
-    getAllUserApi();
+
     AllCategory();
     super.onInit();
   }
@@ -43,7 +43,8 @@ class HomeController extends GetxController {
         categoryModel.catagoryData!.forEach((element) {
           CatagoryList.add(element);
         }
-        );
+
+        );getAllUserApi();
       }
   }
 
@@ -60,6 +61,12 @@ class HomeController extends GetxController {
           mainProductList.add(element);
         }
         );
+        mainProductList.forEach((element) {
+          if(element.category!.sId == CatagoryList[0].sId&&element.subCategory!.categoryId == CatagoryList[0].sId){
+            productList.add(element);
+          }
+        });
+        productList.refresh();
       }
     }
 
