@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:waggs_app/app/constant/SizeConstant.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
 import '../controllers/login_screen_controller.dart';
 
@@ -9,6 +10,7 @@ class LoginScreenView extends GetView<LoginScreenController> {
   SizedBox sizedBox = SizedBox(
     height: 10,
   );
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -17,242 +19,303 @@ class LoginScreenView extends GetView<LoginScreenController> {
         body: SingleChildScrollView(
           child: Container(
             color: Colors.white,
-            child: Column(
-              children: [
-                SizedBox(height: 80,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Container(
-                      height: 120,
-                      width: 180,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(image: AssetImage(
-                            "assets/logo111.png"
-                        )),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                Container(
-                  child: Text("Login To Your Account",style: GoogleFonts.roboto(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w700,
-                  ),),
-                ),
-                SizedBox(height: 20,),
-                Row(
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(left: 15,),
-                      child: Text("Email",style: GoogleFonts.roboto(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500
-                      ),),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 8,),
-                Container(
-                  margin: EdgeInsets.only(left: 15,right: 15),
-                  padding: EdgeInsets.only(left: 15,),
-                  decoration: BoxDecoration(
-                    color: Colors.grey[300],
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(10),
-                      topRight: Radius.circular(10),
-                      bottomRight: Radius.circular(10),
-                    ),
+            child: Form(
+              key: controller.formKey,
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 80,
                   ),
-                  child: TextField(
-                    controller: controller.emailController.value,
-                    decoration: InputDecoration(
-                      hintText: "Enter Your First Name",
-                      hintStyle: GoogleFonts.roboto(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
-                      enabledBorder: InputBorder.none,
-                      focusedBorder: InputBorder.none,
-                    ),
-                  ),
-                ),
-                SizedBox(height: 20,),
-                Row(
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(left: 15,),
-                      child: Text("Password",style: GoogleFonts.roboto(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500
-                      ),),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 8,),
-                Container(
-                  margin: EdgeInsets.only(left: 15,right: 15),
-                  padding: EdgeInsets.only(left: 15,),
-                  decoration: BoxDecoration(
-                    color: Colors.grey[300],
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(10),
-                      topRight: Radius.circular(10),
-                      bottomRight: Radius.circular(10),
-                    ),
-                  ),
-                  child: TextField(
-                    controller: controller.passController.value,
-                    decoration: InputDecoration(
-                      hintText: "Enter Your Password",
-                      hintStyle: GoogleFonts.roboto(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
-                      enabledBorder: InputBorder.none,
-                      focusedBorder: InputBorder.none,
-                    ),
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(top: 8,right: 10),
-                      child: Text("Lost Your Password?",
-                        style: GoogleFonts.roboto(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                          color: Colors.cyan,
-                        ),),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 10,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      height: 50,
-                      width: 200,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage("assets/or.JPG"),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 10,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    InkWell(
-                      onTap: () {
-
-                      },
-                      child: Container(
-                        height: 40,
-                        width: 50,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage("assets/face.png"),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: 10,),
-                    InkWell(
-                      onTap: () {
-
-                      },
-                      child: Container(
-                        height: 40,
-                        width: 50,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage("assets/google.png"),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: 10,),
-                    InkWell(
-                      onTap: () {
-
-                      },
-                      child: Container(
-                        height: 40,
-                        width: 50,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage("assets/indeed.png"),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 26,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        Get.toNamed(Routes.HOME);
-                      },
-                      child: Container(
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        height: 120,
                         width: 180,
-                        height: 40,
-                        alignment: Alignment.center,
                         decoration: BoxDecoration(
-                          color: Color(0xffDE8701),
-                          borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(25),
-                            bottomRight: Radius.circular(25),
-                            bottomLeft: Radius.circular(25),
-                          ),
+                          image: DecorationImage(
+                              image: AssetImage("assets/logo111.png")),
                         ),
-                        child: Text("Login",style: GoogleFonts.roboto(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.white
-                        ),),
                       ),
-                    )
-                  ],
-                ),
-                SizedBox(height: 15,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      child: Text("Don't An Account? ",
-                        style: TextStyle(
+                    ],
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Container(
+                    child: Text(
+                      "Login To Your Account",
+                      style: GoogleFonts.roboto(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(
+                          left: 15,
+                        ),
+                        child: Text(
+                          "Email",
+                          style: GoogleFonts.roboto(
+                              fontSize: 18, fontWeight: FontWeight.w500),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(left: 15, right: 15),
+                    padding: EdgeInsets.only(
+                      left: 15,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.grey[300],
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(10),
+                        topRight: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      ),
+                    ),
+                    child: TextFormField(
+                      controller: controller.emailController.value,
+                      validator: (input) => !isNullEmptyOrFalse(input)
+                          ? null
+                          : "Please Enter Email Address",
+                      decoration: InputDecoration(
+                        hintText: "Enter Your Email ",
+                        hintStyle: GoogleFonts.roboto(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
-                        ),),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Get.toNamed(Routes.SINGUP_SCREEN);
-                      },
-                      child: Container(
-                        child: Text("Sign Up",
-                          style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.cyan
-                          ),),
+                        ),
+                        enabledBorder: InputBorder.none,
+                        focusedBorder: InputBorder.none,
                       ),
                     ),
-                  ],
-                ),
-              ],
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(
+                          left: 15,
+                        ),
+                        child: Text(
+                          "Password",
+                          style: GoogleFonts.roboto(
+                              fontSize: 18, fontWeight: FontWeight.w500),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  Obx(() {
+                    return Container(
+                      margin: EdgeInsets.only(left: 15, right: 15),
+                      padding: EdgeInsets.only(
+                        left: 15,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.grey[300],
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(10),
+                          topRight: Radius.circular(10),
+                          bottomRight: Radius.circular(10),
+                        ),
+                      ),
+                      child: TextFormField(
+                        controller: controller.passController.value,
+                        validator: (input) => !isNullEmptyOrFalse(input)
+                            ? null
+                            : "Please Enter Password",
+                        obscureText: controller.passwordVisible.value,
+                        decoration: InputDecoration(
+                            hintText: "Enter Your Password",
+                            hintStyle: GoogleFonts.roboto(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            enabledBorder: InputBorder.none,
+                            focusedBorder: InputBorder.none,
+                            suffixIcon: IconButton(
+                                onPressed: () {
+                                  controller.passwordVisible.toggle();
+                                },
+                                icon: (!controller.passwordVisible.value)
+                                    ? Icon(
+                                        Icons.visibility_off,
+                                        color: Colors.grey,
+                                      )
+                                    : Icon(
+                                        Icons.visibility,
+                                        color: Colors.grey,
+                                      ))),
+                      ),
+                    );
+                  }),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(top: 8, right: 10),
+                        child: Text(
+                          "Lost Your Password?",
+                          style: GoogleFonts.roboto(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                            color: Colors.cyan,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        height: 50,
+                        width: 200,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage("assets/or.JPG"),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      InkWell(
+                        onTap: () {},
+                        child: Container(
+                          height: 40,
+                          width: 50,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage("assets/face.png"),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      InkWell(
+                        onTap: () {},
+                        child: Container(
+                          height: 40,
+                          width: 50,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage("assets/google.png"),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      InkWell(
+                        onTap: () {},
+                        child: Container(
+                          height: 40,
+                          width: 50,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage("assets/indeed.png"),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 26,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          if (controller.formKey.currentState!.validate()) {
+                            Get.toNamed(Routes.HOME);
+                          }
+                        },
+                        child: Container(
+                          width: 180,
+                          height: 40,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            color: Color(0xffDE8701),
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(25),
+                              bottomRight: Radius.circular(25),
+                              bottomLeft: Radius.circular(25),
+                            ),
+                          ),
+                          child: Text(
+                            "Login",
+                            style: GoogleFonts.roboto(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.white),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        child: Text(
+                          "Don't An Account? ",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Get.toNamed(Routes.SINGUP_SCREEN);
+                        },
+                        child: Container(
+                          child: Text(
+                            "Sign Up",
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.cyan),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),

@@ -11,6 +11,7 @@ class LoginScreenController extends GetxController {
 Rx<TextEditingController> passController = TextEditingController().obs;
   RxBool isChecked = false.obs;
   RxBool passwordVisible = true.obs;
+
   List respons =[];
   @override
   void onInit() {

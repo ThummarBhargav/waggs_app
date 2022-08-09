@@ -52,6 +52,11 @@ class HomeView extends GetView<HomeController> {
                               children: [
                                 TextButton(
                                     onPressed: () {
+                                      controller.CatagoryList.forEach((element) {
+                                        element.isSelected!.value = false;
+                                      });
+                                      controller.CatagoryList
+                                      [index].isSelected!.value = true;
                                       controller.CatagoryList[index].sId;
                                       print("sId: ${controller.CatagoryList[index].sId}");
                                       controller.productList.clear();
@@ -64,7 +69,7 @@ class HomeView extends GetView<HomeController> {
                                     },
                                     child: Text(
                                       "${controller.CatagoryList[index].name}+"+"",
-                                      style: TextStyle(color: Colors.white),
+                                      style: TextStyle(color: (controller.CatagoryList[index].isSelected!.value)?Colors.black:Colors.white),
                                     )),
                               ],
                             );

@@ -1,3 +1,5 @@
+import 'package:get/get.dart';
+
 class CategoryModel {
   int? responseCode;
   List<CategoryData>? catagoryData = [];
@@ -34,6 +36,7 @@ class CategoryData {
   String? createdAt;
   String? updatedAt;
   int? iV;
+  RxBool? isSelected;
 
   CategoryData(
       {this.isDeleted,
@@ -41,7 +44,7 @@ class CategoryData {
         this.name,
         this.createdAt,
         this.updatedAt,
-        this.iV});
+        this.iV,this.isSelected,});
 
   CategoryData.fromJson(Map<String, dynamic> json) {
     isDeleted = json['isDeleted'];
@@ -50,6 +53,7 @@ class CategoryData {
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
     iV = json['__v'];
+    isSelected = false.obs;
   }
 
   Map<String, dynamic> toJson() {

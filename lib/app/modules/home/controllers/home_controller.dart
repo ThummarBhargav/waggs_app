@@ -44,7 +44,9 @@ class HomeController extends GetxController {
           CatagoryList.add(element);
         }
 
-        );getAllUserApi();
+        );
+        CatagoryList[0].isSelected!.value = true;
+        getAllUserApi();
       }
   }
 
