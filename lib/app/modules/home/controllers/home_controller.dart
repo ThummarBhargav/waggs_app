@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:waggs_app/app/Modal/CategoryModel.dart';
 import 'package:waggs_app/app/Modal/SubCategoryModel.dart';
@@ -20,6 +21,7 @@ class HomeController extends GetxController {
 
   ]);
   RxList<BannerData> bannerList = RxList<BannerData>([]);
+  TextEditingController searchController = TextEditingController();
 
   @override
   void onInit() {

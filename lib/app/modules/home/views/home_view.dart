@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/modules/view-product/views/view_product_view.dart';
+import '../../../constant/SizeConstant.dart';
 import '../controllers/home_controller.dart';
 class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
@@ -32,13 +32,51 @@ class HomeView extends GetView<HomeController> {
                               onTap: () {
 
                               },
-                              child: Image.asset(
-                                'assets/logo111.png',
-                                width: 100,
+                              child: Container(
+                                width: 60,
                                 height: 60,
-                                alignment: Alignment.topLeft,
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage("assets/logo111.png"),
+                                    ),
+                                ),
                               ),
                             ),
+                            Container(
+                              width: 240,
+                              margin: EdgeInsets.only(left: 15,right: 15),
+                              padding: EdgeInsets.only(left: 15,),
+                              decoration: BoxDecoration(
+                                color: Colors.grey[300],
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(10),
+                                  topRight: Radius.circular(10),
+                                  bottomRight: Radius.circular(10),
+                                ),
+                              ),
+                              child: TextFormField(
+                                controller: controller.searchController,
+                                validator: (input) => !isNullEmptyOrFalse(input)
+                                    ? null
+                                    : "Please Enter Your First Name",
+                                decoration: InputDecoration(
+                                  hintText: "Search Product...",
+                                  hintStyle: GoogleFonts.roboto(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                  enabledBorder: InputBorder.none,
+                                  focusedBorder: InputBorder.none,
+                                  prefixIcon: Icon(Icons.search),
+                                  prefixIconColor: Colors.grey[200],
+                                  focusColor: Colors.grey,
+                                ),
+                              ),
+                            ),
+                            IconButton(onPressed: () {
+                              
+                            }, icon: Icon(Icons.menu,color: Colors.grey[500],))
                           ],
                         ),
                       ],
@@ -112,7 +150,7 @@ class HomeView extends GetView<HomeController> {
                       children: [
                         Container(
                           margin: EdgeInsets.only(right: 23,bottom: 10),
-                          child: Text("View All",
+                          child: Text("View All ",
                           style: GoogleFonts.roboto(
                             fontSize: 15,
                             color: Colors.grey,
@@ -120,100 +158,49 @@ class HomeView extends GetView<HomeController> {
                         ),
                       ],
                     ),
-                    Column(
-                      children: [
-                        GridView.builder(
-                            itemCount: controller.productList.length,
-                            physics: NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            itemBuilder: (context, index) {
-                              return GestureDetector(
-                                onTap: () {
-                                  Get.to(ViewProductView(index));
-                                },
-                                child: Column(
-                                  children: [
-                                    Expanded(flex: 3,
-                                      child: Container(
-                                        margin: EdgeInsets.only(left: 25,right: 25),
-                                        padding: EdgeInsets.only(top: 10,bottom: 10),
-                                        color: Colors.grey[300],
+                    Container(
+                      child: Column(
+                        children: [
+                          GridView.builder(
+                              itemCount: controller.productList.length,
+                              physics: NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemBuilder: (context, index) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    Get.to(ViewProductView(index));
+                                  },
+                                  child: Column(
+                                    children: [
+                                      Stack(
+                                        children: [
+                                          Column(
+                                            children: [
+                                              Container(
+                                                height: 150,
+                                                alignment: Alignment.center,
+                                                color: Colors.grey[200],
+                                                margin: EdgeInsets.only(left: 10,right: 10),
+                                                child: Image.network(width: 100,height:100,
+                                                    "${controller.productList[index].images![0]}",
+                                                ),
+                                              ),
+                                              Positioned(child: Container(color: Colors.cyan,))
+                                            ],
+                                          ),
+                                        ],
                                       ),
-                                    ),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: [
-                                        Expanded(
-                                          child: Container(
-                                            alignment: Alignment.center,
-                                            child: Text("${controller.productList[index].sellerId!.name}",
-                                            style: TextStyle(
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.cyan
-                                            ),),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Expanded(flex: 2,
-                                      child: Container(
-                                        alignment: Alignment.center,
-                                        margin: EdgeInsets.only(left: 10),
-                                        child: Text("${controller.productList[index].sellerId!.address}",
-                                          style: TextStyle(
-                                              fontSize: 16,
-                                              color: Colors.grey
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Expanded(child: Row(
-                                      children: [
-                                        Container(
-                                          margin: EdgeInsets.only(left: 10),
-                                          child: Text("${controller.productList[index].sellerId!.city} ,",
-                                            style: GoogleFonts.roboto(
-                                              fontSize: 14,
-                                              color: Colors.grey,
-                                            ),
-                                          ),
-                                        ),
-                                        Container(
-                                          child: Text("${controller.productList[index].sellerId!.state} ,",
-                                            style: GoogleFonts.roboto(
-                                              fontSize: 14,
-                                              color: Colors.grey,
-                                            ),
-                                          ),
-                                        ),
-                                        Container(
-                                          alignment: Alignment.center,
-                                          child: Text("${controller.productList[index].sellerId!.country} ,",
-                                            style: GoogleFonts.roboto(
-                                              fontSize: 14,
-                                              color: Colors.grey,
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    ),),
-                                    Expanded(child: Row(
-                                      children: [
-
-                                      ],
-                                    ))
-                                  ],
-                                ),
-                              );
-                            },
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 2,
-                                    mainAxisSpacing: 10)),
-                      ],
-                    )
+                                    ],
+                                  ),
+                                );
+                              },
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 2,
+                                      mainAxisSpacing: 50)),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
