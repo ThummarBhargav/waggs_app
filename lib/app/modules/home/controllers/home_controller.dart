@@ -12,7 +12,8 @@ class HomeController extends GetxController {
   GetAllproduct getAllproduct = GetAllproduct();
   CategoryModel categoryModel = CategoryModel();
   SubCategorymodel subCategorymodel = SubCategorymodel();
-  var UserList = <Products>[].obs;
+  RxList<Products> mainProductList = RxList<Products>([]);
+  RxList<Products> productList = RxList<Products>([]);
   RxList<CategoryData> CatagoryList = RxList<CategoryData>([]);
 
   @override
@@ -48,7 +49,7 @@ class HomeController extends GetxController {
   }
 
   getAllUserApi() async {
-    var url = Uri.parse(baseuel1 + ApiConstant.AllCategory);
+    var url = Uri.parse(baseuel1 + ApiConstant.getAllProductUsers);
     var response = await http.get(url);
     print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');
@@ -57,7 +58,7 @@ class HomeController extends GetxController {
     if(!isNullEmptyOrFalse(getAllproduct.data)){
       if(!isNullEmptyOrFalse(getAllproduct.data!.products)){
         getAllproduct.data!.products!.forEach((element) {
-          UserList.add(element);
+          mainProductList.add(element);
         }
         );
       }
