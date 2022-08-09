@@ -10,16 +10,15 @@ import 'package:http/http.dart' as http;
 class HomeController extends GetxController {
   //TODO: Implement HomeController
   GetAllproduct getAllproduct = GetAllproduct();
-  Categorymodel categoryModel = Categorymodel();
+  CategoryModel categoryModel = CategoryModel();
   SubCategorymodel subCategorymodel = SubCategorymodel();
-  List Category = ["Accessories ","Food ","Health & Wellness ","Treats And Chews "];
-  List categoryId = ["61e5662d2889b6b4933fa360","61d694038a92fef95dc20be1","61db117c5f39b415fbe32f01","61db0f775f39b415fbe32ee2"];
   var UserList = <Products>[].obs;
-  var CategoryList = <Categorymodel>[].obs;
+  RxList<CategoryData> CatagoryList = RxList<CategoryData>([]);
 
   @override
   void onInit() {
     getAllUserApi();
+    AllCategory();
     super.onInit();
   }
 
@@ -32,17 +31,20 @@ class HomeController extends GetxController {
   void onClose() {
     super.onClose();
   }
+
   AllCategory() async {
-    CategoryList.clear();
-    var url = Uri.parse(baseUrl + ApiConstant.AllCategory);
+    var url = Uri.parse("https://api-stg.waggs.in/api/v1/category");
     var response = await http.get(url);
     print('response status:${response.request}');
     dynamic result = jsonDecode(response.body);
+    categoryModel =  CategoryModel.fromJson(result);
     print(result);
-      result.forEach((element) {
-        CategoryList.add(Categorymodel.fromJson(element));
-
-    });
+      if(!isNullEmptyOrFalse(categoryModel.catagoryData)){
+        categoryModel.catagoryData!.forEach((element) {
+          CatagoryList.add(element);
+        }
+        );
+      }
   }
 
   getAllUserApi() async {

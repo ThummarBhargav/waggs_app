@@ -12,277 +12,278 @@ class SingupScreenView extends GetView<SingupScreenController> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Center(
-          child: Form(
-            key: controller.formKey,
-            child: SingleChildScrollView(
-                child: Column(
+        backgroundColor: Colors.white,
+        body: SingleChildScrollView(
+          child: Container(
+            color: Colors.white,
+            child: Column(
               children: [
-                Image.asset(
-                  "assets/logo111.png",
-                  width: 100,
-                  height: 100,
-                ),
-                Text(
-                  "Create Account",
-                  style: GoogleFonts.roboto(
-                    fontSize: 20,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      "First Name",
-                      style: GoogleFonts.roboto(
-                        fontSize: 16,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    color: Colors.grey[100],
-                    child: getTextField(
-                      textEditingController: controller.firstnameController.value,
-                      hintText: "Enter Your First Name",
-                      validator: (input) => !isNullEmptyOrFalse(input)
-                          ? null
-                          : "Enter Your First Name",
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      "Email",
-                      style: GoogleFonts.roboto(
-                        fontSize: 16,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    color: Colors.grey[100],
-                    child: getTextField(
-                      textEditingController: controller.emailController.value,
-                      hintText: "Enter Your Email",
-                      validator: (input) => !isNullEmptyOrFalse(input)
-                          ? null
-                          : "Check your email",
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      "Phone Number",
-                      style: GoogleFonts.roboto(
-                        fontSize: 16,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    color: Colors.grey[100],
-                    child: getTextField(
-                      textEditingController: controller.mobileController.value,
-                      hintText: "Enter Your Phone Number",
-                      validator: (input) => !isNullEmptyOrFalse(input)
-                          ? null
-                          : "Enter your Phone Number",
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      "Password",
-                      style: GoogleFonts.roboto(
-                        fontSize: 16,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Obx(() {
-                    return Container(
-                      color: Colors.grey[100],
-                      child: getTextField(
-                        textEditingController:
-                        controller.passController.value,
-                        // borderRadius: 20,
-                        hintText: "Password",
-                        validator: (input) => !isNullEmptyOrFalse(input)
-                            ? null
-                            : "Please Enter Password",
-                        textVisible: controller.passwordVisible.value,
-
-                        suffixIcon: InkWell(
-                          onTap: () {
-                            controller.passwordVisible.toggle();
-                          },
-                          child: Padding(
-                            padding: EdgeInsets.all(15),
-                            child: Image(
-                              image: AssetImage(
-                                  (!controller.passwordVisible.value)
-                                      ? "assets/ic_eye_offf.png"
-                                      : "assets/ic_eye.png"),
-                              height: 20,
-                              width: 20,
-                            ),
-                          ),
-                        ),
-                      ),
-                    );
-                  }),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      "Confirm Password",
-                      style: GoogleFonts.roboto(
-                        fontSize: 16,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Obx(() {
-                    return Container(
-                      child: getTextField(
-                        textEditingController:
-                        controller.confirmPassController.value,
-                        // borderRadius: 20,
-                        hintText: "Confirm Password",
-                        validator: (input) => !isNullEmptyOrFalse(input)
-                            ? null
-                            : "Please Enter Confirm Password",
-                        textVisible: controller.passwordVisible.value,
-                        suffixIcon: InkWell(
-                          onTap: () {
-                            controller.passwordVisible.toggle();
-                          },
-                          child: Padding(
-                            padding: EdgeInsets.all(15),
-                            child: Image(
-                              image: AssetImage(
-                                  (!controller.passwordVisible.value)
-                                      ? "assets/ic_eye_offf.png"
-                                      : "assets/ic_eye.png"),
-                              height: 20,
-                              width: 20,
-                            ),
-                          ),
-                        ),
-                      ),
-                    );
-                  }),
-                ),
+                SizedBox(height: 80,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(
-                      "By registering, I agree to",
-                      style: GoogleFonts.roboto(
-                        fontSize: 11,
-                        color: Colors.grey,
+                    Container(
+                      height: 120,
+                      width: 180,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(image: AssetImage(
+                            "assets/logo111.png"
+                        )),
                       ),
-                    ),
-                    TextButton(
-                      style: TextButton.styleFrom(
-                        textStyle: const TextStyle(
-                            fontSize: 11, fontWeight: FontWeight.bold),
-                      ),
-                      onPressed: () {
-                      },
-                      child: const Text('Terms of Service',style: TextStyle(color: Colors.black),),
-                    ),
-                    Text(
-                      "and",
-                      style: GoogleFonts.roboto(
-                        fontSize: 11,
-                        color: Colors.grey,
-                      ),
-                    ),
-                    TextButton(
-                      style: TextButton.styleFrom(
-                        textStyle: const TextStyle(
-                            fontSize: 11, fontWeight: FontWeight.bold),
-                      ),
-                      onPressed: () {
-                      },
-                      child: const Text('Privacy Policy',style: TextStyle(color: Colors.black),),
                     ),
                   ],
+                ),
+                SizedBox(
+                  height: 30,
                 ),
                 Container(
-                  padding: EdgeInsets.only(right: 40,left: 40),
+                  child: Text("Create Account",style: GoogleFonts.roboto(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w700,
+                  ),),
+                ),
+                SizedBox(height: 20,),
+                Row(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(left: 15,),
+                      child: Text("First Name",style: GoogleFonts.roboto(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500
+                      ),),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 8,),
+                Container(
+                  margin: EdgeInsets.only(left: 15,right: 15),
+                  padding: EdgeInsets.only(left: 15,),
                   decoration: BoxDecoration(
-                      color: Colors.orange,
-                      borderRadius: BorderRadius.only(topRight: Radius.circular(30),bottomRight:Radius.circular(30),bottomLeft: Radius.circular(30) )),
-                  child: TextButton(
-                    onPressed: () {
-                      if (controller.formKey.currentState!.validate()) {
-                      }
-                    },
-                    child: Text("Sing Up Now!",style: TextStyle(fontSize:15,color: Colors.white,fontWeight: FontWeight.bold),),
+                    color: Colors.grey[300],
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(10),
+                      topRight: Radius.circular(10),
+                      bottomRight: Radius.circular(10),
+                    ),
+                  ),
+                  child: TextField(
+                    controller: controller.firstnameController.value,
+                    decoration: InputDecoration(
+                      hintText: "Enter Your First Name",
+                      hintStyle: GoogleFonts.roboto(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      enabledBorder: InputBorder.none,
+                      focusedBorder: InputBorder.none,
+                    ),
                   ),
                 ),
+                SizedBox(height: 20,),
+                Row(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(left: 15,),
+                      child: Text("Phone Number",style: GoogleFonts.roboto(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500
+                      ),),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 8,),
+                Container(
+                  margin: EdgeInsets.only(left: 15,right: 15),
+                  padding: EdgeInsets.only(left: 15,),
+                  decoration: BoxDecoration(
+                    color: Colors.grey[300],
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(10),
+                      topRight: Radius.circular(10),
+                      bottomRight: Radius.circular(10),
+                    ),
+                  ),
+                  child: TextField(
+                    controller: controller.mobileController.value,
+                    decoration: InputDecoration(
+                      hintText: "Enter Your Phone Number",
+                      hintStyle: GoogleFonts.roboto(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      enabledBorder: InputBorder.none,
+                      focusedBorder: InputBorder.none,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20,),
+                Row(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(left: 15,),
+                      child: Text("Password",style: GoogleFonts.roboto(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500
+                      ),),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 8,),
+                Container(
+                  margin: EdgeInsets.only(left: 15,right: 15),
+                  padding: EdgeInsets.only(left: 15,),
+                  decoration: BoxDecoration(
+                    color: Colors.grey[300],
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(10),
+                      topRight: Radius.circular(10),
+                      bottomRight: Radius.circular(10),
+                    ),
+                  ),
+                  child: TextField(
+                    controller: controller.passController.value,
+                    decoration: InputDecoration(
+                      hintText: "Enter Your Password",
+                      hintStyle: GoogleFonts.roboto(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      enabledBorder: InputBorder.none,
+                      focusedBorder: InputBorder.none,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20,),
+                Row(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(left: 15,),
+                      child: Text("Confirm Password",style: GoogleFonts.roboto(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500
+                      ),),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 8,),
+                Container(
+                  margin: EdgeInsets.only(left: 15,right: 15),
+                  padding: EdgeInsets.only(left: 15,),
+                  decoration: BoxDecoration(
+                    color: Colors.grey[300],
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(10),
+                      topRight: Radius.circular(10),
+                      bottomRight: Radius.circular(10),
+                    ),
+                  ),
+                  child: TextField(
+                    controller: controller.confirmPassController.value,
+                    decoration: InputDecoration(
+                      hintText: "Enter Your Confirm Password",
+                      hintStyle: GoogleFonts.roboto(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      enabledBorder: InputBorder.none,
+                      focusedBorder: InputBorder.none,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      "Already have an account?",
-                      style: GoogleFonts.roboto(
-                        fontSize: 16,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    Container(
+                      child: Text("By Registering, I Agree To",
+                        style: GoogleFonts.roboto(
+                            fontSize: 13,
+                            color: Colors.grey
+                        ),),
                     ),
-                    TextButton(
-                      style: TextButton.styleFrom(
-                        textStyle: const TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.bold),
-                      ),
-                      onPressed: () {
-                        Get.offAndToNamed(Routes.LOGIN_SCREEN);
-                      },
-                      child: const Text('Login instead!'),
+                    Container(
+                      child: Text(" Team Of Service",
+                        style: GoogleFonts.roboto(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),),
+                    ),
+                    Container(
+                      child: Text(" And ",
+                        style: GoogleFonts.roboto(
+                            fontSize: 13,
+                            color: Colors.grey
+                        ),),
+                    ),
+                    Container(
+                      child: Text("Privacy Policy",
+                        style: GoogleFonts.roboto(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black
+                        ),),
                     ),
                   ],
-                )
+                ),
+                SizedBox(height: 20,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    InkWell(
+                      onTap: () {
+
+                      },
+                      child: Container(
+                        width: 180,
+                        height: 40,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: Color(0xffDE8701),
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(25),
+                            bottomRight: Radius.circular(25),
+                            bottomLeft: Radius.circular(25),
+                          ),
+                        ),
+                        child: Text("Sign Up Now!",style: GoogleFonts.roboto(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.white
+                        ),),
+                      ),
+                    )
+                  ],
+                ),
+                SizedBox(height: 20,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      child: Text("Already Have An Account? ",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Get.toNamed(Routes.LOGIN_SCREEN);
+                      },
+                      child: Container(
+                        child: Text("Login Instead!",
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.cyan
+                          ),),
+                      ),
+                    ),
+                  ],
+                ),
               ],
-            )),
+            ),
           ),
         ),
       ),

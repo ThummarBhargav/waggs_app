@@ -1,16 +1,16 @@
-class Categorymodel {
+class CategoryModel {
   int? responseCode;
-  List<Data>? data;
+  List<CategoryData>? catagoryData = [];
   String? message;
 
-  Categorymodel({this.responseCode, this.data, this.message});
+  CategoryModel({this.responseCode, this.catagoryData, this.message});
 
-  Categorymodel.fromJson(Map<String, dynamic> json) {
+  CategoryModel.fromJson(Map<String, dynamic> json) {
     responseCode = json['responseCode'];
     if (json['data'] != null) {
-      data = <Data>[];
+
       json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
+        catagoryData!.add( CategoryData.fromJson(v));
       });
     }
     message = json['message'];
@@ -19,15 +19,15 @@ class Categorymodel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['responseCode'] = this.responseCode;
-    if (this.data != null) {
-      data['data'] = this.data!.map((v) => v.toJson()).toList();
+    if (this.catagoryData != null) {
+      data['data'] = this.catagoryData!.map((v) => v.toJson()).toList();
     }
     data['message'] = this.message;
     return data;
   }
 }
 
-class Data {
+class CategoryData {
   bool? isDeleted;
   String? sId;
   String? name;
@@ -35,7 +35,7 @@ class Data {
   String? updatedAt;
   int? iV;
 
-  Data(
+  CategoryData(
       {this.isDeleted,
         this.sId,
         this.name,
@@ -43,7 +43,7 @@ class Data {
         this.updatedAt,
         this.iV});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  CategoryData.fromJson(Map<String, dynamic> json) {
     isDeleted = json['isDeleted'];
     sId = json['_id'];
     name = json['name'];

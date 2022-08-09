@@ -41,15 +41,16 @@ class HomeView extends GetView<HomeController> {
                       color: Colors.cyan,
                       child: Row(
                         children:
-                            List.generate(controller.Category.length, (index) {
+                            List.generate(controller.CatagoryList.length, (index) {
                           return Row(
                             children: [
                               TextButton(
                                   onPressed: () {
-                                    controller.categoryId[index];
+                                    controller.CatagoryList[index].sId;
+                                    print("sId: ${controller.CatagoryList[index].sId}");
                                   },
                                   child: Text(
-                                    controller.Category[index]+"+",
+                                    "${controller.CatagoryList[index].name}+"+"",
                                     style: TextStyle(color: Colors.white),
                                   )),
                             ],
