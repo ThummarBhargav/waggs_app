@@ -20,7 +20,7 @@ class ViewProductView extends GetWidget<HomeController> {
       body: Column(
         children: [
           Text(
-            controller.mainProductList[index].title!,
+            controller.productList[index].title!,
             style: GoogleFonts.roboto(
             fontSize: 16,
             color: Colors.black,
@@ -40,7 +40,7 @@ class ViewProductView extends GetWidget<HomeController> {
               isLoop: false,
               children:[
                 Image(image:  NetworkImage(
-                    "${controller.mainProductList[index].images![index]}"),
+                    "${controller.productList[index].images![0]}"),
                 ),
     ],
           )

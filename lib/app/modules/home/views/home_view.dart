@@ -25,11 +25,16 @@ class HomeView extends GetView<HomeController> {
                         SizedBox(
                           width: 10,
                         ),
-                        Image.asset(
-                          'assets/logo111.png',
-                          width: 100,
-                          height: 60,
-                          alignment: Alignment.topLeft,
+                        InkWell(
+                          onTap: () {
+
+                          },
+                          child: Image.asset(
+                            'assets/logo111.png',
+                            width: 100,
+                            height: 60,
+                            alignment: Alignment.topLeft,
+                          ),
                         ),
                       ],
                     ),

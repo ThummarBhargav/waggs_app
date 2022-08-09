@@ -32,7 +32,6 @@ class HomeController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
   AllCategory() async {
     var url = Uri.parse("https://api-stg.waggs.in/api/v1/category");
     var response = await http.get(url);
