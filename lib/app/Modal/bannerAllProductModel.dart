@@ -1,4 +1,33 @@
-class models {
+class bannerModels {
+  int? responseCode;
+  List<BannerData>? data;
+  String? message;
+
+  bannerModels({this.responseCode, this.data, this.message});
+
+  bannerModels.fromJson(Map<String, dynamic> json) {
+    responseCode = json['responseCode'];
+    if (json['data'] != null) {
+      data = <BannerData>[];
+      json['data'].forEach((v) {
+        data!.add(new BannerData.fromJson(v));
+      });
+    }
+    message = json['message'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['responseCode'] = this.responseCode;
+    if (this.data != null) {
+      data['data'] = this.data!.map((v) => v.toJson()).toList();
+    }
+    data['message'] = this.message;
+    return data;
+  }
+}
+
+class BannerData {
   String? sId;
   int? order;
   String? image;
@@ -8,7 +37,7 @@ class models {
   String? updatedAt;
   int? iV;
 
-  models(
+  BannerData(
       {this.sId,
         this.order,
         this.image,
@@ -18,7 +47,7 @@ class models {
         this.updatedAt,
         this.iV});
 
-  models.fromJson(Map<String, dynamic> json) {
+  BannerData.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
     order = json['order'];
     image = json['image'];

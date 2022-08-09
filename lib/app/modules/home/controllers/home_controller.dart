@@ -4,6 +4,7 @@ import 'package:waggs_app/app/Modal/CategoryModel.dart';
 import 'package:waggs_app/app/Modal/SubCategoryModel.dart';
 import 'package:waggs_app/app/constant/sizeConstant.dart';
 import '../../../Modal/GetAllProductModule.dart';
+import '../../../Modal/bannerAllProductModel.dart';
 import '../../../constant/ConstantUrl.dart';
 import 'package:http/http.dart' as http;
 
@@ -11,10 +12,12 @@ class HomeController extends GetxController {
   //TODO: Implement HomeController
   GetAllproduct getAllproduct = GetAllproduct();
   CategoryModel categoryModel = CategoryModel();
+  bannerModels bannerModel = bannerModels();
   SubCategorymodel subCategorymodel = SubCategorymodel();
   RxList<Products> mainProductList = RxList<Products>([]);
   RxList<Products> productList = RxList<Products>([]);
   RxList<CategoryData> CatagoryList = RxList<CategoryData>([]);
+  RxList<BannerData> bannerList = RxList<BannerData>([]);
 
   @override
   void onInit() {
@@ -70,6 +73,21 @@ class HomeController extends GetxController {
         productList.refresh();
       }
     }
+  }
 
+  bannerAllProduct() async {
+    var url = Uri.parse(baserl2 + ApiConstant.bannerProductUsers);
+    var response = await http.get(url);
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+    dynamic result = jsonDecode(response.body);
+    bannerModel =  bannerModels.fromJson(result);
+    if(!isNullEmptyOrFalse(bannerModel.data)){
+      bannerModel.data!.forEach((element) {
+        bannerList.add(element);
+      }
+
+      );getAllUserApi();
+    }
   }
 }
