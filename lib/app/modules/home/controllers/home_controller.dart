@@ -16,7 +16,9 @@ class HomeController extends GetxController {
   SubCategorymodel subCategorymodel = SubCategorymodel();
   RxList<Products> mainProductList = RxList<Products>([]);
   RxList<Products> productList = RxList<Products>([]);
-  RxList<CategoryData> CatagoryList = RxList<CategoryData>([]);
+  RxList<CategoryData> CatagoryList = RxList<CategoryData>([
+
+  ]);
   RxList<BannerData> bannerList = RxList<BannerData>([]);
 
   @override

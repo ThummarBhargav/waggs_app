@@ -25,55 +25,16 @@ class HomeView extends GetView<HomeController> {
                         SizedBox(
                           width: 10,
                         ),
-                        Row(
-                          children: [
-                            InkWell(
-                              onTap: () {
+                        InkWell(
+                          onTap: () {
 
-                              },
-                              child: Image.asset(
-                                'assets/logo111.png',
-                                width: 100,
-                                height: 60,
-                                alignment: Alignment.topLeft,
-                              ),
-                            ),
-                            Row(
-                              children: [
-                                SizedBox(width: 100,),
-                                Container(
-                                  height: 26,
-                                  width: 30,
-                                  margin: EdgeInsets.only(left: 20),
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      image: AssetImage("assets/profile.png",),
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  height: 26,
-                                  width: 30,
-                                  margin: EdgeInsets.only(left: 20),
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      image: AssetImage("assets/notification.png",),
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  margin: EdgeInsets.only(left: 20),
-                                  height: 26,
-                                  width: 30,
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      image: AssetImage("assets/cart.png",),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            )
-                          ],
+                          },
+                          child: Image.asset(
+                            'assets/logo111.png',
+                            width: 100,
+                            height: 60,
+                            alignment: Alignment.topLeft,
+                          ),
                         ),
                       ],
                     ),
