@@ -265,23 +265,23 @@ class HomeView extends GetView<HomeController> {
                                               )),
                                         ),
                                         SizedBox(height: 5,),
-                                        RatingBar.builder(
-                                          initialRating: 3,
-                                          minRating: 1,
-                                          updateOnDrag: false,
-                                          glowColor: Colors.transparent,
-                                          maxRating: 5,
-                                          glow: true,
-                                          direction: Axis.horizontal,
-                                          allowHalfRating: true,
-                                          itemCount: 5,
-                                          itemSize: 20,
-                                          itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                                          onRatingUpdate: (rating) {
-                                            print(rating);
-                                          },itemBuilder: (context, index) {
-                                          return Icon(Icons.star,color: Colors.amber,);
-                                        },),
+                                        // RatingBar.builder(
+                                        //   initialRating: 3,
+                                        //   minRating: 1,
+                                        //   updateOnDrag: false,
+                                        //   glowColor: Colors.transparent,
+                                        //   maxRating: 5,
+                                        //   glow: true,
+                                        //   direction: Axis.horizontal,
+                                        //   allowHalfRating: true,
+                                        //   itemCount: 5,
+                                        //   itemSize: 20,
+                                        //   itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                                        //   onRatingUpdate: (rating) {
+                                        //     print(rating);
+                                        //   },itemBuilder: (context, index) {
+                                        //   return Icon(Icons.star,color: Colors.amber,);
+                                        // },),
                                       ],
                                     ),
                                   ),
@@ -317,7 +317,7 @@ class HomeView extends GetView<HomeController> {
                       child: Column(
                         children: [
                           GridView.builder(
-                              itemCount: controller.TopStorelist.length,
+                              itemCount: controller.TopProductlist.length,
                               physics: NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
                               itemBuilder: (context, index) {
@@ -336,7 +336,7 @@ class HomeView extends GetView<HomeController> {
                                                     width: 200,
                                                     child: CachedNetworkImage(
                                                       imageUrl:
-                                                      "${controller.TopStorelist[index].images![0]}",
+                                                      "${controller.TopProductlist[index].images![0]}",
                                                       imageBuilder:
                                                           (context, imageProvider) =>
                                                           Container(
@@ -397,7 +397,7 @@ class HomeView extends GetView<HomeController> {
                                                               ),
                                                               child: Center(
                                                                 child: Text(
-                                                                  "Save ${controller.TopStorelist[index].discount!.toStringAsFixed(2)} %",
+                                                                  "Save ${controller.TopProductlist[index].discount!.toStringAsFixed(2)} %",
                                                                   style: TextStyle(
                                                                       color: Colors
                                                                           .white,
@@ -425,7 +425,7 @@ class HomeView extends GetView<HomeController> {
                                           child: Align(
                                               alignment: Alignment.center,
                                               child: Text(
-                                                "${controller.TopStorelist[index].sellerId!.companyName}",
+                                                "${controller.TopProductlist[index].sellerId!.companyName}",
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 20,
@@ -440,7 +440,7 @@ class HomeView extends GetView<HomeController> {
                                           child: Align(
                                               alignment: Alignment.center,
                                               child: Text(
-                                                "${controller.SellersList[index].address}",
+                                                "${controller.TopProductlist[index].sellerId!.address}",
                                                 style: TextStyle(
                                                     fontSize: 10,
                                                     color: Colors.grey),
@@ -450,7 +450,7 @@ class HomeView extends GetView<HomeController> {
                                           children: [
                                             Container(
                                               margin: EdgeInsets.only(left: 5),
-                                              child:  Text("₹${controller.TopStorelist[index].price!.toStringAsFixed(2)}",
+                                              child:  Text("₹${controller.TopProductlist[index].price!.toStringAsFixed(2)}",
                                                 style: GoogleFonts.roboto(
                                                     decoration: TextDecoration.lineThrough,
                                                     color: Colors.grey,
@@ -460,21 +460,23 @@ class HomeView extends GetView<HomeController> {
                                             ),
                                             SizedBox(width: 5,),
                                             Container(
-                                              child: Text("₹${controller.TopStorelist[index].discountedPrice!.toStringAsFixed(2)}"),
+                                              child: Text("₹${controller.TopProductlist[index].discountedPrice!.toStringAsFixed(2)}"),
                                             ),
                                           ],
                                         ),
                                         RatingBar.builder(
-                                          initialRating: 3,
-                                          minRating: 1,
+                                          initialRating: double.parse(controller.TopProductlist[index].rating.toString()),
+                                          minRating: 0,
                                           updateOnDrag: false,
                                           glowColor: Colors.transparent,
                                           maxRating: 5,
-                                          glow: true,
+                                          glow: false,
                                           direction: Axis.horizontal,
-                                          allowHalfRating: true,
+                                          allowHalfRating: false,
                                           itemCount: 5,
                                           itemSize: 20,
+                                          tapOnlyMode: false,
+                                          ignoreGestures: false,
                                           itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
                                           onRatingUpdate: (rating) {
                                             print(rating);
