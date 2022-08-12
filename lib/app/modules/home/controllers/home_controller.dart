@@ -34,6 +34,7 @@ class HomeController extends GetxController {
   bool _isVertical = false;
 
   IconData? _selectedIcon;
+  var data = Get.arguments;
 
 
   @override

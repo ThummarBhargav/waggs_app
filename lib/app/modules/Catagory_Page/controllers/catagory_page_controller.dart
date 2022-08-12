@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 
 class CatagoryPageController extends GetxController {
   //TODO: Implement CatagoryPageController
-
+  var data = Get.arguments;
   final count = 0.obs;
   @override
   void onInit() {
