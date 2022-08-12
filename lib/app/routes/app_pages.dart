@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/Catagory_Page/bindings/catagory_page_binding.dart';
+import '../modules/Catagory_Page/views/catagory_page_view.dart';
 import '../modules/OTP_screen/bindings/o_t_p_screen_binding.dart';
 import '../modules/OTP_screen/views/o_t_p_screen_view.dart';
 import '../modules/email_screen/bindings/email_screen_binding.dart';
@@ -51,5 +53,10 @@ class AppPages {
     //   page: () =>  ViewProductView(),
     //   binding: ViewProductBinding(),
     // ),
+    GetPage(
+      name: _Paths.CATAGORY_PAGE,
+      page: () => CatagoryPageView(),
+      binding: CatagoryPageBinding(),
+    ),
   ];
 }
