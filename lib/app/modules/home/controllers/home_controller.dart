@@ -132,6 +132,7 @@ class HomeController extends GetxController {
       if (!isNullEmptyOrFalse(storeModule.data!.sellers)) {
         storeModule.data!.sellers!.forEach((element) {
           SellersList.add(element);
+
         }
         );
         getAllUserApi();

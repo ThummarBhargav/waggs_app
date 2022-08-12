@@ -191,119 +191,120 @@ class HomeView extends GetView<HomeController> {
                       ],
                     ),
                     Container(
-                      child: Column(
-                        children: [
-                          GridView.builder(
-                              itemCount: controller.SellersList.length,
-                              physics: NeverScrollableScrollPhysics(),
-                              shrinkWrap: true,
-                              itemBuilder: (context, index) {
-                                return GestureDetector(
-                                  onTap: () {},
-                                  child: Container(
-                                    child: Column(
-                                      children: [
-                                        Container(
-                                          child: Column(
-                                            children: [
-                                              Container(
-                                                height: 90,
-                                                alignment: Alignment.center,
-                                                color: Colors.grey[200],
-                                                margin: EdgeInsets.only(
-                                                    left: 10, right: 10),
-                                                child: CachedNetworkImage(
-                                                  imageUrl:
-                                                      "${controller.SellersList[index].logoUrl}",
-                                                  imageBuilder: (context,
-                                                          imageProvider) =>
-                                                      Container(
-                                                    decoration: BoxDecoration(
-                                                      image: DecorationImage(
-                                                          image: imageProvider,
-                                                          fit: BoxFit.cover,
-                                                          colorFilter:
-                                                              ColorFilter.mode(
-                                                                  Colors.red,
-                                                                  BlendMode
-                                                                      .colorBurn)),
-                                                    ),
-                                                  ),
-                                                  placeholder: (context, url) =>
-                                                      CircularProgressIndicator(),
-                                                  errorWidget:
-                                                      (context, url, error) =>
-                                                          Icon(Icons.error),
+                      width: 400,
+
+                      height: 400,
+                      child: GridView.builder(
+                          itemCount: controller.SellersList.length,
+
+                          scrollDirection: Axis.horizontal,
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            return GestureDetector(
+                              onTap: () {},
+                              child: Container(
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                            width: 150,
+                                            height: 90,
+                                            alignment: Alignment.center,
+                                            color: Colors.grey[200],
+                                            margin: EdgeInsets.only(
+                                                left: 10, right: 10),
+                                            child: CachedNetworkImage(
+                                              imageUrl:
+                                                  "${controller.SellersList[index].logoUrl}",
+                                              imageBuilder: (context,
+                                                      imageProvider) =>
+                                                  Container(
+                                                decoration: BoxDecoration(
+                                                  image: DecorationImage(
+                                                      image: imageProvider,
+                                                      fit: BoxFit.cover,
+                                                      colorFilter:
+                                                          ColorFilter.mode(
+                                                              Colors.red,
+                                                              BlendMode
+                                                                  .colorBurn)),
                                                 ),
                                               ),
-                                            ],
+                                              placeholder: (context, url) =>
+                                                  CircularProgressIndicator(),
+                                              errorWidget:
+                                                  (context, url, error) =>
+                                                      Icon(Icons.error),
+                                            ),
                                           ),
-                                        ),
-                                        Container(
-                                          // height: 25,
-                                          width: 150,
-                                          child: Align(
-                                              alignment: Alignment.center,
-                                              child: Text(
-                                                "${controller.SellersList[index].companyName}",
-                                                style: GoogleFonts.raleway(
-                                                    fontWeight: FontWeight.w700,
-                                                    fontSize: 18,
-                                                    color: Color.fromRGBO(
-                                                        32, 193, 244, 1)),
-                                              ),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        Container(
-                                          margin: EdgeInsets.only(
-                                              left: 5, right: 5),
-                                          height: 60,
-                                          width: 200,
-                                          child: Align(
-                                              alignment: Alignment.center,
-                                              child: Text(
-                                                "${controller.SellersList[index].address}",
-                                                style: TextStyle(
-                                                    fontSize: 10,
-                                                    color: Colors.grey),
-                                              )),
-                                        ),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        // RatingBar.builder(
-                                        //   initialRating: 3,
-                                        //   minRating: 1,
-                                        //   updateOnDrag: false,
-                                        //   glowColor: Colors.transparent,
-                                        //   maxRating: 5,
-                                        //   glow: true,
-                                        //   direction: Axis.horizontal,
-                                        //   allowHalfRating: true,
-                                        //   itemCount: 5,
-                                        //   itemSize: 20,
-                                        //   itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                                        //   onRatingUpdate: (rating) {
-                                        //     print(rating);
-                                        //   },itemBuilder: (context, index) {
-                                        //   return Icon(Icons.star,color: Colors.amber,);
-                                        // },),
-                                      ],
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                );
-                              },
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                      childAspectRatio: 0.82,
-                                      crossAxisSpacing: 10,
-                                      crossAxisCount: 2,
-                                      mainAxisSpacing: 10)),
-                        ],
-                      ),
+                                    Container(
+                                      // height: 25,
+                                      width: 150,
+                                      child: Align(
+                                          alignment: Alignment.center,
+                                          child: Text(
+                                            "${controller.SellersList[index].companyName}",
+                                            style: GoogleFonts.raleway(
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: 18,
+                                                color: Color.fromRGBO(
+                                                    32, 193, 244, 1)),
+                                          ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Container(
+                                      margin: EdgeInsets.only(
+                                          left: 5, right: 5),
+                                      height: 60,
+                                      width: 200,
+                                      child: Align(
+                                          alignment: Alignment.center,
+                                          child: Text(
+                                            "${controller.SellersList[index].address}",
+                                            style: TextStyle(
+                                                fontSize: 10,
+                                                color: Colors.grey),
+                                          )),
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    // RatingBar.builder(
+                                    //   initialRating: 3,
+                                    //   minRating: 1,
+                                    //   updateOnDrag: false,
+                                    //   glowColor: Colors.transparent,
+                                    //   maxRating: 5,
+                                    //   glow: true,
+                                    //   direction: Axis.horizontal,
+                                    //   allowHalfRating: true,
+                                    //   itemCount: 5,
+                                    //   itemSize: 20,
+                                    //   itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                                    //   onRatingUpdate: (rating) {
+                                    //     print(rating);
+                                    //   },itemBuilder: (context, index) {
+                                    //   return Icon(Icons.star,color: Colors.amber,);
+                                    // },),
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                  childAspectRatio: 0.82,
+                                  crossAxisSpacing: 10,
+                                  crossAxisCount: 2,
+                                  mainAxisSpacing: 10)),
                     ),
                     SizedBox(
                       height: 10,
@@ -449,7 +450,7 @@ class HomeView extends GetView<HomeController> {
                                                     fontWeight: FontWeight.w700,
                                                     fontSize: 18,
                                                     color: Color.fromRGBO(
-                                                        32, 193, 244, 1)),
+                                                        59, 144, 211, 1.0)),
                                               )),
                                         ),
                                         SizedBox(
