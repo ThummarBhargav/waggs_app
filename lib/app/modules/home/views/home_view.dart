@@ -244,10 +244,10 @@ class HomeView extends GetView<HomeController> {
                                               alignment: Alignment.center,
                                               child: Text(
                                                 "${controller.SellersList[index].companyName}",
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 20,
-                                                    color: Colors.blue),
+                                                style: GoogleFonts.raleway(
+                                                    fontWeight: FontWeight.w700,
+                                                    fontSize: 18,
+                                                    color: Color.fromRGBO(32, 193, 244, 1)),
                                               )),
                                         ),
                                         SizedBox(height: 5,),

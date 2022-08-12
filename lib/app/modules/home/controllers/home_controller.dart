@@ -33,6 +33,7 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     AllCategory();
+    SubCategory();
     TopSellingStoreApi();
     TopSellingProductApi();
     super.onInit();
