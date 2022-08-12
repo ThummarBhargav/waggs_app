@@ -1,6 +1,6 @@
 class SubCategorymodel {
   int? responseCode;
-  List<Data>? data;
+  List<SubCategoryData>? data;
   String? message;
 
   SubCategorymodel({this.responseCode, this.data, this.message});
@@ -8,9 +8,9 @@ class SubCategorymodel {
   SubCategorymodel.fromJson(Map<String, dynamic> json) {
     responseCode = json['responseCode'];
     if (json['data'] != null) {
-      data = <Data>[];
+      data = <SubCategoryData>[];
       json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
+        data!.add(new SubCategoryData.fromJson(v));
       });
     }
     message = json['message'];
@@ -27,7 +27,7 @@ class SubCategorymodel {
   }
 }
 
-class Data {
+class SubCategoryData {
   bool? isDeleted;
   String? sId;
   String? name;
@@ -37,7 +37,7 @@ class Data {
   String? updatedAt;
   int? iV;
 
-  Data(
+  SubCategoryData(
       {this.isDeleted,
         this.sId,
         this.name,
@@ -47,7 +47,7 @@ class Data {
         this.updatedAt,
         this.iV});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  SubCategoryData.fromJson(Map<String, dynamic> json) {
     isDeleted = json['isDeleted'];
     sId = json['_id'];
     name = json['name'];

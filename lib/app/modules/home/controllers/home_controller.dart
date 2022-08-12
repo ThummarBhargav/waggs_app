@@ -20,7 +20,7 @@ class HomeController extends GetxController {
   RxList<Products> mainProductList = RxList<Products>([]);
   RxList<Products> productList = RxList<Products>([]);
   RxList<CategoryData> CatagoryList = RxList<CategoryData>([]);
-  RxList<SubCategorymodel> SubCatagoryList = RxList<SubCategorymodel>([]);
+  RxList<SubCategoryData> SubCatagoryList = RxList<SubCategoryData>([]);
   RxList<BannerData> bannerList = RxList<BannerData>([]);
   TextEditingController searchController = TextEditingController();
   RxList<Products0> TopStorelist = RxList<Products0>([]);
@@ -70,7 +70,7 @@ class HomeController extends GetxController {
     dynamic result = jsonDecode(response.body);
     subCategorymodel = SubCategorymodel.fromJson(result);
     print(result);
-    if (!isNullEmptyOrFalse(categoryModel.catagoryData)) {
+    if (!isNullEmptyOrFalse(subCategorymodel.data)) {
       subCategorymodel.data!.forEach((element) {
         SubCatagoryList.add(element);
       }
