@@ -1,12 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/modules/Catagory_Page/views/catagory_page_view.dart';
-import 'package:waggs_app/app/routes/app_pages.dart';
 import '../../../constant/SizeConstant.dart';
-import '../controllers/home_controller.dart';
+  import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
@@ -60,9 +60,6 @@ class HomeView extends GetView<HomeController> {
                             ),
                             child: TextFormField(
                               controller: controller.searchController,
-                              validator: (input) => !isNullEmptyOrFalse(input)
-                                  ? null
-                                  : "Please Enter Your First Name",
                               decoration: InputDecoration(
                                 hintText: "Search Product...",
                                 hintStyle: GoogleFonts.roboto(
@@ -124,7 +121,7 @@ class HomeView extends GetView<HomeController> {
                                     controller.productList.refresh();
                                     //Get.toNamed(Routes.CATAGORY_PAGE,arguments: controller.CatagoryList[index]);
                                     Get.to(CatagoryPageView(controller.CatagoryList[index]));
-
+                                    // Get.to(CatagoryView(),arguments: controller.CatagoryList[index]);
                                     print("SId:- ${controller.CatagoryList[index].sId}");
                                   },
                                   child: Text(
@@ -145,12 +142,24 @@ class HomeView extends GetView<HomeController> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    SizedBox(
-                      height: 40,
-                    ),
                     Row(
                       children: [
-                        Expanded(child: Image.asset("assets/poster.JPG"))
+                        Expanded(child: Container(
+                          height: 400,
+                          child: ImageSlideshow(
+                            indicatorColor: Color(0xffeb9d4f),
+                            onPageChanged: (value) {
+                              debugPrint('Page changed: $value');
+                            },
+                            children: [
+                              Image.asset("assets/image1.png",fit: BoxFit.fill,),
+                              Image.asset("assets/image2.png",fit: BoxFit.fill,),
+                              Image.asset("assets/image3.png",fit: BoxFit.fill,),
+                            ],
+                          ),
+                        ),
+                        ),
+                      //
                       ],
                     ),
                     SizedBox(

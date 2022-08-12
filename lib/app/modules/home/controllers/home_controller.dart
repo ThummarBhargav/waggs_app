@@ -72,7 +72,7 @@ class HomeController extends GetxController {
     print(result);
     if (!isNullEmptyOrFalse(subCategorymodel.data)) {
       subCategorymodel.data!.forEach((element) {
-        SubCatagoryList.add(element);
+        // SubCatagoryList.add(element);
       }
       );
       getAllUserApi();
