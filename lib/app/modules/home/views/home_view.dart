@@ -496,7 +496,7 @@ class HomeView extends GetView<HomeController> {
                                               .TopProductlist[index].rating
                                               .toString()),
                                           minRating: 0,
-                                          updateOnDrag: false,
+                                          updateOnDrag:false,
                                           glowColor: Colors.transparent,
                                           maxRating: 5,
                                           glow: false,
