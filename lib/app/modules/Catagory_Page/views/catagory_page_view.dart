@@ -6,7 +6,6 @@ import 'package:waggs_app/app/modules/home/controllers/home_controller.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
 
 import '../../../Modal/CategoryModel.dart';
-import '../controllers/catagory_page_controller.dart';
 
 class CatagoryPageView extends GetWidget<HomeController> {
   CategoryData data;
@@ -66,7 +65,7 @@ class CatagoryPageView extends GetWidget<HomeController> {
                             decoration: BoxDecoration(
                               image: DecorationImage(
                                   image: AssetImage("assets/catagory.jpg"),
-                                  fit: BoxFit.fill
+                                     fit: BoxFit.fill
                               ),
                             ),
                           ),
