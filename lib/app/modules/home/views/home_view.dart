@@ -261,7 +261,24 @@ class HomeView extends GetView<HomeController> {
                                                     color: Colors.grey),
                                               )),
                                         ),
-
+                                        Row(
+                                          children: [
+                                            Container(
+                                              margin: EdgeInsets.only(left: 5),
+                                              child:  Text("₹${controller.TopStorelist[index].price!.toStringAsFixed(2)}",
+                                                style: GoogleFonts.roboto(
+                                                    decoration: TextDecoration.lineThrough,
+                                                  color: Colors.grey,
+                                                  fontSize: 10
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(width: 5,),
+                                            Container(
+                                              child: Text("₹${controller.TopStorelist[index].discountedPrice!.toStringAsFixed(2)}"),
+                                            ),
+                                          ],
+                                        )
                                       ],
                                     ),
                                   ),
