@@ -22,7 +22,7 @@ class HomeController extends GetxController {
   RxList<CategoryData> CatagoryList = RxList<CategoryData>([]);
   RxList<BannerData> bannerList = RxList<BannerData>([]);
   TextEditingController searchController = TextEditingController();
-  RxList<Products0> TopStorelist = RxList<Products0>([]);
+  RxList<Products0> TopProductlist = RxList<Products0>([]);
   RxList<Sellers> SellersList = RxList<Sellers>([]);
   late final _ratingController;
   late double _rating;
@@ -134,7 +134,7 @@ class HomeController extends GetxController {
     if (!isNullEmptyOrFalse(storeModule.data)) {
       if (!isNullEmptyOrFalse(storeModule.data!.products)) {
         storeModule.data!.products!.forEach((element) {
-          TopStorelist.add(element);
+          TopProductlist.add(element);
         }
         );
         getAllUserApi();

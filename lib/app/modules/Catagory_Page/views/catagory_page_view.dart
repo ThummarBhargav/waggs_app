@@ -37,7 +37,7 @@ class CatagoryPageView extends GetWidget<HomeController> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            SizedBox(width: 240,),
+                            SizedBox(width: 200,),
                             IconButton(onPressed: () {
                             }, icon: Icon(Icons.search,size: 25,color: Colors.grey,)),
                             IconButton(onPressed: () {
