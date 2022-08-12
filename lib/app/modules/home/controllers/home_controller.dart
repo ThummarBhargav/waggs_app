@@ -20,6 +20,7 @@ class HomeController extends GetxController {
   RxList<Products> mainProductList = RxList<Products>([]);
   RxList<Products> productList = RxList<Products>([]);
   RxList<CategoryData> CatagoryList = RxList<CategoryData>([]);
+  RxList<SubCategorymodel> SubCatagoryList = RxList<SubCategorymodel>([]);
   RxList<BannerData> bannerList = RxList<BannerData>([]);
   TextEditingController searchController = TextEditingController();
   RxList<Products0> TopStorelist = RxList<Products0>([]);
@@ -48,7 +49,7 @@ class HomeController extends GetxController {
   }
 
   AllCategory() async {
-    var url = Uri.parse("https://api-stg.waggs.in/api/v1/category");
+    var url = Uri.parse(baseuel1+ApiConstant.AllCategory);
     var response = await http.get(url);
     print('response status:${response.request}');
     dynamic result = jsonDecode(response.body);
@@ -59,7 +60,21 @@ class HomeController extends GetxController {
         CatagoryList.add(element);
       }
       );
-      CatagoryList[0].isSelected!.value = true;
+      getAllUserApi();
+    }
+  }
+  SubCategory() async {
+    var url = Uri.parse("https://api-stg.waggs.in/api/v1/category");
+    var response = await http.get(url);
+    print('response status:${response.request}');
+    dynamic result = jsonDecode(response.body);
+    subCategorymodel = SubCategorymodel.fromJson(result);
+    print(result);
+    if (!isNullEmptyOrFalse(categoryModel.catagoryData)) {
+      subCategorymodel.data!.forEach((element) {
+        SubCatagoryList.add(element);
+      }
+      );
       getAllUserApi();
     }
   }
