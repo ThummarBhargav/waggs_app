@@ -1,3 +1,5 @@
+import 'package:waggs_app/app/constant/sizeConstant.dart';
+
 class StoreModule {
   int? responseCode;
   product1? data;
@@ -124,7 +126,7 @@ class Products0 {
         : null;
     weight = json['weight'];
     stock = json['stock'];
-    price = json['price'];
+    price = (isNullEmptyOrFalse(json['price']))?0:json['price'];
     discountedPrice = json['discountedPrice'];
     brand = json['brand'];
     discount = json['discount'];

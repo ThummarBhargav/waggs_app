@@ -122,7 +122,7 @@ class HomeView extends GetView<HomeController> {
                                       }
                                     });
                                     controller.productList.refresh();
-                                    Get.toNamed(Routes.CATAGORY_PAGE,arguments: controller.CatagoryList[index]);
+                                    // Get.to(CatagoryView(),arguments: controller.CatagoryList[index]);
 
                                     print("SId:- ${controller.CatagoryList[index].sId}");
                                   },
@@ -263,24 +263,6 @@ class HomeView extends GetView<HomeController> {
                                                     color: Colors.grey),
                                               )),
                                         ),
-                                        Row(
-                                          children: [
-                                            Container(
-                                              margin: EdgeInsets.only(left: 5),
-                                              child:  Text("₹${controller.TopStorelist[index].price!.toStringAsFixed(2)}",
-                                                style: GoogleFonts.roboto(
-                                                    decoration: TextDecoration.lineThrough,
-                                                  color: Colors.grey,
-                                                  fontSize: 10
-                                                ),
-                                              ),
-                                            ),
-                                            SizedBox(width: 5,),
-                                            Container(
-                                              child: Text("₹${controller.TopStorelist[index].discountedPrice!.toStringAsFixed(2)}"),
-                                            ),
-                                          ],
-                                        ),
                                         SizedBox(height: 5,),
                                         RatingBar.builder(
                                           initialRating: 3,
@@ -312,6 +294,7 @@ class HomeView extends GetView<HomeController> {
                         ],
                       ),
                     ),
+                    SizedBox(height: 10,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -339,93 +322,100 @@ class HomeView extends GetView<HomeController> {
                               itemBuilder: (context, index) {
                                 return GestureDetector(
                                   onTap: () {},
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Container(
-                                        child: Column(
+                                  child: Container(
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                          child: Column(
+                                            children: [
+                                              Container(
+                                                height: 90,
+                                                alignment: Alignment.center,
+                                                color: Colors.grey[200],
+                                                margin: EdgeInsets.only(
+                                                    left: 10, right: 10),
+                                                child: CachedNetworkImage(
+                                                  imageUrl:
+                                                  "${controller.TopStorelist[index].images![0]}",
+                                                  imageBuilder:
+                                                      (context, imageProvider) =>
+                                                      Container(
+                                                        decoration: BoxDecoration(
+                                                          image: DecorationImage(
+                                                              image: imageProvider,
+                                                              fit: BoxFit.cover,
+                                                              colorFilter:
+                                                              ColorFilter.mode(
+                                                                  Colors.transparent,
+                                                                  BlendMode
+                                                                      .colorBurn)),
+                                                        ),
+                                                      ),
+                                                  placeholder: (context, url) =>
+                                                      CircularProgressIndicator(),
+                                                  errorWidget:
+                                                      (context, url, error) =>
+                                                      Icon(Icons.error),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Container(
+                                          // height: 25,
+                                          width: 150,
+                                          child: Align(
+                                              alignment: Alignment.center,
+                                              child: Text(
+                                                "${controller.TopStorelist[index].sellerId!.companyName}",
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 20,
+                                                    color: Colors.blue),
+                                              )),
+                                        ),
+                                        SizedBox(height: 5,),
+                                        Container(
+                                          margin: EdgeInsets.only(left: 5,right: 5),
+                                          height: 60,
+                                          width: 200,
+                                          child: Align(
+                                              alignment: Alignment.center,
+                                              child: Text(
+                                                "${controller.SellersList[index].address}",
+                                                style: TextStyle(
+                                                    fontSize: 10,
+                                                    color: Colors.grey),
+                                              )),
+                                        ),
+                                        Row(
                                           children: [
                                             Container(
-                                              height: 150,
-                                              alignment: Alignment.center,
-                                              color: Colors.grey[200],
-                                              margin: EdgeInsets.only(
-                                                  left: 10, right: 10),
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                  image: DecorationImage(
-                                                      image: NetworkImage(
-                                                          "${controller.TopStorelist[index].images![0]}"),
-                                                      fit: BoxFit.cover),
-                                                ),
-                                                child: Column(
-                                                  children: [
-                                                    Container(
-                                                      width: double.maxFinite,
-                                                      height: 30,
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .end,
-                                                        children: [
-                                                          Container(
-                                                            margin:
-                                                                EdgeInsets.all(
-                                                                    1),
-                                                            height: 20,
-                                                            width: 70,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: Colors.red,
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .only(
-                                                                topLeft: Radius
-                                                                    .circular(
-                                                                        20),
-                                                                topRight: Radius
-                                                                    .circular(
-                                                                        20),
-                                                                bottomRight:
-                                                                    Radius
-                                                                        .circular(
-                                                                            20),
-                                                                bottomLeft: Radius
-                                                                    .circular(
-                                                                        20),
-                                                              ),
-                                                            ),
-                                                            child: Center(
-                                                              child: Text(
-                                                                "Save ${controller.TopStorelist[index].discount!.toStringAsFixed(2)} %",
-                                                                style: TextStyle(
-                                                                    color: Colors
-                                                                        .white,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                    fontSize:
-                                                                        9),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ],
+                                              margin: EdgeInsets.only(left: 5),
+                                              child:  Text("₹${controller.TopStorelist[index].price!.toStringAsFixed(2)}",
+                                                style: GoogleFonts.roboto(
+                                                    decoration: TextDecoration.lineThrough,
+                                                    color: Colors.grey,
+                                                    fontSize: 10
                                                 ),
                                               ),
                                             ),
+                                            SizedBox(width: 5,),
+                                            Container(
+                                              child: Text("₹${controller.TopStorelist[index].discountedPrice!.toStringAsFixed(2)}"),
+                                            ),
                                           ],
-                                        ),
-                                      ),
-                                    ],
+                                        )
+                                      ],
+                                    ),
                                   ),
                                 );
                               },
                               gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: 2, mainAxisSpacing: 50)),
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                  childAspectRatio: 0.82,
+                                  crossAxisSpacing: 10,
+                                  crossAxisCount: 2, mainAxisSpacing: 10)),
                         ],
                       ),
                     ),
