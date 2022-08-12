@@ -123,9 +123,11 @@ class HomeView extends GetView<HomeController> {
                                     });
                                     controller.productList.refresh();
                                     //Get.toNamed(Routes.CATAGORY_PAGE,arguments: controller.CatagoryList[index]);
-                                    Get.to(CatagoryPageView(controller.CatagoryList[index]));
+                                    Get.to(CatagoryPageView(
+                                        controller.CatagoryList[index]));
 
-                                    print("SId:- ${controller.CatagoryList[index].sId}");
+                                    print(
+                                        "SId:- ${controller.CatagoryList[index].sId}");
                                   },
                                   child: Text(
                                     "${controller.CatagoryList[index].name} +" +
@@ -213,9 +215,9 @@ class HomeView extends GetView<HomeController> {
                                                 child: CachedNetworkImage(
                                                   imageUrl:
                                                       "${controller.SellersList[index].logoUrl}",
-                                                  imageBuilder:
-                                                      (context, imageProvider) =>
-                                                          Container(
+                                                  imageBuilder: (context,
+                                                          imageProvider) =>
+                                                      Container(
                                                     decoration: BoxDecoration(
                                                       image: DecorationImage(
                                                           image: imageProvider,
@@ -238,7 +240,7 @@ class HomeView extends GetView<HomeController> {
                                           ),
                                         ),
                                         Container(
-                                         // height: 25,
+                                          // height: 25,
                                           width: 150,
                                           child: Align(
                                               alignment: Alignment.center,
@@ -247,12 +249,17 @@ class HomeView extends GetView<HomeController> {
                                                 style: GoogleFonts.raleway(
                                                     fontWeight: FontWeight.w700,
                                                     fontSize: 18,
-                                                    color: Color.fromRGBO(32, 193, 244, 1)),
-                                              )),
+                                                    color: Color.fromRGBO(
+                                                        32, 193, 244, 1)),
+                                              ),
+                                          ),
                                         ),
-                                        SizedBox(height: 5,),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
                                         Container(
-                                          margin: EdgeInsets.only(left: 5,right: 5),
+                                          margin: EdgeInsets.only(
+                                              left: 5, right: 5),
                                           height: 60,
                                           width: 200,
                                           child: Align(
@@ -264,7 +271,9 @@ class HomeView extends GetView<HomeController> {
                                                     color: Colors.grey),
                                               )),
                                         ),
-                                        SizedBox(height: 5,),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
                                         // RatingBar.builder(
                                         //   initialRating: 3,
                                         //   minRating: 1,
@@ -289,13 +298,16 @@ class HomeView extends GetView<HomeController> {
                               },
                               gridDelegate:
                                   SliverGridDelegateWithFixedCrossAxisCount(
-                                    childAspectRatio: 0.82,
+                                      childAspectRatio: 0.82,
                                       crossAxisSpacing: 10,
-                                      crossAxisCount: 2, mainAxisSpacing: 10)),
+                                      crossAxisCount: 2,
+                                      mainAxisSpacing: 10)),
                         ],
                       ),
                     ),
-                    SizedBox(height: 10,),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -336,84 +348,91 @@ class HomeView extends GetView<HomeController> {
                                                     width: 200,
                                                     child: CachedNetworkImage(
                                                       imageUrl:
-                                                      "${controller.TopProductlist[index].images![0]}",
-                                                      imageBuilder:
-                                                          (context, imageProvider) =>
+                                                          "${controller.TopProductlist[index].images![0]}",
+                                                      imageBuilder: (context,
+                                                              imageProvider) =>
                                                           Container(
-                                                            decoration: BoxDecoration(
-                                                              image: DecorationImage(
-                                                                  image: imageProvider,
-                                                                  fit: BoxFit.fill,
-                                                                  colorFilter:
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          image: DecorationImage(
+                                                              image:
+                                                                  imageProvider,
+                                                              fit: BoxFit.fill,
+                                                              colorFilter:
                                                                   ColorFilter.mode(
-                                                                      Colors.transparent,
+                                                                      Colors
+                                                                          .transparent,
                                                                       BlendMode
                                                                           .colorBurn)),
-                                                            ),
-                                                          ),
-                                                      placeholder: (context, url) =>
+                                                        ),
+                                                      ),
+                                                      placeholder: (context,
+                                                              url) =>
                                                           CircularProgressIndicator(),
-                                                      errorWidget:
-                                                          (context, url, error) =>
+                                                      errorWidget: (context,
+                                                              url, error) =>
                                                           Icon(Icons.error),
                                                     ),
                                                   ),
-                                                  Positioned(child: Column(
-                                                    children: [
-                                                      Container(
-                                                        width: double.maxFinite,
-                                                        height: 30,
-                                                        child: Row(
-                                                          mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .end,
-                                                          children: [
-                                                            Container(
-                                                              margin:
-                                                              EdgeInsets.all(
-                                                                  1),
-                                                              height: 20,
-                                                              width: 70,
-                                                              decoration:
-                                                              BoxDecoration(
-                                                                color: Colors.red,
-                                                                borderRadius:
-                                                                BorderRadius
-                                                                    .only(
-                                                                  topLeft: Radius
-                                                                      .circular(
-                                                                      20),
-                                                                  topRight: Radius
-                                                                      .circular(
-                                                                      20),
-                                                                  bottomRight:
-                                                                  Radius
-                                                                      .circular(
-                                                                      20),
-                                                                  bottomLeft: Radius
-                                                                      .circular(
-                                                                      20),
+                                                  Positioned(
+                                                    child: Column(
+                                                      children: [
+                                                        Container(
+                                                          width:
+                                                              double.maxFinite,
+                                                          height: 30,
+                                                          child: Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .end,
+                                                            children: [
+                                                              Container(
+                                                                margin:
+                                                                    EdgeInsets
+                                                                        .all(1),
+                                                                height: 20,
+                                                                width: 70,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: Colors
+                                                                      .red,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .only(
+                                                                    topLeft: Radius
+                                                                        .circular(
+                                                                            20),
+                                                                    topRight: Radius
+                                                                        .circular(
+                                                                            20),
+                                                                    bottomRight:
+                                                                        Radius.circular(
+                                                                            20),
+                                                                    bottomLeft:
+                                                                        Radius.circular(
+                                                                            20),
+                                                                  ),
+                                                                ),
+                                                                child: Center(
+                                                                  child: Text(
+                                                                    "Save ${controller.TopProductlist[index].discount!.toStringAsFixed(2)} %",
+                                                                    style: TextStyle(
+                                                                        color: Colors
+                                                                            .white,
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .bold,
+                                                                        fontSize:
+                                                                            9),
+                                                                  ),
                                                                 ),
                                                               ),
-                                                              child: Center(
-                                                                child: Text(
-                                                                  "Save ${controller.TopProductlist[index].discount!.toStringAsFixed(2)} %",
-                                                                  style: TextStyle(
-                                                                      color: Colors
-                                                                          .white,
-                                                                      fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                      fontSize:
-                                                                      9),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ],
+                                                            ],
+                                                          ),
                                                         ),
-                                                      ),
-                                                    ],
-                                                  ),)
+                                                      ],
+                                                    ),
+                                                  )
                                                 ],
                                               )
                                             ],
@@ -426,21 +445,25 @@ class HomeView extends GetView<HomeController> {
                                               alignment: Alignment.center,
                                               child: Text(
                                                 "${controller.TopProductlist[index].sellerId!.companyName}",
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 20,
-                                                    color: Colors.blue),
+                                                style:  GoogleFonts.raleway(
+                                                    fontWeight: FontWeight.w700,
+                                                    fontSize: 18,
+                                                    color: Color.fromRGBO(
+                                                        32, 193, 244, 1)),
                                               )),
                                         ),
-                                        SizedBox(height: 5,),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
                                         Container(
-                                          margin: EdgeInsets.only(left: 5,right: 5),
+                                          margin: EdgeInsets.only(
+                                              left: 5, right: 5),
                                           height: 60,
                                           width: 200,
                                           child: Align(
                                               alignment: Alignment.center,
                                               child: Text(
-                                                "${controller.TopProductlist[index].sellerId!.address}",
+                                                "${controller.TopProductlist[index].category!.name} - ${controller.TopProductlist[index].subCategory!.name} ",
                                                 style: TextStyle(
                                                     fontSize: 10,
                                                     color: Colors.grey),
@@ -450,22 +473,28 @@ class HomeView extends GetView<HomeController> {
                                           children: [
                                             Container(
                                               margin: EdgeInsets.only(left: 5),
-                                              child:  Text("₹${controller.TopProductlist[index].price!.toStringAsFixed(2)}",
+                                              child: Text(
+                                                "₹${controller.TopProductlist[index].price!.toStringAsFixed(2)}",
                                                 style: GoogleFonts.roboto(
-                                                    decoration: TextDecoration.lineThrough,
+                                                    decoration: TextDecoration
+                                                        .lineThrough,
                                                     color: Colors.grey,
-                                                    fontSize: 10
-                                                ),
+                                                    fontSize: 10),
                                               ),
                                             ),
-                                            SizedBox(width: 5,),
+                                            SizedBox(
+                                              width: 5,
+                                            ),
                                             Container(
-                                              child: Text("₹${controller.TopProductlist[index].discountedPrice!.toStringAsFixed(2)}"),
+                                              child: Text(
+                                                  "₹${controller.TopProductlist[index].discountedPrice!.toStringAsFixed(2)}"),
                                             ),
                                           ],
                                         ),
                                         RatingBar.builder(
-                                          initialRating: double.parse(controller.TopProductlist[index].rating.toString()),
+                                          initialRating: double.parse(controller
+                                              .TopProductlist[index].rating
+                                              .toString()),
                                           minRating: 0,
                                           updateOnDrag: false,
                                           glowColor: Colors.transparent,
@@ -477,22 +506,29 @@ class HomeView extends GetView<HomeController> {
                                           itemSize: 20,
                                           tapOnlyMode: false,
                                           ignoreGestures: false,
-                                          itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                                          itemPadding: EdgeInsets.symmetric(
+                                              horizontal: 4.0),
                                           onRatingUpdate: (rating) {
                                             print(rating);
-                                          },itemBuilder: (context, index) {
-                                          return Icon(Icons.star,color: Colors.amber,);
-                                        },),
+                                          },
+                                          itemBuilder: (context, index) {
+                                            return Icon(
+                                              Icons.star,
+                                              color: Colors.amber,
+                                            );
+                                          },
+                                        ),
                                       ],
                                     ),
                                   ),
                                 );
                               },
                               gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                                  childAspectRatio: 0.67,
-                                  crossAxisSpacing: 10,
-                                  crossAxisCount: 2, mainAxisSpacing: 10)),
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                      childAspectRatio: 0.67,
+                                      crossAxisSpacing: 10,
+                                      crossAxisCount: 2,
+                                      mainAxisSpacing: 10)),
                         ],
                       ),
                     ),
