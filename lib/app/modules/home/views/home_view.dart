@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -189,7 +190,7 @@ class HomeView extends GetView<HomeController> {
                       child: Column(
                         children: [
                           GridView.builder(
-                              itemCount: controller.productList.length,
+                              itemCount: controller.SellersList.length,
                               physics: NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
                               itemBuilder: (context, index) {
@@ -199,37 +200,135 @@ class HomeView extends GetView<HomeController> {
                                   },
                                   child: Column(
                                     children: [
-                                      Stack(
-                                        children: [
-                                          Column(
-                                            children: [
-                                              Container(
+                                      Container(
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                              height: 150,
+                                              alignment: Alignment.center,
+                                              color: Colors.grey[200],
+                                              margin: EdgeInsets.only(
+                                                  left: 10, right: 10),
+                                              child: CachedNetworkImage(
+                                                imageUrl: "${controller.SellersList[index].logoUrl}",
+                                                imageBuilder: (context, imageProvider) => Container(
+                                                  decoration: BoxDecoration(
+                                                    image: DecorationImage(
+                                                        image: imageProvider,
+                                                        fit: BoxFit.cover,
+                                                        colorFilter:
+                                                        ColorFilter.mode(Colors.red, BlendMode.colorBurn)),
+                                                  ),
+                                                ),
+                                                placeholder: (context, url) => CircularProgressIndicator(),
+                                                errorWidget: (context, url, error) => Icon(Icons.error),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Container(
+                                        height: 20,
+                                        width: 100,
+                                        child: Text("${controller.SellersList[index].companyName}"),)
+                                    ],
+                                  ),
+                                );
+                              },
+                              gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2, mainAxisSpacing: 50)),
+                        ],
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          child: Text(
+                            "TOP SELLING PRODUCTS",
+                            style: GoogleFonts.roboto(
+                                color: Colors.orangeAccent,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 20),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    Container(
+                      child: Column(
+                        children: [
+                          GridView.builder(
+                              itemCount: controller.TopStorelist.length,
+                              physics: NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemBuilder: (context, index) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    Get.to(ViewProductView(index));
+                                  },
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        child: Column(
+                                          children: [
+                                            Container(
                                                 height: 150,
                                                 alignment: Alignment.center,
                                                 color: Colors.grey[200],
                                                 margin: EdgeInsets.only(
                                                     left: 10, right: 10),
-                                                child: Image.network(
-                                                  width: 100,
-                                                  height: 100,
-                                                  "${controller.productList[index].images![0]}",
+                                                child: Container(
+                                                  decoration: BoxDecoration(
+                                                    image: DecorationImage(
+                                                        image: NetworkImage("${controller.TopStorelist[index].images![0]}"),
+                                                      fit: BoxFit.cover
+                                                    ),
+
+                                                  ),
+                                                  child: Column(children: [
+                                                    Container(
+                                                      width: double.maxFinite,
+                                                      height: 30,
+                                                      child: Row(mainAxisAlignment: MainAxisAlignment.end,
+                                                        children: [
+                                                          Container(
+                                                            margin: EdgeInsets.all(1),
+                                                            height: 20,
+                                                            width: 70,
+                                                            decoration: BoxDecoration(
+                                                              color: Colors.red,
+                                                              borderRadius: BorderRadius.only(
+                                                                topLeft: Radius.circular(20),
+                                                                topRight: Radius.circular(20),
+                                                                bottomRight: Radius.circular(20),
+                                                                bottomLeft: Radius.circular(20),
+                                                              ),
+                                                            ),
+                                                            child: Center(
+                                                              child: Text("Save ${controller.TopStorelist[index].discount!.toStringAsFixed(2)} %",
+                                                                style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 9),),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],),
                                                 ),
-                                              ),
-                                              Positioned(
-                                                  child: Container(
-                                                color: Colors.cyan,
-                                              ))
-                                            ],
-                                          ),
-                                        ],
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ],
                                   ),
                                 );
                               },
                               gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: 2, mainAxisSpacing: 50)),
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2, mainAxisSpacing: 50)),
                         ],
                       ),
                     ),
@@ -240,17 +339,6 @@ class HomeView extends GetView<HomeController> {
           ],
         ));
       }),
-    );
-  }
-
-  AccessoriesScreen() {
-    return Column(
-      children: [
-        Text(
-          "Assesories",
-          style: TextStyle(fontSize: 50),
-        ),
-      ],
     );
   }
 }

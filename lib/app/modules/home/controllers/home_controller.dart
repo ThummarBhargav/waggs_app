@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:waggs_app/app/Modal/CategoryModel.dart';
 import 'package:waggs_app/app/Modal/SubCategoryModel.dart';
+import 'package:waggs_app/app/Modal/TopSellingStore.dart';
 import 'package:waggs_app/app/constant/sizeConstant.dart';
 import '../../../Modal/GetAllProductModule.dart';
 import '../../../Modal/bannerAllProductModel.dart';
@@ -14,18 +15,22 @@ class HomeController extends GetxController {
   GetAllproduct getAllproduct = GetAllproduct();
   CategoryModel categoryModel = CategoryModel();
   bannerModels bannerModel = bannerModels();
+  StoreModule storeModule = StoreModule();
   SubCategorymodel subCategorymodel = SubCategorymodel();
   RxList<Products> mainProductList = RxList<Products>([]);
   RxList<Products> productList = RxList<Products>([]);
-  RxList<CategoryData> CatagoryList = RxList<CategoryData>([
-  ]);
+  RxList<CategoryData> CatagoryList = RxList<CategoryData>([]);
   RxList<BannerData> bannerList = RxList<BannerData>([]);
   TextEditingController searchController = TextEditingController();
+  RxList<Products0> TopStorelist = RxList<Products0>([]);
+  RxList<Sellers> SellersList = RxList<Sellers>([]);
+
 
   @override
   void onInit() {
-
     AllCategory();
+    TopSellingStoreApi();
+    TopSellingProductApi();
     super.onInit();
   }
 
@@ -38,21 +43,22 @@ class HomeController extends GetxController {
   void onClose() {
     super.onClose();
   }
+
   AllCategory() async {
     var url = Uri.parse("https://api-stg.waggs.in/api/v1/category");
     var response = await http.get(url);
     print('response status:${response.request}');
     dynamic result = jsonDecode(response.body);
-    categoryModel =  CategoryModel.fromJson(result);
+    categoryModel = CategoryModel.fromJson(result);
     print(result);
-      if(!isNullEmptyOrFalse(categoryModel.catagoryData)){
-        categoryModel.catagoryData!.forEach((element) {
-          CatagoryList.add(element);
-        }
-        );
-        CatagoryList[0].isSelected!.value = true;
-        getAllUserApi();
+    if (!isNullEmptyOrFalse(categoryModel.catagoryData)) {
+      categoryModel.catagoryData!.forEach((element) {
+        CatagoryList.add(element);
       }
+      );
+      CatagoryList[0].isSelected!.value = true;
+      getAllUserApi();
+    }
   }
 
   getAllUserApi() async {
@@ -61,15 +67,16 @@ class HomeController extends GetxController {
     print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');
     dynamic result = jsonDecode(response.body);
-    getAllproduct =  GetAllproduct.fromJson(result);
-    if(!isNullEmptyOrFalse(getAllproduct.data)){
-      if(!isNullEmptyOrFalse(getAllproduct.data!.products)){
+    getAllproduct = GetAllproduct.fromJson(result);
+    if (!isNullEmptyOrFalse(getAllproduct.data)) {
+      if (!isNullEmptyOrFalse(getAllproduct.data!.products)) {
         getAllproduct.data!.products!.forEach((element) {
           mainProductList.add(element);
         }
         );
         mainProductList.forEach((element) {
-          if(element.category!.sId == CatagoryList[0].sId&&element.subCategory!.categoryId == CatagoryList[0].sId){
+          if (element.category!.sId == CatagoryList[0].sId &&
+              element.subCategory!.categoryId == CatagoryList[0].sId) {
             productList.add(element);
           }
         });
@@ -84,13 +91,51 @@ class HomeController extends GetxController {
     print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');
     dynamic result = jsonDecode(response.body);
-    bannerModel =  bannerModels.fromJson(result);
-    if(!isNullEmptyOrFalse(bannerModel.data)){
+    bannerModel = bannerModels.fromJson(result);
+    if (!isNullEmptyOrFalse(bannerModel.data)) {
       bannerModel.data!.forEach((element) {
         bannerList.add(element);
       }
+      );
+      getAllUserApi();
+    }
+  }
 
-      );getAllUserApi();
+  TopSellingStoreApi() async {
+    var url = Uri.parse(baseuel1 + ApiConstant.TopStore);
+    var response = await http.get(url);
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+    dynamic result = jsonDecode(response.body);
+    storeModule = StoreModule.fromJson(result);
+    print(result);
+    if (!isNullEmptyOrFalse(storeModule.data)) {
+      if (!isNullEmptyOrFalse(storeModule.data!.sellers)) {
+        storeModule.data!.sellers!.forEach((element) {
+          SellersList.add(element);
+        }
+        );
+        getAllUserApi();
+      }
+    }
+  }
+
+  TopSellingProductApi() async {
+    var url = Uri.parse(baseuel1 + ApiConstant.TopStore);
+    var response = await http.get(url);
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+    dynamic result = jsonDecode(response.body);
+    storeModule = StoreModule.fromJson(result);
+    print(result);
+    if (!isNullEmptyOrFalse(storeModule.data)) {
+      if (!isNullEmptyOrFalse(storeModule.data!.products)) {
+        storeModule.data!.products!.forEach((element) {
+          TopStorelist.add(element);
+        }
+        );
+        getAllUserApi();
+      }
     }
   }
 }
