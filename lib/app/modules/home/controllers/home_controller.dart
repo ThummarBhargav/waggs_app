@@ -24,6 +24,7 @@ class HomeController extends GetxController {
   TextEditingController searchController = TextEditingController();
   RxList<Products0> TopStorelist = RxList<Products0>([]);
   RxList<Sellers> SellersList = RxList<Sellers>([]);
+  var data = Get.arguments;
 
 
   @override

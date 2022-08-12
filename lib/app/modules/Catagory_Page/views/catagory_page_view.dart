@@ -6,8 +6,7 @@ import 'package:waggs_app/app/routes/app_pages.dart';
 
 import '../controllers/catagory_page_controller.dart';
 
-class CatagoryPageView extends GetView<CatagoryPageController> {
-
+class CatagoryPageView extends GetWidget<CatagoryPageController> {
 
   @override
   Widget build(BuildContext context) {
