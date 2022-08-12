@@ -26,15 +26,7 @@ class HomeController extends GetxController {
   RxList<Sellers> SellersList = RxList<Sellers>([]);
   late final _ratingController;
   late double _rating;
-
-  double _userRating = 3.0;
-  int _ratingBarMode = 1;
-  double _initialRating = 2.0;
-  bool _isRTLMode = false;
-  bool _isVertical = false;
-
   IconData? _selectedIcon;
-  var data = Get.arguments;
 
 
   @override

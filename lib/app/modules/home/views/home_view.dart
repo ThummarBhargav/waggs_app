@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
@@ -279,7 +280,25 @@ class HomeView extends GetView<HomeController> {
                                               child: Text("₹${controller.TopStorelist[index].discountedPrice!.toStringAsFixed(2)}"),
                                             ),
                                           ],
-                                        )
+                                        ),
+                                        SizedBox(height: 5,),
+                                        RatingBar.builder(
+                                          initialRating: 3,
+                                          minRating: 1,
+                                          updateOnDrag: false,
+                                          glowColor: Colors.transparent,
+                                          maxRating: 5,
+                                          glow: true,
+                                          direction: Axis.horizontal,
+                                          allowHalfRating: true,
+                                          itemCount: 5,
+                                          itemSize: 20,
+                                          itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                                          onRatingUpdate: (rating) {
+                                            print(rating);
+                                          },itemBuilder: (context, index) {
+                                          return Icon(Icons.star,color: Colors.amber,);
+                                        },),
                                       ],
                                     ),
                                   ),
