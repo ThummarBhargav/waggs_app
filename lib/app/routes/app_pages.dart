@@ -53,10 +53,10 @@ class AppPages {
     //   page: () =>  ViewProductView(),
     //   binding: ViewProductBinding(),
     // ),
-    GetPage(
-      name: _Paths.CATAGORY_PAGE,
-      page: () => CatagoryPageView(),
-      binding: CatagoryPageBinding(),
-    ),
+    // GetPage(
+    //   name: _Paths.CATAGORY_PAGE,
+    //   page: () => CatagoryPageView(),
+    //   binding: CatagoryPageBinding(),
+    // ),
   ];
 }

@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:waggs_app/app/modules/home/controllers/home_controller.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
 
+import '../../../Modal/CategoryModel.dart';
 import '../controllers/catagory_page_controller.dart';
 
-class CatagoryPageView extends GetWidget<CatagoryPageController> {
+class CatagoryPageView extends GetWidget<HomeController> {
+  CategoryData data;
+  CatagoryPageView(this.data);
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +89,7 @@ class CatagoryPageView extends GetWidget<CatagoryPageController> {
                             children: [
                               Container(
                                 margin: EdgeInsets.only(top: 45,left: 30),
-                                child: Text("Food",
+                                child: Text(data.name.toString(),
                                   style: GoogleFonts.roboto(
                                     fontSize: 28,
                                     fontWeight: FontWeight.bold,
