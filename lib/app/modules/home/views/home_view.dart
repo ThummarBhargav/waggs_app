@@ -195,77 +195,83 @@ class HomeView extends GetView<HomeController> {
                               itemBuilder: (context, index) {
                                 return GestureDetector(
                                   onTap: () {},
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        child: Column(
-                                          children: [
-                                            Container(
-                                              height: 90,
-                                              alignment: Alignment.center,
-                                              color: Colors.grey[200],
-                                              margin: EdgeInsets.only(
-                                                  left: 10, right: 10),
-                                              child: CachedNetworkImage(
-                                                imageUrl:
-                                                    "${controller.SellersList[index].logoUrl}",
-                                                imageBuilder:
-                                                    (context, imageProvider) =>
-                                                        Container(
-                                                  decoration: BoxDecoration(
-                                                    image: DecorationImage(
-                                                        image: imageProvider,
-                                                        fit: BoxFit.cover,
-                                                        colorFilter:
-                                                            ColorFilter.mode(
-                                                                Colors.red,
-                                                                BlendMode
-                                                                    .colorBurn)),
+                                  child: Container(
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                          child: Column(
+                                            children: [
+                                              Container(
+                                                height: 90,
+                                                alignment: Alignment.center,
+                                                color: Colors.grey[200],
+                                                margin: EdgeInsets.only(
+                                                    left: 10, right: 10),
+                                                child: CachedNetworkImage(
+                                                  imageUrl:
+                                                      "${controller.SellersList[index].logoUrl}",
+                                                  imageBuilder:
+                                                      (context, imageProvider) =>
+                                                          Container(
+                                                    decoration: BoxDecoration(
+                                                      image: DecorationImage(
+                                                          image: imageProvider,
+                                                          fit: BoxFit.cover,
+                                                          colorFilter:
+                                                              ColorFilter.mode(
+                                                                  Colors.red,
+                                                                  BlendMode
+                                                                      .colorBurn)),
+                                                    ),
                                                   ),
+                                                  placeholder: (context, url) =>
+                                                      CircularProgressIndicator(),
+                                                  errorWidget:
+                                                      (context, url, error) =>
+                                                          Icon(Icons.error),
                                                 ),
-                                                placeholder: (context, url) =>
-                                                    CircularProgressIndicator(),
-                                                errorWidget:
-                                                    (context, url, error) =>
-                                                        Icon(Icons.error),
                                               ),
-                                            ),
-                                          ],
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                      Container(
-                                       // height: 25,
-                                        width: 150,
-                                        child: Align(
-                                            alignment: Alignment.center,
-                                            child: Text(
-                                              "${controller.SellersList[index].companyName}",
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 20,
-                                                  color: Colors.blue),
-                                            )),
-                                      ),
-                                      Container(
-                                        margin: EdgeInsets.only(left: 5,right: 5),
-                                        height: 60,
-                                        width: 200,
-                                        child: Align(
-                                            alignment: Alignment.center,
-                                            child: Text(
-                                              "${controller.SellersList[index].address}",
-                                              style: TextStyle(
-                                                  fontSize: 10,
-                                                  color: Colors.grey),
-                                            )),
-                                      )
-                                    ],
+                                        Container(
+                                         // height: 25,
+                                          width: 150,
+                                          child: Align(
+                                              alignment: Alignment.center,
+                                              child: Text(
+                                                "${controller.SellersList[index].companyName}",
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 20,
+                                                    color: Colors.blue),
+                                              )),
+                                        ),
+                                        SizedBox(height: 5,),
+                                        Container(
+                                          margin: EdgeInsets.only(left: 5,right: 5),
+                                          height: 60,
+                                          width: 200,
+                                          child: Align(
+                                              alignment: Alignment.center,
+                                              child: Text(
+                                                "${controller.SellersList[index].address}",
+                                                style: TextStyle(
+                                                    fontSize: 10,
+                                                    color: Colors.grey),
+                                              )),
+                                        ),
+
+                                      ],
+                                    ),
                                   ),
                                 );
                               },
                               gridDelegate:
                                   SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: 2, mainAxisSpacing: 50)),
+                                    childAspectRatio: 0.82,
+                                      crossAxisSpacing: 10,
+                                      crossAxisCount: 2, mainAxisSpacing: 10)),
                         ],
                       ),
                     ),
