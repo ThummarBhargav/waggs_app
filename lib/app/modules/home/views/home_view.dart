@@ -479,7 +479,7 @@ class HomeView extends GetView<HomeController> {
                                                     decoration: TextDecoration
                                                         .lineThrough,
                                                     color: Colors.grey,
-                                                    fontSize: 10),
+                                                    fontSize: 8),
                                               ),
                                             ),
                                             SizedBox(
@@ -487,37 +487,39 @@ class HomeView extends GetView<HomeController> {
                                             ),
                                             Container(
                                               child: Text(
-                                                  "₹${controller.TopProductlist[index].discountedPrice!.toStringAsFixed(2)}"),
+                                                  "₹${controller.TopProductlist[index].discountedPrice!.toStringAsFixed(2)}",style: TextStyle(fontSize: 10),),
+                                            ),
+                                            RatingBar.builder(
+                                              initialRating: double.parse(controller
+                                                  .TopProductlist[index].rating
+                                                  .toString()),
+                                              minRating: 0,
+                                              updateOnDrag:false,
+                                              unratedColor: Colors.grey,
+                                              glowColor: Colors.transparent,
+                                              maxRating: 5,
+                                              glow: false,
+                                              direction: Axis.horizontal,
+                                              allowHalfRating: false,
+                                              itemCount: 5,
+                                              itemSize: 20,
+                                              tapOnlyMode: false,
+                                              ignoreGestures: false,
+                                              itemPadding: EdgeInsets.symmetric(
+                                                  horizontal: 0),
+                                              onRatingUpdate: (rating) {
+                                                print(rating);
+                                              },
+                                              itemBuilder: (context, index) {
+                                                return Icon(
+                                                  Icons.star,
+                                                  color: Colors.amber,
+                                                );
+                                              },
                                             ),
                                           ],
                                         ),
-                                        RatingBar.builder(
-                                          initialRating: double.parse(controller
-                                              .TopProductlist[index].rating
-                                              .toString()),
-                                          minRating: 0,
-                                          updateOnDrag:false,
-                                          glowColor: Colors.transparent,
-                                          maxRating: 5,
-                                          glow: false,
-                                          direction: Axis.horizontal,
-                                          allowHalfRating: false,
-                                          itemCount: 5,
-                                          itemSize: 20,
-                                          tapOnlyMode: false,
-                                          ignoreGestures: false,
-                                          itemPadding: EdgeInsets.symmetric(
-                                              horizontal: 4.0),
-                                          onRatingUpdate: (rating) {
-                                            print(rating);
-                                          },
-                                          itemBuilder: (context, index) {
-                                            return Icon(
-                                              Icons.star,
-                                              color: Colors.amber,
-                                            );
-                                          },
-                                        ),
+
                                       ],
                                     ),
                                   ),
