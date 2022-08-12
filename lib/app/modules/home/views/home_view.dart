@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:waggs_app/app/modules/home/views/catagory_view.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
 import '../../../constant/SizeConstant.dart';
 import '../../view-product/views/view_product_view.dart';
@@ -122,7 +121,7 @@ class HomeView extends GetView<HomeController> {
                                       }
                                     });
                                     controller.productList.refresh();
-                                    Get.to(CatagoryView(),arguments: controller.CatagoryList[index]);
+                                    Get.toNamed(Routes.CATAGORY_PAGE,arguments: controller.CatagoryList[index]);
 
                                     print("SId:- ${controller.CatagoryList[index].sId}");
                                   },
