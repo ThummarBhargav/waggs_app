@@ -328,36 +328,93 @@ class HomeView extends GetView<HomeController> {
                                         Container(
                                           child: Column(
                                             children: [
-                                              Container(
-                                                height: 90,
-                                                alignment: Alignment.center,
-                                                color: Colors.grey[200],
-                                                margin: EdgeInsets.only(
-                                                    left: 10, right: 10),
-                                                child: CachedNetworkImage(
-                                                  imageUrl:
-                                                  "${controller.TopStorelist[index].images![0]}",
-                                                  imageBuilder:
-                                                      (context, imageProvider) =>
+                                              Stack(
+                                                children: [
+                                                  Container(
+                                                    height: 128,
+                                                    width: 200,
+                                                    child: CachedNetworkImage(
+                                                      imageUrl:
+                                                      "${controller.TopStorelist[index].images![0]}",
+                                                      imageBuilder:
+                                                          (context, imageProvider) =>
+                                                          Container(
+                                                            decoration: BoxDecoration(
+                                                              image: DecorationImage(
+                                                                  image: imageProvider,
+                                                                  fit: BoxFit.fill,
+                                                                  colorFilter:
+                                                                  ColorFilter.mode(
+                                                                      Colors.transparent,
+                                                                      BlendMode
+                                                                          .colorBurn)),
+                                                            ),
+                                                          ),
+                                                      placeholder: (context, url) =>
+                                                          CircularProgressIndicator(),
+                                                      errorWidget:
+                                                          (context, url, error) =>
+                                                          Icon(Icons.error),
+                                                    ),
+                                                  ),
+                                                  Positioned(child: Column(
+                                                    children: [
                                                       Container(
-                                                        decoration: BoxDecoration(
-                                                          image: DecorationImage(
-                                                              image: imageProvider,
-                                                              fit: BoxFit.cover,
-                                                              colorFilter:
-                                                              ColorFilter.mode(
-                                                                  Colors.transparent,
-                                                                  BlendMode
-                                                                      .colorBurn)),
+                                                        width: double.maxFinite,
+                                                        height: 30,
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .end,
+                                                          children: [
+                                                            Container(
+                                                              margin:
+                                                              EdgeInsets.all(
+                                                                  1),
+                                                              height: 20,
+                                                              width: 70,
+                                                              decoration:
+                                                              BoxDecoration(
+                                                                color: Colors.red,
+                                                                borderRadius:
+                                                                BorderRadius
+                                                                    .only(
+                                                                  topLeft: Radius
+                                                                      .circular(
+                                                                      20),
+                                                                  topRight: Radius
+                                                                      .circular(
+                                                                      20),
+                                                                  bottomRight:
+                                                                  Radius
+                                                                      .circular(
+                                                                      20),
+                                                                  bottomLeft: Radius
+                                                                      .circular(
+                                                                      20),
+                                                                ),
+                                                              ),
+                                                              child: Center(
+                                                                child: Text(
+                                                                  "Save ${controller.TopStorelist[index].discount!.toStringAsFixed(2)} %",
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .white,
+                                                                      fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                      fontSize:
+                                                                      9),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ],
                                                         ),
                                                       ),
-                                                  placeholder: (context, url) =>
-                                                      CircularProgressIndicator(),
-                                                  errorWidget:
-                                                      (context, url, error) =>
-                                                      Icon(Icons.error),
-                                                ),
-                                              ),
+                                                    ],
+                                                  ),)
+                                                ],
+                                              )
                                             ],
                                           ),
                                         ),
@@ -405,7 +462,24 @@ class HomeView extends GetView<HomeController> {
                                               child: Text("₹${controller.TopStorelist[index].discountedPrice!.toStringAsFixed(2)}"),
                                             ),
                                           ],
-                                        )
+                                        ),
+                                        RatingBar.builder(
+                                          initialRating: 3,
+                                          minRating: 1,
+                                          updateOnDrag: false,
+                                          glowColor: Colors.transparent,
+                                          maxRating: 5,
+                                          glow: true,
+                                          direction: Axis.horizontal,
+                                          allowHalfRating: true,
+                                          itemCount: 5,
+                                          itemSize: 20,
+                                          itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                                          onRatingUpdate: (rating) {
+                                            print(rating);
+                                          },itemBuilder: (context, index) {
+                                          return Icon(Icons.star,color: Colors.amber,);
+                                        },),
                                       ],
                                     ),
                                   ),
@@ -413,7 +487,7 @@ class HomeView extends GetView<HomeController> {
                               },
                               gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(
-                                  childAspectRatio: 0.82,
+                                  childAspectRatio: 0.75,
                                   crossAxisSpacing: 10,
                                   crossAxisCount: 2, mainAxisSpacing: 10)),
                         ],
