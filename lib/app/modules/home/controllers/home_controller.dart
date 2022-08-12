@@ -18,7 +18,7 @@ class HomeController extends GetxController {
   RxList<Products> mainProductList = RxList<Products>([]);
   RxList<Products> productList = RxList<Products>([]);
   RxList<CategoryData> CatagoryList = RxList<CategoryData>([
-
+    CategoryData(createdAt: "",isDeleted: false,isSelected: true.obs,iV: 0,name: "home",sId: "",updatedAt: "")
   ]);
   RxList<BannerData> bannerList = RxList<BannerData>([]);
   TextEditingController searchController = TextEditingController();

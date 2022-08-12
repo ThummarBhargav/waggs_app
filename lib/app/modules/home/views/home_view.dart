@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/modules/view-product/views/view_product_view.dart';
