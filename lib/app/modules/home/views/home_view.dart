@@ -487,7 +487,7 @@ class HomeView extends GetView<HomeController> {
                               },
                               gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(
-                                  childAspectRatio: 0.75,
+                                  childAspectRatio: 0.67,
                                   crossAxisSpacing: 10,
                                   crossAxisCount: 2, mainAxisSpacing: 10)),
                         ],
