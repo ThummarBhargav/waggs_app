@@ -105,6 +105,7 @@ class CatagoryPageView extends GetWidget<HomeController> {
                       ),
                       Container(
                         height: 500,
+
                         child: ListView.builder(
                           itemCount: subCategory.toString().length,
                           itemBuilder: (context, index) {
