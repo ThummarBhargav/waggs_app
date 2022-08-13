@@ -108,7 +108,6 @@ class CatagoryPageView extends GetWidget<HomeController> {
                       ),
                       Container(
                         height: 500,
-
                         child: ListView.builder(
                           itemCount: subData.length,
                           itemBuilder: (context, index) {
@@ -117,7 +116,7 @@ class CatagoryPageView extends GetWidget<HomeController> {
                               Container(
                                 width: double.infinity,
                                 height: 200,
-                                margin: EdgeInsets.only(left: 20,right: 20),
+                                margin: EdgeInsets.only(left: 20,right: 20,bottom: 10),
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
                                         image: AssetImage("${controller.imageList[index]}"),
