@@ -112,9 +112,8 @@ class HomeView extends GetView<HomeController> {
                                       }
                                     });
                                     controller.productList.refresh();
-                                    Get.to(CatagoryPageView(
-                                        controller.productList[index]));
-
+                                    // Get.to(CatagoryPageView(
+                                    //     controller.productList[index]));
                                     print(
                                         "SId:- ${controller.CatagoryList[index].sId}");
                                   },
@@ -489,35 +488,19 @@ class HomeView extends GetView<HomeController> {
                                                     style: TextStyle(fontSize: 10),
                                                   ),
                                                 ),
-                                                RatingBar.builder(
-                                                  initialRating: double.parse(
-                                                      controller
-                                                          .TopProductlist[index]
-                                                          .rating
-                                                          .toString()),
-                                                  minRating: 0,
-                                                  updateOnDrag: false,
-                                                  unratedColor: Colors.grey,
-                                                  glowColor: Colors.transparent,
-                                                  maxRating: 5,
-                                                  glow: false,
-                                                  direction: Axis.horizontal,
-                                                  allowHalfRating: false,
+                                                RatingBarIndicator(
+                                                  rating: double.parse(
+                                                        controller
+                                                            .TopProductlist[index]
+                                                            .rating
+                                                            .toString()),
+                                                  itemBuilder: (context, index) => Icon(
+                                                    Icons.star,
+                                                    color: Colors.amber,
+                                                  ),
                                                   itemCount: 5,
-                                                  itemSize: 20,
-                                                  tapOnlyMode: false,
-                                                  ignoreGestures: false,
-                                                  itemPadding: EdgeInsets.symmetric(
-                                                      horizontal: 0),
-                                                  onRatingUpdate: (rating) {
-                                                    print(rating);
-                                                  },
-                                                  itemBuilder: (context, index) {
-                                                    return Icon(
-                                                      Icons.star,
-                                                      color: Colors.amber,
-                                                    );
-                                                  },
+                                                  itemSize: 18.0,
+                                                  direction: Axis.horizontal,
                                                 ),
                                               ],
                                             ),
