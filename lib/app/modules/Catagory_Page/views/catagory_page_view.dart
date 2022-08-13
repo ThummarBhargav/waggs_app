@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/Modal/CategoryModel.dart';
-import 'package:waggs_app/app/Modal/GetAllProductModule.dart';
 import 'package:waggs_app/app/modules/home/controllers/home_controller.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
 
@@ -103,6 +102,60 @@ class CatagoryPageView extends GetWidget<HomeController> {
                             ],
                           )
                         ],
+                      ),
+                      Container(
+                        height: 500,
+                        child: ListView.builder(
+                          itemCount: subCategory.toString().length,
+                          itemBuilder: (context, index) {
+                          return Stack(
+                            children: [
+                              Container(
+                                width: double.infinity,
+                                height: 200,
+                                margin: EdgeInsets.only(left: 20,right: 20),
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image: AssetImage("${controller.imageList[index]}"),
+                                        fit: BoxFit.fill
+                                    ),
+                                    borderRadius: BorderRadius.all(Radius.circular(10))
+                                ),
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Container(
+                                    width: 120,
+                                    height: 38,
+                                    margin: EdgeInsets.only(top: 60,right: 40),
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                      color: Color(0xffeb9d4f),
+                                      borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(25),
+                                        bottomRight: Radius.circular(25),
+                                        topRight: Radius.circular(25),
+                                      ),
+                                    ),
+                                    child: InkWell(
+                                      onTap: () {
+
+                                      },
+                                      child: Text("${subCategory.name}",
+                                        style: GoogleFonts.roboto(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w800,
+                                            color: Colors.white
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          );
+                        },),
                       ),
                       Stack(
                         children: [

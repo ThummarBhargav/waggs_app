@@ -4,6 +4,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/modules/Catagory_Page/views/catagory_page_view.dart';
+import 'package:waggs_app/app/modules/Storage_All_Products/views/storage_all_products_view.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -122,8 +123,7 @@ class HomeView extends GetView<HomeController> {
                                       }
                                     });
                                     controller.productList.refresh();
-
-
+                                    // Get.to(CatagoryPageView(controller.CatagoryList[index]));
 
                                     Get.to(CatagoryPageView(
                                         data: controller.CatagoryList[index],subCategory: controller.subData[index],));
@@ -179,13 +179,18 @@ class HomeView extends GetView<HomeController> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Container(
-                          margin: EdgeInsets.only(right: 23, bottom: 10),
-                          child: Text(
-                            "View All ",
-                            style: GoogleFonts.roboto(
-                              fontSize: 15,
-                              color: Colors.grey,
+                        InkWell(
+                          onTap: () {
+                            Get.to(StorageAllProductsView());
+                          },
+                          child: Container(
+                            margin: EdgeInsets.only(right: 23, bottom: 10),
+                            child: Text(
+                              "View All ",
+                              style: GoogleFonts.roboto(
+                                fontSize: 15,
+                                color: Colors.grey,
+                              ),
                             ),
                           ),
                         ),
