@@ -320,7 +320,7 @@ class HomeView extends GetView<HomeController> {
                       child: Column(
                         children: [
                           Container(
-                            height: 300,
+                            height: 330,
                             width: 400,
                             child: GridView.builder(
                                 itemCount: controller.TopProductlist.length,
@@ -342,13 +342,14 @@ class HomeView extends GetView<HomeController> {
                                                       Container(
                                                         height: 128,
                                                         width: 200,
-                                                        margin: EdgeInsets.only(left: 30),
+                                                        margin: EdgeInsets.only(left: 30,top: 20),
                                                         child: CachedNetworkImage(
                                                           imageUrl:
                                                               "${controller.TopProductlist[index].images![0]}",
                                                           imageBuilder: (context,
                                                                   imageProvider) =>
                                                               Container(
+                                                                margin: EdgeInsets.only(right: 40),
                                                             decoration:
                                                                 BoxDecoration(
                                                               image: DecorationImage(
@@ -371,63 +372,66 @@ class HomeView extends GetView<HomeController> {
                                                               Icon(Icons.error),
                                                         ),
                                                       ),
-                                                      Positioned(
-                                                        child: Column(
-                                                          children: [
-                                                            Container(
-                                                              width:
-                                                                  double.maxFinite,
-                                                              height: 30,
-                                                              child: Row(
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .center,
-                                                                children: [
-                                                                  Container(
-                                                                    margin:
-                                                                        EdgeInsets
-                                                                            .only(left: 90),
-                                                                    height: 20,
-                                                                    width: 70,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      color: Colors
-                                                                          .red,
-                                                                      borderRadius:
-                                                                          BorderRadius
-                                                                              .only(
-                                                                        topLeft: Radius
-                                                                            .circular(
-                                                                                20),
-                                                                        topRight: Radius
-                                                                            .circular(
-                                                                                20),
-                                                                        bottomRight:
-                                                                            Radius.circular(
-                                                                                20),
-                                                                        bottomLeft:
-                                                                            Radius.circular(
-                                                                                20),
+                                                      Container(
+                                                        margin: EdgeInsets.only(top: 20,right: 20),
+                                                        child: Positioned(
+                                                          child: Column(
+                                                            children: [
+                                                              Container(
+                                                                width:
+                                                                    double.maxFinite,
+                                                                height: 30,
+                                                                child: Row(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .center,
+                                                                  children: [
+                                                                    Container(
+                                                                      margin:
+                                                                          EdgeInsets
+                                                                              .only(left: 90),
+                                                                      height: 20,
+                                                                      width: 70,
+                                                                      decoration:
+                                                                          BoxDecoration(
+                                                                        color: Colors
+                                                                            .red,
+                                                                        borderRadius:
+                                                                            BorderRadius
+                                                                                .only(
+                                                                          topLeft: Radius
+                                                                              .circular(
+                                                                                  20),
+                                                                          topRight: Radius
+                                                                              .circular(
+                                                                                  20),
+                                                                          bottomRight:
+                                                                              Radius.circular(
+                                                                                  20),
+                                                                          bottomLeft:
+                                                                              Radius.circular(
+                                                                                  20),
+                                                                        ),
+                                                                      ),
+                                                                      child: Center(
+                                                                        child: Text(
+                                                                          "Save ${controller.TopProductlist[index].discount!.toStringAsFixed(2)} %",
+                                                                          style: TextStyle(
+                                                                              color: Colors
+                                                                                  .white,
+                                                                              fontWeight:
+                                                                                  FontWeight
+                                                                                      .bold,
+                                                                              fontSize:
+                                                                                  9),
+                                                                        ),
                                                                       ),
                                                                     ),
-                                                                    child: Center(
-                                                                      child: Text(
-                                                                        "Save ${controller.TopProductlist[index].discount!.toStringAsFixed(2)} %",
-                                                                        style: TextStyle(
-                                                                            color: Colors
-                                                                                .white,
-                                                                            fontWeight:
-                                                                                FontWeight
-                                                                                    .bold,
-                                                                            fontSize:
-                                                                                9),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ],
+                                                                  ],
+                                                                ),
                                                               ),
-                                                            ),
-                                                          ],
+                                                            ],
+                                                          ),
                                                         ),
                                                       )
                                                     ],
@@ -436,7 +440,7 @@ class HomeView extends GetView<HomeController> {
                                               ),
                                             ),
                                             Container(
-                                              margin: EdgeInsets.only(right: 30,top: 10),
+                                              margin: EdgeInsets.only(right: 10,top: 10),
                                               child: Align(
                                                   alignment: Alignment.center,
                                                   child: Text(
@@ -452,7 +456,7 @@ class HomeView extends GetView<HomeController> {
                                               height: 40,
                                               width: 180,
                                               alignment: Alignment.center,
-                                              margin: EdgeInsets.only(right: 30),
+                                              margin: EdgeInsets.only(right: 20),
                                               child: Align(
                                                   alignment: Alignment.center,
                                                   child: Text(
@@ -463,9 +467,10 @@ class HomeView extends GetView<HomeController> {
                                                   )),
                                             ),
                                             Row(
+                                              mainAxisAlignment: MainAxisAlignment.start,
                                               children: [
                                                 Container(
-                                                  margin: EdgeInsets.only(left: 50),
+                                                  margin: EdgeInsets.only(left: 20),
                                                   child: Text(
                                                     "₹${controller.TopProductlist[index].price!.toStringAsFixed(2)}",
                                                     style: GoogleFonts.roboto(
@@ -555,7 +560,7 @@ class HomeView extends GetView<HomeController> {
                                 },
                                 gridDelegate:
                                     SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount: 1,childAspectRatio: 1.15)),
+                                        crossAxisCount: 1,childAspectRatio: 1.5)),
                           ),
                         ],
                       ),
