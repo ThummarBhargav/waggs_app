@@ -44,6 +44,7 @@ class HomeView extends GetView<HomeController> {
                             ),
                           ),
                           Container(
+                            height: 40,
                             width: 212,
                             margin: EdgeInsets.only(left: 15, right: 15),
                             padding: EdgeInsets.only(
@@ -62,7 +63,7 @@ class HomeView extends GetView<HomeController> {
                               decoration: InputDecoration(
                                 hintText: "Search Product...",
                                 hintStyle: GoogleFonts.roboto(
-                                  fontSize: 14,
+                                  fontSize: 12,
                                   fontWeight: FontWeight.w500,
                                 ),
                                 enabledBorder: InputBorder.none,
@@ -162,7 +163,14 @@ class HomeView extends GetView<HomeController> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
                         Container(
+                          margin: EdgeInsets.only(left: 10,bottom: 10),
                           child: Text(
                             "TOP SELLING STORES",
                             style: GoogleFonts.roboto(
@@ -171,14 +179,6 @@ class HomeView extends GetView<HomeController> {
                                 fontSize: 20),
                           ),
                         ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 40,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
                         InkWell(
                           onTap: () {
                             Get.to(StorageAllProductsView());
@@ -323,9 +323,10 @@ class HomeView extends GetView<HomeController> {
                       height: 20,
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
+                          margin: EdgeInsets.only(left: 10,bottom: 10),
                           child: Text(
                             "TOP SELLING PRODUCTS",
                             style: GoogleFonts.roboto(
@@ -334,10 +335,22 @@ class HomeView extends GetView<HomeController> {
                                 fontSize: 20),
                           ),
                         ),
+                        InkWell(
+                          onTap: () {
+                            Get.to(StorageAllProductsView());
+                          },
+                          child: Container(
+                            margin: EdgeInsets.only(right: 23, bottom: 10),
+                            child: Text(
+                              "View All ",
+                              style: GoogleFonts.roboto(
+                                fontSize: 15,
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ),
+                        ),
                       ],
-                    ),
-                    SizedBox(
-                      height: 40,
                     ),
                     Container(
                       child: Column(
@@ -458,8 +471,10 @@ class HomeView extends GetView<HomeController> {
                                             ),
                                             Container(
                                               margin: EdgeInsets.only(
-                                                  right: 30, top: 10),
+                                                // left: 20,
+                                                  right: 30, ),
                                               child: Align(
+                                                  alignment: Alignment.center,
                                                   child: Text(
                                                     "${controller.TopProductlist[index].sellerId!.companyName}",
                                                     style: GoogleFonts.raleway(
@@ -471,7 +486,7 @@ class HomeView extends GetView<HomeController> {
                                                   )),
                                             ),
                                             Container(
-                                              height: 40,
+                                              height: 30,
                                               width: 180,
                                               alignment: Alignment.center,
                                               margin:
