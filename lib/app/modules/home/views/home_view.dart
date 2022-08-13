@@ -113,9 +113,6 @@ class HomeView extends GetView<HomeController> {
                                         controller.productList.add(element);
                                       }
                                     });
-                                    // controller.productList.forEach((element) {
-                                    //   print(element.subCategory!.name);
-                                    // });
                                     controller.subData.clear();
                                     controller.SubCatagoryList.forEach((element) {
                                       if(element.categoryId==controller.CatagoryList[index].sId){
@@ -126,11 +123,8 @@ class HomeView extends GetView<HomeController> {
                                       }
                                     });
                                     controller.productList.refresh();
-                                    // Get.to(CatagoryPageView(controller.CatagoryList[index]));
-
                                     Get.to(CatagoryPageView(
                                         data: controller.CatagoryList[index],subData: controller.subData,));
-
                                     print(
                                         "SId:- ${controller.CatagoryList[index].sId}");
                                   },
@@ -177,7 +171,7 @@ class HomeView extends GetView<HomeController> {
                         ),
                         InkWell(
                           onTap: () {
-                            Get.to(StorageAllProductsView());
+                            Get.to(StorageAllProductsView(SellersList: controller.SellersList),);
                           },
                           child: Container(
                             margin: EdgeInsets.only(right: 23, bottom: 10),
@@ -333,7 +327,7 @@ class HomeView extends GetView<HomeController> {
                         ),
                         InkWell(
                           onTap: () {
-                            Get.to(StorageAllProductsView());
+                            // Get.to(StorageAllProductsView());
                           },
                           child: Container(
                             margin: EdgeInsets.only(right: 23, bottom: 10),
