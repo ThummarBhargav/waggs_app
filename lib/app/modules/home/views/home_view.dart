@@ -4,6 +4,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/modules/Catagory_Page/views/catagory_page_view.dart';
+import 'package:waggs_app/app/modules/Product_all/views/product_all_view.dart';
 import 'package:waggs_app/app/modules/Storage_All_Products/views/storage_all_products_view.dart';
 import '../controllers/home_controller.dart';
 
@@ -327,7 +328,7 @@ class HomeView extends GetView<HomeController> {
                         ),
                         InkWell(
                           onTap: () {
-                            // Get.to(StorageAllProductsView());
+                             Get.to(ProductAllView(TopProductlist: controller.TopProductlist));
                           },
                           child: Container(
                             margin: EdgeInsets.only(right: 23, bottom: 10),
@@ -366,37 +367,45 @@ class HomeView extends GetView<HomeController> {
                                                   Stack(
                                                     children: [
                                                       Container(
-                                                        height: 128,
-                                                        width: 150,
-                                                        margin: EdgeInsets.only(
-                                                            left: 20,top: 10),
-                                                        child:
-                                                            CachedNetworkImage(
-                                                          imageUrl:
-                                                              "${controller.TopProductlist[index].images![0]}",
-                                                          imageBuilder: (context,
-                                                                  imageProvider) =>
-                                                              Container(
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              image: DecorationImage(
-                                                                  image:
-                                                                      imageProvider,
-                                                                  fit: BoxFit
-                                                                      .fill,
-                                                                  colorFilter: ColorFilter.mode(
-                                                                      Colors
-                                                                          .transparent,
-                                                                      BlendMode
-                                                                          .colorBurn)),
+                                                        child: Column(
+                                                          children: [
+                                                            Container(
+                                                              width: 170,
+                                                              height: 140,
+                                                              alignment: Alignment.center,
+                                                              color: Colors.white,
+                                                              margin: EdgeInsets.only(
+                                                                  top: 25, left: 10, right: 10),
+                                                              child: CachedNetworkImage(
+                                                                  imageUrl:
+                                                                  "${controller.TopProductlist[index].images![0]}",
+                                                                  imageBuilder: (context,
+                                                                      imageProvider) =>
+                                                                      Container(
+                                                                        decoration:
+                                                                        BoxDecoration(
+                                                                          image: DecorationImage(
+                                                                              image:
+                                                                              imageProvider,
+                                                                              fit: BoxFit.cover,
+                                                                              colorFilter:
+                                                                              ColorFilter.mode(
+                                                                                  Colors
+                                                                                      .transparent,
+                                                                                  BlendMode
+                                                                                      .colorBurn)),
+                                                                        ),
+                                                                      ),
+                                                                  placeholder: (context, url) =>
+                                                                      CircularProgressIndicator(),
+                                                                  errorWidget: (context, url,
+                                                                      error) =>
+                                                                      Expanded(
+                                                                          child: Container(
+                                                                            color: Colors.grey[100],
+                                                                          ))),
                                                             ),
-                                                          ),
-                                                          placeholder: (context,
-                                                                  url) =>
-                                                              CircularProgressIndicator(),
-                                                          errorWidget: (context,
-                                                                  url, error) =>
-                                                              Icon(Icons.error),
+                                                          ],
                                                         ),
                                                       ),
                                                       Positioned(
@@ -405,7 +414,7 @@ class HomeView extends GetView<HomeController> {
                                                             Container(
                                                               width: double
                                                                   .maxFinite,
-                                                              height: 30,
+                                                              height: 80,
                                                               child: Row(
                                                                 mainAxisAlignment:
                                                                     MainAxisAlignment
