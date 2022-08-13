@@ -103,8 +103,8 @@ class HomeView extends GetView<HomeController> {
                                     controller.mainProductList
                                         .forEach((element) {
                                       if (element.category!.sId ==
-                                          controller
-                                              .CatagoryList[index].sId &&
+                                              controller
+                                                  .CatagoryList[index].sId &&
                                           element.subCategory!.categoryId ==
                                               controller
                                                   .CatagoryList[index].sId) {
@@ -112,7 +112,8 @@ class HomeView extends GetView<HomeController> {
                                       }
                                     });
                                     controller.productList.refresh();
-                                    // Get.to(CatagoryPageView());
+                                    Get.to(CatagoryPageView(
+                                        controller.productList[index]));
 
                                     print(
                                         "SId:- ${controller.CatagoryList[index].sId}");
@@ -130,9 +131,7 @@ class HomeView extends GetView<HomeController> {
                 ],
               ),
             ),
-            Container(
-              height: 620,
-              width: 400,
+            Expanded(
               child: SingleChildScrollView(
                 child: Column(
                   children: [
@@ -181,14 +180,14 @@ class HomeView extends GetView<HomeController> {
                     ),
                     Container(
                       width: 400,
-                      height: 250,
+                      height: 280,
                       child: GridView.builder(
                           itemCount: controller.SellersList.length,
                           scrollDirection: Axis.horizontal,
                           shrinkWrap: true,
                           itemBuilder: (context, index) {
                             return Card(
-                              elevation: 5,
+                              elevation: 2,
                               child: GestureDetector(
                                 onTap: () {},
                                 child: Container(
@@ -198,11 +197,11 @@ class HomeView extends GetView<HomeController> {
                                         child: Column(
                                           children: [
                                             Container(
-                                              width: 200,
-                                              height: 150,
+                                              width: 180,
+                                              height: 130,
                                               alignment: Alignment.center,
                                               color: Colors.white,
-                                              margin: EdgeInsets.only(
+                                              margin: EdgeInsets.only(top: 25,
                                                   left: 10, right: 10),
                                               child: CachedNetworkImage(
                                                 imageUrl:
@@ -252,7 +251,7 @@ class HomeView extends GetView<HomeController> {
                                       Container(
                                         margin:
                                             EdgeInsets.only(left: 5, right: 5),
-                                        height: 60,
+                                        height: 40,
                                         width: 200,
                                         child: Align(
                                             alignment: Alignment.center,
@@ -264,7 +263,29 @@ class HomeView extends GetView<HomeController> {
                                               textAlign: TextAlign.center,
                                             )),
                                       ),
-                                      Container(),
+                                      InkWell(
+                                        onTap: () {
+
+                                        },
+                                        child: Container(
+                                          width: 130,
+                                          height: 40,
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                            color: Colors.cyan,
+                                            borderRadius: BorderRadius.only(
+                                              topRight: Radius.circular(25),
+                                              bottomRight: Radius.circular(25),
+                                              bottomLeft: Radius.circular(25),
+                                            ),
+                                          ),
+                                          child: Text("SHOP NOW",style: GoogleFonts.raleway(
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: 15,
+                                              color: Colors.white,),
+                                          ),
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -273,10 +294,7 @@ class HomeView extends GetView<HomeController> {
                           },
                           gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 1,
-                                mainAxisSpacing: 10,
-                                crossAxisSpacing: 10
-                              )),
+                                  crossAxisCount: 1,childAspectRatio: 1.3)),
                     ),
                     SizedBox(
                       height: 10,
@@ -310,7 +328,7 @@ class HomeView extends GetView<HomeController> {
                                 shrinkWrap: true,
                                 itemBuilder: (context, index) {
                                   return Card(
-                                    elevation: 5,
+                                    elevation: 2,
                                     child: GestureDetector(
                                       onTap: () {},
                                       child: Container(
@@ -431,7 +449,7 @@ class HomeView extends GetView<HomeController> {
                                                   )),
                                             ),
                                             Container(
-                                              height: 60,
+                                              height: 40,
                                               width: 180,
                                               alignment: Alignment.center,
                                               margin: EdgeInsets.only(right: 30),
@@ -498,6 +516,37 @@ class HomeView extends GetView<HomeController> {
                                                 ),
                                               ],
                                             ),
+                                            SizedBox(height: 20,),
+                                            InkWell(
+                                              onTap: () {
+
+                                              },
+                                              child: Container(
+                                                width: 180,
+                                                height: 40,
+                                                alignment: Alignment.center,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.cyan,
+                                                  borderRadius: BorderRadius.only(
+                                                    topRight: Radius.circular(25),
+                                                    bottomRight: Radius.circular(25),
+                                                    bottomLeft: Radius.circular(25),
+                                                  ),
+                                                ),
+                                                child: Row(
+                                                  children: [
+                                                    SizedBox(width: 22,),
+                                                    Icon(Icons.add_shopping_cart,color: Colors.white,size: 18),
+                                                    SizedBox(width: 10,),
+                                                    Text("ADD TO CART",style: GoogleFonts.raleway(
+                                                      fontWeight: FontWeight.w700,
+                                                      fontSize: 15,
+                                                      color: Colors.white,),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
                                           ],
                                         ),
                                       ),
@@ -506,7 +555,7 @@ class HomeView extends GetView<HomeController> {
                                 },
                                 gridDelegate:
                                     SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount: 1,)),
+                                        crossAxisCount: 1,childAspectRatio: 1.15)),
                           ),
                         ],
                       ),
