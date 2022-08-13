@@ -4,6 +4,8 @@ import '../modules/Catagory_Page/bindings/catagory_page_binding.dart';
 import '../modules/Catagory_Page/views/catagory_page_view.dart';
 import '../modules/OTP_screen/bindings/o_t_p_screen_binding.dart';
 import '../modules/OTP_screen/views/o_t_p_screen_view.dart';
+import '../modules/Store_all_view/bindings/store_all_view_binding.dart';
+import '../modules/Store_all_view/views/store_all_view_view.dart';
 import '../modules/email_screen/bindings/email_screen_binding.dart';
 import '../modules/email_screen/views/email_screen_view.dart';
 import '../modules/home/bindings/home_binding.dart';
