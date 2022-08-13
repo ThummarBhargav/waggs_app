@@ -6,7 +6,7 @@ import 'package:waggs_app/app/routes/app_pages.dart';
 import '../../../constant/ConstantUrl.dart';
 
 class LoginScreenController extends GetxController {
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> formKey2 = GlobalKey<FormState>();
   Rx<TextEditingController> emailController = TextEditingController().obs;
 Rx<TextEditingController> passController = TextEditingController().obs;
   RxBool isChecked = false.obs;

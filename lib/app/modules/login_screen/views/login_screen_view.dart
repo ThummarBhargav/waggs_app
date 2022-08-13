@@ -20,7 +20,7 @@ class LoginScreenView extends GetView<LoginScreenController> {
           child: Container(
             color: Colors.white,
             child: Form(
-              key: controller.formKey,
+              key: controller.formKey2,
               child: Column(
                 children: [
                   SizedBox(
@@ -256,7 +256,7 @@ class LoginScreenView extends GetView<LoginScreenController> {
                     children: [
                       InkWell(
                         onTap: () {
-                          if (controller.formKey.currentState!.validate()) {
+                          if (controller.formKey2.currentState!.validate()) {
                             Get.toNamed(Routes.HOME);
                           }
                         },

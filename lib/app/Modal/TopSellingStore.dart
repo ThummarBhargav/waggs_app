@@ -79,8 +79,8 @@ class Products0 {
   String? flavor;
   String? breedSize;
   String? vegNonveg;
-  Null? color;
-  Null? materialUsed;
+  String? color;
+  String? materialUsed;
 
   Products0(
       {this.sId,
@@ -129,7 +129,7 @@ class Products0 {
     price = (isNullEmptyOrFalse(json['price']))?0:json['price'];
     discountedPrice = json['discountedPrice'];
     brand = json['brand'];
-    discount = json['discount'];
+    discount = (json['discount'].runtimeType == int )?double.parse(json['discount'].toString()):json['discount'];
     lifeStage = json['life_stage'];
     productType = json['product_type'];
     flavor = json['flavor'];
