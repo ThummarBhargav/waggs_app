@@ -44,6 +44,7 @@ class HomeView extends GetView<HomeController> {
                             ),
                           ),
                           Container(
+                            height: 40,
                             width: 212,
                             margin: EdgeInsets.only(left: 15, right: 15),
                             padding: EdgeInsets.only(
@@ -62,7 +63,7 @@ class HomeView extends GetView<HomeController> {
                               decoration: InputDecoration(
                                 hintText: "Search Product...",
                                 hintStyle: GoogleFonts.roboto(
-                                  fontSize: 14,
+                                  fontSize: 12,
                                   fontWeight: FontWeight.w500,
                                 ),
                                 enabledBorder: InputBorder.none,
@@ -164,7 +165,14 @@ class HomeView extends GetView<HomeController> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
                         Container(
+                          margin: EdgeInsets.only(left: 10,bottom: 10),
                           child: Text(
                             "TOP SELLING STORES",
                             style: GoogleFonts.roboto(
@@ -173,14 +181,6 @@ class HomeView extends GetView<HomeController> {
                                 fontSize: 20),
                           ),
                         ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 40,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
                         InkWell(
                           onTap: () {
                             Get.to(StorageAllProductsView());
@@ -221,32 +221,36 @@ class HomeView extends GetView<HomeController> {
                                               height: 130,
                                               alignment: Alignment.center,
                                               color: Colors.white,
-                                              margin: EdgeInsets.only(top: 25,
-                                                  left: 10, right: 10),
+                                              margin: EdgeInsets.only(
+                                                  top: 25, left: 10, right: 10),
                                               child: CachedNetworkImage(
-                                                imageUrl:
-                                                    "${controller.SellersList[index].logoUrl}",
-                                                imageBuilder:
-                                                    (context, imageProvider) =>
-                                                        Container(
-                                                  decoration: BoxDecoration(
-                                                    image: DecorationImage(
-                                                        image: imageProvider,
-                                                        fit: BoxFit.cover,
-                                                        colorFilter:
-                                                            ColorFilter.mode(
-                                                                Colors
-                                                                    .transparent,
-                                                                BlendMode
-                                                                    .colorBurn)),
-                                                  ),
-                                                ),
-                                                placeholder: (context, url) =>
-                                                    CircularProgressIndicator(),
-                                                errorWidget:
-                                                    (context, url, error) => Expanded(child: Container(
-                                                      color: Colors.grey[100],)
-                                                    )),
+                                                  imageUrl:
+                                                      "${controller.SellersList[index].logoUrl}",
+                                                  imageBuilder: (context,
+                                                          imageProvider) =>
+                                                      Container(
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          image: DecorationImage(
+                                                              image:
+                                                                  imageProvider,
+                                                              fit: BoxFit.cover,
+                                                              colorFilter:
+                                                                  ColorFilter.mode(
+                                                                      Colors
+                                                                          .transparent,
+                                                                      BlendMode
+                                                                          .colorBurn)),
+                                                        ),
+                                                      ),
+                                                  placeholder: (context, url) =>
+                                                      CircularProgressIndicator(),
+                                                  errorWidget: (context, url,
+                                                          error) =>
+                                                      Expanded(
+                                                          child: Container(
+                                                        color: Colors.grey[100],
+                                                      ))),
                                             ),
                                           ],
                                         ),
@@ -284,12 +288,10 @@ class HomeView extends GetView<HomeController> {
                                             )),
                                       ),
                                       InkWell(
-                                        onTap: () {
-
-                                        },
+                                        onTap: () {},
                                         child: Container(
                                           width: 130,
-                                          height: 40,
+                                          height: 35,
                                           alignment: Alignment.center,
                                           decoration: BoxDecoration(
                                             color: Colors.cyan,
@@ -299,10 +301,13 @@ class HomeView extends GetView<HomeController> {
                                               bottomLeft: Radius.circular(25),
                                             ),
                                           ),
-                                          child: Text("SHOP NOW",style: GoogleFonts.raleway(
+                                          child: Text(
+                                            "SHOP NOW",
+                                            style: GoogleFonts.raleway(
                                               fontWeight: FontWeight.w700,
-                                              fontSize: 15,
-                                              color: Colors.white,),
+                                              fontSize: 13,
+                                              color: Colors.white,
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -314,15 +319,16 @@ class HomeView extends GetView<HomeController> {
                           },
                           gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 1,childAspectRatio: 1.3)),
+                                  crossAxisCount: 1, childAspectRatio: 1.3)),
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 20,
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
+                          margin: EdgeInsets.only(left: 10,bottom: 10),
                           child: Text(
                             "TOP SELLING PRODUCTS",
                             style: GoogleFonts.roboto(
@@ -331,10 +337,22 @@ class HomeView extends GetView<HomeController> {
                                 fontSize: 20),
                           ),
                         ),
+                        InkWell(
+                          onTap: () {
+                            Get.to(StorageAllProductsView());
+                          },
+                          child: Container(
+                            margin: EdgeInsets.only(right: 23, bottom: 10),
+                            child: Text(
+                              "View All ",
+                              style: GoogleFonts.roboto(
+                                fontSize: 15,
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ),
+                        ),
                       ],
-                    ),
-                    SizedBox(
-                      height: 40,
                     ),
                     Container(
                       child: Column(
@@ -361,9 +379,11 @@ class HomeView extends GetView<HomeController> {
                                                     children: [
                                                       Container(
                                                         height: 128,
-                                                        width: 200,
-                                                        margin: EdgeInsets.only(left: 30),
-                                                        child: CachedNetworkImage(
+                                                        width: 150,
+                                                        margin: EdgeInsets.only(
+                                                            left: 20,top: 10),
+                                                        child:
+                                                            CachedNetworkImage(
                                                           imageUrl:
                                                               "${controller.TopProductlist[index].images![0]}",
                                                           imageBuilder: (context,
@@ -374,13 +394,13 @@ class HomeView extends GetView<HomeController> {
                                                               image: DecorationImage(
                                                                   image:
                                                                       imageProvider,
-                                                                  fit: BoxFit.fill,
-                                                                  colorFilter:
-                                                                      ColorFilter.mode(
-                                                                          Colors
-                                                                              .transparent,
-                                                                          BlendMode
-                                                                              .colorBurn)),
+                                                                  fit: BoxFit
+                                                                      .fill,
+                                                                  colorFilter: ColorFilter.mode(
+                                                                      Colors
+                                                                          .transparent,
+                                                                      BlendMode
+                                                                          .colorBurn)),
                                                             ),
                                                           ),
                                                           placeholder: (context,
@@ -395,8 +415,8 @@ class HomeView extends GetView<HomeController> {
                                                         child: Column(
                                                           children: [
                                                             Container(
-                                                              width:
-                                                                  double.maxFinite,
+                                                              width: double
+                                                                  .maxFinite,
                                                               height: 30,
                                                               child: Row(
                                                                 mainAxisAlignment:
@@ -404,9 +424,10 @@ class HomeView extends GetView<HomeController> {
                                                                         .center,
                                                                 children: [
                                                                   Container(
-                                                                    margin:
-                                                                        EdgeInsets
-                                                                            .only(left: 90),
+                                                                    margin: EdgeInsets
+                                                                        .only(
+                                                                            left:
+                                                                                90),
                                                                     height: 20,
                                                                     width: 70,
                                                                     decoration:
@@ -416,31 +437,26 @@ class HomeView extends GetView<HomeController> {
                                                                       borderRadius:
                                                                           BorderRadius
                                                                               .only(
-                                                                        topLeft: Radius
-                                                                            .circular(
-                                                                                20),
-                                                                        topRight: Radius
-                                                                            .circular(
-                                                                                20),
+                                                                        topLeft:
+                                                                            Radius.circular(20),
+                                                                        topRight:
+                                                                            Radius.circular(20),
                                                                         bottomRight:
-                                                                            Radius.circular(
-                                                                                20),
+                                                                            Radius.circular(20),
                                                                         bottomLeft:
-                                                                            Radius.circular(
-                                                                                20),
+                                                                            Radius.circular(20),
                                                                       ),
                                                                     ),
-                                                                    child: Center(
-                                                                      child: Text(
+                                                                    child:
+                                                                        Center(
+                                                                      child:
+                                                                          Text(
                                                                         "Save ${controller.TopProductlist[index].discount!.toStringAsFixed(2)} %",
                                                                         style: TextStyle(
-                                                                            color: Colors
-                                                                                .white,
-                                                                            fontWeight:
-                                                                                FontWeight
-                                                                                    .bold,
-                                                                            fontSize:
-                                                                                9),
+                                                                            color:
+                                                                                Colors.white,
+                                                                            fontWeight: FontWeight.bold,
+                                                                            fontSize: 9),
                                                                       ),
                                                                     ),
                                                                   ),
@@ -456,23 +472,27 @@ class HomeView extends GetView<HomeController> {
                                               ),
                                             ),
                                             Container(
-                                              margin: EdgeInsets.only(right: 30,top: 10),
+                                              margin: EdgeInsets.only(
+                                                // left: 20,
+                                                  right: 30, ),
                                               child: Align(
                                                   alignment: Alignment.center,
                                                   child: Text(
                                                     "${controller.TopProductlist[index].sellerId!.companyName}",
                                                     style: GoogleFonts.raleway(
-                                                        fontWeight: FontWeight.w700,
-                                                        fontSize: 18,
+                                                        fontWeight:
+                                                            FontWeight.w700,
+                                                        fontSize: 15,
                                                         color: Color.fromRGBO(
                                                             32, 193, 244, 1)),
                                                   )),
                                             ),
                                             Container(
-                                              height: 40,
+                                              height: 30,
                                               width: 180,
                                               alignment: Alignment.center,
-                                              margin: EdgeInsets.only(right: 30),
+                                              margin:
+                                                  EdgeInsets.only(right: 30),
                                               child: Align(
                                                   alignment: Alignment.center,
                                                   child: Text(
@@ -485,12 +505,14 @@ class HomeView extends GetView<HomeController> {
                                             Row(
                                               children: [
                                                 Container(
-                                                  margin: EdgeInsets.only(left: 50),
+                                                  margin:
+                                                      EdgeInsets.only(left: 20),
                                                   child: Text(
                                                     "₹${controller.TopProductlist[index].price!.toStringAsFixed(2)}",
                                                     style: GoogleFonts.roboto(
-                                                        decoration: TextDecoration
-                                                            .lineThrough,
+                                                        decoration:
+                                                            TextDecoration
+                                                                .lineThrough,
                                                         color: Colors.grey,
                                                         fontSize: 8),
                                                   ),
@@ -501,67 +523,69 @@ class HomeView extends GetView<HomeController> {
                                                 Container(
                                                   child: Text(
                                                     "₹${controller.TopProductlist[index].discountedPrice!.toStringAsFixed(2)}",
-                                                    style: TextStyle(fontSize: 10),
+                                                    style:
+                                                        TextStyle(fontSize: 10),
                                                   ),
                                                 ),
-                                                RatingBar.builder(
-                                                  initialRating: double.parse(
+                                                RatingBarIndicator(
+                                                  rating: double.parse(
                                                       controller
                                                           .TopProductlist[index]
                                                           .rating
                                                           .toString()),
-                                                  minRating: 0,
-                                                  updateOnDrag: false,
-                                                  unratedColor: Colors.grey,
-                                                  glowColor: Colors.transparent,
-                                                  maxRating: 5,
-                                                  glow: false,
-                                                  direction: Axis.horizontal,
-                                                  allowHalfRating: false,
+                                                  itemBuilder:
+                                                      (context, index) => Icon(
+                                                    Icons.star,
+                                                    color: Colors.amber,
+                                                  ),
                                                   itemCount: 5,
-                                                  itemSize: 20,
-                                                  tapOnlyMode: false,
-                                                  ignoreGestures: false,
-                                                  itemPadding: EdgeInsets.symmetric(
-                                                      horizontal: 0),
-                                                  onRatingUpdate: (rating) {
-                                                    print(rating);
-                                                  },
-                                                  itemBuilder: (context, index) {
-                                                    return Icon(
-                                                      Icons.star,
-                                                      color: Colors.amber,
-                                                    );
-                                                  },
+                                                  itemSize: 18.0,
+                                                  direction: Axis.horizontal,
                                                 ),
                                               ],
                                             ),
-                                            SizedBox(height: 20,),
+                                            SizedBox(
+                                              height: 10,
+                                            ),
                                             InkWell(
-                                              onTap: () {
-
-                                              },
+                                              onTap: () {},
                                               child: Container(
-                                                width: 180,
+                                                width: 160,
                                                 height: 40,
                                                 alignment: Alignment.center,
                                                 decoration: BoxDecoration(
                                                   color: Colors.cyan,
-                                                  borderRadius: BorderRadius.only(
-                                                    topRight: Radius.circular(25),
-                                                    bottomRight: Radius.circular(25),
-                                                    bottomLeft: Radius.circular(25),
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                    topRight:
+                                                        Radius.circular(25),
+                                                    bottomRight:
+                                                        Radius.circular(25),
+                                                    bottomLeft:
+                                                        Radius.circular(25),
                                                   ),
                                                 ),
                                                 child: Row(
                                                   children: [
-                                                    SizedBox(width: 22,),
-                                                    Icon(Icons.add_shopping_cart,color: Colors.white,size: 18),
-                                                    SizedBox(width: 10,),
-                                                    Text("ADD TO CART",style: GoogleFonts.raleway(
-                                                      fontWeight: FontWeight.w700,
-                                                      fontSize: 15,
-                                                      color: Colors.white,),
+                                                    SizedBox(
+                                                      width: 20,
+                                                    ),
+                                                    Icon(
+                                                        Icons.add_shopping_cart,
+                                                        color: Colors.white,
+                                                        size: 18),
+                                                    SizedBox(
+                                                      width: 10,
+                                                    ),
+                                                    Text(
+                                                      "ADD TO CART",
+                                                      style:
+                                                          GoogleFonts.raleway(
+                                                        fontWeight:
+                                                            FontWeight.w700,
+                                                        fontSize: 13,
+                                                        color: Colors.white,
+                                                      ),
                                                     ),
                                                   ],
                                                 ),
@@ -575,7 +599,8 @@ class HomeView extends GetView<HomeController> {
                                 },
                                 gridDelegate:
                                     SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount: 1,childAspectRatio: 1.15)),
+                                        crossAxisCount: 1,
+                                        childAspectRatio: 1.4)),
                           ),
                         ],
                       ),
