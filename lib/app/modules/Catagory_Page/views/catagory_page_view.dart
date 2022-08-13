@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:waggs_app/app/Modal/CategoryModel.dart';
 import 'package:waggs_app/app/Modal/GetAllProductModule.dart';
 import 'package:waggs_app/app/modules/home/controllers/home_controller.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
 
 class CatagoryPageView extends GetWidget<HomeController> {
-  Products data;
+  CategoryData data;
   CatagoryPageView(this.data);
 
   @override
@@ -87,7 +88,7 @@ class CatagoryPageView extends GetWidget<HomeController> {
                             children: [
                               Container(
                                 margin: EdgeInsets.only(top: 45,left: 30),
-                                child: Text(data.category!.name.toString(),
+                                child: Text(data.name.toString(),
                                   style: GoogleFonts.roboto(
                                     fontSize: 28,
                                     fontWeight: FontWeight.bold,
@@ -133,7 +134,7 @@ class CatagoryPageView extends GetWidget<HomeController> {
                                   onTap: () {
 
                                   },
-                                  child: Text("${data.subCategory!.name}",
+                                  child: Text("",
                                     style: GoogleFonts.roboto(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w800,
@@ -153,13 +154,13 @@ class CatagoryPageView extends GetWidget<HomeController> {
                             width: double.infinity,
                             height: 200,
                             margin: EdgeInsets.only(left: 20,right: 20),
-                            decoration: BoxDecoration(
+                            /*decoration: BoxDecoration(
                                  image: data.subCategory!=""? DecorationImage(
                                     image: AssetImage("${controller.imageList[1]}"),
                                     fit: BoxFit.fill,
                                 ):null,
                                 borderRadius: BorderRadius.all(Radius.circular(10))
-                            ),
+                            ),*/
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,

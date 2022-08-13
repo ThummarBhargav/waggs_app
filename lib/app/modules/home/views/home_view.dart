@@ -111,9 +111,12 @@ class HomeView extends GetView<HomeController> {
                                         controller.productList.add(element);
                                       }
                                     });
+                                    controller.productList.forEach((element) {
+                                      print(element.subCategory!.name);
+                                    });
                                     controller.productList.refresh();
                                     Get.to(CatagoryPageView(
-                                        controller.productList[index]));
+                                        controller.CatagoryList[index]));
 
                                     print(
                                         "SId:- ${controller.CatagoryList[index].sId}");
