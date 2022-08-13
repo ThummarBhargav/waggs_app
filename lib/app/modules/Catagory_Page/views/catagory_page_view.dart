@@ -182,7 +182,7 @@ class CatagoryPageView extends GetWidget<HomeController> {
                                   onTap: () {
 
                                   },
-                                  child: Text("${data.}",
+                                  child: Text("",
                                     style: GoogleFonts.roboto(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w800,

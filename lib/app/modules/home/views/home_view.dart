@@ -60,9 +60,6 @@ class HomeView extends GetView<HomeController> {
                             ),
                             child: TextFormField(
                               controller: controller.searchController,
-                              validator: (input) => !isNullEmptyOrFalse(input)
-                                  ? null
-                                  : "Please Enter Your First Name",
                               decoration: InputDecoration(
                                 hintText: "Search Product...",
                                 hintStyle: GoogleFonts.roboto(
@@ -200,8 +197,8 @@ class HomeView extends GetView<HomeController> {
                                       child: Column(
                                         children: [
                                           Container(
-                                            width: 150,
-                                            height: 90,
+                                            width: 100,
+                                            height: 100,
                                             alignment: Alignment.center,
                                             color: Colors.grey[200],
                                             margin: EdgeInsets.only(
