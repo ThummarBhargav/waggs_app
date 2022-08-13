@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 
 class CatagoryPageController extends GetxController {
-  //TODO: Implement CatagoryPageController
   var data = Get.arguments;
-  final count = 0.obs;
+
+
   @override
   void onInit() {
     super.onInit();
@@ -19,5 +19,4 @@ class CatagoryPageController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
 }
