@@ -4,6 +4,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/modules/Catagory_Page/views/catagory_page_view.dart';
+import 'package:waggs_app/app/modules/Store_all_view/views/store_all_view_view.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -143,7 +144,7 @@ class HomeView extends GetView<HomeController> {
                       ],
                     ),
                     SizedBox(
-                      height: 40,
+                      height: 30,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -160,18 +161,23 @@ class HomeView extends GetView<HomeController> {
                       ],
                     ),
                     SizedBox(
-                      height: 40,
+                      height: 20,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Container(
                           margin: EdgeInsets.only(right: 23, bottom: 10),
-                          child: Text(
-                            "View All ",
-                            style: GoogleFonts.roboto(
-                              fontSize: 15,
-                              color: Colors.grey,
+                          child: InkWell(
+                            onTap: () {
+
+                            },
+                            child: Text(
+                              "View All ",
+                              style: GoogleFonts.roboto(
+                                fontSize: 15,
+                                color: Colors.grey,
+                              ),
                             ),
                           ),
                         ),
@@ -313,7 +319,7 @@ class HomeView extends GetView<HomeController> {
                       ],
                     ),
                     SizedBox(
-                      height: 40,
+                      height: 10,
                     ),
                     Container(
                       child: Column(
