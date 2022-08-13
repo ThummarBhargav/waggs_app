@@ -187,83 +187,86 @@ class HomeView extends GetView<HomeController> {
                           scrollDirection: Axis.horizontal,
                           shrinkWrap: true,
                           itemBuilder: (context, index) {
-                            return GestureDetector(
-                              onTap: () {},
-                              child: Container(
-                                child: Column(
-                                  children: [
-                                    Container(
-                                      child: Column(
-                                        children: [
-                                          Container(
-                                            width: 200,
-                                            height: 150,
-                                            alignment: Alignment.center,
-                                            color: Colors.white,
-                                            margin: EdgeInsets.only(
-                                                left: 10, right: 10),
-                                            child: CachedNetworkImage(
-                                              imageUrl:
-                                                  "${controller.SellersList[index].logoUrl}",
-                                              imageBuilder:
-                                                  (context, imageProvider) =>
-                                                      Container(
-                                                decoration: BoxDecoration(
-                                                  image: DecorationImage(
-                                                      image: imageProvider,
-                                                      fit: BoxFit.cover,
-                                                      colorFilter:
-                                                          ColorFilter.mode(
-                                                              Colors
-                                                                  .transparent,
-                                                              BlendMode
-                                                                  .colorBurn)),
+                            return Card(
+                              elevation: 5,
+                              child: GestureDetector(
+                                onTap: () {},
+                                child: Container(
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                              width: 200,
+                                              height: 150,
+                                              alignment: Alignment.center,
+                                              color: Colors.white,
+                                              margin: EdgeInsets.only(
+                                                  left: 10, right: 10),
+                                              child: CachedNetworkImage(
+                                                imageUrl:
+                                                    "${controller.SellersList[index].logoUrl}",
+                                                imageBuilder:
+                                                    (context, imageProvider) =>
+                                                        Container(
+                                                  decoration: BoxDecoration(
+                                                    image: DecorationImage(
+                                                        image: imageProvider,
+                                                        fit: BoxFit.cover,
+                                                        colorFilter:
+                                                            ColorFilter.mode(
+                                                                Colors
+                                                                    .transparent,
+                                                                BlendMode
+                                                                    .colorBurn)),
+                                                  ),
                                                 ),
-                                              ),
-                                              placeholder: (context, url) =>
-                                                  CircularProgressIndicator(),
-                                              errorWidget:
-                                                  (context, url, error) => Expanded(child: Container(
-                                                    color: Colors.grey[100],)
-                                                  )),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 8,
-                                    ),
-                                    Container(
-                                      width: 150,
-                                      child: Align(
-                                        alignment: Alignment.center,
-                                        child: Text(
-                                          "${controller.SellersList[index].companyName}",
-                                          style: GoogleFonts.raleway(
-                                              fontWeight: FontWeight.w700,
-                                              fontSize: 13,
-                                              color: Color.fromRGBO(
-                                                  32, 193, 244, 1)),
+                                                placeholder: (context, url) =>
+                                                    CircularProgressIndicator(),
+                                                errorWidget:
+                                                    (context, url, error) => Expanded(child: Container(
+                                                      color: Colors.grey[100],)
+                                                    )),
+                                            ),
+                                          ],
                                         ),
                                       ),
-                                    ),
-                                    Container(
-                                      margin:
-                                          EdgeInsets.only(left: 5, right: 5),
-                                      height: 60,
-                                      width: 200,
-                                      child: Align(
+                                      SizedBox(
+                                        height: 8,
+                                      ),
+                                      Container(
+                                        width: 150,
+                                        child: Align(
                                           alignment: Alignment.center,
                                           child: Text(
-                                            "${controller.SellersList[index].address}",
-                                            style: TextStyle(
-                                                fontSize: 10,
-                                                color: Colors.grey),
-                                            textAlign: TextAlign.center,
-                                          )),
-                                    ),
-                                    Container(),
-                                  ],
+                                            "${controller.SellersList[index].companyName}",
+                                            style: GoogleFonts.raleway(
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: 13,
+                                                color: Color.fromRGBO(
+                                                    32, 193, 244, 1)),
+                                          ),
+                                        ),
+                                      ),
+                                      Container(
+                                        margin:
+                                            EdgeInsets.only(left: 5, right: 5),
+                                        height: 60,
+                                        width: 200,
+                                        child: Align(
+                                            alignment: Alignment.center,
+                                            child: Text(
+                                              "${controller.SellersList[index].address}",
+                                              style: TextStyle(
+                                                  fontSize: 10,
+                                                  color: Colors.grey),
+                                              textAlign: TextAlign.center,
+                                            )),
+                                      ),
+                                      Container(),
+                                    ],
+                                  ),
                                 ),
                               ),
                             );
@@ -303,193 +306,197 @@ class HomeView extends GetView<HomeController> {
                                 scrollDirection: Axis.horizontal,
                                 shrinkWrap: true,
                                 itemBuilder: (context, index) {
-                                  return GestureDetector(
-                                    onTap: () {},
-                                    child: Container(
-                                      child: Column(
-                                        children: [
-                                          Container(
-                                            child: Column(
-                                              children: [
-                                                Stack(
-                                                  children: [
-                                                    Container(
-                                                      height: 128,
-                                                      width: 200,
-                                                      child: CachedNetworkImage(
-                                                        imageUrl:
-                                                            "${controller.TopProductlist[index].images![0]}",
-                                                        imageBuilder: (context,
-                                                                imageProvider) =>
-                                                            Container(
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            image: DecorationImage(
-                                                                image:
-                                                                    imageProvider,
-                                                                fit: BoxFit.fill,
-                                                                colorFilter:
-                                                                    ColorFilter.mode(
-                                                                        Colors
-                                                                            .transparent,
-                                                                        BlendMode
-                                                                            .colorBurn)),
-                                                          ),
-                                                        ),
-                                                        placeholder: (context,
-                                                                url) =>
-                                                            CircularProgressIndicator(),
-                                                        errorWidget: (context,
-                                                                url, error) =>
-                                                            Icon(Icons.error),
-                                                      ),
-                                                    ),
-                                                    Positioned(
-                                                      child: Column(
-                                                        children: [
-                                                          Container(
-                                                            width:
-                                                                double.maxFinite,
-                                                            height: 30,
-                                                            child: Row(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .center,
-                                                              children: [
-                                                                Container(
-                                                                  margin:
-                                                                      EdgeInsets
-                                                                          .only(left: 30),
-                                                                  height: 20,
-                                                                  width: 70,
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    color: Colors
-                                                                        .red,
-                                                                    borderRadius:
-                                                                        BorderRadius
-                                                                            .only(
-                                                                      topLeft: Radius
-                                                                          .circular(
-                                                                              20),
-                                                                      topRight: Radius
-                                                                          .circular(
-                                                                              20),
-                                                                      bottomRight:
-                                                                          Radius.circular(
-                                                                              20),
-                                                                      bottomLeft:
-                                                                          Radius.circular(
-                                                                              20),
-                                                                    ),
-                                                                  ),
-                                                                  child: Center(
-                                                                    child: Text(
-                                                                      "Save ${controller.TopProductlist[index].discount!.toStringAsFixed(2)} %",
-                                                                      style: TextStyle(
-                                                                          color: Colors
-                                                                              .white,
-                                                                          fontWeight:
-                                                                              FontWeight
-                                                                                  .bold,
-                                                                          fontSize:
-                                                                              9),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ],
+                                  return Card(
+                                    elevation: 5,
+                                    child: GestureDetector(
+                                      onTap: () {},
+                                      child: Container(
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                              child: Column(
+                                                children: [
+                                                  Stack(
+                                                    children: [
+                                                      Container(
+                                                        height: 128,
+                                                        width: 200,
+                                                        margin: EdgeInsets.only(left: 30),
+                                                        child: CachedNetworkImage(
+                                                          imageUrl:
+                                                              "${controller.TopProductlist[index].images![0]}",
+                                                          imageBuilder: (context,
+                                                                  imageProvider) =>
+                                                              Container(
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              image: DecorationImage(
+                                                                  image:
+                                                                      imageProvider,
+                                                                  fit: BoxFit.fill,
+                                                                  colorFilter:
+                                                                      ColorFilter.mode(
+                                                                          Colors
+                                                                              .transparent,
+                                                                          BlendMode
+                                                                              .colorBurn)),
                                                             ),
                                                           ),
-                                                        ],
+                                                          placeholder: (context,
+                                                                  url) =>
+                                                              CircularProgressIndicator(),
+                                                          errorWidget: (context,
+                                                                  url, error) =>
+                                                              Icon(Icons.error),
+                                                        ),
                                                       ),
-                                                    )
-                                                  ],
-                                                )
+                                                      Positioned(
+                                                        child: Column(
+                                                          children: [
+                                                            Container(
+                                                              width:
+                                                                  double.maxFinite,
+                                                              height: 30,
+                                                              child: Row(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .center,
+                                                                children: [
+                                                                  Container(
+                                                                    margin:
+                                                                        EdgeInsets
+                                                                            .only(left: 90),
+                                                                    height: 20,
+                                                                    width: 70,
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      color: Colors
+                                                                          .red,
+                                                                      borderRadius:
+                                                                          BorderRadius
+                                                                              .only(
+                                                                        topLeft: Radius
+                                                                            .circular(
+                                                                                20),
+                                                                        topRight: Radius
+                                                                            .circular(
+                                                                                20),
+                                                                        bottomRight:
+                                                                            Radius.circular(
+                                                                                20),
+                                                                        bottomLeft:
+                                                                            Radius.circular(
+                                                                                20),
+                                                                      ),
+                                                                    ),
+                                                                    child: Center(
+                                                                      child: Text(
+                                                                        "Save ${controller.TopProductlist[index].discount!.toStringAsFixed(2)} %",
+                                                                        style: TextStyle(
+                                                                            color: Colors
+                                                                                .white,
+                                                                            fontWeight:
+                                                                                FontWeight
+                                                                                    .bold,
+                                                                            fontSize:
+                                                                                9),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      )
+                                                    ],
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                            Container(
+                                              margin: EdgeInsets.only(right: 30,top: 10),
+                                              child: Align(
+                                                  alignment: Alignment.center,
+                                                  child: Text(
+                                                    "${controller.TopProductlist[index].sellerId!.companyName}",
+                                                    style: GoogleFonts.raleway(
+                                                        fontWeight: FontWeight.w700,
+                                                        fontSize: 18,
+                                                        color: Color.fromRGBO(
+                                                            32, 193, 244, 1)),
+                                                  )),
+                                            ),
+                                            Container(
+                                              height: 60,
+                                              width: 180,
+                                              alignment: Alignment.center,
+                                              margin: EdgeInsets.only(right: 30),
+                                              child: Align(
+                                                  alignment: Alignment.center,
+                                                  child: Text(
+                                                    "${controller.TopProductlist[index].category!.name} - ${controller.TopProductlist[index].subCategory!.name} ",
+                                                    style: TextStyle(
+                                                        fontSize: 10,
+                                                        color: Colors.grey),
+                                                  )),
+                                            ),
+                                            Row(
+                                              children: [
+                                                Container(
+                                                  margin: EdgeInsets.only(left: 50),
+                                                  child: Text(
+                                                    "₹${controller.TopProductlist[index].price!.toStringAsFixed(2)}",
+                                                    style: GoogleFonts.roboto(
+                                                        decoration: TextDecoration
+                                                            .lineThrough,
+                                                        color: Colors.grey,
+                                                        fontSize: 8),
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  width: 3,
+                                                ),
+                                                Container(
+                                                  child: Text(
+                                                    "₹${controller.TopProductlist[index].discountedPrice!.toStringAsFixed(2)}",
+                                                    style: TextStyle(fontSize: 10),
+                                                  ),
+                                                ),
+                                                RatingBar.builder(
+                                                  initialRating: double.parse(
+                                                      controller
+                                                          .TopProductlist[index]
+                                                          .rating
+                                                          .toString()),
+                                                  minRating: 0,
+                                                  updateOnDrag: false,
+                                                  unratedColor: Colors.grey,
+                                                  glowColor: Colors.transparent,
+                                                  maxRating: 5,
+                                                  glow: false,
+                                                  direction: Axis.horizontal,
+                                                  allowHalfRating: false,
+                                                  itemCount: 5,
+                                                  itemSize: 20,
+                                                  tapOnlyMode: false,
+                                                  ignoreGestures: false,
+                                                  itemPadding: EdgeInsets.symmetric(
+                                                      horizontal: 0),
+                                                  onRatingUpdate: (rating) {
+                                                    print(rating);
+                                                  },
+                                                  itemBuilder: (context, index) {
+                                                    return Icon(
+                                                      Icons.star,
+                                                      color: Colors.amber,
+                                                    );
+                                                  },
+                                                ),
                                               ],
                                             ),
-                                          ),
-                                          Container(
-                                            margin: EdgeInsets.only(right: 70,top: 10),
-                                            child: Align(
-                                                alignment: Alignment.center,
-                                                child: Text(
-                                                  "${controller.TopProductlist[index].sellerId!.companyName}",
-                                                  style: GoogleFonts.raleway(
-                                                      fontWeight: FontWeight.w700,
-                                                      fontSize: 18,
-                                                      color: Color.fromRGBO(
-                                                          32, 193, 244, 1)),
-                                                )),
-                                          ),
-                                          Container(
-                                            height: 60,
-                                            width: 180,
-                                            alignment: Alignment.center,
-                                            margin: EdgeInsets.only(right: 70),
-                                            child: Align(
-                                                alignment: Alignment.center,
-                                                child: Text(
-                                                  "${controller.TopProductlist[index].category!.name} - ${controller.TopProductlist[index].subCategory!.name} ",
-                                                  style: TextStyle(
-                                                      fontSize: 10,
-                                                      color: Colors.grey),
-                                                )),
-                                          ),
-                                          Row(
-                                            children: [
-                                              Container(
-                                                margin: EdgeInsets.only(left: 25),
-                                                child: Text(
-                                                  "₹${controller.TopProductlist[index].price!.toStringAsFixed(2)}",
-                                                  style: GoogleFonts.roboto(
-                                                      decoration: TextDecoration
-                                                          .lineThrough,
-                                                      color: Colors.grey,
-                                                      fontSize: 8),
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                width: 3,
-                                              ),
-                                              Container(
-                                                child: Text(
-                                                  "₹${controller.TopProductlist[index].discountedPrice!.toStringAsFixed(2)}",
-                                                  style: TextStyle(fontSize: 10),
-                                                ),
-                                              ),
-                                              RatingBar.builder(
-                                                initialRating: double.parse(
-                                                    controller
-                                                        .TopProductlist[index]
-                                                        .rating
-                                                        .toString()),
-                                                minRating: 0,
-                                                updateOnDrag: false,
-                                                unratedColor: Colors.grey,
-                                                glowColor: Colors.transparent,
-                                                maxRating: 5,
-                                                glow: false,
-                                                direction: Axis.horizontal,
-                                                allowHalfRating: false,
-                                                itemCount: 5,
-                                                itemSize: 20,
-                                                tapOnlyMode: false,
-                                                ignoreGestures: false,
-                                                itemPadding: EdgeInsets.symmetric(
-                                                    horizontal: 0),
-                                                onRatingUpdate: (rating) {
-                                                  print(rating);
-                                                },
-                                                itemBuilder: (context, index) {
-                                                  return Icon(
-                                                    Icons.star,
-                                                    color: Colors.amber,
-                                                  );
-                                                },
-                                              ),
-                                            ],
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   );
