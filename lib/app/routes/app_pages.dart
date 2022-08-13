@@ -58,10 +58,5 @@ class AppPages {
     //   page: () => CatagoryPageView(),
     //   binding: CatagoryPageBinding(),
     // ),
-    GetPage(
-      name: _Paths.STORE_ALL_VIEW,
-      page: () => const StoreAllViewView(),
-      binding: StoreAllViewBinding(),
-    ),
   ];
 }
