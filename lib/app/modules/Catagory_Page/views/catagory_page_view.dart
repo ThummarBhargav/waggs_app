@@ -134,7 +134,7 @@ class CatagoryPageView extends GetWidget<HomeController> {
                                   onTap: () {
 
                                   },
-                                  child: Text("DRY FOOD",
+                                  child: Text("${controller.productList[0].subCategory!.name}",
                                     style: GoogleFonts.roboto(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w800,
@@ -182,7 +182,7 @@ class CatagoryPageView extends GetWidget<HomeController> {
                                   onTap: () {
 
                                   },
-                                  child: Text("WET FOOD",
+                                  child: Text("",
                                     style: GoogleFonts.roboto(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w800,

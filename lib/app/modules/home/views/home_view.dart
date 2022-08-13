@@ -60,9 +60,6 @@ class HomeView extends GetView<HomeController> {
                             ),
                             child: TextFormField(
                               controller: controller.searchController,
-                              validator: (input) => !isNullEmptyOrFalse(input)
-                                  ? null
-                                  : "Please Enter Your First Name",
                               decoration: InputDecoration(
                                 hintText: "Search Product...",
                                 hintStyle: GoogleFonts.roboto(
@@ -101,11 +98,6 @@ class HomeView extends GetView<HomeController> {
                             children: [
                               TextButton(
                                   onPressed: () {
-                                    // controller.CatagoryList.forEach((element) {
-                                    //   // element.isSelected!.value = false;
-                                    // });
-                                    // controller.CatagoryList[index].isSelected!
-                                    //     .value = true;
                                     controller.CatagoryList[index].sId;
                                     print(
                                         "sId: ${controller.CatagoryList[index].sId}");
@@ -122,7 +114,6 @@ class HomeView extends GetView<HomeController> {
                                       }
                                     });
                                     controller.productList.refresh();
-                                    //Get.toNamed(Routes.CATAGORY_PAGE,arguments: controller.CatagoryList[index]);
                                     Get.to(CatagoryPageView(
                                         controller.CatagoryList[index]));
 
@@ -130,8 +121,7 @@ class HomeView extends GetView<HomeController> {
                                         "SId:- ${controller.CatagoryList[index].sId}");
                                   },
                                   child: Text(
-                                    "${controller.CatagoryList[index].name} +" +
-                                        "",
+                                    "${controller.CatagoryList[index].name} +",
                                     style: TextStyle(color: Colors.white),
                                   )),
                             ],
@@ -192,11 +182,9 @@ class HomeView extends GetView<HomeController> {
                     ),
                     Container(
                       width: 400,
-
                       height: 400,
                       child: GridView.builder(
                           itemCount: controller.SellersList.length,
-
                           scrollDirection: Axis.horizontal,
                           shrinkWrap: true,
                           itemBuilder: (context, index) {
@@ -209,8 +197,8 @@ class HomeView extends GetView<HomeController> {
                                       child: Column(
                                         children: [
                                           Container(
-                                            width: 150,
-                                            height: 90,
+                                            width: 100,
+                                            height: 100,
                                             alignment: Alignment.center,
                                             color: Colors.grey[200],
                                             margin: EdgeInsets.only(
@@ -218,16 +206,17 @@ class HomeView extends GetView<HomeController> {
                                             child: CachedNetworkImage(
                                               imageUrl:
                                                   "${controller.SellersList[index].logoUrl}",
-                                              imageBuilder: (context,
-                                                      imageProvider) =>
-                                                  Container(
+                                              imageBuilder:
+                                                  (context, imageProvider) =>
+                                                      Container(
                                                 decoration: BoxDecoration(
                                                   image: DecorationImage(
                                                       image: imageProvider,
                                                       fit: BoxFit.cover,
                                                       colorFilter:
                                                           ColorFilter.mode(
-                                                              Colors.red,
+                                                              Colors
+                                                                  .transparent,
                                                               BlendMode
                                                                   .colorBurn)),
                                                 ),
@@ -246,23 +235,23 @@ class HomeView extends GetView<HomeController> {
                                       // height: 25,
                                       width: 150,
                                       child: Align(
-                                          alignment: Alignment.center,
-                                          child: Text(
-                                            "${controller.SellersList[index].companyName}",
-                                            style: GoogleFonts.raleway(
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: 18,
-                                                color: Color.fromRGBO(
-                                                    32, 193, 244, 1)),
-                                          ),
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          "${controller.SellersList[index].companyName}",
+                                          style: GoogleFonts.raleway(
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: 18,
+                                              color: Color.fromRGBO(
+                                                  32, 193, 244, 1)),
+                                        ),
                                       ),
                                     ),
                                     SizedBox(
                                       height: 5,
                                     ),
                                     Container(
-                                      margin: EdgeInsets.only(
-                                          left: 5, right: 5),
+                                      margin:
+                                          EdgeInsets.only(left: 5, right: 5),
                                       height: 60,
                                       width: 200,
                                       child: Align(
@@ -277,23 +266,6 @@ class HomeView extends GetView<HomeController> {
                                     SizedBox(
                                       height: 5,
                                     ),
-                                    // RatingBar.builder(
-                                    //   initialRating: 3,
-                                    //   minRating: 1,
-                                    //   updateOnDrag: false,
-                                    //   glowColor: Colors.transparent,
-                                    //   maxRating: 5,
-                                    //   glow: true,
-                                    //   direction: Axis.horizontal,
-                                    //   allowHalfRating: true,
-                                    //   itemCount: 5,
-                                    //   itemSize: 20,
-                                    //   itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                                    //   onRatingUpdate: (rating) {
-                                    //     print(rating);
-                                    //   },itemBuilder: (context, index) {
-                                    //   return Icon(Icons.star,color: Colors.amber,);
-                                    // },),
                                   ],
                                 ),
                               ),
@@ -446,7 +418,7 @@ class HomeView extends GetView<HomeController> {
                                               alignment: Alignment.center,
                                               child: Text(
                                                 "${controller.TopProductlist[index].sellerId!.companyName}",
-                                                style:  GoogleFonts.raleway(
+                                                style: GoogleFonts.raleway(
                                                     fontWeight: FontWeight.w700,
                                                     fontSize: 18,
                                                     color: Color.fromRGBO(
@@ -488,14 +460,18 @@ class HomeView extends GetView<HomeController> {
                                             ),
                                             Container(
                                               child: Text(
-                                                  "₹${controller.TopProductlist[index].discountedPrice!.toStringAsFixed(2)}",style: TextStyle(fontSize: 10),),
+                                                "₹${controller.TopProductlist[index].discountedPrice!.toStringAsFixed(2)}",
+                                                style: TextStyle(fontSize: 10),
+                                              ),
                                             ),
                                             RatingBar.builder(
-                                              initialRating: double.parse(controller
-                                                  .TopProductlist[index].rating
-                                                  .toString()),
+                                              initialRating: double.parse(
+                                                  controller
+                                                      .TopProductlist[index]
+                                                      .rating
+                                                      .toString()),
                                               minRating: 0,
-                                              updateOnDrag:false,
+                                              updateOnDrag: false,
                                               unratedColor: Colors.grey,
                                               glowColor: Colors.transparent,
                                               maxRating: 5,
@@ -520,7 +496,6 @@ class HomeView extends GetView<HomeController> {
                                             ),
                                           ],
                                         ),
-
                                       ],
                                     ),
                                   ),
