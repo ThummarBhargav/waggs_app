@@ -50,7 +50,7 @@ class HomeController extends GetxController {
   }
 
   AllCategory() async {
-    var url = Uri.parse(baseuel1+ApiConstant.AllCategory);
+    var url = Uri.parse(baseUrl+ApiConstant.AllCategory);
     var response = await http.get(url);
     print('response status:${response.request}');
     dynamic result = jsonDecode(response.body);
@@ -81,7 +81,7 @@ class HomeController extends GetxController {
   }
 
   getAllUserApi() async {
-    var url = Uri.parse(baseuel1 + ApiConstant.getAllProductUsers);
+    var url = Uri.parse(baseUrl + ApiConstant.getAllProductUsers);
     var response = await http.get(url);
     print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');
@@ -105,7 +105,7 @@ class HomeController extends GetxController {
   }
 
   bannerAllProduct() async {
-    var url = Uri.parse(baserl2 + ApiConstant.bannerProductUsers);
+    var url = Uri.parse(baseUrl + ApiConstant.bannerProductUsers);
     var response = await http.get(url);
     print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');
@@ -121,6 +121,7 @@ class HomeController extends GetxController {
   }
 
   TopSellingStoreApi() async {
+    var url = Uri.parse(baseUrl + ApiConstant.TopStore);
     var url = Uri.parse(baserl2 + ApiConstant.TopStore);
     var response = await http.get(url);
     print('Response status: ${response.statusCode}');
@@ -141,7 +142,7 @@ class HomeController extends GetxController {
   }
 
   TopSellingProductApi() async {
-    var url = Uri.parse(baseuel1 + ApiConstant.TopStore);
+    var url = Uri.parse(baseUrl + ApiConstant.TopStore);
     var response = await http.get(url);
     print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');

@@ -109,7 +109,7 @@ class CatagoryPageView extends GetWidget<HomeController> {
                             margin: EdgeInsets.only(left: 20,right: 20),
                             decoration: BoxDecoration(
                               image: DecorationImage(
-                                image: AssetImage("assets/category01.jpg"),
+                                image: AssetImage("${controller.imageList[0]}"),
                                 fit: BoxFit.fill
                               ),
                               borderRadius: BorderRadius.all(Radius.circular(10))
@@ -157,8 +157,8 @@ class CatagoryPageView extends GetWidget<HomeController> {
                             margin: EdgeInsets.only(left: 20,right: 20),
                             decoration: BoxDecoration(
                                  image: data.subCategory!=""? DecorationImage(
-                                    image: AssetImage("assets/category02.jpg"),
-                                    fit: BoxFit.fill
+                                    image: AssetImage("${controller.imageList[1]}"),
+                                    fit: BoxFit.fill,
                                 ):null,
                                 borderRadius: BorderRadius.all(Radius.circular(10))
                             ),
@@ -205,7 +205,7 @@ class CatagoryPageView extends GetWidget<HomeController> {
                             margin: EdgeInsets.only(left: 20,right: 20),
                             decoration: BoxDecoration(
                                 image: DecorationImage(
-                                    image: AssetImage("assets/category03.jpg"),
+                                    image: AssetImage("${controller.imageList[2]}"),
                                     fit: BoxFit.fill
                                 ),
                                 borderRadius: BorderRadius.all(Radius.circular(10))
@@ -253,7 +253,7 @@ class CatagoryPageView extends GetWidget<HomeController> {
                             margin: EdgeInsets.only(left: 20,right: 20),
                             decoration: BoxDecoration(
                                 image: DecorationImage(
-                                    image: AssetImage("assets/category04.jpg"),
+                                    image: AssetImage("${controller.imageList[3]}"),
                                     fit: BoxFit.fill
                                 ),
                                 borderRadius: BorderRadius.all(Radius.circular(10))
@@ -301,7 +301,7 @@ class CatagoryPageView extends GetWidget<HomeController> {
                             margin: EdgeInsets.only(left: 20,right: 20),
                             decoration: BoxDecoration(
                                 image: DecorationImage(
-                                    image: AssetImage("assets/category05.jpg"),
+                                    image: AssetImage("${controller.imageList[4]}"),
                                     fit: BoxFit.fill
                                 ),
                                 borderRadius: BorderRadius.all(Radius.circular(10))

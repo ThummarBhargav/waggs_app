@@ -63,13 +63,13 @@ class Products {
   int? stock;
   int? price;
   int? discountedPrice;
-  String? brand;
-  double? discount;
   String? lifeStage;
+  String? brand;
   String? productType;
   String? flavor;
   String? breedSize;
   String? vegNonveg;
+  double? discount;
   String? color;
   Null? materialUsed;
 
@@ -88,13 +88,13 @@ class Products {
         this.stock,
         this.price,
         this.discountedPrice,
-        this.brand,
-        this.discount,
         this.lifeStage,
+        this.brand,
         this.productType,
         this.flavor,
         this.breedSize,
         this.vegNonveg,
+        this.discount,
         this.color,
         this.materialUsed});
 
@@ -119,13 +119,13 @@ class Products {
     stock = json['stock'];
     price = json['price'];
     discountedPrice = json['discountedPrice'];
-    brand = json['brand'];
-    discount = (json['discount'].runtimeType == int )?double.parse(json['discount'].toString()):json['discount'];
     lifeStage = json['life_stage'];
+    brand = json['brand'];
     productType = json['product_type'];
     flavor = json['flavor'];
     breedSize = json['breed_size'];
     vegNonveg = json['veg_nonveg'];
+    discount = json['discount'];
     color = json['color'];
     materialUsed = json['material_used'];
   }
@@ -152,13 +152,13 @@ class Products {
     data['stock'] = this.stock;
     data['price'] = this.price;
     data['discountedPrice'] = this.discountedPrice;
-    data['brand'] = this.brand;
-    data['discount'] = this.discount;
     data['life_stage'] = this.lifeStage;
+    data['brand'] = this.brand;
     data['product_type'] = this.productType;
     data['flavor'] = this.flavor;
     data['breed_size'] = this.breedSize;
     data['veg_nonveg'] = this.vegNonveg;
+    data['discount'] = this.discount;
     data['color'] = this.color;
     data['material_used'] = this.materialUsed;
     return data;
