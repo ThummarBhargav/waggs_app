@@ -113,7 +113,7 @@ class HomeView extends GetView<HomeController> {
                                     });
                                     controller.productList.refresh();
                                     Get.to(CatagoryPageView(
-                                        controller.CatagoryList[index]));
+                                        controller.productList[index]));
 
                                     print(
                                         "SId:- ${controller.CatagoryList[index].sId}");

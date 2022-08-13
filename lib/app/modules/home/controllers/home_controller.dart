@@ -26,9 +26,8 @@ class HomeController extends GetxController {
   TextEditingController searchController = TextEditingController();
   RxList<Products0> TopProductlist = RxList<Products0>([]);
   RxList<Sellers> SellersList = RxList<Sellers>([]);
-  late final _ratingController;
-  late double _rating;
-  IconData? _selectedIcon;
+  List<String> imageList = ['assets/category01.jpg','assets/category02.jpg',
+    'assets/category03.jpg','assets/category04.jpg','assets/category05.jpg'].obs;
 
 
   @override

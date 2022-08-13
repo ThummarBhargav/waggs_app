@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:waggs_app/app/Modal/GetAllProductModule.dart';
 import 'package:waggs_app/app/modules/home/controllers/home_controller.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
 
 import '../../../Modal/CategoryModel.dart';
 
 class CatagoryPageView extends GetWidget<HomeController> {
-  CategoryData data;
+  Products data;
   CatagoryPageView(this.data);
 
   @override
@@ -88,7 +89,7 @@ class CatagoryPageView extends GetWidget<HomeController> {
                             children: [
                               Container(
                                 margin: EdgeInsets.only(top: 45,left: 30),
-                                child: Text(data.name.toString(),
+                                child: Text(data.category!.name.toString(),
                                   style: GoogleFonts.roboto(
                                     fontSize: 28,
                                     fontWeight: FontWeight.bold,
@@ -134,7 +135,7 @@ class CatagoryPageView extends GetWidget<HomeController> {
                                   onTap: () {
 
                                   },
-                                  child: Text("${controller.productList[0].subCategory!.name}",
+                                  child: Text("${data.subCategory!.name}",
                                     style: GoogleFonts.roboto(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w800,
@@ -155,10 +156,10 @@ class CatagoryPageView extends GetWidget<HomeController> {
                             height: 200,
                             margin: EdgeInsets.only(left: 20,right: 20),
                             decoration: BoxDecoration(
-                                image: DecorationImage(
+                                 image: data.subCategory!=""? DecorationImage(
                                     image: AssetImage("assets/category02.jpg"),
                                     fit: BoxFit.fill
-                                ),
+                                ):null,
                                 borderRadius: BorderRadius.all(Radius.circular(10))
                             ),
                           ),
