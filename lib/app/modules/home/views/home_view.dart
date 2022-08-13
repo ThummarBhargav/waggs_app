@@ -103,8 +103,8 @@ class HomeView extends GetView<HomeController> {
                                     controller.mainProductList
                                         .forEach((element) {
                                       if (element.category!.sId ==
-                                              controller
-                                                  .CatagoryList[index].sId &&
+                                          controller
+                                              .CatagoryList[index].sId &&
                                           element.subCategory!.categoryId ==
                                               controller
                                                   .CatagoryList[index].sId) {
@@ -112,8 +112,7 @@ class HomeView extends GetView<HomeController> {
                                       }
                                     });
                                     controller.productList.refresh();
-                                    Get.to(CatagoryPageView(
-                                        controller.productList[index]));
+                                    // Get.to(CatagoryPageView());
 
                                     print(
                                         "SId:- ${controller.CatagoryList[index].sId}");
@@ -131,7 +130,9 @@ class HomeView extends GetView<HomeController> {
                 ],
               ),
             ),
-            Expanded(
+            Container(
+              height: 620,
+              width: 400,
               child: SingleChildScrollView(
                 child: Column(
                   children: [
@@ -181,7 +182,6 @@ class HomeView extends GetView<HomeController> {
                     Container(
                       width: 400,
                       height: 250,
-
                       child: GridView.builder(
                           itemCount: controller.SellersList.length,
                           scrollDirection: Axis.horizontal,
@@ -273,7 +273,10 @@ class HomeView extends GetView<HomeController> {
                           },
                           gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 1,)),
+                                  crossAxisCount: 1,
+                                mainAxisSpacing: 10,
+                                crossAxisSpacing: 10
+                              )),
                     ),
                     SizedBox(
                       height: 10,
