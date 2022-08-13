@@ -21,6 +21,7 @@ class HomeController extends GetxController {
   RxList<Products> productList = RxList<Products>([]);
   RxList<CategoryData> CatagoryList = RxList<CategoryData>([]);
   RxList<SubCategoryData> SubCatagoryList = RxList<SubCategoryData>([]);
+  RxList<SubCategoryData> subData = RxList<SubCategoryData>([]);
   RxList<BannerData> bannerList = RxList<BannerData>([]);
   TextEditingController searchController = TextEditingController();
   RxList<Products0> TopProductlist = RxList<Products0>([]);
@@ -64,7 +65,7 @@ class HomeController extends GetxController {
     }
   }
   SubCategory() async {
-    var url = Uri.parse("https://api-stg.waggs.in/api/v1/category");
+    var url = Uri.parse(baseUrl+ApiConstant.AllSubCategory);
     var response = await http.get(url);
     print('response status:${response.request}');
     dynamic result = jsonDecode(response.body);

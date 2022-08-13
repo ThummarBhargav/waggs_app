@@ -111,12 +111,22 @@ class HomeView extends GetView<HomeController> {
                                         controller.productList.add(element);
                                       }
                                     });
-                                    controller.productList.forEach((element) {
-                                      print(element.subCategory!.name);
+                                    // controller.productList.forEach((element) {
+                                    //   print(element.subCategory!.name);
+                                    // });
+                                    controller.SubCatagoryList.forEach((element) {
+                                      if(element.categoryId==controller.CatagoryList[index].sId){
+                                        controller.subData.add(element);
+                                      }else{
+
+                                      }
                                     });
                                     controller.productList.refresh();
+
+
+
                                     Get.to(CatagoryPageView(
-                                        controller.CatagoryList[index]));
+                                        data: controller.CatagoryList[index],subCategory: controller.subData[index],));
 
                                     print(
                                         "SId:- ${controller.CatagoryList[index].sId}");

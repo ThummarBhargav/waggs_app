@@ -7,9 +7,13 @@ import 'package:waggs_app/app/Modal/GetAllProductModule.dart';
 import 'package:waggs_app/app/modules/home/controllers/home_controller.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
 
+import '../../../Modal/SubCategoryModel.dart';
+
 class CatagoryPageView extends GetWidget<HomeController> {
   CategoryData data;
-  CatagoryPageView(this.data);
+  SubCategoryData subCategory;
+  CatagoryPageView({required this.data,required this.subCategory});
+
 
   @override
   Widget build(BuildContext context) {
