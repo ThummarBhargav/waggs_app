@@ -120,7 +120,7 @@ class HomeView extends GetView<HomeController> {
                                     controller.SubCatagoryList.forEach((element) {
                                       if(element.categoryId==controller.CatagoryList[index].sId){
                                         controller.subData.add(element);
-                                        print("Data====================>"+element.name.toString());
+                                        print("Data"+element.name.toString());
                                       }else{
 
                                       }
@@ -161,12 +161,6 @@ class HomeView extends GetView<HomeController> {
                     ),
                     SizedBox(
                       height: 40,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-
-                      ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
