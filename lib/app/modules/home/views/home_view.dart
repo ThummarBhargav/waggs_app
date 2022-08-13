@@ -354,12 +354,12 @@ class HomeView extends GetView<HomeController> {
                                                             child: Row(
                                                               mainAxisAlignment:
                                                                   MainAxisAlignment
-                                                                      .end,
+                                                                      .center,
                                                               children: [
                                                                 Container(
                                                                   margin:
                                                                       EdgeInsets
-                                                                          .all(1),
+                                                                          .only(left: 30),
                                                                   height: 20,
                                                                   width: 70,
                                                                   decoration:
@@ -409,6 +409,7 @@ class HomeView extends GetView<HomeController> {
                                             ),
                                           ),
                                           Container(
+                                            margin: EdgeInsets.only(right: 70,top: 10),
                                             child: Align(
                                                 alignment: Alignment.center,
                                                 child: Text(
@@ -420,12 +421,11 @@ class HomeView extends GetView<HomeController> {
                                                           32, 193, 244, 1)),
                                                 )),
                                           ),
-                                          SizedBox(
-                                            height: 5,
-                                          ),
                                           Container(
                                             height: 60,
                                             width: 180,
+                                            alignment: Alignment.center,
+                                            margin: EdgeInsets.only(right: 70),
                                             child: Align(
                                                 alignment: Alignment.center,
                                                 child: Text(
@@ -438,7 +438,7 @@ class HomeView extends GetView<HomeController> {
                                           Row(
                                             children: [
                                               Container(
-                                                margin: EdgeInsets.only(left: 5),
+                                                margin: EdgeInsets.only(left: 25),
                                                 child: Text(
                                                   "₹${controller.TopProductlist[index].price!.toStringAsFixed(2)}",
                                                   style: GoogleFonts.roboto(

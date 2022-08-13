@@ -125,7 +125,7 @@ class Products {
     flavor = json['flavor'];
     breedSize = json['breed_size'];
     vegNonveg = json['veg_nonveg'];
-    discount = json['discount'];
+    discount = (json['discount'].runtimeType == int )?double.parse(json['discount'].toString()):json['discount'];
     color = json['color'];
     materialUsed = json['material_used'];
   }

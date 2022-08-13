@@ -122,7 +122,6 @@ class HomeController extends GetxController {
 
   TopSellingStoreApi() async {
     var url = Uri.parse(baseUrl + ApiConstant.TopStore);
-    var url = Uri.parse(baserl2 + ApiConstant.TopStore);
     var response = await http.get(url);
     print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');

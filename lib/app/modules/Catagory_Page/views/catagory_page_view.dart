@@ -6,8 +6,6 @@ import 'package:waggs_app/app/Modal/GetAllProductModule.dart';
 import 'package:waggs_app/app/modules/home/controllers/home_controller.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
 
-import '../../../Modal/CategoryModel.dart';
-
 class CatagoryPageView extends GetWidget<HomeController> {
   Products data;
   CatagoryPageView(this.data);
