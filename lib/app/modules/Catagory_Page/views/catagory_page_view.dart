@@ -10,8 +10,8 @@ import '../../../Modal/SubCategoryModel.dart';
 
 class CatagoryPageView extends GetWidget<HomeController> {
   CategoryData data;
-  SubCategoryData subCategory;
-  CatagoryPageView({required this.data,required this.subCategory});
+  RxList<SubCategoryData> subData;
+  CatagoryPageView({required this.data,required this.subData});
 
 
   @override
@@ -21,7 +21,10 @@ class CatagoryPageView extends GetWidget<HomeController> {
           body: Column(
             children: [
               Container(
+                height: 60,
+                width: double.maxFinite,
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SizedBox(
                       height: 10,
@@ -107,7 +110,7 @@ class CatagoryPageView extends GetWidget<HomeController> {
                         height: 500,
 
                         child: ListView.builder(
-                          itemCount: subCategory.toString().length,
+                          itemCount: subData.length,
                           itemBuilder: (context, index) {
                           return Stack(
                             children: [
@@ -143,7 +146,7 @@ class CatagoryPageView extends GetWidget<HomeController> {
                                       onTap: () {
 
                                       },
-                                      child: Text("${subCategory.name}",
+                                      child: Text("${subData[index].name}",
                                         style: GoogleFonts.roboto(
                                             fontSize: 16,
                                             fontWeight: FontWeight.w800,
@@ -158,245 +161,302 @@ class CatagoryPageView extends GetWidget<HomeController> {
                           );
                         },),
                       ),
-                      Stack(
-                        children: [
-                          Container(
-                            width: double.infinity,
-                            height: 200,
-                            margin: EdgeInsets.only(left: 20,right: 20),
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: AssetImage("${controller.imageList[0]}"),
-                                fit: BoxFit.fill
-                              ),
-                              borderRadius: BorderRadius.all(Radius.circular(10))
-                            ),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Container(
-                                width: 120,
-                                height: 38,
-                                margin: EdgeInsets.only(top: 60,right: 40),
-                                alignment: Alignment.center,
-                                decoration: BoxDecoration(
-                                  color: Color(0xffeb9d4f),
-                                  borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(25),
-                                    bottomRight: Radius.circular(25),
-                                    topRight: Radius.circular(25),
-                                  ),
-                                ),
-                                child: InkWell(
-                                  onTap: () {
-
-                                  },
-                                  child: Text("",
-                                    style: GoogleFonts.roboto(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w800,
-                                      color: Colors.white
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
+                      SizedBox(
+                        height: 10,
                       ),
-                      SizedBox(height: 20,),
-                      Stack(
-                        children: [
-                          Container(
-                            width: double.infinity,
-                            height: 200,
-                            margin: EdgeInsets.only(left: 20,right: 20),
-                            /*decoration: BoxDecoration(
-                                 image: data.subCategory!=""? DecorationImage(
-                                    image: AssetImage("${controller.imageList[1]}"),
-                                    fit: BoxFit.fill,
-                                ):null,
-                                borderRadius: BorderRadius.all(Radius.circular(10))
-                            ),*/
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Container(
-                                width: 120,
-                                height: 38,
-                                margin: EdgeInsets.only(top: 60,right: 40),
-                                alignment: Alignment.center,
-                                decoration: BoxDecoration(
-                                  color: Color(0xffeb9d4f),
-                                  borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(25),
-                                    bottomRight: Radius.circular(25),
-                                    topRight: Radius.circular(25),
-                                  ),
-                                ),
-                                child: InkWell(
-                                  onTap: () {
 
-                                  },
-                                  child: Text("",
-                                    style: GoogleFonts.roboto(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w800,
-                                        color: Colors.white
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 20,),
-                      Stack(
-                        children: [
-                          Container(
-                            width: double.infinity,
-                            height: 200,
-                            margin: EdgeInsets.only(left: 20,right: 20),
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage("${controller.imageList[2]}"),
-                                    fit: BoxFit.fill
-                                ),
-                                borderRadius: BorderRadius.all(Radius.circular(10))
-                            ),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                width: 120,
-                                height: 38,
-                                margin: EdgeInsets.only(left: 30,top: 80,right: 40),
-                                alignment: Alignment.center,
-                                decoration: BoxDecoration(
-                                  color: Color(0xffeb9d4f),
-                                  borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(25),
-                                    bottomRight: Radius.circular(25),
-                                    topRight: Radius.circular(25),
-                                  ),
-                                ),
-                                child: InkWell(
-                                  onTap: () {
-
-                                  },
-                                  child: Text("GRAIN FREE",
-                                    style: GoogleFonts.roboto(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w800,
-                                        color: Colors.white
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 20,),
-                      Stack(
-                        children: [
-                          Container(
-                            width: double.infinity,
-                            height: 200,
-                            margin: EdgeInsets.only(left: 20,right: 20),
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage("${controller.imageList[3]}"),
-                                    fit: BoxFit.fill
-                                ),
-                                borderRadius: BorderRadius.all(Radius.circular(10))
-                            ),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                width: 200,
-                                height: 38,
-                                margin: EdgeInsets.only(left: 30,top: 80,right: 40),
-                                alignment: Alignment.center,
-                                decoration: BoxDecoration(
-                                  color: Color(0xffeb9d4f),
-                                  borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(25),
-                                    bottomRight: Radius.circular(25),
-                                    topRight: Radius.circular(25),
-                                  ),
-                                ),
-                                child: InkWell(
-                                  onTap: () {
-
-                                  },
-                                  child: Text("WEIGHT MANAGEMENT",
-                                    style: GoogleFonts.roboto(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w800,
-                                        color: Colors.white
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 20,),
-                      Stack(
-                        children: [
-                          Container(
-                            width: double.infinity,
-                            height: 200,
-                            margin: EdgeInsets.only(left: 20,right: 20),
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage("${controller.imageList[4]}"),
-                                    fit: BoxFit.fill
-                                ),
-                                borderRadius: BorderRadius.all(Radius.circular(10))
-                            ),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                width: 200,
-                                height: 38,
-                                margin: EdgeInsets.only(left: 30,top: 80,right: 40),
-                                alignment: Alignment.center,
-                                decoration: BoxDecoration(
-                                  color: Color(0xffeb9d4f),
-                                  borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(25),
-                                    bottomRight: Radius.circular(25),
-                                    topRight: Radius.circular(25),
-                                  ),
-                                ),
-                                child: InkWell(
-                                  onTap: () {
-
-                                  },
-                                  child: Text("HEALTHCARE AIDS",
-                                    style: GoogleFonts.roboto(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w800,
-                                        color: Colors.white
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+                      // Column(
+                      //   children: [
+                      //     GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1),itemCount: subCategory.fields!.length, itemBuilder: (context, index) {
+                      //       return   Stack(
+                      //         children: [
+                      //           Container(
+                      //             width: double.infinity,
+                      //             height: 200,
+                      //             margin: EdgeInsets.only(left: 20,right: 20),
+                      //             decoration: BoxDecoration(
+                      //                 image: DecorationImage(
+                      //                     image: AssetImage("${controller.imageList[0]}"),
+                      //                     fit: BoxFit.fill
+                      //                 ),
+                      //                 borderRadius: BorderRadius.all(Radius.circular(10))
+                      //             ),
+                      //           ),
+                      //           Row(
+                      //             mainAxisAlignment: MainAxisAlignment.end,
+                      //             children: [
+                      //               Container(
+                      //                 width: 120,
+                      //                 height: 38,
+                      //                 margin: EdgeInsets.only(top: 60,right: 40),
+                      //                 alignment: Alignment.center,
+                      //                 decoration: BoxDecoration(
+                      //                   color: Color(0xffeb9d4f),
+                      //                   borderRadius: BorderRadius.only(
+                      //                     bottomLeft: Radius.circular(25),
+                      //                     bottomRight: Radius.circular(25),
+                      //                     topRight: Radius.circular(25),
+                      //                   ),
+                      //                 ),
+                      //                 child: InkWell(
+                      //                   onTap: () {
+                      //
+                      //                   },
+                      //                   child: Text("",
+                      //                     style: GoogleFonts.roboto(
+                      //                         fontSize: 16,
+                      //                         fontWeight: FontWeight.w800,
+                      //                         color: Colors.white
+                      //                     ),
+                      //                   ),
+                      //                 ),
+                      //               ),
+                      //             ],
+                      //           ),
+                      //         ],
+                      //       );
+                      //     },)
+                      //   ],
+                      // ),
+                      // Stack(
+                      //   children: [
+                      //     Container(
+                      //       width: double.infinity,
+                      //       height: 200,
+                      //       margin: EdgeInsets.only(left: 20,right: 20),
+                      //       decoration: BoxDecoration(
+                      //         image: DecorationImage(
+                      //           image: AssetImage("${controller.imageList[0]}"),
+                      //           fit: BoxFit.fill
+                      //         ),
+                      //         borderRadius: BorderRadius.all(Radius.circular(10))
+                      //       ),
+                      //     ),
+                      //     Row(
+                      //       mainAxisAlignment: MainAxisAlignment.end,
+                      //       children: [
+                      //         Container(
+                      //           width: 120,
+                      //           height: 38,
+                      //           margin: EdgeInsets.only(top: 60,right: 40),
+                      //           alignment: Alignment.center,
+                      //           decoration: BoxDecoration(
+                      //             color: Color(0xffeb9d4f),
+                      //             borderRadius: BorderRadius.only(
+                      //               bottomLeft: Radius.circular(25),
+                      //               bottomRight: Radius.circular(25),
+                      //               topRight: Radius.circular(25),
+                      //             ),
+                      //           ),
+                      //           child: InkWell(
+                      //             onTap: () {
+                      //
+                      //             },
+                      //             child: Text("",
+                      //               style: GoogleFonts.roboto(
+                      //                 fontSize: 16,
+                      //                 fontWeight: FontWeight.w800,
+                      //                 color: Colors.white
+                      //               ),
+                      //             ),
+                      //           ),
+                      //         ),
+                      //       ],
+                      //     ),
+                      //   ],
+                      // ),
+                      // SizedBox(height: 20,),
+                      // Stack(
+                      //   children: [
+                      //     Container(
+                      //       width: double.infinity,
+                      //       height: 200,
+                      //       margin: EdgeInsets.only(left: 20,right: 20),
+                      //       /*decoration: BoxDecoration(
+                      //            image: data.subCategory!=""? DecorationImage(
+                      //               image: AssetImage("${controller.imageList[1]}"),
+                      //               fit: BoxFit.fill,
+                      //           ):null,
+                      //           borderRadius: BorderRadius.all(Radius.circular(10))
+                      //       ),*/
+                      //     ),
+                      //     Row(
+                      //       mainAxisAlignment: MainAxisAlignment.end,
+                      //       children: [
+                      //         Container(
+                      //           width: 120,
+                      //           height: 38,
+                      //           margin: EdgeInsets.only(top: 60,right: 40),
+                      //           alignment: Alignment.center,
+                      //           decoration: BoxDecoration(
+                      //             color: Color(0xffeb9d4f),
+                      //             borderRadius: BorderRadius.only(
+                      //               bottomLeft: Radius.circular(25),
+                      //               bottomRight: Radius.circular(25),
+                      //               topRight: Radius.circular(25),
+                      //             ),
+                      //           ),
+                      //           child: InkWell(
+                      //             onTap: () {
+                      //
+                      //             },
+                      //             child: Text("",
+                      //               style: GoogleFonts.roboto(
+                      //                   fontSize: 16,
+                      //                   fontWeight: FontWeight.w800,
+                      //                   color: Colors.white
+                      //               ),
+                      //             ),
+                      //           ),
+                      //         ),
+                      //       ],
+                      //     ),
+                      //   ],
+                      // ),
+                      // SizedBox(height: 20,),
+                      // Stack(
+                      //   children: [
+                      //     Container(
+                      //       width: double.infinity,
+                      //       height: 200,
+                      //       margin: EdgeInsets.only(left: 20,right: 20),
+                      //       decoration: BoxDecoration(
+                      //           image: DecorationImage(
+                      //               image: AssetImage("${controller.imageList[2]}"),
+                      //               fit: BoxFit.fill
+                      //           ),
+                      //           borderRadius: BorderRadius.all(Radius.circular(10))
+                      //       ),
+                      //     ),
+                      //     Row(
+                      //       mainAxisAlignment: MainAxisAlignment.center,
+                      //       children: [
+                      //         Container(
+                      //           width: 120,
+                      //           height: 38,
+                      //           margin: EdgeInsets.only(left: 30,top: 80,right: 40),
+                      //           alignment: Alignment.center,
+                      //           decoration: BoxDecoration(
+                      //             color: Color(0xffeb9d4f),
+                      //             borderRadius: BorderRadius.only(
+                      //               bottomLeft: Radius.circular(25),
+                      //               bottomRight: Radius.circular(25),
+                      //               topRight: Radius.circular(25),
+                      //             ),
+                      //           ),
+                      //           child: InkWell(
+                      //             onTap: () {
+                      //
+                      //             },
+                      //             child: Text("GRAIN FREE",
+                      //               style: GoogleFonts.roboto(
+                      //                   fontSize: 16,
+                      //                   fontWeight: FontWeight.w800,
+                      //                   color: Colors.white
+                      //               ),
+                      //             ),
+                      //           ),
+                      //         ),
+                      //       ],
+                      //     ),
+                      //   ],
+                      // ),
+                      // SizedBox(height: 20,),
+                      // Stack(
+                      //   children: [
+                      //     Container(
+                      //       width: double.infinity,
+                      //       height: 200,
+                      //       margin: EdgeInsets.only(left: 20,right: 20),
+                      //       decoration: BoxDecoration(
+                      //           image: DecorationImage(
+                      //               image: AssetImage("${controller.imageList[3]}"),
+                      //               fit: BoxFit.fill
+                      //           ),
+                      //           borderRadius: BorderRadius.all(Radius.circular(10))
+                      //       ),
+                      //     ),
+                      //     Row(
+                      //       mainAxisAlignment: MainAxisAlignment.center,
+                      //       children: [
+                      //         Container(
+                      //           width: 200,
+                      //           height: 38,
+                      //           margin: EdgeInsets.only(left: 30,top: 80,right: 40),
+                      //           alignment: Alignment.center,
+                      //           decoration: BoxDecoration(
+                      //             color: Color(0xffeb9d4f),
+                      //             borderRadius: BorderRadius.only(
+                      //               bottomLeft: Radius.circular(25),
+                      //               bottomRight: Radius.circular(25),
+                      //               topRight: Radius.circular(25),
+                      //             ),
+                      //           ),
+                      //           child: InkWell(
+                      //             onTap: () {
+                      //
+                      //             },
+                      //             child: Text("WEIGHT MANAGEMENT",
+                      //               style: GoogleFonts.roboto(
+                      //                   fontSize: 16,
+                      //                   fontWeight: FontWeight.w800,
+                      //                   color: Colors.white
+                      //               ),
+                      //             ),
+                      //           ),
+                      //         ),
+                      //       ],
+                      //     ),
+                      //   ],
+                      // ),
+                      // SizedBox(height: 20,),
+                      // Stack(
+                      //   children: [
+                      //     Container(
+                      //       width: double.infinity,
+                      //       height: 200,
+                      //       margin: EdgeInsets.only(left: 20,right: 20),
+                      //       decoration: BoxDecoration(
+                      //           image: DecorationImage(
+                      //               image: AssetImage("${controller.imageList[4]}"),
+                      //               fit: BoxFit.fill
+                      //           ),
+                      //           borderRadius: BorderRadius.all(Radius.circular(10))
+                      //       ),
+                      //     ),
+                      //     Row(
+                      //       mainAxisAlignment: MainAxisAlignment.center,
+                      //       children: [
+                      //         Container(
+                      //           width: 200,
+                      //           height: 38,
+                      //           margin: EdgeInsets.only(left: 30,top: 80,right: 40),
+                      //           alignment: Alignment.center,
+                      //           decoration: BoxDecoration(
+                      //             color: Color(0xffeb9d4f),
+                      //             borderRadius: BorderRadius.only(
+                      //               bottomLeft: Radius.circular(25),
+                      //               bottomRight: Radius.circular(25),
+                      //               topRight: Radius.circular(25),
+                      //             ),
+                      //           ),
+                      //           child: InkWell(
+                      //             onTap: () {
+                      //
+                      //             },
+                      //             child: Text("HEALTHCARE AIDS",
+                      //               style: GoogleFonts.roboto(
+                      //                   fontSize: 16,
+                      //                   fontWeight: FontWeight.w800,
+                      //                   color: Colors.white
+                      //               ),
+                      //             ),
+                      //           ),
+                      //         ),
+                      //       ],
+                      //     ),
+                      //   ],
+                      // ),
                     ],
                   ),
                 ),

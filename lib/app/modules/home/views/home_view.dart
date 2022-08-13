@@ -115,9 +115,11 @@ class HomeView extends GetView<HomeController> {
                                     // controller.productList.forEach((element) {
                                     //   print(element.subCategory!.name);
                                     // });
+                                    controller.subData.clear();
                                     controller.SubCatagoryList.forEach((element) {
                                       if(element.categoryId==controller.CatagoryList[index].sId){
                                         controller.subData.add(element);
+                                        print("Data====================>"+element.name.toString());
                                       }else{
 
                                       }
@@ -126,7 +128,7 @@ class HomeView extends GetView<HomeController> {
                                     // Get.to(CatagoryPageView(controller.CatagoryList[index]));
 
                                     Get.to(CatagoryPageView(
-                                        data: controller.CatagoryList[index],subCategory: controller.subData[index],));
+                                        data: controller.CatagoryList[index],subData: controller.subData,));
 
                                     print(
                                         "SId:- ${controller.CatagoryList[index].sId}");
