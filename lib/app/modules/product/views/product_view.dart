@@ -15,7 +15,7 @@ class ProductView extends GetView<ProductController> {
       ),
       body: Center(
         child: Text(
-          controller.data,
+          controller.mainProductList[2].category.toString(),
           style: TextStyle(fontSize: 20),
         ),
       ),

@@ -14,7 +14,7 @@ class ApiConstant {
   static const verifyNewPasswordUsers = "verifyOtpNewPassword";
   static const changePasswordUsers = "changePassword";
   static const bannerProductUsers = "banner";
-  static const getAllProductUsers = "products?skip=0&limit=0&search=";
+  static const getAllProductUsers = "products";
   static const AllCategory = "category";
   static const AllSubCategory = "subcategory";
   static const TopStore = "landing?latitude=&longitude=";
