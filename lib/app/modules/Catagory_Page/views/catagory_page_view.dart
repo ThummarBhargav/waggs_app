@@ -143,7 +143,7 @@ class CatagoryPageView extends GetWidget<HomeController> {
                                     ),
                                     child: InkWell(
                                       onTap: () {
-
+                                          Get.toNamed(Routes.PRODUCT,arguments: subData[index].sId);
                                       },
                                       child: Text("${subData[index].name}",
                                         style: GoogleFonts.roboto(
