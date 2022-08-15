@@ -128,28 +128,31 @@ class CatagoryPageView extends GetWidget<HomeController> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
-                                  InkWell(
-                                    onTap: () {
-                                      Get.toNamed(Routes.PRODUCT,arguments: subData[index].sId);
-                                    },
-                                    child: Container(
-                                      width: 120,
-                                      height: 38,
-                                      margin: EdgeInsets.only(top: 60,right: 40),
-                                      alignment: Alignment.center,
-                                      decoration: BoxDecoration(
-                                        color: Color(0xffeb9d4f),
-                                        borderRadius: BorderRadius.only(
-                                          bottomLeft: Radius.circular(25),
-                                          bottomRight: Radius.circular(25),
-                                          topRight: Radius.circular(25),
-                                        ),
-                                      ),
-                                      child: Text("${subData[index].name}",
-                                        style: GoogleFonts.roboto(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w800,
-                                            color: Colors.white
+                                  Container(
+                                    child: InkWell(
+                                      onTap: () {
+                                        Get.toNamed(Routes.PRODUCT,arguments: subData[index].sId);
+                                      },
+                                      child: Expanded(
+                                        child: Container(
+                                          margin: EdgeInsets.only(top: 60,right: 40),
+                                          padding: EdgeInsets.all(10),
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                            color: Color(0xffeb9d4f),
+                                            borderRadius: BorderRadius.only(
+                                              bottomLeft: Radius.circular(25),
+                                              bottomRight: Radius.circular(25),
+                                              topRight: Radius.circular(25),
+                                            ),
+                                          ),
+                                          child: Text("${subData[index].name}",
+                                            style: GoogleFonts.roboto(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w800,
+                                                color: Colors.white
+                                            ),
+                                          ),
                                         ),
                                       ),
                                     ),

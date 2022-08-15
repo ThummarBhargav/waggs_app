@@ -553,9 +553,10 @@ class HomeView extends GetView<HomeController> {
                                             InkWell(
                                               onTap: () {},
                                               child: Container(
-                                                width: 160,
-                                                height: 40,
+                                                width: 130,
+                                                height: 35,
                                                 alignment: Alignment.center,
+                                                margin: EdgeInsets.only(right: 15),
                                                 decoration: BoxDecoration(
                                                   color: Colors.cyan,
                                                   borderRadius:
@@ -570,9 +571,7 @@ class HomeView extends GetView<HomeController> {
                                                 ),
                                                 child: Row(
                                                   children: [
-                                                    SizedBox(
-                                                      width: 20,
-                                                    ),
+                                                    SizedBox(width: 10,),
                                                     Icon(
                                                         Icons.add_shopping_cart,
                                                         color: Colors.white,
