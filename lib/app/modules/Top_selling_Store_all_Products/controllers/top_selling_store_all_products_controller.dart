@@ -1,12 +1,13 @@
 import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:waggs_app/app/Modal/GetAllProductModule.dart';
+import 'package:waggs_app/app/Modal/TopSellingStore.dart';
 import 'package:waggs_app/app/constant/ConstantUrl.dart';
 import 'package:http/http.dart'  as http;
 import 'package:waggs_app/app/constant/SizeConstant.dart';
 class TopSellingStoreAllProductsController extends GetxController {
   //TODO: Implement TopSellingStoreAllProductsController
-  var data = Get.arguments;
+  Sellers data = Get.arguments;
   GetAllproduct getAllproduct = GetAllproduct();
   RxList<Products> mainProductList = RxList<Products>([]);
   RxBool hasData = false.obs;
@@ -27,7 +28,7 @@ class TopSellingStoreAllProductsController extends GetxController {
   }
   getProduct() async {
     hasData.value = false;
-    var URl = Uri.parse(baseUrl+ApiConstant.getAllProductUsers + "?sellerId=$data");
+    var URl = Uri.parse(baseUrl+ApiConstant.getAllProductUsers + "?sellerId=${data.sId}");
     var response ;
      await http.get(URl).then((value) {
       hasData.value = true;

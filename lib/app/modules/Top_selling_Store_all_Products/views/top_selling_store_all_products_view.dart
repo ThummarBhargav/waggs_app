@@ -11,13 +11,13 @@ import '../controllers/top_selling_store_all_products_controller.dart';
 
 class TopSellingStoreAllProductsView
     extends GetView<TopSellingStoreAllProductsController> {
-  const TopSellingStoreAllProductsView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(backgroundColor: Colors.transparent,shadowColor: Colors.transparent,iconTheme: IconThemeData(color: Colors.black),title: Text(
-          "TOP SELLING STORES",
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,shadowColor: Colors.transparent,iconTheme: IconThemeData(color: Colors.black),
+          title: Text(controller.data.companyName.toString(),
           style: GoogleFonts.roboto(
               color: Colors.orangeAccent,
               fontWeight: FontWeight.w700,

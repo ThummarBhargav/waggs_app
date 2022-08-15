@@ -65,7 +65,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.TOP_SELLING_STORE_ALL_PRODUCTS,
-      page: () => const TopSellingStoreAllProductsView(),
+      page: () =>  TopSellingStoreAllProductsView(),
       binding: TopSellingStoreAllProductsBinding(),
     ),
   ];
