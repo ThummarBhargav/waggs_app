@@ -13,8 +13,7 @@ abstract class Routes {
   static const STORE_ALL = _Paths.STORE_ALL;
   static const PRODUCT = _Paths.PRODUCT;
   static const PRODUCT_ALL = _Paths.PRODUCT_ALL;
-  static const TOP_SELLING_STORE_ALL_PRODUCTS =
-      _Paths.TOP_SELLING_STORE_ALL_PRODUCTS;
+  static const TOP_SELLING_STORE_ALL_PRODUCTS = _Paths.TOP_SELLING_STORE_ALL_PRODUCTS;
 }
 
 abstract class _Paths {
@@ -29,6 +28,5 @@ abstract class _Paths {
   static const STORE_ALL = '/store-all';
   static const PRODUCT = '/product';
   static const PRODUCT_ALL = '/product-all';
-  static const TOP_SELLING_STORE_ALL_PRODUCTS =
-      '/top-selling-store-all-products';
+  static const TOP_SELLING_STORE_ALL_PRODUCTS = '/top-selling-store-all-products';
 }
