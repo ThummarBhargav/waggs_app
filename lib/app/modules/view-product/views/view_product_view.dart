@@ -300,160 +300,167 @@ class ViewProductView extends GetWidget<HomeController> {
               ),
               Align(
                 alignment: Alignment.topLeft,
-                child: Container(
-                  height: 45,
-                  margin: EdgeInsets.only(left: 15),
-                  width: MediaQuery.of(context).size.width*0.4,
-                  padding: EdgeInsets.all(0),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        topRight: Radius.circular(20),
-                        bottomRight: Radius.circular(20),
-                        bottomLeft: Radius.circular(20),
-                      ),
-                    border: Border.all(
-                      color: Colors.grey.shade400,
-                      width: 2,
-                ),
+                child: Expanded(
+                  child: Container(
+                    height: 45,
+                    margin: EdgeInsets.only(left: 15),
+                    width: MediaQuery.of(context).size.width*0.4,
+                    padding: EdgeInsets.all(0),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20),
+                          bottomRight: Radius.circular(20),
+                          bottomLeft: Radius.circular(20),
+                        ),
+                      border: Border.all(
+                        color: Colors.grey.shade400,
+                        width: 2,
                   ),
-                  child: Row(
-                    children: [
-                      InkWell(
-                          onTap: () {
-                            if(controller.count.value>0){
-                              controller.count.value--;
-                            }
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 8.0,right: 5),
-                            child: Icon(
-                              Icons.remove,
-                              color: Colors.black,
-                              size: 22,
-                            ),
-                          )),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0,right: 8),
-                        child: Container(
-                          height: 75,
-                          width: 75,
-                          padding:
-                          EdgeInsets.symmetric(horizontal: 3, vertical: 2),
-                          decoration: BoxDecoration(
-                            border: Border(
-                              left: BorderSide( //                   <--- left side
-                                color: Colors.grey,
-                                width: 2.0,
+                    ),
+                    child: Row(
+                      children: [
+                        InkWell(
+                            onTap: () {
+                              if(controller.count.value>0){
+                                controller.count.value--;
+                              }
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 8.0,right: 5),
+                              child: Icon(
+                                Icons.remove,
+                                color: Colors.black,
+                                size: 22,
                               ),
-                              right: BorderSide( //                    <--- top side
-                                color: Colors.grey,
-                                width: 2.0,
+                            )),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0,right: 8),
+                          child: Container(
+                            height: 75,
+                            width: 75,
+                            padding:
+                            EdgeInsets.symmetric(horizontal: 3, vertical: 2),
+                            decoration: BoxDecoration(
+                              border: Border(
+                                left: BorderSide( //                   <--- left side
+                                  color: Colors.grey,
+                                  width: 2.0,
+                                ),
+                                right: BorderSide( //                    <--- top side
+                                  color: Colors.grey,
+                                  width: 2.0,
+                                ),
                               ),
+                              ),
+                            child: Center(
+                              child: Obx(()=>Text(
+                                "${controller.count.value}",
+                                style: TextStyle(color: Colors.black, fontSize: 18,fontWeight: FontWeight.w500),
+                              ),)
                             ),
-                            ),
-                          child: Center(
-                            child: Obx(()=>Text(
-                              "${controller.count.value}",
-                              style: TextStyle(color: Colors.black, fontSize: 18,fontWeight: FontWeight.w500),
-                            ),)
                           ),
                         ),
-                      ),
-                      InkWell(
-                          onTap: () {
-                            controller.count.value++;
-                          },
-                          child: Icon(
-                            Icons.add,
-                            color: Colors.black,
-                            size: 22,
-                          )),
-                    ],
+                        InkWell(
+                            onTap: () {
+                              controller.count.value++;
+                            },
+                            child: Icon(
+                              Icons.add,
+                              color: Colors.black,
+                              size: 22,
+                            )),
+                      ],
+                    ),
                   ),
                 ),
               ),
               SizedBox(height: 8,),
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 18.0,top: 15),
-                    child: getcon(
-                      text:Text("ADD TO CART",
-                        style: GoogleFonts.roboto(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400,
-                            color:Colors.white),
-                      ),
-                      color: Color(0xffDE8701),
-                      width: 140,
-                      height: 50,
-                      alignment: Alignment.center,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 16.0,top: 15),
-                    child: getcon(
-                      text:Text("BUY NOW",
-                        style: GoogleFonts.roboto(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400,
-                            color:Colors.white),
-                      ),
-                      color: Colors.black,
-                      width: 120,
-                      height: 50,
-                      alignment: Alignment.center,
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(left: 15,right: 6,top: 8),
-                    height: 35,
-                    width: 35,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(25),
-                        topRight: Radius.circular(25),
-                        bottomRight: Radius.circular(25),
-                        bottomLeft: Radius.circular(25),
-                      ),
-                      border: Border.all(
-                        color: Colors.lightBlue.shade300,
-                        width: 2,
+              Container(
+                child:   Row(
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 18.0,top: 15),
+                        child: getcon(
+                          text:Text("ADD TO CART",
+                            style: GoogleFonts.roboto(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
+                                color:Colors.white),
+                          ),
+                          color: Color(0xffDE8701),
+                          width: 120,
+                          height: 50,
+                          alignment: Alignment.center,
+                        ),
                       ),
                     ),
-                    child: IconButton(
-                      icon: Icon(Icons.favorite_border,size: 15,color: Colors.blue.shade300,),
-                      onPressed:(){},
-
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(left: 5,right: 6,top: 8),
-                    height: 35,
-                    width: 35,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(25),
-                        topRight: Radius.circular(25),
-                        bottomRight: Radius.circular(25),
-                        bottomLeft: Radius.circular(25),
+                   Expanded(child: Padding(
+                     padding: const EdgeInsets.only(left: 12.0,top: 15),
+                     child: getcon(
+                       text:Text("BUY NOW",
+                         style: GoogleFonts.roboto(
+                             fontSize: 16,
+                             fontWeight: FontWeight.w400,
+                             color:Colors.white),
+                       ),
+                       color: Colors.black,
+                       width: 100,
+                       height: 50,
+                       alignment: Alignment.center,
+                     ),
+                   ),),
+                    Container(
+                      margin: EdgeInsets.only(left: 10,right: 2,top: 8),
+                      height: 35,
+                      width: 35,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(25),
+                          topRight: Radius.circular(25),
+                          bottomRight: Radius.circular(25),
+                          bottomLeft: Radius.circular(25),
+                        ),
+                        border: Border.all(
+                          color: Colors.lightBlue.shade300,
+                          width: 2,
+                        ),
                       ),
-                      border: Border.all(
-                        color: Colors.lightBlue.shade300,
-                        width: 2,
-                      ),
-                    ),
-                    child: Center(
                       child: IconButton(
-                        icon: Icon(Icons.share_outlined,size: 17,color: Colors.blue.shade300,),
+                        icon: Icon(Icons.favorite_border,size: 15,color: Colors.blue.shade300,),
                         onPressed:(){},
 
                       ),
                     ),
-                  )
-                ],
+                    Container(
+                      margin: EdgeInsets.only(right: 6,top: 8),
+                      height: 35,
+                      width: 35,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(25),
+                          topRight: Radius.circular(25),
+                          bottomRight: Radius.circular(25),
+                          bottomLeft: Radius.circular(25),
+                        ),
+                        border: Border.all(
+                          color: Colors.lightBlue.shade300,
+                          width: 2,
+                        ),
+                      ),
+                      child: Center(
+                        child: IconButton(
+                          icon: Icon(Icons.share_outlined,size: 17,color: Colors.blue.shade300,),
+                          onPressed:(){},
+
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ),
+
         InkWell(
           onTap: (){
            controller.isOpen.value=!controller.isOpen.value;
@@ -477,8 +484,8 @@ class ViewProductView extends GetWidget<HomeController> {
                   Text("key Featchers",style: TextStyle(
                     color: Colors.white,fontSize: 15
                   ),),SizedBox(width: 210,),
-                 Obx(()=>controller.isOpen.value==false?Icon(Icons.keyboard_arrow_down_sharp,color: Colors.white,)
-                     :Icon(Icons.keyboard_arrow_up_sharp,color: Colors.white,))
+                 Expanded(child: Obx(()=>controller.isOpen.value==false?Icon(Icons.keyboard_arrow_down_sharp,color: Colors.white,)
+                     :Icon(Icons.keyboard_arrow_up_sharp,color: Colors.white,)))
                 ],
               ),),
         ),
