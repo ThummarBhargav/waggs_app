@@ -25,7 +25,14 @@ class ProductAllView extends GetView<ProductAllController> {
               children: [
                 IconButton(onPressed: () {
                   Get.back();
-                }, icon: Icon(Icons.arrow_back))
+                }, icon: Icon(Icons.arrow_back)),
+                Text(
+                  "TOP SELLING PRODUCTS",
+                  style: GoogleFonts.roboto(
+                      color: Colors.orangeAccent,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 20),
+                ),
               ],
             ),
             Container(

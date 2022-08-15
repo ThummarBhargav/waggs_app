@@ -1,22 +1,15 @@
 import 'dart:convert';
-
 import 'package:get/get.dart';
+import 'package:waggs_app/app/Modal/GetAllProductModule.dart';
 import 'package:waggs_app/app/constant/ConstantUrl.dart';
 import 'package:http/http.dart'  as http;
-
-import '../../../Modal/CategoryModel.dart';
-import '../../../Modal/GetAllProductModule.dart';
-import '../../../constant/SizeConstant.dart';
-
-class ProductController extends GetxController {
-  //TODO: Implement ProductController
+import 'package:waggs_app/app/constant/SizeConstant.dart';
+class TopSellingStoreAllProductsController extends GetxController {
+  //TODO: Implement TopSellingStoreAllProductsController
   var data = Get.arguments;
   GetAllproduct getAllproduct = GetAllproduct();
-  RxList<Products> productList = RxList<Products>([]);
-  RxList<CategoryData> CatagoryList = RxList<CategoryData>([]);
   RxList<Products> mainProductList = RxList<Products>([]);
   RxBool hasData = false.obs;
-
   @override
   void onInit() {
     getProduct();
@@ -32,18 +25,15 @@ class ProductController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
   getProduct() async {
     hasData.value = false;
-    mainProductList.clear();
-    var URl = Uri.parse(baseUrl+ApiConstant.getAllProductUsers + "?subCategory=$data");
-    print(URl);
+    var URl = Uri.parse(baseUrl+ApiConstant.getAllProductUsers + "?sellerId=$data");
     var response ;
      await http.get(URl).then((value) {
       hasData.value = true;
-       response = value;
-    }).catchError((error){
-      hasData.value = true;
+      response = value;
+    }).catchError((err){
+      hasData.value = false;
     });
     print(response.body);
     dynamic result = jsonDecode(response.body);
@@ -52,11 +42,12 @@ class ProductController extends GetxController {
       if (!isNullEmptyOrFalse(getAllproduct.data!.products)) {
         getAllproduct.data!.products!.forEach((element) {
           mainProductList.add(element);
-         }
+        }
         );
       }
     }
     mainProductList.refresh();
 
   }
+
 }

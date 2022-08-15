@@ -30,59 +30,62 @@ class HomeView extends GetView<HomeController> {
                       SizedBox(
                         width: 10,
                       ),
-                      Row(
-                        children: [
-                          InkWell(
-                            onTap: () {},
-                            child: Container(
-                              width: 60,
-                              height: 60,
-                              alignment: Alignment.center,
+                      Expanded(
+                        child: Row(
+                          children: [
+                            InkWell(
+                              onTap: () {},
+                              child: Container(
+                                width: 60,
+                                height: 60,
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: AssetImage("assets/logo111.png"),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              height: 40,
+                              width: 212,
+                              margin: EdgeInsets.only(left: 15, right: 15),
+                              padding: EdgeInsets.only(
+                                bottom: 10
+                                // left: 10,
+                              ),
                               decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image: AssetImage("assets/logo111.png"),
+                                color: Colors.grey[300],
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(10),
+                                  topRight: Radius.circular(10),
+                                  bottomRight: Radius.circular(10),
+                                ),
+                              ),
+                              child: TextFormField(
+                                controller: controller.searchController,
+                                decoration: InputDecoration(
+                                  hintText: "Search Product...",
+                                  hintStyle: GoogleFonts.roboto(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                  enabledBorder: InputBorder.none,
+                                  focusedBorder: InputBorder.none,
+                                  prefixIcon: Icon(Icons.search),
+                                  prefixIconColor: Colors.grey[200],
+                                  focusColor: Colors.grey,
                                 ),
                               ),
                             ),
-                          ),
-                          Container(
-                            height: 40,
-                            width: 212,
-                            margin: EdgeInsets.only(left: 15, right: 15),
-                            padding: EdgeInsets.only(
-                              left: 10,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Colors.grey[300],
-                              borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(10),
-                                topRight: Radius.circular(10),
-                                bottomRight: Radius.circular(10),
-                              ),
-                            ),
-                            child: TextFormField(
-                              controller: controller.searchController,
-                              decoration: InputDecoration(
-                                hintText: "Search Product...",
-                                hintStyle: GoogleFonts.roboto(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                                enabledBorder: InputBorder.none,
-                                focusedBorder: InputBorder.none,
-                                prefixIcon: Icon(Icons.search),
-                                prefixIconColor: Colors.grey[200],
-                                focusColor: Colors.grey,
-                              ),
-                            ),
-                          ),
-                          IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.menu,
-                                color: Colors.grey[500],
-                              ))
-                        ],
+                            IconButton(
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.menu,
+                                  color: Colors.grey[500],
+                                ))
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -278,7 +281,9 @@ class HomeView extends GetView<HomeController> {
                                             )),
                                       ),
                                       InkWell(
-                                        onTap: () {},
+                                        onTap: () {
+                                          Get.toNamed(Routes.TOP_SELLING_STORE_ALL_PRODUCTS,arguments: controller.SellersList[index].sId);
+                                        },
                                         child: Container(
                                           width: 130,
                                           height: 35,
@@ -550,9 +555,10 @@ class HomeView extends GetView<HomeController> {
                                             InkWell(
                                               onTap: () {},
                                               child: Container(
-                                                width: 160,
-                                                height: 40,
+                                                width: 130,
+                                                height: 35,
                                                 alignment: Alignment.center,
+                                                margin: EdgeInsets.only(right: 15),
                                                 decoration: BoxDecoration(
                                                   color: Colors.cyan,
                                                   borderRadius:
@@ -567,9 +573,7 @@ class HomeView extends GetView<HomeController> {
                                                 ),
                                                 child: Row(
                                                   children: [
-                                                    SizedBox(
-                                                      width: 20,
-                                                    ),
+                                                    SizedBox(width: 10,),
                                                     Icon(
                                                         Icons.add_shopping_cart,
                                                         color: Colors.white,
@@ -583,7 +587,7 @@ class HomeView extends GetView<HomeController> {
                                                           GoogleFonts.raleway(
                                                         fontWeight:
                                                             FontWeight.w700,
-                                                        fontSize: 13,
+                                                        fontSize: 12,
                                                         color: Colors.white,
                                                       ),
                                                     ),

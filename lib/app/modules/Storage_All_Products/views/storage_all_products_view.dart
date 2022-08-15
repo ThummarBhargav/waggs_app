@@ -22,7 +22,14 @@ class StorageAllProductsView extends GetView<StorageAllProductsController> {
               children: [
                 IconButton(onPressed: () {
                   Get.back();
-                }, icon: Icon(Icons.arrow_back))
+                }, icon: Icon(Icons.arrow_back)),
+                Text(
+                  "TOP SELLING STORES",
+                  style: GoogleFonts.roboto(
+                      color: Colors.orangeAccent,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 20),
+                ),
               ],
             ),
             SizedBox(

@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/Modal/CategoryModel.dart';
 import 'package:waggs_app/app/modules/home/controllers/home_controller.dart';
-import 'package:waggs_app/app/modules/view-product/views/view_product_view.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
 
 import '../../../Modal/SubCategoryModel.dart';
@@ -130,27 +129,30 @@ class CatagoryPageView extends GetWidget<HomeController> {
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   Container(
-                                    width: 120,
-                                    height: 38,
-                                    margin: EdgeInsets.only(top: 60,right: 40),
-                                    alignment: Alignment.center,
-                                    decoration: BoxDecoration(
-                                      color: Color(0xffeb9d4f),
-                                      borderRadius: BorderRadius.only(
-                                        bottomLeft: Radius.circular(25),
-                                        bottomRight: Radius.circular(25),
-                                        topRight: Radius.circular(25),
-                                      ),
-                                    ),
                                     child: InkWell(
                                       onTap: () {
-                                          Get.toNamed(Routes.PRODUCT,arguments: subData[index].sId);
+                                        Get.toNamed(Routes.PRODUCT,arguments: subData[index].sId);
                                       },
-                                      child: Text("${subData[index].name}",
-                                        style: GoogleFonts.roboto(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w800,
-                                            color: Colors.white
+                                      child: Expanded(
+                                        child: Container(
+                                          margin: EdgeInsets.only(top: 60,right: 40),
+                                          padding: EdgeInsets.all(10),
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                            color: Color(0xffeb9d4f),
+                                            borderRadius: BorderRadius.only(
+                                              bottomLeft: Radius.circular(25),
+                                              bottomRight: Radius.circular(25),
+                                              topRight: Radius.circular(25),
+                                            ),
+                                          ),
+                                          child: Text("${subData[index].name}",
+                                            style: GoogleFonts.roboto(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w800,
+                                                color: Colors.white
+                                            ),
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -164,299 +166,6 @@ class CatagoryPageView extends GetWidget<HomeController> {
                       SizedBox(
                         height: 10,
                       ),
-
-                      // Column(
-                      //   children: [
-                      //     GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1),itemCount: subCategory.fields!.length, itemBuilder: (context, index) {
-                      //       return   Stack(
-                      //         children: [
-                      //           Container(
-                      //             width: double.infinity,
-                      //             height: 200,
-                      //             margin: EdgeInsets.only(left: 20,right: 20),
-                      //             decoration: BoxDecoration(
-                      //                 image: DecorationImage(
-                      //                     image: AssetImage("${controller.imageList[0]}"),
-                      //                     fit: BoxFit.fill
-                      //                 ),
-                      //                 borderRadius: BorderRadius.all(Radius.circular(10))
-                      //             ),
-                      //           ),
-                      //           Row(
-                      //             mainAxisAlignment: MainAxisAlignment.end,
-                      //             children: [
-                      //               Container(
-                      //                 width: 120,
-                      //                 height: 38,
-                      //                 margin: EdgeInsets.only(top: 60,right: 40),
-                      //                 alignment: Alignment.center,
-                      //                 decoration: BoxDecoration(
-                      //                   color: Color(0xffeb9d4f),
-                      //                   borderRadius: BorderRadius.only(
-                      //                     bottomLeft: Radius.circular(25),
-                      //                     bottomRight: Radius.circular(25),
-                      //                     topRight: Radius.circular(25),
-                      //                   ),
-                      //                 ),
-                      //                 child: InkWell(
-                      //                   onTap: () {
-                      //
-                      //                   },
-                      //                   child: Text("",
-                      //                     style: GoogleFonts.roboto(
-                      //                         fontSize: 16,
-                      //                         fontWeight: FontWeight.w800,
-                      //                         color: Colors.white
-                      //                     ),
-                      //                   ),
-                      //                 ),
-                      //               ),
-                      //             ],
-                      //           ),
-                      //         ],
-                      //       );
-                      //     },)
-                      //   ],
-                      // ),
-                      // Stack(
-                      //   children: [
-                      //     Container(
-                      //       width: double.infinity,
-                      //       height: 200,
-                      //       margin: EdgeInsets.only(left: 20,right: 20),
-                      //       decoration: BoxDecoration(
-                      //         image: DecorationImage(
-                      //           image: AssetImage("${controller.imageList[0]}"),
-                      //           fit: BoxFit.fill
-                      //         ),
-                      //         borderRadius: BorderRadius.all(Radius.circular(10))
-                      //       ),
-                      //     ),
-                      //     Row(
-                      //       mainAxisAlignment: MainAxisAlignment.end,
-                      //       children: [
-                      //         Container(
-                      //           width: 120,
-                      //           height: 38,
-                      //           margin: EdgeInsets.only(top: 60,right: 40),
-                      //           alignment: Alignment.center,
-                      //           decoration: BoxDecoration(
-                      //             color: Color(0xffeb9d4f),
-                      //             borderRadius: BorderRadius.only(
-                      //               bottomLeft: Radius.circular(25),
-                      //               bottomRight: Radius.circular(25),
-                      //               topRight: Radius.circular(25),
-                      //             ),
-                      //           ),
-                      //           child: InkWell(
-                      //             onTap: () {
-                      //
-                      //             },
-                      //             child: Text("",
-                      //               style: GoogleFonts.roboto(
-                      //                 fontSize: 16,
-                      //                 fontWeight: FontWeight.w800,
-                      //                 color: Colors.white
-                      //               ),
-                      //             ),
-                      //           ),
-                      //         ),
-                      //       ],
-                      //     ),
-                      //   ],
-                      // ),
-                      // SizedBox(height: 20,),
-                      // Stack(
-                      //   children: [
-                      //     Container(
-                      //       width: double.infinity,
-                      //       height: 200,
-                      //       margin: EdgeInsets.only(left: 20,right: 20),
-                      //       /*decoration: BoxDecoration(
-                      //            image: data.subCategory!=""? DecorationImage(
-                      //               image: AssetImage("${controller.imageList[1]}"),
-                      //               fit: BoxFit.fill,
-                      //           ):null,
-                      //           borderRadius: BorderRadius.all(Radius.circular(10))
-                      //       ),*/
-                      //     ),
-                      //     Row(
-                      //       mainAxisAlignment: MainAxisAlignment.end,
-                      //       children: [
-                      //         Container(
-                      //           width: 120,
-                      //           height: 38,
-                      //           margin: EdgeInsets.only(top: 60,right: 40),
-                      //           alignment: Alignment.center,
-                      //           decoration: BoxDecoration(
-                      //             color: Color(0xffeb9d4f),
-                      //             borderRadius: BorderRadius.only(
-                      //               bottomLeft: Radius.circular(25),
-                      //               bottomRight: Radius.circular(25),
-                      //               topRight: Radius.circular(25),
-                      //             ),
-                      //           ),
-                      //           child: InkWell(
-                      //             onTap: () {
-                      //
-                      //             },
-                      //             child: Text("",
-                      //               style: GoogleFonts.roboto(
-                      //                   fontSize: 16,
-                      //                   fontWeight: FontWeight.w800,
-                      //                   color: Colors.white
-                      //               ),
-                      //             ),
-                      //           ),
-                      //         ),
-                      //       ],
-                      //     ),
-                      //   ],
-                      // ),
-                      // SizedBox(height: 20,),
-                      // Stack(
-                      //   children: [
-                      //     Container(
-                      //       width: double.infinity,
-                      //       height: 200,
-                      //       margin: EdgeInsets.only(left: 20,right: 20),
-                      //       decoration: BoxDecoration(
-                      //           image: DecorationImage(
-                      //               image: AssetImage("${controller.imageList[2]}"),
-                      //               fit: BoxFit.fill
-                      //           ),
-                      //           borderRadius: BorderRadius.all(Radius.circular(10))
-                      //       ),
-                      //     ),
-                      //     Row(
-                      //       mainAxisAlignment: MainAxisAlignment.center,
-                      //       children: [
-                      //         Container(
-                      //           width: 120,
-                      //           height: 38,
-                      //           margin: EdgeInsets.only(left: 30,top: 80,right: 40),
-                      //           alignment: Alignment.center,
-                      //           decoration: BoxDecoration(
-                      //             color: Color(0xffeb9d4f),
-                      //             borderRadius: BorderRadius.only(
-                      //               bottomLeft: Radius.circular(25),
-                      //               bottomRight: Radius.circular(25),
-                      //               topRight: Radius.circular(25),
-                      //             ),
-                      //           ),
-                      //           child: InkWell(
-                      //             onTap: () {
-                      //
-                      //             },
-                      //             child: Text("GRAIN FREE",
-                      //               style: GoogleFonts.roboto(
-                      //                   fontSize: 16,
-                      //                   fontWeight: FontWeight.w800,
-                      //                   color: Colors.white
-                      //               ),
-                      //             ),
-                      //           ),
-                      //         ),
-                      //       ],
-                      //     ),
-                      //   ],
-                      // ),
-                      // SizedBox(height: 20,),
-                      // Stack(
-                      //   children: [
-                      //     Container(
-                      //       width: double.infinity,
-                      //       height: 200,
-                      //       margin: EdgeInsets.only(left: 20,right: 20),
-                      //       decoration: BoxDecoration(
-                      //           image: DecorationImage(
-                      //               image: AssetImage("${controller.imageList[3]}"),
-                      //               fit: BoxFit.fill
-                      //           ),
-                      //           borderRadius: BorderRadius.all(Radius.circular(10))
-                      //       ),
-                      //     ),
-                      //     Row(
-                      //       mainAxisAlignment: MainAxisAlignment.center,
-                      //       children: [
-                      //         Container(
-                      //           width: 200,
-                      //           height: 38,
-                      //           margin: EdgeInsets.only(left: 30,top: 80,right: 40),
-                      //           alignment: Alignment.center,
-                      //           decoration: BoxDecoration(
-                      //             color: Color(0xffeb9d4f),
-                      //             borderRadius: BorderRadius.only(
-                      //               bottomLeft: Radius.circular(25),
-                      //               bottomRight: Radius.circular(25),
-                      //               topRight: Radius.circular(25),
-                      //             ),
-                      //           ),
-                      //           child: InkWell(
-                      //             onTap: () {
-                      //
-                      //             },
-                      //             child: Text("WEIGHT MANAGEMENT",
-                      //               style: GoogleFonts.roboto(
-                      //                   fontSize: 16,
-                      //                   fontWeight: FontWeight.w800,
-                      //                   color: Colors.white
-                      //               ),
-                      //             ),
-                      //           ),
-                      //         ),
-                      //       ],
-                      //     ),
-                      //   ],
-                      // ),
-                      // SizedBox(height: 20,),
-                      // Stack(
-                      //   children: [
-                      //     Container(
-                      //       width: double.infinity,
-                      //       height: 200,
-                      //       margin: EdgeInsets.only(left: 20,right: 20),
-                      //       decoration: BoxDecoration(
-                      //           image: DecorationImage(
-                      //               image: AssetImage("${controller.imageList[4]}"),
-                      //               fit: BoxFit.fill
-                      //           ),
-                      //           borderRadius: BorderRadius.all(Radius.circular(10))
-                      //       ),
-                      //     ),
-                      //     Row(
-                      //       mainAxisAlignment: MainAxisAlignment.center,
-                      //       children: [
-                      //         Container(
-                      //           width: 200,
-                      //           height: 38,
-                      //           margin: EdgeInsets.only(left: 30,top: 80,right: 40),
-                      //           alignment: Alignment.center,
-                      //           decoration: BoxDecoration(
-                      //             color: Color(0xffeb9d4f),
-                      //             borderRadius: BorderRadius.only(
-                      //               bottomLeft: Radius.circular(25),
-                      //               bottomRight: Radius.circular(25),
-                      //               topRight: Radius.circular(25),
-                      //             ),
-                      //           ),
-                      //           child: InkWell(
-                      //             onTap: () {
-                      //
-                      //             },
-                      //             child: Text("HEALTHCARE AIDS",
-                      //               style: GoogleFonts.roboto(
-                      //                   fontSize: 16,
-                      //                   fontWeight: FontWeight.w800,
-                      //                   color: Colors.white
-                      //               ),
-                      //             ),
-                      //           ),
-                      //         ),
-                      //       ],
-                      //     ),
-                      //   ],
-                      // ),
                     ],
                   ),
                 ),

@@ -7,29 +7,35 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/constant/sizeConstant.dart';
 
-import '../controllers/product_controller.dart';
+import '../controllers/top_selling_store_all_products_controller.dart';
 
-class ProductView extends GetView<ProductController> {
-  const ProductView({Key? key}) : super(key: key);
+class TopSellingStoreAllProductsView
+    extends GetView<TopSellingStoreAllProductsController> {
+  const TopSellingStoreAllProductsView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(backgroundColor: Colors.transparent,shadowColor: Colors.transparent,iconTheme: IconThemeData(color: Colors.black)),
+        appBar: AppBar(backgroundColor: Colors.transparent,shadowColor: Colors.transparent,iconTheme: IconThemeData(color: Colors.black),title: Text(
+          "TOP SELLING STORES",
+          style: GoogleFonts.roboto(
+              color: Colors.orangeAccent,
+              fontWeight: FontWeight.w700,
+              fontSize: 20),
+        ),),
         body: Obx(
           () => (controller.hasData.isFalse)
-              ? Center(
-                  child: CircularProgressIndicator(),
-                )
+              ? Center(child: CircularProgressIndicator())
               : (isNullEmptyOrFalse(controller.mainProductList))
                   ? Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                              height: 300,
-                              width: 250,
-                              child: SvgPicture.asset("assets/NODATA.svg")),
+                            height: 300,
+                            width: 250,
+                            child: SvgPicture.asset("assets/NODATA.svg"),
+                          ),
                           Text(
                             "No data found",
                             style: GoogleFonts.raleway(
@@ -42,13 +48,12 @@ class ProductView extends GetView<ProductController> {
                     )
                   : Column(
                       children: [
-                        SizedBox(height: 10),
                         Container(
                           child: Column(
                             children: [
                               Container(
                                 margin: EdgeInsets.all(5),
-                                height: 641,
+                                height: 670,
                                 width: 400,
                                 child: GridView.builder(
                                     itemCount:
@@ -96,7 +101,11 @@ class ProductView extends GetView<ProductController> {
                                                                             ),
                                                                           ),
                                                                       placeholder: (context, url) => CircularProgressIndicator(),
-                                                                      errorWidget: (context, url, error) => Icon(Icons.error)),
+                                                                      errorWidget: (context, url, error) => Expanded(
+                                                                              child: Container(
+                                                                            color:
+                                                                                Colors.grey[100],
+                                                                          ))),
                                                                 ),
                                                               ],
                                                             ),
