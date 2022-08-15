@@ -282,7 +282,7 @@ class HomeView extends GetView<HomeController> {
                                       ),
                                       InkWell(
                                         onTap: () {
-                                          Get.toNamed(Routes.TOP_SELLING_STORE_ALL_PRODUCTS,arguments: controller.SellersList[index].sId);
+                                          Get.toNamed(Routes.TOP_SELLING_STORE_ALL_PRODUCTS,arguments: controller.SellersList[index]);
                                         },
                                         child: Container(
                                           width: 130,
