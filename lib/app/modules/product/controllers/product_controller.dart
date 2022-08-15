@@ -33,11 +33,22 @@ class ProductController extends GetxController {
   }
 
   getProduct() async {
+    mainProductList.clear();
     var URl = Uri.parse(baseUrl+ApiConstant.getAllProductUsers + "?subCategory=$data");
+    print(URl);
     var response = await http.get(URl);
     print(response.body);
-    var data1 =jsonEncode(response.body);
-    print(data1[3]);
+    dynamic result = jsonDecode(response.body);
+    getAllproduct = GetAllproduct.fromJson(result);
+    if (!isNullEmptyOrFalse(getAllproduct.data)) {
+      if (!isNullEmptyOrFalse(getAllproduct.data!.products)) {
+        getAllproduct.data!.products!.forEach((element) {
+          mainProductList.add(element);
+         }
+        );
+      }
+    }
+    mainProductList.refresh();
 
   }
 }
