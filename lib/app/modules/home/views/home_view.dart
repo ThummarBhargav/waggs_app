@@ -5,8 +5,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/constant/ConstantUrl.dart';
 import 'package:waggs_app/app/modules/Catagory_Page/views/catagory_page_view.dart';
-import 'package:waggs_app/app/modules/Product_all/views/product_all_view.dart';
-import 'package:waggs_app/app/modules/Storage_All_Products/views/storage_all_products_view.dart';
 import 'package:waggs_app/app/modules/view-product/views/view_product_view.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
 import '../controllers/home_controller.dart';
