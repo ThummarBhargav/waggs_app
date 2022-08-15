@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/Modal/CategoryModel.dart';
 import 'package:waggs_app/app/modules/home/controllers/home_controller.dart';
+import 'package:waggs_app/app/modules/view-product/views/view_product_view.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
 
 import '../../../Modal/SubCategoryModel.dart';
