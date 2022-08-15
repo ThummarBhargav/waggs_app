@@ -2,8 +2,6 @@ import 'package:get/get.dart';
 
 import '../modules/OTP_screen/bindings/o_t_p_screen_binding.dart';
 import '../modules/OTP_screen/views/o_t_p_screen_view.dart';
-import '../modules/Product_all/bindings/product_all_binding.dart';
-import '../modules/Product_all/views/product_all_view.dart';
 import '../modules/Top_selling_Store_all_Products/bindings/top_selling_store_all_products_binding.dart';
 import '../modules/Top_selling_Store_all_Products/views/top_selling_store_all_products_view.dart';
 import '../modules/email_screen/bindings/email_screen_binding.dart';
