@@ -15,6 +15,7 @@ class ProductView extends GetView<ProductController> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(backgroundColor: Colors.transparent,shadowColor: Colors.transparent,iconTheme: IconThemeData(color: Colors.black)),
         body: Obx(
           () => (controller.hasData.isFalse)
               ? Center(
