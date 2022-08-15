@@ -38,6 +38,5 @@ class ProductController extends GetxController {
     print(response.body);
     var data1 =jsonEncode(response.body);
     print(data1[3]);
-
   }
 }
