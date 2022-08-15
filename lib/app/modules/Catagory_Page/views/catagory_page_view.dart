@@ -131,7 +131,7 @@ class CatagoryPageView extends GetWidget<HomeController> {
                                   Container(
                                     child: InkWell(
                                       onTap: () {
-                                        Get.toNamed(Routes.PRODUCT,arguments: subData[index].sId);
+                                        Get.toNamed(Routes.PRODUCT,arguments: subData[index]);
                                       },
                                       child: Expanded(
                                         child: Container(

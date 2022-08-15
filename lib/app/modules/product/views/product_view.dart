@@ -15,7 +15,13 @@ class ProductView extends GetView<ProductController> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(backgroundColor: Colors.transparent,shadowColor: Colors.transparent,iconTheme: IconThemeData(color: Colors.black)),
+        appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            shadowColor: Colors.transparent,
+            iconTheme: IconThemeData(color: Colors.black),
+            title: Text(controller.data.name.toString(),style: TextStyle(color: Colors.black),)
+
+        ),
         body: Obx(
           () => (controller.hasData.isFalse)
               ? Center(
@@ -42,7 +48,6 @@ class ProductView extends GetView<ProductController> {
                     )
                   : Column(
                       children: [
-                        SizedBox(height: 10),
                         Container(
                           child: Column(
                             children: [

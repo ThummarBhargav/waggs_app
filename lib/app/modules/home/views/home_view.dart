@@ -7,6 +7,7 @@ import 'package:waggs_app/app/modules/Catagory_Page/views/catagory_page_view.dar
 import 'package:waggs_app/app/modules/Product_all/views/product_all_view.dart';
 import 'package:waggs_app/app/modules/Storage_All_Products/views/storage_all_products_view.dart';
 import 'package:waggs_app/app/modules/view-product/views/view_product_view.dart';
+import '../../../routes/app_pages.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -123,8 +124,6 @@ class HomeView extends GetView<HomeController> {
                                       if(element.categoryId==controller.CatagoryList[index].sId){
                                         controller.subData.add(element);
                                         print("Data"+element.name.toString());
-                                      }else{
-
                                       }
                                     });
                                     controller.productList.refresh();
@@ -282,7 +281,7 @@ class HomeView extends GetView<HomeController> {
                                       ),
                                       InkWell(
                                         onTap: () {
-                                          Get.toNamed(Routes.TOP_SELLING_STORE_ALL_PRODUCTS,arguments: controller.SellersList[index].sId);
+                                          Get.toNamed(Routes.TOP_SELLING_STORE_ALL_PRODUCTS,arguments: controller.SellersList[index]);
                                         },
                                         child: Container(
                                           width: 130,
