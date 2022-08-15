@@ -9,6 +9,7 @@ class TopSellingStoreAllProductsController extends GetxController {
   var data = Get.arguments;
   GetAllproduct getAllproduct = GetAllproduct();
   RxList<Products> mainProductList = RxList<Products>([]);
+  RxBool hasData = false.obs;
   @override
   void onInit() {
     getProduct();
@@ -25,8 +26,15 @@ class TopSellingStoreAllProductsController extends GetxController {
     super.onClose();
   }
   getProduct() async {
+    hasData.value = false;
     var URl = Uri.parse(baseUrl+ApiConstant.getAllProductUsers + "?sellerId=$data");
-    var response = await http.get(URl);
+    var response ;
+     await http.get(URl).then((value) {
+      hasData.value = true;
+      response = value;
+    }).catchError((err){
+      hasData.value = false;
+    });
     print(response.body);
     dynamic result = jsonDecode(response.body);
     getAllproduct = GetAllproduct.fromJson(result);
