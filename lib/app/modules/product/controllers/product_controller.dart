@@ -15,6 +15,7 @@ class ProductController extends GetxController {
   RxList<Products> productList = RxList<Products>([]);
   RxList<CategoryData> CatagoryList = RxList<CategoryData>([]);
   RxList<Products> mainProductList = RxList<Products>([]);
+  RxBool hasData = false.obs;
 
   @override
   void onInit() {
@@ -33,10 +34,17 @@ class ProductController extends GetxController {
   }
 
   getProduct() async {
+    hasData.value = false;
     mainProductList.clear();
     var URl = Uri.parse(baseUrl+ApiConstant.getAllProductUsers + "?subCategory=$data");
     print(URl);
-    var response = await http.get(URl);
+    var response ;
+     await http.get(URl).then((value) {
+      hasData.value = true;
+       response = value;
+    }).catchError((error){
+      hasData.value = true;
+    });
     print(response.body);
     dynamic result = jsonDecode(response.body);
     getAllproduct = GetAllproduct.fromJson(result);

@@ -1,9 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:waggs_app/app/constant/sizeConstant.dart';
 
 import '../controllers/product_controller.dart';
 
@@ -14,11 +16,17 @@ class ProductView extends GetView<ProductController> {
     return SafeArea(
       child: Scaffold(
         body: Obx(()=>
-        controller.mainProductList.isEmpty? Center(child: CircularProgressIndicator()):
-           Column(
+        (controller.hasData.isFalse)? Center(child: CircularProgressIndicator(),):
+        (isNullEmptyOrFalse(controller.mainProductList))?Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SvgPicture.asset("assets/NODATA.svg",height: 400,),
+            Text("No data found")
+          ],
+        ): Column(
             children: [
               SizedBox(
-                height: 10,
+                height: 10
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -92,12 +100,7 @@ class ProductView extends GetView<ProductController> {
                                                                 CircularProgressIndicator(),
                                                             errorWidget: (context,
                                                                     url, error) =>
-                                                                Expanded(
-                                                                    child:
-                                                                        Container(
-                                                                  color: Colors
-                                                                      .grey[100],
-                                                                ))),
+                                                                Icon(Icons.error)),
                                                       ),
                                                     ],
                                                   ),
