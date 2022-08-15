@@ -29,6 +29,9 @@ class HomeController extends GetxController {
   List<String> imageList = ['assets/category01.jpg','assets/category02.jpg',
     'assets/category03.jpg','assets/category04.jpg','assets/category05.jpg'].obs;
 
+  final count = 0.obs;
+  RxBool isOpen = false.obs;
+  RxBool isOpen1 = false.obs;
 
   @override
   void onInit() {
