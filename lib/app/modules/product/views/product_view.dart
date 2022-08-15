@@ -20,7 +20,7 @@ class ProductView extends GetView<ProductController> {
             shadowColor: Colors.transparent,
             iconTheme: IconThemeData(color: Colors.black),
             title: Text(
-              controller.data.name.toString(),
+              controller.subCategoryData.name.toString(),
               style: GoogleFonts.roboto(
                   color: Colors.orangeAccent,
                   fontWeight: FontWeight.w700,

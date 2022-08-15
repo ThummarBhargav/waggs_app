@@ -7,6 +7,7 @@ import 'package:waggs_app/app/modules/home/controllers/home_controller.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
 
 import '../../../Modal/SubCategoryModel.dart';
+import '../../../constant/ConstantUrl.dart';
 
 class CatagoryPageView extends GetWidget<HomeController> {
   CategoryData data;
@@ -131,7 +132,14 @@ class CatagoryPageView extends GetWidget<HomeController> {
                                   Container(
                                     child: InkWell(
                                       onTap: () {
-                                        Get.toNamed(Routes.PRODUCT,arguments: subData[index]);
+                                        Get.toNamed(Routes.PRODUCT_LIST_SCREEN,arguments: {
+                                          ArgumentConstant.isFromSellingStore : false,
+                                          ArgumentConstant.isFromSubCategory : true,
+                                          ArgumentConstant.isFromTopProducts : false,
+                                          ArgumentConstant.subcategoryData : subData[index],
+                                        });
+
+                                        // Get.toNamed(Routes.PRODUCT,arguments: subData[index]);
                                       },
                                       child: Expanded(
                                         child: Container(

@@ -12,6 +12,8 @@ import '../modules/login_screen/bindings/login_screen_binding.dart';
 import '../modules/login_screen/views/login_screen_view.dart';
 import '../modules/product/bindings/product_binding.dart';
 import '../modules/product/views/product_view.dart';
+import '../modules/product_list_screen/bindings/product_list_screen_binding.dart';
+import '../modules/product_list_screen/views/product_list_screen_view.dart';
 import '../modules/singup_screen/bindings/singup_screen_binding.dart';
 import '../modules/singup_screen/views/singup_screen_view.dart';
 
@@ -65,8 +67,13 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.TOP_SELLING_STORE_ALL_PRODUCTS,
-      page: () =>  TopSellingStoreAllProductsView(),
+      page: () => TopSellingStoreAllProductsView(),
       binding: TopSellingStoreAllProductsBinding(),
+    ),
+    GetPage(
+      name: _Paths.PRODUCT_LIST_SCREEN,
+      page: () => const ProductListScreenView(),
+      binding: ProductListScreenBinding(),
     ),
   ];
 }

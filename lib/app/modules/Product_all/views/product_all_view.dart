@@ -17,9 +17,6 @@ class ProductAllView extends GetView<ProductAllController> {
       child: Scaffold(
         body: Column(
           children: [
-            SizedBox(
-              height: 10,
-            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [

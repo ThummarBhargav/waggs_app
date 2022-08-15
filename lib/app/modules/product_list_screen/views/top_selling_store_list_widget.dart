@@ -2,14 +2,24 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:waggs_app/app/Modal/TopSellingStore.dart';
-import '../controllers/storage_all_products_controller.dart';
 
-class StorageAllProductsView extends GetView<StorageAllProductsController> {
-  RxList<Sellers> SellersList;
+import '../controllers/product_list_screen_controller.dart';
 
-  StorageAllProductsView({required this.SellersList});
 
+class TopSellingStoreWidget extends StatefulWidget {
+  ProductListScreenController controller;
+  TopSellingStoreWidget({required this.controller});
+  @override
+  State<TopSellingStoreWidget> createState() => _TopSellingStoreWidgetState();
+}
+
+class _TopSellingStoreWidgetState extends State<TopSellingStoreWidget> {
+  ProductListScreenController controller  =  ProductListScreenController();
+  @override
+  void initState() {
+    controller = widget.controller;
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -37,7 +47,7 @@ class StorageAllProductsView extends GetView<StorageAllProductsController> {
             SizedBox(height: 10),
             Expanded(
               child: GridView.builder(
-                  itemCount: SellersList.length,
+                  itemCount: controller.sellerList.length,
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
@@ -60,29 +70,29 @@ class StorageAllProductsView extends GetView<StorageAllProductsController> {
                                           top: 25, left: 10, right: 10),
                                       child: CachedNetworkImage(
                                           imageUrl:
-                                              "${SellersList[index].logoUrl}",
+                                          "${controller.sellerList[index].logoUrl}",
                                           imageBuilder:
                                               (context, imageProvider) =>
-                                                  Container(
-                                                    decoration: BoxDecoration(
-                                                      image: DecorationImage(
-                                                          image: imageProvider,
-                                                          fit: BoxFit.cover,
-                                                          colorFilter:
-                                                              ColorFilter.mode(
-                                                                  Colors
-                                                                      .transparent,
-                                                                  BlendMode
-                                                                      .colorBurn)),
-                                                    ),
-                                                  ),
+                                              Container(
+                                                decoration: BoxDecoration(
+                                                  image: DecorationImage(
+                                                      image: imageProvider,
+                                                      fit: BoxFit.cover,
+                                                      colorFilter:
+                                                      ColorFilter.mode(
+                                                          Colors
+                                                              .transparent,
+                                                          BlendMode
+                                                              .colorBurn)),
+                                                ),
+                                              ),
                                           placeholder: (context, url) =>
                                               CircularProgressIndicator(),
                                           errorWidget: (context, url, error) =>
                                               Expanded(
                                                   child: Container(
-                                                color: Colors.grey[100],
-                                              ))),
+                                                    color: Colors.grey[100],
+                                                  ))),
                                     ),
                                   ],
                                 ),
@@ -95,7 +105,7 @@ class StorageAllProductsView extends GetView<StorageAllProductsController> {
                                 child: Align(
                                   alignment: Alignment.center,
                                   child: Text(
-                                    "${SellersList[index].companyName}",
+                                    "${controller.sellerList[index].companyName}",
                                     style: GoogleFonts.raleway(
                                         fontWeight: FontWeight.w700,
                                         fontSize: 13,
@@ -110,7 +120,7 @@ class StorageAllProductsView extends GetView<StorageAllProductsController> {
                                 child: Align(
                                     alignment: Alignment.center,
                                     child: Text(
-                                      "${SellersList[index].address}",
+                                      "${controller.sellerList[index].address}",
                                       style: TextStyle(
                                           fontSize: 10, color: Colors.grey),
                                       textAlign: TextAlign.center,

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:waggs_app/app/constant/ConstantUrl.dart';
 import 'package:waggs_app/app/modules/Catagory_Page/views/catagory_page_view.dart';
 import 'package:waggs_app/app/modules/Product_all/views/product_all_view.dart';
 import 'package:waggs_app/app/modules/Storage_All_Products/views/storage_all_products_view.dart';
@@ -177,7 +178,13 @@ class HomeView extends GetView<HomeController> {
                         ),
                         InkWell(
                           onTap: () {
-                            Get.to(StorageAllProductsView(SellersList: controller.SellersList),);
+
+                            Get.toNamed(Routes.PRODUCT_LIST_SCREEN,arguments: {
+                              ArgumentConstant.isFromSellingStore : true,
+                              ArgumentConstant.isFromSubCategory : false,
+                              ArgumentConstant.isFromTopProducts : false,
+                              ArgumentConstant.sellerList : controller.SellersList,
+                            });
                           },
                           child: Container(
                             margin: EdgeInsets.only(right: 23, bottom: 10),
@@ -335,7 +342,13 @@ class HomeView extends GetView<HomeController> {
                         ),
                         InkWell(
                           onTap: () {
-                             Get.to(ProductAllView(TopProductlist: controller.TopProductlist));
+                            Get.toNamed(Routes.PRODUCT_LIST_SCREEN,arguments: {
+                              ArgumentConstant.isFromSellingStore : false,
+                              ArgumentConstant.isFromSubCategory : false,
+                              ArgumentConstant.isFromTopProducts : true,
+                              ArgumentConstant.TopProductlist : controller.TopProductlist,
+                            });
+                             //Get.to(ProductAllView(TopProductlist: controller.TopProductlist));
                           },
                           child: Container(
                             margin: EdgeInsets.only(right: 23, bottom: 10),

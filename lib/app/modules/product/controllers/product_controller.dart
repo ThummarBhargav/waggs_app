@@ -7,11 +7,15 @@ import 'package:http/http.dart'  as http;
 import '../../../Modal/CategoryModel.dart';
 import '../../../Modal/GetAllProductModule.dart';
 import '../../../Modal/SubCategoryModel.dart';
+import '../../../Modal/TopSellingStore.dart';
 import '../../../constant/SizeConstant.dart';
 
 class ProductController extends GetxController {
-  //TODO: Implement ProductController
-  SubCategoryData data = Get.arguments;
+  RxBool isSubCategory = false.obs;
+  RxBool isTopProduct = false.obs;
+  // Sellers sellers = Get.arguments;
+
+  SubCategoryData subCategoryData = Get.arguments;
   GetAllproduct getAllproduct = GetAllproduct();
   RxList<Products> productList = RxList<Products>([]);
   RxList<CategoryData> CatagoryList = RxList<CategoryData>([]);
@@ -24,7 +28,6 @@ class ProductController extends GetxController {
   @override
   void onInit() {
     getProduct();
-    SubCategory();
     super.onInit();
   }
 
@@ -40,36 +43,11 @@ class ProductController extends GetxController {
 
 
 
-  SubCategory() async {
-    var url = Uri.parse(baseUrl+ApiConstant.AllSubCategory);
-    var response = await http.get(url);
-    print('response status:${response.request}');
-    dynamic result = jsonDecode(response.body);
-    subCategorymodel = SubCategorymodel.fromJson(result);
-    print(result);
-    if (!isNullEmptyOrFalse(subCategorymodel.data)) {
-      subCategorymodel.data!.forEach((element) {
-        SubCatagoryList.add(element);
-      }
-      );
-      subData.clear();
-      SubCatagoryList.forEach((element) {
-        if(element.sId==data){
-          subData.add(element);
-          print("data================"+ subData[0].name.toString());
-        }else
-          {
-          }
-      });
-    }
-  }
-
-
 
   getProduct() async {
     hasData.value = false;
     mainProductList.clear();
-    var URl = Uri.parse(baseUrl+ApiConstant.getAllProductUsers + "?subCategory=${data.sId}");
+    var URl = Uri.parse(baseUrl+ApiConstant.getAllProductUsers + "?subCategory=${subCategoryData.sId}");
     print(URl);
     var response ;
      await http.get(URl).then((value) {

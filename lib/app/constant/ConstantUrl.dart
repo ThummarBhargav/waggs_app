@@ -1,8 +1,6 @@
 const baseUrl2 = "https://waggs.in/api/v1/users/";
 const baseuel1 = "https://api-stg.waggs.in/api/v1/";
 const baseUrl = "https://api.waggs.in/api/v1/";
-
-
 class ApiConstant {
   static const signUpUsers = "signup";
   static const loginUsers = "login";
@@ -18,4 +16,15 @@ class ApiConstant {
   static const AllCategory = "category";
   static const AllSubCategory = "subcategory";
   static const TopStore = "landing?latitude=&longitude=";
+}
+
+
+
+class ArgumentConstant{
+  static String isFromSellingStore = "isFromSellingStore";
+  static String isFromTopProducts = "isFromTopProducts";
+  static String isFromSubCategory = "isFromSubCategory";
+  static String sellerList = "sellerList";
+  static String TopProductlist = "TopProductlist";
+  static String subcategoryData = "subcategoryData";
 }
