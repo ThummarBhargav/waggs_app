@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
@@ -23,7 +24,7 @@ class ViewProductView extends GetWidget<HomeController> {
 
 
   Widget build(BuildContext context) {
-   int  _count=0;
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -95,9 +96,32 @@ class ViewProductView extends GetWidget<HomeController> {
                       children: [
                           Padding(
                             padding: const EdgeInsets.only(left: 8.0),
-                            child: Image.network(width: 160,height:160,
-                                  "${data.images![0]}"),
+                            child:   CachedNetworkImage(
+                                imageUrl:
+                                "${data.images![0]}",
+                                imageBuilder: (context, imageProvider) =>
+                                    Container(
+                                      height: 150,
+                                      width: 150,
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                            image: imageProvider,
+                                            colorFilter: ColorFilter.mode(
+                                                Colors.transparent,
+                                                BlendMode.colorBurn)),
+                                      ),
+                                    ),
+                                placeholder: (context, url) => CircularProgressIndicator(),
+                                errorWidget: (context, url,
+                                    error) => Expanded(
+                                        child: Container(
+                                          color: Colors.grey[100],
+                                        )))
                           ),
+
+
+                        // Image.network(width: 160,height:160,
+                        //     "${data.images![0]}"),
 
                         Expanded(
                             child: Column(
@@ -297,8 +321,8 @@ class ViewProductView extends GetWidget<HomeController> {
                     children: [
                       InkWell(
                           onTap: () {
-                            if(_count>0){
-                              _count--;
+                            if(controller.count.value>0){
+                              controller.count.value--;
                             }
                           },
                           child: Padding(
@@ -329,16 +353,16 @@ class ViewProductView extends GetWidget<HomeController> {
                             ),
                             ),
                           child: Center(
-                            child: Text(
-                              "${_count}",
+                            child: Obx(()=>Text(
+                              "${controller.count.value}",
                               style: TextStyle(color: Colors.black, fontSize: 18,fontWeight: FontWeight.w500),
-                            ),
+                            ),)
                           ),
                         ),
                       ),
                       InkWell(
                           onTap: () {
-                            _count++;
+                            controller.count.value++;
                           },
                           child: Icon(
                             Icons.add,
@@ -432,7 +456,8 @@ class ViewProductView extends GetWidget<HomeController> {
               ),
         InkWell(
           onTap: (){
-
+           controller.isOpen.value=!controller.isOpen.value;
+           print( controller.isOpen.value);
           },
           child: Container(
             margin: EdgeInsets.all(18),
@@ -452,13 +477,75 @@ class ViewProductView extends GetWidget<HomeController> {
                   Text("key Featchers",style: TextStyle(
                     color: Colors.white,fontSize: 15
                   ),),SizedBox(width: 210,),
-                  Icon(Icons.keyboard_arrow_down_sharp,color: Colors.white,)
+                 Obx(()=>controller.isOpen.value==false?Icon(Icons.keyboard_arrow_down_sharp,color: Colors.white,)
+                     :Icon(Icons.keyboard_arrow_up_sharp,color: Colors.white,))
                 ],
               ),),
         ),
+             Obx(()=> controller.isOpen.value==false?Container()
+                 :Container(
+               margin: EdgeInsets.only(left: 22),
+               padding: EdgeInsets.all(5),
+                 width: MediaQuery.of(context).size.width,
+                 child:Column(
+                   crossAxisAlignment: CrossAxisAlignment.start,
+                   children: [
+                     Row(
+                       children: [
+                         Text("BRAND :  ",style: GoogleFonts.lato(fontSize: 14,color: Colors.grey.shade600)),
+                         Text("${data.brand}",style: GoogleFonts.lato(fontSize: 18,fontWeight: FontWeight.w700)),
+                       ],
+                     ),
+                     SizedBox(height: 5,),
+                  data.lifeStage==null? Container()
+                      : Row(
+                    children: [
+                      Text("LIFE STAGE : ",style: GoogleFonts.lato(fontSize: 14,color: Colors.grey.shade600)),
+                      Text("${data.lifeStage}",style: GoogleFonts.lato(fontSize: 18,fontWeight: FontWeight.w700)),
+                    ],
+                     ),
+                     data.productType==null? Container(): SizedBox(height: 5,),
+                     data.productType==null? Container(): Row(
+                       children: [
+                         Text("PRODUCT TYPE :  ",style: GoogleFonts.lato(fontSize: 14,color: Colors.grey.shade600)),
+                         Text("${data.productType}",style: GoogleFonts.lato(fontSize: 18,fontWeight: FontWeight.w700)),
+                       ],
+                     ),
+                     data.flavor==null? Container(): SizedBox(height: 5,),
+                     data.flavor==null? Container():Row(
+                       children: [
+                         Text("FLAVOUR  :  ",style: GoogleFonts.lato(fontSize: 14,color: Colors.grey.shade600)),
+                         Text("${data.flavor}",style: GoogleFonts.lato(fontSize: 18,fontWeight: FontWeight.w700)),
+                       ],
+                     ),
+                     data.breedSize==null? Container():SizedBox(height: 5,),
+                     data.breedSize==null? Container():Row(
+                       children: [
+                         Text("BREED SIZE  :  ",style: GoogleFonts.lato(fontSize: 14,color: Colors.grey.shade600)),
+                         Text("${data.breedSize}",style: GoogleFonts.lato(fontSize: 18,fontWeight: FontWeight.w700)),
+                       ],
+                     ),
+                     SizedBox(height: 5,),
+                     data.vegNonveg==null? Container():Row(
+                       children: [
+                         Text("VEG / NON VEG :  ",style: GoogleFonts.lato(fontSize: 14,color: Colors.grey.shade600)),
+                         Text("${data.vegNonveg}",style: GoogleFonts.lato(fontSize: 18,fontWeight: FontWeight.w700)),
+                       ],
+                     ),
+                     SizedBox(height: 5,),
+                     data.color==null? Container():Row(
+                       children: [
+                         Text("COLOR :  ",style: GoogleFonts.lato(fontSize: 14,color: Colors.grey.shade600)),
+                         Text("${data.color}",style: GoogleFonts.lato(fontSize: 18,fontWeight: FontWeight.w700)),
+                       ],
+                     ),
+                   ],
+                 )),) ,
+
               InkWell(
                 onTap: (){
-
+                  controller.isOpen1.value=!controller.isOpen1.value;
+                  print(controller.isOpen1.value);
                 },
                 child: Container(
                   margin: EdgeInsets.all(18),
@@ -478,41 +565,24 @@ class ViewProductView extends GetWidget<HomeController> {
                       Text("Seller Details",style: TextStyle(
                           color: Colors.white,fontSize: 15
                       ),),SizedBox(width: 210,),
-                      Icon(Icons.keyboard_arrow_down_sharp,color: Colors.white,)
+                      Obx(()=>controller.isOpen1.value==false?Icon(Icons.keyboard_arrow_down_sharp,color: Colors.white,)
+                          :Icon(Icons.keyboard_arrow_up_sharp,color: Colors.white,))
                     ],
                   ),),
               ),
-
-               Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: DropdownButtonFormField(
-                        decoration: InputDecoration(
-                        enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xffDE8701), width: 2),
-                        borderRadius: BorderRadius.circular(20),
-                        ),
-                        border: OutlineInputBorder(
-                        borderSide: BorderSide(color:  Color(0xffDE8701), width: 2),
-                        borderRadius: BorderRadius.circular(20),
-                        ),
-                        filled: true,
-                        fillColor:  Color(0xffDE8701),
-                        ),
-                        value: null,
-                        items: <DropdownMenuItem<int>>[
-                          new DropdownMenuItem(
-                            child: new Text('Foo'),
-                            value: 0,
-                          ),
-                          new DropdownMenuItem(
-                            child: new Text('Bar'),
-                            value: 42,
-                          ),
-                        ],
-                        onChanged: null,
-                        ),
-)
-
+              Obx(()=> controller.isOpen1.value==false?Container()
+                  :Container(
+                  margin: EdgeInsets.only(left: 22),
+                  padding: EdgeInsets.all(5),
+                  width: MediaQuery.of(context).size.width,
+                  child:Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("${data.sellerId?.companyName}",style: GoogleFonts.lato(fontSize: 16)),
+                      Text("${data.sellerId?.address}",style: GoogleFonts.lato(fontSize: 14,color: Colors.grey.shade600)),
+                    ],
+                  )),) ,
+              SizedBox(height: 50),
             ],
           ),
         ),

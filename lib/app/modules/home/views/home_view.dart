@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/modules/Catagory_Page/views/catagory_page_view.dart';
 import 'package:waggs_app/app/modules/Product_all/views/product_all_view.dart';
 import 'package:waggs_app/app/modules/Storage_All_Products/views/storage_all_products_view.dart';
-import 'package:waggs_app/app/routes/app_pages.dart';
+import 'package:waggs_app/app/modules/view-product/views/view_product_view.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -363,7 +363,9 @@ class HomeView extends GetView<HomeController> {
                                   return Card(
                                     elevation: 2,
                                     child: GestureDetector(
-                                      onTap: () {},
+                                      onTap: () {
+                                        Get.to(ViewProductView(controller.TopProductlist[index]));
+                                      },
                                       child: Container(
                                         child: Column(
                                           children: [
