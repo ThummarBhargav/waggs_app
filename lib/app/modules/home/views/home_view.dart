@@ -586,7 +586,7 @@ class HomeView extends GetView<HomeController> {
                                                           GoogleFonts.raleway(
                                                         fontWeight:
                                                             FontWeight.w700,
-                                                        fontSize: 13,
+                                                        fontSize: 12,
                                                         color: Colors.white,
                                                       ),
                                                     ),

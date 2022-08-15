@@ -16,7 +16,13 @@ class TopSellingStoreAllProductsView
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(backgroundColor: Colors.transparent,shadowColor: Colors.transparent,iconTheme: IconThemeData(color: Colors.black)),
+        appBar: AppBar(backgroundColor: Colors.transparent,shadowColor: Colors.transparent,iconTheme: IconThemeData(color: Colors.black),title: Text(
+          "TOP SELLING STORES",
+          style: GoogleFonts.roboto(
+              color: Colors.orangeAccent,
+              fontWeight: FontWeight.w700,
+              fontSize: 20),
+        ),),
         body: Obx(
           () => (controller.hasData.isFalse)
               ? Center(child: CircularProgressIndicator())
@@ -42,19 +48,6 @@ class TopSellingStoreAllProductsView
                     )
                   : Column(
                       children: [
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            IconButton(
-                                onPressed: () {
-                                  Get.back();
-                                },
-                                icon: Icon(Icons.arrow_back))
-                          ],
-                        ),
                         Container(
                           child: Column(
                             children: [
