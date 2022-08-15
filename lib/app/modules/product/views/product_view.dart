@@ -19,9 +19,13 @@ class ProductView extends GetView<ProductController> {
             backgroundColor: Colors.transparent,
             shadowColor: Colors.transparent,
             iconTheme: IconThemeData(color: Colors.black),
-            title: Text(controller.data.name.toString(),style: TextStyle(color: Colors.black),)
-
-        ),
+            title: Text(
+              controller.data.name.toString(),
+              style: GoogleFonts.roboto(
+                  color: Colors.orangeAccent,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 20),
+            )),
         body: Obx(
           () => (controller.hasData.isFalse)
               ? Center(
