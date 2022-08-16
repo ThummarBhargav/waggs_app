@@ -688,7 +688,8 @@ class ViewProductView extends GetWidget<ViewProductController> {
                         margin: EdgeInsets.only(left: 5),
                         height: 270,
                         width: 400,
-                        child: GridView.builder(
+                        child: (controller.mainProductList.isEmpty)?Center(child: CircularProgressIndicator(),)
+                            :GridView.builder(
                             itemCount: 4,
                             scrollDirection: Axis.horizontal,
                             shrinkWrap: true,
