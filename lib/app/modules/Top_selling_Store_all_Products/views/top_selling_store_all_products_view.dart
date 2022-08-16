@@ -2,12 +2,14 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart';
+
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:waggs_app/app/constant/sizeConstant.dart';
 import 'package:waggs_app/app/modules/product_detail_view/views/product_detail_view_view.dart';
-import 'package:waggs_app/app/modules/view-product/views/view_product_view.dart';
 
 import '../controllers/top_selling_store_all_products_controller.dart';
 
@@ -17,6 +19,208 @@ class TopSellingStoreAllProductsView
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        endDrawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              Container(
+                height: 100,
+                child: DrawerHeader(child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      alignment: Alignment.center,
+                      child: Text("Filters",
+                        style: GoogleFonts.raleway(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {
+
+                      },
+                      child: Container(
+                        child: Text("Clear All",
+                          style: GoogleFonts.raleway(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromRGBO(32, 193, 244, 1),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                )),
+              ),
+              ListTile(
+                title: Text("Price",
+                style: GoogleFonts.raleway(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              ),
+              SfRangeSlider(
+                min: 100,
+                max: 30000,
+                activeColor: Color.fromRGBO(32, 193, 244, 1),
+                showTicks: true,
+                numberFormat: NumberFormat("\$"),
+                onChanged: (value) {
+                  controller.values = value;
+                },
+                values: controller.values,
+              ),
+              ListTile(
+                title: Text("Discount",
+                  style: GoogleFonts.raleway(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              SfRangeSlider(
+                min: 0,
+                max: 100,
+                activeColor: Color.fromRGBO(32, 193, 244, 1),
+                showTicks: true,
+                numberFormat: NumberFormat("\$"),
+                onChanged: (value) {
+                  controller.values1 = value;
+                },
+                values: controller.values1,
+              ),
+              SizedBox(height: 30,),
+              InkWell(
+                onTap: () {
+                  controller.isOp.value = !controller.isOp.value;
+                  print(controller.isOp.value);
+                },
+                child: Container(
+                  height: 50,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(left: 20),
+                        child: Text("Discount",
+                          style: GoogleFonts.raleway(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(right: 20),
+                          child: Obx(() => controller.isOp.value ==false?Icon(Icons.keyboard_arrow_down_outlined,):
+                          Icon(Icons.keyboard_arrow_up_sharp,),)
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              Obx(() => controller.isOp.value == false?
+                  Container():Container(
+                margin: EdgeInsets.only(left: 22),
+                padding: EdgeInsets.all(5),
+                width: MediaQuery.of(context).size.width,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Radio(
+                          onChanged: (value) {
+                          value = controller.radioValues.value;
+                        },
+                          value: "Accessories",
+                            groupValue: controller.radioGValues.value,),
+                        Container(
+                          child: Text("Accessories",
+                            style: GoogleFonts.raleway(
+                              fontSize: 18,
+                              color: Colors.black
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Radio(
+                          onChanged: (value) {
+                            value = controller.radioValues.value;
+                          },
+                          value: "Food",
+                          groupValue: controller.radioGValues.value,),
+                        Container(
+                          child: Text("Food",
+                            style: GoogleFonts.raleway(
+                                fontSize: 18,
+                                color: Colors.black
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Radio(
+                          onChanged: (value) {
+                            value = controller.radioValues.value;
+                          },
+                          value: "Health & Wellness",
+                          groupValue: controller.radioGValues.value,),
+                        Container(
+                          child: Text("Health & Wellness",
+                            style: GoogleFonts.raleway(
+                                fontSize: 18,
+                                color: Colors.black
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Radio(
+                          onChanged: (value) {
+                            value = controller.radioValues.value;
+                          },
+                          value: "Treats and Chews",
+                          groupValue: controller.radioGValues.value,),
+                        Container(
+                          child: Text("Treats and Chews",
+                            style: GoogleFonts.raleway(
+                                fontSize: 18,
+                                color: Colors.black
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              )
+              ),
+              
+            ],
+          ),
+        ),
         appBar: AppBar(
           backgroundColor: Colors.transparent,shadowColor: Colors.transparent,iconTheme: IconThemeData(color: Colors.black),
           title: controller.data.companyName==null?Container(child: Text("N/A",style: TextStyle(fontSize:20,color: Colors.orangeAccent),),):Text(controller.data.companyName.toString(),
@@ -54,7 +258,7 @@ class TopSellingStoreAllProductsView
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             TextButton(onPressed: () {
-
+                              Scaffold.of(context).openEndDrawer();
                             }, child:
                             Row(children: [
                                 Container(
