@@ -4,7 +4,6 @@ import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 import 'package:get/get.dart';
@@ -16,7 +15,6 @@ import '../../../Modal/TopSellingStore.dart';
 
 class ViewProductView extends GetWidget<HomeController> {
   Products0 data;
-
   var dropdownItems;
   ViewProductView(this.data);
   @override
@@ -118,11 +116,6 @@ class ViewProductView extends GetWidget<HomeController> {
                                           color: Colors.grey[100],
                                         )))
                           ),
-
-
-                        // Image.network(width: 160,height:160,
-                        //     "${data.images![0]}"),
-
                         Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -300,27 +293,27 @@ class ViewProductView extends GetWidget<HomeController> {
               ),
               Align(
                 alignment: Alignment.topLeft,
-                child: Container(
-                  height: 45,
-                  margin: EdgeInsets.only(left: 15),
-                  width: MediaQuery.of(context).size.width*0.4,
-                  padding: EdgeInsets.all(0),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        topRight: Radius.circular(20),
-                        bottomRight: Radius.circular(20),
-                        bottomLeft: Radius.circular(20),
-                      ),
-                    border: Border.all(
-                      color: Colors.grey.shade400,
-                      width: 2,
-                ),
+                child: Flexible(
+                  child: Container(
+                    height: 45,
+                    margin: EdgeInsets.only(left: 15),
+                    width: MediaQuery.of(context).size.width*0.4,
+                    padding: EdgeInsets.all(0),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20),
+                          bottomRight: Radius.circular(20),
+                          bottomLeft: Radius.circular(20),
+                        ),
+                      border: Border.all(
+                        color: Colors.grey.shade400,
+                        width: 2,
                   ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: InkWell(
+                    ),
+                    child: Row(
+                      children: [
+                        InkWell(
                             onTap: () {
                               if(controller.count.value>0){
                                 controller.count.value--;
@@ -334,41 +327,44 @@ class ViewProductView extends GetWidget<HomeController> {
                                 size: 22,
                               ),
                             )),
-                      ),
-                     Expanded(child: Container(
-                       height: 75,
-                       width: 75,
-                       padding:
-                       EdgeInsets.symmetric(horizontal: 3, vertical: 2),
-                       decoration: BoxDecoration(
-                         border: Border(
-                           left: BorderSide( //                   <--- left side
-                             color: Colors.grey,
-                             width: 2.0,
-                           ),
-                           right: BorderSide( //                    <--- top side
-                             color: Colors.grey,
-                             width: 2.0,
-                           ),
-                         ),
-                       ),
-                       child: Center(
-                           child: Obx(()=>Text(
-                             "${controller.count.value}",
-                             style: TextStyle(color: Colors.black, fontSize: 18,fontWeight: FontWeight.w500),
-                           ),)
-                       ),
-                     )),
-                     Expanded(child: InkWell(
-                         onTap: () {
-                           controller.count.value++;
-                         },
-                         child: Icon(
-                           Icons.add,
-                           color: Colors.black,
-                           size: 22,
-                         )),)
-                    ],
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0,right: 8),
+                          child: Container(
+                            height: 75,
+                            width: 75,
+                            padding:
+                            EdgeInsets.symmetric(horizontal: 3, vertical: 2),
+                            decoration: BoxDecoration(
+                              border: Border(
+                                left: BorderSide( //                   <--- left side
+                                  color: Colors.grey,
+                                  width: 2.0,
+                                ),
+                                right: BorderSide( //                    <--- top side
+                                  color: Colors.grey,
+                                  width: 2.0,
+                                ),
+                              ),
+                              ),
+                            child: Center(
+                              child: Obx(()=>Text(
+                                "${controller.count.value}",
+                                style: TextStyle(color: Colors.black, fontSize: 18,fontWeight: FontWeight.w500),
+                              ),)
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                            onTap: () {
+                              controller.count.value++;
+                            },
+                            child: Icon(
+                              Icons.add,
+                              color: Colors.black,
+                              size: 22,
+                            )),
+                      ],
+                    ),
                   ),
                 ),
               ),

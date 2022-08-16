@@ -18,7 +18,7 @@ class TopSellingStoreAllProductsView
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,shadowColor: Colors.transparent,iconTheme: IconThemeData(color: Colors.black),
-          title: Text(controller.data.companyName.toString(),
+          title: controller.data.companyName==null?Container(child: Text("N/A",style: TextStyle(fontSize:20,color: Colors.orangeAccent),),):Text(controller.data.companyName.toString(),
           style: GoogleFonts.roboto(
               color: Colors.orangeAccent,
               fontWeight: FontWeight.w700,
