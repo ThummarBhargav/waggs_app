@@ -309,6 +309,8 @@ class HomeView extends GetView<HomeController> {
                                                   .TOP_SELLING_STORE_ALL_PRODUCTS,
                                               arguments: controller
                                                   .SellersList[index]);
+
+
                                         },
                                         child: Container(
                                           width: 130,
@@ -399,7 +401,7 @@ class HomeView extends GetView<HomeController> {
                                     child: GestureDetector(
                                       onTap: () {
                                         Get.to(ViewProductView(
-                                            controller.mainProductList[index]));
+                                            controller.TopProductlist[index]));
                                       },
                                       child: Container(
                                         child: Column(

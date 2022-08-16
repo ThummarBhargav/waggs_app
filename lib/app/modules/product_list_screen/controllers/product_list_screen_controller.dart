@@ -14,16 +14,21 @@ class ProductListScreenController extends GetxController {
   bool isFromSubCategory = false;
   RxBool hasData = false.obs;
   List<Sellers> sellerList = [];
-  RxList<Products> mainProductList = RxList<Products>([]);
+  StoreModule storeModule = StoreModule();
+  RxList<Products0> mainProductList = RxList<Products0>([]);
+  RxList<Products> SellerProductList = RxList<Products>([]);
   GetAllproduct getAllproduct = GetAllproduct();
   List<Products0> TopProductList = [];
   late SubCategoryData subCategoryData;
+  late Sellers data;
+
   @override
   void onInit() {
     if (Get.arguments != null) {
       isFromTopProducts = Get.arguments[ArgumentConstant.isFromTopProducts];
       isFromSubCategory = Get.arguments[ArgumentConstant.isFromSubCategory];
       isFromSellingStore = Get.arguments[ArgumentConstant.isFromSellingStore];
+
 
       if (isFromSellingStore) {
         sellerList = Get.arguments[ArgumentConstant.sellerList];
@@ -35,6 +40,8 @@ class ProductListScreenController extends GetxController {
         subCategoryData = Get.arguments[ArgumentConstant.subcategoryData];
         getProduct();
       }
+
+
     }
     super.onInit();
   }
@@ -65,14 +72,16 @@ class ProductListScreenController extends GetxController {
     });
     print(response.body);
     dynamic result = jsonDecode(response.body);
-    getAllproduct = GetAllproduct.fromJson(result);
-    if (!isNullEmptyOrFalse(getAllproduct.data)) {
-      if (!isNullEmptyOrFalse(getAllproduct.data!.products)) {
-        getAllproduct.data!.products!.forEach((element) {
+    storeModule = StoreModule.fromJson(result);
+    if (!isNullEmptyOrFalse(storeModule.data)) {
+      if (!isNullEmptyOrFalse(storeModule.data!.products)) {
+        storeModule.data!.products!.forEach((element) {
           mainProductList.add(element);
-        });
+        }
+        );
       }
     }
     mainProductList.refresh();
   }
+
 }

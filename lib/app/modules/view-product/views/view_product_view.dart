@@ -16,7 +16,7 @@ import '../../../Modal/GetAllProductModule.dart';
 import '../../../Modal/TopSellingStore.dart';
 
 class ViewProductView extends GetWidget<HomeController> {
-  Products data;
+  Products0 data;
 
   var dropdownItems;
   ViewProductView(this.data);
