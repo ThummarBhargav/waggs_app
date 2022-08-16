@@ -200,7 +200,7 @@ class HomeView extends GetView<HomeController> {
                       ],
                     ),
                     Container(
-                      width: 400,
+                      width: 450,
                       height: 280,
                       child: GridView.builder(
                           itemCount: controller.SellersList.length,
@@ -208,6 +208,7 @@ class HomeView extends GetView<HomeController> {
                           shrinkWrap: true,
                           itemBuilder: (context, index) {
                             return Card(
+
                               elevation: 2,
                               child: GestureDetector(
                                 onTap: () {},
