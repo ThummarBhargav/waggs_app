@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:waggs_app/app/Modal/GetAllProductModule.dart';
 import 'package:waggs_app/app/Modal/TopSellingStore.dart';
 import 'package:waggs_app/app/constant/ConstantUrl.dart';
@@ -11,6 +13,15 @@ class TopSellingStoreAllProductsController extends GetxController {
   GetAllproduct getAllproduct = GetAllproduct();
   RxList<Products> mainProductList = RxList<Products>([]);
   RxBool hasData = false.obs;
+  SfRangeValues values = const SfRangeValues(100, 30000);
+  SfRangeValues values1 = const SfRangeValues(0, 100);
+  RxBool isOp = false.obs;
+  RxBool isOp1 = false.obs;
+  RxList<String> radioValues = RxList<String>([
+    "Accessorizes","Food","Health & Wellness","Treats and Chews"
+  ]);
+  RxString radioGValues = "".obs;
+
   @override
   void onInit() {
     getProduct();

@@ -11,6 +11,7 @@ dependencies:
   google_fonts:
   otp_text_field:
   cached_network_image:
+  syncfusion_flutter_sliders:
   flutter_rating_bar: ^4.0.1
   flutter_image_slideshow: ^0.1.2
   carousel_slider:
