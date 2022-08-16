@@ -176,7 +176,6 @@ class HomeView extends GetView<HomeController> {
                         ),
                         InkWell(
                           onTap: () {
-
                             Get.toNamed(Routes.PRODUCT_LIST_SCREEN,arguments: {
                               ArgumentConstant.isFromSellingStore : true,
                               ArgumentConstant.isFromSubCategory : false,
