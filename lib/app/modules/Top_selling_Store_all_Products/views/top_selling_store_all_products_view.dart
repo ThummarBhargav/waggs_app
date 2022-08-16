@@ -157,95 +157,10 @@ class TopSellingStoreAllProductsView
                         );
                       },),
                     ),
-                    // Row(
-                    //   children: [
-                    //     SizedBox(
-                    //       height: 10,
-                    //     ),
-                    //     Radio(
-                    //       onChanged: (value) {
-                    //       value = controller.radioValues.value;
-                    //     },
-                    //       value: "Accessories",
-                    //         groupValue: controller.radioGValues.value,),
-                    //     Container(
-                    //       child: Text("Accessories",
-                    //         style: GoogleFonts.raleway(
-                    //           fontSize: 18,
-                    //           color: Colors.black
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ],
-                    // ),
-                    // Row(
-                    //   children: [
-                    //     SizedBox(
-                    //       height: 10,
-                    //     ),
-                    //     Radio(
-                    //       onChanged: (value) {
-                    //         value = controller.radioValues.value;
-                    //       },
-                    //       value: "Food",
-                    //       groupValue: controller.radioGValues.value,),
-                    //     Container(
-                    //       child: Text("Food",
-                    //         style: GoogleFonts.raleway(
-                    //             fontSize: 18,
-                    //             color: Colors.black
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ],
-                    // ),
-                    // Row(
-                    //   children: [
-                    //     SizedBox(
-                    //       height: 10,
-                    //     ),
-                    //     Radio(
-                    //       onChanged: (value) {
-                    //         value = controller.radioValues.value;
-                    //       },
-                    //       value: "Health & Wellness",
-                    //       groupValue: controller.radioGValues.value,),
-                    //     Container(
-                    //       child: Text("Health & Wellness",
-                    //         style: GoogleFonts.raleway(
-                    //             fontSize: 18,
-                    //             color: Colors.black
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ],
-                    // ),
-                    // Row(
-                    //   children: [
-                    //     SizedBox(
-                    //       height: 10,
-                    //     ),
-                    //     Radio(
-                    //       onChanged: (value) {
-                    //         value = controller.radioValues.value;
-                    //       },
-                    //       value: "Treats and Chews",
-                    //       groupValue: controller.radioGValues.value,),
-                    //     Container(
-                    //       child: Text("Treats and Chews",
-                    //         style: GoogleFonts.raleway(
-                    //             fontSize: 18,
-                    //             color: Colors.black
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ],
-                    // ),
                   ],
                 ),
               )
               ),
-              
             ],
           ),
         ),
