@@ -57,124 +57,122 @@ class CatagoryPageView extends GetWidget<HomeController> {
                   ],
                 ),
               ),
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      SizedBox(height: 10,),
-                      Stack(
-                        children: [
-                          Container(
-                            height: 180,
-                            padding: EdgeInsets.all(100),
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image: AssetImage("assets/catagory.jpg"),
-                                     fit: BoxFit.fill
-                              ),
+              SingleChildScrollView(
+                child: Column(
+                  children: [
+                    SizedBox(height: 10,),
+                    Stack(
+                      children: [
+                        Container(
+                          height: 180,
+                          padding: EdgeInsets.all(100),
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage("assets/catagory.jpg"),
+                                   fit: BoxFit.fill
                             ),
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Container(
-                                margin: EdgeInsets.only(top: 20,right: 20),
-                                width: 180,
-                                height: 180,
-                                decoration: BoxDecoration(
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Container(
+                              margin: EdgeInsets.only(top: 20,right: 20),
+                              width: 180,
+                              height: 180,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: AssetImage("assets/ca.png"),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Container(
+                              margin: EdgeInsets.only(top: 45,left: 30),
+                              child: Text(data.name.toString(),
+                                style: GoogleFonts.roboto(
+                                  fontSize: 28,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xffeb9d4f)
+                                )
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                    Container(
+                      height: 500,
+                      child: ListView.builder(
+                        itemCount: subData.length,
+                        itemBuilder: (context, index) {
+                        return Stack(
+                          children: [
+                            Container(
+                              width: double.infinity,
+                              height: 200,
+                              margin: EdgeInsets.only(left: 20,right: 20,bottom: 10),
+                              decoration: BoxDecoration(
                                   image: DecorationImage(
-                                    image: AssetImage("assets/ca.png"),
+                                      image: AssetImage("${controller.imageList[index]}"),
+                                      fit: BoxFit.fill
                                   ),
-                                ),
+                                  borderRadius: BorderRadius.all(Radius.circular(10))
                               ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Container(
-                                margin: EdgeInsets.only(top: 45,left: 30),
-                                child: Text(data.name.toString(),
-                                  style: GoogleFonts.roboto(
-                                    fontSize: 28,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xffeb9d4f)
-                                  )
-                                ),
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                      Container(
-                        height: 500,
-                        child: ListView.builder(
-                          itemCount: subData.length,
-                          itemBuilder: (context, index) {
-                          return Stack(
-                            children: [
-                              Container(
-                                width: double.infinity,
-                                height: 200,
-                                margin: EdgeInsets.only(left: 20,right: 20,bottom: 10),
-                                decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                        image: AssetImage("${controller.imageList[index]}"),
-                                        fit: BoxFit.fill
-                                    ),
-                                    borderRadius: BorderRadius.all(Radius.circular(10))
-                                ),
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Container(
-                                    child: InkWell(
-                                      onTap: () {
-                                        Get.toNamed(Routes.PRODUCT_LIST_SCREEN,arguments: {
-                                          ArgumentConstant.isFromSellingStore : false,
-                                          ArgumentConstant.isFromSubCategory : true,
-                                          ArgumentConstant.isFromTopProducts : false,
-                                          ArgumentConstant.subcategoryData : subData[index],
-                                        });
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Container(
+                                  child: InkWell(
+                                    onTap: () {
+                                      Get.toNamed(Routes.PRODUCT_LIST_SCREEN,arguments: {
+                                        ArgumentConstant.isFromSellingStore : false,
+                                        ArgumentConstant.isFromSubCategory : true,
+                                        ArgumentConstant.isFromTopProducts : false,
+                                        ArgumentConstant.subcategoryData : subData[index],
+                                      });
 
-                                        // Get.toNamed(Routes.PRODUCT,arguments: subData[index]);
-                                      },
-                                      child: Expanded(
-                                        child: Container(
-                                          margin: EdgeInsets.only(top: 60,right: 40),
-                                          padding: EdgeInsets.all(10),
-                                          alignment: Alignment.center,
-                                          decoration: BoxDecoration(
-                                            color: Color(0xffeb9d4f),
-                                            borderRadius: BorderRadius.only(
-                                              bottomLeft: Radius.circular(25),
-                                              bottomRight: Radius.circular(25),
-                                              topRight: Radius.circular(25),
-                                            ),
+                                      // Get.toNamed(Routes.PRODUCT,arguments: subData[index]);
+                                    },
+                                    child: Expanded(
+                                      child: Container(
+                                        margin: EdgeInsets.only(top: 60,right: 40),
+                                        padding: EdgeInsets.all(10),
+                                        alignment: Alignment.center,
+                                        decoration: BoxDecoration(
+                                          color: Color(0xffeb9d4f),
+                                          borderRadius: BorderRadius.only(
+                                            bottomLeft: Radius.circular(25),
+                                            bottomRight: Radius.circular(25),
+                                            topRight: Radius.circular(25),
                                           ),
-                                          child: Text("${subData[index].name}",
-                                            style: GoogleFonts.roboto(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w800,
-                                                color: Colors.white
-                                            ),
+                                        ),
+                                        child: Text("${subData[index].name}",
+                                          style: GoogleFonts.roboto(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w800,
+                                              color: Colors.white
                                           ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                ],
-                              ),
-                            ],
-                          );
-                        },),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                    ],
-                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        );
+                      },),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                  ],
                 ),
               ),
             ],
