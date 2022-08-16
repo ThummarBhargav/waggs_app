@@ -17,6 +17,7 @@ import '../../../Modal/TopSellingStore.dart';
 class ViewProductView extends GetWidget<HomeController> {
   Products0 data;
 
+  var dropdownItems;
   ViewProductView(this.data);
   @override
   CarouselController carouselController = CarouselController();
@@ -231,7 +232,7 @@ class ViewProductView extends GetWidget<HomeController> {
         //     ),
         //   ),
               Container(
-                width: 400,
+                width: 350,
                 height: 110,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
@@ -563,62 +564,59 @@ class ViewProductView extends GetWidget<HomeController> {
 }
 
 
-// Container(
-//                 width: 350,
-//                 height: 110,
-//                 child: Stack(
-//                   children: [
-//                     CarouselSlider.builder(
-//                       carouselController: carouselController,
-//                       itemCount: data.images!.length,
-//                       options: CarouselOptions(
-//                         enlargeCenterPage: true,
-//                         height: 100,
-//                         autoPlay: false,
-//                         autoPlayInterval: Duration(seconds: 3),
-//                       ),
-//                       itemBuilder: (context, index, id){
-//                         //for onTap to redirect to another screen
-//                         return GestureDetector(
-//                           child: Container(
-//                             color: Colors.grey.shade300,
-//                             child: Padding(
-//                               padding: const EdgeInsets.all(8.0),
-//                               child: Image.network(width: 100,height:100,
-//                                                            "${data.images![index]}"),
-//                             ),
-//                           ),
-//                           onTap: () {
-//                             var url = data.images![index];
-//                             print(url.toString());
-//                           }
-//                         );
-//                       },
-//                     ),
-//                     Padding(
-//                       padding: const EdgeInsets.only(top: 8.0,right: 10),
-//                       child: Align(
-//                         alignment: Alignment.centerLeft,
-//                         child: IconButton(
-//                           onPressed: () {
-//                             // Use the controller to change the current page
-//                             carouselController.previousPage();
-//                           },
-//                           icon: Icon(Icons.arrow_back),
-//                         ),
-//                       ),
-//                     ),
-//                     Align(
-//                       alignment: Alignment.centerRight,
-//                       child: IconButton(
-//                         onPressed: () {
-//                           // Use the controller to change the current page
-//                           carouselController.nextPage();
-//                         },
-//                         icon: Icon(Icons.arrow_forward),
-//                       ),
-//                     ),
-//                   ],
-//                 ),
-//
+//child: Column(
+//           children: [
+//             Text(
+//               controller.productList[index].title!,
+//               style: GoogleFonts.roboto(
+//               fontSize: 16,
+//               color: Colors.black,
+//               fontWeight: FontWeight.bold,
 //               ),
+//             ),
+//             ImageSlideshow(
+//                 width: double.infinity,
+//                 height: 400,
+//                 initialPage: 0,
+//                 indicatorColor: Colors.blue,
+//                 indicatorBackgroundColor: Colors.grey,
+//                 onPageChanged: (value) {
+//                   debugPrint('Page changed: $value');
+//                 },
+//                 // autoPlayInterval: 3000,
+//                 isLoop: false,
+//                 children:[
+//                   Image(image:  NetworkImage(
+//                       "${controller.productList[index].images![0]}"),
+//                   ),
+//                   Image(image:  NetworkImage(
+//                       "${controller.productList[index].images![1]}"),
+//                   ),
+//     ],
+//             )
+//           ],
+//         ),
+
+
+
+//drop down
+// Padding(
+// padding: const EdgeInsets.all(8.0),
+// child: DropdownButtonFormField(
+// decoration: InputDecoration(
+// enabledBorder: OutlineInputBorder(
+// borderSide: BorderSide(color: Color(0xffDE8701), width: 2),
+// borderRadius: BorderRadius.circular(20),
+// ),
+// border: OutlineInputBorder(
+// borderSide: BorderSide(color:  Color(0xffDE8701), width: 2),
+// borderRadius: BorderRadius.circular(20),
+// ),
+// filled: true,
+// fillColor:  Color(0xffDE8701),
+// ),
+// value: null,
+// items: dropdownItems,
+// onChanged: null,
+// ),
+// )
