@@ -86,8 +86,7 @@ class TopSellingStoreAllProductsView
                                                                       .white,
                                                                   margin: EdgeInsets
                                                                       .only(
-                                                                          top:
-                                                                              25,
+                                                                      top: 25,
                                                                           left:
                                                                               10,
                                                                           right:

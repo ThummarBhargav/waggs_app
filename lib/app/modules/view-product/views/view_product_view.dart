@@ -379,7 +379,7 @@ class ViewProductView extends GetWidget<HomeController> {
               Container(
                 child:   Row(
                   children: [
-                    Expanded(
+                    Flexible(
                       child: Padding(
                         padding: const EdgeInsets.only(left: 18.0,top: 15),
                         child: getcon(
@@ -390,13 +390,13 @@ class ViewProductView extends GetWidget<HomeController> {
                                 color:Colors.white),
                           ),
                           color: Color(0xffDE8701),
-                          width: 120,
+                          width: 140,
                           height: 50,
                           alignment: Alignment.center,
                         ),
                       ),
                     ),
-                   Expanded(child: Padding(
+                   Flexible(child: Padding(
                      padding: const EdgeInsets.only(left: 12.0,top: 15),
                      child: getcon(
                        text:Text("BUY NOW",
@@ -406,7 +406,7 @@ class ViewProductView extends GetWidget<HomeController> {
                              color:Colors.white),
                        ),
                        color: Colors.black,
-                       width: 100,
+                       width: 120,
                        height: 50,
                        alignment: Alignment.center,
                      ),
@@ -434,7 +434,7 @@ class ViewProductView extends GetWidget<HomeController> {
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.only(right: 6,top: 8),
+                      margin: EdgeInsets.only(left:6,right: 6,top: 8),
                       height: 35,
                       width: 35,
                       decoration: BoxDecoration(
@@ -480,12 +480,13 @@ class ViewProductView extends GetWidget<HomeController> {
                 ),
               ),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("key Featchers",style: TextStyle(
                     color: Colors.white,fontSize: 15
-                  ),),SizedBox(width: 210,),
-                 Expanded(child: Obx(()=>controller.isOpen.value==false?Icon(Icons.keyboard_arrow_down_sharp,color: Colors.white,)
-                     :Icon(Icons.keyboard_arrow_up_sharp,color: Colors.white,)))
+                  ),),
+                 Obx(()=>controller.isOpen.value==false?Icon(Icons.keyboard_arrow_down_sharp,color: Colors.white,)
+                     :Icon(Icons.keyboard_arrow_up_sharp,color: Colors.white,))
                 ],
               ),),
         ),
@@ -568,10 +569,11 @@ class ViewProductView extends GetWidget<HomeController> {
                     ),
                   ),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text("Seller Details",style: TextStyle(
                           color: Colors.white,fontSize: 15
-                      ),),SizedBox(width: 210,),
+                      ),),
                       Obx(()=>controller.isOpen1.value==false?Icon(Icons.keyboard_arrow_down_sharp,color: Colors.white,)
                           :Icon(Icons.keyboard_arrow_up_sharp,color: Colors.white,))
                     ],
