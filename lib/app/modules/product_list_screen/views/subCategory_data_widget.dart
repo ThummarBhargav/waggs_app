@@ -5,7 +5,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/modules/product_detail_view/views/product_detail_view_view.dart';
-import 'package:waggs_app/app/modules/product_list_screen/views/product_list_screen_view.dart';
 
 import '../../../constant/SizeConstant.dart';
 import '../controllers/product_list_screen_controller.dart';
