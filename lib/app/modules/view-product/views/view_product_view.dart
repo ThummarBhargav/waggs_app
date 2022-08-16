@@ -9,15 +9,11 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/constant/Container.dart';
-import 'package:waggs_app/app/modules/home/controllers/home_controller.dart';
-import '../../../Modal/TopSellingStore.dart';
+import 'package:waggs_app/app/routes/app_pages.dart';
 import '../controllers/view_product_controller.dart';
 
 class ViewProductView extends GetWidget<ViewProductController> {
-  // Products0 data;
-
   var dropdownItems;
-  // ViewProductView(this.data);
   @override
   CarouselController carouselController = CarouselController();
 
@@ -36,7 +32,7 @@ class ViewProductView extends GetWidget<ViewProductController> {
         ],
       ),
       body: Obx(
-        () => SingleChildScrollView(
+          ()=> SingleChildScrollView(
           child: Container(
             child: Column(
               children: [
@@ -126,10 +122,10 @@ class ViewProductView extends GetWidget<ViewProductController> {
                                       ),
                                   placeholder: (context, url) =>
                                       CircularProgressIndicator(),
-                                  errorWidget: (context, url, error) =>
-                                      Container(
+                                  errorWidget: (context, url, error) => Expanded(
+                                          child: Container(
                                         color: Colors.grey[100],
-                                      ))),
+                                      )))),
 
                           // Image.network(width: 160,height:160,
                           //     "${data.images![0]}"),
@@ -170,8 +166,7 @@ class ViewProductView extends GetWidget<ViewProductController> {
                                   Padding(
                                     padding: const EdgeInsets.only(left: 6),
                                     child: RatingBarIndicator(
-                                      rating:
-                                          controller.data.rating!.toDouble(),
+                                      rating: controller.data.rating!.toDouble(),
                                       itemBuilder: (context, index) => Icon(
                                         Icons.star,
                                         color: Colors.amber,
@@ -244,8 +239,7 @@ class ViewProductView extends GetWidget<ViewProductController> {
                             children: [
                               InkWell(
                                 onTap: () {
-                                  controller.url.value =
-                                      controller.data.images![index];
+                                  controller.url.value = controller.data.images![index];
                                 },
                                 child: Container(
                                     margin: EdgeInsets.all(10),
@@ -335,12 +329,14 @@ class ViewProductView extends GetWidget<ViewProductController> {
                             ),
                           ),
                           child: Center(
-                              child: Text(
-                            "${controller.count.value}",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500),
+                              child:
+                             Text(
+                              "${controller.count.value}",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500),
+
                           )),
                         )),
                         Expanded(
@@ -494,136 +490,137 @@ class ViewProductView extends GetWidget<ViewProductController> {
                   ),
                 ),
                 controller.isOpen.value == false
-                    ? Container()
-                    : Container(
-                        margin: EdgeInsets.only(left: 22),
-                        padding: EdgeInsets.all(5),
-                        width: MediaQuery.of(context).size.width,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Text("BRAND :  ",
-                                    style: GoogleFonts.lato(
-                                        fontSize: 14,
-                                        color: Colors.grey.shade600)),
-                                Text("${controller.data.brand}",
-                                    style: GoogleFonts.lato(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w700)),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            controller.data.lifeStage == null
-                                ? Container()
-                                : Row(
-                                    children: [
-                                      Text("LIFE STAGE : ",
-                                          style: GoogleFonts.lato(
-                                              fontSize: 14,
-                                              color: Colors.grey.shade600)),
-                                      Text("${controller.data.lifeStage}",
-                                          style: GoogleFonts.lato(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w700)),
-                                    ],
-                                  ),
-                            controller.data.productType == null
-                                ? Container()
-                                : SizedBox(
-                                    height: 5,
-                                  ),
-                            controller.data.productType == null
-                                ? Container()
-                                : Row(
-                                    children: [
-                                      Text("PRODUCT TYPE :  ",
-                                          style: GoogleFonts.lato(
-                                              fontSize: 14,
-                                              color: Colors.grey.shade600)),
-                                      Text("${controller.data.productType}",
-                                          style: GoogleFonts.lato(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w700)),
-                                    ],
-                                  ),
-                            controller.data.flavor == null
-                                ? Container()
-                                : SizedBox(
-                                    height: 5,
-                                  ),
-                            controller.data.flavor == null
-                                ? Container()
-                                : Row(
-                                    children: [
-                                      Text("FLAVOUR  :  ",
-                                          style: GoogleFonts.lato(
-                                              fontSize: 14,
-                                              color: Colors.grey.shade600)),
-                                      Text("${controller.data.flavor}",
-                                          style: GoogleFonts.lato(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w700)),
-                                    ],
-                                  ),
-                            controller.data.breedSize == null
-                                ? Container()
-                                : SizedBox(
-                                    height: 5,
-                                  ),
-                            controller.data.breedSize == null
-                                ? Container()
-                                : Row(
-                                    children: [
-                                      Text("BREED SIZE  :  ",
-                                          style: GoogleFonts.lato(
-                                              fontSize: 14,
-                                              color: Colors.grey.shade600)),
-                                      Text("${controller.data.breedSize}",
-                                          style: GoogleFonts.lato(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w700)),
-                                    ],
-                                  ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            controller.data.vegNonveg == null
-                                ? Container()
-                                : Row(
-                                    children: [
-                                      Text("VEG / NON VEG :  ",
-                                          style: GoogleFonts.lato(
-                                              fontSize: 14,
-                                              color: Colors.grey.shade600)),
-                                      Text("${controller.data.vegNonveg}",
-                                          style: GoogleFonts.lato(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w700)),
-                                    ],
-                                  ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            controller.data.color == null
-                                ? Container()
-                                : Row(
-                                    children: [
-                                      Text("COLOR :  ",
-                                          style: GoogleFonts.lato(
-                                              fontSize: 14,
-                                              color: Colors.grey.shade600)),
-                                      Text("${controller.data.color}",
-                                          style: GoogleFonts.lato(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w700)),
-                                    ],
-                                  ),
-                          ],
-                        )),
+                      ? Container()
+                      : Container(
+                          margin: EdgeInsets.only(left: 22),
+                          padding: EdgeInsets.all(5),
+                          width: MediaQuery.of(context).size.width,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Text("BRAND :  ",
+                                      style: GoogleFonts.lato(
+                                          fontSize: 14,
+                                          color: Colors.grey.shade600)),
+                                  Text("${controller.data.brand}",
+                                      style: GoogleFonts.lato(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w700)),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              controller.data.lifeStage == null
+                                  ? Container()
+                                  : Row(
+                                      children: [
+                                        Text("LIFE STAGE : ",
+                                            style: GoogleFonts.lato(
+                                                fontSize: 14,
+                                                color: Colors.grey.shade600)),
+                                        Text("${controller.data.lifeStage}",
+                                            style: GoogleFonts.lato(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.w700)),
+                                      ],
+                                    ),
+                              controller.data.productType == null
+                                  ? Container()
+                                  : SizedBox(
+                                      height: 5,
+                                    ),
+                              controller.data.productType == null
+                                  ? Container()
+                                  : Row(
+                                      children: [
+                                        Text("PRODUCT TYPE :  ",
+                                            style: GoogleFonts.lato(
+                                                fontSize: 14,
+                                                color: Colors.grey.shade600)),
+                                        Text("${controller.data.productType}",
+                                            style: GoogleFonts.lato(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.w700)),
+                                      ],
+                                    ),
+                              controller.data.flavor == null
+                                  ? Container()
+                                  : SizedBox(
+                                      height: 5,
+                                    ),
+                              controller.data.flavor == null
+                                  ? Container()
+                                  : Row(
+                                      children: [
+                                        Text("FLAVOUR  :  ",
+                                            style: GoogleFonts.lato(
+                                                fontSize: 14,
+                                                color: Colors.grey.shade600)),
+                                        Text("${controller.data.flavor}",
+                                            style: GoogleFonts.lato(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.w700)),
+                                      ],
+                                    ),
+                              controller.data.breedSize == null
+                                  ? Container()
+                                  : SizedBox(
+                                      height: 5,
+                                    ),
+                              controller.data.breedSize == null
+                                  ? Container()
+                                  : Row(
+                                      children: [
+                                        Text("BREED SIZE  :  ",
+                                            style: GoogleFonts.lato(
+                                                fontSize: 14,
+                                                color: Colors.grey.shade600)),
+                                        Text("${controller.data.breedSize}",
+                                            style: GoogleFonts.lato(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.w700)),
+                                      ],
+                                    ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              controller.data.vegNonveg == null
+                                  ? Container()
+                                  : Row(
+                                      children: [
+                                        Text("VEG / NON VEG :  ",
+                                            style: GoogleFonts.lato(
+                                                fontSize: 14,
+                                                color: Colors.grey.shade600)),
+                                        Text("${controller.data.vegNonveg}",
+                                            style: GoogleFonts.lato(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.w700)),
+                                      ],
+                                    ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              controller.data.color == null
+                                  ? Container()
+                                  : Row(
+                                      children: [
+                                        Text("COLOR :  ",
+                                            style: GoogleFonts.lato(
+                                                fontSize: 14,
+                                                color: Colors.grey.shade600)),
+                                        Text("${controller.data.color}",
+                                            style: GoogleFonts.lato(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.w700)),
+                                      ],
+                                    ),
+                            ],
+                          )),
+
                 InkWell(
                   onTap: () {
                     controller.isOpen1.value = !controller.isOpen1.value;
@@ -662,47 +659,292 @@ class ViewProductView extends GetWidget<ViewProductController> {
                     ),
                   ),
                 ),
-                controller.isOpen1.value == false
-                    ? Container()
-                    : Container(
-                        margin: EdgeInsets.only(left: 22),
-                        padding: EdgeInsets.all(5),
-                        width: MediaQuery.of(context).size.width,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("${controller.data.sellerId!.companyName}",
-                                style: GoogleFonts.lato(fontSize: 16)),
-                            Text("${controller.data.sellerId!.address}",
-                                style: GoogleFonts.lato(
-                                    fontSize: 14, color: Colors.grey.shade600)),
-                          ],
-                        )),
+                 controller.isOpen1.value == false
+                      ? Container()
+                      : Container(
+                          margin: EdgeInsets.only(left: 22),
+                          padding: EdgeInsets.all(5),
+                          width: MediaQuery.of(context).size.width,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("${controller.data.sellerId!.companyName}",
+                                  style: GoogleFonts.lato(fontSize: 16)),
+                              Text("${controller.data.sellerId!.address}",
+                                  style: GoogleFonts.lato(
+                                      fontSize: 14, color: Colors.grey.shade600)),
+                            ],
+                          )),
+
                 SizedBox(height: 30),
                 Container(
-                    margin: EdgeInsets.only(left: 10),
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      "- YOU MIGHT ALSO LIKE",
-                      style: TextStyle(
-                          color: Colors.orangeAccent,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold),
-                    )),
-                // Container(child: Text(controller.mainProductList[0].sellerId.toString())),
-                GridView.builder(
-                  itemCount: 100,
-                  physics: NeverScrollableScrollPhysics()
-                  ,shrinkWrap: true,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 1),
-                  itemBuilder: (context, index) {
-                    return Text(
-                      index.toString(),
-                      style: TextStyle(color: Colors.black),
-                    );
-                  },
-                )
+                  margin: EdgeInsets.only(left: 10),
+                  alignment: Alignment.topLeft,
+                    child: Text("- YOU MIGHT ALSO LIKE",style: TextStyle(color: Colors.orangeAccent,fontSize: 20,fontWeight: FontWeight.bold),)),
+                Container(
+                  child: Column(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(left: 5),
+                        height: 270,
+                        width: 400,
+                        child: GridView.builder(
+                            itemCount: 4,
+                            scrollDirection: Axis.horizontal,
+                            shrinkWrap: true,
+                            itemBuilder: (context, index) {
+                              return Card(
+                                elevation: 2,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Get.toNamed(Routes.VIEW_PRODUCT,arguments: controller.mainProductList[index]);
+                                  },
+                                  child: Container(
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                          child: Column(
+                                            children: [
+                                              Stack(
+                                                children: [
+                                                  Container(
+                                                    child: Column(
+                                                      children: [
+                                                        Container(
+                                                          width: 120,
+                                                          height: 120,
+                                                          alignment:
+                                                          Alignment
+                                                              .center,
+                                                          color:
+                                                          Colors.white,
+                                                          margin: EdgeInsets
+                                                              .only(
+                                                              top: 25,
+                                                              left: 20,
+                                                              right:
+                                                              10),
+                                                          child:
+                                                          CachedNetworkImage(
+                                                              imageUrl:
+                                                              "${controller.mainProductList[index].images![0]}",
+                                                              imageBuilder:
+                                                                  (context, imageProvider) =>
+                                                                  Container(
+                                                                    decoration: BoxDecoration(
+                                                                      image: DecorationImage(image: imageProvider, fit: BoxFit.cover, colorFilter: ColorFilter.mode(Colors.transparent, BlendMode.colorBurn)),
+                                                                    ),
+                                                                  ),
+                                                              placeholder:
+                                                                  (context, url) =>
+                                                                  CircularProgressIndicator(),
+                                                              errorWidget: (context,
+                                                                  url,
+                                                                  error) =>
+                                                                  Expanded(
+                                                                      child: Container(
+                                                                        color:
+                                                                        Colors.grey[100],
+                                                                      ))),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  Positioned(
+                                                    child: Column(
+                                                      children: [
+                                                        Container(
+                                                          width: double
+                                                              .maxFinite,
+                                                          height: 80,
+                                                          child: Row(
+                                                            mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                            children: [
+                                                              Container(
+                                                                margin: EdgeInsets
+                                                                    .only(
+                                                                    left:
+                                                                    45),
+                                                                height: 20,
+                                                                width: 70,
+                                                                decoration:
+                                                                BoxDecoration(
+                                                                  color: Colors
+                                                                      .red,
+                                                                  borderRadius:
+                                                                  BorderRadius
+                                                                      .only(
+                                                                    topLeft:
+                                                                    Radius.circular(20),
+                                                                    topRight:
+                                                                    Radius.circular(20),
+                                                                    bottomRight:
+                                                                    Radius.circular(20),
+                                                                    bottomLeft:
+                                                                    Radius.circular(20),
+                                                                  ),
+                                                                ),
+                                                                child:
+                                                                Center(
+                                                                  child:
+                                                                  Text(
+                                                                    "Save ${controller.mainProductList[index].discount!.toStringAsFixed(2)} %",
+                                                                    style: TextStyle(
+                                                                        color:
+                                                                        Colors.white,
+                                                                        fontWeight: FontWeight.bold,
+                                                                        fontSize: 9),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  )
+                                                ],
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                        Container(
+                                          margin: EdgeInsets.only(
+                                            // left: 20,
+                                            top: 5,left: 5,
+                                          ),
+                                          child: Align(
+                                              alignment: Alignment.center,
+                                              child: Text(
+                                                "${controller.mainProductList[index].sellerId!.companyName}",
+                                                style: GoogleFonts.raleway(
+                                                    fontWeight:
+                                                    FontWeight.w700,
+                                                    fontSize: 13,
+                                                    color: Color.fromRGBO(
+                                                        32, 193, 244, 1)),
+                                              )),
+                                        ),
+                                        Container(
+                                          height: 20,
+                                          width: 180,
+                                          alignment: Alignment.center,
+                                          margin:
+                                          EdgeInsets.only(),
+                                          child: Align(
+                                              alignment: Alignment.center,
+                                              child: Text(
+                                                "${controller.mainProductList[index].category!.name} - ${controller.mainProductList[index].subCategory!.name} ",
+                                                style: TextStyle(
+                                                    fontSize: 10,
+                                                    color: Colors.grey),
+                                              )),
+                                        ),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          children: [
+                                            Container(
+                                              margin: EdgeInsets.only(left: 15,),
+                                              child: Text(
+                                                "₹${controller.mainProductList[index].price!.toStringAsFixed(2)}",
+                                                style: GoogleFonts.roboto(
+                                                    decoration:
+                                                    TextDecoration
+                                                        .lineThrough,
+                                                    color: Colors.grey,
+                                                    fontSize: 8),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: 3,
+                                            ),
+                                            Container(
+                                              child: Text(
+                                                "₹${controller.mainProductList[index].discountedPrice}",
+                                                style:
+                                                TextStyle(fontSize: 9),
+                                              ),
+                                            ),
+                                            RatingBarIndicator(
+                                              rating: double.parse(
+                                                  controller
+                                                      .mainProductList[index]
+                                                      .rating
+                                                      .toString()),
+                                              itemBuilder:
+                                                  (context, index) => Icon(
+                                                Icons.star,
+                                                color: Colors.amber,
+                                              ),
+                                              itemCount: 5,
+                                              itemSize: 15.0,
+                                              direction: Axis.horizontal,
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        InkWell(
+                                          onTap: () {},
+                                          child: Container(
+                                            width: 130,
+                                            height: 35,
+                                            alignment: Alignment.center,
+                                            decoration: BoxDecoration(
+                                              color: Colors.cyan,
+                                              borderRadius:
+                                              BorderRadius.only(
+                                                topRight:
+                                                Radius.circular(25),
+                                                bottomRight:
+                                                Radius.circular(25),
+                                                bottomLeft:
+                                                Radius.circular(25),
+                                              ),
+                                            ),
+                                            child: Row(
+                                              children: [
+                                                SizedBox(
+                                                  width: 10,
+                                                ),
+                                                Icon(
+                                                    Icons.add_shopping_cart,
+                                                    color: Colors.white,
+                                                    size: 18),
+                                                SizedBox(
+                                                  width: 10,
+                                                ),
+                                                Text(
+                                                  "ADD TO CART",
+                                                  style:
+                                                  GoogleFonts.raleway(
+                                                    fontWeight:
+                                                    FontWeight.w700,
+                                                    fontSize: 12,
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                            gridDelegate:
+                            SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 1,
+                                childAspectRatio: 1.54)),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
