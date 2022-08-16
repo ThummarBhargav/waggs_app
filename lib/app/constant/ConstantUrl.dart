@@ -1,6 +1,7 @@
 const baseUrl2 = "https://waggs.in/api/v1/users/";
 const baseuel1 = "https://api-stg.waggs.in/api/v1/";
 const baseUrl = "https://api.waggs.in/api/v1/";
+
 class ApiConstant {
   static const signUpUsers = "signup";
   static const loginUsers = "login";
@@ -16,6 +17,7 @@ class ApiConstant {
   static const AllCategory = "category";
   static const AllSubCategory = "subcategory";
   static const TopStore = "landing?latitude=&longitude=";
+  static const alsoLike = "products";
 }
 
 

@@ -50,6 +50,51 @@ class TopSellingStoreAllProductsView
                     )
                   : Column(
                       children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            TextButton(onPressed: () {
+
+                            }, child:
+                            Row(children: [
+                                Container(
+                                  child: Text("Filters",
+                                    style: GoogleFonts.raleway(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(width: 5,),
+                                Icon(Icons.filter_list,color: Colors.black,size: 18,),
+                            ],),),
+                            SizedBox(width: 10,),
+                            TextButton(onPressed: () {
+
+                            }, child:
+                            Row(children: [
+                              Container(
+                                child: Text("Sort By: ",
+                                  style: GoogleFonts.raleway(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                child: Text("New Arrivals",
+                                  style: GoogleFonts.raleway(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black54,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(width: 5,),
+                              Icon(Icons.keyboard_arrow_down_sharp,color: Colors.black,size: 18,),
+                            ],),),
+                            SizedBox(width: 5,),
+                          ],
+                        ),
                         Container(
                           child: Column(
                             children: [
