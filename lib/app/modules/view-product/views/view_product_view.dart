@@ -12,10 +12,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/constant/Container.dart';
 import 'package:waggs_app/app/modules/home/controllers/home_controller.dart';
 
+import '../../../Modal/GetAllProductModule.dart';
 import '../../../Modal/TopSellingStore.dart';
 
 class ViewProductView extends GetWidget<HomeController> {
-  Products0 data;
+  Products data;
 
   var dropdownItems;
   ViewProductView(this.data);

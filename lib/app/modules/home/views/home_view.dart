@@ -399,7 +399,7 @@ class HomeView extends GetView<HomeController> {
                                     child: GestureDetector(
                                       onTap: () {
                                         Get.to(ViewProductView(
-                                            controller.TopProductlist[index]));
+                                            controller.mainProductList[index]));
                                       },
                                       child: Container(
                                         child: Column(

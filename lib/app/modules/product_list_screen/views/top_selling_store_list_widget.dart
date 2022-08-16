@@ -26,7 +26,6 @@ class _TopSellingStoreWidgetState extends State<TopSellingStoreWidget> {
       child: Scaffold(
         body: Column(
           children: [
-            SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
