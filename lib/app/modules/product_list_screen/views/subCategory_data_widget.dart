@@ -76,7 +76,7 @@ class _SubCategoryWidgetState extends State<SubCategoryWidget> {
                                   elevation: 2,
                                   child: GestureDetector(
                                     onTap: () {
-                                      // Get.to(ViewProductView(controller.mainProductList![index]));
+                                      Get.to(ViewProductView(controller.mainProductList![index]));
                                     },
                                     child: Container(
                                       child: Column(
