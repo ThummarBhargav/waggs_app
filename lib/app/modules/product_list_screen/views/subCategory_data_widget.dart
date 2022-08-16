@@ -52,7 +52,7 @@ class _SubCategoryWidgetState extends State<SubCategoryWidget> {
                         Container(
                             height: 300,
                             width: 250,
-                            child: SvgPicture.asset("assets/NODATA.svg")),
+                            child: SvgPicture.asset("assets/NoData.svg")),
                         Text(
                           "No data found",
                           style: GoogleFonts.raleway(
@@ -64,7 +64,6 @@ class _SubCategoryWidgetState extends State<SubCategoryWidget> {
                     ),
                   )
                 : Container(
-                    height: Get.height,
                     child: Column(
                       children: [
                         Expanded(
@@ -313,7 +312,7 @@ class _SubCategoryWidgetState extends State<SubCategoryWidget> {
                               gridDelegate:
                                   SliverGridDelegateWithFixedCrossAxisCount(
                                       crossAxisCount: 2,
-                                      childAspectRatio: 0.59)),
+                                      childAspectRatio: 0.70)),
                         ),
                       ],
                     ),

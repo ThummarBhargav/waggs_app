@@ -39,7 +39,7 @@ class ProductView extends GetView<ProductController> {
                           Container(
                               height: 300,
                               width: 250,
-                              child: SvgPicture.asset("assets/NODATA.svg")),
+                              child: SvgPicture.asset("assets/NoData.svg")),
                           Text(
                             "No data found",
                             style: GoogleFonts.raleway(

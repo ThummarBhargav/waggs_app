@@ -125,26 +125,29 @@ class _TopSellingStoreWidgetState extends State<TopSellingStoreWidget> {
                                       textAlign: TextAlign.center,
                                     )),
                               ),
-                              InkWell(
-                                onTap: () {},
-                                child: Container(
-                                  width: 130,
-                                  height: 35,
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                    color: Colors.cyan,
-                                    borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(25),
-                                      bottomRight: Radius.circular(25),
-                                      bottomLeft: Radius.circular(25),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: InkWell(
+                                  onTap: () {},
+                                  child: Container(
+                                    width: 130,
+                                    height: 35,
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                      color: Colors.cyan,
+                                      borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(25),
+                                        bottomRight: Radius.circular(25),
+                                        bottomLeft: Radius.circular(25),
+                                      ),
                                     ),
-                                  ),
-                                  child: Text(
-                                    "SHOP NOW",
-                                    style: GoogleFonts.raleway(
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 13,
-                                      color: Colors.white,
+                                    child: Text(
+                                      "SHOP NOW",
+                                      style: GoogleFonts.raleway(
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 13,
+                                        color: Colors.white,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -156,7 +159,7 @@ class _TopSellingStoreWidgetState extends State<TopSellingStoreWidget> {
                     );
                   },
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2, childAspectRatio: 0.65)),
+                      crossAxisCount: 2, childAspectRatio: 0.70)),
             ),
           ],
         ),
