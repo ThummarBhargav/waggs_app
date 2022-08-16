@@ -1,8 +1,9 @@
 import 'dart:convert';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
+import 'package:waggs_app/app/Modal/CategoryModel.dart';
 import 'package:waggs_app/app/Modal/GetAllProductModule.dart';
+import 'package:waggs_app/app/Modal/SubCategoryModel.dart';
 import 'package:waggs_app/app/Modal/TopSellingStore.dart';
 import 'package:waggs_app/app/constant/ConstantUrl.dart';
 import 'package:http/http.dart'  as http;
@@ -17,6 +18,10 @@ class TopSellingStoreAllProductsController extends GetxController {
   SfRangeValues values1 = const SfRangeValues(0, 100);
   RxBool isOp = false.obs;
   RxBool isOp1 = false.obs;
+  RxList<SubCategoryData> SubCatagoryList = RxList<SubCategoryData>([]);
+  SubCategorymodel subCategorymodel = SubCategorymodel();
+  CategoryModel categoryModel = CategoryModel();
+  RxList<CategoryData> CatagoryList = RxList<CategoryData>([]);
   RxList<String> radioValues = RxList<String>([
     "Accessorizes","Food","Health & Wellness","Treats and Chews"
   ]);
@@ -25,6 +30,8 @@ class TopSellingStoreAllProductsController extends GetxController {
   @override
   void onInit() {
     getProduct();
+    AllCategory();
+    SubCategory();
     super.onInit();
   }
 
@@ -60,6 +67,35 @@ class TopSellingStoreAllProductsController extends GetxController {
     }
     mainProductList.refresh();
 
+  }
+
+  AllCategory() async {
+    var url = Uri.parse(baseUrl+ApiConstant.AllCategory);
+    var response = await http.get(url);
+    print('response status:${response.request}');
+    dynamic result = jsonDecode(response.body);
+    categoryModel = CategoryModel.fromJson(result);
+    print(result);
+    if (!isNullEmptyOrFalse(categoryModel.catagoryData)) {
+      categoryModel.catagoryData!.forEach((element) {
+        CatagoryList.add(element);
+      }
+      );
+    }
+  }
+  SubCategory() async {
+    var url = Uri.parse(baseUrl+ApiConstant.AllSubCategory);
+    var response = await http.get(url);
+    print('response status:${response.request}');
+    dynamic result = jsonDecode(response.body);
+    subCategorymodel = SubCategorymodel.fromJson(result);
+    print(result);
+    if (!isNullEmptyOrFalse(subCategorymodel.data)) {
+      subCategorymodel.data!.forEach((element) {
+        SubCatagoryList.add(element);
+      }
+      );
+    }
   }
 
 }
