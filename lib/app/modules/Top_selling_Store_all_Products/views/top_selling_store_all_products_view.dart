@@ -105,7 +105,7 @@ class TopSellingStoreAllProductsView
                     children: [
                       Container(
                         margin: EdgeInsets.only(left: 20),
-                        child: Text("Discount",
+                        child: Text("Category",
                           style: GoogleFonts.raleway(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -129,90 +129,118 @@ class TopSellingStoreAllProductsView
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      children: [
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Radio(
-                          onChanged: (value) {
-                          value = controller.radioValues.value;
-                        },
-                          value: "Accessories",
-                            groupValue: controller.radioGValues.value,),
-                        Container(
-                          child: Text("Accessories",
-                            style: GoogleFonts.raleway(
-                              fontSize: 18,
-                              color: Colors.black
+                    Container(
+                      height: 210,
+                      child: ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        itemCount: controller.CatagoryList.length,
+                        itemBuilder: (context, index) {
+                        return Row(
+                          children: [
+                            Container(
+                              margin: EdgeInsets.only(top: 8),
+                              child: Radio(
+                                onChanged: (value) {
+                                  value = controller.radioValues.value;
+                                },
+                                value: controller.CatagoryList[index].name,
+                                groupValue: controller.radioGValues.value,),
                             ),
-                          ),
-                        ),
-                      ],
+                            Container(
+                              margin: EdgeInsets.only(left: 20,top: 8),
+                              child: Text("${controller.CatagoryList[index].name}",style: GoogleFonts.raleway(
+                                          fontSize: 18,
+                                          color: Colors.black
+                                        ),),
+                            )
+                          ],
+                        );
+                      },),
                     ),
-                    Row(
-                      children: [
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Radio(
-                          onChanged: (value) {
-                            value = controller.radioValues.value;
-                          },
-                          value: "Food",
-                          groupValue: controller.radioGValues.value,),
-                        Container(
-                          child: Text("Food",
-                            style: GoogleFonts.raleway(
-                                fontSize: 18,
-                                color: Colors.black
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Radio(
-                          onChanged: (value) {
-                            value = controller.radioValues.value;
-                          },
-                          value: "Health & Wellness",
-                          groupValue: controller.radioGValues.value,),
-                        Container(
-                          child: Text("Health & Wellness",
-                            style: GoogleFonts.raleway(
-                                fontSize: 18,
-                                color: Colors.black
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Radio(
-                          onChanged: (value) {
-                            value = controller.radioValues.value;
-                          },
-                          value: "Treats and Chews",
-                          groupValue: controller.radioGValues.value,),
-                        Container(
-                          child: Text("Treats and Chews",
-                            style: GoogleFonts.raleway(
-                                fontSize: 18,
-                                color: Colors.black
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                    // Row(
+                    //   children: [
+                    //     SizedBox(
+                    //       height: 10,
+                    //     ),
+                    //     Radio(
+                    //       onChanged: (value) {
+                    //       value = controller.radioValues.value;
+                    //     },
+                    //       value: "Accessories",
+                    //         groupValue: controller.radioGValues.value,),
+                    //     Container(
+                    //       child: Text("Accessories",
+                    //         style: GoogleFonts.raleway(
+                    //           fontSize: 18,
+                    //           color: Colors.black
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
+                    // Row(
+                    //   children: [
+                    //     SizedBox(
+                    //       height: 10,
+                    //     ),
+                    //     Radio(
+                    //       onChanged: (value) {
+                    //         value = controller.radioValues.value;
+                    //       },
+                    //       value: "Food",
+                    //       groupValue: controller.radioGValues.value,),
+                    //     Container(
+                    //       child: Text("Food",
+                    //         style: GoogleFonts.raleway(
+                    //             fontSize: 18,
+                    //             color: Colors.black
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
+                    // Row(
+                    //   children: [
+                    //     SizedBox(
+                    //       height: 10,
+                    //     ),
+                    //     Radio(
+                    //       onChanged: (value) {
+                    //         value = controller.radioValues.value;
+                    //       },
+                    //       value: "Health & Wellness",
+                    //       groupValue: controller.radioGValues.value,),
+                    //     Container(
+                    //       child: Text("Health & Wellness",
+                    //         style: GoogleFonts.raleway(
+                    //             fontSize: 18,
+                    //             color: Colors.black
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
+                    // Row(
+                    //   children: [
+                    //     SizedBox(
+                    //       height: 10,
+                    //     ),
+                    //     Radio(
+                    //       onChanged: (value) {
+                    //         value = controller.radioValues.value;
+                    //       },
+                    //       value: "Treats and Chews",
+                    //       groupValue: controller.radioGValues.value,),
+                    //     Container(
+                    //       child: Text("Treats and Chews",
+                    //         style: GoogleFonts.raleway(
+                    //             fontSize: 18,
+                    //             color: Colors.black
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
                   ],
                 ),
               )
