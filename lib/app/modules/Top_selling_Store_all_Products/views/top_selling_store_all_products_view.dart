@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/constant/sizeConstant.dart';
+import 'package:waggs_app/app/modules/view-product/views/view_product_view.dart';
 
 import '../controllers/top_selling_store_all_products_controller.dart';
 
@@ -64,7 +65,9 @@ class TopSellingStoreAllProductsView
                                       return Card(
                                         elevation: 2,
                                         child: GestureDetector(
-                                          onTap: () {},
+                                          onTap: () {
+                                            // Get.to(ViewProductView(controller.mainProductList[index]));
+                                          },
                                           child: Container(
                                             child: Column(
                                               children: [

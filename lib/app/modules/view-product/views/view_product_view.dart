@@ -300,27 +300,27 @@ class ViewProductView extends GetWidget<HomeController> {
               ),
               Align(
                 alignment: Alignment.topLeft,
-                child: Expanded(
-                  child: Container(
-                    height: 45,
-                    margin: EdgeInsets.only(left: 15),
-                    width: MediaQuery.of(context).size.width*0.4,
-                    padding: EdgeInsets.all(0),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(20),
-                          topRight: Radius.circular(20),
-                          bottomRight: Radius.circular(20),
-                          bottomLeft: Radius.circular(20),
-                        ),
-                      border: Border.all(
-                        color: Colors.grey.shade400,
-                        width: 2,
+                child: Container(
+                  height: 45,
+                  margin: EdgeInsets.only(left: 15),
+                  width: MediaQuery.of(context).size.width*0.4,
+                  padding: EdgeInsets.all(0),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        topRight: Radius.circular(20),
+                        bottomRight: Radius.circular(20),
+                        bottomLeft: Radius.circular(20),
+                      ),
+                    border: Border.all(
+                      color: Colors.grey.shade400,
+                      width: 2,
+                ),
                   ),
-                    ),
-                    child: Row(
-                      children: [
-                        InkWell(
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: InkWell(
                             onTap: () {
                               if(controller.count.value>0){
                                 controller.count.value--;
@@ -334,44 +334,41 @@ class ViewProductView extends GetWidget<HomeController> {
                                 size: 22,
                               ),
                             )),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0,right: 8),
-                          child: Container(
-                            height: 75,
-                            width: 75,
-                            padding:
-                            EdgeInsets.symmetric(horizontal: 3, vertical: 2),
-                            decoration: BoxDecoration(
-                              border: Border(
-                                left: BorderSide( //                   <--- left side
-                                  color: Colors.grey,
-                                  width: 2.0,
-                                ),
-                                right: BorderSide( //                    <--- top side
-                                  color: Colors.grey,
-                                  width: 2.0,
-                                ),
-                              ),
-                              ),
-                            child: Center(
-                              child: Obx(()=>Text(
-                                "${controller.count.value}",
-                                style: TextStyle(color: Colors.black, fontSize: 18,fontWeight: FontWeight.w500),
-                              ),)
-                            ),
-                          ),
-                        ),
-                        InkWell(
-                            onTap: () {
-                              controller.count.value++;
-                            },
-                            child: Icon(
-                              Icons.add,
-                              color: Colors.black,
-                              size: 22,
-                            )),
-                      ],
-                    ),
+                      ),
+                     Expanded(child: Container(
+                       height: 75,
+                       width: 75,
+                       padding:
+                       EdgeInsets.symmetric(horizontal: 3, vertical: 2),
+                       decoration: BoxDecoration(
+                         border: Border(
+                           left: BorderSide( //                   <--- left side
+                             color: Colors.grey,
+                             width: 2.0,
+                           ),
+                           right: BorderSide( //                    <--- top side
+                             color: Colors.grey,
+                             width: 2.0,
+                           ),
+                         ),
+                       ),
+                       child: Center(
+                           child: Obx(()=>Text(
+                             "${controller.count.value}",
+                             style: TextStyle(color: Colors.black, fontSize: 18,fontWeight: FontWeight.w500),
+                           ),)
+                       ),
+                     )),
+                     Expanded(child: InkWell(
+                         onTap: () {
+                           controller.count.value++;
+                         },
+                         child: Icon(
+                           Icons.add,
+                           color: Colors.black,
+                           size: 22,
+                         )),)
+                    ],
                   ),
                 ),
               ),
