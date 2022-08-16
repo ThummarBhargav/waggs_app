@@ -32,6 +32,7 @@ class HomeController extends GetxController {
   final count = 0.obs;
   RxBool isOpen = false.obs;
   RxBool isOpen1 = false.obs;
+  RxString url = ''.obs;
 
   @override
   void onInit() {
