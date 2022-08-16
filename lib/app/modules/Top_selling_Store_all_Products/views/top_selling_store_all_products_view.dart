@@ -6,6 +6,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/constant/sizeConstant.dart';
+import 'package:waggs_app/app/modules/product_detail_view/views/product_detail_view_view.dart';
+import 'package:waggs_app/app/modules/view-product/views/view_product_view.dart';
 
 import '../controllers/top_selling_store_all_products_controller.dart';
 
@@ -17,7 +19,7 @@ class TopSellingStoreAllProductsView
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,shadowColor: Colors.transparent,iconTheme: IconThemeData(color: Colors.black),
-          title: Text(controller.data.companyName.toString(),
+          title: controller.data.companyName==null?Container(child: Text("N/A",style: TextStyle(fontSize:20,color: Colors.orangeAccent),),):Text(controller.data.companyName.toString(),
           style: GoogleFonts.roboto(
               color: Colors.orangeAccent,
               fontWeight: FontWeight.w700,
@@ -48,6 +50,51 @@ class TopSellingStoreAllProductsView
                     )
                   : Column(
                       children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            TextButton(onPressed: () {
+
+                            }, child:
+                            Row(children: [
+                                Container(
+                                  child: Text("Filters",
+                                    style: GoogleFonts.raleway(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(width: 5,),
+                                Icon(Icons.filter_list,color: Colors.black,size: 18,),
+                            ],),),
+                            SizedBox(width: 10,),
+                            TextButton(onPressed: () {
+
+                            }, child:
+                            Row(children: [
+                              Container(
+                                child: Text("Sort By: ",
+                                  style: GoogleFonts.raleway(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                child: Text("New Arrivals",
+                                  style: GoogleFonts.raleway(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black54,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(width: 5,),
+                              Icon(Icons.keyboard_arrow_down_sharp,color: Colors.black,size: 18,),
+                            ],),),
+                            SizedBox(width: 5,),
+                          ],
+                        ),
                         Container(
                           child: Column(
                             children: [
@@ -64,7 +111,9 @@ class TopSellingStoreAllProductsView
                                       return Card(
                                         elevation: 2,
                                         child: GestureDetector(
-                                          onTap: () {},
+                                          onTap: () {
+                                             Get.to(ProductDetailViewView(controller.mainProductList[index]));
+                                          },
                                           child: Container(
                                             child: Column(
                                               children: [
@@ -86,8 +135,7 @@ class TopSellingStoreAllProductsView
                                                                       .white,
                                                                   margin: EdgeInsets
                                                                       .only(
-                                                                          top:
-                                                                              25,
+                                                                      top: 25,
                                                                           left:
                                                                               10,
                                                                           right:

@@ -16,6 +16,7 @@ abstract class Routes {
   static const TOP_SELLING_STORE_ALL_PRODUCTS =
       _Paths.TOP_SELLING_STORE_ALL_PRODUCTS;
   static const PRODUCT_LIST_SCREEN = _Paths.PRODUCT_LIST_SCREEN;
+  static const PRODUCT_DETAIL_VIEW = _Paths.PRODUCT_DETAIL_VIEW;
 }
 
 abstract class _Paths {
@@ -33,4 +34,5 @@ abstract class _Paths {
   static const TOP_SELLING_STORE_ALL_PRODUCTS =
       '/top-selling-store-all-products';
   static const PRODUCT_LIST_SCREEN = '/product-list-screen';
+  static const PRODUCT_DETAIL_VIEW = '/product-detail-view';
 }

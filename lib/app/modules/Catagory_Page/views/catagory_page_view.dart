@@ -14,7 +14,6 @@ class CatagoryPageView extends GetWidget<HomeController> {
   RxList<SubCategoryData> subData;
   CatagoryPageView({required this.data,required this.subData});
 
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(

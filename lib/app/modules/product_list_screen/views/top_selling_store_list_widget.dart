@@ -104,7 +104,7 @@ class _TopSellingStoreWidgetState extends State<TopSellingStoreWidget> {
                                 width: 150,
                                 child: Align(
                                   alignment: Alignment.center,
-                                  child: Text(
+                                  child: controller.sellerList[index].companyName==null?Container(child: Text("N/A",style: TextStyle(fontWeight: FontWeight.bold,color: Color.fromRGBO(32, 193, 244, 1)),),):Text(
                                     "${controller.sellerList[index].companyName}",
                                     style: GoogleFonts.raleway(
                                         fontWeight: FontWeight.w700,
@@ -119,7 +119,7 @@ class _TopSellingStoreWidgetState extends State<TopSellingStoreWidget> {
                                 width: 200,
                                 child: Align(
                                     alignment: Alignment.center,
-                                    child: Text(
+                                    child: controller.sellerList[index].companyName==null?Container(child: Text("N/A",style: TextStyle(fontSize: 10,color: Colors.grey),),):Text(
                                       "${controller.sellerList[index].address}",
                                       style: TextStyle(
                                           fontSize: 10, color: Colors.grey),

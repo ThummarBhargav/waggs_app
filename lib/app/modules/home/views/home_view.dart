@@ -5,8 +5,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/constant/ConstantUrl.dart';
 import 'package:waggs_app/app/modules/Catagory_Page/views/catagory_page_view.dart';
-import 'package:waggs_app/app/modules/Product_all/views/product_all_view.dart';
-import 'package:waggs_app/app/modules/Storage_All_Products/views/storage_all_products_view.dart';
 import 'package:waggs_app/app/modules/view-product/views/view_product_view.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
 import '../controllers/home_controller.dart';
@@ -52,10 +50,9 @@ class HomeView extends GetView<HomeController> {
                               height: 40,
                               width: 212,
                               margin: EdgeInsets.only(left: 15, right: 15),
-                              padding: EdgeInsets.only(
-                                bottom: 10
-                                // left: 10,
-                              ),
+                              padding: EdgeInsets.only(bottom: 10
+                                  // left: 10,
+                                  ),
                               decoration: BoxDecoration(
                                 color: Colors.grey[300],
                                 borderRadius: BorderRadius.only(
@@ -121,17 +118,19 @@ class HomeView extends GetView<HomeController> {
                                       }
                                     });
                                     controller.subData.clear();
-                                    controller.SubCatagoryList.forEach((element) {
-                                      if(element.categoryId==controller.CatagoryList[index].sId){
+                                    controller.SubCatagoryList.forEach(
+                                        (element) {
+                                      if (element.categoryId ==
+                                          controller.CatagoryList[index].sId) {
                                         controller.subData.add(element);
-                                        print("Data"+element.name.toString());
-                                      }else{
-
-                                      }
+                                        print("Data" + element.name.toString());
+                                      } else {}
                                     });
                                     controller.productList.refresh();
                                     Get.to(CatagoryPageView(
-                                        data: controller.CatagoryList[index],subData: controller.subData,));
+                                      data: controller.CatagoryList[index],
+                                      subData: controller.subData,
+                                    ));
                                     print(
                                         "SId:- ${controller.CatagoryList[index].sId}");
                                   },
@@ -167,7 +166,7 @@ class HomeView extends GetView<HomeController> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          margin: EdgeInsets.only(left: 10,bottom: 10),
+                          margin: EdgeInsets.only(left: 10, bottom: 10),
                           child: Text(
                             "TOP SELLING STORES",
                             style: GoogleFonts.roboto(
@@ -178,12 +177,12 @@ class HomeView extends GetView<HomeController> {
                         ),
                         InkWell(
                           onTap: () {
-
-                            Get.toNamed(Routes.PRODUCT_LIST_SCREEN,arguments: {
-                              ArgumentConstant.isFromSellingStore : true,
-                              ArgumentConstant.isFromSubCategory : false,
-                              ArgumentConstant.isFromTopProducts : false,
-                              ArgumentConstant.sellerList : controller.SellersList,
+                            Get.toNamed(Routes.PRODUCT_LIST_SCREEN, arguments: {
+                              ArgumentConstant.isFromSellingStore: true,
+                              ArgumentConstant.isFromSubCategory: false,
+                              ArgumentConstant.isFromTopProducts: false,
+                              ArgumentConstant.sellerList:
+                                  controller.SellersList,
                             });
                           },
                           child: Container(
@@ -200,7 +199,8 @@ class HomeView extends GetView<HomeController> {
                       ],
                     ),
                     Container(
-                      width: 450,
+                      margin: EdgeInsets.only(left: 5),
+                      width: 400,
                       height: 280,
                       child: GridView.builder(
                           itemCount: controller.SellersList.length,
@@ -208,7 +208,6 @@ class HomeView extends GetView<HomeController> {
                           shrinkWrap: true,
                           itemBuilder: (context, index) {
                             return Card(
-
                               elevation: 2,
                               child: GestureDetector(
                                 onTap: () {},
@@ -219,7 +218,7 @@ class HomeView extends GetView<HomeController> {
                                         child: Column(
                                           children: [
                                             Container(
-                                              width: 180,
+                                              width: 130,
                                               height: 130,
                                               alignment: Alignment.center,
                                               color: Colors.white,
@@ -264,14 +263,28 @@ class HomeView extends GetView<HomeController> {
                                         width: 150,
                                         child: Align(
                                           alignment: Alignment.center,
-                                          child: Text(
-                                            "${controller.SellersList[index].companyName}",
-                                            style: GoogleFonts.raleway(
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: 13,
-                                                color: Color.fromRGBO(
-                                                    32, 193, 244, 1)),
-                                          ),
+                                          child: controller.SellersList[index]
+                                                      .companyName ==
+                                                  null
+                                              ? Container(
+                                                  child: Text(
+                                                    "N/A",
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Color.fromRGBO(
+                                                            32, 193, 244, 1)),
+                                                  ),
+                                                )
+                                              : Text(
+                                                  "${controller.SellersList[index].companyName}",
+                                                  style: GoogleFonts.raleway(
+                                                      fontWeight:
+                                                          FontWeight.w700,
+                                                      fontSize: 13,
+                                                      color: Color.fromRGBO(
+                                                          32, 193, 244, 1)),
+                                                ),
                                         ),
                                       ),
                                       Container(
@@ -281,7 +294,7 @@ class HomeView extends GetView<HomeController> {
                                         width: 200,
                                         child: Align(
                                             alignment: Alignment.center,
-                                            child: Text(
+                                            child: controller.SellersList[index].address==null?Text("N/A",style: TextStyle(fontSize: 10,color: Colors.grey),):Text(
                                               "${controller.SellersList[index].address}",
                                               style: TextStyle(
                                                   fontSize: 10,
@@ -291,7 +304,11 @@ class HomeView extends GetView<HomeController> {
                                       ),
                                       InkWell(
                                         onTap: () {
-                                          Get.toNamed(Routes.TOP_SELLING_STORE_ALL_PRODUCTS,arguments: controller.SellersList[index]);
+                                          Get.toNamed(
+                                              Routes
+                                                  .TOP_SELLING_STORE_ALL_PRODUCTS,
+                                              arguments: controller
+                                                  .SellersList[index]);
                                         },
                                         child: Container(
                                           width: 130,
@@ -323,7 +340,7 @@ class HomeView extends GetView<HomeController> {
                           },
                           gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 1, childAspectRatio: 1.3)),
+                                  crossAxisCount: 1, childAspectRatio: 1.59)),
                     ),
                     SizedBox(
                       height: 20,
@@ -332,7 +349,7 @@ class HomeView extends GetView<HomeController> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          margin: EdgeInsets.only(left: 10,bottom: 10),
+                          margin: EdgeInsets.only(left: 10, bottom: 10),
                           child: Text(
                             "TOP SELLING PRODUCTS",
                             style: GoogleFonts.roboto(
@@ -343,13 +360,14 @@ class HomeView extends GetView<HomeController> {
                         ),
                         InkWell(
                           onTap: () {
-                            Get.toNamed(Routes.PRODUCT_LIST_SCREEN,arguments: {
-                              ArgumentConstant.isFromSellingStore : false,
-                              ArgumentConstant.isFromSubCategory : false,
-                              ArgumentConstant.isFromTopProducts : true,
-                              ArgumentConstant.TopProductlist : controller.TopProductlist,
+                            Get.toNamed(Routes.PRODUCT_LIST_SCREEN, arguments: {
+                              ArgumentConstant.isFromSellingStore: false,
+                              ArgumentConstant.isFromSubCategory: false,
+                              ArgumentConstant.isFromTopProducts: true,
+                              ArgumentConstant.TopProductlist:
+                                  controller.TopProductlist,
                             });
-                             //Get.to(ProductAllView(TopProductlist: controller.TopProductlist));
+                            //Get.to(ProductAllView(TopProductlist: controller.TopProductlist));
                           },
                           child: Container(
                             margin: EdgeInsets.only(right: 23, bottom: 10),
@@ -368,7 +386,8 @@ class HomeView extends GetView<HomeController> {
                       child: Column(
                         children: [
                           Container(
-                            height: 300,
+                            margin: EdgeInsets.only(left: 5),
+                            height: 270,
                             width: 400,
                             child: GridView.builder(
                                 itemCount: controller.TopProductlist.length,
@@ -379,7 +398,8 @@ class HomeView extends GetView<HomeController> {
                                     elevation: 2,
                                     child: GestureDetector(
                                       onTap: () {
-                                        Get.to(ViewProductView(controller.TopProductlist[index]));
+                                        Get.to(ViewProductView(
+                                            controller.TopProductlist[index]));
                                       },
                                       child: Container(
                                         child: Column(
@@ -393,39 +413,40 @@ class HomeView extends GetView<HomeController> {
                                                         child: Column(
                                                           children: [
                                                             Container(
-                                                              width: 170,
-                                                              height: 140,
-                                                              alignment: Alignment.center,
-                                                              color: Colors.white,
-                                                              margin: EdgeInsets.only(
-                                                                  top: 25, left: 10, right: 10),
-                                                              child: CachedNetworkImage(
-                                                                  imageUrl:
-                                                                  "${controller.TopProductlist[index].images![0]}",
-                                                                  imageBuilder: (context,
-                                                                      imageProvider) =>
-                                                                      Container(
-                                                                        decoration:
-                                                                        BoxDecoration(
-                                                                          image: DecorationImage(
-                                                                              image:
-                                                                              imageProvider,
-                                                                              fit: BoxFit.cover,
-                                                                              colorFilter:
-                                                                              ColorFilter.mode(
-                                                                                  Colors
-                                                                                      .transparent,
-                                                                                  BlendMode
-                                                                                      .colorBurn)),
-                                                                        ),
-                                                                      ),
-                                                                  placeholder: (context, url) =>
-                                                                      CircularProgressIndicator(),
-                                                                  errorWidget: (context, url,
-                                                                      error) =>
-                                                                      Expanded(
-                                                                          child: Container(
-                                                                            color: Colors.grey[100],
+                                                              width: 120,
+                                                              height: 120,
+                                                              alignment:
+                                                                  Alignment
+                                                                      .center,
+                                                              color:
+                                                                  Colors.white,
+                                                              margin: EdgeInsets
+                                                                  .only(
+                                                                      top: 25,
+                                                                      left: 20,
+                                                                      right:
+                                                                          10),
+                                                              child:
+                                                                  CachedNetworkImage(
+                                                                      imageUrl:
+                                                                          "${controller.TopProductlist[index].images![0]}",
+                                                                      imageBuilder:
+                                                                          (context, imageProvider) =>
+                                                                              Container(
+                                                                                decoration: BoxDecoration(
+                                                                                  image: DecorationImage(image: imageProvider, fit: BoxFit.cover, colorFilter: ColorFilter.mode(Colors.transparent, BlendMode.colorBurn)),
+                                                                                ),
+                                                                              ),
+                                                                      placeholder:
+                                                                          (context, url) =>
+                                                                              CircularProgressIndicator(),
+                                                                      errorWidget: (context,
+                                                                              url,
+                                                                              error) =>
+                                                                          Expanded(
+                                                                              child: Container(
+                                                                            color:
+                                                                                Colors.grey[100],
                                                                           ))),
                                                             ),
                                                           ],
@@ -447,7 +468,7 @@ class HomeView extends GetView<HomeController> {
                                                                     margin: EdgeInsets
                                                                         .only(
                                                                             left:
-                                                                                90),
+                                                                                45),
                                                                     height: 20,
                                                                     width: 70,
                                                                     decoration:
@@ -494,7 +515,8 @@ class HomeView extends GetView<HomeController> {
                                             Container(
                                               margin: EdgeInsets.only(
                                                 // left: 20,
-                                                  right: 30, ),
+                                                top: 5,left: 5,
+                                              ),
                                               child: Align(
                                                   alignment: Alignment.center,
                                                   child: Text(
@@ -502,17 +524,17 @@ class HomeView extends GetView<HomeController> {
                                                     style: GoogleFonts.raleway(
                                                         fontWeight:
                                                             FontWeight.w700,
-                                                        fontSize: 15,
+                                                        fontSize: 13,
                                                         color: Color.fromRGBO(
                                                             32, 193, 244, 1)),
                                                   )),
                                             ),
                                             Container(
-                                              height: 30,
+                                              height: 20,
                                               width: 180,
                                               alignment: Alignment.center,
                                               margin:
-                                                  EdgeInsets.only(right: 30),
+                                                  EdgeInsets.only(),
                                               child: Align(
                                                   alignment: Alignment.center,
                                                   child: Text(
@@ -523,10 +545,10 @@ class HomeView extends GetView<HomeController> {
                                                   )),
                                             ),
                                             Row(
+                                              mainAxisAlignment: MainAxisAlignment.start,
                                               children: [
                                                 Container(
-                                                  margin:
-                                                      EdgeInsets.only(left: 20),
+                                                  margin: EdgeInsets.only(left: 15,),
                                                   child: Text(
                                                     "₹${controller.TopProductlist[index].price!.toStringAsFixed(2)}",
                                                     style: GoogleFonts.roboto(
@@ -544,7 +566,7 @@ class HomeView extends GetView<HomeController> {
                                                   child: Text(
                                                     "₹${controller.TopProductlist[index].discountedPrice!.toStringAsFixed(2)}",
                                                     style:
-                                                        TextStyle(fontSize: 10),
+                                                        TextStyle(fontSize: 9),
                                                   ),
                                                 ),
                                                 RatingBarIndicator(
@@ -559,7 +581,7 @@ class HomeView extends GetView<HomeController> {
                                                     color: Colors.amber,
                                                   ),
                                                   itemCount: 5,
-                                                  itemSize: 18.0,
+                                                  itemSize: 15.0,
                                                   direction: Axis.horizontal,
                                                 ),
                                               ],
@@ -573,7 +595,6 @@ class HomeView extends GetView<HomeController> {
                                                 width: 130,
                                                 height: 35,
                                                 alignment: Alignment.center,
-                                                margin: EdgeInsets.only(right: 15),
                                                 decoration: BoxDecoration(
                                                   color: Colors.cyan,
                                                   borderRadius:
@@ -588,7 +609,9 @@ class HomeView extends GetView<HomeController> {
                                                 ),
                                                 child: Row(
                                                   children: [
-                                                    SizedBox(width: 10,),
+                                                    SizedBox(
+                                                      width: 10,
+                                                    ),
                                                     Icon(
                                                         Icons.add_shopping_cart,
                                                         color: Colors.white,
@@ -619,7 +642,7 @@ class HomeView extends GetView<HomeController> {
                                 gridDelegate:
                                     SliverGridDelegateWithFixedCrossAxisCount(
                                         crossAxisCount: 1,
-                                        childAspectRatio: 1.4)),
+                                        childAspectRatio: 1.54)),
                           ),
                         ],
                       ),
