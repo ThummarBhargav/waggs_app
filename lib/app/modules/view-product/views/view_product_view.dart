@@ -4,15 +4,12 @@ import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/constant/Container.dart';
 import 'package:waggs_app/app/modules/home/controllers/home_controller.dart';
-
-import '../../../Modal/GetAllProductModule.dart';
 import '../../../Modal/TopSellingStore.dart';
 
 class ViewProductView extends GetWidget<HomeController> {
@@ -675,9 +672,9 @@ class ViewProductView extends GetWidget<HomeController> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("${data.sellerId?.companyName}",
+                            Text("${data.sellerId!.companyName}",
                                 style: GoogleFonts.lato(fontSize: 16)),
-                            Text("${data.sellerId?.address}",
+                            Text("${data.sellerId!.address}",
                                 style: GoogleFonts.lato(
                                     fontSize: 14, color: Colors.grey.shade600)),
                           ],
@@ -688,7 +685,7 @@ class ViewProductView extends GetWidget<HomeController> {
                 margin: EdgeInsets.only(left: 10),
                 alignment: Alignment.topLeft,
                   child: Text("- YOU MIGHT ALSO LIKE",style: TextStyle(color: Colors.orangeAccent,fontSize: 20,fontWeight: FontWeight.bold),)),
-
+              Text("${data.title}"),
             ],
           ),
         ),
@@ -696,58 +693,3 @@ class ViewProductView extends GetWidget<HomeController> {
     );
   }
 }
-
-//child: Column(
-//           children: [
-//             Text(
-//               controller.productList[index].title!,
-//               style: GoogleFonts.roboto(
-//               fontSize: 16,
-//               color: Colors.black,
-//               fontWeight: FontWeight.bold,
-//               ),
-//             ),
-//             ImageSlideshow(
-//                 width: double.infinity,
-//                 height: 400,
-//                 initialPage: 0,
-//                 indicatorColor: Colors.blue,
-//                 indicatorBackgroundColor: Colors.grey,
-//                 onPageChanged: (value) {
-//                   debugPrint('Page changed: $value');
-//                 },
-//                 // autoPlayInterval: 3000,
-//                 isLoop: false,
-//                 children:[
-//                   Image(image:  NetworkImage(
-//                       "${controller.productList[index].images![0]}"),
-//                   ),
-//                   Image(image:  NetworkImage(
-//                       "${controller.productList[index].images![1]}"),
-//                   ),
-//     ],
-//             )
-//           ],
-//         ),
-
-//drop down
-// Padding(
-// padding: const EdgeInsets.all(8.0),
-// child: DropdownButtonFormField(
-// decoration: InputDecoration(
-// enabledBorder: OutlineInputBorder(
-// borderSide: BorderSide(color: Color(0xffDE8701), width: 2),
-// borderRadius: BorderRadius.circular(20),
-// ),
-// border: OutlineInputBorder(
-// borderSide: BorderSide(color:  Color(0xffDE8701), width: 2),
-// borderRadius: BorderRadius.circular(20),
-// ),
-// filled: true,
-// fillColor:  Color(0xffDE8701),
-// ),
-// value: null,
-// items: dropdownItems,
-// onChanged: null,
-// ),
-// )

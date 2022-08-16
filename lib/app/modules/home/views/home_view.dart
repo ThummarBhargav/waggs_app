@@ -566,7 +566,7 @@ class HomeView extends GetView<HomeController> {
                                                 ),
                                                 Container(
                                                   child: Text(
-                                                    "₹${controller.TopProductlist[index].discountedPrice!.toStringAsFixed(2)}",
+                                                    "₹${controller.TopProductlist[index].discountedPrice}",
                                                     style:
                                                         TextStyle(fontSize: 9),
                                                   ),
