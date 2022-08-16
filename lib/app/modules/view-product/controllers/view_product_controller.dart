@@ -37,8 +37,7 @@ class ViewProductController extends GetxController {
     hasData.value = false;
     mainProductList.clear();
     var URl = Uri.parse(baseUrl +
-        ApiConstant.getAllProductUsers +
-        "/${data.sId}");
+        ApiConstant.getAllProductUsers);
     print(URl);
     var response;
     await http.get(URl).then((value) {

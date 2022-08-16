@@ -36,7 +36,7 @@ class ViewProductView extends GetWidget<ViewProductController> {
         ],
       ),
       body: Obx(
-          ()=> SingleChildScrollView(
+        () => SingleChildScrollView(
           child: Container(
             child: Column(
               children: [
@@ -126,10 +126,10 @@ class ViewProductView extends GetWidget<ViewProductController> {
                                       ),
                                   placeholder: (context, url) =>
                                       CircularProgressIndicator(),
-                                  errorWidget: (context, url, error) => Expanded(
-                                          child: Container(
+                                  errorWidget: (context, url, error) =>
+                                      Container(
                                         color: Colors.grey[100],
-                                      )))),
+                                      ))),
 
                           // Image.network(width: 160,height:160,
                           //     "${data.images![0]}"),
@@ -170,7 +170,8 @@ class ViewProductView extends GetWidget<ViewProductController> {
                                   Padding(
                                     padding: const EdgeInsets.only(left: 6),
                                     child: RatingBarIndicator(
-                                      rating: controller.data.rating!.toDouble(),
+                                      rating:
+                                          controller.data.rating!.toDouble(),
                                       itemBuilder: (context, index) => Icon(
                                         Icons.star,
                                         color: Colors.amber,
@@ -243,7 +244,8 @@ class ViewProductView extends GetWidget<ViewProductController> {
                             children: [
                               InkWell(
                                 onTap: () {
-                                  controller.url.value = controller.data.images![index];
+                                  controller.url.value =
+                                      controller.data.images![index];
                                 },
                                 child: Container(
                                     margin: EdgeInsets.all(10),
@@ -333,14 +335,12 @@ class ViewProductView extends GetWidget<ViewProductController> {
                             ),
                           ),
                           child: Center(
-                              child:
-                             Text(
-                              "${controller.count.value}",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w500),
-
+                              child: Text(
+                            "${controller.count.value}",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500),
                           )),
                         )),
                         Expanded(
@@ -494,137 +494,136 @@ class ViewProductView extends GetWidget<ViewProductController> {
                   ),
                 ),
                 controller.isOpen.value == false
-                      ? Container()
-                      : Container(
-                          margin: EdgeInsets.only(left: 22),
-                          padding: EdgeInsets.all(5),
-                          width: MediaQuery.of(context).size.width,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Text("BRAND :  ",
-                                      style: GoogleFonts.lato(
-                                          fontSize: 14,
-                                          color: Colors.grey.shade600)),
-                                  Text("${controller.data.brand}",
-                                      style: GoogleFonts.lato(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w700)),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              controller.data.lifeStage == null
-                                  ? Container()
-                                  : Row(
-                                      children: [
-                                        Text("LIFE STAGE : ",
-                                            style: GoogleFonts.lato(
-                                                fontSize: 14,
-                                                color: Colors.grey.shade600)),
-                                        Text("${controller.data.lifeStage}",
-                                            style: GoogleFonts.lato(
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.w700)),
-                                      ],
-                                    ),
-                              controller.data.productType == null
-                                  ? Container()
-                                  : SizedBox(
-                                      height: 5,
-                                    ),
-                              controller.data.productType == null
-                                  ? Container()
-                                  : Row(
-                                      children: [
-                                        Text("PRODUCT TYPE :  ",
-                                            style: GoogleFonts.lato(
-                                                fontSize: 14,
-                                                color: Colors.grey.shade600)),
-                                        Text("${controller.data.productType}",
-                                            style: GoogleFonts.lato(
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.w700)),
-                                      ],
-                                    ),
-                              controller.data.flavor == null
-                                  ? Container()
-                                  : SizedBox(
-                                      height: 5,
-                                    ),
-                              controller.data.flavor == null
-                                  ? Container()
-                                  : Row(
-                                      children: [
-                                        Text("FLAVOUR  :  ",
-                                            style: GoogleFonts.lato(
-                                                fontSize: 14,
-                                                color: Colors.grey.shade600)),
-                                        Text("${controller.data.flavor}",
-                                            style: GoogleFonts.lato(
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.w700)),
-                                      ],
-                                    ),
-                              controller.data.breedSize == null
-                                  ? Container()
-                                  : SizedBox(
-                                      height: 5,
-                                    ),
-                              controller.data.breedSize == null
-                                  ? Container()
-                                  : Row(
-                                      children: [
-                                        Text("BREED SIZE  :  ",
-                                            style: GoogleFonts.lato(
-                                                fontSize: 14,
-                                                color: Colors.grey.shade600)),
-                                        Text("${controller.data.breedSize}",
-                                            style: GoogleFonts.lato(
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.w700)),
-                                      ],
-                                    ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              controller.data.vegNonveg == null
-                                  ? Container()
-                                  : Row(
-                                      children: [
-                                        Text("VEG / NON VEG :  ",
-                                            style: GoogleFonts.lato(
-                                                fontSize: 14,
-                                                color: Colors.grey.shade600)),
-                                        Text("${controller.data.vegNonveg}",
-                                            style: GoogleFonts.lato(
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.w700)),
-                                      ],
-                                    ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              controller.data.color == null
-                                  ? Container()
-                                  : Row(
-                                      children: [
-                                        Text("COLOR :  ",
-                                            style: GoogleFonts.lato(
-                                                fontSize: 14,
-                                                color: Colors.grey.shade600)),
-                                        Text("${controller.data.color}",
-                                            style: GoogleFonts.lato(
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.w700)),
-                                      ],
-                                    ),
-                            ],
-                          )),
-
+                    ? Container()
+                    : Container(
+                        margin: EdgeInsets.only(left: 22),
+                        padding: EdgeInsets.all(5),
+                        width: MediaQuery.of(context).size.width,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Text("BRAND :  ",
+                                    style: GoogleFonts.lato(
+                                        fontSize: 14,
+                                        color: Colors.grey.shade600)),
+                                Text("${controller.data.brand}",
+                                    style: GoogleFonts.lato(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w700)),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            controller.data.lifeStage == null
+                                ? Container()
+                                : Row(
+                                    children: [
+                                      Text("LIFE STAGE : ",
+                                          style: GoogleFonts.lato(
+                                              fontSize: 14,
+                                              color: Colors.grey.shade600)),
+                                      Text("${controller.data.lifeStage}",
+                                          style: GoogleFonts.lato(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.w700)),
+                                    ],
+                                  ),
+                            controller.data.productType == null
+                                ? Container()
+                                : SizedBox(
+                                    height: 5,
+                                  ),
+                            controller.data.productType == null
+                                ? Container()
+                                : Row(
+                                    children: [
+                                      Text("PRODUCT TYPE :  ",
+                                          style: GoogleFonts.lato(
+                                              fontSize: 14,
+                                              color: Colors.grey.shade600)),
+                                      Text("${controller.data.productType}",
+                                          style: GoogleFonts.lato(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.w700)),
+                                    ],
+                                  ),
+                            controller.data.flavor == null
+                                ? Container()
+                                : SizedBox(
+                                    height: 5,
+                                  ),
+                            controller.data.flavor == null
+                                ? Container()
+                                : Row(
+                                    children: [
+                                      Text("FLAVOUR  :  ",
+                                          style: GoogleFonts.lato(
+                                              fontSize: 14,
+                                              color: Colors.grey.shade600)),
+                                      Text("${controller.data.flavor}",
+                                          style: GoogleFonts.lato(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.w700)),
+                                    ],
+                                  ),
+                            controller.data.breedSize == null
+                                ? Container()
+                                : SizedBox(
+                                    height: 5,
+                                  ),
+                            controller.data.breedSize == null
+                                ? Container()
+                                : Row(
+                                    children: [
+                                      Text("BREED SIZE  :  ",
+                                          style: GoogleFonts.lato(
+                                              fontSize: 14,
+                                              color: Colors.grey.shade600)),
+                                      Text("${controller.data.breedSize}",
+                                          style: GoogleFonts.lato(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.w700)),
+                                    ],
+                                  ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            controller.data.vegNonveg == null
+                                ? Container()
+                                : Row(
+                                    children: [
+                                      Text("VEG / NON VEG :  ",
+                                          style: GoogleFonts.lato(
+                                              fontSize: 14,
+                                              color: Colors.grey.shade600)),
+                                      Text("${controller.data.vegNonveg}",
+                                          style: GoogleFonts.lato(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.w700)),
+                                    ],
+                                  ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            controller.data.color == null
+                                ? Container()
+                                : Row(
+                                    children: [
+                                      Text("COLOR :  ",
+                                          style: GoogleFonts.lato(
+                                              fontSize: 14,
+                                              color: Colors.grey.shade600)),
+                                      Text("${controller.data.color}",
+                                          style: GoogleFonts.lato(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.w700)),
+                                    ],
+                                  ),
+                          ],
+                        )),
                 InkWell(
                   onTap: () {
                     controller.isOpen1.value = !controller.isOpen1.value;
@@ -663,29 +662,47 @@ class ViewProductView extends GetWidget<ViewProductController> {
                     ),
                   ),
                 ),
-                 controller.isOpen1.value == false
-                      ? Container()
-                      : Container(
-                          margin: EdgeInsets.only(left: 22),
-                          padding: EdgeInsets.all(5),
-                          width: MediaQuery.of(context).size.width,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("${controller.data.sellerId!.companyName}",
-                                  style: GoogleFonts.lato(fontSize: 16)),
-                              Text("${controller.data.sellerId!.address}",
-                                  style: GoogleFonts.lato(
-                                      fontSize: 14, color: Colors.grey.shade600)),
-                            ],
-                          )),
-
+                controller.isOpen1.value == false
+                    ? Container()
+                    : Container(
+                        margin: EdgeInsets.only(left: 22),
+                        padding: EdgeInsets.all(5),
+                        width: MediaQuery.of(context).size.width,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("${controller.data.sellerId!.companyName}",
+                                style: GoogleFonts.lato(fontSize: 16)),
+                            Text("${controller.data.sellerId!.address}",
+                                style: GoogleFonts.lato(
+                                    fontSize: 14, color: Colors.grey.shade600)),
+                          ],
+                        )),
                 SizedBox(height: 30),
                 Container(
-                  margin: EdgeInsets.only(left: 10),
-                  alignment: Alignment.topLeft,
-                    child: Text("- YOU MIGHT ALSO LIKE",style: TextStyle(color: Colors.orangeAccent,fontSize: 20,fontWeight: FontWeight.bold),)),
-                Text("${controller.data.title}"),
+                    margin: EdgeInsets.only(left: 10),
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      "- YOU MIGHT ALSO LIKE",
+                      style: TextStyle(
+                          color: Colors.orangeAccent,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
+                    )),
+                // Container(child: Text(controller.mainProductList[0].sellerId.toString())),
+                GridView.builder(
+                  itemCount: 100,
+                  physics: NeverScrollableScrollPhysics()
+                  ,shrinkWrap: true,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 1),
+                  itemBuilder: (context, index) {
+                    return Text(
+                      index.toString(),
+                      style: TextStyle(color: Colors.black),
+                    );
+                  },
+                )
               ],
             ),
           ),
