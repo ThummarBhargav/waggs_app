@@ -18,6 +18,8 @@ import '../modules/product_list_screen/bindings/product_list_screen_binding.dart
 import '../modules/product_list_screen/views/product_list_screen_view.dart';
 import '../modules/singup_screen/bindings/singup_screen_binding.dart';
 import '../modules/singup_screen/views/singup_screen_view.dart';
+import '../modules/view-product/bindings/view_product_binding.dart';
+import '../modules/view-product/views/view_product_view.dart';
 
 part 'app_routes.dart';
 
@@ -52,11 +54,11 @@ class AppPages {
       page: () => const EmailScreenView(),
       binding: EmailScreenBinding(),
     ),
-    // GetPage(
-    //   name: _Paths.VIEW_PRODUCT,
-    //   page: () =>  ViewProductView(),
-    //   binding: ViewProductBinding(),
-    // ),
+    GetPage(
+      name: _Paths.VIEW_PRODUCT,
+      page: () =>  ViewProductView(),
+      binding: ViewProductBinding(),
+    ),
     // GetPage(
     //   name: _Paths.CATAGORY_PAGE,
     //   page: () => CatagoryPageView(),

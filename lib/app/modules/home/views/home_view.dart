@@ -267,6 +267,7 @@ class HomeView extends GetView<HomeController> {
                                                       .companyName ==
                                                   null
                                               ? Container(
+
                                                   child: Text(
                                                     "N/A",
                                                     style: TextStyle(
@@ -400,8 +401,9 @@ class HomeView extends GetView<HomeController> {
                                     elevation: 2,
                                     child: GestureDetector(
                                       onTap: () {
-                                        Get.to(ViewProductView(
-                                            controller.TopProductlist[index]));
+                                        // Get.to(ViewProductView(
+                                        //     controller.TopProductlist[index]));
+                                        Get.toNamed(Routes.VIEW_PRODUCT,arguments: controller.TopProductlist[index]);
                                       },
                                       child: Container(
                                         child: Column(

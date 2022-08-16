@@ -11,12 +11,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/constant/Container.dart';
 import 'package:waggs_app/app/modules/home/controllers/home_controller.dart';
 import '../../../Modal/TopSellingStore.dart';
+import '../controllers/view_product_controller.dart';
 
-class ViewProductView extends GetWidget<HomeController> {
-  Products0 data;
+class ViewProductView extends GetWidget<ViewProductController> {
+  // Products0 data;
 
   var dropdownItems;
-  ViewProductView(this.data);
+  // ViewProductView(this.data);
   @override
   CarouselController carouselController = CarouselController();
 
@@ -88,7 +89,7 @@ class ViewProductView extends GetWidget<HomeController> {
                             ),
                             child: Center(
                               child: Text(
-                                "Save ${data.discount!.toStringAsFixed(0)} %",
+                                "Save ${controller.data.discount!.toStringAsFixed(0)} %",
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
@@ -108,7 +109,7 @@ class ViewProductView extends GetWidget<HomeController> {
                             padding: const EdgeInsets.only(left: 8.0),
                             child: Obx(() => CachedNetworkImage(
                                 imageUrl: controller.url == ''
-                                    ? "${data.images![0]}"
+                                    ? "${controller.data.images![0]}"
                                     : "${controller.url}",
                                 imageBuilder: (context, imageProvider) =>
                                     Container(
@@ -140,7 +141,7 @@ class ViewProductView extends GetWidget<HomeController> {
                               padding:
                                   const EdgeInsets.only(right: 6.0, left: 6),
                               child: Text(
-                                "${data.title}",
+                                "${controller.data.title}",
                                 style: TextStyle(
                                     color: Colors.lightBlueAccent,
                                     fontWeight: FontWeight.bold,
@@ -151,7 +152,7 @@ class ViewProductView extends GetWidget<HomeController> {
                               padding: const EdgeInsets.only(
                                   right: 6.0, left: 6, top: 10),
                               child: Text(
-                                "${data.description}",
+                                "${controller.data.description}",
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
@@ -168,7 +169,7 @@ class ViewProductView extends GetWidget<HomeController> {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 6),
                                   child: RatingBarIndicator(
-                                    rating: data.rating!.toDouble(),
+                                    rating: controller.data.rating!.toDouble(),
                                     itemBuilder: (context, index) => Icon(
                                       Icons.star,
                                       color: Colors.amber,
@@ -179,10 +180,10 @@ class ViewProductView extends GetWidget<HomeController> {
                                   ),
                                 ),
                                 Text(
-                                  data.rating.toString(),
+                                  controller.data.rating.toString(),
                                   style: TextStyle(fontSize: 10),
                                 ),
-                                Text(" | ${data.ratedBy} Rating ",
+                                Text(" | ${controller.data.ratedBy} Rating ",
                                     style: TextStyle(fontSize: 10)),
                               ],
                             ),
@@ -194,7 +195,7 @@ class ViewProductView extends GetWidget<HomeController> {
                               child: Row(
                                 children: [
                                   Text(
-                                    "\u{20B9}${data.discountedPrice}.00",
+                                    "\u{20B9}${controller.data.discountedPrice}.00",
                                     style: TextStyle(fontSize: 12),
                                   ),
                                   Text(
@@ -202,7 +203,7 @@ class ViewProductView extends GetWidget<HomeController> {
                                     style: TextStyle(
                                         fontSize: 12, color: Colors.grey),
                                   ),
-                                  Text("${data.price}.00",
+                                  Text("${controller.data.price}.00",
                                       style: TextStyle(
                                           decoration:
                                               TextDecoration.lineThrough,
@@ -217,8 +218,8 @@ class ViewProductView extends GetWidget<HomeController> {
                             Padding(
                               padding: const EdgeInsets.only(left: 8.0),
                               child: Text(
-                                "You Save : \u{20B9}${data.price! - data.discountedPrice!}"
-                                "(${data.discount!.toStringAsFixed(0)}%)",
+                                "You Save : \u{20B9}${controller.data.price! - controller.data.discountedPrice!}"
+                                "(${controller.data.discount!.toStringAsFixed(0)}%)",
                                 style: TextStyle(
                                     color: Colors.orange, fontSize: 12),
                               ),
@@ -235,13 +236,13 @@ class ViewProductView extends GetWidget<HomeController> {
                   height: 110,
                   child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: data.images!.length,
+                      itemCount: controller.data.images!.length,
                       itemBuilder: (context, index) {
                         return Stack(
                           children: [
                             InkWell(
                               onTap: () {
-                                controller.url.value = data.images![index];
+                                controller.url.value = controller.data.images![index];
                               },
                               child: Container(
                                   margin: EdgeInsets.all(10),
@@ -252,7 +253,7 @@ class ViewProductView extends GetWidget<HomeController> {
                                   child: Image.network(
                                       width: 100,
                                       height: 100,
-                                      "${data.images![index]}")),
+                                      "${controller.data.images![index]}")),
                             )
                           ],
                         );
@@ -507,7 +508,7 @@ class ViewProductView extends GetWidget<HomeController> {
                                     style: GoogleFonts.lato(
                                         fontSize: 14,
                                         color: Colors.grey.shade600)),
-                                Text("${data.brand}",
+                                Text("${controller.data.brand}",
                                     style: GoogleFonts.lato(
                                         fontSize: 18,
                                         fontWeight: FontWeight.w700)),
@@ -516,7 +517,7 @@ class ViewProductView extends GetWidget<HomeController> {
                             SizedBox(
                               height: 5,
                             ),
-                            data.lifeStage == null
+                            controller.data.lifeStage == null
                                 ? Container()
                                 : Row(
                                     children: [
@@ -524,18 +525,18 @@ class ViewProductView extends GetWidget<HomeController> {
                                           style: GoogleFonts.lato(
                                               fontSize: 14,
                                               color: Colors.grey.shade600)),
-                                      Text("${data.lifeStage}",
+                                      Text("${controller.data.lifeStage}",
                                           style: GoogleFonts.lato(
                                               fontSize: 18,
                                               fontWeight: FontWeight.w700)),
                                     ],
                                   ),
-                            data.productType == null
+                            controller.data.productType == null
                                 ? Container()
                                 : SizedBox(
                                     height: 5,
                                   ),
-                            data.productType == null
+                            controller.data.productType == null
                                 ? Container()
                                 : Row(
                                     children: [
@@ -543,18 +544,18 @@ class ViewProductView extends GetWidget<HomeController> {
                                           style: GoogleFonts.lato(
                                               fontSize: 14,
                                               color: Colors.grey.shade600)),
-                                      Text("${data.productType}",
+                                      Text("${controller.data.productType}",
                                           style: GoogleFonts.lato(
                                               fontSize: 18,
                                               fontWeight: FontWeight.w700)),
                                     ],
                                   ),
-                            data.flavor == null
+                            controller.data.flavor == null
                                 ? Container()
                                 : SizedBox(
                                     height: 5,
                                   ),
-                            data.flavor == null
+                            controller.data.flavor == null
                                 ? Container()
                                 : Row(
                                     children: [
@@ -562,18 +563,18 @@ class ViewProductView extends GetWidget<HomeController> {
                                           style: GoogleFonts.lato(
                                               fontSize: 14,
                                               color: Colors.grey.shade600)),
-                                      Text("${data.flavor}",
+                                      Text("${controller.data.flavor}",
                                           style: GoogleFonts.lato(
                                               fontSize: 18,
                                               fontWeight: FontWeight.w700)),
                                     ],
                                   ),
-                            data.breedSize == null
+                            controller.data.breedSize == null
                                 ? Container()
                                 : SizedBox(
                                     height: 5,
                                   ),
-                            data.breedSize == null
+                            controller.data.breedSize == null
                                 ? Container()
                                 : Row(
                                     children: [
@@ -581,7 +582,7 @@ class ViewProductView extends GetWidget<HomeController> {
                                           style: GoogleFonts.lato(
                                               fontSize: 14,
                                               color: Colors.grey.shade600)),
-                                      Text("${data.breedSize}",
+                                      Text("${controller.data.breedSize}",
                                           style: GoogleFonts.lato(
                                               fontSize: 18,
                                               fontWeight: FontWeight.w700)),
@@ -590,7 +591,7 @@ class ViewProductView extends GetWidget<HomeController> {
                             SizedBox(
                               height: 5,
                             ),
-                            data.vegNonveg == null
+                            controller.data.vegNonveg == null
                                 ? Container()
                                 : Row(
                                     children: [
@@ -598,7 +599,7 @@ class ViewProductView extends GetWidget<HomeController> {
                                           style: GoogleFonts.lato(
                                               fontSize: 14,
                                               color: Colors.grey.shade600)),
-                                      Text("${data.vegNonveg}",
+                                      Text("${controller.data.vegNonveg}",
                                           style: GoogleFonts.lato(
                                               fontSize: 18,
                                               fontWeight: FontWeight.w700)),
@@ -607,7 +608,7 @@ class ViewProductView extends GetWidget<HomeController> {
                             SizedBox(
                               height: 5,
                             ),
-                            data.color == null
+                            controller.data.color == null
                                 ? Container()
                                 : Row(
                                     children: [
@@ -615,7 +616,7 @@ class ViewProductView extends GetWidget<HomeController> {
                                           style: GoogleFonts.lato(
                                               fontSize: 14,
                                               color: Colors.grey.shade600)),
-                                      Text("${data.color}",
+                                      Text("${controller.data.color}",
                                           style: GoogleFonts.lato(
                                               fontSize: 18,
                                               fontWeight: FontWeight.w700)),
@@ -672,9 +673,9 @@ class ViewProductView extends GetWidget<HomeController> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("${data.sellerId!.companyName}",
+                            Text("${controller.data.sellerId!.companyName}",
                                 style: GoogleFonts.lato(fontSize: 16)),
-                            Text("${data.sellerId!.address}",
+                            Text("${controller.data.sellerId!.address}",
                                 style: GoogleFonts.lato(
                                     fontSize: 14, color: Colors.grey.shade600)),
                           ],
@@ -685,7 +686,7 @@ class ViewProductView extends GetWidget<HomeController> {
                 margin: EdgeInsets.only(left: 10),
                 alignment: Alignment.topLeft,
                   child: Text("- YOU MIGHT ALSO LIKE",style: TextStyle(color: Colors.orangeAccent,fontSize: 20,fontWeight: FontWeight.bold),)),
-              Text("${data.title}"),
+              Text("${controller.data.title}"),
             ],
           ),
         ),

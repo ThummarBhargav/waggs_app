@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/modules/view-product/views/view_product_view.dart';
+import 'package:waggs_app/app/routes/app_pages.dart';
 
 import '../../../constant/SizeConstant.dart';
 import '../controllers/product_list_screen_controller.dart';
@@ -76,7 +77,8 @@ class _SubCategoryWidgetState extends State<SubCategoryWidget> {
                                   elevation: 2,
                                   child: GestureDetector(
                                     onTap: () {
-                                      Get.to(ViewProductView(controller.mainProductList[index]));
+                                      // Get.to(ViewProductView(controller.mainProductList[index]))
+                                      Get.toNamed(Routes.VIEW_PRODUCT,arguments: controller.mainProductList[index]);
                                     },
                                     child: Container(
                                       child: Column(
