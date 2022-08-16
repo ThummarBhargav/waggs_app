@@ -399,7 +399,7 @@ class HomeView extends GetView<HomeController> {
                                     child: GestureDetector(
                                       onTap: () {
                                         Get.to(ViewProductView(
-                                            controller.mainProductList[index]));
+                                            controller.TopProductlist[index]));
                                       },
                                       child: Container(
                                         child: Column(
@@ -564,7 +564,7 @@ class HomeView extends GetView<HomeController> {
                                                 ),
                                                 Container(
                                                   child: Text(
-                                                    "₹${controller.TopProductlist[index].discountedPrice!.toStringAsFixed(2)}",
+                                                    "₹${controller.TopProductlist[index].discountedPrice}",
                                                     style:
                                                         TextStyle(fontSize: 9),
                                                   ),
