@@ -157,7 +157,9 @@ class TopSellingStoreAllProductsView
                                               controller.isOp2.value = true;
                                               controller.SubCatagoryList[index].sId;
                                               print("SID : ${controller.SubCatagoryList[index].sId}");
-
+                                              controller.sidValues.value = controller.CatagoryList[index].sId!;
+                                              print("${controller.sidValues.value}");
+                                              controller.isOp2.refresh();
                                             },
                                             value: controller.CatagoryList[index].name,
                                             groupValue: controller.radioGValues.value,);
@@ -242,7 +244,9 @@ class TopSellingStoreAllProductsView
                                                   controller.radioGValues1.value!=null?controller.isOp3.value==true:false;
                                                   controller.isOp3.value = true;
                                                   controller.SubCatagoryList[index].sId;
-                                                  print("SID : ${controller.SubCatagoryList[index].sId}");
+                                                  print("SID1 : ${controller.SubCatagoryList[index].sId}");
+                                                  controller.subSidValues.value = controller.SubCatagoryList[index].sId!;
+                                                  print("${controller.subSidValues.value}");
                                                 },
                                                 value: controller.SubCatagoryList[index].name,
                                                 groupValue: controller.radioGValues1.value,);
