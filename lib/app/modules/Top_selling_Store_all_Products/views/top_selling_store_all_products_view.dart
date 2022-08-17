@@ -159,16 +159,23 @@ class TopSellingStoreAllProductsView
                                               print("SID : ${controller.SubCatagoryList[index].sId}");
                                               controller.sidValues.value = controller.CatagoryList[index].sId!;
                                               print("${controller.sidValues.value}");
-                                              controller.isOp2.refresh();
+                                              controller.mainProductList.forEach((element) {
+                                                if(element.category!.sId==controller.CatagoryList[index].sId
+                                                    && element.subCategory!.sId==controller.SubCatagoryList[index].sId
+                                                )
+                                                {
+                                                  controller.productList.add(element);
+                                                }
+                                              });
                                             },
-                                            value: controller.CatagoryList[index].name,
+                                            value: controller.mainProductList[index].category!.name,
                                             groupValue: controller.radioGValues.value,);
                                         }),
                                       ),
                                       Container(
                                         margin: EdgeInsets.only(left: 20, top: 8),
                                         child: Text(
-                                          "${controller.CatagoryList[index].name}",
+                                          "${controller.productList[index].category!.name}",
                                           style: GoogleFonts.raleway(
                                               fontSize: 16,
                                               color: Colors.black
@@ -230,7 +237,7 @@ class TopSellingStoreAllProductsView
                                   height: 230,
                                   child: ListView.builder(
                                     physics: NeverScrollableScrollPhysics(),
-                                    itemCount: controller.SubCatagoryList.length,
+                                    itemCount: controller.mainProductList.length,
                                     itemBuilder: (context, index) {
                                       return Row(
                                         children: [
@@ -244,18 +251,16 @@ class TopSellingStoreAllProductsView
                                                   controller.radioGValues1.value!=null?controller.isOp3.value==true:false;
                                                   controller.isOp3.value = true;
                                                   controller.SubCatagoryList[index].sId;
-                                                  print("SID1 : ${controller.SubCatagoryList[index].sId}");
-                                                  controller.subSidValues.value = controller.SubCatagoryList[index].sId!;
-                                                  print("${controller.subSidValues.value}");
+                                                  controller.productList.clear();
                                                 },
-                                                value: controller.SubCatagoryList[index].name,
+                                                value: controller.productList[index].subCategory!.name,
                                                 groupValue: controller.radioGValues1.value,);
                                             }),
                                           ),
                                           Container(
                                             margin: EdgeInsets.only(top: 8),
                                             child: Text(
-                                              "${controller.SubCatagoryList[index].name}",
+                                              "${controller.productList[index].category!.name}",
                                               style: GoogleFonts.raleway(
                                                   fontSize: 16,
                                                   color: Colors.black
@@ -318,7 +323,7 @@ class TopSellingStoreAllProductsView
                                   height: 230,
                                   child: ListView.builder(
                                     physics: NeverScrollableScrollPhysics(),
-                                    itemCount: controller.SubCatagoryList.length,
+                                    itemCount: controller.mainProductList.length,
                                     itemBuilder: (context, index) {
                                       return Row(
                                         children: [
@@ -330,7 +335,7 @@ class TopSellingStoreAllProductsView
                                                   controller.radioGValues2.value =
                                                   value as String;
                                                 },
-                                                value: controller.SubCatagoryList[index].name,
+                                                value: controller.mainProductList[index].subCategory!.name,
                                                 groupValue: controller.radioGValues2.value,);
                                             }),
                                           ),
