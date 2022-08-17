@@ -317,14 +317,15 @@ class TopSellingStoreAllProductsView
                                 .of(context)
                                 .size
                                 .width,
+                            height: MediaQuery.of(context).size.height,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Container(
                                   height: 230,
                                   child: ListView.builder(
-                                    physics: NeverScrollableScrollPhysics(),
-                                    itemCount: controller.mainProductList.length,
+                                    // physics: NeverScrollableScrollPhysics(),
+                                    itemCount: controller.subData[0].fields![0].values!.length,
                                     itemBuilder: (context, index) {
                                       return Row(
                                         children: [
@@ -335,15 +336,16 @@ class TopSellingStoreAllProductsView
                                                 onChanged: (value) {
                                                   controller.radioGValues2.value =
                                                   value as String;
+                                                //  print(controller.subData[0].fields![0].values!.length);
                                                 },
-                                                value: controller.mainProductList[index].subCategory!.name,
+                                                value: controller.subData[index].fields![index].id,
                                                 groupValue: controller.radioGValues2.value,);
                                             }),
                                           ),
                                           Container(
                                             margin: EdgeInsets.only(top: 8),
                                             child: Text(
-                                              "Brands",
+                                              controller.subData[index].fields![index].values![index].toString(),
                                               style: GoogleFonts.raleway(
                                                   fontSize: 16,
                                                   color: Colors.black

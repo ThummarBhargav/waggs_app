@@ -28,6 +28,7 @@ class TopSellingStoreAllProductsController extends GetxController {
   SubCategorymodel subCategorymodel = SubCategorymodel();
   CategoryModel categoryModel = CategoryModel();
   RxList<SubCategoryData> subData = RxList<SubCategoryData>([]);
+  RxList<SubCategoryData> Brand = RxList<SubCategoryData>([]);
   RxList<CategoryData> CatagoryList = RxList<CategoryData>([]);
   RxString radioGValues = "".obs;
   RxString radioGValues1 = "".obs;
