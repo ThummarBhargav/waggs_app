@@ -37,6 +37,7 @@ class HomeController extends GetxController {
   void onInit() {
     AllCategory();
     SubCategory();
+    bannerAllProduct();
     TopSellingStoreApi();
     TopSellingProductApi();
     super.onInit();
