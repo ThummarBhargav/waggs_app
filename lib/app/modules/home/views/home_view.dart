@@ -370,7 +370,6 @@ class HomeView extends GetView<HomeController> {
                               ArgumentConstant.TopProductlist:
                                   controller.TopProductlist,
                             });
-                            //Get.to(ProductAllView(TopProductlist: controller.TopProductlist));
                           },
                           child: Container(
                             margin: EdgeInsets.only(right: 23, bottom: 10),
