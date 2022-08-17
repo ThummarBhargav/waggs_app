@@ -18,6 +18,7 @@ class TopSellingStoreAllProductsController extends GetxController {
   SfRangeValues values1 = const SfRangeValues(0, 100);
   RxBool isOp = false.obs;
   RxBool isOp1 = false.obs;
+  RxBool isOp2 = false.obs;
   RxList<SubCategoryData> SubCatagoryList = RxList<SubCategoryData>([]);
   SubCategorymodel subCategorymodel = SubCategorymodel();
   CategoryModel categoryModel = CategoryModel();

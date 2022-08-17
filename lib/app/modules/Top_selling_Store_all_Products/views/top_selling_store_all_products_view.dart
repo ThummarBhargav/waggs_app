@@ -39,7 +39,7 @@ class TopSellingStoreAllProductsView
                     ),
                     InkWell(
                       onTap: () {
-
+                        controller.radioGValues.close();
                       },
                       child: Container(
                         child: Text("Clear All",
@@ -118,7 +118,7 @@ class TopSellingStoreAllProductsView
                           controller.isOp.value == false ? Icon(
                             Icons.keyboard_arrow_down_outlined,) :
                           Icon(Icons.keyboard_arrow_up_sharp,),)
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -150,6 +150,11 @@ class TopSellingStoreAllProductsView
                                     onChanged: (value) {
                                       controller.radioGValues.value =
                                       value as String;
+                                      controller.radioGValues.value!=null?controller.isOp2.value==true:false;
+                                      controller.isOp2.value = true;
+                                      controller.SubCatagoryList[index].sId;
+                                      print("SID : ${controller.SubCatagoryList[index].sId}");
+
                                     },
                                     value: controller.CatagoryList[index].name,
                                     groupValue: controller.radioGValues.value,);
@@ -163,7 +168,8 @@ class TopSellingStoreAllProductsView
                                       fontSize: 18,
                                       color: Colors.black
                                   ),),
-                              )
+                              ),
+
                             ],
                           );
                         },),
@@ -172,6 +178,88 @@ class TopSellingStoreAllProductsView
                 ),
               )
               ),
+              Obx(() => controller.isOp2.value == false ? Container():InkWell(
+                onTap: () {
+                  controller.isOp1.value = !controller.isOp1.value;
+                  print(controller.isOp1.value);
+                },
+                child: Container(
+                  height: 50,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(left: 20),
+                        child: Text("SubCategory",
+                          style: GoogleFonts.raleway(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      Container(
+                          margin: EdgeInsets.only(right: 20),
+                          child: Obx(() =>
+                          controller.isOp1.value == false ? Icon(
+                            Icons.keyboard_arrow_down_outlined,) :
+                          Icon(Icons.keyboard_arrow_up_sharp,),)
+                      ),
+                    ],
+                  ),
+                ),
+              ),),
+              Obx(() => controller.isOp1.value == false ? Container():
+              Column(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(left: 22),
+                    padding: EdgeInsets.all(5),
+                    width: MediaQuery
+                        .of(context)
+                        .size
+                        .width,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          height: 210,
+                          child: ListView.builder(
+                            physics: NeverScrollableScrollPhysics(),
+                            itemCount: controller.SubCatagoryList.length,
+                            itemBuilder: (context, index) {
+                              return Row(
+                                children: [
+                                  Container(
+                                    margin: EdgeInsets.only(top: 8),
+                                    child: Obx(() {
+                                      return Radio(
+                                        onChanged: (value) {
+                                          controller.radioGValues.value =
+                                          value as String;
+                                        },
+                                        value: controller.SubCatagoryList[index].name,
+                                        groupValue: controller.radioGValues.value,);
+                                    }),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.only(left: 20, top: 8),
+                                    child: Text(
+                                      "${controller.SubCatagoryList[index].name}",
+                                      style: GoogleFonts.raleway(
+                                          fontSize: 18,
+                                          color: Colors.black
+                                      ),),
+                                  )
+                                ],
+                              );
+                            },),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              )
+              )
             ],
           ),
         ),
