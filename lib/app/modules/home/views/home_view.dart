@@ -155,28 +155,39 @@ class HomeView extends GetView<HomeController> {
                     SizedBox(
                       height: 40,
                     ),
-                    // Row(
-                    //   children: List.generate(controller.bannerList.length, ((index) {
-                    //     return
-                    //     CarouselSlider(
-                    //       items: [
-                    //         Image.network(width: 160,height:160,
-                    //             "${controller.bannerList[index].image}"),
-                    //       ],
-                    //       options: CarouselOptions(
-                    //         autoPlay: true,
-                    //       ),);
-                    //         // Image.network(width: 160,height:160,
-                    //         //     "${controller.bannerList[index].image}"),
-                    //   }))
-                    // ),
+                    Row(
+                      children: List.generate(controller.bannerList.length, ((index) {
+                        print('Image:=>${controller.bannerList[index].image}');
+                      // return  CarouselSlider.builder(
+                      //     itemCount: carouselimages.length,
+                      //     itemBuilder: ( context,  itemIndex) => Container(
+                      //       child: Image.asset(
+                      //         carouselimages[itemIndex],
+                      //         fit: BoxFit.fill,
+                      //         width: double.infinity,
+                      //       ),
+                      //     ), options: null,
+                      //   );
+                        // return CarouselSlider(
+                        //   items: 3
+                        //     Image.network(width: 100,height:100,
+                        //         "${controller.bannerList[index].image}"),
+                        //   ,
+                        //   options: CarouselOptions(
+                        //     height: 100,
+                        //     autoPlay: true,
+                        //   ),);
+                            // Image.network(width: 160,height:160,
+                            //     "${controller.bannerList[index].image}"),
+                      }))
+                    ),
 
-                     Row(
-                                          children: [
-                                            Expanded(child: Image.asset("assets/poster.JPG"))
-                                          ],
-                                        ),
-                    SizedBox(
+                    //  Row(
+                    //                       children: [
+                    //                         Expanded(child: Image.asset("assets/poster.JPG"))
+                    //                       ],
+                    //                     ),
+                     SizedBox(
                       height: 40,
                     ),
                     Row(
