@@ -9,6 +9,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   get: 4.6.5
   google_fonts:
+  get_storage: ^2.0.3
   otp_text_field:
   cached_network_image:
   syncfusion_flutter_sliders:

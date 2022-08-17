@@ -844,6 +844,7 @@ class TopSellingStoreAllProductsView
                                             fontSize: 10),
                                       ),
                                     ),
+                                    SizedBox(width: 5,),
                                     RatingBarIndicator(
                                       rating: double.parse(
                                           controller
@@ -858,7 +859,8 @@ class TopSellingStoreAllProductsView
                                             color: Colors.amber,
                                           ),
                                       itemCount: 5,
-                                      itemSize: 15.0,
+                                      itemPadding: EdgeInsets.all(0),
+                                      itemSize: 10.0,
                                       direction:
                                       Axis.horizontal,
                                     ),

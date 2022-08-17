@@ -6,8 +6,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/constant/ConstantUrl.dart';
 import 'package:waggs_app/app/modules/Catagory_Page/views/catagory_page_view.dart';
-import 'package:waggs_app/app/modules/view-product/views/view_product_view.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
+import 'package:waggs_app/main.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -28,12 +28,12 @@ class HomeView extends GetView<HomeController> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      SizedBox(
-                        width: 10,
-                      ),
                       Expanded(
                         child: Row(
                           children: [
+                            SizedBox(
+                              width: 10,
+                            ),
                             InkWell(
                               onTap: () {},
                               child: Container(
@@ -49,7 +49,7 @@ class HomeView extends GetView<HomeController> {
                             ),
                             Container(
                               height: 40,
-                              width: 212,
+                              width: 180,
                               margin: EdgeInsets.only(left: 15, right: 15),
                               padding: EdgeInsets.only(bottom: 10
                                   // left: 10,
@@ -78,12 +78,28 @@ class HomeView extends GetView<HomeController> {
                                 ),
                               ),
                             ),
-                            IconButton(
-                                onPressed: () {},
-                                icon: Icon(
-                                  Icons.menu,
-                                  color: Colors.grey[500],
-                                ))
+                            Container(
+                              margin: EdgeInsets.only(bottom: 20),
+                              height: 20,
+                              width: 20,
+                              child: IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.menu,
+                                    color: Colors.grey[500],
+                                    size: 20,
+                                  )),
+                            ),
+                            SizedBox(width: 20,),
+                            Container(
+                              margin: EdgeInsets.only(bottom: 20),
+                              height: 20,
+                              width: 20,
+                              child: IconButton(onPressed: () {
+
+                              }, icon:Icon(Icons.shopping_cart,size: 20,
+                              color: Colors.grey[500],)),
+                            ),
                           ],
                         ),
                       ),
@@ -621,7 +637,11 @@ class HomeView extends GetView<HomeController> {
                                               height: 10,
                                             ),
                                             InkWell(
-                                              onTap: () {},
+                                              onTap: () {
+                                                    print(box.read(ArgumentConstant.token));
+                                                    print(controller.TopProductlist[index].sId);
+                                                    controller.addToCart(data: controller.TopProductlist[index]);
+                                              },
                                               child: Container(
                                                 width: 130,
                                                 height: 35,

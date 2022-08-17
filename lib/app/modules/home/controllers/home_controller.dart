@@ -28,7 +28,7 @@ class HomeController extends GetxController {
   RxList<Sellers> SellersList = RxList<Sellers>([]);
   List<String> imageList = ['assets/category01.jpg','assets/category02.jpg',
     'assets/category03.jpg','assets/category04.jpg','assets/category05.jpg'].obs;
-
+  List respons =[];
   final count = 0.obs;
   RxBool isOpen = false.obs;
   RxBool isOpen1 = false.obs;
@@ -161,4 +161,28 @@ class HomeController extends GetxController {
       }
     }
   }
-}
+
+  Future<void> addToCart({required Products0 data}) async {
+    try{
+      var url = Uri.parse(baseUrl+ApiConstant.Cart);
+      var response = await http.post(url, body: {
+        'productId': '${data.sId}',
+      }
+      );
+      respons.add(response.body);
+      print(jsonDecode(response.body).runtimeType);
+      print('Response status: ${response.statusCode}');
+      print('Response body: ${response.body}');
+      if(response.statusCode==200){
+
+      }
+      else{
+        Get.snackbar("Error", response.body,snackPosition: SnackPosition.BOTTOM);
+      }
+    }catch(e){
+
+      Get.snackbar("Error", e.toString(),snackPosition: SnackPosition.BOTTOM,);
+
+    }
+  }
+ }
