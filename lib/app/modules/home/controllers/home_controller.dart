@@ -18,6 +18,7 @@ class HomeController extends GetxController {
   bannerModels bannerModel = bannerModels();
   StoreModule storeModule = StoreModule();
   SubCategorymodel subCategorymodel = SubCategorymodel();
+  GlobalKey<ScaffoldState> key = GlobalKey<ScaffoldState>();
   RxList<Products> mainProductList = RxList<Products>([]);
   RxList<Products> productList = RxList<Products>([]);
   RxList<CategoryData> CatagoryList = RxList<CategoryData>([]);

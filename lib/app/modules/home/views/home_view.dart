@@ -7,7 +7,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/constant/ConstantUrl.dart';
 import 'package:waggs_app/app/modules/Catagory_Page/views/catagory_page_view.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
-import 'package:waggs_app/main.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -17,6 +16,7 @@ class HomeView extends GetView<HomeController> {
     return SafeArea(
       child: Obx(() {
         return Scaffold(
+          key: controller.key,
             body: Column(
           children: [
             Container(
@@ -28,12 +28,12 @@ class HomeView extends GetView<HomeController> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
+                      SizedBox(
+                        width: 10,
+                      ),
                       Expanded(
                         child: Row(
                           children: [
-                            SizedBox(
-                              width: 10,
-                            ),
                             InkWell(
                               onTap: () {},
                               child: Container(
@@ -49,7 +49,7 @@ class HomeView extends GetView<HomeController> {
                             ),
                             Container(
                               height: 40,
-                              width: 180,
+                              width: 212,
                               margin: EdgeInsets.only(left: 15, right: 15),
                               padding: EdgeInsets.only(bottom: 10
                                   // left: 10,
@@ -78,28 +78,12 @@ class HomeView extends GetView<HomeController> {
                                 ),
                               ),
                             ),
-                            Container(
-                              margin: EdgeInsets.only(bottom: 20),
-                              height: 20,
-                              width: 20,
-                              child: IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(
-                                    Icons.menu,
-                                    color: Colors.grey[500],
-                                    size: 20,
-                                  )),
-                            ),
-                            SizedBox(width: 20,),
-                            Container(
-                              margin: EdgeInsets.only(bottom: 20),
-                              height: 20,
-                              width: 20,
-                              child: IconButton(onPressed: () {
-
-                              }, icon:Icon(Icons.shopping_cart,size: 20,
-                              color: Colors.grey[500],)),
-                            ),
+                            IconButton(
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.menu,
+                                  color: Colors.grey[500],
+                                ))
                           ],
                         ),
                       ),
@@ -171,40 +155,33 @@ class HomeView extends GetView<HomeController> {
                     SizedBox(
                       height: 40,
                     ),
-                    Row(
-                      children: List.generate(controller.bannerList.length, ((index) {
-                        return Container();
-                        print('Image:=>${controller.bannerList[index].image}');
-                        return Container();
-                      // return  CarouselSlider.builder(
-                      //     itemCount: carouselimages.length,
-                      //     itemBuilder: ( context,  itemIndex) => Container(
-                      //       child: Image.asset(
-                      //         carouselimages[itemIndex],
-                      //         fit: BoxFit.fill,
-                      //         width: double.infinity,
-                      //       ),
-                      //     ), options: null,
-                      //   );
-                        // return CarouselSlider(
-                        //   items: 3
-                        //     Image.network(width: 100,height:100,
-                        //         "${controller.bannerList[index].image}"),
-                        //   ,
-                        //   options: CarouselOptions(
-                        //     height: 100,
-                        //     autoPlay: true,
-                        //   ),);
-                            // Image.network(width: 160,height:160,
-                            //     "${controller.bannerList[index].image}"),
-                      }))
-                    ),
+                     Container(
+                       padding: EdgeInsets.only(top: 15,bottom: 15),
+                       // color: Colors.greenAccent,
+                       child: CarouselSlider.builder(
+                         itemCount: controller.bannerList.length,
+                         options: CarouselOptions(
+                           height: 250,
+                                  enlargeCenterPage: true,
+                                  autoPlay: true,
+                                  autoPlayInterval: Duration(seconds: 3),
+                                  reverse: false,
+                                  aspectRatio: 5.0,
+                                  ),
+                         itemBuilder: (BuildContext context, int index, int realIndex) {
+                           return Container(
+                             color: Colors.black,
+                             child:     Image.network(width:400,fit: BoxFit.fill,
+                                  "${controller.bannerList[index].image}"),
+                           );
 
-                    //  Row(
-                    //                       children: [
-                    //                         Expanded(child: Image.asset("assets/poster.JPG"))
-                    //                       ],
-                    //                     ),
+                         },),
+                     ),
+                     // Row(
+                     //                      children: [
+                     //                        Expanded(child: Image.asset("assets/poster.JPG"))
+                     //                      ],
+                     //                    ),
                      SizedBox(
                       height: 40,
                     ),
@@ -640,9 +617,7 @@ class HomeView extends GetView<HomeController> {
                                             ),
                                             InkWell(
                                               onTap: () {
-                                                    print(box.read(ArgumentConstant.token));
-                                                    print(controller.TopProductlist[index].sId);
-                                                    controller.addToCart(data: controller.TopProductlist[index]);
+                                                controller.addToCart(data: controller.TopProductlist[index]);
                                               },
                                               child: Container(
                                                 width: 130,
@@ -707,6 +682,12 @@ class HomeView extends GetView<HomeController> {
           ],
         ));
       }),
+    );
+  }
+  drawer()
+  {
+    return Drawer(
+      child: ListView(),
     );
   }
 }
