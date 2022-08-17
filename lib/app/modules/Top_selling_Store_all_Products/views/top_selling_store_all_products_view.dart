@@ -159,23 +159,16 @@ class TopSellingStoreAllProductsView
                                               print("SID : ${controller.SubCatagoryList[index].sId}");
                                               controller.sidValues.value = controller.CatagoryList[index].sId!;
                                               print("${controller.sidValues.value}");
-                                              controller.mainProductList.forEach((element) {
-                                                if(element.category!.sId==controller.CatagoryList[index].sId
-                                                    && element.subCategory!.sId==controller.SubCatagoryList[index].sId
-                                                )
-                                                {
-                                                  controller.productList.add(element);
-                                                }
-                                              });
+                                              controller.isOp2.refresh();
                                             },
-                                            value: controller.mainProductList[index].category!.name,
+                                            value: controller.CatagoryList[index].name,
                                             groupValue: controller.radioGValues.value,);
                                         }),
                                       ),
                                       Container(
                                         margin: EdgeInsets.only(left: 20, top: 8),
                                         child: Text(
-                                          "${controller.productList[index].category!.name}",
+                                          "${controller.CatagoryList[index].name}",
                                           style: GoogleFonts.raleway(
                                               fontSize: 16,
                                               color: Colors.black
@@ -250,17 +243,17 @@ class TopSellingStoreAllProductsView
                                                   value as String;
                                                   controller.radioGValues1.value!=null?controller.isOp3.value==true:false;
                                                   controller.isOp3.value = true;
-                                                  controller.SubCatagoryList[index].sId;
+                                                  controller.CatagoryList[index].sId;
                                                   controller.productList.clear();
                                                 },
-                                                value: controller.productList[index].subCategory!.name,
+                                                value: controller.SubCatagoryList[index].name,
                                                 groupValue: controller.radioGValues1.value,);
                                             }),
                                           ),
                                           Container(
                                             margin: EdgeInsets.only(top: 8),
                                             child: Text(
-                                              "${controller.productList[index].category!.name}",
+                                              "${controller.SubCatagoryList[index].name}",
                                               style: GoogleFonts.raleway(
                                                   fontSize: 16,
                                                   color: Colors.black
