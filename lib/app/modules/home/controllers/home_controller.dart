@@ -5,6 +5,7 @@ import 'package:waggs_app/app/Modal/CategoryModel.dart';
 import 'package:waggs_app/app/Modal/SubCategoryModel.dart';
 import 'package:waggs_app/app/Modal/TopSellingStore.dart';
 import 'package:waggs_app/app/constant/sizeConstant.dart';
+import '../../../../main.dart';
 import '../../../Modal/GetAllProductModule.dart';
 import '../../../Modal/bannerAllProductModel.dart';
 import '../../../constant/ConstantUrl.dart';
@@ -168,6 +169,8 @@ class HomeController extends GetxController {
       var url = Uri.parse(baseUrl+ApiConstant.Cart);
       var response = await http.post(url, body: {
         'productId': '${data.sId}',
+      },headers: {
+        'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
       }
       );
       respons.add(response.body);

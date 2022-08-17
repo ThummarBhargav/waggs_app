@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../routes/app_pages.dart';
 import '../controllers/product_list_screen_controller.dart';
 
 
@@ -128,7 +129,9 @@ class _TopSellingStoreWidgetState extends State<TopSellingStoreWidget> {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: InkWell(
-                                  onTap: () {},
+                                  onTap: () {
+                                    Get.toNamed(Routes.TOP_SELLING_STORE_ALL_PRODUCTS,arguments: controller.sellerList[index]);
+                                  },
                                   child: Container(
                                     width: 130,
                                     height: 35,
