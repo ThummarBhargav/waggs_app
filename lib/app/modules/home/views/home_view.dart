@@ -173,6 +173,7 @@ class HomeView extends GetView<HomeController> {
                     ),
                     Row(
                       children: List.generate(controller.bannerList.length, ((index) {
+                        return Container();
                         print('Image:=>${controller.bannerList[index].image}');
                       // return  CarouselSlider.builder(
                       //     itemCount: carouselimages.length,
