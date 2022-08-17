@@ -5,7 +5,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/constant/Container.dart';
@@ -154,7 +153,7 @@ class ViewProductView extends GetWidget<ViewProductController> {
                                   overflow: TextOverflow.ellipsis,
                                   style: GoogleFonts.lato(
                                       color: Colors.grey.shade500,
-                                      fontWeight: FontWeight.w300,
+                                      fontWeight: FontWeight.w400,
                                       fontSize: 12),
                                 ),
                               ),
