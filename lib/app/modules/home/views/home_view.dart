@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
@@ -170,11 +171,27 @@ class HomeView extends GetView<HomeController> {
                     SizedBox(
                       height: 40,
                     ),
-                    Row(
-                      children: [
-                        Expanded(child: Image.asset("assets/poster.JPG"))
-                      ],
-                    ),
+                    // Row(
+                    //   children: List.generate(controller.bannerList.length, ((index) {
+                    //     return
+                    //     CarouselSlider(
+                    //       items: [
+                    //         Image.network(width: 160,height:160,
+                    //             "${controller.bannerList[index].image}"),
+                    //       ],
+                    //       options: CarouselOptions(
+                    //         autoPlay: true,
+                    //       ),);
+                    //         // Image.network(width: 160,height:160,
+                    //         //     "${controller.bannerList[index].image}"),
+                    //   }))
+                    // ),
+
+                     Row(
+                                          children: [
+                                            Expanded(child: Image.asset("assets/poster.JPG"))
+                                          ],
+                                        ),
                     SizedBox(
                       height: 40,
                     ),

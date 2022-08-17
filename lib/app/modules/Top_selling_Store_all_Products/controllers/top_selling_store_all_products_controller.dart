@@ -19,11 +19,18 @@ class TopSellingStoreAllProductsController extends GetxController {
   RxBool isOp = false.obs;
   RxBool isOp1 = false.obs;
   RxBool isOp2 = false.obs;
+  RxBool isOp3 = false.obs;
+  RxBool isOp4 = false.obs;
+  RxBool isOp5 = false.obs;
+  RxBool isOp6 = false.obs;
   RxList<SubCategoryData> SubCatagoryList = RxList<SubCategoryData>([]);
   SubCategorymodel subCategorymodel = SubCategorymodel();
   CategoryModel categoryModel = CategoryModel();
   RxList<CategoryData> CatagoryList = RxList<CategoryData>([]);
   RxString radioGValues = "".obs;
+  RxString radioGValues1 = "".obs;
+  RxString radioGValues2 = "".obs;
+  RxString radioGValues3 = "".obs;
 
   @override
   void onInit() {

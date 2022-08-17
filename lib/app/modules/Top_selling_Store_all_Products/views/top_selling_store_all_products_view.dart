@@ -20,26 +20,26 @@ class TopSellingStoreAllProductsView
     return SafeArea(
       child: Scaffold(
         endDrawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
+          width: 270,
+          child: Column(
             children: [
               Container(
-                height: 100,
-                child: DrawerHeader(child: Row(
+                height: 80,
+                child: DrawerHeader(
+                    child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
                       alignment: Alignment.center,
                       child: Text("Filters",
                         style: GoogleFonts.raleway(
-                          fontSize: 20,
+                          fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
                     InkWell(
                       onTap: () {
-                        controller.radioGValues.close();
                       },
                       child: Container(
                         child: Text("Clear All",
@@ -54,212 +54,496 @@ class TopSellingStoreAllProductsView
                   ],
                 )),
               ),
-              ListTile(
-                title: Text("Price",
-                  style: GoogleFonts.raleway(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              SfRangeSlider(
-                min: 100,
-                max: 30000,
-                activeColor: Color.fromRGBO(32, 193, 244, 1),
-                showTicks: true,
-                numberFormat: NumberFormat("\$"),
-                onChanged: (value) {
-                  controller.values = value;
-                },
-                values: controller.values,
-              ),
-              ListTile(
-                title: Text("Discount",
-                  style: GoogleFonts.raleway(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              SfRangeSlider(
-                min: 0,
-                max: 100,
-                activeColor: Color.fromRGBO(32, 193, 244, 1),
-                showTicks: true,
-                numberFormat: NumberFormat("\$"),
-                onChanged: (value) {
-                  controller.values1 = value;
-                },
-                values: controller.values1,
-              ),
-              SizedBox(height: 30,),
-              InkWell(
-                onTap: () {
-                  controller.isOp.value = !controller.isOp.value;
-                  print(controller.isOp.value);
-                },
-                child: Container(
-                  height: 50,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
                     children: [
-                      Container(
-                        margin: EdgeInsets.only(left: 20),
-                        child: Text("Category",
+                      ListTile(
+                        title: Text("Price",
                           style: GoogleFonts.raleway(
-                            fontSize: 20,
+                            fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
-                      Container(
-                          margin: EdgeInsets.only(right: 20),
-                          child: Obx(() =>
-                          controller.isOp.value == false ? Icon(
-                            Icons.keyboard_arrow_down_outlined,) :
-                          Icon(Icons.keyboard_arrow_up_sharp,),)
+                      SfRangeSlider(
+                        min: 100,
+                        max: 30000,
+                        activeColor: Color.fromRGBO(32, 193, 244, 1),
+                        showTicks: true,
+                        numberFormat: NumberFormat("\$"),
+                        onChanged: (value) {
+                          controller.values = value;
+                        },
+                        values: controller.values,
                       ),
-                    ],
-                  ),
-                ),
-              ),
-              Obx(() =>
-              controller.isOp.value == false ?
-              Container() : Container(
-                margin: EdgeInsets.only(left: 22),
-                padding: EdgeInsets.all(5),
-                width: MediaQuery
-                    .of(context)
-                    .size
-                    .width,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      height: 210,
-                      child: ListView.builder(
-                        physics: NeverScrollableScrollPhysics(),
-                        itemCount: controller.CatagoryList.length,
-                        itemBuilder: (context, index) {
-                          return Row(
+                      ListTile(
+                        title: Text("Discount",
+                          style: GoogleFonts.raleway(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      SfRangeSlider(
+                        min: 0,
+                        max: 100,
+                        activeColor: Color.fromRGBO(32, 193, 244, 1),
+                        showTicks: true,
+                        numberFormat: NumberFormat("\$"),
+                        onChanged: (value) {
+                          controller.values1 = value;
+                        },
+                        values: controller.values1,
+                      ),
+                      SizedBox(height: 30,),
+                      InkWell(
+                        onTap: () {
+                          controller.isOp.value = !controller.isOp.value;
+                          print(controller.isOp.value);
+                        },
+                        child: Container(
+                          height: 50,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Container(
-                                margin: EdgeInsets.only(top: 8),
-                                child: Obx(() {
-                                  return Radio(
-                                    onChanged: (value) {
-                                      controller.radioGValues.value =
-                                      value as String;
-                                      controller.radioGValues.value!=null?controller.isOp2.value==true:false;
-                                      controller.isOp2.value = true;
-                                      controller.SubCatagoryList[index].sId;
-                                      print("SID : ${controller.SubCatagoryList[index].sId}");
-
-                                    },
-                                    value: controller.CatagoryList[index].name,
-                                    groupValue: controller.radioGValues.value,);
-                                }),
+                                margin: EdgeInsets.only(left: 20),
+                                child: Text("Category",
+                                  style: GoogleFonts.raleway(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                               ),
                               Container(
-                                margin: EdgeInsets.only(left: 20, top: 8),
-                                child: Text(
-                                  "${controller.CatagoryList[index].name}",
-                                  style: GoogleFonts.raleway(
-                                      fontSize: 18,
-                                      color: Colors.black
-                                  ),),
+                                  margin: EdgeInsets.only(right: 20),
+                                  child: Obx(() =>
+                                  controller.isOp.value == false ? Icon(
+                                    Icons.keyboard_arrow_down_outlined,) :
+                                  Icon(Icons.keyboard_arrow_up_sharp,),)
                               ),
-
                             ],
-                          );
-                        },),
-                    ),
-                  ],
-                ),
-              )
-              ),
-              Obx(() => controller.isOp2.value == false ? Container():InkWell(
-                onTap: () {
-                  controller.isOp1.value = !controller.isOp1.value;
-                  print(controller.isOp1.value);
-                },
-                child: Container(
-                  height: 50,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(left: 20),
-                        child: Text("SubCategory",
-                          style: GoogleFonts.raleway(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
-                      Container(
-                          margin: EdgeInsets.only(right: 20),
-                          child: Obx(() =>
-                          controller.isOp1.value == false ? Icon(
-                            Icons.keyboard_arrow_down_outlined,) :
-                          Icon(Icons.keyboard_arrow_up_sharp,),)
+                      Obx(() =>
+                      controller.isOp.value == false ?
+                      Container() : Container(
+                        margin: EdgeInsets.only(left: 22),
+                        padding: EdgeInsets.all(5),
+                        width: MediaQuery
+                            .of(context)
+                            .size
+                            .width,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 210,
+                              child: ListView.builder(
+                                physics: NeverScrollableScrollPhysics(),
+                                itemCount: controller.CatagoryList.length,
+                                itemBuilder: (context, index) {
+                                  return Row(
+                                    children: [
+                                      Container(
+                                        child: Obx(() {
+                                          return Radio(
+                                            activeColor: Color.fromRGBO(32, 193, 244, 1),
+                                            onChanged: (value) {
+                                              controller.radioGValues.value = value as String;
+                                              controller.radioGValues.value!=null?controller.isOp2.value==true:false;
+                                              controller.isOp2.value = true;
+                                              controller.SubCatagoryList[index].sId;
+                                              print("SID : ${controller.SubCatagoryList[index].sId}");
+
+                                            },
+                                            value: controller.CatagoryList[index].name,
+                                            groupValue: controller.radioGValues.value,);
+                                        }),
+                                      ),
+                                      Container(
+                                        margin: EdgeInsets.only(left: 20, top: 8),
+                                        child: Text(
+                                          "${controller.CatagoryList[index].name}",
+                                          style: GoogleFonts.raleway(
+                                              fontSize: 16,
+                                              color: Colors.black
+                                          ),),
+                                      ),
+
+                                    ],
+                                  );
+                                },),
+                            ),
+                          ],
+                        ),
+                      )
+                      ),
+                      Obx(() => controller.isOp2.value == false ? Container():InkWell(
+                        onTap: () {
+                          controller.isOp1.value = !controller.isOp1.value;
+                          print(controller.isOp1.value);
+                        },
+                        child: Container(
+                          height: 50,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                margin: EdgeInsets.only(left: 20),
+                                child: Text("SubCategory",
+                                  style: GoogleFonts.raleway(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                  margin: EdgeInsets.only(right: 20),
+                                  child: Obx(() =>
+                                  controller.isOp1.value == false ? Icon(
+                                    Icons.keyboard_arrow_down_outlined,) :
+                                  Icon(Icons.keyboard_arrow_up_sharp,),)
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),),
+                      Obx(() => controller.isOp1.value == false ? Container():
+                      Column(
+                        children: [
+                          Container(
+                            margin: EdgeInsets.only(left: 22),
+                            padding: EdgeInsets.all(5),
+                            width: MediaQuery
+                                .of(context)
+                                .size
+                                .width,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  height: 230,
+                                  child: ListView.builder(
+                                    physics: NeverScrollableScrollPhysics(),
+                                    itemCount: controller.SubCatagoryList.length,
+                                    itemBuilder: (context, index) {
+                                      return Row(
+                                        children: [
+                                          Container(
+                                            child: Obx(() {
+                                              return Radio(
+                                                activeColor: Color.fromRGBO(32, 193, 244, 1),
+                                                onChanged: (value) {
+                                                  controller.radioGValues1.value =
+                                                  value as String;
+                                                  controller.radioGValues1.value!=null?controller.isOp3.value==true:false;
+                                                  controller.isOp3.value = true;
+                                                  controller.SubCatagoryList[index].sId;
+                                                  print("SID : ${controller.SubCatagoryList[index].sId}");
+                                                },
+                                                value: controller.SubCatagoryList[index].name,
+                                                groupValue: controller.radioGValues1.value,);
+                                            }),
+                                          ),
+                                          Container(
+                                            margin: EdgeInsets.only(top: 8),
+                                            child: Text(
+                                              "${controller.SubCatagoryList[index].name}",
+                                              style: GoogleFonts.raleway(
+                                                  fontSize: 16,
+                                                  color: Colors.black
+                                              ),),
+                                          )
+                                        ],
+                                      );
+                                    },),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      )
+                      ),
+                      Obx(() => controller.isOp3.value == false ? Container():InkWell(
+                        onTap: () {
+                          controller.isOp4.value = !controller.isOp4.value;
+                          print(controller.isOp4.value);
+                        },
+                        child: Container(
+                          height: 50,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                margin: EdgeInsets.only(left: 20),
+                                child: Text("Brand",
+                                  style: GoogleFonts.raleway(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                  margin: EdgeInsets.only(right: 20),
+                                  child: Obx(() =>
+                                  controller.isOp4.value == false ? Icon(
+                                    Icons.keyboard_arrow_down_outlined,) :
+                                  Icon(Icons.keyboard_arrow_up_sharp,),)
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),),
+                      Obx(() => controller.isOp4.value == false ? Container():
+                      Column(
+                        children: [
+                          Container(
+                            margin: EdgeInsets.only(left: 22),
+                            padding: EdgeInsets.all(5),
+                            width: MediaQuery
+                                .of(context)
+                                .size
+                                .width,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  height: 230,
+                                  child: ListView.builder(
+                                    physics: NeverScrollableScrollPhysics(),
+                                    itemCount: controller.SubCatagoryList.length,
+                                    itemBuilder: (context, index) {
+                                      return Row(
+                                        children: [
+                                          Container(
+                                            child: Obx(() {
+                                              return Radio(
+                                                activeColor: Color.fromRGBO(32, 193, 244, 1),
+                                                onChanged: (value) {
+                                                  controller.radioGValues2.value =
+                                                  value as String;
+                                                },
+                                                value: controller.SubCatagoryList[index].name,
+                                                groupValue: controller.radioGValues2.value,);
+                                            }),
+                                          ),
+                                          Container(
+                                            margin: EdgeInsets.only(top: 8),
+                                            child: Text(
+                                              "Brands",
+                                              style: GoogleFonts.raleway(
+                                                  fontSize: 16,
+                                                  color: Colors.black
+                                              ),),
+                                          )
+                                        ],
+                                      );
+                                    },),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      )
+                      ),
+                      Obx(() => controller.isOp3.value == false ? Container():InkWell(
+                        onTap: () {
+                          controller.isOp5.value = !controller.isOp5.value;
+                          print(controller.isOp5.value);
+                        },
+                        child: Container(
+                          height: 50,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                margin: EdgeInsets.only(left: 20),
+                                child: Text("Veg / Non veg",
+                                  style: GoogleFonts.raleway(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                  margin: EdgeInsets.only(right: 20),
+                                  child: Obx(() =>
+                                  controller.isOp5.value == false ? Icon(
+                                    Icons.keyboard_arrow_down_outlined,) :
+                                  Icon(Icons.keyboard_arrow_up_sharp,),)
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),),
+                      Obx(() => controller.isOp5.value == false ? Container():
+                      Column(
+                        children: [
+                          Container(
+                            margin: EdgeInsets.only(left: 22),
+                            padding: EdgeInsets.all(5),
+                            width: MediaQuery
+                                .of(context)
+                                .size
+                                .width,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  height: 230,
+                                  child: ListView.builder(
+                                    physics: NeverScrollableScrollPhysics(),
+                                    itemCount: controller.SubCatagoryList.length,
+                                    itemBuilder: (context, index) {
+                                      return Row(
+                                        children: [
+                                          Container(
+                                            child: Obx(() {
+                                              return Radio(
+                                                activeColor: Color.fromRGBO(32, 193, 244, 1),
+                                                onChanged: (value) {
+                                                  controller.radioGValues2.value =
+                                                  value as String;
+                                                },
+                                                value: controller.SubCatagoryList[index].name,
+                                                groupValue: controller.radioGValues2.value,);
+                                            }),
+                                          ),
+                                          Container(
+                                            margin: EdgeInsets.only(top: 8),
+                                            child: Text(
+                                              "Veg / Non veg",
+                                              style: GoogleFonts.raleway(
+                                                  fontSize: 16,
+                                                  color: Colors.black
+                                              ),),
+                                          )
+                                        ],
+                                      );
+                                    },),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      )
+                      ),
+                      Obx(() => controller.isOp3.value == false ? Container():InkWell(
+                        onTap: () {
+                          controller.isOp6.value = !controller.isOp6.value;
+                          print(controller.isOp6.value);
+                        },
+                        child: Container(
+                          height: 50,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                margin: EdgeInsets.only(left: 20),
+                                child: Text("Color",
+                                  style: GoogleFonts.raleway(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                  margin: EdgeInsets.only(right: 20),
+                                  child: Obx(() =>
+                                  controller.isOp6.value == false ? Icon(
+                                    Icons.keyboard_arrow_down_outlined,) :
+                                  Icon(Icons.keyboard_arrow_up_sharp,),)
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),),
+                      Obx(() => controller.isOp6.value == false ? Container():
+                      Column(
+                        children: [
+                          Container(
+                            margin: EdgeInsets.only(left: 22),
+                            padding: EdgeInsets.all(5),
+                            width: MediaQuery
+                                .of(context)
+                                .size
+                                .width,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  height: 230,
+                                  child: ListView.builder(
+                                    physics: NeverScrollableScrollPhysics(),
+                                    itemCount: controller.SubCatagoryList.length,
+                                    itemBuilder: (context, index) {
+                                      return Row(
+                                        children: [
+                                          Container(
+                                            child: Obx(() {
+                                              return Radio(
+                                                activeColor: Color.fromRGBO(32, 193, 244, 1),
+                                                onChanged: (value) {
+                                                  controller.radioGValues2.value =
+                                                  value as String;
+                                                },
+                                                value: controller.SubCatagoryList[index].name,
+                                                groupValue: controller.radioGValues2.value,);
+                                            }),
+                                          ),
+                                          Container(
+                                            margin: EdgeInsets.only(top: 8),
+                                            child: Text(
+                                              "Color",
+                                              style: GoogleFonts.raleway(
+                                                  fontSize: 16,
+                                                  color: Colors.black
+                                              ),),
+                                          )
+                                        ],
+                                      );
+                                    },),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      )
                       ),
                     ],
                   ),
                 ),
-              ),),
-              Obx(() => controller.isOp1.value == false ? Container():
-              Column(
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(left: 22),
-                    padding: EdgeInsets.all(5),
-                    width: MediaQuery
-                        .of(context)
-                        .size
-                        .width,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          height: 210,
-                          child: ListView.builder(
-                            physics: NeverScrollableScrollPhysics(),
-                            itemCount: controller.SubCatagoryList.length,
-                            itemBuilder: (context, index) {
-                              return Row(
-                                children: [
-                                  Container(
-                                    margin: EdgeInsets.only(top: 8),
-                                    child: Obx(() {
-                                      return Radio(
-                                        onChanged: (value) {
-                                          controller.radioGValues.value =
-                                          value as String;
-                                        },
-                                        value: controller.SubCatagoryList[index].name,
-                                        groupValue: controller.radioGValues.value,);
-                                    }),
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(left: 20, top: 8),
-                                    child: Text(
-                                      "${controller.SubCatagoryList[index].name}",
-                                      style: GoogleFonts.raleway(
-                                          fontSize: 18,
-                                          color: Colors.black
-                                      ),),
-                                  )
-                                ],
-                              );
-                            },),
-                        ),
-                      ],
+              ),
+              Container(
+                height: 60,
+                child: InkWell(
+                  onTap: () {
+
+                  },
+                  child: Container(
+                    margin: EdgeInsets.only(left: 20,right: 20,top: 10,bottom: 10),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: Color.fromRGBO(32, 193, 244, 1),
+                      borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(25),
+                        bottomLeft: Radius.circular(25),
+                        bottomRight: Radius.circular(25),
+                      ),
+                    ),
+                    child: Text("Apply",
+                      style: GoogleFonts.raleway(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                      ),
                     ),
                   ),
-                ],
-              )
-              )
+                ),
+              ),
             ],
           ),
         ),
