@@ -31,6 +31,8 @@ class TopSellingStoreAllProductsController extends GetxController {
   RxString radioGValues1 = "".obs;
   RxString radioGValues2 = "".obs;
   RxString radioGValues3 = "".obs;
+  RxString sidValues = "".obs;
+  RxString subSidValues = "".obs;
 
   @override
   void onInit() {
