@@ -152,7 +152,7 @@ class ViewProductView extends GetWidget<ViewProductController> {
                                   "${controller.data.description}",
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(fontFamily: 'light',
+                                  style: GoogleFonts.lato(
                                       color: Colors.grey.shade500,
                                       fontWeight: FontWeight.w300,
                                       fontSize: 12),
@@ -366,7 +366,7 @@ class ViewProductView extends GetWidget<ViewProductController> {
                           child: getcon(
                             text: Text(
                               "ADD TO CART",
-                              style: TextStyle(fontFamily: 'bold',color: Colors.white,fontWeight: FontWeight.w500),
+                              style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500),
                             ),
                             color: Color(0xffDE8701),
                             width: 140,
@@ -381,7 +381,7 @@ class ViewProductView extends GetWidget<ViewProductController> {
                           child: getcon(
                             text: Text(
                               "BUY NOW",
-                              style: TextStyle(fontFamily: 'bold',
+                              style: TextStyle(
                                   fontWeight: FontWeight.w400,
                                   color: Colors.white),
                             ),
@@ -470,7 +470,7 @@ class ViewProductView extends GetWidget<ViewProductController> {
                       children: [
                         Text(
                           "Key Features",
-                          style: TextStyle(color: Colors.white, fontFamily: 'medium',fontWeight: FontWeight.w400),
+                          style: TextStyle(color: Colors.white,fontWeight: FontWeight.w400),
                         ),
                         controller.isOpen.value == false
                             ? Icon(
@@ -498,11 +498,11 @@ class ViewProductView extends GetWidget<ViewProductController> {
                                 children: [
                                   Text("Brand :  ",
                                       style: TextStyle(
-                                     fontFamily: 'regular',
+
                                           color: Colors.grey.shade600)),
                                   Text("${controller.data.brand}",
                                       style: TextStyle(
-                                        fontFamily: 'bold',
+
                                           fontWeight: FontWeight.w600)),
                                 ],
                               ),
@@ -515,11 +515,11 @@ class ViewProductView extends GetWidget<ViewProductController> {
                                       children: [
                                         Text("Life Stage : ",
                                             style: TextStyle(
-                                              fontFamily: 'regular',
+
                                                 color: Colors.grey.shade600)),
                                         Text("${controller.data.lifeStage}",
                                             style: TextStyle(
-                                             fontFamily: 'bold',
+
                                                 fontWeight: FontWeight.w600)),
                                       ],
                                     ),
@@ -534,11 +534,11 @@ class ViewProductView extends GetWidget<ViewProductController> {
                                       children: [
                                         Text("Product Type :  ",
                                             style:TextStyle(
-                                              fontFamily: 'regular',
+
                                                 color: Colors.grey.shade600)),
                                         Text("${controller.data.productType}",
                                             style:TextStyle(
-                                               fontFamily: 'bold',
+
                                                 fontWeight: FontWeight.w600)),
                                       ],
                                     ),
@@ -553,11 +553,11 @@ class ViewProductView extends GetWidget<ViewProductController> {
                                       children: [
                                         Text("Flavour :  ",
                                             style:TextStyle(
-                                              fontFamily: 'regular',
+
                                                 color: Colors.grey.shade600)),
                                         Text("${controller.data.flavor}",
                                             style: TextStyle(
-                                                fontFamily: 'bold',
+
                                                 fontWeight: FontWeight.w600)),
                                       ],
                                     ),
@@ -572,11 +572,11 @@ class ViewProductView extends GetWidget<ViewProductController> {
                                       children: [
                                         Text("Breed Size  :  ",
                                             style: TextStyle(
-                                              fontFamily: 'regular',
+
                                                 color: Colors.grey.shade600)),
                                         Text("${controller.data.breedSize}",
                                             style: TextStyle(
-                                                fontFamily: 'bold',
+
                                                 fontWeight: FontWeight.w600)),
                                       ],
                                     ),
@@ -589,11 +589,11 @@ class ViewProductView extends GetWidget<ViewProductController> {
                                       children: [
                                         Text("Veg / Non Veg :  ",
                                             style: TextStyle(
-                                              fontFamily: 'regular',
+
                                                 color: Colors.grey.shade600)),
                                         Text("${controller.data.vegNonveg}",
                                             style: TextStyle(
-                                                fontFamily: 'bold',
+
                                                 fontWeight: FontWeight.w600)),
                                       ],
                                     ),
@@ -606,11 +606,11 @@ class ViewProductView extends GetWidget<ViewProductController> {
                                       children: [
                                         Text("Color :  ",
                                             style: TextStyle(
-                                                fontFamily: 'regular',
+
                                                 color: Colors.grey.shade600)),
                                         Text("${controller.data.color}",
                                             style: TextStyle(
-                                                fontFamily: 'bold',
+
                                                 fontWeight: FontWeight.w600)),
                                       ],
                                     ),
@@ -640,7 +640,7 @@ class ViewProductView extends GetWidget<ViewProductController> {
                       children: [
                         Text(
                           "Seller Details",
-                          style: TextStyle(color: Colors.white, fontFamily: 'medium',fontWeight: FontWeight.w400),
+                          style: TextStyle(color: Colors.white,fontWeight: FontWeight.w400),
                         ),
                         controller.isOpen1.value == false
                             ? Icon(
@@ -665,10 +665,9 @@ class ViewProductView extends GetWidget<ViewProductController> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text("${controller.data.sellerId!.companyName}",
-                                  style: TextStyle(fontFamily:'bold',fontWeight: FontWeight.w500)),
+                                  style: TextStyle(fontWeight: FontWeight.w500)),
                               Text("${controller.data.sellerId!.address}",
                                   style:TextStyle(
-                                    fontFamily: 'light',
                                       color: Colors.grey.shade600)),
                             ],
                           )),
