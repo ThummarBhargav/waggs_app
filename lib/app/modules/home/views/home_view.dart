@@ -629,7 +629,7 @@ class HomeView extends GetView<HomeController> {
                                               onTap: () {
                                                     print(box.read(ArgumentConstant.token));
                                                     print(controller.TopProductlist[index].sId);
-                                                    controller.addToCart();
+                                                    controller.addToCart(data: controller.TopProductlist[index]);
                                               },
                                               child: Container(
                                                 width: 130,
@@ -646,7 +646,7 @@ class HomeView extends GetView<HomeController> {
                                                     bottomLeft:
                                                         Radius.circular(25),
                                                   ),
-                                                )
+                                                ),
                                                 child: Row(
                                                   children: [
                                                     SizedBox(

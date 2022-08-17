@@ -162,11 +162,11 @@ class HomeController extends GetxController {
     }
   }
 
-  Future<void> addToCart({required }) async {
+  Future<void> addToCart({required Products0 data}) async {
     try{
       var url = Uri.parse(baseUrl+ApiConstant.Cart);
       var response = await http.post(url, body: {
-        'productId': '${}',
+        'productId': '${data.sId}',
       }
       );
       respons.add(response.body);
