@@ -17,6 +17,7 @@ class HomeView extends GetView<HomeController> {
     return SafeArea(
       child: Obx(() {
         return Scaffold(
+          key: controller.key,
             body: Column(
           children: [
             Container(
@@ -707,6 +708,12 @@ class HomeView extends GetView<HomeController> {
           ],
         ));
       }),
+    );
+  }
+  drawer()
+  {
+    return Drawer(
+      child: ListView(),
     );
   }
 }
