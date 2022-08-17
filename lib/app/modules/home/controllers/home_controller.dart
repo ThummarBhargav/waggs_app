@@ -165,6 +165,7 @@ class HomeController extends GetxController {
   }
 
   Future<void> addToCart({required Products0 data}) async {
+    print('Bearer ${box.read(ArgumentConstant.token)}');
     try{
       var url = Uri.parse(baseUrl+ApiConstant.Cart);
       var response = await http.post(url, body: {

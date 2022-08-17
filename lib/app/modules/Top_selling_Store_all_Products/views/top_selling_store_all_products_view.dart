@@ -159,23 +159,24 @@ class TopSellingStoreAllProductsView
                                               print("SID : ${controller.SubCatagoryList[index].sId}");
                                               controller.sidValues.value = controller.CatagoryList[index].sId!;
                                               print("${controller.sidValues.value}");
-                                              controller.mainProductList.forEach((element) {
-                                                if(element.category!.sId==controller.CatagoryList[index].sId
-                                                    && element.subCategory!.sId==controller.SubCatagoryList[index].sId
-                                                )
-                                                {
-                                                  controller.productList.add(element);
-                                                }
-                                              });
+                                              controller.subData.clear();
+                                              controller.SubCatagoryList.forEach(
+                                                      (element) {
+                                                    if (element.categoryId ==
+                                                        controller.CatagoryList[index].sId) {
+                                                      controller.subData.add(element);
+                                                      print("Data" + element.name.toString());
+                                                    } else {}
+                                                  });
                                             },
-                                            value: controller.mainProductList[index].category!.name,
+                                            value: controller.CatagoryList[index].name,
                                             groupValue: controller.radioGValues.value,);
                                         }),
                                       ),
                                       Container(
                                         margin: EdgeInsets.only(left: 20, top: 8),
                                         child: Text(
-                                          "${controller.productList[index].category!.name}",
+                                          "${controller.CatagoryList[index].name}",
                                           style: GoogleFonts.raleway(
                                               fontSize: 16,
                                               color: Colors.black
@@ -237,7 +238,7 @@ class TopSellingStoreAllProductsView
                                   height: 230,
                                   child: ListView.builder(
                                     physics: NeverScrollableScrollPhysics(),
-                                    itemCount: controller.mainProductList.length,
+                                    itemCount: controller.subData.length,
                                     itemBuilder: (context, index) {
                                       return Row(
                                         children: [
@@ -253,14 +254,14 @@ class TopSellingStoreAllProductsView
                                                   controller.SubCatagoryList[index].sId;
                                                   controller.productList.clear();
                                                 },
-                                                value: controller.productList[index].subCategory!.name,
+                                                value: controller.subData[index].name,
                                                 groupValue: controller.radioGValues1.value,);
                                             }),
                                           ),
                                           Container(
                                             margin: EdgeInsets.only(top: 8),
                                             child: Text(
-                                              "${controller.productList[index].category!.name}",
+                                              "${controller.subData[index].name}",
                                               style: GoogleFonts.raleway(
                                                   fontSize: 16,
                                                   color: Colors.black

@@ -27,6 +27,7 @@ class TopSellingStoreAllProductsController extends GetxController {
   RxList<SubCategoryData> SubCatagoryList = RxList<SubCategoryData>([]);
   SubCategorymodel subCategorymodel = SubCategorymodel();
   CategoryModel categoryModel = CategoryModel();
+  RxList<SubCategoryData> subData = RxList<SubCategoryData>([]);
   RxList<CategoryData> CatagoryList = RxList<CategoryData>([]);
   RxString radioGValues = "".obs;
   RxString radioGValues1 = "".obs;
@@ -102,6 +103,7 @@ class TopSellingStoreAllProductsController extends GetxController {
   }
 
   AllCategory() async {
+    CatagoryList.clear();
     var url = Uri.parse(baseUrl+ApiConstant.AllCategory);
     var response = await http.get(url);
     print('response status:${response.request}');
