@@ -19,9 +19,8 @@ class ApiConstant {
   static const TopStore = "landing?latitude=&longitude=";
   static const alsoLike = "products";
   static const Cart = "cart";
+  static const Count = "count";
 }
-
-
 
 class ArgumentConstant{
   static String token = "token";

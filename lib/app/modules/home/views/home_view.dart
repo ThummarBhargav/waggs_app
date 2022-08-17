@@ -13,10 +13,13 @@ class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    var scaffoldKey = GlobalKey<ScaffoldState>();
+
     return SafeArea(
       child: Obx(() {
         return Scaffold(
-          key: controller.key,
+          key: scaffoldKey,
+            endDrawer: Drawer(),
             body: Column(
           children: [
             Container(
@@ -35,7 +38,9 @@ class HomeView extends GetView<HomeController> {
                         child: Row(
                           children: [
                             InkWell(
-                              onTap: () {},
+                              onTap: () {
+
+                              },
                               child: Container(
                                 width: 60,
                                 height: 60,
@@ -49,8 +54,8 @@ class HomeView extends GetView<HomeController> {
                             ),
                             Container(
                               height: 40,
-                              width: 212,
-                              margin: EdgeInsets.only(left: 15, right: 15),
+                              width: 190,
+                              margin: EdgeInsets.only(left: 15),
                               padding: EdgeInsets.only(bottom: 10
                                   // left: 10,
                                   ),
@@ -78,12 +83,24 @@ class HomeView extends GetView<HomeController> {
                                 ),
                               ),
                             ),
-                            IconButton(
-                                onPressed: () {},
-                                icon: Icon(
-                                  Icons.menu,
-                                  color: Colors.grey[500],
-                                ))
+                            Expanded(
+                              child: IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.menu,
+                                    color: Colors.grey[500],
+                                  )),
+                            ),
+                            Expanded(
+                              child: IconButton(
+                                  onPressed: () {
+                                    scaffoldKey.currentState!.openEndDrawer();
+                                  },
+                                  icon: Icon(
+                                    Icons.shopping_cart,
+                                    color: Colors.grey[500],
+                                  )),
+                            )
                           ],
                         ),
                       ),
@@ -153,7 +170,7 @@ class HomeView extends GetView<HomeController> {
                 child: Column(
                   children: [
                     SizedBox(
-                      height: 40,
+                      height: 20,
                     ),
                      Container(
                        padding: EdgeInsets.only(top: 15,bottom: 15),
@@ -171,7 +188,7 @@ class HomeView extends GetView<HomeController> {
                          itemBuilder: (BuildContext context, int index, int realIndex) {
                            return Container(
                              color: Colors.black,
-                             child:     Image.network(width:400,fit: BoxFit.fill,
+                             child:     Image.network(width:350,fit: BoxFit.fill,
                                   "${controller.bannerList[index].image}"),
                            );
 
@@ -183,7 +200,7 @@ class HomeView extends GetView<HomeController> {
                      //                      ],
                      //                    ),
                      SizedBox(
-                      height: 40,
+                      height: 20,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,

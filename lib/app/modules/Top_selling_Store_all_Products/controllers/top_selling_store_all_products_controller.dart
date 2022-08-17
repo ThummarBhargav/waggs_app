@@ -6,8 +6,9 @@ import 'package:waggs_app/app/Modal/GetAllProductModule.dart';
 import 'package:waggs_app/app/Modal/SubCategoryModel.dart';
 import 'package:waggs_app/app/Modal/TopSellingStore.dart';
 import 'package:waggs_app/app/constant/ConstantUrl.dart';
-import 'package:http/http.dart'  as http;
+import 'package:http/http.dart' as http;
 import 'package:waggs_app/app/constant/SizeConstant.dart';
+
 class TopSellingStoreAllProductsController extends GetxController {
   //TODO: Implement TopSellingStoreAllProductsController
   Sellers data = Get.arguments;
@@ -54,14 +55,16 @@ class TopSellingStoreAllProductsController extends GetxController {
   void onClose() {
     super.onClose();
   }
+
   getProduct() async {
     hasData.value = false;
-    var URl = Uri.parse(baseUrl+ApiConstant.getAllProductUsers + "?sellerId=${data.sId}");
-    var response ;
-     await http.get(URl).then((value) {
+    var URl = Uri.parse(
+        baseUrl + ApiConstant.getAllProductUsers + "?sellerId=${data.sId}");
+    var response;
+    await http.get(URl).then((value) {
       hasData.value = true;
       response = value;
-    }).catchError((err){
+    }).catchError((err) {
       hasData.value = false;
     });
     print(response.body);
@@ -71,12 +74,10 @@ class TopSellingStoreAllProductsController extends GetxController {
       if (!isNullEmptyOrFalse(getAllproduct.data!.products)) {
         getAllproduct.data!.products!.forEach((element) {
           mainProductList.add(element);
-        }
-        );
+        });
       }
     }
     mainProductList.refresh();
-
   }
 
   getAllUserApi() async {
@@ -90,8 +91,7 @@ class TopSellingStoreAllProductsController extends GetxController {
       if (!isNullEmptyOrFalse(getAllproduct.data!.products)) {
         getAllproduct.data!.products!.forEach((element) {
           mainProductList.add(element);
-        }
-        );
+        });
         mainProductList.forEach((element) {
           if (element.category!.sId == CatagoryList[0].sId &&
               element.subCategory!.categoryId == CatagoryList[0].sId) {
@@ -105,7 +105,7 @@ class TopSellingStoreAllProductsController extends GetxController {
 
   AllCategory() async {
     CatagoryList.clear();
-    var url = Uri.parse(baseUrl+ApiConstant.AllCategory);
+    var url = Uri.parse(baseUrl + ApiConstant.AllCategory);
     var response = await http.get(url);
     print('response status:${response.request}');
     dynamic result = jsonDecode(response.body);
@@ -114,12 +114,12 @@ class TopSellingStoreAllProductsController extends GetxController {
     if (!isNullEmptyOrFalse(categoryModel.catagoryData)) {
       categoryModel.catagoryData!.forEach((element) {
         CatagoryList.add(element);
-      }
-      );
+      });
     }
   }
+
   SubCategory() async {
-    var url = Uri.parse(baseUrl+ApiConstant.AllSubCategory);
+    var url = Uri.parse(baseUrl + ApiConstant.AllSubCategory);
     var response = await http.get(url);
     print('response status:${response.request}');
     dynamic result = jsonDecode(response.body);
@@ -128,9 +128,7 @@ class TopSellingStoreAllProductsController extends GetxController {
     if (!isNullEmptyOrFalse(subCategorymodel.data)) {
       subCategorymodel.data!.forEach((element) {
         SubCatagoryList.add(element);
-      }
-      );
+      });
     }
   }
-
 }
