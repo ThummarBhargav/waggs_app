@@ -37,20 +37,4 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
-  fonts:
-    - family: bold
-      fonts:
-          - asset: fonts/Poppins-Bold.ttf
-    - family: semibold
-      fonts:
-          - asset: fonts/Poppies-SemiBold.ttf
-    - family: light
-      fonts:
-           - asset: fonts/Poppins-Light.ttf
-    - family: medium
-      fonts:
-           - asset: fonts/Poppins-Medium.ttf
-    - family: regular
-      fonts:
-           - asset: fonts/Poppins-Medium.ttfes-Regular.ttf
 
