@@ -18,11 +18,13 @@ class ApiConstant {
   static const AllSubCategory = "subcategory";
   static const TopStore = "landing?latitude=&longitude=";
   static const alsoLike = "products";
+  static const Cart = "cart";
 }
 
 
 
 class ArgumentConstant{
+  static String token = "token";
   static String isFromSellingStore = "isFromSellingStore";
   static String isFromTopProducts = "isFromTopProducts";
   static String isFromSubCategory = "isFromSubCategory";

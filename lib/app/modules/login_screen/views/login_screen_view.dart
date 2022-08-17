@@ -257,7 +257,7 @@ class LoginScreenView extends GetView<LoginScreenController> {
                       InkWell(
                         onTap: () {
                           if (controller.formKey2.currentState!.validate()) {
-                            Get.toNamed(Routes.HOME);
+                            controller.LoginUser();
                           }
                         },
                         child: Container(
