@@ -89,9 +89,9 @@ class ProductDetailViewView extends GetView<HomeController> {
                       children: [
                         Padding(
                             padding: const EdgeInsets.only(left: 8.0),
-                            child:   CachedNetworkImage(
+                            child:   Obx(()=>CachedNetworkImage(
                                 imageUrl:
-                                "${data.images![0]}",
+                                controller.url==''?"${data.images![0]}":"${controller.url}",
                                 imageBuilder: (context, imageProvider) =>
                                     Container(
                                       height: 150,
@@ -109,7 +109,7 @@ class ProductDetailViewView extends GetView<HomeController> {
                                     error) => Expanded(
                                     child: Container(
                                       color: Colors.grey[100],
-                                    )))
+                                    ))))
                         ),
 
 
@@ -225,64 +225,30 @@ class ProductDetailViewView extends GetView<HomeController> {
               //     ),
               //   ),
               Container(
-                width: 350,
-                height: 110,
-                child: Stack(
-                  children: [
-                    CarouselSlider.builder(
-                      carouselController: carouselController,
+                  width: 350,
+                  height: 110,
+                  child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
                       itemCount: data.images!.length,
-                      options: CarouselOptions(
-                        enlargeCenterPage: true,
-                        height: 100,
-                        autoPlay: false,
-                        autoPlayInterval: Duration(seconds: 3),
-                      ),
-                      itemBuilder: (context, index, id){
-                        //for onTap to redirect to another screen
-                        return GestureDetector(
-                            child: Container(
-                              color: Colors.grey.shade300,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Image.network(width: 100,height:100,
-                                    "${data.images![index]}"),
-                              ),
-                            ),
-                            onTap: () {
-                              var url = data.images![index];
-                              print(url.toString());
-                            }
+                      itemBuilder: (context, index) {
+                        return Stack(
+                          children: [
+                            InkWell(
+                              onTap: (){
+                                controller.url.value=data.images![index];
+                              },
+                              child: Container(
+                                  margin: EdgeInsets.all(10),
+                                  padding: EdgeInsets.all(15),
+                                  width: 100,
+                                  height: 150,
+                                  color: Colors.grey.shade300,
+                                  child: Image.network(width: 100,height:100,
+                                      "${data.images![index]}")),
+                            )
+                          ],
                         );
-                      },
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8.0,right: 10),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: IconButton(
-                          onPressed: () {
-                            // Use the controller to change the current page
-                            carouselController.previousPage();
-                          },
-                          icon: Icon(Icons.arrow_back),
-                        ),
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: IconButton(
-                        onPressed: () {
-                          // Use the controller to change the current page
-                          carouselController.nextPage();
-                        },
-                        icon: Icon(Icons.arrow_forward),
-                      ),
-                    ),
-                  ],
-                ),
-
-              ),
+                      })),
               Row(
                 children: [
                   Padding(

@@ -16,6 +16,7 @@ dependencies:
   flutter_image_slideshow: ^0.1.2
   carousel_slider:
   flutter_svg: ^1.1.3
+  shared_preferences: ^2.0.15
   http:
   flutter:
     sdk: flutter
@@ -35,4 +36,20 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+  fonts:
+    - family: bold
+      fonts:
+          - asset: fonts/Poppins-Bold.ttf
+    - family: semibold
+      fonts:
+          - asset: fonts/Poppies-SemiBold.ttf
+    - family: light
+      fonts:
+           - asset: fonts/Poppins-Light.ttf
+    - family: medium
+      fonts:
+           - asset: fonts/Poppins-Medium.ttf
+    - family: regular
+      fonts:
+           - asset: fonts/Poppins-Medium.ttfes-Regular.ttf
 
