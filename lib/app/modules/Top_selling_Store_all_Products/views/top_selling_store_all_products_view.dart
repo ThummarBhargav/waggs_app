@@ -151,7 +151,6 @@ class TopSellingStoreAllProductsView
                                       controller.radioGValues.value =
                                       value as String;
                                     },
-
                                     value: controller.CatagoryList[index].name,
                                     groupValue: controller.radioGValues.value,);
                                 }),
