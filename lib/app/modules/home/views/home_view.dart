@@ -54,8 +54,8 @@ class HomeView extends GetView<HomeController> {
                             ),
                             Container(
                               height: 40,
-                              width: 212,
-                              margin: EdgeInsets.only(left: 15, right: 15),
+                              width: 190,
+                              margin: EdgeInsets.only(left: 15),
                               padding: EdgeInsets.only(bottom: 10
                                   // left: 10,
                                   ),
@@ -83,30 +83,24 @@ class HomeView extends GetView<HomeController> {
                                 ),
                               ),
                             ),
-                            Container(
-
-                              child: Row(
-                                children: [
-                                       InkWell(
-                                         onTap: (){},
-                                         child: Icon(
-                                          Icons.menu,
-                                          color: Colors.grey[500],
-                                      ),
-                                       ),
-                                      SizedBox(width: 10,),
-                                      InkWell(
-                                        onTap: (){
-                                          scaffoldKey.currentState!.openEndDrawer();
-                                        },
-                                        child: Icon(
-                                          Icons.shopping_cart,
-                                          color: Colors.grey[500],
-                                        ),
-                                      ),
-                                ],
-                              ),
+                            Expanded(
+                              child: IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.menu,
+                                    color: Colors.grey[500],
+                                  )),
                             ),
+                            Expanded(
+                              child: IconButton(
+                                  onPressed: () {
+                                    scaffoldKey.currentState!.openEndDrawer();
+                                  },
+                                  icon: Icon(
+                                    Icons.shopping_cart,
+                                    color: Colors.grey[500],
+                                  )),
+                            )
                           ],
                         ),
                       ),

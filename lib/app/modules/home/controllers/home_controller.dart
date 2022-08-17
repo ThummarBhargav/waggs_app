@@ -180,13 +180,11 @@ class HomeController extends GetxController {
       print('Response status: ${response.statusCode}');
       print('Response body: ${response.body}');
       if(response.statusCode==200){
-
       }
       else{
         Get.snackbar("Error", response.body,snackPosition: SnackPosition.BOTTOM);
       }
     }catch(e){
-
       Get.snackbar("Error", e.toString(),snackPosition: SnackPosition.BOTTOM,);
 
     }
