@@ -189,4 +189,20 @@ class HomeController extends GetxController {
 
     }
   }
+
+  CartCount() async {
+    var url = Uri.parse(baseUrl+ApiConstant.AllSubCategory);
+    var response = await http.get(url);
+    print('response status:${response.request}');
+    dynamic result = jsonDecode(response.body);
+    subCategorymodel = SubCategorymodel.fromJson(result);
+    print(result);
+    if (!isNullEmptyOrFalse(subCategorymodel.data)) {
+      subCategorymodel.data!.forEach((element) {
+        SubCatagoryList.add(element);
+      }
+      );
+      getAllUserApi();
+    }
+  }
  }
