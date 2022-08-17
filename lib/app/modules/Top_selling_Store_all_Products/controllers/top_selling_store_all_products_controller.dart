@@ -23,6 +23,7 @@ class TopSellingStoreAllProductsController extends GetxController {
   RxBool isOp4 = false.obs;
   RxBool isOp5 = false.obs;
   RxBool isOp6 = false.obs;
+  RxList<Products> productList = RxList<Products>([]);
   RxList<SubCategoryData> SubCatagoryList = RxList<SubCategoryData>([]);
   SubCategorymodel subCategorymodel = SubCategorymodel();
   CategoryModel categoryModel = CategoryModel();
@@ -74,6 +75,30 @@ class TopSellingStoreAllProductsController extends GetxController {
     }
     mainProductList.refresh();
 
+  }
+
+  getAllUserApi() async {
+    var url = Uri.parse(baseUrl + ApiConstant.getAllProductUsers);
+    var response = await http.get(url);
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+    dynamic result = jsonDecode(response.body);
+    getAllproduct = GetAllproduct.fromJson(result);
+    if (!isNullEmptyOrFalse(getAllproduct.data)) {
+      if (!isNullEmptyOrFalse(getAllproduct.data!.products)) {
+        getAllproduct.data!.products!.forEach((element) {
+          mainProductList.add(element);
+        }
+        );
+        mainProductList.forEach((element) {
+          if (element.category!.sId == CatagoryList[0].sId &&
+              element.subCategory!.categoryId == CatagoryList[0].sId) {
+            productList.add(element);
+          }
+        });
+        productList.refresh();
+      }
+    }
   }
 
   AllCategory() async {
