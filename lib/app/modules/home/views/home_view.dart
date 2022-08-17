@@ -194,11 +194,6 @@ class HomeView extends GetView<HomeController> {
 
                          },),
                      ),
-                     // Row(
-                     //                      children: [
-                     //                        Expanded(child: Image.asset("assets/poster.JPG"))
-                     //                      ],
-                     //                    ),
                      SizedBox(
                       height: 20,
                     ),

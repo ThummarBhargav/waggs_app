@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:waggs_app/app/Modal/CartCountModel.dart';
 import 'package:waggs_app/app/Modal/CategoryModel.dart';
 import 'package:waggs_app/app/Modal/SubCategoryModel.dart';
 import 'package:waggs_app/app/Modal/TopSellingStore.dart';
@@ -17,6 +18,7 @@ class HomeController extends GetxController {
   CategoryModel categoryModel = CategoryModel();
   bannerModels bannerModel = bannerModels();
   StoreModule storeModule = StoreModule();
+  Count1 count1 = Count1();
   SubCategorymodel subCategorymodel = SubCategorymodel();
   GlobalKey<ScaffoldState> key = GlobalKey<ScaffoldState>();
   RxList<Products> mainProductList = RxList<Products>([]);
@@ -28,6 +30,7 @@ class HomeController extends GetxController {
   TextEditingController searchController = TextEditingController();
   RxList<Products0> TopProductlist = RxList<Products0>([]);
   RxList<Sellers> SellersList = RxList<Sellers>([]);
+  RxList<Count1> Countlist = RxList<Count1>([]);
   List<String> imageList = ['assets/category01.jpg','assets/category02.jpg',
     'assets/category03.jpg','assets/category04.jpg','assets/category05.jpg'].obs;
   List respons =[];
@@ -42,6 +45,7 @@ class HomeController extends GetxController {
     bannerAllProduct();
     TopSellingStoreApi();
     TopSellingProductApi();
+    CartCount();
     super.onInit();
   }
 
@@ -191,18 +195,14 @@ class HomeController extends GetxController {
   }
 
   CartCount() async {
-    var url = Uri.parse(baseUrl+ApiConstant.AllSubCategory);
+    var url = Uri.parse(baseUrl+ApiConstant.Count);
     var response = await http.get(url);
     print('response status:${response.request}');
     dynamic result = jsonDecode(response.body);
-    subCategorymodel = SubCategorymodel.fromJson(result);
+    count1= Count1.fromJson(result);
     print(result);
-    if (!isNullEmptyOrFalse(subCategorymodel.data)) {
-      subCategorymodel.data!.forEach((element) {
-        SubCatagoryList.add(element);
-      }
-      );
-      getAllUserApi();
+    if (!isNullEmptyOrFalse(count1.data)) {
+          Countlist.add(count1);
     }
   }
  }
