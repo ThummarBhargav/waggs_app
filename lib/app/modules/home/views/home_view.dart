@@ -83,20 +83,30 @@ class HomeView extends GetView<HomeController> {
                                 ),
                               ),
                             ),
-                            IconButton(
-                                onPressed: () {},
-                                icon: Icon(
-                                  Icons.menu,
-                                  color: Colors.grey[500],
-                                )),
-                            IconButton(
-                                onPressed: () {
-                                  scaffoldKey.currentState!.openEndDrawer();
-                                },
-                                icon: Icon(
-                                  Icons.shopping_cart,
-                                  color: Colors.grey[500],
-                                ))
+                            Container(
+
+                              child: Row(
+                                children: [
+                                       InkWell(
+                                         onTap: (){},
+                                         child: Icon(
+                                          Icons.menu,
+                                          color: Colors.grey[500],
+                                      ),
+                                       ),
+                                      SizedBox(width: 10,),
+                                      InkWell(
+                                        onTap: (){
+                                          scaffoldKey.currentState!.openEndDrawer();
+                                        },
+                                        child: Icon(
+                                          Icons.shopping_cart,
+                                          color: Colors.grey[500],
+                                        ),
+                                      ),
+                                ],
+                              ),
+                            ),
                           ],
                         ),
                       ),
