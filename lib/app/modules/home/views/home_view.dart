@@ -223,7 +223,7 @@ class HomeView extends GetView<HomeController> {
                                                   ),
                                                   child: Center(
                                                       child: Text(
-                                                    "${controller.count.value}",
+                                                    "${controller.cartProductList[index].quantity}",
                                                     style: TextStyle(
                                                         color: Colors
                                                             .grey.shade500,
