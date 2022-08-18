@@ -192,7 +192,7 @@ class HomeController extends GetxController {
 
       }
       else{
-        Get.snackbar("Error", response.body,snackPosition: SnackPosition.BOTTOM);
+        Get.snackbar("Error", "Product already in cart",snackPosition: SnackPosition.BOTTOM);
       }
     }catch(e){
       Get.snackbar("Error", e.toString(),snackPosition: SnackPosition.BOTTOM,);
