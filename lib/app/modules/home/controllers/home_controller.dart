@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:waggs_app/app/Modal/CartCountModel.dart';
+import 'package:waggs_app/app/Modal/CartProductModel.dart';
 import 'package:waggs_app/app/Modal/CategoryModel.dart';
 import 'package:waggs_app/app/Modal/SubCategoryModel.dart';
 import 'package:waggs_app/app/Modal/TopSellingStore.dart';
@@ -19,9 +20,11 @@ class HomeController extends GetxController {
   bannerModels bannerModel = bannerModels();
   StoreModule storeModule = StoreModule();
   Count1 count1 = Count1();
+  CartProduct cartProduct =CartProduct();
   SubCategorymodel subCategorymodel = SubCategorymodel();
   GlobalKey<ScaffoldState> key = GlobalKey<ScaffoldState>();
   RxList<Products> mainProductList = RxList<Products>([]);
+  RxList<Product2> cartProductList = RxList<Product2>([]);
   RxList<Products> productList = RxList<Products>([]);
   RxList<CategoryData> CatagoryList = RxList<CategoryData>([]);
   RxList<SubCategoryData> SubCatagoryList = RxList<SubCategoryData>([]);
@@ -46,6 +49,7 @@ class HomeController extends GetxController {
     TopSellingStoreApi();
     TopSellingProductApi();
     CartCount();
+    CartProductApi();
     super.onInit();
   }
 
@@ -195,7 +199,7 @@ class HomeController extends GetxController {
   }
 
   CartCount () async {
-    var url = Uri.parse("https://api.waggs.in/api/v1/cart/count");
+    var url = Uri.parse(baseUrl+ApiConstant.Count);
     var response = await http.get(url,headers: {
       'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
     } );
@@ -205,6 +209,28 @@ class HomeController extends GetxController {
     print(result);
     if (!isNullEmptyOrFalse(count1.data)) {
           Countlist.add(count1);
+    }
+  }
+
+  CartProductApi() async {
+    var url = Uri.parse("https://api.waggs.in/api/v1/cart");
+    var response = await http.get(url,headers: {
+      'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+    });
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+    dynamic result = jsonDecode(response.body);
+    cartProduct = CartProduct.fromJson(result);
+    print(result);
+    if (!isNullEmptyOrFalse(cartProduct.data)) {
+      if (!isNullEmptyOrFalse(cartProduct.data!.details)) {
+        cartProduct.data!.details!.forEach((element) {
+          cartProductList.add(element.product!);
+
+        }
+        );
+        getAllUserApi();
+      }
     }
   }
  }

@@ -14,39 +14,71 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     var scaffoldKey = GlobalKey<ScaffoldState>();
-
     return SafeArea(
       child: Obx(() {
         return Scaffold(
             key: scaffoldKey,
             endDrawer: Drawer(
-              child: Column(
-                children: [
-                  Expanded(flex: 1,
-                    child: DrawerHeader(
-                        decoration: BoxDecoration(color: Colors.blue),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButton(onPressed: () {
-                          
-                        }, icon: Icon(Icons.arrow_back,color: Colors.white,size: 20,)),
-                        Container(
-                          child: Text("SHOPPING BAG "+"(${controller.count1.data})",
-                            style: GoogleFonts.raleway(
-                              fontSize: 16,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ],
-                    )),
-                  ),
-                  Expanded(flex: 11,child: Container()),
-
-                ],
-              )
-            ),
+                width: 250,
+                child: Column(
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: DrawerHeader(
+                          decoration: BoxDecoration(color: Colors.blue),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: 30,
+                                margin: EdgeInsets.only(right: 10),
+                                child: IconButton(
+                                    onPressed: () {
+                                      Get.back();
+                                    },
+                                    icon: Icon(
+                                      Icons.arrow_back,
+                                      color: Colors.white,
+                                      size: 20,
+                                    )),
+                              ),
+                              Container(
+                                height: 30,
+                                margin: EdgeInsets.only(top: 10),
+                                child: Text(
+                                  "SHOPPING BAG " +
+                                      "(${controller.count1.data})",
+                                  style: GoogleFonts.raleway(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )),
+                    ),
+                    Expanded(
+                        flex: 11,
+                        child: ListView.builder(
+                          itemCount: controller.cartProductList.length,
+                          itemBuilder: (context, index) {
+                            return Column(
+                              children: [
+                                Container(
+                                  width: double.infinity,
+                                  height: 100,
+                                  color: Colors.grey.shade200,
+                                  margin: EdgeInsets.all(5),
+                                  child: Text(
+                                      "${controller.cartProductList[index].title}"),
+                                )
+                              ],
+                            );
+                          },
+                        )),
+                  ],
+                )),
             body: Column(
               children: [
                 Container(
@@ -130,9 +162,8 @@ class HomeView extends GetView<HomeController> {
                                         )),
                                     Positioned(
                                         child: Container(
-                                          margin: EdgeInsets.only(left: 25),
-                                      child: Text(
-                                          "${controller.count1.data}"),
+                                      margin: EdgeInsets.only(left: 25),
+                                      child: Text("${controller.count1.data}"),
                                     ))
                                   ],
                                 ))

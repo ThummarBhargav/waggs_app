@@ -54,7 +54,7 @@ class Data {
 class Details {
   int? quantity;
   String? productId;
-  Product? product;
+  Product2? product;
 
   Details({this.quantity, this.productId, this.product});
 
@@ -62,7 +62,7 @@ class Details {
     quantity = json['quantity'];
     productId = json['productId'];
     product =
-    json['product'] != null ? new Product.fromJson(json['product']) : null;
+    json['product'] != null ? new Product2.fromJson(json['product']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -76,7 +76,7 @@ class Details {
   }
 }
 
-class Product {
+class Product2 {
   String? sId;
   SellerId? sellerId;
   String? title;
@@ -98,7 +98,7 @@ class Product {
   String? vegNonveg;
   List<String>? images;
 
-  Product(
+  Product2(
       {this.sId,
         this.sellerId,
         this.title,
@@ -120,7 +120,7 @@ class Product {
         this.vegNonveg,
         this.images});
 
-  Product.fromJson(Map<String, dynamic> json) {
+  Product2.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
     sellerId = json['sellerId'] != null
         ? new SellerId.fromJson(json['sellerId'])
@@ -134,7 +134,7 @@ class Product {
     color = json['color'];
     price = json['price'];
     discountedPrice = json['discountedPrice'];
-    discount = json['discount'];
+    discount = (json['discount'].runtimeType == int )?double.tryParse(json['discount'].toString()):json['discount'];
     lifeStage = json['life_stage'];
     brand = json['brand'];
     breedSize = json['breed_size'];
