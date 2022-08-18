@@ -264,7 +264,7 @@ class HomeView extends GetView<HomeController> {
                             itemBuilder: (BuildContext context, int index,
                                 int realIndex) {
                               return CachedNetworkImage(
-                                  imageUrl: "${controller.bannerList[index]!.image}",
+                                  imageUrl: "${controller.bannerList[index].image}",
                                   imageBuilder: (context, imageProvider) =>
                                       Container(
                                         height: 180,
