@@ -16,6 +16,7 @@ class HomeView extends GetView<HomeController> {
     var scaffoldKey = GlobalKey<ScaffoldState>();
     return SafeArea(
       child: Obx(() {
+        controller.Countlist.refresh();
         return Scaffold(
             key: scaffoldKey,
             endDrawer: Drawer(
@@ -158,6 +159,7 @@ class HomeView extends GetView<HomeController> {
                                 Expanded(
                                     child: Stack(
                                   children: [
+
                                     IconButton(
                                         onPressed: () {
                                           scaffoldKey.currentState!
@@ -774,6 +776,8 @@ class HomeView extends GetView<HomeController> {
                                                         data: controller
                                                                 .TopProductlist[
                                                             index]);
+                                                    controller.CartCount();
+                                                    controller.Countlist.refresh();
                                                   },
                                                   child: Container(
                                                     width: 130,
