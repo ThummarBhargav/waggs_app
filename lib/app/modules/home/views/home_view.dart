@@ -79,7 +79,7 @@ class HomeView extends GetView<HomeController> {
                                         children: [
                                           CachedNetworkImage(
                                               imageUrl:
-                                                  "${controller.cartProductList[index].images![0]}",
+                                                  "${controller.cartProductList[index].product!.images![0]}",
                                               imageBuilder: (context,
                                                       imageProvider) =>
                                                   Container(
@@ -117,7 +117,7 @@ class HomeView extends GetView<HomeController> {
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text(
-                                                "${controller.cartProductList[index].title}",
+                                                "${controller.cartProductList[index].product!.title}",
                                                 style: TextStyle(
                                                     fontWeight:
                                                         FontWeight.w800),
@@ -252,7 +252,7 @@ class HomeView extends GetView<HomeController> {
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Text(
-                                          "\u{20B9}${controller.cartProductList[index].discountedPrice}.00",
+                                          "\u{20B9}${controller.cartProductList[index].product!.discountedPrice}.00",
                                           style: TextStyle(
                                               color: Colors.orange,
                                               fontWeight: FontWeight.w800),

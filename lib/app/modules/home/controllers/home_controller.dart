@@ -24,7 +24,7 @@ class HomeController extends GetxController {
   SubCategorymodel subCategorymodel = SubCategorymodel();
   GlobalKey<ScaffoldState> key = GlobalKey<ScaffoldState>();
   RxList<Products> mainProductList = RxList<Products>([]);
-  RxList<Product2> cartProductList = RxList<Product2>([]);
+  RxList<Details> cartProductList = RxList<Details>([]);
   RxList<Products> productList = RxList<Products>([]);
   RxList<CategoryData> CatagoryList = RxList<CategoryData>([]);
   RxList<SubCategoryData> SubCatagoryList = RxList<SubCategoryData>([]);
@@ -230,8 +230,7 @@ class HomeController extends GetxController {
     if (!isNullEmptyOrFalse(cartProduct.data)) {
       if (!isNullEmptyOrFalse(cartProduct.data!.details)) {
         cartProduct.data!.details!.forEach((element) {
-          cartProductList.add(element.product!);
-
+          cartProductList.add(element);
         }
         );
       }
