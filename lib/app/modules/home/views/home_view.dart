@@ -18,6 +18,7 @@ class HomeView extends GetView<HomeController> {
     return SafeArea(
       child: Obx(() {
         controller.Countlist.refresh();
+        controller.cartProductList.refresh();
         return Scaffold(
             key: scaffoldKey,
             endDrawer: Drawer(
@@ -963,6 +964,10 @@ class HomeView extends GetView<HomeController> {
                                                             index]);
                                                     controller.CartCount();
                                                     controller.Countlist.refresh();
+                                                    controller.CartProductApi();
+                                                    controller.cartProductList.refresh();
+
+
                                                   },
                                                   child: Container(
                                                     width: 130,
