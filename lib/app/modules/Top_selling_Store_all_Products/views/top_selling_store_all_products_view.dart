@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -252,6 +253,7 @@ class TopSellingStoreAllProductsView
                                                   controller.radioGValues1.value!=null?controller.isOp3.value==true:false;
                                                   controller.isOp3.value = true;
                                                   controller.SubCatagoryList[index].sId;
+                                                  controller.subDataIndex.value = index;
                                                   controller.productList.clear();
                                                 },
                                                 value: controller.subData[index].name,
@@ -324,7 +326,7 @@ class TopSellingStoreAllProductsView
                                   height: 230,
                                   child: ListView.builder(
                                     // physics: NeverScrollableScrollPhysics(),
-                                    itemCount: controller.subData[0].fields![0].values!.length,
+                                    itemCount: controller.subData[controller.subDataIndex.value].fields![0].values!.length,
                                     itemBuilder: (context, index) {
                                       return Row(
                                         children: [
@@ -333,18 +335,17 @@ class TopSellingStoreAllProductsView
                                               return Radio(
                                                 activeColor: Color.fromRGBO(32, 193, 244, 1),
                                                 onChanged: (value) {
-                                                  controller.subData[index].fields![index].id =
-                                                  value as String;
+                                                  controller.subData[controller.subDataIndex.value].fields![0].values![index] = value as String ;
                                                 //  print(controller.subData[0].fields![0].values!.length);
                                                 },
-                                                value: controller.subData[index].fields![index].id,
+                                                value: controller.subData[controller.subDataIndex.value].fields![0].values![index],
                                                 groupValue: controller.radioGValues4.value,);
                                             }),
                                           ),
                                           Container(
                                             margin: EdgeInsets.only(top: 8),
                                             child: Text(
-                                              controller.subData[index].fields![index].values![index].toString(),
+                                              controller.subData[controller.subDataIndex.value].fields![0].values![index].toString(),
                                               style: GoogleFonts.raleway(
                                                   fontSize: 16,
                                                   color: Colors.black

@@ -26,6 +26,7 @@ class TopSellingStoreAllProductsController extends GetxController {
   RxBool isOp5 = false.obs;
   RxBool isOp6 = false.obs;
   String selectedValue = "";
+  RxInt subDataIndex= 0.obs;
   RxList<String> location = RxList<String>(["New Arrivals","Price: Low-High","Price: High-Low","Discount: Low-High","Discount: High-Low"]);
   RxList<Products> productList = RxList<Products>([]);
   RxList<SubCategoryData> SubCatagoryList = RxList<SubCategoryData>([]);
