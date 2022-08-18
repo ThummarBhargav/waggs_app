@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
@@ -240,27 +241,45 @@ class HomeView extends GetView<HomeController> {
                         SizedBox(
                           height: 20,
                         ),
-                        Container(
+                    Container(
                           padding: EdgeInsets.only(top: 15, bottom: 15),
                           // color: Colors.greenAccent,
                           child: CarouselSlider.builder(
                             itemCount: controller.bannerList.length,
                             options: CarouselOptions(
-                              height: 250,
+                              height: 180,
                               enlargeCenterPage: true,
                               autoPlay: true,
                               autoPlayInterval: Duration(seconds: 3),
                               reverse: false,
-                              aspectRatio: 5.0,
+                              viewportFraction: 1.0,
                             ),
                             itemBuilder: (BuildContext context, int index,
                                 int realIndex) {
-                              return Container(
-                                color: Colors.black,
-                                child: Image.network(
-                                    width: 350,
-                                    fit: BoxFit.fill,
-                                    "${controller.bannerList[index].image}"),
+                              return CachedNetworkImage(
+                                  imageUrl: "${controller.bannerList[index]!.image}",
+                                  imageBuilder: (context, imageProvider) =>
+                                      Container(
+                                        height: 180,
+                                        width: MediaQuery.of(context).size.width,
+                                        decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                              image: imageProvider,fit: BoxFit.fill,
+                                              colorFilter: ColorFilter.mode(
+                                                  Colors.transparent,
+                                                  BlendMode.colorBurn)),
+                                        ),
+                                      ),
+                                  placeholder: (context, url) =>
+                                      CircularProgressIndicator(),
+                                  errorWidget: (context, url, error) => Expanded(
+                                      child: Container(
+                                        color: Colors.grey[100],
+                                      )),
+                              // child: Image.network(
+                              //     width: MediaQuery.of(context).size.width,
+                              //     fit: BoxFit.fill,
+                              //     "${controller.bannerList[index].image}"),
                               );
                             },
                           ),
@@ -809,3 +828,30 @@ class HomeView extends GetView<HomeController> {
     );
   }
 }
+
+
+//   Container(
+//                           padding: EdgeInsets.only(top: 15, bottom: 15),
+//                           // color: Colors.greenAccent,
+//                           child: CarouselSlider.builder(
+//                             itemCount: controller.bannerList.length,
+//                             options: CarouselOptions(
+//                               height: 180,
+//                               enlargeCenterPage: true,
+//                               autoPlay: true,
+//                               autoPlayInterval: Duration(seconds: 3),
+//                               reverse: false,
+//                               aspectRatio: 5.0,
+//                             ),
+//                             itemBuilder: (BuildContext context, int index,
+//                                 int realIndex) {
+//                               return Container(
+//                                 color: Colors.black,
+//                                 child: Image.network(
+//                                     width: 350,
+//                                     fit: BoxFit.fill,
+//                                     "${controller.bannerList[index].image}"),
+//                               );
+//                             },
+//                           ),
+//                         ),
