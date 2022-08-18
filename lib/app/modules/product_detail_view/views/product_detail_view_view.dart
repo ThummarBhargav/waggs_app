@@ -181,55 +181,6 @@ class ProductDetailViewView extends GetView<HomeController> {
                   ],
                 ),
               ),
-              // Container(
-              //     width: 350,
-              //     height: 110,
-              //     child: Stack(
-              //       children: [
-              //         CarouselSlider(
-              //           carouselController: carouselController, //// Give the controller
-              //           options: CarouselOptions(
-              //             height: 200,
-              //             autoPlay: false,
-              //           ),
-              //           items:  List.generate( data.images!.length,(index){
-              //             return Container (
-              //               color: Colors.grey.shade300,
-              //                        child: Padding(
-              //                          padding: const EdgeInsets.all(8.0),
-              //                          child: Image.network(width: 100,height:100,
-              //                                       "${data.images![index]}"),
-              //                        ),
-              //                       );
-              //           }),
-              //     ),
-              //         Padding(
-              //           padding: const EdgeInsets.only(top: 8.0,right: 10),
-              //           child: Align(
-              //             alignment: Alignment.centerLeft,
-              //             child: IconButton(
-              //               onPressed: () {
-              //                 // Use the controller to change the current page
-              //                 carouselController.previousPage();
-              //               },
-              //               icon: Icon(Icons.arrow_back),
-              //             ),
-              //           ),
-              //         ),
-              //         Align(
-              //           alignment: Alignment.centerRight,
-              //           child: IconButton(
-              //             onPressed: () {
-              //               // Use the controller to change the current page
-              //               carouselController.nextPage();
-              //             },
-              //             icon: Icon(Icons.arrow_forward),
-              //           ),
-              //         ),
-              //       ],
-              //
-              //     ),
-              //   ),
               Container(
                   width: 350,
                   height: 110,

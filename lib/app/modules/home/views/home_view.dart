@@ -71,8 +71,15 @@ class HomeView extends GetView<HomeController> {
                                   height: 100,
                                   color: Colors.grey.shade200,
                                   margin: EdgeInsets.all(5),
-                                  child: Text(
-                                      "${controller.cartProductList[index].title}"),
+                                  child: Row(
+                                    children: [
+                                      Column(
+                                        children: [
+
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 )
                               ],
                             );
