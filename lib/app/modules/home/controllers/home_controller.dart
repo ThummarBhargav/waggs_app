@@ -43,9 +43,9 @@ class HomeController extends GetxController {
   RxString url = ''.obs;
   @override
   void onInit() {
+    bannerAllProduct();
     AllCategory();
     SubCategory();
-    bannerAllProduct();
     TopSellingStoreApi();
     TopSellingProductApi();
     CartCount();
