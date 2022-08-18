@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/constant/SizeConstant.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
+import '../../../../main.dart';
+import '../../../constant/ConstantUrl.dart';
 import '../controllers/login_screen_controller.dart';
 
 class LoginScreenView extends GetView<LoginScreenController> {

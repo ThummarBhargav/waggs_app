@@ -255,13 +255,6 @@ class TopSellingStoreAllProductsView
                                                   controller.SubCatagoryList[index].sId;
                                                   controller.subDataIndex.value = index;
                                                   controller.productList.clear();
-                                                  controller.subData[index].fields!.forEach((element) {
-                                                    if(controller.subData[index].fields![index].id=="color"){
-                                                        controller.fieldData.add(element);
-                                                    }else{
-
-                                                    }
-                                                  });
                                                 },
                                                 value: controller.subData[index].name,
                                                 groupValue: controller.radioGValues1.value,);
@@ -497,7 +490,7 @@ class TopSellingStoreAllProductsView
                                   height: 230,
                                   child: ListView.builder(
                                     physics: NeverScrollableScrollPhysics(),
-                                    itemCount: controller.fieldData.length  ,
+                                    itemCount: controller.subData[controller.subDataIndex.value].fields![0].values!.length  ,
                                     itemBuilder: (context, index) {
                                       return Row(
                                         children: [
@@ -509,14 +502,14 @@ class TopSellingStoreAllProductsView
                                                   controller.radioGValues2.value =
                                                   value as String;
                                                 },
-                                                value: controller.fieldData[index].values![index],
+                                                value: controller.SubCatagoryList[index].name,
                                                 groupValue: controller.radioGValues2.value,);
                                             }),
                                           ),
                                           Container(
                                             margin: EdgeInsets.only(top: 8),
                                             child: Text(
-                                              controller.fieldData[index].values![index].toString(),
+                                              "Color",
                                               style: GoogleFonts.raleway(
                                                   fontSize: 16,
                                                   color: Colors.black

@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
+import 'package:waggs_app/app/constant/ConstantUrl.dart';
 
+import '../../main.dart';
 import '../modules/OTP_screen/bindings/o_t_p_screen_binding.dart';
 import '../modules/OTP_screen/views/o_t_p_screen_view.dart';
 import '../modules/Top_selling_Store_all_Products/bindings/top_selling_store_all_products_binding.dart';
@@ -26,7 +28,9 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.LOGIN_SCREEN;
+  static String INITIAL =  (box.read(ArgumentConstant.isUserLogin) == null)
+      ? Routes.LOGIN_SCREEN
+      : Routes.HOME;
 
   static final routes = [
     GetPage(

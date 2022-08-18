@@ -53,7 +53,9 @@ Rx<TextEditingController> passController = TextEditingController().obs;
           if(!isNullEmptyOrFalse(res.data)){
             if(!isNullEmptyOrFalse(res.data!.token)){
               box.write(ArgumentConstant.token, res.data!.token);
+              box.write(ArgumentConstant.isUserLogin, true);
               Get.toNamed(Routes.HOME);
+              print(box.read(ArgumentConstant.isUserLogin));
             }
           }
         }
