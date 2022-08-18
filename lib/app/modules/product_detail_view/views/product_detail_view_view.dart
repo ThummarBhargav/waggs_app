@@ -30,6 +30,7 @@ class ProductDetailViewView extends GetView<HomeController> {
           IconButton(onPressed:  (){}, icon: Icon(Icons.shopping_cart_outlined)),
         ],
       ),
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
           child: Column(
@@ -37,7 +38,12 @@ class ProductDetailViewView extends GetView<HomeController> {
               Container(
                 margin: EdgeInsets.symmetric(vertical: 10,horizontal: 18),
                 height: 250,
-                color: Colors.grey.shade200,
+                decoration: BoxDecoration(
+                  color: Color(0xfff6f6f6),
+                  borderRadius: BorderRadius.only(
+
+                  ),
+                ),
                 width: MediaQuery.of(context).size.width,
                 child: Column(
                   children: [

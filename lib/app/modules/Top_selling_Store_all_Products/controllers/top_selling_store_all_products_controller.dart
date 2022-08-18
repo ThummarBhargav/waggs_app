@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:waggs_app/app/Modal/CategoryModel.dart';
@@ -24,6 +25,8 @@ class TopSellingStoreAllProductsController extends GetxController {
   RxBool isOp4 = false.obs;
   RxBool isOp5 = false.obs;
   RxBool isOp6 = false.obs;
+  String selectedValue = "";
+  RxList<String> location = RxList<String>(["New Arrivals","Price: Low-High","Price: High-Low","Discount: Low-High","Discount: High-Low"]);
   RxList<Products> productList = RxList<Products>([]);
   RxList<SubCategoryData> SubCatagoryList = RxList<SubCategoryData>([]);
   SubCategorymodel subCategorymodel = SubCategorymodel();
@@ -35,6 +38,8 @@ class TopSellingStoreAllProductsController extends GetxController {
   RxString radioGValues1 = "".obs;
   RxString radioGValues2 = "".obs;
   RxString radioGValues3 = "".obs;
+  RxString radioGValues4 = "".obs;
+  RxString radioGValues5 = "".obs;
   RxString sidValues = "".obs;
   RxString subSidValues = "".obs;
 

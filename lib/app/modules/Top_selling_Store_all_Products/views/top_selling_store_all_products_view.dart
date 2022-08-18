@@ -15,12 +15,16 @@ import '../controllers/top_selling_store_all_products_controller.dart';
 
 class TopSellingStoreAllProductsView
     extends GetView<TopSellingStoreAllProductsController> {
+
+  var ScaffoldKey2 = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        key: ScaffoldKey2,
         endDrawer: Drawer(
-          width: 270,
+          width: 280,
           child: Column(
             children: [
               Container(
@@ -173,16 +177,14 @@ class TopSellingStoreAllProductsView
                                             groupValue: controller.radioGValues.value,);
                                         }),
                                       ),
-                                      Container(
-                                        margin: EdgeInsets.only(left: 20, top: 8),
+                                      Expanded(
                                         child: Text(
                                           "${controller.CatagoryList[index].name}",
                                           style: GoogleFonts.raleway(
-                                              fontSize: 16,
+                                              fontSize: 14,
                                               color: Colors.black
                                           ),),
                                       ),
-
                                     ],
                                   );
                                 },),
@@ -247,8 +249,7 @@ class TopSellingStoreAllProductsView
                                               return Radio(
                                                 activeColor: Color.fromRGBO(32, 193, 244, 1),
                                                 onChanged: (value) {
-                                                  controller.radioGValues1.value =
-                                                  value as String;
+                                                  controller.radioGValues1.value = value as String;
                                                   controller.radioGValues1.value!=null?controller.isOp3.value==true:false;
                                                   controller.isOp3.value = true;
                                                   controller.SubCatagoryList[index].sId;
@@ -258,15 +259,14 @@ class TopSellingStoreAllProductsView
                                                 groupValue: controller.radioGValues1.value,);
                                             }),
                                           ),
-                                          Container(
-                                            margin: EdgeInsets.only(top: 8),
+                                          Expanded(
                                             child: Text(
                                               "${controller.subData[index].name}",
                                               style: GoogleFonts.raleway(
-                                                  fontSize: 16,
+                                                  fontSize: 14,
                                                   color: Colors.black
                                               ),),
-                                          )
+                                          ),
                                         ],
                                       );
                                     },),
@@ -334,12 +334,12 @@ class TopSellingStoreAllProductsView
                                               return Radio(
                                                 activeColor: Color.fromRGBO(32, 193, 244, 1),
                                                 onChanged: (value) {
-                                                  controller.radioGValues2.value =
+                                                  controller.subData[index].fields![index].id =
                                                   value as String;
                                                 //  print(controller.subData[0].fields![0].values!.length);
                                                 },
                                                 value: controller.subData[index].fields![index].id,
-                                                groupValue: controller.radioGValues2.value,);
+                                                groupValue: controller.radioGValues4.value,);
                                             }),
                                           ),
                                           Container(
@@ -560,6 +560,8 @@ class TopSellingStoreAllProductsView
           ),
         ),
         appBar: AppBar(
+          automaticallyImplyLeading: false, // this will hide Drawer hamburger icon
+          actions: <Widget>[Container()],
           backgroundColor: Colors.transparent,
           shadowColor: Colors.transparent,
           iconTheme: IconThemeData(color: Colors.black),
@@ -602,7 +604,7 @@ class TopSellingStoreAllProductsView
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   TextButton(onPressed: () {
-                    Scaffold.of(context).openEndDrawer();
+                    ScaffoldKey2.currentState!.openEndDrawer();
                   }, child:
                   Row(children: [
                     Container(
@@ -629,17 +631,32 @@ class TopSellingStoreAllProductsView
                         ),
                       ),
                     ),
-                    Container(
-                      child: Text("New Arrivals",
-                        style: GoogleFonts.raleway(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black54,
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: 5,),
-                    Icon(Icons.keyboard_arrow_down_sharp, color: Colors.black,
-                      size: 18,),
+                    DropdownButton(
+                      value: 0,
+                      onChanged: (value) {
+                        value = controller.selectedValue;
+                    },items: [
+                      DropdownMenuItem(child: Text("New Arrivals",textAlign: TextAlign.center,style: GoogleFonts.raleway(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black54,
+                      ),),value: 0,),
+                      DropdownMenuItem(child: Text("Price: Low-High",style: GoogleFonts.raleway(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black54,
+                      ),),value: 1,),
+                      DropdownMenuItem(child: Text("Price: High-Low",style: GoogleFonts.raleway(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black54,
+                      ),),value: 2,),
+                      DropdownMenuItem(child: Text("Discount: Low-High",style: GoogleFonts.raleway(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black54,
+                      ),),value: 3,),
+                      DropdownMenuItem(child: Text("Discount: High-Low",style: GoogleFonts.raleway(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black54,
+                      ),),value: 4,),
+                    ],),
                   ],),),
                   SizedBox(width: 5,),
                 ],
