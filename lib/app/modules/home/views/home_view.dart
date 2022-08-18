@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
@@ -261,7 +262,7 @@ class HomeView extends GetView<HomeController> {
                           child: CarouselSlider.builder(
                             itemCount: controller.bannerList.length,
                             options: CarouselOptions(
-                              height: 230,
+                              height: 200,
                               enlargeCenterPage: true,
                               autoPlay: true,
                               autoPlayInterval: Duration(seconds: 3),

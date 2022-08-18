@@ -485,7 +485,7 @@ class TopSellingStoreAllProductsView
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Container(
-                                  height: 230 ,
+                                  height: 230,
                                   child: ListView.builder(
                                     physics: NeverScrollableScrollPhysics(),
                                     itemCount: controller.subData[controller.subDataIndex.value].fields![0].values!.length  ,
