@@ -464,10 +464,6 @@ class HomeView extends GetView<HomeController> {
                                       child: Container(
                                         color: Colors.grey[100],
                                       )),
-                              // child: Image.network(
-                              //     width: MediaQuery.of(context).size.width,
-                              //     fit: BoxFit.fill,
-                              //     "${controller.bannerList[index].image}"),
                               );
                             },
                           ),
@@ -1019,30 +1015,3 @@ class HomeView extends GetView<HomeController> {
     );
   }
 }
-
-
-//   Container(
-//                           padding: EdgeInsets.only(top: 15, bottom: 15),
-//                           // color: Colors.greenAccent,
-//                           child: CarouselSlider.builder(
-//                             itemCount: controller.bannerList.length,
-//                             options: CarouselOptions(
-//                               height: 180,
-//                               enlargeCenterPage: true,
-//                               autoPlay: true,
-//                               autoPlayInterval: Duration(seconds: 3),
-//                               reverse: false,
-//                               aspectRatio: 5.0,
-//                             ),
-//                             itemBuilder: (BuildContext context, int index,
-//                                 int realIndex) {
-//                               return Container(
-//                                 color: Colors.black,
-//                                 child: Image.network(
-//                                     width: 350,
-//                                     fit: BoxFit.fill,
-//                                     "${controller.bannerList[index].image}"),
-//                               );
-//                             },
-//                           ),
-//                         ),
