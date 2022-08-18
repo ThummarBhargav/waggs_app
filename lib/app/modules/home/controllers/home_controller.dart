@@ -194,10 +194,12 @@ class HomeController extends GetxController {
     }
   }
 
-  CartCount() async {
-    var url = Uri.parse(baseUrl+ApiConstant.Count);
-    var response = await http.get(url);
-    print('response status:${response.request}');
+  CartCount () async {
+    var url = Uri.parse("https://api.waggs.in/api/v1/cart/count");
+    var response = await http.get(url,headers: {
+      'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+    } );
+    print('response status:${response.body}');
     dynamic result = jsonDecode(response.body);
     count1= Count1.fromJson(result);
     print(result);
