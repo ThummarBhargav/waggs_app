@@ -248,11 +248,18 @@ class TopSellingStoreAllProductsView
                                                 activeColor: Color.fromRGBO(32, 193, 244, 1),
                                                 onChanged: (value) {
                                                   controller.radioGValues1.value = value as String;
-                                                  controller.radioGValues1.value!=null?controller.isOp3.value==true:false;
+                                                  controller.radioGValues1.value != ""?controller.isOp3.value==true:false;
                                                   controller.isOp3.value = true;
                                                   controller.SubCatagoryList[index].sId;
                                                   controller.subDataIndex.value = index;
                                                   controller.productList.clear();
+                                                  controller.subData[index].fields!.forEach((element) {
+                                                    if(controller.subData[index].fields![index].id=="color"){
+                                                        controller.fieldData.add(element);
+                                                    }else{
+
+                                                    }
+                                                  });
                                                 },
                                                 value: controller.subData[index].name,
                                                 groupValue: controller.radioGValues1.value,);
@@ -488,7 +495,7 @@ class TopSellingStoreAllProductsView
                                   height: 230,
                                   child: ListView.builder(
                                     physics: NeverScrollableScrollPhysics(),
-                                    itemCount: controller.SubCatagoryList.length,
+                                    itemCount: controller.fieldData.length  ,
                                     itemBuilder: (context, index) {
                                       return Row(
                                         children: [
@@ -500,14 +507,14 @@ class TopSellingStoreAllProductsView
                                                   controller.radioGValues2.value =
                                                   value as String;
                                                 },
-                                                value: controller.SubCatagoryList[index].name,
+                                                value: controller.fieldData[index].values![index],
                                                 groupValue: controller.radioGValues2.value,);
                                             }),
                                           ),
                                           Container(
                                             margin: EdgeInsets.only(top: 8),
                                             child: Text(
-                                              "Color",
+                                              controller.fieldData[index].values![index].toString(),
                                               style: GoogleFonts.raleway(
                                                   fontSize: 16,
                                                   color: Colors.black

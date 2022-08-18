@@ -6,7 +6,7 @@ class CartProduct {
   CartProduct({this.responseCode, this.data, this.message});
 
   CartProduct.fromJson(Map<String, dynamic> json) {
-    responseCode = json['responseCode'];
+    responseCode = (json['responseCode'].runtimeType == double )?int.parse(json['responseCode']):json['responseCode'];
     data = json['data'] != null ? new Data.fromJson(json['data']) : null;
     message = json['message'];
   }
