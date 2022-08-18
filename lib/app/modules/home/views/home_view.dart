@@ -497,6 +497,7 @@ class HomeView extends GetView<HomeController> {
                                           controller.SellersList,
                                     });
                               },
+
                               child: Container(
                                 margin: EdgeInsets.only(right: 23, bottom: 10),
                                 child: Text(
