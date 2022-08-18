@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:waggs_app/app/Modal/CartCountModel.dart';

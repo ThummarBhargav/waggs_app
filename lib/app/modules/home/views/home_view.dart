@@ -245,16 +245,13 @@ class HomeView extends GetView<HomeController> {
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        SizedBox(
-                          height: 20,
-                        ),
                     Container(
-                          padding: EdgeInsets.only(top: 15, bottom: 15),
+                          // padding: EdgeInsets.only(top: 15, bottom: 15),
                           // color: Colors.greenAccent,
                           child: CarouselSlider.builder(
                             itemCount: controller.bannerList.length,
                             options: CarouselOptions(
-                              height: 180,
+                              height: 230,
                               enlargeCenterPage: true,
                               autoPlay: true,
                               autoPlayInterval: Duration(seconds: 3),

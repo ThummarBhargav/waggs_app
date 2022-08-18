@@ -340,11 +340,11 @@ class TopSellingStoreAllProductsView
                                               return Radio(
                                                 activeColor: Color.fromRGBO(32, 193, 244, 1),
                                                 onChanged: (value) {
-                                                  controller.subData[controller.subDataIndex.value].fields![0].values![index] = value as String ;
+                                                  controller.radioGValues5.value = value as String ;
                                                 //  print(controller.subData[0].fields![0].values!.length);
                                                 },
                                                 value: controller.subData[controller.subDataIndex.value].fields![0].values![index],
-                                                groupValue: controller.radioGValues4.value,);
+                                                groupValue: controller.radioGValues5.value,);
                                             }),
                                           ),
                                           Container(
@@ -492,7 +492,7 @@ class TopSellingStoreAllProductsView
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Container(
-                                  height: 230,
+                                  height: 230 ,
                                   child: ListView.builder(
                                     physics: NeverScrollableScrollPhysics(),
                                     itemCount: controller.fieldData.length  ,
