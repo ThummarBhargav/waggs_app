@@ -2,14 +2,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:waggs_app/app/constant/sizeConstant.dart';
 import 'package:waggs_app/app/modules/product_detail_view/views/product_detail_view_view.dart';
-import 'package:waggs_app/app/modules/view-product/views/view_product_view.dart';
 
 import '../controllers/top_selling_store_all_products_controller.dart';
 
@@ -335,11 +333,11 @@ class TopSellingStoreAllProductsView
                                               return Radio(
                                                 activeColor: Color.fromRGBO(32, 193, 244, 1),
                                                 onChanged: (value) {
-                                                  controller.subData[controller.subDataIndex.value].fields![0].values![index] = value as String ;
+                                                  controller.radioGValues5.value = value as String ;
                                                 //  print(controller.subData[0].fields![0].values!.length);
                                                 },
                                                 value: controller.subData[controller.subDataIndex.value].fields![0].values![index],
-                                                groupValue: controller.radioGValues4.value,);
+                                                groupValue: controller.radioGValues5.value,);
                                             }),
                                           ),
                                           Container(
@@ -487,7 +485,7 @@ class TopSellingStoreAllProductsView
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Container(
-                                  height: 230,
+                                  height: 230 ,
                                   child: ListView.builder(
                                     physics: NeverScrollableScrollPhysics(),
                                     itemCount: controller.subData[controller.subDataIndex.value].fields![0].values!.length  ,
@@ -560,8 +558,28 @@ class TopSellingStoreAllProductsView
           ),
         ),
         appBar: AppBar(
-          automaticallyImplyLeading: false, // this will hide Drawer hamburger icon
-          actions: <Widget>[Container()],
+          automaticallyImplyLeading: false,
+          leading: IconButton(onPressed: () {
+            Get.back();
+          }, icon: Icon(Icons.arrow_back,size: 20,color: Colors.grey,)),// this will hide Drawer hamburger icon
+          actions: [Stack(
+            children: [
+              IconButton(
+                  onPressed: () {
+                    // scaffoldKey.currentState!
+                    //     .openEndDrawer();
+                  },
+                  icon: Icon(
+                    Icons.shopping_cart,
+                    color: Colors.grey[500],
+                  )),
+              Positioned(
+                  child: Container(
+                    margin: EdgeInsets.only(left: 25),
+                    child: Text("${controller.count1.data}",style: TextStyle(color: Colors.black),),
+                  ))
+            ],
+          )],
           backgroundColor: Colors.transparent,
           shadowColor: Colors.transparent,
           iconTheme: IconThemeData(color: Colors.black),

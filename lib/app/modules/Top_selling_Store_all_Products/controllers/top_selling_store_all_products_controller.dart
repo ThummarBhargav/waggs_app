@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
+import 'package:waggs_app/app/Modal/CartCountModel.dart';
 import 'package:waggs_app/app/Modal/CategoryModel.dart';
 import 'package:waggs_app/app/Modal/GetAllProductModule.dart';
 import 'package:waggs_app/app/Modal/SubCategoryModel.dart';
@@ -9,6 +9,7 @@ import 'package:waggs_app/app/Modal/TopSellingStore.dart';
 import 'package:waggs_app/app/constant/ConstantUrl.dart';
 import 'package:http/http.dart' as http;
 import 'package:waggs_app/app/constant/SizeConstant.dart';
+import 'package:waggs_app/main.dart';
 
 class TopSellingStoreAllProductsController extends GetxController {
   //TODO: Implement TopSellingStoreAllProductsController
@@ -27,6 +28,9 @@ class TopSellingStoreAllProductsController extends GetxController {
   RxBool isOp6 = false.obs;
   String selectedValue = "";
   RxInt subDataIndex= 0.obs;
+  Count1 count1 = Count1();
+  RxList<Count1> Countlist = RxList<Count1>([]);
+  RxList<Fields> fieldData = RxList<Fields>([]);
   RxList<String> location = RxList<String>(["New Arrivals","Price: Low-High","Price: High-Low","Discount: Low-High","Discount: High-Low"]);
   RxList<Products> productList = RxList<Products>([]);
   RxList<SubCategoryData> SubCatagoryList = RxList<SubCategoryData>([]);
@@ -49,6 +53,7 @@ class TopSellingStoreAllProductsController extends GetxController {
     getProduct();
     AllCategory();
     SubCategory();
+    CartCount();
     super.onInit();
   }
 
@@ -135,6 +140,20 @@ class TopSellingStoreAllProductsController extends GetxController {
       subCategorymodel.data!.forEach((element) {
         SubCatagoryList.add(element);
       });
+    }
+  }
+
+  CartCount () async {
+    var url = Uri.parse(baseUrl+ApiConstant.Count);
+    var response = await http.get(url,headers: {
+      'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+    } );
+    print('response status:${response.body}');
+    dynamic result = jsonDecode(response.body);
+    count1= Count1.fromJson(result);
+    print(result);
+    if (!isNullEmptyOrFalse(count1.data)) {
+      Countlist.add(count1);
     }
   }
 }

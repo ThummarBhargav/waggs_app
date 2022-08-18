@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
@@ -165,14 +164,25 @@ class HomeView extends GetView<HomeController> {
                                               .openEndDrawer();
                                         },
                                         icon: Icon(
-                                          Icons.shopping_cart,
+                                          Icons.shopping_cart,size: 25,
                                           color: Colors.grey[500],
                                         )),
-                                    Positioned(
+                                    controller.count1.data==null ? Container():Positioned(
+                                        left: 22,
+                                        top: 2,
                                         child: Container(
-                                      margin: EdgeInsets.only(left: 25),
-                                      child: Text("${controller.count1.data}"),
-                                    ))
+                                          width: 18,
+                                          height: 18,
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                            color: Color.fromRGBO(32, 193, 244, 1),
+                                            shape: BoxShape.circle,
+                                          ),
+                                          child: Text("${controller.count1.data}",style: GoogleFonts.raleway(
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white
+                                          ),),
+                                        )),
                                   ],
                                 ))
                               ],
@@ -245,16 +255,13 @@ class HomeView extends GetView<HomeController> {
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        SizedBox(
-                          height: 20,
-                        ),
                     Container(
-                          padding: EdgeInsets.only(top: 15, bottom: 15),
+                          // padding: EdgeInsets.only(top: 15, bottom: 15),
                           // color: Colors.greenAccent,
                           child: CarouselSlider.builder(
                             itemCount: controller.bannerList.length,
                             options: CarouselOptions(
-                              height: 180,
+                              height: 230,
                               enlargeCenterPage: true,
                               autoPlay: true,
                               autoPlayInterval: Duration(seconds: 3),
