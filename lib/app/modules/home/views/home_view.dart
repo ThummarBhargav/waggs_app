@@ -155,8 +155,7 @@ class HomeView extends GetView<HomeController> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Obx(
-                                        () => Align(
+                                       Align(
                                           alignment: Alignment.topLeft,
                                           child: Container(
                                             height: 34,
@@ -241,8 +240,8 @@ class HomeView extends GetView<HomeController> {
                                                 Expanded(
                                                   child: InkWell(
                                                       onTap: () {
-                                                        controller
-                                                            .count.value++;
+                                                        // controller
+                                                        //     .count.value++;
                                                       },
                                                       child: Icon(
                                                         Icons.add,
@@ -254,7 +253,7 @@ class HomeView extends GetView<HomeController> {
                                             ),
                                           ),
                                         ),
-                                      ),
+
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Text(
