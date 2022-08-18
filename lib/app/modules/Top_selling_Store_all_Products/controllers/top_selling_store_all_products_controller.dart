@@ -144,6 +144,7 @@ class TopSellingStoreAllProductsController extends GetxController {
   }
 
   CartCount () async {
+    Countlist.clear();
     var url = Uri.parse(baseUrl+ApiConstant.Count);
     var response = await http.get(url,headers: {
       'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
@@ -155,5 +156,6 @@ class TopSellingStoreAllProductsController extends GetxController {
     if (!isNullEmptyOrFalse(count1.data)) {
       Countlist.add(count1);
     }
+    Countlist.refresh();
   }
 }
