@@ -250,7 +250,7 @@ class TopSellingStoreAllProductsView
                                                 activeColor: Color.fromRGBO(32, 193, 244, 1),
                                                 onChanged: (value) {
                                                   controller.radioGValues1.value = value as String;
-                                                  controller.radioGValues1.value!=null?controller.isOp3.value==true:false;
+                                                  controller.radioGValues1.value != ""?controller.isOp3.value==true:false;
                                                   controller.isOp3.value = true;
                                                   controller.SubCatagoryList[index].sId;
                                                   controller.subDataIndex.value = index;
@@ -325,7 +325,7 @@ class TopSellingStoreAllProductsView
                                 Container(
                                   height: 230,
                                   child: ListView.builder(
-                                    // physics: NeverScrollableScrollPhysics(),
+                                    physics: NeverScrollableScrollPhysics(),
                                     itemCount: controller.subData[controller.subDataIndex.value].fields![0].values!.length,
                                     itemBuilder: (context, index) {
                                       return Row(
