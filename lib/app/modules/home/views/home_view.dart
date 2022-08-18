@@ -427,7 +427,8 @@ class HomeView extends GetView<HomeController> {
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-                    Container(
+                        controller.bannerList.isEmpty?Container(child: Center(child: CircularProgressIndicator(),),)
+                    :Container(
                           padding: EdgeInsets.only(top: 25, bottom: 15),
                           // color: Colors.greenAccent,
                           child: CarouselSlider.builder(
