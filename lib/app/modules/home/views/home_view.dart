@@ -28,7 +28,7 @@ class HomeView extends GetView<HomeController> {
                     Expanded(
                       flex: 1,
                       child: DrawerHeader(
-                          decoration: BoxDecoration(color: Colors.blue),
+                          decoration: BoxDecoration(color: Color.fromRGBO(32, 193, 244, 1),),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
@@ -66,162 +66,168 @@ class HomeView extends GetView<HomeController> {
                         child: ListView.builder(
                           itemCount: controller.cartProductList.length,
                           itemBuilder: (context, index) {
-                            return Container(
-                              width: double.infinity,
-                              height: 180,
-                              color: Colors.grey.shade200,
+                            return Card(
+                              elevation: 2,
                               margin: EdgeInsets.all(5),
-                              child: Column(
-                                children: [
-                                  Row(
-                                    children: [
-                                      Column(
-                                        children: [
-                                          CachedNetworkImage(
-                                              imageUrl:
-                                              "${controller.cartProductList[index].images![0]}",
-                                              imageBuilder:
-                                                  (context, imageProvider) =>
-                                                  Container(
-                                                    margin: EdgeInsets.all(10),
-                                                    height: 80,
-                                                    width: 80,
-                                                    decoration: BoxDecoration(
-                                                      image: DecorationImage(image: imageProvider, fit: BoxFit.cover, colorFilter: ColorFilter.mode(Colors.transparent, BlendMode.colorBurn)),
+                              child: Container(
+                                width: double.infinity,
+                                height: 180,
+                                decoration: BoxDecoration(
+                                    color: Colors.grey.shade200,
+                                    borderRadius: BorderRadius.all(Radius.circular(10))
+                                ),
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Column(
+                                          children: [
+                                            CachedNetworkImage(
+                                                imageUrl:
+                                                "${controller.cartProductList[index].images![0]}",
+                                                imageBuilder:
+                                                    (context, imageProvider) =>
+                                                    Container(
+                                                      margin: EdgeInsets.all(10),
+                                                      height: 80,
+                                                      width: 80,
+                                                      decoration: BoxDecoration(
+                                                        image: DecorationImage(image: imageProvider, fit: BoxFit.cover, colorFilter: ColorFilter.mode(Colors.transparent, BlendMode.colorBurn)),
+                                                      ),
                                                     ),
-                                                  ),
-                                              placeholder:
-                                                  (context, url) =>
-                                                  CircularProgressIndicator(),
-                                              errorWidget: (context,
-                                                  url,
-                                                  error) =>
-                                                  Expanded(
-                                                      child: Container(
-                                                        color:
-                                                        Colors.grey[100],
-                                                      ))),
-                                        ],
-                                      ),
-                                      Expanded(
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(left: 8.0,top: 10),
-                                          child: Column(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                            children: [
-                                            Text("${controller.cartProductList[index].title}",style:
-                                              TextStyle(fontWeight: FontWeight.w800),),
+                                                placeholder:
+                                                    (context, url) =>
+                                                    CircularProgressIndicator(),
+                                                errorWidget: (context,
+                                                    url,
+                                                    error) =>
+                                                    Expanded(
+                                                        child: Container(
+                                                          color:
+                                                          Colors.grey[100],
+                                                        ))),
                                           ],
+                                        ),
+                                        Expanded(
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(left: 8.0,top: 10),
+                                            child: Column(
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              children: [
+                                              Text("${controller.cartProductList[index].title}",style:
+                                                TextStyle(fontWeight: FontWeight.w800),),
+                                            ],
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                      Expanded(
-                                        child: Column(
+                                        Expanded(
+                                          child: Column(
+                                            children: [
+                                              IconButton(
+                                                  onPressed: (){}, icon: Icon(Icons.delete_rounded,color: Colors.cyan,))
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Divider(indent: 2,color: Colors.grey.shade500,endIndent: 2,),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                    Obx(()=> Align(
+                                      alignment: Alignment.topLeft,
+                                      child: Container(
+                                        height: 34,
+                                        margin: EdgeInsets.only(left: 8),
+                                        width: MediaQuery.of(context).size.width * 0.3,
+                                        padding: EdgeInsets.all(0),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(20),
+                                            topRight: Radius.circular(20),
+                                            bottomRight: Radius.circular(20),
+                                            bottomLeft: Radius.circular(20),
+                                          ),
+                                          border: Border.all(
+                                            color: Colors.grey.shade400,
+                                            width: 1,
+                                          ),
+                                        ),
+                                        child: Row(
                                           children: [
-                                            IconButton(
-                                                onPressed: (){}, icon: Icon(Icons.delete_rounded,color: Colors.cyan,))
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Divider(indent: 2,color: Colors.grey.shade500,endIndent: 2,),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                  Obx(()=> Align(
-                                    alignment: Alignment.topLeft,
-                                    child: Container(
-                                      height: 34,
-                                      margin: EdgeInsets.only(left: 8),
-                                      width: MediaQuery.of(context).size.width * 0.3,
-                                      padding: EdgeInsets.all(0),
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(20),
-                                          topRight: Radius.circular(20),
-                                          bottomRight: Radius.circular(20),
-                                          bottomLeft: Radius.circular(20),
-                                        ),
-                                        border: Border.all(
-                                          color: Colors.grey.shade400,
-                                          width: 1,
-                                        ),
-                                      ),
-                                      child: Row(
-                                        children: [
-                                          Expanded(
-                                            child: InkWell(
-                                                onTap: () {
-                                                  if (controller.count.value > 0) {
-                                                    controller.count.value--;
-                                                  }
-                                                },
-                                                child: Padding(
+                                            Expanded(
+                                              child: InkWell(
+                                                  onTap: () {
+                                                    if (controller.count.value > 0) {
+                                                      controller.count.value--;
+                                                    }
+                                                  },
+                                                  child: Padding(
+                                                    padding:
+                                                    const EdgeInsets.only(left: 8.0, right: 5),
+                                                    child: Icon(
+                                                      Icons.remove,
+                                                      color: Colors.black,
+                                                      size: 22,
+                                                    ),
+                                                  )),
+                                            ),
+                                            Expanded(
+                                                child: Container(
+                                                  height: 75,
+                                                  width: 75,
                                                   padding:
-                                                  const EdgeInsets.only(left: 8.0, right: 5),
+                                                  EdgeInsets.symmetric(horizontal: 3, vertical: 2),
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.grey.shade300,
+                                                    border: Border(
+                                                      left: BorderSide(
+                                                        //                   <--- left side
+                                                        color: Colors.grey,
+                                                        width: 1.0,
+                                                      ),
+                                                      right: BorderSide(
+                                                        //                    <--- top side
+                                                        color: Colors.grey,
+                                                        width: 1.0,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  child: Center(
+                                                      child:
+                                                      Text(
+                                                        "${controller.count.value}",
+                                                        style: TextStyle(
+                                                            color: Colors.grey.shade500,
+                                                            fontSize: 18,
+                                                            fontWeight: FontWeight.w500),
+
+                                                      )),
+                                                )),
+                                            Expanded(
+                                              child: InkWell(
+                                                  onTap: () {
+                                                    controller.count.value++;
+                                                  },
                                                   child: Icon(
-                                                    Icons.remove,
+                                                    Icons.add,
                                                     color: Colors.black,
                                                     size: 22,
-                                                  ),
-                                                )),
-                                          ),
-                                          Expanded(
-                                              child: Container(
-                                                height: 75,
-                                                width: 75,
-                                                padding:
-                                                EdgeInsets.symmetric(horizontal: 3, vertical: 2),
-                                                decoration: BoxDecoration(
-                                                  color: Colors.grey.shade300,
-                                                  border: Border(
-                                                    left: BorderSide(
-                                                      //                   <--- left side
-                                                      color: Colors.grey,
-                                                      width: 1.0,
-                                                    ),
-                                                    right: BorderSide(
-                                                      //                    <--- top side
-                                                      color: Colors.grey,
-                                                      width: 1.0,
-                                                    ),
-                                                  ),
-                                                ),
-                                                child: Center(
-                                                    child:
-                                                    Text(
-                                                      "${controller.count.value}",
-                                                      style: TextStyle(
-                                                          color: Colors.grey.shade500,
-                                                          fontSize: 18,
-                                                          fontWeight: FontWeight.w500),
-
-                                                    )),
-                                              )),
-                                          Expanded(
-                                            child: InkWell(
-                                                onTap: () {
-                                                  controller.count.value++;
-                                                },
-                                                child: Icon(
-                                                  Icons.add,
-                                                  color: Colors.black,
-                                                  size: 22,
-                                                )),
-                                          )
-                                        ],
+                                                  )),
+                                            )
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                  ),),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text("\u{20B9}${controller.cartProductList[index].discountedPrice}.00",
-                                        style: TextStyle(color: Colors.orange,fontWeight: FontWeight.w800),),
-                                    )
-                                  ],)
-                                ],
+                                    ),),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text("\u{20B9}${controller.cartProductList[index].discountedPrice}.00",
+                                          style: TextStyle(color: Colors.orange,fontWeight: FontWeight.w800),),
+                                      )
+                                    ],)
+                                  ],
+                                ),
                               ),
                             );
                           },
@@ -243,7 +249,7 @@ class HomeView extends GetView<HomeController> {
                                 padding: const EdgeInsets.only(top: 15.0,left: 8,right: 8),
                                 child: getcon(
                                   alignment: Alignment.center,
-                                  color: Colors.cyan,
+                                  color: Color.fromRGBO(32, 193, 244, 1),
                                   height: 30,
                                   width: MediaQuery.of(context).size.width,
                                   text: Text("VIEW CART",style: TextStyle(
@@ -448,7 +454,6 @@ class HomeView extends GetView<HomeController> {
                                   imageUrl: "${controller.bannerList[index].image}",
                                   imageBuilder: (context, imageProvider) =>
                                       Container(
-                                        height: 180,
                                         width: MediaQuery.of(context).size.width,
                                         decoration: BoxDecoration(
                                           image: DecorationImage(
