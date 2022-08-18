@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
@@ -429,15 +430,15 @@ class HomeView extends GetView<HomeController> {
                       children: [
                         controller.bannerList.isEmpty?Container(child: Center(child: CircularProgressIndicator(),),)
                     :Container(
-                          padding: EdgeInsets.only(top: 25, bottom: 15),
+                          //padding: EdgeInsets.only(top: 25, bottom: 15),
                           // color: Colors.greenAccent,
                           child: CarouselSlider.builder(
                             itemCount: controller.bannerList.length,
                             options: CarouselOptions(
-                              height: 180,
+                              height: 230,
                               enlargeCenterPage: true,
                               autoPlay: true,
-                              autoPlayInterval: Duration(seconds: 4),
+                              autoPlayInterval: Duration(seconds: 3),
                               reverse: false,
                               viewportFraction: 1.0,
                             ),
@@ -498,6 +499,7 @@ class HomeView extends GetView<HomeController> {
                                           controller.SellersList,
                                     });
                               },
+
                               child: Container(
                                 margin: EdgeInsets.only(right: 23, bottom: 10),
                                 child: Text(
