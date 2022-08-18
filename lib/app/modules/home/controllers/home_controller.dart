@@ -188,6 +188,8 @@ class HomeController extends GetxController {
       print('Response status: ${response.statusCode}');
       print('Response body: ${response.body}');
       if(response.statusCode==200){
+        Get.snackbar("Success","Product Successfully add to cart",snackPosition: SnackPosition.BOTTOM);
+
       }
       else{
         Get.snackbar("Error", response.body,snackPosition: SnackPosition.BOTTOM);
@@ -199,6 +201,7 @@ class HomeController extends GetxController {
   }
 
   CartCount () async {
+    Countlist.clear();
     var url = Uri.parse(baseUrl+ApiConstant.Count);
     var response = await http.get(url,headers: {
       'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
@@ -210,6 +213,7 @@ class HomeController extends GetxController {
     if (!isNullEmptyOrFalse(count1.data)) {
           Countlist.add(count1);
     }
+    Countlist.refresh();
   }
 
   CartProductApi() async {
@@ -229,7 +233,6 @@ class HomeController extends GetxController {
 
         }
         );
-        getAllUserApi();
       }
     }
   }
