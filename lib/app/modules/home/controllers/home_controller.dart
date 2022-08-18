@@ -217,6 +217,7 @@ class HomeController extends GetxController {
   }
 
   CartProductApi() async {
+    cartProductList.clear();
     var url = Uri.parse("https://api.waggs.in/api/v1/cart");
     var response = await http.get(url,headers: {
       'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
@@ -235,5 +236,6 @@ class HomeController extends GetxController {
         );
       }
     }
+    cartProductList.refresh();
   }
  }
