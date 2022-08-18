@@ -426,12 +426,12 @@ class HomeView extends GetView<HomeController> {
                     child: Column(
                       children: [
                     Container(
-                          // padding: EdgeInsets.only(top: 15, bottom: 15),
+                          padding: EdgeInsets.only(top: 25, bottom: 15),
                           // color: Colors.greenAccent,
                           child: CarouselSlider.builder(
                             itemCount: controller.bannerList.length,
                             options: CarouselOptions(
-                              height: 230,
+                              height: 180,
                               enlargeCenterPage: true,
                               autoPlay: true,
                               autoPlayInterval: Duration(seconds: 4),
