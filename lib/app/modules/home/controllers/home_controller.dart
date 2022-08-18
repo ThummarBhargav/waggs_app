@@ -37,6 +37,7 @@ class HomeController extends GetxController {
   List<String> imageList = ['assets/category01.jpg','assets/category02.jpg',
     'assets/category03.jpg','assets/category04.jpg','assets/category05.jpg'].obs;
   List respons =[];
+  List respons1=[];
   final count = 0.obs;
   RxBool isOpen = false.obs;
   RxBool isOpen1 = false.obs;
@@ -190,6 +191,34 @@ class HomeController extends GetxController {
       if(response.statusCode==200){
         Get.snackbar("Success","Product Successfully add to cart",snackPosition: SnackPosition.BOTTOM);
 
+      }
+      else{
+        Get.snackbar("Error", "Product already in cart",snackPosition: SnackPosition.BOTTOM);
+      }
+    }catch(e){
+      Get.snackbar("Error", e.toString(),snackPosition: SnackPosition.BOTTOM,);
+
+    }
+  }
+
+  Future<void> CartDeleteApi({required Details data,required Products0 data1}) async {
+    print('Bearer ${box.read(ArgumentConstant.token)}');
+    print('${data1.sId}');
+    try{
+      var url = Uri.parse("https://api.waggs.in/api/v1/cart");
+      var response = await http.put(url, body: {
+        'productId': '${data1.sId}',
+        'quantity': '${data.quantity}',
+      },headers: {
+        'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+      }
+      );
+      respons1.add(response.body);
+      print(jsonDecode(response.body).runtimeType);
+      print('Response status: ${response.statusCode}');
+      print('Response body: ${response.body}');
+      if(response.statusCode==200){
+        Get.snackbar("Success","Product Successfully add to cart",snackPosition: SnackPosition.BOTTOM);
       }
       else{
         Get.snackbar("Error", "Product already in cart",snackPosition: SnackPosition.BOTTOM);

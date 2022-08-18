@@ -47,7 +47,7 @@ class TopSellingStoreAllProductsController extends GetxController {
   RxString radioGValues5 = "".obs;
   RxString sidValues = "".obs;
   RxString subSidValues = "".obs;
-
+  List respons =[];
   @override
   void onInit() {
     getProduct();
@@ -157,5 +157,32 @@ class TopSellingStoreAllProductsController extends GetxController {
       Countlist.add(count1);
     }
     Countlist.refresh();
+  }
+
+  Future<void> addToCart({required Products data}) async {
+    print('Bearer ${box.read(ArgumentConstant.token)}');
+    print('${data.sId}');
+    try{
+      var url = Uri.parse(baseUrl+ApiConstant.Cart);
+      var response = await http.post(url, body: {
+        'productId': '${data.sId}',
+      },headers: {
+        'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+      }
+      );
+      respons.add(response.body);
+      print(jsonDecode(response.body).runtimeType);
+      print('Response status: ${response.statusCode}');
+      print('Response body: ${response.body}');
+      if(response.statusCode==200){
+        Get.snackbar("Success","Product Successfully add to cart",snackPosition: SnackPosition.BOTTOM);
+      }
+      else{
+        Get.snackbar("Error", "Product already in cart",snackPosition: SnackPosition.BOTTOM);
+      }
+    }catch(e){
+      Get.snackbar("Error", e.toString(),snackPosition: SnackPosition.BOTTOM,);
+
+    }
   }
 }

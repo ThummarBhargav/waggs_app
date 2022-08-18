@@ -1005,7 +1005,17 @@ class TopSellingStoreAllProductsView
                                     height: 10,
                                   ),
                                   InkWell(
-                                    onTap: () {},
+                                    onTap: () {
+                                      print("${controller.mainProductList[index].sId}");
+                                      controller.addToCart(
+                                        data: controller
+                                            .mainProductList[
+                                        index],
+                                      );
+                                      controller.CartCount();
+                                      controller.Countlist
+                                          .refresh();
+                                    },
                                     child: Container(
                                       width: 150,
                                       height: 35,

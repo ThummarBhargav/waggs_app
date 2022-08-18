@@ -8,6 +8,7 @@ import 'package:waggs_app/app/constant/ConstantUrl.dart';
 import 'package:waggs_app/app/constant/Container.dart';
 import 'package:waggs_app/app/modules/Catagory_Page/views/catagory_page_view.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
+import 'package:waggs_app/main.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -130,7 +131,12 @@ class HomeView extends GetView<HomeController> {
                                         child: Column(
                                           children: [
                                             IconButton(
-                                                onPressed: () {},
+                                                onPressed: () {
+                                                  controller.CartDeleteApi(
+                                                      data: controller.cartProductList[index],
+                                                    data1:controller.TopProductlist[index],
+                                                  );
+                                                },
                                                 icon: Icon(
                                                   Icons.delete_rounded,
                                                   color: Colors.cyan,
@@ -779,8 +785,6 @@ class HomeView extends GetView<HomeController> {
                                         elevation: 2,
                                         child: GestureDetector(
                                           onTap: () {
-                                            // Get.to(ViewProductView(
-                                            //     controller.TopProductlist[index]));
                                             Get.toNamed(Routes.VIEW_PRODUCT,
                                                 arguments: controller
                                                     .TopProductlist[index]);
@@ -981,6 +985,8 @@ class HomeView extends GetView<HomeController> {
                                                 ),
                                                 InkWell(
                                                   onTap: () {
+                                                    print("${controller.TopProductlist[index].sId}");
+                                                    print("Bearer ${box.read(ArgumentConstant.token)}");
                                                     controller.addToCart(
                                                         data: controller
                                                                 .TopProductlist[

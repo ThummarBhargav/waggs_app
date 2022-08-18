@@ -16,7 +16,6 @@ class SubCategoryWidget extends StatefulWidget {
   @override
   State<SubCategoryWidget> createState() => _SubCategoryWidgetState();
 }
-
 class _SubCategoryWidgetState extends State<SubCategoryWidget> {
   ProductListScreenController controller = ProductListScreenController();
   @override
@@ -76,7 +75,6 @@ class _SubCategoryWidgetState extends State<SubCategoryWidget> {
                                   elevation: 2,
                                   child: GestureDetector(
                                     onTap: () {
-                                      // Get.to(ViewProductView(controller.mainProductList[index]))
                                       Get.toNamed(Routes.VIEW_PRODUCT,arguments: controller.mainProductList[index]);
                                     },
                                     child: Container(
@@ -264,7 +262,16 @@ class _SubCategoryWidgetState extends State<SubCategoryWidget> {
                                             height: 10,
                                           ),
                                           InkWell(
-                                            onTap: () {},
+                                            onTap: () {
+                                              print("${controller.mainProductList[index].sId}");
+                                              controller.addToCart(
+                                                data: controller
+                                                    .mainProductList[index],
+                                              );
+                                              controller.CartCount();
+                                              controller.Countlist
+                                                  .refresh();
+                                            },
                                             child: Container(
                                               width: 150,
                                               height: 35,
