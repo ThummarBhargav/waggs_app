@@ -243,7 +243,7 @@ class HomeController extends GetxController {
       var request = http.Request('PUT', Uri.parse('https://api.waggs.in/api/v1/cart'));
       request.body = json.encode({
         "productId": "${data.productId}",
-        "quantity": "${count++}"
+        "quantity": "${count.value++}"
       });
       request.headers.addAll(headers);
 
