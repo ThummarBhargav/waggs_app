@@ -1035,12 +1035,7 @@ class HomeView extends GetView<HomeController> {
                                                         data: controller
                                                                 .TopProductlist[
                                                             index]);
-                                                    controller.CartCount();
-                                                    controller.Countlist
-                                                        .refresh();
-                                                    controller.CartProductApi();
-                                                    controller.cartProductList
-                                                        .refresh();
+
                                                   },
                                                   child: Container(
                                                     width: 130,

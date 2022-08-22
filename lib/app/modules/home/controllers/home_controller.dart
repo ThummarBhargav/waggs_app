@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:waggs_app/app/Modal/CartCountModel.dart';
 import 'package:waggs_app/app/Modal/CartProductModel.dart';
 import 'package:waggs_app/app/Modal/CategoryModel.dart';
@@ -180,12 +181,18 @@ class HomeController extends GetxController {
     print('Bearer ${box.read(ArgumentConstant.token)}');
     try{
       var url = Uri.parse(baseUrl+ApiConstant.Cart);
-      var response = await http.post(url, body: {
+      var response ;
+       await http.post(url, body: {
         'productId': '${data.sId}',
       },headers: {
         'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
       }
-      );
+      ).then((value) {
+        response = value;
+        CartProductApi();
+        CartCount();
+
+       });
       respons.add(response.body);
       print(jsonDecode(response.body).runtimeType);
       print('Response status: ${response.statusCode}');
