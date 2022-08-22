@@ -234,10 +234,6 @@ class HomeView extends GetView<HomeController> {
                                                                           .cartProductList[
                                                                       index],
                                                                 );
-                                                                // controller.CartProductApi();
-                                                                // controller.cartProductList.refresh();
-                                                                // controller.CartCount();
-                                                                // controller.Countlist.refresh();
                                                               },
                                                               child: Padding(
                                                                 padding:
@@ -302,10 +298,6 @@ class HomeView extends GetView<HomeController> {
                                                                           .cartProductList[
                                                                       index],
                                                                 );
-                                                                // controller.CartProductApi();
-                                                                // controller.cartProductList.refresh();
-                                                                // controller.CartCount();
-                                                                // controller.Countlist.refresh();
                                                               },
                                                               child: Icon(
                                                                 Icons.add,
