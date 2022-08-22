@@ -158,6 +158,10 @@ class HomeView extends GetView<HomeController> {
                                                 controller.CartDeleteApi(
                                                     data: controller.cartProductList[index],
                                                 );
+                                                controller.CartProductApi();
+                                                controller.cartProductList.refresh();
+                                                controller.CartCount();
+                                                controller.Countlist.refresh();
                                               },
                                               icon: Icon(
                                                 Icons.delete_rounded,

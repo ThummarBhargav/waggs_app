@@ -249,10 +249,19 @@ class HomeController extends GetxController {
   }
 
   CartProductApi() async {
+    hasData.value = false;
     cartProductList.clear();
     var url = Uri.parse("https://api.waggs.in/api/v1/cart");
-    var response = await http.get(url,headers: {
+    var response;
+    await http.get(url,headers: {
       'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+    }).then((value) {
+      hasData.value = true;
+      print(value);
+      response = value;
+      // respons = value as List;
+    }).catchError((error){
+      hasData.value = false;
     });
     print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');
