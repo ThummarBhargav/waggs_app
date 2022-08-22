@@ -29,331 +29,385 @@ class HomeView extends GetView<HomeController> {
                 child: (controller.hasData.isFalse)
                     ? Center(child: CircularProgressIndicator())
                     : (isNullEmptyOrFalse(controller.cartProductList))
-                    ? Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        height: 300,
-                        width: 250,
-                        child: SvgPicture.asset("assets/NoData.svg"),
-                      ),
-                      Text(
-                        "No data found",
-                        style: GoogleFonts.raleway(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 20,
-                            color: Color.fromRGBO(33, 43, 54, 1)),
-                      ),
-                    ],
-                  ),
-                )
-                    :Column(
-                  children: [
-                    Expanded(
-                      flex: 1,
-                      child: DrawerHeader(
-                          decoration: BoxDecoration(color: Colors.blue),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: 30,
-                                margin: EdgeInsets.only(right: 10),
-                                child: IconButton(
-                                    onPressed: () {
-                                      Get.back();
-                                    },
-                                    icon: Icon(
-                                      Icons.arrow_back,
-                                      color: Colors.white,
-                                      size: 20,
-                                    )),
-                              ),
-                              Container(
-                                height: 30,
-                                margin: EdgeInsets.only(top: 10),
-                                child: Text(
-                                  "SHOPPING BAG " +
-                                      "(${controller.count1.data})",
-                                  style: GoogleFonts.raleway(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16,
-                                    color: Colors.white,
-                                  ),
+                        ? Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  height: 300,
+                                  width: 250,
+                                  child: SvgPicture.asset("assets/NoData.svg"),
                                 ),
-                              ),
-                            ],
-                          )),
-                    ),
-                    Expanded(
-                        flex: 9,
-                        child: ListView.builder(
-                          itemCount: controller.cartProductList.length,
-                          itemBuilder: (context, index) {
-                            return Container(
-                              width: double.infinity,
-                              height: 180,
-                              color: Colors.grey.shade200,
-                              margin: EdgeInsets.all(5),
-                              child: Column(
-                                children: [
-                                  Row(
-                                    children: [
-                                      Column(
-                                        children: [
-                                          // controller.count = controller.cartProductList[index].quantity;
-                                          CachedNetworkImage(
-                                              imageUrl:
-                                                  "${controller.cartProductList[index].product!.images![0]}",
-                                              imageBuilder: (context,
-                                                      imageProvider) =>
-                                                  Container(
-                                                    margin: EdgeInsets.all(10),
-                                                    height: 80,
-                                                    width: 80,
-                                                    decoration: BoxDecoration(
-                                                      image: DecorationImage(
-                                                          image: imageProvider,
-                                                          fit: BoxFit.cover,
-                                                          colorFilter:
-                                                              ColorFilter.mode(
-                                                                  Colors
-                                                                      .transparent,
-                                                                  BlendMode
-                                                                      .colorBurn)),
-                                                    ),
-                                                  ),
-                                              placeholder: (context, url) =>
-                                                  CircularProgressIndicator(),
-                                              errorWidget:
-                                                  (context, url, error) =>
-                                                      Expanded(
-                                                          child: Container(
-                                                        color: Colors.grey[100],
-                                                      ))),
-                                        ],
-                                      ),
-                                      Expanded(
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 8.0, top: 10),
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Text(
-                                                "${controller.cartProductList[index].product!.title}",
-                                                style: TextStyle(
-                                                    fontWeight:
-                                                        FontWeight.w800),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                      Column(
-                                        children: [
-                                          IconButton(
+                                Text(
+                                  "No data found",
+                                  style: GoogleFonts.raleway(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 20,
+                                      color: Color.fromRGBO(33, 43, 54, 1)),
+                                ),
+                              ],
+                            ),
+                          )
+                        : Column(
+                            children: [
+                              Expanded(
+                                flex: 1,
+                                child: DrawerHeader(
+                                    decoration:
+                                        BoxDecoration(color: Colors.blue),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          width: 30,
+                                          margin: EdgeInsets.only(right: 10),
+                                          child: IconButton(
                                               onPressed: () {
-                                                controller.CartDeleteApi(
-                                                    data: controller.cartProductList[index],
-                                                );
-                                                controller.CartProductApi();
-                                                controller.cartProductList.refresh();
-                                                controller.CartCount();
-                                                controller.Countlist.refresh();
+                                                Get.back();
                                               },
                                               icon: Icon(
-                                                Icons.delete_rounded,
-                                                color: Colors.cyan,
-                                              ))
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                  Divider(
-                                    indent: 2,
-                                    color: Colors.grey.shade500,
-                                    endIndent: 2,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                       Align(
-                                          alignment: Alignment.topLeft,
-                                          child: Container(
-                                            height: 34,
-                                            margin: EdgeInsets.only(left: 8),
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.3,
-                                            padding: EdgeInsets.all(0),
-                                            decoration: BoxDecoration(
+                                                Icons.arrow_back,
+                                                color: Colors.white,
+                                                size: 20,
+                                              )),
+                                        ),
+                                        Container(
+                                          height: 30,
+                                          margin: EdgeInsets.only(top: 10),
+                                          child: Text(
+                                            "SHOPPING BAG " +
+                                                "(${controller.count1.data})",
+                                            style: GoogleFonts.raleway(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 16,
                                               color: Colors.white,
-                                              borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(20),
-                                                topRight: Radius.circular(20),
-                                                bottomRight:
-                                                    Radius.circular(20),
-                                                bottomLeft: Radius.circular(20),
-                                              ),
-                                              border: Border.all(
-                                                color: Colors.grey.shade400,
-                                                width: 1,
-                                              ),
                                             ),
-                                            child: Row(
+                                          ),
+                                        ),
+                                      ],
+                                    )),
+                              ),
+                              Expanded(
+                                  flex: 9,
+                                  child: ListView.builder(
+                                    itemCount:
+                                        controller.cartProductList.length,
+                                    itemBuilder: (context, index) {
+                                      return Container(
+                                        width: double.infinity,
+                                        height: 180,
+                                        color: Colors.grey.shade200,
+                                        margin: EdgeInsets.all(5),
+                                        child: Column(
+                                          children: [
+                                            Row(
                                               children: [
-                                                Expanded(
-                                                  child: InkWell(
-                                                      onTap: () {
-                                                        controller.UpdateCartRemove(
-                                                          data: controller.cartProductList[index],
-                                                        );
-                                                        // controller.CartProductApi();
-                                                        // controller.cartProductList.refresh();
-                                                        // controller.CartCount();
-                                                        // controller.Countlist.refresh();
-                                                      },
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .only(
-                                                                left: 8.0,
-                                                                right: 5),
-                                                        child: Icon(
-                                                          Icons.remove,
-                                                          color: Colors.black,
-                                                          size: 22,
-                                                        ),
-                                                      )),
+                                                Column(
+                                                  children: [
+                                                    CachedNetworkImage(
+                                                        imageUrl:
+                                                            "${controller.cartProductList[index].product!.images![0]}",
+                                                        imageBuilder: (context,
+                                                                imageProvider) =>
+                                                            Container(
+                                                              margin: EdgeInsets
+                                                                  .all(10),
+                                                              height: 80,
+                                                              width: 80,
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                image: DecorationImage(
+                                                                    image:
+                                                                        imageProvider,
+                                                                    fit: BoxFit
+                                                                        .cover,
+                                                                    colorFilter: ColorFilter.mode(
+                                                                        Colors
+                                                                            .transparent,
+                                                                        BlendMode
+                                                                            .colorBurn)),
+                                                              ),
+                                                            ),
+                                                        placeholder: (context,
+                                                                url) =>
+                                                            CircularProgressIndicator(),
+                                                        errorWidget: (context,
+                                                                url, error) =>
+                                                            Expanded(
+                                                                child:
+                                                                    Container(
+                                                              color: Colors
+                                                                  .grey[100],
+                                                            ))),
+                                                  ],
                                                 ),
                                                 Expanded(
-                                                    child: Container(
-                                                  height: 75,
-                                                  width: 75,
-                                                  padding: EdgeInsets.symmetric(
-                                                      horizontal: 3,
-                                                      vertical: 2),
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.grey.shade300,
-                                                    border: Border(
-                                                      left: BorderSide(
-                                                        color: Colors.grey,
-                                                        width: 1.0,
-                                                      ),
-                                                      right: BorderSide(
-                                                        color: Colors.grey,
-                                                        width: 1.0,
-                                                      ),
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 8.0, top: 10),
+                                                    child: Column(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text(
+                                                          "${controller.cartProductList[index].product!.title}",
+                                                          style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w800),
+                                                        ),
+                                                      ],
                                                     ),
                                                   ),
-                                                  child: Center(
-
-                                                      child:
-                                                    Text("${controller.cartProductList[index].quantity}",
-                                                    style: TextStyle(
+                                                ),
+                                                Column(
+                                                  children: [
+                                                    IconButton(
+                                                        onPressed: () {
+                                                          controller
+                                                              .CartDeleteApi(
+                                                            data: controller
+                                                                    .cartProductList[
+                                                                index],
+                                                          );
+                                                        },
+                                                        icon: Icon(
+                                                          Icons.delete_rounded,
+                                                          color: Colors.cyan,
+                                                        ))
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                            Divider(
+                                              indent: 2,
+                                              color: Colors.grey.shade500,
+                                              endIndent: 2,
+                                            ),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Align(
+                                                  alignment: Alignment.topLeft,
+                                                  child: Container(
+                                                    height: 34,
+                                                    margin: EdgeInsets.only(
+                                                        left: 8),
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            0.3,
+                                                    padding: EdgeInsets.all(0),
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      borderRadius:
+                                                          BorderRadius.only(
+                                                        topLeft:
+                                                            Radius.circular(20),
+                                                        topRight:
+                                                            Radius.circular(20),
+                                                        bottomRight:
+                                                            Radius.circular(20),
+                                                        bottomLeft:
+                                                            Radius.circular(20),
+                                                      ),
+                                                      border: Border.all(
                                                         color: Colors
-                                                            .grey.shade500,
-                                                        fontSize: 18,
+                                                            .grey.shade400,
+                                                        width: 1,
+                                                      ),
+                                                    ),
+                                                    child: Row(
+                                                      children: [
+                                                        Expanded(
+                                                          child: InkWell(
+                                                              onTap: () {
+                                                                controller
+                                                                    .UpdateCartRemove(
+                                                                  data: controller
+                                                                          .cartProductList[
+                                                                      index],
+                                                                );
+                                                                // controller.CartProductApi();
+                                                                // controller.cartProductList.refresh();
+                                                                // controller.CartCount();
+                                                                // controller.Countlist.refresh();
+                                                              },
+                                                              child: Padding(
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                            .only(
+                                                                        left:
+                                                                            8.0,
+                                                                        right:
+                                                                            5),
+                                                                child: Icon(
+                                                                  Icons.remove,
+                                                                  color: Colors
+                                                                      .black,
+                                                                  size: 22,
+                                                                ),
+                                                              )),
+                                                        ),
+                                                        Expanded(
+                                                            child: Container(
+                                                          height: 75,
+                                                          width: 75,
+                                                          padding: EdgeInsets
+                                                              .symmetric(
+                                                                  horizontal: 3,
+                                                                  vertical: 2),
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: Colors
+                                                                .grey.shade300,
+                                                            border: Border(
+                                                              left: BorderSide(
+                                                                color:
+                                                                    Colors.grey,
+                                                                width: 1.0,
+                                                              ),
+                                                              right: BorderSide(
+                                                                color:
+                                                                    Colors.grey,
+                                                                width: 1.0,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          child: Center(
+                                                              child: Text(
+                                                            "${controller.cartProductList[index].quantity}",
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .grey
+                                                                    .shade500,
+                                                                fontSize: 18,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500),
+                                                          )),
+                                                        )),
+                                                        Expanded(
+                                                          child: InkWell(
+                                                              onTap: () {
+                                                                controller
+                                                                    .UpdateCartAdd(
+                                                                  data: controller
+                                                                          .cartProductList[
+                                                                      index],
+                                                                );
+                                                                // controller.CartProductApi();
+                                                                // controller.cartProductList.refresh();
+                                                                // controller.CartCount();
+                                                                // controller.Countlist.refresh();
+                                                              },
+                                                              child: Icon(
+                                                                Icons.add,
+                                                                color: Colors
+                                                                    .black,
+                                                                size: 22,
+                                                              )),
+                                                        )
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  child: Text(
+                                                    "\u{20B9}${controller.cartProductList[index].product!.discountedPrice! * controller.cartProductList[index].quantity!}.00",
+                                                    style: TextStyle(
+                                                        color: Colors.orange,
                                                         fontWeight:
-                                                            FontWeight.w500),
-                                                  )),
-                                                )),
-                                                Expanded(
-                                                  child: InkWell(
-                                                      onTap: () {
-                                                     controller.UpdateCartAdd(
-                                                         data: controller.cartProductList[index],
-
-                                                     );
-                                                     // controller.CartProductApi();
-                                                     // controller.cartProductList.refresh();
-                                                     // controller.CartCount();
-                                                     // controller.Countlist.refresh();
-                                                      },
-                                                      child: Icon(
-                                                        Icons.add,
-                                                        color: Colors.black,
-                                                        size: 22,
+                                                            FontWeight.w800),
+                                                  ),
+                                                )
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                      );
+                                    },
+                                  )),
+                              controller.cartProductList == null
+                                  ? Container()
+                                  : Expanded(
+                                      flex: 2,
+                                      child: ListView.builder(
+                                        itemCount:
+                                            controller.cartProductList.length,
+                                        itemBuilder: (context, index) {
+                                          return Container(
+                                            margin: EdgeInsets.all(15),
+                                            child: Column(
+                                              children: [
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text(
+                                                      "SUBTOTAL",
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.w700,
+                                                          color: Colors
+                                                              .grey.shade600),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              8.0),
+                                                      child: Text(
+                                                        "\u{20B9}${00}.00",
+                                                        style: TextStyle(
+                                                            color:
+                                                                Colors.orange,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w800),
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          top: 15.0,
+                                                          left: 8,
+                                                          right: 8),
+                                                  child: getcon(
+                                                      alignment:
+                                                          Alignment.center,
+                                                      color: Colors.cyan,
+                                                      height: 30,
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                              .size
+                                                              .width,
+                                                      text: Text(
+                                                        "VIEW CART",
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.w800,
+                                                            color:
+                                                                Colors.white),
                                                       )),
                                                 )
                                               ],
                                             ),
-                                          ),
-                                        ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                          "\u{20B9}${controller.cartProductList[index].product!.discountedPrice! * controller.cartProductList[index].quantity!}.00",
-                                          style: TextStyle(
-                                              color: Colors.orange,
-                                              fontWeight: FontWeight.w800),
-                                        ),
-                                      )
-                                    ],
-                                  )
-                                ],
-                              ),
-                            );
-                          },
-                        )),
-                    controller.cartProductList==null? Container():
-                    Expanded(
-                        flex: 2,
-                        child: ListView.builder(
-                          itemCount: controller.cartProductList.length,
-                          itemBuilder: (context, index) {
-                            return  Container(
-                              margin: EdgeInsets.all(15),
-                              child: Column(
-                                children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        "SUBTOTAL",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w700,
-                                            color: Colors.grey.shade600),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                          "\u{20B9}${00}.00",
-                                          style: TextStyle(
-                                              color: Colors.orange,
-                                              fontWeight: FontWeight.w800),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 15.0, left: 8, right: 8),
-                                    child: getcon(
-                                        alignment: Alignment.center,
-                                        color: Colors.cyan,
-                                        height: 30,
-                                        width: MediaQuery.of(context).size.width,
-                                        text: Text(
-                                          "VIEW CART",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w800,
-                                              color: Colors.white),
-                                        )),
-                                  )
-                                ],
-                              ),
-                            );
-                          },
-                        ))
-                  ],
-                )),
+                                          );
+                                        },
+                                      ))
+                            ],
+                          )),
             body: Column(
               children: [
                 Container(
@@ -529,36 +583,38 @@ class HomeView extends GetView<HomeController> {
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        controller.bannerList.isEmpty?CircularProgressIndicator()
-                        :Container(
-                          padding: EdgeInsets.only(top: 25, bottom: 15),
-                          // color: Colors.greenAccent,
-                          child: CarouselSlider.builder(
-                            itemCount: controller.bannerList.length,
-                            options: CarouselOptions(
-                              height: 180,
-                              enlargeCenterPage: true,
-                              autoPlay: true,
-                              autoPlayInterval: Duration(seconds: 4),
-                              reverse: false,
-                              viewportFraction: 1.0,
-                            ),
-                            itemBuilder: (BuildContext context, int index,
-                                int realIndex) {
-                              return Image.network(
-                                width: MediaQuery.of(context).size.width,
-                                fit: BoxFit.fill,
-                                "${controller.bannerList[index].image}",
-                                loadingBuilder:
-                                    (context, child, loadingProgress) {
-                                  if (loadingProgress == null) return child;
-                                  return const Center(
-                                      child: CircularProgressIndicator());
-                                },
-                              );
-                            },
-                          ),
-                        ),
+                        controller.bannerList.isEmpty
+                            ? CircularProgressIndicator()
+                            : Container(
+                                padding: EdgeInsets.only(top: 25, bottom: 15),
+                                // color: Colors.greenAccent,
+                                child: CarouselSlider.builder(
+                                  itemCount: controller.bannerList.length,
+                                  options: CarouselOptions(
+                                    height: 180,
+                                    enlargeCenterPage: true,
+                                    autoPlay: true,
+                                    autoPlayInterval: Duration(seconds: 4),
+                                    reverse: false,
+                                    viewportFraction: 1.0,
+                                  ),
+                                  itemBuilder: (BuildContext context, int index,
+                                      int realIndex) {
+                                    return Image.network(
+                                      width: MediaQuery.of(context).size.width,
+                                      fit: BoxFit.fill,
+                                      "${controller.bannerList[index].image}",
+                                      loadingBuilder:
+                                          (context, child, loadingProgress) {
+                                        if (loadingProgress == null)
+                                          return child;
+                                        return const Center(
+                                            child: CircularProgressIndicator());
+                                      },
+                                    );
+                                  },
+                                ),
+                              ),
                         SizedBox(
                           height: 20,
                         ),
@@ -1029,8 +1085,10 @@ class HomeView extends GetView<HomeController> {
                                                 ),
                                                 InkWell(
                                                   onTap: () {
-                                                    print("${controller.TopProductlist[index].sId}");
-                                                    print("Bearer ${box.read(ArgumentConstant.token)}");
+                                                    print(
+                                                        "${controller.TopProductlist[index].sId}");
+                                                    print(
+                                                        "Bearer ${box.read(ArgumentConstant.token)}");
                                                     controller.addToCart(
                                                         data: controller
                                                                 .TopProductlist[
