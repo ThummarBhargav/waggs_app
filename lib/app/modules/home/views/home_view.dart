@@ -181,12 +181,7 @@ class HomeView extends GetView<HomeController> {
                                                 Expanded(
                                                   child: InkWell(
                                                       onTap: () {
-                                                        if (controller
-                                                                .count.value >
-                                                            0) {
-                                                          controller
-                                                              .count.value--;
-                                                        }
+
                                                       },
                                                       child: Padding(
                                                         padding:
@@ -237,8 +232,7 @@ class HomeView extends GetView<HomeController> {
                                                 Expanded(
                                                   child: InkWell(
                                                       onTap: () {
-                                                        // controller
-                                                        //     .count.value++;
+
                                                       },
                                                       child: Icon(
                                                         Icons.add,
@@ -254,7 +248,7 @@ class HomeView extends GetView<HomeController> {
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Text(
-                                          "\u{20B9}${controller.cartProductList[index].product!.discountedPrice}.00",
+                                          "\u{20B9}${controller.cartProductList[index].product!.discountedPrice! * controller.cartProductList[index].quantity!}.00",
                                           style: TextStyle(
                                               color: Colors.orange,
                                               fontWeight: FontWeight.w800),
