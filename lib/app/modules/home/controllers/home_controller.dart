@@ -229,8 +229,9 @@ class HomeController extends GetxController {
         response = value;
         isLoading.value = true;
         CartProductApi();
-        cartProductList.refresh();
+        CartCount();
       });
+
 
       if (response!.statusCode == 200) {
 
