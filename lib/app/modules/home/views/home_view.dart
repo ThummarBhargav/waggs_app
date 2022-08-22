@@ -260,7 +260,7 @@ class HomeView extends GetView<HomeController> {
                                                 Expanded(
                                                   child: InkWell(
                                                       onTap: () {
-                                                     controller.UpdateCart(
+                                                     controller.UpdateCartAdd(
                                                          data: controller.cartProductList[index],
                                                      );
                                                       },

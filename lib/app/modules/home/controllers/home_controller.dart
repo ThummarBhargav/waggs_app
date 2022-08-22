@@ -232,7 +232,7 @@ class HomeController extends GetxController {
   }
 
 
-  Future<void> UpdateCart({required Details data}) async {
+  Future<void> UpdateCartAdd({required Details data}) async {
     print('Bearer ${box.read(ArgumentConstant.token)}');
     print('${data.productId}');
     try{
