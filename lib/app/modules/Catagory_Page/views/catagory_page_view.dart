@@ -184,12 +184,12 @@ class CatagoryPageView extends GetWidget<HomeController> {
                                             Expanded(
                                               child: InkWell(
                                                   onTap: () {
-                                                    if (controller
-                                                        .count.value >
-                                                        0) {
-                                                      controller
-                                                          .count.value--;
-                                                    }
+                                                    // if (controller
+                                                    //     .count.value >
+                                                    //     0) {
+                                                    //   controller
+                                                    //       .count.value--;
+                                                    // }
                                                   },
                                                   child: Padding(
                                                     padding:

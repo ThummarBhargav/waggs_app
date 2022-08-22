@@ -39,7 +39,7 @@ class HomeController extends GetxController {
     'assets/category03.jpg','assets/category04.jpg','assets/category05.jpg'].obs;
   List respons =[];
   List respons1=[];
-  final count = 0.obs;
+  // final count = 1.obs;
   RxBool isOpen = false.obs;
   RxBool isOpen1 = false.obs;
   RxString url = ''.obs;
@@ -210,7 +210,7 @@ class HomeController extends GetxController {
         'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
         'Content-Type': 'application/json'
       };
-      var request = http.Request('PUT', Uri.parse('https://api.waggs.in/api/v1/cart'));
+      var request =await http.Request('PUT', Uri.parse('https://api.waggs.in/api/v1/cart'));
       request.body = json.encode({
         "productId": "${data.productId}",
         "quantity": 0
@@ -234,16 +234,18 @@ class HomeController extends GetxController {
 
   Future<void> UpdateCartAdd({required Details data}) async {
     print('Bearer ${box.read(ArgumentConstant.token)}');
+
+    var count = data.quantity!;
     print('${data.productId}');
     try{
       var headers = {
         'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
         'Content-Type': 'application/json'
       };
-      var request = http.Request('PUT', Uri.parse('https://api.waggs.in/api/v1/cart'));
+      var request =await http.Request('PUT', Uri.parse('https://api.waggs.in/api/v1/cart'));
       request.body = json.encode({
         "productId": "${data.productId}",
-        "quantity": "${count.value++}"
+        "quantity": "${++count}"
       });
       request.headers.addAll(headers);
 
@@ -262,16 +264,17 @@ class HomeController extends GetxController {
   }
   Future<void> UpdateCartRemove({required Details data}) async {
     print('Bearer ${box.read(ArgumentConstant.token)}');
+    var count = data.quantity;
     print('${data.productId}');
     try{
       var headers = {
         'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
         'Content-Type': 'application/json'
       };
-      var request = http.Request('PUT', Uri.parse('https://api.waggs.in/api/v1/cart'));
+      var request = await http.Request('PUT', Uri.parse('https://api.waggs.in/api/v1/cart'));
       request.body = json.encode({
         "productId": "${data.productId}",
-        "quantity": "${count.value>1?count.value--:count.value}"
+        "quantity": "${count!>1?--count:count}"
       });
       request.headers.addAll(headers);
 
@@ -309,7 +312,7 @@ class HomeController extends GetxController {
   CartProductApi() async {
     hasData.value = false;
     cartProductList.clear();
-    var url = Uri.parse("https://api.waggs.in/api/v1/cart");
+    var url =await Uri.parse("https://api.waggs.in/api/v1/cart");
     var response;
     await http.get(url,headers: {
       'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',

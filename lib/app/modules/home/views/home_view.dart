@@ -268,6 +268,7 @@ class HomeView extends GetView<HomeController> {
                                                       onTap: () {
                                                      controller.UpdateCartAdd(
                                                          data: controller.cartProductList[index],
+
                                                      );
                                                      controller.CartProductApi();
                                                      controller.cartProductList.refresh();
