@@ -238,9 +238,9 @@ class ProductDetailViewView extends GetView<HomeController> {
                       Expanded(
                         child: InkWell(
                             onTap: () {
-                              if(controller.count.value>0){
-                                controller.count.value--;
-                              }
+                              // if(controller.count.value>0){
+                              //   controller.count.value--;
+                              // }
                             },
                             child: Padding(
                               padding: const EdgeInsets.only(left: 8.0,right: 5),
@@ -269,15 +269,15 @@ class ProductDetailViewView extends GetView<HomeController> {
                           ),
                         ),
                         child: Center(
-                            child: Obx(()=>Text(
-                              "${controller.count.value}",
+                            child: Obx(()=>Text("",
+                              // "${controller.count.value}",
                               style: TextStyle(color: Colors.black, fontSize: 18,fontWeight: FontWeight.w500),
                             ),)
                         ),
                       )),
                       Expanded(child: InkWell(
                           onTap: () {
-                            controller.count.value++;
+                            // controller.count.value++;
                           },
                           child: Icon(
                             Icons.add,

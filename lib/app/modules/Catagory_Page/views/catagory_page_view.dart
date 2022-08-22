@@ -240,8 +240,8 @@ class CatagoryPageView extends GetWidget<HomeController> {
                                             Expanded(
                                               child: InkWell(
                                                   onTap: () {
-                                                    controller
-                                                        .count.value++;
+                                                    // controller
+                                                    //     .count.value++;
                                                   },
                                                   child: Icon(
                                                     Icons.add,

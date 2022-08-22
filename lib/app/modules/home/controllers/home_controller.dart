@@ -231,6 +231,64 @@ class HomeController extends GetxController {
     }
   }
 
+
+  Future<void> UpdateCart({required Details data}) async {
+    print('Bearer ${box.read(ArgumentConstant.token)}');
+    print('${data.productId}');
+    try{
+      var headers = {
+        'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+        'Content-Type': 'application/json'
+      };
+      var request = http.Request('PUT', Uri.parse('https://api.waggs.in/api/v1/cart'));
+      request.body = json.encode({
+        "productId": "${data.productId}",
+        "quantity": "${count++}"
+      });
+      request.headers.addAll(headers);
+
+      http.StreamedResponse response = await request.send();
+
+      if (response.statusCode == 200) {
+        Get.snackbar("Success","Qunatity Updated",snackPosition: SnackPosition.BOTTOM);
+      }
+      else {
+        print(response.reasonPhrase);
+      }
+    }catch(e){
+      Get.snackbar("Error", e.toString(),snackPosition: SnackPosition.BOTTOM,);
+
+    }
+  }
+  Future<void> UpdateCartRemove({required Details data}) async {
+    print('Bearer ${box.read(ArgumentConstant.token)}');
+    print('${data.productId}');
+    try{
+      var headers = {
+        'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+        'Content-Type': 'application/json'
+      };
+      var request = http.Request('PUT', Uri.parse('https://api.waggs.in/api/v1/cart'));
+      request.body = json.encode({
+        "productId": "${data.productId}",
+        "quantity": "${count.value>1?count.value--:count.value}"
+      });
+      request.headers.addAll(headers);
+
+      http.StreamedResponse response = await request.send();
+
+      if (response.statusCode == 200) {
+        Get.snackbar("Success","Qunatity removed",snackPosition: SnackPosition.BOTTOM);
+      }
+      else {
+        print(response.reasonPhrase);
+      }
+    }catch(e){
+      Get.snackbar("Error", e.toString(),snackPosition: SnackPosition.BOTTOM,);
+
+    }
+  }
+
   CartCount () async {
     Countlist.clear();
     var url = Uri.parse(baseUrl+ApiConstant.Count);
