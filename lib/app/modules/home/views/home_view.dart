@@ -26,29 +26,7 @@ class HomeView extends GetView<HomeController> {
             key: scaffoldKey,
             endDrawer: Drawer(
                 width: 250,
-                child: (controller.hasData.isFalse)
-                    ? Center(child: CircularProgressIndicator())
-                    : (isNullEmptyOrFalse(controller.cartProductList))
-                        ? Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  height: 300,
-                                  width: 250,
-                                  child: SvgPicture.asset("assets/NoData.svg"),
-                                ),
-                                Text(
-                                  "No data found",
-                                  style: GoogleFonts.raleway(
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 20,
-                                      color: Color.fromRGBO(33, 43, 54, 1)),
-                                ),
-                              ],
-                            ),
-                          )
-                        : Column(
+                child: Column(
                             children: [
                               Expanded(
                                 flex: 1,
@@ -90,7 +68,29 @@ class HomeView extends GetView<HomeController> {
                               ),
                               Expanded(
                                   flex: 9,
-                                  child: ListView.builder(
+                                  child: (controller.hasData.isFalse)
+                                      ? Center(child: CircularProgressIndicator())
+                                      : (isNullEmptyOrFalse(controller.cartProductList))
+                                      ? Center(
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Container(
+                                          height: 300,
+                                          width: 250,
+                                          child: SvgPicture.asset("assets/NoData.svg"),
+                                        ),
+                                        Text(
+                                          "No data found",
+                                          style: GoogleFonts.raleway(
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: 20,
+                                              color: Color.fromRGBO(33, 43, 54, 1)),
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                      :ListView.builder(
                                     itemCount:
                                         controller.cartProductList.length,
                                     itemBuilder: (context, index) {

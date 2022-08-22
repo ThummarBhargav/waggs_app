@@ -232,7 +232,6 @@ class HomeController extends GetxController {
         CartCount();
       });
 
-
       if (response!.statusCode == 200) {
 
         Get.snackbar("Success","Product Remove From Your Cart ",snackPosition: SnackPosition.BOTTOM);
@@ -302,7 +301,7 @@ class HomeController extends GetxController {
         response = value;
         isLoading.value = true;
         CartProductApi();
-        cartProductList.refresh();
+        CartCount();
       });
 
       if (response!.statusCode == 200) {
