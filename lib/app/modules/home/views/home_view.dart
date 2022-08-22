@@ -2,10 +2,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/constant/ConstantUrl.dart';
 import 'package:waggs_app/app/constant/Container.dart';
+import 'package:waggs_app/app/constant/SizeConstant.dart';
 import 'package:waggs_app/app/modules/Catagory_Page/views/catagory_page_view.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
 import 'package:waggs_app/main.dart';
@@ -24,7 +26,29 @@ class HomeView extends GetView<HomeController> {
             key: scaffoldKey,
             endDrawer: Drawer(
                 width: 250,
-                child: Column(
+                child: (controller.hasData.isFalse)
+                    ? Center(child: CircularProgressIndicator())
+                    : (isNullEmptyOrFalse(controller.cartProductList))
+                    ? Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        height: 300,
+                        width: 250,
+                        child: SvgPicture.asset("assets/NoData.svg"),
+                      ),
+                      Text(
+                        "No data found",
+                        style: GoogleFonts.raleway(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 20,
+                            color: Color.fromRGBO(33, 43, 54, 1)),
+                      ),
+                    ],
+                  ),
+                )
+                    :Column(
                   children: [
                     Expanded(
                       flex: 1,
@@ -244,7 +268,6 @@ class HomeView extends GetView<HomeController> {
                                             ),
                                           ),
                                         ),
-
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Text(
@@ -261,42 +284,56 @@ class HomeView extends GetView<HomeController> {
                             );
                           },
                         )),
+                    controller.cartProductList==null? Container():
                     Expanded(
                         flex: 2,
-                        child: Container(
-                          margin: EdgeInsets.all(15),
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                        child: ListView.builder(
+                          itemCount: controller.cartProductList.length,
+                          itemBuilder: (context, index) {
+                            return  Container(
+                              margin: EdgeInsets.all(15),
+                              child: Column(
                                 children: [
-                                  Text(
-                                    "SUBTOTAL",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w700,
-                                        color: Colors.grey.shade600),
+                                  Row(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        "SUBTOTAL",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w700,
+                                            color: Colors.grey.shade600),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          "\u{20B9}${00}.00",
+                                          style: TextStyle(
+                                              color: Colors.orange,
+                                              fontWeight: FontWeight.w800),
+                                        ),
+                                      )
+                                    ],
                                   ),
-                                  Text("00"),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 15.0, left: 8, right: 8),
+                                    child: getcon(
+                                        alignment: Alignment.center,
+                                        color: Colors.cyan,
+                                        height: 30,
+                                        width: MediaQuery.of(context).size.width,
+                                        text: Text(
+                                          "VIEW CART",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w800,
+                                              color: Colors.white),
+                                        )),
+                                  )
                                 ],
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 15.0, left: 8, right: 8),
-                                child: getcon(
-                                    alignment: Alignment.center,
-                                    color: Colors.cyan,
-                                    height: 30,
-                                    width: MediaQuery.of(context).size.width,
-                                    text: Text(
-                                      "VIEW CART",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w800,
-                                          color: Colors.white),
-                                    )),
-                              )
-                            ],
-                          ),
+                            );
+                          },
                         ))
                   ],
                 )),

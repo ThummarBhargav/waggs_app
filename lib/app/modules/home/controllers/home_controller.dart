@@ -20,6 +20,7 @@ class HomeController extends GetxController {
   bannerModels bannerModel = bannerModels();
   StoreModule storeModule = StoreModule();
   Count1 count1 = Count1();
+  RxBool hasData = false.obs;
   CartProduct cartProduct =CartProduct();
   SubCategorymodel subCategorymodel = SubCategorymodel();
   GlobalKey<ScaffoldState> key = GlobalKey<ScaffoldState>();
