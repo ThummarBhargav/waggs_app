@@ -211,20 +211,26 @@ class HomeController extends GetxController {
         'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
         'Content-Type': 'application/json'
       };
-      var request =await http.Request('PUT', Uri.parse('https://api.waggs.in/api/v1/cart'));
+      var request = http.Request('PUT', Uri.parse('https://api.waggs.in/api/v1/cart'));
       request.body = json.encode({
         "productId": "${data.productId}",
         "quantity": 0
       });
       request.headers.addAll(headers);
+      http.StreamedResponse? response ;
+      await request.send().then((value){
+        response = value;
+        isLoading.value = true;
+        CartProductApi();
+        cartProductList.refresh();
+      });
 
-      http.StreamedResponse response = await request.send();
+      if (response!.statusCode == 200) {
 
-      if (response.statusCode == 200) {
-        Get.snackbar("Success","Product removed from cart",snackPosition: SnackPosition.BOTTOM);
+        Get.snackbar("Success","Product Remove From Your Cart ",snackPosition: SnackPosition.BOTTOM);
       }
       else {
-        print(response.reasonPhrase);
+        print(response!.reasonPhrase);
       }
     }catch(e){
       Get.snackbar("Error", e.toString(),snackPosition: SnackPosition.BOTTOM,);
