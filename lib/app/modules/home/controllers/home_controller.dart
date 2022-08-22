@@ -201,27 +201,28 @@ class HomeController extends GetxController {
     }
   }
 
-  Future<void> CartDeleteApi({required Details data,required Products0 data1}) async {
+  Future<void> CartDeleteApi({required Details data}) async {
     print('Bearer ${box.read(ArgumentConstant.token)}');
-    print('${data1.sId}');
+    print('${data.productId}');
     try{
-      var url = Uri.parse("https://api.waggs.in/api/v1/cart");
-      var response = await http.put(url, body: {
-        'productId': '${data1.sId}',
-        'quantity': '${data.quantity}',
-      },headers: {
+      var headers = {
         'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+        'Content-Type': 'application/json'
+      };
+      var request = http.Request('PUT', Uri.parse('https://api.waggs.in/api/v1/cart'));
+      request.body = json.encode({
+        "productId": "${data.productId}",
+        "quantity": 0
+      });
+      request.headers.addAll(headers);
+
+      http.StreamedResponse response = await request.send();
+
+      if (response.statusCode == 200) {
+        Get.snackbar("Success","Product removed from cart",snackPosition: SnackPosition.BOTTOM);
       }
-      );
-      respons1.add(response.body);
-      print(jsonDecode(response.body).runtimeType);
-      print('Response status: ${response.statusCode}');
-      print('Response body: ${response.body}');
-      if(response.statusCode==200){
-        Get.snackbar("Success","Product Successfully add to cart",snackPosition: SnackPosition.BOTTOM);
-      }
-      else{
-        Get.snackbar("Error", "Product already in cart",snackPosition: SnackPosition.BOTTOM);
+      else {
+        print(response.reasonPhrase);
       }
     }catch(e){
       Get.snackbar("Error", e.toString(),snackPosition: SnackPosition.BOTTOM,);
@@ -234,6 +235,7 @@ class HomeController extends GetxController {
     var url = Uri.parse(baseUrl+ApiConstant.Count);
     var response = await http.get(url,headers: {
       'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+      'Content-Type': 'application/json',
     } );
     print('response status:${response.body}');
     dynamic result = jsonDecode(response.body);

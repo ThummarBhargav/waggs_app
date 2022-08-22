@@ -133,7 +133,7 @@ class CatagoryPageView extends GetWidget<HomeController> {
                                             onPressed: () {
                                               controller.CartDeleteApi(
                                                 data: controller.cartProductList[index],
-                                                data1:controller.TopProductlist[index],
+                                                // data1:controller.TopProductlist[index],
                                               );
                                             },
                                             icon: Icon(
