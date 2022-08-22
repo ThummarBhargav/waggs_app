@@ -127,22 +127,20 @@ class HomeView extends GetView<HomeController> {
                                           ),
                                         ),
                                       ),
-                                      Expanded(
-                                        child: Column(
-                                          children: [
-                                            IconButton(
-                                                onPressed: () {
-                                                  controller.CartDeleteApi(
-                                                      data: controller.cartProductList[index],
-                                                    data1:controller.TopProductlist[index],
-                                                  );
-                                                },
-                                                icon: Icon(
-                                                  Icons.delete_rounded,
-                                                  color: Colors.cyan,
-                                                ))
-                                          ],
-                                        ),
+                                      Column(
+                                        children: [
+                                          IconButton(
+                                              onPressed: () {
+                                                controller.CartDeleteApi(
+                                                    data: controller.cartProductList[index],
+                                                  data1:controller.TopProductlist[index],
+                                                );
+                                              },
+                                              icon: Icon(
+                                                Icons.delete_rounded,
+                                                color: Colors.cyan,
+                                              ))
+                                        ],
                                       ),
                                     ],
                                   ),
