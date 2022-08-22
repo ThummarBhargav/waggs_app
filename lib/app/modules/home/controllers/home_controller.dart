@@ -39,7 +39,7 @@ class HomeController extends GetxController {
     'assets/category03.jpg','assets/category04.jpg','assets/category05.jpg'].obs;
   List respons =[];
   List respons1=[];
-  // final count = 1.obs;
+  final count = 0.obs;
   RxBool isOpen = false.obs;
   RxBool isOpen1 = false.obs;
   RxString url = ''.obs;
