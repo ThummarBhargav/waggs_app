@@ -338,7 +338,7 @@ class HomeView extends GetView<HomeController> {
                                         itemBuilder: (context, index) {
                                           var sum =0;
                                           controller.cartProductList.forEach((element) {
-                                            sum += element.product!.discountedPrice! * element.quantity!;
+                                            sum+= element.product!.discountedPrice! * element.quantity!;
                                           });
                                           return Container(
                                             margin: EdgeInsets.all(15),
