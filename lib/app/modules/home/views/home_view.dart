@@ -133,7 +133,6 @@ class HomeView extends GetView<HomeController> {
                                               onPressed: () {
                                                 controller.CartDeleteApi(
                                                     data: controller.cartProductList[index],
-                                                  data1:controller.TopProductlist[index],
                                                 );
                                               },
                                               icon: Icon(
