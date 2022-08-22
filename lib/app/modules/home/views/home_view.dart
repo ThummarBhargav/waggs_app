@@ -209,7 +209,9 @@ class HomeView extends GetView<HomeController> {
                                                 Expanded(
                                                   child: InkWell(
                                                       onTap: () {
-
+                                                        controller.UpdateCartRemove(
+                                                          data: controller.cartProductList[index],
+                                                        );
                                                       },
                                                       child: Padding(
                                                         padding:
