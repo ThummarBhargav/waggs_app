@@ -231,7 +231,6 @@ class HomeController extends GetxController {
         CartProductApi();
         CartCount();
       });
-
       if (response!.statusCode == 200) {
 
         Get.snackbar("Success","Product Remove From Your Cart ",snackPosition: SnackPosition.BOTTOM);
@@ -293,7 +292,7 @@ class HomeController extends GetxController {
       var request = http.Request('PUT', Uri.parse('https://api.waggs.in/api/v1/cart'));
       request.body = json.encode({
         "productId": "${data.productId}",
-        "quantity": "${count>1?--count:count}"
+        "quantity": "${--count}"
       });
       request.headers.addAll(headers);
       http.StreamedResponse? response ;
