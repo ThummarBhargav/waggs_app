@@ -336,6 +336,10 @@ class HomeView extends GetView<HomeController> {
                                         itemCount:
                                             controller.cartProductList.length,
                                         itemBuilder: (context, index) {
+                                          var sum =0;
+                                          controller.cartProductList.forEach((element) {
+                                            sum += element.product!.discountedPrice! * element.quantity!;
+                                          });
                                           return Container(
                                             margin: EdgeInsets.all(15),
                                             child: Column(
@@ -358,7 +362,7 @@ class HomeView extends GetView<HomeController> {
                                                           const EdgeInsets.all(
                                                               8.0),
                                                       child: Text(
-                                                        "\u{20B9}${00}.00",
+                                                        "\u{20B9}${sum}.00",
                                                         style: TextStyle(
                                                             color:
                                                                 Colors.orange,
@@ -1077,15 +1081,18 @@ class HomeView extends GetView<HomeController> {
                                                 ),
                                                 InkWell(
                                                   onTap: () {
-                                                    print(
-                                                        "${controller.TopProductlist[index].sId}");
-                                                    print(
-                                                        "Bearer ${box.read(ArgumentConstant.token)}");
+                                                    print("${controller.TopProductlist[index].sId}");
+                                                    print("Bearer ${box.read(ArgumentConstant.token)}");
                                                     controller.addToCart(
                                                         data: controller
                                                                 .TopProductlist[
                                                             index]);
-
+                                                    controller.CartCount();
+                                                    controller.Countlist
+                                                        .refresh();
+                                                    controller.CartProductApi();
+                                                    controller.cartProductList
+                                                        .refresh();
                                                   },
                                                   child: Container(
                                                     width: 130,
