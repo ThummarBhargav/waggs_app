@@ -39,7 +39,7 @@ class HomeController extends GetxController {
     'assets/category03.jpg','assets/category04.jpg','assets/category05.jpg'].obs;
   List respons =[];
   List respons1=[];
-  final count = 0.obs;
+  RxInt count = 1.obs;
   RxBool isOpen = false.obs;
   RxBool isOpen1 = false.obs;
   RxString url = ''.obs;
@@ -271,7 +271,7 @@ class HomeController extends GetxController {
       var request = http.Request('PUT', Uri.parse('https://api.waggs.in/api/v1/cart'));
       request.body = json.encode({
         "productId": "${data.productId}",
-        "quantity": "${count.value>1?count.value--:count.value}"
+        "quantity": "${count.value>0?count.value--:1}"
       });
       request.headers.addAll(headers);
 
