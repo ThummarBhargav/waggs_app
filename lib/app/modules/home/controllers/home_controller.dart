@@ -21,6 +21,7 @@ class HomeController extends GetxController {
   StoreModule storeModule = StoreModule();
   Count1 count1 = Count1();
   RxBool hasData = false.obs;
+  RxBool isLoading = false.obs;
   CartProduct cartProduct =CartProduct();
   SubCategorymodel subCategorymodel = SubCategorymodel();
   GlobalKey<ScaffoldState> key = GlobalKey<ScaffoldState>();
@@ -234,7 +235,6 @@ class HomeController extends GetxController {
 
   Future<void> UpdateCartAdd({required Details data}) async {
     print('Bearer ${box.read(ArgumentConstant.token)}');
-
     var count = data.quantity!;
     print('${data.productId}');
     try{
@@ -242,20 +242,26 @@ class HomeController extends GetxController {
         'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
         'Content-Type': 'application/json'
       };
-      var request =await http.Request('PUT', Uri.parse('https://api.waggs.in/api/v1/cart'));
+      var request = http.Request('PUT', Uri.parse('https://api.waggs.in/api/v1/cart'));
       request.body = json.encode({
         "productId": "${data.productId}",
         "quantity": "${++count}"
       });
       request.headers.addAll(headers);
+      http.StreamedResponse? response ;
+       await request.send().then((value){
+         response = value;
+         isLoading.value = true;
+         CartProductApi();
+         cartProductList.refresh();
+      });
 
-      http.StreamedResponse response = await request.send();
+      if (response!.statusCode == 200) {
 
-      if (response.statusCode == 200) {
         Get.snackbar("Success","Qunatity Updated",snackPosition: SnackPosition.BOTTOM);
       }
       else {
-        print(response.reasonPhrase);
+        print(response!.reasonPhrase);
       }
     }catch(e){
       Get.snackbar("Error", e.toString(),snackPosition: SnackPosition.BOTTOM,);
@@ -264,27 +270,33 @@ class HomeController extends GetxController {
   }
   Future<void> UpdateCartRemove({required Details data}) async {
     print('Bearer ${box.read(ArgumentConstant.token)}');
-    var count = data.quantity;
+    var count = data.quantity!;
     print('${data.productId}');
     try{
       var headers = {
         'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
         'Content-Type': 'application/json'
       };
-      var request = await http.Request('PUT', Uri.parse('https://api.waggs.in/api/v1/cart'));
+      var request = http.Request('PUT', Uri.parse('https://api.waggs.in/api/v1/cart'));
       request.body = json.encode({
         "productId": "${data.productId}",
-        "quantity": "${count!>1?--count:count}"
+        "quantity": "${count>1?--count:count}"
       });
       request.headers.addAll(headers);
+      http.StreamedResponse? response ;
+      await request.send().then((value){
+        response = value;
+        isLoading.value = true;
+        CartProductApi();
+        cartProductList.refresh();
+      });
 
-      http.StreamedResponse response = await request.send();
+      if (response!.statusCode == 200) {
 
-      if (response.statusCode == 200) {
-        Get.snackbar("Success","Qunatity removed",snackPosition: SnackPosition.BOTTOM);
+        Get.snackbar("Success","Qunatity Updated",snackPosition: SnackPosition.BOTTOM);
       }
       else {
-        print(response.reasonPhrase);
+        print(response!.reasonPhrase);
       }
     }catch(e){
       Get.snackbar("Error", e.toString(),snackPosition: SnackPosition.BOTTOM,);

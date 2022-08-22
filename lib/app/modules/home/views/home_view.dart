@@ -212,10 +212,10 @@ class HomeView extends GetView<HomeController> {
                                                         controller.UpdateCartRemove(
                                                           data: controller.cartProductList[index],
                                                         );
-                                                        controller.CartProductApi();
-                                                        controller.cartProductList.refresh();
-                                                        controller.CartCount();
-                                                        controller.Countlist.refresh();
+                                                        // controller.CartProductApi();
+                                                        // controller.cartProductList.refresh();
+                                                        // controller.CartCount();
+                                                        // controller.Countlist.refresh();
                                                       },
                                                       child: Padding(
                                                         padding:
@@ -241,20 +241,18 @@ class HomeView extends GetView<HomeController> {
                                                     color: Colors.grey.shade300,
                                                     border: Border(
                                                       left: BorderSide(
-                                                        //                   <--- left side
                                                         color: Colors.grey,
                                                         width: 1.0,
                                                       ),
                                                       right: BorderSide(
-                                                        //                    <--- top side
                                                         color: Colors.grey,
                                                         width: 1.0,
                                                       ),
                                                     ),
                                                   ),
                                                   child: Center(
-                                                      child: Text(
-                                                    "${controller.cartProductList[index].quantity}",
+                                                      child:
+                                                    Text("${controller.cartProductList[index].quantity}",
                                                     style: TextStyle(
                                                         color: Colors
                                                             .grey.shade500,
@@ -270,10 +268,10 @@ class HomeView extends GetView<HomeController> {
                                                          data: controller.cartProductList[index],
 
                                                      );
-                                                     controller.CartProductApi();
-                                                     controller.cartProductList.refresh();
-                                                     controller.CartCount();
-                                                     controller.Countlist.refresh();
+                                                     // controller.CartProductApi();
+                                                     // controller.cartProductList.refresh();
+                                                     // controller.CartCount();
+                                                     // controller.Countlist.refresh();
                                                       },
                                                       child: Icon(
                                                         Icons.add,
