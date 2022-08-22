@@ -102,6 +102,7 @@ class HomeView extends GetView<HomeController> {
                                     children: [
                                       Column(
                                         children: [
+                                          // controller.count = controller.cartProductList[index].quantity;
                                           CachedNetworkImage(
                                               imageUrl:
                                                   "${controller.cartProductList[index].product!.images![0]}",
@@ -251,6 +252,7 @@ class HomeView extends GetView<HomeController> {
                                                     ),
                                                   ),
                                                   child: Center(
+
                                                       child:
                                                     Text("${controller.cartProductList[index].quantity}",
                                                     style: TextStyle(
