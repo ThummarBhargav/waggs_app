@@ -1031,10 +1031,6 @@ class TopSellingStoreAllProductsView
           appBar: AppBar(
             automaticallyImplyLeading: false,
             leading: IconButton(onPressed: () {
-              // controller.cartProduct;
-              // controller.count1;
-              // controller.cartProductList.refresh();
-              // controller.Countlist.refresh();
               Get.back();
             }, icon: Icon(Icons.arrow_back, size: 20, color: Colors.grey,)),
             // this will hide Drawer hamburger icon
@@ -1194,8 +1190,6 @@ class TopSellingStoreAllProductsView
                           child: GestureDetector(
                             onTap: () {
                               Get.toNamed(Routes.VIEW_PRODUCT, arguments: controller.mainProductList[index]);
-                              // Get.to(ProductDetailViewView(
-                              //     controller.mainProductList[index]));
                             },
                             child: Container(
                               child: Column(
