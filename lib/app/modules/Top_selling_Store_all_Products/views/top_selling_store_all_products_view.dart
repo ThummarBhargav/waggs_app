@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -699,6 +700,36 @@ class TopSellingStoreAllProductsView
                           ],
                         )
                         ),
+                        Container(
+                          height: 350,
+                          margin: EdgeInsets.only(left: 15,top: 5),
+                          padding: EdgeInsets.only(top: 15,right: 10),
+                          child:ListView.builder(
+                            itemCount: controller.subData[controller
+                                .subDataIndex.value].fields!
+                                .length,
+                              itemBuilder: (context, index) {
+                                return Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children:[
+                                     InkWell(
+                                      onTap:(){
+                                      },
+                                      child: Container(
+                                        margin: EdgeInsets.only(left: 15,top: 15),
+                                        child:Text("${controller.subData[controller
+                                            .subDataIndex.value].fields![index].id.toString()}",style: TextStyle(fontSize: 18),),
+                                      ),
+                                    ),
+                                    Container(
+                                      margin: EdgeInsets.only(top: 15),
+                                      child: Icon(Icons.keyboard_arrow_up_outlined),
+                                    )
+                                  ]
+                                );
+                              },)
+                        ),
+
                         Obx(() =>
                         controller.isOp3.value == false ? Container() : InkWell(
                           onTap: () {
