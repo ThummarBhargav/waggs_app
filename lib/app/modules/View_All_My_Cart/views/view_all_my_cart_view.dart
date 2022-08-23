@@ -485,6 +485,7 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                               ),
                             ],
                           ),
+                          SizedBox(height: 10,),
                           Container(
                             child: Container(
                               margin: EdgeInsets.only(left: 15, right: 15,top: 10,),
@@ -492,43 +493,160 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                                 left: 15
                               ),
                               decoration: BoxDecoration(
-                                color: Colors.grey[300],
+                                color: Colors.grey[200],
                                 borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(10),
-                                  topRight: Radius.circular(10),
-                                  bottomRight: Radius.circular(10),
+                                  bottomLeft: Radius.circular(25),
+                                  topRight: Radius.circular(25),
+                                  bottomRight: Radius.circular(25),
                                 ),
                               ),
                               child: TextFormField(
                                 controller: controller.emailController.value,
                                 validator: (input) => !isNullEmptyOrFalse(input)
                                     ? null
-                                    : "Please Enter Password",
-                                obscureText: controller.emailVisible.value,
+                                    : "Please Enter Email Address",
+                                // obscureText: controller.emailVisible.value,
+                                keyboardType: TextInputType.emailAddress,
                                 decoration: InputDecoration(
-                                    hintText: "Enter Your Password",
-                                    hintStyle: GoogleFonts.roboto(
+                                    hintText: "Enter Email Address",
+                                    hintStyle: GoogleFonts.raleway(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w500,
                                     ),
                                     enabledBorder: InputBorder.none,
                                     focusedBorder: InputBorder.none,
-                                    suffixIcon: IconButton(
-                                        onPressed: () {
-                                          controller.emailVisible.toggle();
-                                        },
-                                        icon: (!controller.emailVisible.value)
-                                            ? Icon(
-                                          Icons.visibility_off,
-                                          color: Colors.grey,
-                                        )
-                                            : Icon(
-                                          Icons.visibility,
-                                          color: Colors.grey,
-                                        ))),
+                                ),
                               ),
                             ),
-                          )
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(left: 5,top: 10),
+                            child: Row(
+                              children: [
+                                Checkbox(
+                                    activeColor: Colors.orange,
+                                    onChanged: (value) {
+                                  controller.emailCheckBox.value = value as bool;
+                                },value: controller.emailCheckBox.value),
+                                Expanded(
+                                  child: Text("SubScribe To Our New Sletter And Receive Special News And Offers",
+                                    style: GoogleFonts.raleway(
+                                      fontSize: 12,
+                                      color: Colors.grey
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(left: 18,right: 18),
+                            child: Divider(
+                              height: 5,
+                              indent: 1,
+                              endIndent: 1,
+                              thickness: 1,
+                              color: Colors.grey.shade400,
+                            ),
+                          ),
+                          SizedBox(height: 10,),
+                          Row(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.only(left: 10,top: 10),
+                                child: Text("SHIPPING ADDRESS",
+                                  style: GoogleFonts.raleway(
+                                      color: Colors.orange,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 10,),
+                          Container(
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Container(
+                                    margin: EdgeInsets.only(left: 15, right: 15,top: 10,),
+                                    padding: EdgeInsets.only(
+                                        left: 15
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: Colors.grey[200],
+                                      borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(25),
+                                        topRight: Radius.circular(25),
+                                        bottomRight: Radius.circular(25),
+                                      ),
+                                    ),
+                                    child: TextFormField(
+                                      controller: controller.nameController.value,
+                                      validator: (input) => !isNullEmptyOrFalse(input)
+                                          ? null
+                                          : "Please Enter First Name",
+                                      // obscureText: controller.nameVisible.value,
+                                      keyboardType: TextInputType.name,
+                                      decoration: InputDecoration(
+                                        hintText: "Enter First Name",
+                                        labelText: "First Name",
+                                        labelStyle: GoogleFonts.raleway(
+                                          decorationColor: Colors.black,
+                                          color: Colors.black,
+                                        ),
+                                        hintStyle: GoogleFonts.raleway(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                        enabledBorder: InputBorder.none,
+                                        focusedBorder: InputBorder.none,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Container(
+                                    margin: EdgeInsets.only(left: 15, right: 15,top: 10,),
+                                    padding: EdgeInsets.only(
+                                        left: 15
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: Colors.grey[200],
+                                      borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(25),
+                                        topRight: Radius.circular(25),
+                                        bottomRight: Radius.circular(25),
+                                      ),
+                                    ),
+                                    child: TextFormField(
+                                      controller: controller.nameController.value,
+                                      validator: (input) => !isNullEmptyOrFalse(input)
+                                          ? null
+                                          : "Please Enter Last Name",
+                                      // obscureText: controller.nameVisible.value,
+                                      keyboardType: TextInputType.name,
+                                      decoration: InputDecoration(
+                                        hintText: "Enter Last Name",
+                                        labelText: "Last Name",
+                                        labelStyle: GoogleFonts.raleway(
+                                          decorationColor: Colors.black,
+                                          color: Colors.black,
+                                        ),
+                                        hintStyle: GoogleFonts.raleway(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                        enabledBorder: InputBorder.none,
+                                        focusedBorder: InputBorder.none,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),
