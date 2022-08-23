@@ -243,7 +243,9 @@ class _TopSellingProductListWidgetState extends State<TopSellingProductListWidge
                                   height: 10,
                                 ),
                                 InkWell(
-                                  onTap: () {},
+                                  onTap: () {
+
+                                  },
                                   child: Container(
                                     width: 150,
                                     height: 35,
