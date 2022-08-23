@@ -133,7 +133,6 @@ class CatagoryPageView extends GetWidget<HomeController> {
                                             onPressed: () {
                                               controller.CartDeleteApi(
                                                 data: controller.cartProductList[index],
-                                                // data1:controller.TopProductlist[index],
                                               );
                                             },
                                             icon: Icon(
@@ -184,12 +183,16 @@ class CatagoryPageView extends GetWidget<HomeController> {
                                             Expanded(
                                               child: InkWell(
                                                   onTap: () {
-                                                    // if (controller
-                                                    //     .count.value >
-                                                    //     0) {
-                                                    //   controller
-                                                    //       .count.value--;
-                                                    // }
+                                                    (controller.cartProductList[index].quantity ==
+                                                        1)
+                                                        ? controller.CartDeleteApi(
+                                                        data: controller.cartProductList[
+                                                        index])
+                                                        : controller
+                                                        .UpdateCartRemove(
+                                                      data: controller
+                                                          .cartProductList[index],
+                                                    );
                                                   },
                                                   child: Padding(
                                                     padding:
@@ -240,8 +243,12 @@ class CatagoryPageView extends GetWidget<HomeController> {
                                             Expanded(
                                               child: InkWell(
                                                   onTap: () {
-                                                    // controller
-                                                    //     .count.value++;
+                                                    controller
+                                                        .UpdateCartAdd(
+                                                      data: controller
+                                                          .cartProductList[
+                                                      index],
+                                                    );
                                                   },
                                                   child: Icon(
                                                     Icons.add,

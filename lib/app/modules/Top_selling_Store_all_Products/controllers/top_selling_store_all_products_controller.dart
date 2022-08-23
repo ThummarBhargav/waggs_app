@@ -16,10 +16,11 @@ class TopSellingStoreAllProductsController extends GetxController {
   //TODO: Implement TopSellingStoreAllProductsController
   Sellers data = Get.arguments;
   GetAllproduct getAllproduct = GetAllproduct();
-  RxList<Products> mainProductList = RxList<Products>([]);
+  RxList<Products0> mainProductList = RxList<Products0>([]);
   RxBool hasData = false.obs;
   RxBool drawer = false.obs;
   RxBool drawer2 = false.obs;
+  StoreModule storeModule = StoreModule();
   SfRangeValues values = const SfRangeValues(100, 30000);
   SfRangeValues values1 = const SfRangeValues(0, 100);
   RxBool isOp = false.obs;
@@ -90,10 +91,10 @@ class TopSellingStoreAllProductsController extends GetxController {
     });
     print(response.body);
     dynamic result = jsonDecode(response.body);
-    getAllproduct = GetAllproduct.fromJson(result);
-    if (!isNullEmptyOrFalse(getAllproduct.data)) {
-      if (!isNullEmptyOrFalse(getAllproduct.data!.products)) {
-        getAllproduct.data!.products!.forEach((element) {
+    storeModule = StoreModule.fromJson(result);
+    if (!isNullEmptyOrFalse(storeModule.data)) {
+      if (!isNullEmptyOrFalse(storeModule.data!.products)) {
+        storeModule.data!.products!.forEach((element) {
           mainProductList.add(element);
         });
       }
@@ -101,28 +102,28 @@ class TopSellingStoreAllProductsController extends GetxController {
     mainProductList.refresh();
   }
 
-  getAllUserApi() async {
-    var url = Uri.parse(baseUrl + ApiConstant.getAllProductUsers);
-    var response = await http.get(url);
-    print('Response status: ${response.statusCode}');
-    print('Response body: ${response.body}');
-    dynamic result = jsonDecode(response.body);
-    getAllproduct = GetAllproduct.fromJson(result);
-    if (!isNullEmptyOrFalse(getAllproduct.data)) {
-      if (!isNullEmptyOrFalse(getAllproduct.data!.products)) {
-        getAllproduct.data!.products!.forEach((element) {
-          mainProductList.add(element);
-        });
-        mainProductList.forEach((element) {
-          if (element.category!.sId == CatagoryList[0].sId &&
-              element.subCategory!.categoryId == CatagoryList[0].sId) {
-            productList.add(element);
-          }
-        });
-        productList.refresh();
-      }
-    }
-  }
+  // getAllUserApi() async {
+  //   var url = Uri.parse(baseUrl + ApiConstant.getAllProductUsers);
+  //   var response = await http.get(url);
+  //   print('Response status: ${response.statusCode}');
+  //   print('Response body: ${response.body}');
+  //   dynamic result = jsonDecode(response.body);
+  //   getAllproduct = GetAllproduct.fromJson(result);
+  //   if (!isNullEmptyOrFalse(getAllproduct.data)) {
+  //     if (!isNullEmptyOrFalse(getAllproduct.data!.products)) {
+  //       getAllproduct.data!.products!.forEach((element) {
+  //         mainProductList.add(element);
+  //       });
+  //       mainProductList.forEach((element) {
+  //         if (element.category!.sId == CatagoryList[0].sId &&
+  //             element.subCategory!.categoryId == CatagoryList[0].sId) {
+  //           productList.add(element);
+  //         }
+  //       });
+  //       productList.refresh();
+  //     }
+  //   }
+  // }
 
   AllCategory() async {
     CatagoryList.clear();
@@ -169,7 +170,7 @@ class TopSellingStoreAllProductsController extends GetxController {
     Countlist.refresh();
   }
 
-  Future<void> addToCart({required Products data}) async {
+  Future<void> addToCart({required Products0 data}) async {
     print('Bearer ${box.read(ArgumentConstant.token)}');
     print('${data.sId}');
     try{

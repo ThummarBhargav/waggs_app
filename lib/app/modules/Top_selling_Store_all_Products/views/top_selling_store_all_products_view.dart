@@ -9,6 +9,7 @@ import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:waggs_app/app/constant/Container.dart';
 import 'package:waggs_app/app/constant/sizeConstant.dart';
 import 'package:waggs_app/app/modules/product_detail_view/views/product_detail_view_view.dart';
+import 'package:waggs_app/app/routes/app_pages.dart';
 
 import '../controllers/top_selling_store_all_products_controller.dart';
 
@@ -227,11 +228,15 @@ class TopSellingStoreAllProductsView
                                           Expanded(
                                             child: InkWell(
                                                 onTap: () {
-                                                  controller
+                                                  (controller.cartProductList[index].quantity ==
+                                                      1)
+                                                      ? controller.CartDeleteApi(
+                                                      data: controller.cartProductList[
+                                                      index])
+                                                      : controller
                                                       .UpdateCartRemove(
                                                     data: controller
-                                                        .cartProductList[
-                                                    index],
+                                                        .cartProductList[index],
                                                   );
                                                 },
                                                 child: Padding(
@@ -1157,8 +1162,9 @@ class TopSellingStoreAllProductsView
                           elevation: 2,
                           child: GestureDetector(
                             onTap: () {
-                              Get.to(ProductDetailViewView(
-                                  controller.mainProductList[index]));
+                              Get.toNamed(Routes.VIEW_PRODUCT, arguments: controller.mainProductList[index]);
+                              // Get.to(ProductDetailViewView(
+                              //     controller.mainProductList[index]));
                             },
                             child: Container(
                               child: Column(
@@ -1393,9 +1399,7 @@ class TopSellingStoreAllProductsView
                                     onTap: () {
                                       print("${controller.mainProductList[index].sId}");
                                       controller.addToCart(
-                                        data: controller
-                                            .mainProductList[
-                                        index],
+                                        data: controller.mainProductList[index],
                                       );
                                       controller.CartCount();
                                       controller.Countlist

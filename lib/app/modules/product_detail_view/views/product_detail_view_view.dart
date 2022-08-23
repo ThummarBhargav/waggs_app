@@ -8,13 +8,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/modules/home/controllers/home_controller.dart';
 
 import '../../../Modal/GetAllProductModule.dart';
+import '../../../Modal/TopSellingStore.dart';
 import '../../../constant/Container.dart';
 import '../controllers/product_detail_view_controller.dart';
 
 class ProductDetailViewView extends GetView<HomeController> {
   // const ProductDetailViewView({Key? key}) : super(key: key);
   ProductDetailViewView(this.data);
-  Products data;
+  Products0 data;
   CarouselController carouselController = CarouselController();
   @override
   Widget build(BuildContext context) {
@@ -206,6 +207,88 @@ class ProductDetailViewView extends GetView<HomeController> {
                           ],
                         );
                       })),
+              // Row(
+              //   children: [
+              //     Padding(
+              //       padding: const EdgeInsets.symmetric(horizontal: 15.0,vertical: 10),
+              //       child: Text("Quantity",style: TextStyle(fontSize: 20,color: Colors.lightBlue.shade300,fontWeight: FontWeight.w600),),
+              //     ),
+              //   ],
+              // ),
+              // Align(
+              //   alignment: Alignment.topLeft,
+              //   child: Container(
+              //     height: 45,
+              //     margin: EdgeInsets.only(left: 15),
+              //     width: MediaQuery.of(context).size.width*0.4,
+              //     padding: EdgeInsets.all(0),
+              //     decoration: BoxDecoration(
+              //       borderRadius: BorderRadius.only(
+              //         topLeft: Radius.circular(20),
+              //         topRight: Radius.circular(20),
+              //         bottomRight: Radius.circular(20),
+              //         bottomLeft: Radius.circular(20),
+              //       ),
+              //       border: Border.all(
+              //         color: Colors.grey.shade400,
+              //         width: 2,
+              //       ),
+              //     ),
+              //     child: Row(
+              //       children: [
+              //         Expanded(
+              //           child: InkWell(
+              //               onTap: () {
+              //                 // if(controller.count.value>0){
+              //                 //   controller.count.value--;
+              //                 // }
+              //               },
+              //               child: Padding(
+              //                 padding: const EdgeInsets.only(left: 8.0,right: 5),
+              //                 child: Icon(
+              //                   Icons.remove,
+              //                   color: Colors.black,
+              //                   size: 22,
+              //                 ),
+              //               )),
+              //         ),
+              //         Expanded(child: Container(
+              //           height: 75,
+              //           width: 75,
+              //           padding:
+              //           EdgeInsets.symmetric(horizontal: 3, vertical: 2),
+              //           decoration: BoxDecoration(
+              //             border: Border(
+              //               left: BorderSide( //                   <--- left side
+              //                 color: Colors.grey,
+              //                 width: 2.0,
+              //               ),
+              //               right: BorderSide( //                    <--- top side
+              //                 color: Colors.grey,
+              //                 width: 2.0,
+              //               ),
+              //             ),
+              //           ),
+              //           child: Center(
+              //               child: Obx(()=>Text("",
+              //                 // "${controller.count.value}",
+              //                 style: TextStyle(color: Colors.black, fontSize: 18,fontWeight: FontWeight.w500),
+              //               ),)
+              //           ),
+              //         )),
+              //         Expanded(child: InkWell(
+              //             onTap: () {
+              //               // controller.count.value++;
+              //             },
+              //             child: Icon(
+              //               Icons.add,
+              //               color: Colors.black,
+              //               size: 22,
+              //             )),)
+              //       ],
+              //     ),
+              //   ),
+              // ),
               Row(
                 children: [
                   Padding(
@@ -295,17 +378,23 @@ class ProductDetailViewView extends GetView<HomeController> {
                     Flexible(
                       child: Padding(
                         padding: const EdgeInsets.only(left: 18.0,top: 15),
-                        child: getcon(
-                          text:Text("ADD TO CART",
-                            style: GoogleFonts.roboto(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400,
-                                color:Colors.white),
+                        child: GestureDetector(
+                          onTap: () {
+                            controller.addToCart(
+                                data: data);
+                          },
+                          child: getcon(
+                            text:Text("ADD TO CART",
+                              style: GoogleFonts.roboto(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w400,
+                                  color:Colors.white),
+                            ),
+                            color: Color(0xffDE8701),
+                            width: 140,
+                            height: 50,
+                            alignment: Alignment.center,
                           ),
-                          color: Color(0xffDE8701),
-                          width: 140,
-                          height: 50,
-                          alignment: Alignment.center,
                         ),
                       ),
                     ),
