@@ -72,27 +72,24 @@ class HomeView extends GetView<HomeController> {
                             : (isNullEmptyOrFalse(controller.cartProductList))
                                 ? Center(
                                     child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                      mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
                                         Container(
                                           height: 300,
                                           width: 250,
-                                          child: SvgPicture.asset(
-                                              "assets/NoData.svg"),
+                                          child: SvgPicture.asset("assets/NoData.svg"),
                                         ),
                                         Text(
                                           "No data found",
                                           style: GoogleFonts.raleway(
                                               fontWeight: FontWeight.w700,
                                               fontSize: 20,
-                                              color: Color.fromRGBO(
-                                                  33, 43, 54, 1)),
+                                              color: Color.fromRGBO(33, 43, 54, 1)),
                                         ),
                                       ],
                                     ),
                                   )
-                                : ListView.builder(
+                                      :ListView.builder(
                                     itemCount:
                                         controller.cartProductList.length,
                                     itemBuilder: (context, index) {
@@ -179,7 +176,10 @@ class HomeView extends GetView<HomeController> {
                                                         icon: Icon(
                                                           Icons.delete_rounded,
                                                           color: Color.fromRGBO(
-                                                              32, 193, 244, 1),
+                                                              32,
+                                                              193,
+                                                              244,
+                                                              1),
                                                         ))
                                                   ],
                                                 ),
@@ -231,16 +231,14 @@ class HomeView extends GetView<HomeController> {
                                                         Expanded(
                                                           child: InkWell(
                                                               onTap: () {
-                                                                (controller.cartProductList[index].quantity ==
-                                                                        1)
-                                                                    ? controller.CartDeleteApi(
-                                                                        data: controller.cartProductList[
-                                                                            index])
-                                                                    : controller
-                                                                        .UpdateCartRemove(
-                                                                        data: controller
-                                                                            .cartProductList[index],
-                                                                      );
+                                                                (controller.count==0)?controller.CartDeleteApi(data:controller
+                                                                    .cartProductList[
+                                                                index]):controller
+                                                                    .UpdateCartRemove(
+                                                                  data: controller
+                                                                          .cartProductList[
+                                                                      index],
+                                                                );
                                                               },
                                                               child: Padding(
                                                                 padding:

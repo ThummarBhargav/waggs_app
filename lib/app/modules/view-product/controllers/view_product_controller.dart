@@ -70,6 +70,39 @@ class ViewProductController extends GetxController {
     mainProductList.refresh();
   }
 
+  Future<void> addToCart({required Products0 data}) async {
+    print('Bearer ${box.read(ArgumentConstant.token)}');
+    try{
+      var url = Uri.parse(baseUrl+ApiConstant.Cart);
+      var response ;
+      await http.post(url, body: {
+        'productId': '${data.sId}',
+      },headers: {
+        'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+      }
+      ).then((value) {
+        response = value;
+        CartProductApi();
+        CartCount();
+
+      });
+      print(jsonDecode(response.body).runtimeType);
+      print('Response status: ${response.statusCode}');
+      print('Response body: ${response.body}');
+      if(response.statusCode==200){
+        Get.snackbar("Success","Product Successfully add to cart",snackPosition: SnackPosition.BOTTOM);
+
+      }
+      else{
+        Get.snackbar("Error", "Product already in cart",snackPosition: SnackPosition.BOTTOM);
+      }
+    }catch(e){
+      Get.snackbar("Error", e.toString(),snackPosition: SnackPosition.BOTTOM,);
+
+    }
+  }
+
+
   Future<void> CartDeleteApi({required Details data}) async {
     print('Bearer ${box.read(ArgumentConstant.token)}');
     print('${data.productId}');
