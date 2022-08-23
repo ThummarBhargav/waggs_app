@@ -42,11 +42,10 @@ class _TopSellingStoreWidgetState extends State<TopSellingStoreWidget> {
                   Expanded(
                     flex: 1,
                     child: DrawerHeader(
-                        decoration:
-                        BoxDecoration(color: Color.fromRGBO(32, 193, 244, 1)),
+                        decoration: BoxDecoration(
+                            color: Color.fromRGBO(32, 193, 244, 1)),
                         child: Row(
-                          mainAxisAlignment:
-                          MainAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Container(
                               width: 30,
@@ -101,7 +100,7 @@ class _TopSellingStoreWidgetState extends State<TopSellingStoreWidget> {
                           ],
                         ),
                       )
-                          : ListView.builder(
+                          :ListView.builder(
                         itemCount:
                         controller.cartProductList.length,
                         itemBuilder: (context, index) {
@@ -118,8 +117,7 @@ class _TopSellingStoreWidgetState extends State<TopSellingStoreWidget> {
                                       children: [
                                         CachedNetworkImage(
                                             imageUrl:
-                                            "${controller.cartProductList[index]
-                                                .product!.images![0]}",
+                                            "${controller.cartProductList[index].product!.images![0]}",
                                             imageBuilder: (context,
                                                 imageProvider) =>
                                                 Container(
@@ -134,8 +132,7 @@ class _TopSellingStoreWidgetState extends State<TopSellingStoreWidget> {
                                                         imageProvider,
                                                         fit: BoxFit
                                                             .cover,
-                                                        colorFilter: ColorFilter
-                                                            .mode(
+                                                        colorFilter: ColorFilter.mode(
                                                             Colors
                                                                 .transparent,
                                                             BlendMode
@@ -166,9 +163,7 @@ class _TopSellingStoreWidgetState extends State<TopSellingStoreWidget> {
                                               .spaceBetween,
                                           children: [
                                             Text(
-                                              "${controller
-                                                  .cartProductList[index]
-                                                  .product!.title}",
+                                              "${controller.cartProductList[index].product!.title}",
                                               style: TextStyle(
                                                   fontWeight:
                                                   FontWeight
@@ -191,7 +186,11 @@ class _TopSellingStoreWidgetState extends State<TopSellingStoreWidget> {
                                             },
                                             icon: Icon(
                                               Icons.delete_rounded,
-                                              color: Color.fromRGBO(32, 193, 244, 1),
+                                              color: Color.fromRGBO(
+                                                  32,
+                                                  193,
+                                                  244,
+                                                  1),
                                             ))
                                       ],
                                     ),
@@ -214,8 +213,7 @@ class _TopSellingStoreWidgetState extends State<TopSellingStoreWidget> {
                                         margin: EdgeInsets.only(
                                             left: 8),
                                         width:
-                                        MediaQuery
-                                            .of(context)
+                                        MediaQuery.of(context)
                                             .size
                                             .width *
                                             0.3,
@@ -244,15 +242,13 @@ class _TopSellingStoreWidgetState extends State<TopSellingStoreWidget> {
                                             Expanded(
                                               child: InkWell(
                                                   onTap: () {
-                                                    (controller.cartProductList[index].quantity ==
-                                                        1)
-                                                        ? controller.CartDeleteApi(
-                                                        data: controller.cartProductList[
-                                                        index])
-                                                        : controller
+                                                    (controller.cartProductList[index].quantity == 1)?controller.CartDeleteApi(data:controller
+                                                        .cartProductList[
+                                                    index]):controller
                                                         .UpdateCartRemove(
                                                       data: controller
-                                                          .cartProductList[index],
+                                                          .cartProductList[
+                                                      index],
                                                     );
                                                   },
                                                   child: Padding(
@@ -298,9 +294,7 @@ class _TopSellingStoreWidgetState extends State<TopSellingStoreWidget> {
                                                   ),
                                                   child: Center(
                                                       child: Text(
-                                                        "${controller
-                                                            .cartProductList[index]
-                                                            .quantity}",
+                                                        "${controller.cartProductList[index].quantity}",
                                                         style: TextStyle(
                                                             color: Colors
                                                                 .grey
@@ -336,11 +330,7 @@ class _TopSellingStoreWidgetState extends State<TopSellingStoreWidget> {
                                       padding:
                                       const EdgeInsets.all(8.0),
                                       child: Text(
-                                        "\u{20B9}${controller
-                                            .cartProductList[index].product!
-                                            .discountedPrice! *
-                                            controller.cartProductList[index]
-                                                .quantity!}.00",
+                                        "\u{20B9}${controller.cartProductList[index].product!.discountedPrice! * controller.cartProductList[index].quantity!}.00",
                                         style: TextStyle(
                                             color: Colors.orange,
                                             fontWeight:
@@ -359,8 +349,7 @@ class _TopSellingStoreWidgetState extends State<TopSellingStoreWidget> {
                       : Expanded(
                       flex: 2,
                       child: ListView.builder(
-                        itemCount:
-                        1,
+                        itemCount: 1,
                         itemBuilder: (context, index) {
                           var sum = 0;
                           controller.cartProductList.forEach((element) {
@@ -373,57 +362,47 @@ class _TopSellingStoreWidgetState extends State<TopSellingStoreWidget> {
                               children: [
                                 Row(
                                   mainAxisAlignment:
-                                  MainAxisAlignment
-                                      .spaceBetween,
+                                  MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
                                       "SUBTOTAL",
                                       style: TextStyle(
-                                          fontWeight:
-                                          FontWeight.w700,
-                                          color: Colors
-                                              .grey.shade600),
+                                          fontWeight: FontWeight.w700,
+                                          color: Colors.grey.shade600),
                                     ),
                                     Padding(
-                                      padding:
-                                      const EdgeInsets.all(
-                                          8.0),
+                                      padding: const EdgeInsets.all(8.0),
                                       child: Text(
                                         "\u{20B9}${sum}.00",
                                         style: TextStyle(
-                                            color:
-                                            Colors.orange,
-                                            fontWeight:
-                                            FontWeight
-                                                .w800),
+                                            color: Colors.orange,
+                                            fontWeight: FontWeight.w800),
                                       ),
                                     )
                                   ],
                                 ),
-                                Padding(
-                                  padding:
-                                  const EdgeInsets.only(
-                                      top: 15.0,
-                                      left: 8,
-                                      right: 8),
-                                  child: getcon(
-                                      alignment:
-                                      Alignment.center,
-                                      color: Color.fromRGBO(32, 193, 244, 1),
-                                      height: 30,
-                                      width:
-                                      MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width,
-                                      text: Text(
-                                        "VIEW CART",
-                                        style: TextStyle(
-                                            fontWeight:
-                                            FontWeight.w800,
-                                            color:
-                                            Colors.white),
-                                      )),
+                                InkWell(
+                                  onTap: () {
+                                    Get.toNamed(Routes.VIEW_ALL_MY_CART);
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 15.0, left: 8, right: 8),
+                                    child: getcon(
+                                        alignment: Alignment.center,
+                                        color: Color.fromRGBO(
+                                            32, 193, 244, 1),
+                                        height: 30,
+                                        width: MediaQuery.of(context)
+                                            .size
+                                            .width,
+                                        text: Text(
+                                          "VIEW CART",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w800,
+                                              color: Colors.white),
+                                        )),
+                                  ),
                                 )
                               ],
                             ),

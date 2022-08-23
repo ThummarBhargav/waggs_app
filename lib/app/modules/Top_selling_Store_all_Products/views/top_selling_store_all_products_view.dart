@@ -32,11 +32,10 @@ class TopSellingStoreAllProductsView
                 Expanded(
                   flex: 1,
                   child: DrawerHeader(
-                      decoration:
-                      BoxDecoration(color: Color.fromRGBO(32, 193, 244, 1)),
+                      decoration: BoxDecoration(
+                          color: Color.fromRGBO(32, 193, 244, 1)),
                       child: Row(
-                        mainAxisAlignment:
-                        MainAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Container(
                             width: 30,
@@ -177,7 +176,11 @@ class TopSellingStoreAllProductsView
                                           },
                                           icon: Icon(
                                             Icons.delete_rounded,
-                                            color: Color.fromRGBO(32, 193, 244, 1),
+                                            color: Color.fromRGBO(
+                                                32,
+                                                193,
+                                                244,
+                                                1),
                                           ))
                                     ],
                                   ),
@@ -229,15 +232,13 @@ class TopSellingStoreAllProductsView
                                           Expanded(
                                             child: InkWell(
                                                 onTap: () {
-                                                  (controller.cartProductList[index].quantity ==
-                                                      1)
-                                                      ? controller.CartDeleteApi(
-                                                      data: controller.cartProductList[
-                                                      index])
-                                                      : controller
+                                                  (controller.cartProductList[index].quantity == 1)?controller.CartDeleteApi(data:controller
+                                                      .cartProductList[
+                                                  index]):controller
                                                       .UpdateCartRemove(
                                                     data: controller
-                                                        .cartProductList[index],
+                                                        .cartProductList[
+                                                    index],
                                                   );
                                                 },
                                                 child: Padding(
@@ -338,11 +339,12 @@ class TopSellingStoreAllProductsView
                     : Expanded(
                     flex: 2,
                     child: ListView.builder(
-                      itemCount:1,
+                      itemCount: 1,
                       itemBuilder: (context, index) {
-                        var sum =0;
+                        var sum = 0;
                         controller.cartProductList.forEach((element) {
-                          sum+= element.product!.discountedPrice! * element.quantity!;
+                          sum += element.product!.discountedPrice! *
+                              element.quantity!;
                         });
                         return Container(
                           margin: EdgeInsets.all(15),
@@ -350,59 +352,45 @@ class TopSellingStoreAllProductsView
                             children: [
                               Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment
-                                    .spaceBetween,
+                                MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     "SUBTOTAL",
                                     style: TextStyle(
-                                        fontWeight:
-                                        FontWeight.w700,
-                                        color: Colors
-                                            .grey.shade600),
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.grey.shade600),
                                   ),
                                   Padding(
-                                    padding:
-                                    const EdgeInsets.all(
-                                        8.0),
+                                    padding: const EdgeInsets.all(8.0),
                                     child: Text(
                                       "\u{20B9}${sum}.00",
                                       style: TextStyle(
-                                          color:
-                                          Colors.orange,
-                                          fontWeight:
-                                          FontWeight
-                                              .w800),
+                                          color: Colors.orange,
+                                          fontWeight: FontWeight.w800),
                                     ),
                                   )
                                 ],
                               ),
                               InkWell(
                                 onTap: () {
-                                  // Get.toNamed(Routes.VIEW_ALL_MY_CART);
+                                  Get.toNamed(Routes.VIEW_ALL_MY_CART);
                                 },
                                 child: Padding(
-                                  padding:
-                                  const EdgeInsets.only(
-                                      top: 15.0,
-                                      left: 8,
-                                      right: 8),
+                                  padding: const EdgeInsets.only(
+                                      top: 15.0, left: 8, right: 8),
                                   child: getcon(
-                                      alignment:
-                                      Alignment.center,
-                                      color: Color.fromRGBO(32, 193, 244, 1),
+                                      alignment: Alignment.center,
+                                      color: Color.fromRGBO(
+                                          32, 193, 244, 1),
                                       height: 30,
-                                      width:
-                                      MediaQuery.of(context)
+                                      width: MediaQuery.of(context)
                                           .size
                                           .width,
                                       text: Text(
                                         "VIEW CART",
                                         style: TextStyle(
-                                            fontWeight:
-                                            FontWeight.w800,
-                                            color:
-                                            Colors.white),
+                                            fontWeight: FontWeight.w800,
+                                            color: Colors.white),
                                       )),
                                 ),
                               )
@@ -729,7 +717,6 @@ class TopSellingStoreAllProductsView
                                 );
                               },)
                         ),
-
                         Obx(() =>
                         controller.isOp3.value == false ? Container() : InkWell(
                           onTap: () {
