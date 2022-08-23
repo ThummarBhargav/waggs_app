@@ -245,11 +245,15 @@ class _TopSellingProductListWidgetState
                                             Expanded(
                                               child: InkWell(
                                                   onTap: () {
-                                                    controller
+                                                    (controller.cartProductList[index].quantity ==
+                                                        1)
+                                                        ? controller.CartDeleteApi(
+                                                        data: controller.cartProductList[
+                                                        index])
+                                                        : controller
                                                         .UpdateCartRemove(
                                                       data: controller
-                                                          .cartProductList[
-                                                      index],
+                                                          .cartProductList[index],
                                                     );
                                                   },
                                                   child: Padding(
