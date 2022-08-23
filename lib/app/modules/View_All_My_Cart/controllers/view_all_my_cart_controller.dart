@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../main.dart';
@@ -17,6 +18,10 @@ class ViewAllMyCartController extends GetxController {
   RxList<Count1> Countlist = RxList<Count1>([]);
   Count1 count1 = Count1();
   RxBool isLoading = false.obs;
+  Rx<TextEditingController> emailController = TextEditingController().obs;
+  RxBool emailVisible = true.obs;
+
+  final key = GlobalKey<FormState>();
 
   @override
   void onInit() {
