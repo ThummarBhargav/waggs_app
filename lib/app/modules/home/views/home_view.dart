@@ -231,7 +231,7 @@ class HomeView extends GetView<HomeController> {
                                                         Expanded(
                                                           child: InkWell(
                                                               onTap: () {
-                                                                (controller.count==0)?controller.CartDeleteApi(data:controller
+                                                                (controller.cartProductList[index].quantity == 1)?controller.CartDeleteApi(data:controller
                                                                     .cartProductList[
                                                                 index]):controller
                                                                     .UpdateCartRemove(
