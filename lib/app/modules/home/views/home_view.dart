@@ -418,7 +418,6 @@ class HomeView extends GetView<HomeController> {
                             child: Row(
                               children: [
                                 InkWell(
-                                  onTap: () {},
                                   child: Container(
                                     width: 60,
                                     height: 60,
