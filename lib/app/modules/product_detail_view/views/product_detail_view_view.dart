@@ -8,13 +8,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/modules/home/controllers/home_controller.dart';
 
 import '../../../Modal/GetAllProductModule.dart';
+import '../../../Modal/TopSellingStore.dart';
 import '../../../constant/Container.dart';
 import '../controllers/product_detail_view_controller.dart';
 
 class ProductDetailViewView extends GetView<HomeController> {
   // const ProductDetailViewView({Key? key}) : super(key: key);
   ProductDetailViewView(this.data);
-  Products data;
+  Products0 data;
   CarouselController carouselController = CarouselController();
   @override
   Widget build(BuildContext context) {
@@ -295,17 +296,23 @@ class ProductDetailViewView extends GetView<HomeController> {
                     Flexible(
                       child: Padding(
                         padding: const EdgeInsets.only(left: 18.0,top: 15),
-                        child: getcon(
-                          text:Text("ADD TO CART",
-                            style: GoogleFonts.roboto(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400,
-                                color:Colors.white),
+                        child: GestureDetector(
+                          onTap: () {
+                            controller.addToCart(
+                                data: data);
+                          },
+                          child: getcon(
+                            text:Text("ADD TO CART",
+                              style: GoogleFonts.roboto(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w400,
+                                  color:Colors.white),
+                            ),
+                            color: Color(0xffDE8701),
+                            width: 140,
+                            height: 50,
+                            alignment: Alignment.center,
                           ),
-                          color: Color(0xffDE8701),
-                          width: 140,
-                          height: 50,
-                          alignment: Alignment.center,
                         ),
                       ),
                     ),
