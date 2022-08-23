@@ -49,7 +49,7 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                                     Container(
                                       height: 30,
                                       width: 30,
-                                      margin: EdgeInsets.only(left: 15,top: 20),
+                                      margin: EdgeInsets.only(left: 5,top: 0),
                                       decoration: BoxDecoration(
                                           color: Colors.orange,
                                           shape: BoxShape.circle,
@@ -94,7 +94,7 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                                     Container(
                                       height: 30,
                                       width: 30,
-                                      margin: EdgeInsets.only(left: 15,top: 20),
+                                      margin: EdgeInsets.only(left: 5,top: 20),
                                       decoration: BoxDecoration(
                                         color: Colors.grey,
                                         shape: BoxShape.circle,
@@ -116,7 +116,7 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                                           ),
                                         ),
                                         Container(
-                                          margin: EdgeInsets.only(left: 5,top: 5,right: 20),
+                                          margin: EdgeInsets.only(left: 5,top: 5,right: 5),
                                           child: Text("SHIPPING",
                                             style: GoogleFonts.raleway(
                                               fontSize: 10,
@@ -139,7 +139,7 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                                     Container(
                                       height: 30,
                                       width: 30,
-                                      margin: EdgeInsets.only(left: 10,top: 20),
+                                      margin: EdgeInsets.only(left: 5,top: 20),
                                       decoration: BoxDecoration(
                                         color: Colors.grey,
                                         shape: BoxShape.circle,
@@ -151,7 +151,7 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                                       crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
                                         Container(
-                                          margin: EdgeInsets.only(left: 10,top: 25,right: 40),
+                                          margin: EdgeInsets.only(left: 10,top: 25,right: 30),
                                           child: Text("STEP 3",
                                             style: GoogleFonts.raleway(
                                               fontSize: 12,
