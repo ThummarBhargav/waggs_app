@@ -9,7 +9,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:waggs_app/app/constant/Container.dart';
 import 'package:waggs_app/app/constant/sizeConstant.dart';
-import 'package:waggs_app/app/modules/product_detail_view/views/product_detail_view_view.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
 
 import '../controllers/top_selling_store_all_products_controller.dart';
