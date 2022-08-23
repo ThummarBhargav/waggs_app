@@ -44,7 +44,7 @@ class _TopSellingProductListWidgetState
                     flex: 1,
                     child: DrawerHeader(
                         decoration:
-                        BoxDecoration(color: Colors.blue),
+                        BoxDecoration(color: Color.fromRGBO(32, 193, 244, 1)),
                         child: Row(
                           mainAxisAlignment:
                           MainAxisAlignment.start,
@@ -192,7 +192,7 @@ class _TopSellingProductListWidgetState
                                             },
                                             icon: Icon(
                                               Icons.delete_rounded,
-                                              color: Colors.cyan,
+                                              color: Color.fromRGBO(32, 193, 244, 1),
                                             ))
                                       ],
                                     ),
@@ -406,7 +406,7 @@ class _TopSellingProductListWidgetState
                                   child: getcon(
                                       alignment:
                                       Alignment.center,
-                                      color: Colors.cyan,
+                                      color: Color.fromRGBO(32, 193, 244, 1),
                                       height: 30,
                                       width:
                                       MediaQuery

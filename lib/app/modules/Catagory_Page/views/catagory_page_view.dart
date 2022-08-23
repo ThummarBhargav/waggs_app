@@ -28,7 +28,7 @@ class CatagoryPageView extends GetWidget<HomeController> {
                 Expanded(
                   flex: 1,
                   child: DrawerHeader(
-                      decoration: BoxDecoration(color: Colors.blue),
+                      decoration: BoxDecoration(color: Color.fromRGBO(32, 193, 244, 1)),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
@@ -138,7 +138,7 @@ class CatagoryPageView extends GetWidget<HomeController> {
                                             },
                                             icon: Icon(
                                               Icons.delete_rounded,
-                                              color: Colors.cyan,
+                                              color: Color.fromRGBO(32, 193, 244, 1),
                                             ))
                                       ],
                                     ),
@@ -274,38 +274,84 @@ class CatagoryPageView extends GetWidget<HomeController> {
                     flex: 2,
                     child: Container(
                       margin: EdgeInsets.all(15),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment:
-                            MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "SUBTOTAL",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    color: Colors.grey.shade600),
-                              ),
-                              Text("00"),
-                            ],
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                top: 15.0, left: 8, right: 8),
-                            child: getcon(
-                                alignment: Alignment.center,
-                                color: Colors.cyan,
-                                height: 30,
-                                width: MediaQuery.of(context).size.width,
-                                text: Text(
-                                  "VIEW CART",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w800,
-                                      color: Colors.white),
-                                )),
-                          )
-                        ],
-                      ),
+                      child: ListView.builder(
+                        itemCount: 1,
+                        itemBuilder: (context, index) {
+                          var sum =0;
+                          controller.cartProductList.forEach((element) {
+                            sum+= element.product!.discountedPrice! * element.quantity!;
+                          });
+                          return Container(
+                            margin: EdgeInsets.all(15),
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment
+                                      .spaceBetween,
+                                  children: [
+                                    Text(
+                                      "SUBTOTAL",
+                                      style: TextStyle(
+                                          fontWeight:
+                                          FontWeight.w700,
+                                          color: Colors
+                                              .grey.shade600),
+                                    ),
+                                    Padding(
+                                      padding:
+                                      const EdgeInsets.all(
+                                          8.0),
+                                      child: Text(
+                                        "\u{20B9}${sum}.00",
+                                        style: TextStyle(
+                                            color:
+                                            Colors.orange,
+                                            fontWeight:
+                                            FontWeight
+                                                .w800),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    Get.toNamed(Routes.VIEW_ALL_MY_CART);
+                                  },
+                                  child: Padding(
+                                    padding:
+                                    const EdgeInsets.only(
+                                        top: 15.0,
+                                        left: 8,
+                                        right: 8),
+                                    child: getcon(
+                                        alignment:
+                                        Alignment.center,
+                                        color: Color.fromRGBO(
+                                            32,
+                                            193,
+                                            244,
+                                            1),
+                                        height: 30,
+                                        width:
+                                        MediaQuery.of(context)
+                                            .size
+                                            .width,
+                                        text: Text(
+                                          "VIEW CART",
+                                          style: TextStyle(
+                                              fontWeight:
+                                              FontWeight.w800,
+                                              color:
+                                              Colors.white),
+                                        )),
+                                  ),
+                                )
+                              ],
+                            ),
+                          );
+                        },
+                      )
                     ))
               ],
             )),
