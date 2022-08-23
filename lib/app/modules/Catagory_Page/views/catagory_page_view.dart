@@ -420,12 +420,15 @@ class CatagoryPageView extends GetWidget<HomeController> {
                           }, icon: Icon(Icons.keyboard_backspace_outlined))
                         ],
                       ),
+                      Spacer(),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          SizedBox(width: 200,),
+                          // SizedBox(width: 200,),
                           IconButton(onPressed: () {
                           }, icon: Icon(Icons.search,size: 25,color: Colors.grey,)),
+
                           Stack(
                             children: [
                               IconButton(
