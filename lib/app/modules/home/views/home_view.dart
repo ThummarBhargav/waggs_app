@@ -32,7 +32,7 @@ class HomeView extends GetView<HomeController> {
                                 flex: 1,
                                 child: DrawerHeader(
                                     decoration:
-                                        BoxDecoration(color: Colors.blue),
+                                        BoxDecoration(color: Color.fromRGBO(32, 193, 244, 1)),
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
@@ -176,7 +176,11 @@ class HomeView extends GetView<HomeController> {
                                                         },
                                                         icon: Icon(
                                                           Icons.delete_rounded,
-                                                          color: Colors.cyan,
+                                                          color: Color.fromRGBO(
+                                                              32,
+                                                              193,
+                                                              244,
+                                                              1),
                                                         ))
                                                   ],
                                                 ),
@@ -385,7 +389,11 @@ class HomeView extends GetView<HomeController> {
                                                     child: getcon(
                                                         alignment:
                                                             Alignment.center,
-                                                        color: Colors.cyan,
+                                                        color: Color.fromRGBO(
+                                                            32,
+                                                            193,
+                                                            244,
+                                                            1),
                                                         height: 30,
                                                         width:
                                                             MediaQuery.of(context)
@@ -524,7 +532,11 @@ class HomeView extends GetView<HomeController> {
                       SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: Container(
-                          color: Colors.cyan,
+                          color: Color.fromRGBO(
+                              32,
+                              193,
+                              244,
+                              1),
                           child: Row(
                             children: List.generate(
                                 controller.CatagoryList.length, (index) {
