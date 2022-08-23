@@ -30,6 +30,7 @@ class TopSellingStoreAllProductsController extends GetxController {
   RxBool isOp4 = false.obs;
   RxBool isOp5 = false.obs;
   RxBool isOp6 = false.obs;
+  RxBool isOp7 = false.obs;
   RxBool checkBox = false.obs;
   RxBool colorCheckBox = false.obs;
   String selectedValue = "";
