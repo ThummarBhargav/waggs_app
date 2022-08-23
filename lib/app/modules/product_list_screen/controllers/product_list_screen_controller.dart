@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:get/get.dart';
 import 'package:waggs_app/app/Modal/CartCountModel.dart';
+import 'package:waggs_app/app/Modal/CartProductModel.dart';
 import 'package:waggs_app/app/constant/ConstantUrl.dart';
 import 'package:http/http.dart' as http;
 import 'package:waggs_app/main.dart';
@@ -16,11 +17,14 @@ class ProductListScreenController extends GetxController {
   bool isFromSubCategory = false;
   RxBool hasData = false.obs;
   List<Sellers> sellerList = [];
+  RxBool isLoading = false.obs;
+  RxList<Details> cartProductList = RxList<Details>([]);
+  CartProduct cartProduct =CartProduct();
   StoreModule storeModule = StoreModule();
   RxList<Products0> mainProductList = RxList<Products0>([]);
   RxList<Products> SellerProductList = RxList<Products>([]);
   GetAllproduct getAllproduct = GetAllproduct();
-  List<Products0> TopProductList = [];
+  RxList<Products0> TopProductlist = RxList<Products0>([]);
   late SubCategoryData subCategoryData;
   late Sellers data;
   List respons =[];
@@ -28,6 +32,9 @@ class ProductListScreenController extends GetxController {
   RxList<Count1> Countlist = RxList<Count1>([]);
   @override
   void onInit() {
+    CartCount();
+    CartProductApi();
+    getProduct();
     if (Get.arguments != null) {
       isFromTopProducts = Get.arguments[ArgumentConstant.isFromTopProducts];
       isFromSubCategory = Get.arguments[ArgumentConstant.isFromSubCategory];
@@ -38,7 +45,7 @@ class ProductListScreenController extends GetxController {
         sellerList = Get.arguments[ArgumentConstant.sellerList];
       }
       if (isFromTopProducts) {
-        TopProductList = Get.arguments[ArgumentConstant.TopProductlist];
+        TopProductlist = Get.arguments[ArgumentConstant.TopProductlist];
       }
       if (isFromSubCategory) {
         subCategoryData = Get.arguments[ArgumentConstant.subcategoryData];
@@ -58,6 +65,36 @@ class ProductListScreenController extends GetxController {
   @override
   void onClose() {
     super.onClose();
+  }
+
+  CartProductApi() async {
+    hasData.value = false;
+    cartProductList.clear();
+    var url =await Uri.parse("https://api.waggs.in/api/v1/cart");
+    var response;
+    await http.get(url,headers: {
+      'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+    }).then((value) {
+      hasData.value = true;
+      print(value);
+      response = value;
+    }).catchError((error){
+      hasData.value = false;
+    });
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+    dynamic result = jsonDecode(response.body);
+    cartProduct = CartProduct.fromJson(result);
+    print(result);
+    if (!isNullEmptyOrFalse(cartProduct.data)) {
+      if (!isNullEmptyOrFalse(cartProduct.data!.details)) {
+        cartProduct.data!.details!.forEach((element) {
+          cartProductList.add(element);
+        }
+        );
+      }
+    }
+    cartProductList.refresh();
   }
 
   getProduct() async {
@@ -106,21 +143,27 @@ class ProductListScreenController extends GetxController {
 
   Future<void> addToCart({required Products0 data}) async {
     print('Bearer ${box.read(ArgumentConstant.token)}');
-    print('${data.sId}');
     try{
       var url = Uri.parse(baseUrl+ApiConstant.Cart);
-      var response = await http.post(url, body: {
+      var response ;
+      await http.post(url, body: {
         'productId': '${data.sId}',
       },headers: {
         'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
       }
-      );
+      ).then((value) {
+        response = value;
+        CartProductApi();
+        CartCount();
+
+      });
       respons.add(response.body);
       print(jsonDecode(response.body).runtimeType);
       print('Response status: ${response.statusCode}');
       print('Response body: ${response.body}');
       if(response.statusCode==200){
         Get.snackbar("Success","Product Successfully add to cart",snackPosition: SnackPosition.BOTTOM);
+
       }
       else{
         Get.snackbar("Error", "Product already in cart",snackPosition: SnackPosition.BOTTOM);
@@ -130,4 +173,111 @@ class ProductListScreenController extends GetxController {
 
     }
   }
+
+  Future<void> CartDeleteApi({required Details data}) async {
+    print('Bearer ${box.read(ArgumentConstant.token)}');
+    print('${data.productId}');
+    try{
+      var headers = {
+        'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+        'Content-Type': 'application/json'
+      };
+      var request = http.Request('PUT', Uri.parse('https://api.waggs.in/api/v1/cart'));
+      request.body = json.encode({
+        "productId": "${data.productId}",
+        "quantity": 0
+      });
+      request.headers.addAll(headers);
+      http.StreamedResponse? response ;
+      await request.send().then((value){
+        response = value;
+        isLoading.value = true;
+        CartProductApi();
+        CartCount();
+      });
+      if (response!.statusCode == 200) {
+
+        Get.snackbar("Success","Product Remove From Your Cart ",snackPosition: SnackPosition.BOTTOM);
+      }
+      else {
+        print(response!.reasonPhrase);
+      }
+    }catch(e){
+      Get.snackbar("Error", e.toString(),snackPosition: SnackPosition.BOTTOM,);
+
+    }
+  }
+
+  Future<void> UpdateCartAdd({required Details data}) async {
+    print('Bearer ${box.read(ArgumentConstant.token)}');
+    var count = data.quantity!;
+    print('${data.productId}');
+    try{
+      var headers = {
+        'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+        'Content-Type': 'application/json'
+      };
+      var request = http.Request('PUT', Uri.parse('https://api.waggs.in/api/v1/cart'));
+      request.body = json.encode({
+        "productId": "${data.productId}",
+        "quantity": "${++count}"
+      });
+      request.headers.addAll(headers);
+      http.StreamedResponse? response ;
+      await request.send().then((value){
+        response = value;
+        isLoading.value = true;
+        CartProductApi();
+        cartProductList.refresh();
+      });
+
+      if (response!.statusCode == 200) {
+
+        Get.snackbar("Success","Qunatity Updated",snackPosition: SnackPosition.BOTTOM);
+      }
+      else {
+        print(response!.reasonPhrase);
+      }
+    }catch(e){
+      Get.snackbar("Error", e.toString(),snackPosition: SnackPosition.BOTTOM,);
+
+    }
+  }
+
+  Future<void> UpdateCartRemove({required Details data}) async {
+    print('Bearer ${box.read(ArgumentConstant.token)}');
+    var count = data.quantity!;
+    print('${data.productId}');
+    try{
+      var headers = {
+        'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+        'Content-Type': 'application/json'
+      };
+      var request = http.Request('PUT', Uri.parse('https://api.waggs.in/api/v1/cart'));
+      request.body = json.encode({
+        "productId": "${data.productId}",
+        "quantity": "${--count}"
+      });
+      request.headers.addAll(headers);
+      http.StreamedResponse? response ;
+      await request.send().then((value){
+        response = value;
+        isLoading.value = true;
+        CartProductApi();
+        CartCount();
+      });
+
+      if (response!.statusCode == 200) {
+
+        Get.snackbar("Success","Qunatity Updated",snackPosition: SnackPosition.BOTTOM);
+      }
+      else {
+        print(response!.reasonPhrase);
+      }
+    }catch(e){
+      Get.snackbar("Error", e.toString(),snackPosition: SnackPosition.BOTTOM,);
+
+    }
+  }
+
 }

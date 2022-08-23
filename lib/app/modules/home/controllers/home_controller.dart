@@ -244,7 +244,6 @@ class HomeController extends GetxController {
     }
   }
 
-
   Future<void> UpdateCartAdd({required Details data}) async {
     print('Bearer ${box.read(ArgumentConstant.token)}');
     var count = data.quantity!;
@@ -280,6 +279,7 @@ class HomeController extends GetxController {
 
     }
   }
+
   Future<void> UpdateCartRemove({required Details data}) async {
     print('Bearer ${box.read(ArgumentConstant.token)}');
     var count = data.quantity!;
@@ -344,7 +344,6 @@ class HomeController extends GetxController {
       hasData.value = true;
       print(value);
       response = value;
-      // respons = value as List;
     }).catchError((error){
       hasData.value = false;
     });

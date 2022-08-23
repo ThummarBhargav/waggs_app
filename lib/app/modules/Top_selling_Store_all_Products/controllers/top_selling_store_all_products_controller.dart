@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:waggs_app/app/Modal/CartCountModel.dart';
+import 'package:waggs_app/app/Modal/CartProductModel.dart';
 import 'package:waggs_app/app/Modal/CategoryModel.dart';
 import 'package:waggs_app/app/Modal/GetAllProductModule.dart';
 import 'package:waggs_app/app/Modal/SubCategoryModel.dart';
@@ -51,6 +52,10 @@ class TopSellingStoreAllProductsController extends GetxController {
   RxString radioGValues5 = "".obs;
   RxString sidValues = "".obs;
   RxString subSidValues = "".obs;
+  RxBool isFilterDrawer = false.obs;
+  CartProduct cartProduct =CartProduct();
+  RxList<Details> cartProductList = RxList<Details>([]);
+  RxBool isLoading = false.obs;
   List respons =[];
   @override
   void onInit() {
@@ -58,6 +63,7 @@ class TopSellingStoreAllProductsController extends GetxController {
     AllCategory();
     SubCategory();
     CartCount();
+    CartProductApi();
     super.onInit();
   }
 
@@ -183,6 +189,142 @@ class TopSellingStoreAllProductsController extends GetxController {
       }
       else{
         Get.snackbar("Error", "Product already in cart",snackPosition: SnackPosition.BOTTOM);
+      }
+    }catch(e){
+      Get.snackbar("Error", e.toString(),snackPosition: SnackPosition.BOTTOM,);
+
+    }
+  }
+
+  CartProductApi() async {
+    hasData.value = false;
+    cartProductList.clear();
+    var url =await Uri.parse("https://api.waggs.in/api/v1/cart");
+    var response;
+    await http.get(url,headers: {
+      'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+    }).then((value) {
+      hasData.value = true;
+      print(value);
+      response = value;
+    }).catchError((error){
+      hasData.value = false;
+    });
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+    dynamic result = jsonDecode(response.body);
+    cartProduct = CartProduct.fromJson(result);
+    print(result);
+    if (!isNullEmptyOrFalse(cartProduct.data)) {
+      if (!isNullEmptyOrFalse(cartProduct.data!.details)) {
+        cartProduct.data!.details!.forEach((element) {
+          cartProductList.add(element);
+        }
+        );
+      }
+    }
+    cartProductList.refresh();
+  }
+
+  Future<void> CartDeleteApi({required Details data}) async {
+    print('Bearer ${box.read(ArgumentConstant.token)}');
+    print('${data.productId}');
+    try{
+      var headers = {
+        'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+        'Content-Type': 'application/json'
+      };
+      var request = http.Request('PUT', Uri.parse('https://api.waggs.in/api/v1/cart'));
+      request.body = json.encode({
+        "productId": "${data.productId}",
+        "quantity": 0
+      });
+      request.headers.addAll(headers);
+      http.StreamedResponse? response ;
+      await request.send().then((value){
+        response = value;
+        isLoading.value = true;
+        CartProductApi();
+        CartCount();
+      });
+      if (response!.statusCode == 200) {
+
+        Get.snackbar("Success","Product Remove From Your Cart ",snackPosition: SnackPosition.BOTTOM);
+      }
+      else {
+        print(response!.reasonPhrase);
+      }
+    }catch(e){
+      Get.snackbar("Error", e.toString(),snackPosition: SnackPosition.BOTTOM,);
+
+    }
+  }
+
+  Future<void> UpdateCartAdd({required Details data}) async {
+    print('Bearer ${box.read(ArgumentConstant.token)}');
+    var count = data.quantity!;
+    print('${data.productId}');
+    try{
+      var headers = {
+        'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+        'Content-Type': 'application/json'
+      };
+      var request = http.Request('PUT', Uri.parse('https://api.waggs.in/api/v1/cart'));
+      request.body = json.encode({
+        "productId": "${data.productId}",
+        "quantity": "${++count}"
+      });
+      request.headers.addAll(headers);
+      http.StreamedResponse? response ;
+      await request.send().then((value){
+        response = value;
+        isLoading.value = true;
+        CartProductApi();
+        cartProductList.refresh();
+      });
+
+      if (response!.statusCode == 200) {
+
+        Get.snackbar("Success","Qunatity Updated",snackPosition: SnackPosition.BOTTOM);
+      }
+      else {
+        print(response!.reasonPhrase);
+      }
+    }catch(e){
+      Get.snackbar("Error", e.toString(),snackPosition: SnackPosition.BOTTOM,);
+
+    }
+  }
+
+  Future<void> UpdateCartRemove({required Details data}) async {
+    print('Bearer ${box.read(ArgumentConstant.token)}');
+    var count = data.quantity!;
+    print('${data.productId}');
+    try{
+      var headers = {
+        'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+        'Content-Type': 'application/json'
+      };
+      var request = http.Request('PUT', Uri.parse('https://api.waggs.in/api/v1/cart'));
+      request.body = json.encode({
+        "productId": "${data.productId}",
+        "quantity": "${--count}"
+      });
+      request.headers.addAll(headers);
+      http.StreamedResponse? response ;
+      await request.send().then((value){
+        response = value;
+        isLoading.value = true;
+        CartProductApi();
+        CartCount();
+      });
+
+      if (response!.statusCode == 200) {
+
+        Get.snackbar("Success","Qunatity Updated",snackPosition: SnackPosition.BOTTOM);
+      }
+      else {
+        print(response!.reasonPhrase);
       }
     }catch(e){
       Get.snackbar("Error", e.toString(),snackPosition: SnackPosition.BOTTOM,);
