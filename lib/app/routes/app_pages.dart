@@ -1,11 +1,13 @@
 import 'package:get/get.dart';
-import 'package:waggs_app/app/constant/ConstantUrl.dart';
 
 import '../../main.dart';
+import '../constant/ConstantUrl.dart';
 import '../modules/OTP_screen/bindings/o_t_p_screen_binding.dart';
 import '../modules/OTP_screen/views/o_t_p_screen_view.dart';
 import '../modules/Top_selling_Store_all_Products/bindings/top_selling_store_all_products_binding.dart';
 import '../modules/Top_selling_Store_all_Products/views/top_selling_store_all_products_view.dart';
+import '../modules/View_All_My_Cart/bindings/view_all_my_cart_binding.dart';
+import '../modules/View_All_My_Cart/views/view_all_my_cart_view.dart';
 import '../modules/email_screen/bindings/email_screen_binding.dart';
 import '../modules/email_screen/views/email_screen_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -28,7 +30,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static String INITIAL =  (box.read(ArgumentConstant.isUserLogin) == null)
+  static String INITIAL = (box.read(ArgumentConstant.isUserLogin) == null)
       ? Routes.LOGIN_SCREEN
       : Routes.HOME;
 
@@ -60,7 +62,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.VIEW_PRODUCT,
-      page: () =>  ViewProductView(),
+      page: () => ViewProductView(),
       binding: ViewProductBinding(),
     ),
     // GetPage(
@@ -88,5 +90,10 @@ class AppPages {
     //   page: () =>  ProductDetailViewView(),
     //   binding: ProductDetailViewBinding(),
     // ),
+    GetPage(
+      name: _Paths.VIEW_ALL_MY_CART,
+      page: () => const ViewAllMyCartView(),
+      binding: ViewAllMyCartBinding(),
+    ),
   ];
 }

@@ -17,6 +17,8 @@ class TopSellingStoreAllProductsController extends GetxController {
   GetAllproduct getAllproduct = GetAllproduct();
   RxList<Products> mainProductList = RxList<Products>([]);
   RxBool hasData = false.obs;
+  RxBool drawer = false.obs;
+  RxBool drawer2 = false.obs;
   SfRangeValues values = const SfRangeValues(100, 30000);
   SfRangeValues values1 = const SfRangeValues(0, 100);
   RxBool isOp = false.obs;
@@ -26,6 +28,8 @@ class TopSellingStoreAllProductsController extends GetxController {
   RxBool isOp4 = false.obs;
   RxBool isOp5 = false.obs;
   RxBool isOp6 = false.obs;
+  RxBool checkBox = false.obs;
+  RxBool colorCheckBox = false.obs;
   String selectedValue = "";
   RxInt subDataIndex= 0.obs;
   Count1 count1 = Count1();

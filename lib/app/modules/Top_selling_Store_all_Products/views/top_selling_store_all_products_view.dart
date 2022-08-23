@@ -15,6 +15,7 @@ class TopSellingStoreAllProductsView
     extends GetView<TopSellingStoreAllProductsController> {
 
   var ScaffoldKey2 = GlobalKey<ScaffoldState>();
+  var ScaffoldKey4 = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -158,8 +159,7 @@ class TopSellingStoreAllProductsView
                                               onChanged: (value) {
                                                 controller.radioGValues.value =
                                                 value as String;
-                                                controller.radioGValues.value !=
-                                                    null ? controller.isOp2
+                                                controller.radioGValues.value != null ? controller.isOp2
                                                     .value == true : false;
                                                 controller.isOp2.value = true;
                                                 controller
@@ -374,22 +374,11 @@ class TopSellingStoreAllProductsView
                                           children: [
                                             Container(
                                               child: Obx(() {
-                                                return Radio(
-                                                  activeColor: Color.fromRGBO(
-                                                      32, 193, 244, 1),
+                                                return Checkbox(
                                                   onChanged: (value) {
-                                                    controller.radioGValues5
-                                                        .value =
-                                                    value as String;
-                                                    //  print(controller.subData[0].fields![0].values!.length);
+                                                    controller.checkBox.value = value as bool;
                                                   },
-                                                  value: controller
-                                                      .subData[controller
-                                                      .subDataIndex.value]
-                                                      .fields![0]
-                                                      .values![index],
-                                                  groupValue: controller
-                                                      .radioGValues5.value,);
+                                                value: controller.checkBox.value);
                                               }),
                                             ),
                                             Container(
@@ -561,25 +550,17 @@ class TopSellingStoreAllProductsView
                                           children: [
                                             Container(
                                               child: Obx(() {
-                                                return Radio(
-                                                  activeColor: Color.fromRGBO(
-                                                      32, 193, 244, 1),
+                                                return Checkbox(
                                                   onChanged: (value) {
-                                                    controller.radioGValues2
-                                                        .value =
-                                                    value as String;
+                                                    controller.colorCheckBox.value = value as bool;
                                                   },
-                                                  value: controller
-                                                      .SubCatagoryList[index]
-                                                      .name,
-                                                  groupValue: controller
-                                                      .radioGValues2.value,);
+                                                value: controller.colorCheckBox.value);
                                               }),
                                             ),
                                             Container(
                                               margin: EdgeInsets.only(top: 8),
                                               child: Text(
-                                                "Color",
+                                                "${controller.subData[index].fields![0].values![1]}",
                                                 style: GoogleFonts.raleway(
                                                     fontSize: 16,
                                                     color: Colors.black
@@ -642,6 +623,7 @@ class TopSellingStoreAllProductsView
                     onPressed: () {
                       // scaffoldKey.currentState!
                       //     .openEndDrawer();
+                      ScaffoldKey2.currentState!.openEndDrawer();
                     },
                     icon: Icon(
                       Icons.shopping_cart,

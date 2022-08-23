@@ -373,29 +373,34 @@ class HomeView extends GetView<HomeController> {
                                                     )
                                                   ],
                                                 ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          top: 15.0,
-                                                          left: 8,
-                                                          right: 8),
-                                                  child: getcon(
-                                                      alignment:
-                                                          Alignment.center,
-                                                      color: Colors.cyan,
-                                                      height: 30,
-                                                      width:
-                                                          MediaQuery.of(context)
-                                                              .size
-                                                              .width,
-                                                      text: Text(
-                                                        "VIEW CART",
-                                                        style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight.w800,
-                                                            color:
-                                                                Colors.white),
-                                                      )),
+                                                InkWell(
+                                                  onTap: () {
+                                                    Get.toNamed(Routes.VIEW_ALL_MY_CART);
+                                                  },
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            top: 15.0,
+                                                            left: 8,
+                                                            right: 8),
+                                                    child: getcon(
+                                                        alignment:
+                                                            Alignment.center,
+                                                        color: Colors.cyan,
+                                                        height: 30,
+                                                        width:
+                                                            MediaQuery.of(context)
+                                                                .size
+                                                                .width,
+                                                        text: Text(
+                                                          "VIEW CART",
+                                                          style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight.w800,
+                                                              color:
+                                                                  Colors.white),
+                                                        )),
+                                                  ),
                                                 )
                                               ],
                                             ),
