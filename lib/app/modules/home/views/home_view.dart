@@ -410,6 +410,7 @@ class HomeView extends GetView<HomeController> {
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           SizedBox(
                             width: 10,
@@ -429,38 +430,43 @@ class HomeView extends GetView<HomeController> {
                                     ),
                                   ),
                                 ),
-                                Container(
-                                  height: 40,
-                                  width: 190,
-                                  margin: EdgeInsets.only(left: 15),
-                                  padding: EdgeInsets.only(bottom: 10
-                                      // left: 10,
+                                Expanded(
+                                  flex: 5,
+                                  child: Container(
+                                    height: 40,
+                                    // width: ,
+                                    margin: EdgeInsets.only(left: 15),
+                                    padding: EdgeInsets.only(bottom: 10
+                                        // left: 10,
+                                        ),
+                                    decoration: BoxDecoration(
+                                      color: Colors.grey[300],
+                                      borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(10),
+                                        topRight: Radius.circular(10),
+                                        bottomRight: Radius.circular(10),
                                       ),
-                                  decoration: BoxDecoration(
-                                    color: Colors.grey[300],
-                                    borderRadius: BorderRadius.only(
-                                      bottomLeft: Radius.circular(10),
-                                      topRight: Radius.circular(10),
-                                      bottomRight: Radius.circular(10),
                                     ),
-                                  ),
-                                  child: TextFormField(
-                                    controller: controller.searchController,
-                                    decoration: InputDecoration(
-                                      hintText: "Search Product...",
-                                      hintStyle: GoogleFonts.roboto(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w500,
+                                    child: TextFormField(
+                                      controller: controller.searchController,
+                                      decoration: InputDecoration(
+                                        hintText: "Search Product...",
+                                        hintStyle: GoogleFonts.roboto(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                        enabledBorder: InputBorder.none,
+                                        focusedBorder: InputBorder.none,
+                                        prefixIcon: Icon(Icons.search),
+                                        prefixIconColor: Colors.grey[200],
+                                        focusColor: Colors.grey,
                                       ),
-                                      enabledBorder: InputBorder.none,
-                                      focusedBorder: InputBorder.none,
-                                      prefixIcon: Icon(Icons.search),
-                                      prefixIconColor: Colors.grey[200],
-                                      focusColor: Colors.grey,
                                     ),
                                   ),
                                 ),
+                                // Spacer(),
                                 Expanded(
+                                  flex: 1,
                                   child: IconButton(
                                       onPressed: () {},
                                       icon: Icon(
@@ -468,7 +474,9 @@ class HomeView extends GetView<HomeController> {
                                         color: Colors.grey[500],
                                       )),
                                 ),
+
                                 Expanded(
+                                  flex: 1,
                                     child: Stack(
                                   children: [
                                     IconButton(
