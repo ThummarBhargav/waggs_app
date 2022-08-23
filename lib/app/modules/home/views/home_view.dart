@@ -473,6 +473,8 @@ class HomeView extends GetView<HomeController> {
                                   children: [
                                     IconButton(
                                         onPressed: () {
+                                          controller.CartProductApi();
+                                          controller.CartCount();
                                           scaffoldKey.currentState!
                                               .openEndDrawer();
                                         },
