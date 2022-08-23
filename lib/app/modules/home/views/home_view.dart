@@ -27,70 +27,72 @@ class HomeView extends GetView<HomeController> {
             endDrawer: Drawer(
                 width: 250,
                 child: Column(
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: DrawerHeader(
+                          decoration: BoxDecoration(
+                              color: Color.fromRGBO(32, 193, 244, 1)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Expanded(
-                                flex: 1,
-                                child: DrawerHeader(
-                                    decoration:
-                                        BoxDecoration(color: Color.fromRGBO(32, 193, 244, 1)),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                          width: 30,
-                                          margin: EdgeInsets.only(right: 10),
-                                          child: IconButton(
-                                              onPressed: () {
-                                                Get.back();
-                                              },
-                                              icon: Icon(
-                                                Icons.arrow_back,
-                                                color: Colors.white,
-                                                size: 20,
-                                              )),
-                                        ),
-                                        Container(
-                                          height: 30,
-                                          margin: EdgeInsets.only(top: 10),
-                                          child: Text(
-                                            "SHOPPING BAG " +
-                                                "(${controller.count1.data})",
-                                            style: GoogleFonts.raleway(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 16,
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
+                              Container(
+                                width: 30,
+                                margin: EdgeInsets.only(right: 10),
+                                child: IconButton(
+                                    onPressed: () {
+                                      Get.back();
+                                    },
+                                    icon: Icon(
+                                      Icons.arrow_back,
+                                      color: Colors.white,
+                                      size: 20,
                                     )),
                               ),
-                              Expanded(
-                                  flex: 9,
-                                  child: (controller.hasData.isFalse)
-                                      ? Center(child: CircularProgressIndicator())
-                                      : (isNullEmptyOrFalse(controller.cartProductList))
-                                      ? Center(
+                              Container(
+                                height: 30,
+                                margin: EdgeInsets.only(top: 10),
+                                child: Text(
+                                  "SHOPPING BAG " +
+                                      "(${controller.count1.data})",
+                                  style: GoogleFonts.raleway(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )),
+                    ),
+                    Expanded(
+                        flex: 9,
+                        child: (controller.hasData.isFalse)
+                            ? Center(child: CircularProgressIndicator())
+                            : (isNullEmptyOrFalse(controller.cartProductList))
+                                ? Center(
                                     child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
                                         Container(
                                           height: 300,
                                           width: 250,
-                                          child: SvgPicture.asset("assets/NoData.svg"),
+                                          child: SvgPicture.asset(
+                                              "assets/NoData.svg"),
                                         ),
                                         Text(
                                           "No data found",
                                           style: GoogleFonts.raleway(
                                               fontWeight: FontWeight.w700,
                                               fontSize: 20,
-                                              color: Color.fromRGBO(33, 43, 54, 1)),
+                                              color: Color.fromRGBO(
+                                                  33, 43, 54, 1)),
                                         ),
                                       ],
                                     ),
                                   )
-                                      :ListView.builder(
+                                : ListView.builder(
                                     itemCount:
                                         controller.cartProductList.length,
                                     itemBuilder: (context, index) {
@@ -177,10 +179,7 @@ class HomeView extends GetView<HomeController> {
                                                         icon: Icon(
                                                           Icons.delete_rounded,
                                                           color: Color.fromRGBO(
-                                                              32,
-                                                              193,
-                                                              244,
-                                                              1),
+                                                              32, 193, 244, 1),
                                                         ))
                                                   ],
                                                 ),
@@ -232,14 +231,16 @@ class HomeView extends GetView<HomeController> {
                                                         Expanded(
                                                           child: InkWell(
                                                               onTap: () {
-                                                                (controller.count==0)?controller.CartDeleteApi(data:controller
-                                                                    .cartProductList[
-                                                                index]):controller
-                                                                    .UpdateCartRemove(
-                                                                  data: controller
-                                                                          .cartProductList[
-                                                                      index],
-                                                                );
+                                                                (controller.cartProductList[index].quantity ==
+                                                                        1)
+                                                                    ? controller.CartDeleteApi(
+                                                                        data: controller.cartProductList[
+                                                                            index])
+                                                                    : controller
+                                                                        .UpdateCartRemove(
+                                                                        data: controller
+                                                                            .cartProductList[index],
+                                                                      );
                                                               },
                                                               child: Padding(
                                                                 padding:
@@ -334,90 +335,73 @@ class HomeView extends GetView<HomeController> {
                                       );
                                     },
                                   )),
-                              controller.cartProductList == null
-                                  ? Container()
-                                  : Expanded(
-                                      flex: 2,
-                                      child: ListView.builder(
-                                        itemCount: 1,
-                                        itemBuilder: (context, index) {
-                                          var sum =0;
-                                          controller.cartProductList.forEach((element) {
-                                            sum+= element.product!.discountedPrice! * element.quantity!;
-                                          });
-                                          return Container(
-                                            margin: EdgeInsets.all(15),
-                                            child: Column(
-                                              children: [
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Text(
-                                                      "SUBTOTAL",
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.w700,
-                                                          color: Colors
-                                                              .grey.shade600),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              8.0),
-                                                      child: Text(
-                                                        "\u{20B9}${sum}.00",
-                                                        style: TextStyle(
-                                                            color:
-                                                                Colors.orange,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w800),
-                                                      ),
-                                                    )
-                                                  ],
-                                                ),
-                                                InkWell(
-                                                  onTap: () {
-                                                    Get.toNamed(Routes.VIEW_ALL_MY_CART);
-                                                  },
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            top: 15.0,
-                                                            left: 8,
-                                                            right: 8),
-                                                    child: getcon(
-                                                        alignment:
-                                                            Alignment.center,
-                                                        color: Color.fromRGBO(
-                                                            32,
-                                                            193,
-                                                            244,
-                                                            1),
-                                                        height: 30,
-                                                        width:
-                                                            MediaQuery.of(context)
-                                                                .size
-                                                                .width,
-                                                        text: Text(
-                                                          "VIEW CART",
-                                                          style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight.w800,
-                                                              color:
-                                                                  Colors.white),
-                                                        )),
-                                                  ),
-                                                )
-                                              ],
+                    controller.cartProductList == null
+                        ? Container()
+                        : Expanded(
+                            flex: 2,
+                            child: ListView.builder(
+                              itemCount: 1,
+                              itemBuilder: (context, index) {
+                                var sum = 0;
+                                controller.cartProductList.forEach((element) {
+                                  sum += element.product!.discountedPrice! *
+                                      element.quantity!;
+                                });
+                                return Container(
+                                  margin: EdgeInsets.all(15),
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            "SUBTOTAL",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w700,
+                                                color: Colors.grey.shade600),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text(
+                                              "\u{20B9}${sum}.00",
+                                              style: TextStyle(
+                                                  color: Colors.orange,
+                                                  fontWeight: FontWeight.w800),
                                             ),
-                                          );
+                                          )
+                                        ],
+                                      ),
+                                      InkWell(
+                                        onTap: () {
+                                          Get.toNamed(Routes.VIEW_ALL_MY_CART);
                                         },
-                                      ))
-                            ],
-                          )),
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 15.0, left: 8, right: 8),
+                                          child: getcon(
+                                              alignment: Alignment.center,
+                                              color: Color.fromRGBO(
+                                                  32, 193, 244, 1),
+                                              height: 30,
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              text: Text(
+                                                "VIEW CART",
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.w800,
+                                                    color: Colors.white),
+                                              )),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                );
+                              },
+                            ))
+                  ],
+                )),
             body: Column(
               children: [
                 Container(
@@ -534,11 +518,7 @@ class HomeView extends GetView<HomeController> {
                       SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: Container(
-                          color: Color.fromRGBO(
-                              32,
-                              193,
-                              244,
-                              1),
+                          color: Color.fromRGBO(32, 193, 244, 1),
                           child: Row(
                             children: List.generate(
                                 controller.CatagoryList.length, (index) {
@@ -1099,8 +1079,10 @@ class HomeView extends GetView<HomeController> {
                                                 ),
                                                 InkWell(
                                                   onTap: () {
-                                                    print("${controller.TopProductlist[index].sId}");
-                                                    print("Bearer ${box.read(ArgumentConstant.token)}");
+                                                    print(
+                                                        "${controller.TopProductlist[index].sId}");
+                                                    print(
+                                                        "Bearer ${box.read(ArgumentConstant.token)}");
                                                     controller.addToCart(
                                                         data: controller
                                                                 .TopProductlist[
