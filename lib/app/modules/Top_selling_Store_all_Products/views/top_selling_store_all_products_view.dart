@@ -531,8 +531,7 @@ class TopSellingStoreAllProductsView
                                               activeColor: Color.fromRGBO(32,
                                                   193, 244, 1),
                                               onChanged: (value) {
-                                                controller.radioGValues.value =
-                                                value as String;
+                                                controller.radioGValues.value = value as String;
                                                 controller.radioGValues.value != null ? controller.isOp2
                                                     .value == true : false;
                                                 controller.isOp2.value = true;
@@ -544,7 +543,7 @@ class TopSellingStoreAllProductsView
                                                 controller.sidValues.value =
                                                 controller.CatagoryList[index]
                                                     .sId!;
-                                                print("${controller.sidValues
+                                                print("Sid==${controller.sidValues
                                                     .value}");
                                                 controller.subData.clear();
                                                 controller.SubCatagoryList
@@ -644,23 +643,14 @@ class TopSellingStoreAllProductsView
                                                   activeColor: Color.fromRGBO(
                                                       32, 193, 244, 1),
                                                   onChanged: (value) {
-                                                    controller.radioGValues1
-                                                        .value =
-                                                    value as String;
-                                                    controller.radioGValues1
-                                                        .value != ""
-                                                        ? controller.isOp3
-                                                        .value == true
+                                                    controller.radioGValues1.value = value as String;
+                                                    controller.radioGValues1.value != ""
+                                                        ? controller.isOp3.value == true
                                                         : false;
-                                                    controller.isOp3.value =
-                                                    true;
-                                                    controller
-                                                        .SubCatagoryList[index]
-                                                        .sId;
-                                                    controller.subDataIndex
-                                                        .value = index;
-                                                    controller.productList
-                                                        .clear();
+                                                    controller.isOp3.value = true;
+                                                    controller.SubCatagoryList[index].sId;
+                                                    controller.subDataIndex.value = index;
+                                                    controller.productList.clear();
                                                   },
                                                   value: controller
                                                       .subData[index].name,
@@ -670,8 +660,7 @@ class TopSellingStoreAllProductsView
                                             ),
                                             Expanded(
                                               child: Text(
-                                                "${controller.subData[index]
-                                                    .name}",
+                                                "${controller.subData[index].name}",
                                                 style: GoogleFonts.raleway(
                                                     fontSize: 14,
                                                     color: Colors.black
@@ -687,35 +676,35 @@ class TopSellingStoreAllProductsView
                           ],
                         )
                         ),
-                        Container(
-                          height: 350,
-                          margin: EdgeInsets.only(left: 15,top: 5),
-                          padding: EdgeInsets.only(top: 15,right: 10),
-                          child:ListView.builder(
-                            itemCount: controller.subData[controller
-                                .subDataIndex.value].fields!
-                                .length,
-                              itemBuilder: (context, index) {
+                       Obx(()=>controller.subData.isEmpty?Container():Container(
+                           height: 350,
+                           margin: EdgeInsets.only(left: 15,top: 5),
+                           padding: EdgeInsets.only(top: 15,right: 10),
+                           child:ListView.builder(
+                             itemCount: controller.subData[controller
+                                 .subDataIndex.value].fields!
+                                 .length,
+                             itemBuilder: (context, index) {
                                 return Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children:[
+                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                   children:[
                                      InkWell(
-                                      onTap:(){
-                                      },
-                                      child: Container(
-                                        margin: EdgeInsets.only(left: 15,top: 15),
-                                        child:Text("${controller.subData[controller
-                                            .subDataIndex.value].fields![index].id.toString()}",style: TextStyle(fontSize: 18),),
-                                      ),
-                                    ),
-                                    Container(
-                                      margin: EdgeInsets.only(top: 15),
-                                      child: Icon(Icons.keyboard_arrow_up_outlined),
-                                    )
-                                  ]
-                                );
-                              },)
-                        ),
+                                       onTap:(){
+                                       },
+                                       child: Container(
+                                         margin: EdgeInsets.only(left: 15,top: 15),
+                                         child:Text("${controller.subData[controller
+                                             .subDataIndex.value].fields![index].id.toString()}",style: TextStyle(fontSize: 18),),
+                                       ),
+                                     ),
+                                     Container(
+                                       margin: EdgeInsets.only(top: 15),
+                                       child: Icon(Icons.keyboard_arrow_up_outlined),
+                                     )
+                                   ]
+                               );
+                             },)
+                       )) ,
                         Obx(() =>
                         controller.isOp3.value == false ? Container() : InkWell(
                           onTap: () {
@@ -789,8 +778,7 @@ class TopSellingStoreAllProductsView
                                               child: Text(
                                                 controller.subData[controller
                                                     .subDataIndex.value]
-                                                    .fields![0].values![index]
-                                                    .toString(),
+                                                    .fields![0].values![index].toString(),
                                                 style: GoogleFonts.raleway(
                                                     fontSize: 16,
                                                     color: Colors.black
@@ -855,8 +843,7 @@ class TopSellingStoreAllProductsView
                                     height: 230,
                                     child: ListView.builder(
                                       physics: NeverScrollableScrollPhysics(),
-                                      itemCount: controller.SubCatagoryList
-                                          .length,
+                                      itemCount: controller.SubCatagoryList.length,
                                       itemBuilder: (context, index) {
                                         return Row(
                                           children: [
