@@ -333,8 +333,7 @@ class HomeView extends GetView<HomeController> {
                                   : Expanded(
                                       flex: 2,
                                       child: ListView.builder(
-                                        itemCount:
-                                            controller.cartProductList.length,
+                                        itemCount: 1,
                                         itemBuilder: (context, index) {
                                           var sum =0;
                                           controller.cartProductList.forEach((element) {
