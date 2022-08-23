@@ -234,7 +234,9 @@ class ViewProductView extends GetWidget<ViewProductController> {
                                               Expanded(
                                                 child: InkWell(
                                                     onTap: () {
-                                                      controller
+                                                      controller.cartProductList[index].quantity == 1?
+                                                          controller.CartDeleteApi(data: controller.cartProductList[index])
+                                                      :controller
                                                           .UpdateCartRemove(
                                                         data: controller
                                                             .cartProductList[
@@ -422,6 +424,9 @@ class ViewProductView extends GetWidget<ViewProductController> {
               elevation: 0,
               backgroundColor: Colors.white,
               foregroundColor: Colors.black,
+              leading: IconButton(onPressed: (){
+                Get.back();
+              }, icon: Icon(Icons.arrow_back_outlined)),
               centerTitle: true,
               actions: [
                 IconButton(onPressed: () {}, icon: Icon(Icons.search)),
