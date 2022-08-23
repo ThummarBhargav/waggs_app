@@ -1,3 +1,5 @@
+import 'package:get/get.dart';
+
 class SubCategorymodel {
   int? responseCode;
   List<SubCategoryData>? data;
@@ -83,13 +85,15 @@ class Fields {
   List<String>? values;
   String? sId;
   String? id;
+  RxBool? isExpanded;
 
-  Fields({this.values, this.sId, this.id});
+  Fields({this.values, this.sId, this.id,this.isExpanded});
 
   Fields.fromJson(Map<String, dynamic> json) {
     values = json['values'].cast<String>();
     sId = json['_id'];
     id = json['id'];
+    isExpanded = false.obs;
   }
 
   Map<String, dynamic> toJson() {

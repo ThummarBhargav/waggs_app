@@ -676,7 +676,7 @@ class TopSellingStoreAllProductsView
                           ],
                         )
                         ),
-                       Obx(()=>controller.subData.isEmpty?Container():Container(
+                     controller.subData.isEmpty?Container():Container(
                            height: 350,
                            margin: EdgeInsets.only(left: 15,top: 5),
                            padding: EdgeInsets.only(top: 15,right: 10),
@@ -685,26 +685,45 @@ class TopSellingStoreAllProductsView
                                  .subDataIndex.value].fields!
                                  .length,
                              itemBuilder: (context, index) {
-                                return Row(
-                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                   children:[
-                                     InkWell(
-                                       onTap:(){
-                                       },
-                                       child: Container(
-                                         margin: EdgeInsets.only(left: 15,top: 15),
-                                         child:Text("${controller.subData[controller
-                                             .subDataIndex.value].fields![index].id.toString()}",style: TextStyle(fontSize: 18),),
-                                       ),
-                                     ),
-                                     Container(
-                                       margin: EdgeInsets.only(top: 15),
-                                       child: Icon(Icons.keyboard_arrow_up_outlined),
-                                     )
-                                   ]
-                               );
+                                return Obx(() => Column(
+                                  children: [
+                                    Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children:[
+                                          InkWell(
+                                            onTap:(){
+                                              controller.subData[controller
+                                                  .subDataIndex.value].fields!.forEach((element) {
+                                                element.isExpanded!.value = false;
+                                              });
+                                              controller.subData[controller
+                                                  .subDataIndex.value].fields![index].isExpanded!.value = true;
+                                              controller.subData[controller
+                                                  .subDataIndex.value].fields![index].isExpanded!.refresh();
+
+                                            },
+                                            child: Container(
+                                              margin: EdgeInsets.only(left: 15,top: 15),
+                                              child:Text("${controller.subData[controller
+                                                  .subDataIndex.value].fields![index].id.toString()}",style: TextStyle(fontSize: 18),),
+                                            ),
+                                          ),
+                                          Container(
+                                            margin: EdgeInsets.only(top: 15),
+                                            child: Icon(( controller.subData[controller
+                                                .subDataIndex.value].fields![index].isExpanded!.value)?Icons.keyboard_arrow_up_outlined:Icons.keyboard_arrow_down_outlined),
+                                          )
+                                        ]
+                                    ),
+                                    if(controller.subData[controller
+                                        .subDataIndex.value].fields![index].isExpanded!.value)
+                                      Container(
+                                        child: Text("testing............."),
+                                      ),
+                                  ],
+                                ));
                              },)
-                       )) ,
+                       ),
                         Obx(() =>
                         controller.isOp3.value == false ? Container() : InkWell(
                           onTap: () {
@@ -757,7 +776,7 @@ class TopSellingStoreAllProductsView
                                   Container(
                                     height: 230,
                                     child: ListView.builder(
-                                      // physics: NeverScrollableScrollPhysics(),
+                                      // physics: NeverSc``rollableScrollPhysics(),
                                       itemCount: controller.subData[controller
                                           .subDataIndex.value].fields![0]
                                           .values!.length,
