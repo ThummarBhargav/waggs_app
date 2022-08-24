@@ -86,6 +86,7 @@ class Fields {
   String? sId;
   String? id;
   RxBool? isExpanded;
+  RxBool? isChecked;
 
   Fields({this.values, this.sId, this.id,this.isExpanded});
 
@@ -94,6 +95,7 @@ class Fields {
     sId = json['_id'];
     id = json['id'];
     isExpanded = false.obs;
+    isChecked = false.obs;
   }
 
   Map<String, dynamic> toJson() {

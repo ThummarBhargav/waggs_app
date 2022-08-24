@@ -689,7 +689,7 @@ class TopSellingStoreAllProductsView
                                           element.isExpanded!.value = false;
                                         });
                                         controller.subData[controller
-                                            .subDataIndex.value].fields![index].isExpanded!.value = true;
+                                            .subDataIndex.value].fields![index].isExpanded!.toggle();
                                         controller.subData[controller
                                             .subDataIndex.value].fields![index].isExpanded!.refresh();
                                       },
@@ -716,6 +716,7 @@ class TopSellingStoreAllProductsView
                                         // height:250,
                                         child: ListView.builder(
                                             shrinkWrap: true,
+                                           physics: NeverScrollableScrollPhysics(),
                                            itemCount: controller.subData[controller
                                                 .subDataIndex.value].fields![index].values!.length,
                                             itemBuilder: ((context, index1) {
@@ -724,9 +725,12 @@ class TopSellingStoreAllProductsView
                                             children: [
                                           Checkbox(
                                               onChanged: (value) {
-                                                controller.checkBox.value = value as bool;
+                                                controller.subData[controller
+                                                    .subDataIndex.value].fields![index].isChecked!.value = value as bool;
+                                                controller.subData[controller
+                                                    .subDataIndex.value].fields![index].isChecked!.refresh();
                                                 },
-                                              value: controller.checkBox.value),
+                                              value: controller.subData[controller.subDataIndex.value].fields![index].isChecked!.value),
                                                   Container(
                                                     margin: EdgeInsets.only(left: 15,top: 15),
                                                     child:Text("${controller.subData[controller
