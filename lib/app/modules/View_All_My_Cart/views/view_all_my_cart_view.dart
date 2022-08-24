@@ -1172,26 +1172,28 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                                       border: Border.all(width: 1,color: Colors.grey.shade300)
                                   ),
                                 ),
-                                Container(
-                                  width: 60,
-                                  height: 30,
-                                  margin: EdgeInsets.only(left: 12),
-                                  decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        image: AssetImage("assets/bhim.jpg"),
-                                      ),
-                                      border: Border.all(width: 1,color: Colors.grey.shade300)
+                                Expanded(
+                                  child: Container(
+                                    margin: EdgeInsets.only(left: 12),
+                                    padding: EdgeInsets.only(top: 15,bottom: 15),
+                                    decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: AssetImage("assets/bhim.jpg"),
+                                        ),
+                                        border: Border.all(width: 1,color: Colors.grey.shade300)
+                                    ),
                                   ),
                                 ),
-                                Container(
-                                  width: 60,
-                                  height: 30,
-                                  margin: EdgeInsets.only(left: 12),
-                                  decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        image: AssetImage("assets/paytm.png"),
-                                      ),
-                                      border: Border.all(width: 1,color: Colors.grey.shade300)
+                                Expanded(
+                                  child: Container(
+                                    margin: EdgeInsets.only(left: 12),
+                                    padding: EdgeInsets.only(top: 15,bottom: 15),
+                                    decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: AssetImage("assets/paytm.png"),
+                                        ),
+                                        border: Border.all(width: 1,color: Colors.grey.shade300)
+                                    ),
                                   ),
                                 ),
                               ],
