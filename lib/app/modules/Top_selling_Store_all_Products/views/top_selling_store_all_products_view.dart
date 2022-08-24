@@ -726,11 +726,12 @@ class TopSellingStoreAllProductsView
                                           Checkbox(
                                               onChanged: (value) {
                                                 controller.subData[controller
-                                                    .subDataIndex.value].fields![index].isChecked!.value = value as bool;
+                                                    .subDataIndex.value].fields![index].isChecked![index1] = value as bool ;
                                                 controller.subData[controller
                                                     .subDataIndex.value].fields![index].isChecked!.refresh();
                                                 },
-                                              value: controller.subData[controller.subDataIndex.value].fields![index].isChecked!.value),
+                                              value:  controller.subData[controller
+                                                  .subDataIndex.value].fields![index].isChecked![index1]),
                                                   Container(
                                                     margin: EdgeInsets.only(left: 15,top: 15),
                                                     child:Text("${controller.subData[controller

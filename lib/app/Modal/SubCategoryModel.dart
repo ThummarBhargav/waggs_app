@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:waggs_app/app/constant/SizeConstant.dart';
 
 class SubCategorymodel {
   int? responseCode;
@@ -86,7 +87,7 @@ class Fields {
   String? sId;
   String? id;
   RxBool? isExpanded;
-  RxBool? isChecked;
+  RxList<bool>? isChecked = RxList<bool>([]);
 
   Fields({this.values, this.sId, this.id,this.isExpanded});
 
@@ -95,7 +96,12 @@ class Fields {
     sId = json['_id'];
     id = json['id'];
     isExpanded = false.obs;
-    isChecked = false.obs;
+   if(!isNullEmptyOrFalse(values)){
+
+     values!.forEach((element) {
+       isChecked!.add(false);
+     });
+   }
   }
 
   Map<String, dynamic> toJson() {
