@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:waggs_app/app/Modal/CartCountModel.dart';
@@ -21,8 +22,10 @@ class TopSellingStoreAllProductsController extends GetxController {
   RxBool drawer = false.obs;
   RxBool drawer2 = false.obs;
   StoreModule storeModule = StoreModule();
-  SfRangeValues values = const SfRangeValues(100, 30000);
-  SfRangeValues values1 = const SfRangeValues(0, 100);
+  // Rx<SfRangeValues> values =  SfRangeValues(100, 30000).obs;
+  Rx<RangeValues> values1 =  RangeValues(0, 100).obs;
+  Rx<RangeValues> values4 = RangeValues(100, 30000).obs;
+  // Rx<RangeLabels> labels =RangeLabels('1', "100").obs;
   RxBool isOp = false.obs;
   RxBool isOp1 = false.obs;
   RxBool isOp2 = false.obs;

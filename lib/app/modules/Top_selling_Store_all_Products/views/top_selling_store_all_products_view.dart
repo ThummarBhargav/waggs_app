@@ -444,16 +444,25 @@ class TopSellingStoreAllProductsView
                             ),
                           ),
                         ),
-                        SfRangeSlider(
-                          min: 100,
-                          max: 30000,
-                          activeColor: Color.fromRGBO(32, 193, 244, 1),
-                          showTicks: true,
-                          numberFormat: NumberFormat("\$"),
-                          onChanged: (value) {
-                            controller.values = value;
-                          },
-                          values: controller.values,
+                        Obx(
+                              () => RangeSlider(
+                              divisions: 30000,
+                            activeColor: Colors.lightBlue[300],
+                            inactiveColor: Colors.lightBlue[200],
+                            min: 100,
+                            max: 30000,
+                            values: controller.values4.value,
+                              labels: RangeLabels(controller.values4.value.start.round().toString()
+                                  ,controller.values4.value.end.round().toString()),
+                             onChanged: (value) {
+                              controller.values4.value = value;
+                              print('value=>${controller.values4.value}');
+                              print('${RangeLabels(
+                                  controller.values4.value.start.round().toString()
+                                  ,controller.values4.value.end.round().toString())}');
+                             },
+
+                          ),
                         ),
                         ListTile(
                           title: Text("Discount",
@@ -463,16 +472,24 @@ class TopSellingStoreAllProductsView
                             ),
                           ),
                         ),
-                        SfRangeSlider(
-                          min: 0,
-                          max: 100,
-                          activeColor: Color.fromRGBO(32, 193, 244, 1),
-                          showTicks: true,
-                          numberFormat: NumberFormat("\$"),
-                          onChanged: (value) {
-                            controller.values1 = value;
-                          },
-                          values: controller.values1,
+                        Obx(
+                              () => RangeSlider(
+                            divisions: 100,
+                            activeColor: Colors.lightBlue[300],
+                            inactiveColor: Colors.lightBlue[200],
+                            min: 0,
+                            max: 100,
+                            values: controller.values1.value,
+                            labels: RangeLabels(controller.values1.value.start.round().toString()
+                                ,controller.values1.value.end.round().toString()),
+                            onChanged: (value) {
+                              controller.values1.value = value;
+                              print('value=>${controller.values1.value}');
+                              print('${RangeLabels(
+                                  controller.values1.value.start.round().toString()
+                                  ,controller.values1.value.end.round().toString())}');
+                            },
+                          ),
                         ),
                         SizedBox(height: 30,),
                         InkWell(
@@ -710,7 +727,7 @@ class TopSellingStoreAllProductsView
                                       ),
                                     ),
                                     if(controller.subData[controller
-                                        .subDataIndex.value].fields![index].isExpanded!.value)
+                                        .subDataIndex.value].fields![index].isExpanded!.value==true)
                                       Container(
                                         child: ListView.builder(
                                             shrinkWrap: true,
@@ -730,11 +747,13 @@ class TopSellingStoreAllProductsView
                                                 },
                                               value:  controller.subData[controller
                                                   .subDataIndex.value].fields![index].isChecked![index1]),
-                                                  Container(
-                                                    margin: EdgeInsets.only(left: 15,top: 15),
-                                                    child:Text("${controller.subData[controller
-                                                        .subDataIndex.value].fields![index].values![index1].toString()}"
-                                                      ,style: TextStyle(fontSize: 16,color: Colors.grey.shade600),),
+                                                  Expanded(
+                                                    child: Container(
+                                                      margin: EdgeInsets.only(left: 15,top: 15),
+                                                      child:Text("${controller.subData[controller
+                                                          .subDataIndex.value].fields![index].values![index1].toString()}"
+                                                        ,style: TextStyle(fontSize: 16,color: Colors.grey.shade600),),
+                                                    ),
                                                   ),
                                             ],
                                           ));
@@ -748,6 +767,7 @@ class TopSellingStoreAllProductsView
                     ),
                   ),
                 ),
+                SizedBox(height: 10,),
                 Container(
                   height: 60,
                   child: InkWell(
