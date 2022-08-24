@@ -473,7 +473,7 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                           Row(
                             children: [
                               Container(
-                                padding: EdgeInsets.only(left: 10,top: 10),
+                                padding: EdgeInsets.only(left: 15,top: 10),
                                 child: Text("CONTACT INFORMATION",
                                   style: GoogleFonts.raleway(
                                       color: Colors.orange,
@@ -552,7 +552,7 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                           Row(
                             children: [
                               Container(
-                                padding: EdgeInsets.only(left: 10,top: 10),
+                                padding: EdgeInsets.only(left: 15,top: 10),
                                 child: Text("SHIPPING ADDRESS",
                                   style: GoogleFonts.raleway(
                                       color: Colors.orange,
@@ -620,7 +620,7 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                                       ),
                                     ),
                                     child: TextFormField(
-                                      controller: controller.nameController.value,
+                                      controller: controller.lastNameController.value,
                                       validator: (input) => !isNullEmptyOrFalse(input)
                                           ? null
                                           : "Please Enter Last Name",
@@ -643,10 +643,499 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                                     ),
                                   ),
                                 ),
-
                               ],
                             ),
                           ),
+                          SizedBox(height: 10,),
+                          Container(
+                            child: Container(
+                              margin: EdgeInsets.only(left: 15, right: 15,top: 10,),
+                              padding: EdgeInsets.only(
+                                  left: 15
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.grey[200],
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(25),
+                                  topRight: Radius.circular(25),
+                                  bottomRight: Radius.circular(25),
+                                ),
+                              ),
+                              child: TextFormField(
+                                controller: controller.addressController.value,
+                                validator: (input) => !isNullEmptyOrFalse(input)
+                                    ? null
+                                    : "Please Enter Address",
+                                // obscureText: controller.emailVisible.value,
+                                keyboardType: TextInputType.streetAddress,
+                                decoration: InputDecoration(
+                                  hintText: "Address",
+                                  hintStyle: GoogleFonts.raleway(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                  enabledBorder: InputBorder.none,
+                                  focusedBorder: InputBorder.none,
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 10,),
+                          Container(
+                            child: Container(
+                              margin: EdgeInsets.only(left: 15, right: 15,top: 10,),
+                              padding: EdgeInsets.only(
+                                  left: 15
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.grey[200],
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(25),
+                                  topRight: Radius.circular(25),
+                                  bottomRight: Radius.circular(25),
+                                ),
+                              ),
+                              child: TextFormField(
+                                controller: controller.apartmentController.value,
+                                validator: (input) => !isNullEmptyOrFalse(input)
+                                    ? null
+                                    : "Please Enter Apartment, Suite, Etc.",
+                                // obscureText: controller.emailVisible.value,
+                                keyboardType: TextInputType.streetAddress,
+                                decoration: InputDecoration(
+                                  hintText: "Apartment, Suite, Etc. (Optional)",
+                                  hintStyle: GoogleFonts.raleway(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                  enabledBorder: InputBorder.none,
+                                  focusedBorder: InputBorder.none,
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 10,),
+                          Container(
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Container(
+                                      margin: EdgeInsets.only(left: 15, right: 15,top: 10,),
+                                      padding: EdgeInsets.only(
+                                          left: 15,top: 15,bottom: 15
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: Colors.grey[200],
+                                        borderRadius: BorderRadius.only(
+                                          bottomLeft: Radius.circular(25),
+                                          topRight: Radius.circular(25),
+                                          bottomRight: Radius.circular(25),
+                                        ),
+                                      ),
+                                      child: InkWell(
+                                        onTap: () {
+
+                                        },
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Container(
+                                              child: Text("Country/Region",
+                                                style: GoogleFonts.raleway(
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w500,
+                                                  color: Colors.grey.shade700,
+                                                ),
+                                              ),
+                                            ),
+                                            Container(
+                                              margin: EdgeInsets.only(right: 10),
+                                                child: Icon(Icons.keyboard_arrow_down_outlined),
+                                            ),
+                                          ],
+                                        ),
+                                      )
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Container(
+                                    margin: EdgeInsets.only(left: 15, right: 15,top: 10,),
+                                    padding: EdgeInsets.only(
+                                        left: 15,top: 15,bottom: 15
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: Colors.grey[200],
+                                      borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(25),
+                                        topRight: Radius.circular(25),
+                                        bottomRight: Radius.circular(25),
+                                      ),
+                                    ),
+                                    child: InkWell(
+                                      onTap: () {
+
+                                      },
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Container(
+                                            child: Text("State",
+                                              style: GoogleFonts.raleway(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w500,
+                                                color: Colors.grey.shade700,
+                                              ),
+                                            ),
+                                          ),
+                                          Container(
+                                            margin: EdgeInsets.only(right: 10),
+                                            child: Icon(Icons.keyboard_arrow_down_outlined),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 10,),
+                          Container(
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Container(
+                                    margin: EdgeInsets.only(left: 15, right: 15,top: 10,),
+                                    padding: EdgeInsets.only(
+                                        left: 15
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: Colors.grey[200],
+                                      borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(25),
+                                        topRight: Radius.circular(25),
+                                        bottomRight: Radius.circular(25),
+                                      ),
+                                    ),
+                                    child: TextFormField(
+                                      controller: controller.nameController.value,
+                                      validator: (input) => !isNullEmptyOrFalse(input)
+                                          ? null
+                                          : "Please Enter City",
+                                      // obscureText: controller.nameVisible.value,
+                                      keyboardType: TextInputType.streetAddress,
+                                      decoration: InputDecoration(
+                                        hintText: "City",
+                                        hintStyle: GoogleFonts.raleway(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                        enabledBorder: InputBorder.none,
+                                        focusedBorder: InputBorder.none,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Container(
+                                    margin: EdgeInsets.only(left: 15, right: 15,top: 10,),
+                                    padding: EdgeInsets.only(
+                                        left: 15
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: Colors.grey[200],
+                                      borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(25),
+                                        topRight: Radius.circular(25),
+                                        bottomRight: Radius.circular(25),
+                                      ),
+                                    ),
+                                    child: TextFormField(
+                                      controller: controller.lastNameController.value,
+                                      validator: (input) => !isNullEmptyOrFalse(input)
+                                          ? null
+                                          : "Please Enter Pincode",
+                                      // obscureText: controller.nameVisible.value,
+                                      keyboardType: TextInputType.number,
+                                      decoration: InputDecoration(
+                                        hintText: "Pincode",
+                                        hintStyle: GoogleFonts.raleway(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                        enabledBorder: InputBorder.none,
+                                        focusedBorder: InputBorder.none,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 10,),
+                          Container(
+                            child: Container(
+                              margin: EdgeInsets.only(left: 15, right: 15,top: 10,),
+                              padding: EdgeInsets.only(
+                                  left: 15
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.grey[200],
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(25),
+                                  topRight: Radius.circular(25),
+                                  bottomRight: Radius.circular(25),
+                                ),
+                              ),
+                              child: TextFormField(
+                                controller: controller.apartmentController.value,
+                                validator: (input) => !isNullEmptyOrFalse(input)
+                                    ? null
+                                    : "Please Enter Mobile Number",
+                                // obscureText: controller.emailVisible.value,
+                                keyboardType: TextInputType.streetAddress,
+                                decoration: InputDecoration(
+                                  hintText: "Mobile Number",
+                                  hintStyle: GoogleFonts.raleway(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                  enabledBorder: InputBorder.none,
+                                  focusedBorder: InputBorder.none,
+                                  suffixIcon: Icon(Icons.question_mark_rounded,color: Colors.black,)
+                                ),
+                              ),
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(left: 5,top: 10),
+                            child: Row(
+                              children: [
+                                Checkbox(
+                                    activeColor: Colors.orange,
+                                    onChanged: (value) {
+                                      controller.detailCheckBox.value = value as bool;
+                                    },value: controller.detailCheckBox.value),
+                                Expanded(
+                                  child: Text("Save This Information For Next Time",
+                                    style: GoogleFonts.raleway(
+                                        fontSize: 12,
+                                        color: Colors.grey
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(left: 18,right: 18),
+                            child: Divider(
+                              height: 5,
+                              indent: 1,
+                              endIndent: 1,
+                              thickness: 1,
+                              color: Colors.grey.shade400,
+                            ),
+                          ),
+                          SizedBox(height: 10,),
+                          Row(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.only(left: 15,top: 10),
+                                child: Text("GIFT CARD OR COUPON?",
+                                  style: GoogleFonts.raleway(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 10,),
+                          Container(
+                            child: Container(
+                              margin: EdgeInsets.only(left: 15, right: 15,top: 10,),
+                              padding: EdgeInsets.only(
+                                  left: 15
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.grey[200],
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(25),
+                                  topRight: Radius.circular(25),
+                                  bottomRight: Radius.circular(25),
+                                ),
+                              ),
+                              child: Row(
+                                children: [
+                                  Expanded(flex: 3,
+                                    child: TextFormField(
+                                      controller: controller.couponController.value,
+                                      validator: (input) => !isNullEmptyOrFalse(input)
+                                          ? null
+                                          : "Please Enter Address",
+                                      // obscureText: controller.emailVisible.value,
+                                      keyboardType: TextInputType.text,
+                                      decoration: InputDecoration(
+                                        hintText: "Gift Card Or Discount Code",
+                                        hintStyle: GoogleFonts.raleway(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                        enabledBorder: InputBorder.none,
+                                        focusedBorder: InputBorder.none,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(width: 10,),
+                                  Expanded(flex: 2,
+                                    child: InkWell(
+                                      onTap: () {
+
+                                      },
+                                      child: Container(
+                                        padding: EdgeInsets.only(
+                                          top: 13,bottom: 13
+                                        ),
+                                        alignment: Alignment.center,
+                                        decoration: BoxDecoration(
+                                          color: Colors.orange,
+                                          borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(25),
+                                            topRight: Radius.circular(25),
+                                            bottomLeft: Radius.circular(25),
+                                            bottomRight: Radius.circular(25),
+                                          ),
+                                        ),
+                                        child: Text("APPLY",
+                                          style: GoogleFonts.raleway(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w600,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 20,),
+                          ListView.builder(
+                            physics: NeverScrollableScrollPhysics(),
+                            itemCount: 1,
+                            shrinkWrap: true,
+                            itemBuilder: (context, index) {
+                              var sum = 0;
+                              controller.cartProductList.forEach((element) {
+                                sum += element.product!.discountedPrice! *
+                                    element.quantity!;
+                              });
+                              return Container(
+                                margin: EdgeInsets.all(20),
+                                padding: EdgeInsets.only(bottom: 20),
+                                decoration: BoxDecoration(
+                                    border: Border.all(width: 1,color: Colors.grey.shade400),
+                                    borderRadius: BorderRadius.all(Radius.circular(10))
+                                ),
+                                child: Container(
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Container(
+                                            margin: EdgeInsets.only(left: 10,top: 25),
+                                            child: Text(
+                                              "Subtotal",
+                                              style: TextStyle(
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: Colors.grey.shade500),
+                                            ),
+                                          ),
+                                          Container(
+                                            margin: EdgeInsets.only(right: 10,top: 25),
+                                            child: Text(
+                                              "\u{20B9}${sum}.00",
+                                              style: TextStyle(
+                                                  fontSize: 16,
+                                                  color: Colors.orange,
+                                                  fontWeight: FontWeight.w800),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Container(
+                                            margin: EdgeInsets.only(left: 10,top: 20,bottom: 15),
+                                            child: Text(
+                                              "Shipping",
+                                              style: TextStyle(
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: Colors.grey.shade500),
+                                            ),
+                                          ),
+                                          Container(
+                                            margin: EdgeInsets.only(right: 10,top: 20,bottom: 15),
+                                            child: Text(
+                                              "Calculated At Next Step",
+                                              style: TextStyle(
+                                                  fontSize: 16,
+                                                  color: Colors.grey.shade500,
+                                                  fontWeight: FontWeight.w500),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                      Container(
+                                        width: double.infinity,
+                                        child: Divider(
+                                          height: 5,
+                                          indent: 0,
+                                          endIndent: 0,
+                                          thickness: 1,
+                                          color: Colors.grey.shade400,
+                                        ),
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Container(
+                                            margin: EdgeInsets.only(left: 10,top: 10),
+                                            child: Text(
+                                              "Total",
+                                              style: TextStyle(
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: Colors.grey.shade500),
+                                            ),
+                                          ),
+                                          Container(
+                                            margin: EdgeInsets.only(right: 10,top: 10),
+                                            child: Text(
+                                              "\u{20B9}${sum}.00",
+                                              style: TextStyle(
+                                                  fontSize: 16,
+                                                  color: Colors.orange,
+                                                  fontWeight: FontWeight.w800),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            },),
                         ],
                       ),
                     ),
