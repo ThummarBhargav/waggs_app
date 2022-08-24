@@ -644,6 +644,7 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                                     ),
                                   ),
                                 ),
+
                               ],
                             ),
                           ),

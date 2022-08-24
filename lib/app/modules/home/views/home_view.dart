@@ -338,7 +338,7 @@ class HomeView extends GetView<HomeController> {
                                       );
                                     },
                                   )),
-                    controller.cartProductList == null
+                    controller.cartProductList.isEmpty
                         ? Container()
                         : Expanded(
                             flex: 2,
