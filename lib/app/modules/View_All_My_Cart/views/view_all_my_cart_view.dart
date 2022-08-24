@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:waggs_app/app/routes/app_pages.dart';
 
 import '../../../constant/SizeConstant.dart';
 import '../controllers/view_all_my_cart_controller.dart';
@@ -1200,19 +1201,45 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                           Container(
                             child: Row(
                               children: [
-                                Expanded(flex: 2,child: Container(
-                                  padding: EdgeInsets.only(top: 10,bottom: 10),
-                                  color: Colors.black,
-                                  child: Text("CONTINUE SHOPPING",
-                                    style: GoogleFonts.raleway(
-                                      fontSize: 16,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w600
+                                Expanded(flex: 2,child: InkWell(
+                                  onTap: () {
+                                    Get.toNamed(Routes.ADD_TO_CART_SHIPPING_VIEW);
+                                  },
+                                  child: Container(
+                                    alignment: Alignment.center,
+                                    margin: EdgeInsets.only(left: 20),
+                                    padding: EdgeInsets.only(top: 10,bottom: 10),
+                                    decoration: BoxDecoration(
+                                      color: Colors.black,
+                                      borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(25),
+                                        bottomLeft: Radius.circular(25),
+                                        bottomRight: Radius.circular(25),
+                                      ),
+                                    ),
+                                    child: Text("CONTINUE SHOPPING",
+                                      style: GoogleFonts.raleway(
+                                        fontSize: 14,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w600
+                                      ),
                                     ),
                                   ),
                                 )),
-                                Expanded(flex: 2,child: Container(
-                                  child: Text("RETURN TO CART"),
+                                Expanded(flex: 2,child: InkWell(
+                                  onTap: () {
+
+                                  },
+                                  child: Container(
+                                    margin: EdgeInsets.only(left: 20),
+                                    child: Text("RETURN TO CART",
+                                      style: GoogleFonts.raleway(
+                                          fontSize: 16,
+                                          color: Color.fromRGBO(32, 193, 244, 1),
+                                          fontWeight: FontWeight.w600
+                                      ),
+                                    ),
+                                  ),
                                 )),
                               ],
                             ),
