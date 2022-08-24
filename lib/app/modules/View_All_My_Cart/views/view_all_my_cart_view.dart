@@ -739,10 +739,10 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                                         child: Row(
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Expanded(flex: 2,
+                                            Expanded(flex: 4,
                                               child: Text("Country/Region",
                                                 style: GoogleFonts.raleway(
-                                                    fontSize: 12,
+                                                    fontSize: 14,
                                                     fontWeight: FontWeight.w500,
                                                   color: Colors.grey.shade700,
                                                 ),
