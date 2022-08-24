@@ -42,13 +42,13 @@ class SubCategoryData {
 
   SubCategoryData(
       {this.isDeleted,
-        this.sId,
-        this.name,
-        this.fields,
-        this.categoryId,
-        this.createdAt,
-        this.updatedAt,
-        this.iV});
+      this.sId,
+      this.name,
+      this.fields,
+      this.categoryId,
+      this.createdAt,
+      this.updatedAt,
+      this.iV});
 
   SubCategoryData.fromJson(Map<String, dynamic> json) {
     isDeleted = json['isDeleted'];
@@ -89,19 +89,18 @@ class Fields {
   RxBool? isExpanded;
   RxList<bool>? isChecked = RxList<bool>([]);
 
-  Fields({this.values, this.sId, this.id,this.isExpanded});
+  Fields({this.values, this.sId, this.id, this.isExpanded});
 
   Fields.fromJson(Map<String, dynamic> json) {
     values = json['values'].cast<String>();
     sId = json['_id'];
     id = json['id'];
     isExpanded = false.obs;
-   if(!isNullEmptyOrFalse(values)){
-
-     values!.forEach((element) {
-       isChecked!.add(false);
-     });
-   }
+    if (!isNullEmptyOrFalse(values)) {
+      values!.forEach((element) {
+        isChecked!.add(false);
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
