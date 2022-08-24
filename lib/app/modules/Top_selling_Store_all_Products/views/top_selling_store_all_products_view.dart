@@ -571,6 +571,7 @@ class TopSellingStoreAllProductsView
                                                                 .toString());
                                                       } else {}
                                                     });
+                                                controller.CategoriId = controller.CatagoryList[index].sId.toString();
                                               },
                                               value: controller
                                                   .CatagoryList[index].name,
@@ -661,6 +662,7 @@ class TopSellingStoreAllProductsView
                                                     controller.SubCatagoryList[index].sId;
                                                     controller.subDataIndex.value = index;
                                                     controller.productList.clear();
+                                                    controller.SubCategoriId = controller.subData[index].sId.toString();
                                                   },
                                                   value: controller
                                                       .subData[index].name,
@@ -744,6 +746,7 @@ class TopSellingStoreAllProductsView
                                                     .subDataIndex.value].fields![index].isChecked![index1] = value as bool ;
                                                 controller.subData[controller
                                                     .subDataIndex.value].fields![index].isChecked!.refresh();
+
                                                 },
                                               value:  controller.subData[controller
                                                   .subDataIndex.value].fields![index].isChecked![index1]),
@@ -772,6 +775,36 @@ class TopSellingStoreAllProductsView
                   height: 60,
                   child: InkWell(
                     onTap: () {
+                      List reqList = [];
+                      for(int i=0;i<controller.subData[controller
+                          .subDataIndex.value].fields!.length;i++){
+
+                        if(!isNullEmptyOrFalse(controller.subData[controller.subDataIndex.value].fields![i].id)){
+                          List data = [];
+                          data.add(controller.subData[controller.subDataIndex.value].fields![i].id);
+                          if(!isNullEmptyOrFalse(controller.subData[controller.subDataIndex.value].fields![i].values)){
+                            List selectedValue = [];
+                            for(int j = 0;j<controller.subData[controller.subDataIndex.value].fields![i].values!.length;j++){
+                             if(controller.subData[controller.subDataIndex.value].fields![i].isChecked![j] == true){
+                              selectedValue.add(controller.subData[controller.subDataIndex.value].fields![i].values![j]);
+                             }
+                            }
+                            data.add(selectedValue);
+
+                          }
+                          else{
+                            data.add([]);
+                          }
+                          reqList.add(data);
+
+                        }
+                        print("Request List := ${reqList}");
+
+                        print("${controller.subData[controller
+                            .subDataIndex.value].fields![i].values}==> ${controller.subData[controller
+                            .subDataIndex.value].fields![i].isChecked}" );
+                      }
+                      controller.GetFilterData(reqList: reqList,context: context);
                     },
                     child: Container(
                       margin: EdgeInsets.only(

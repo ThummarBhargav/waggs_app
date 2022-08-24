@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:waggs_app/app/Modal/CartCountModel.dart';
@@ -21,6 +22,8 @@ class TopSellingStoreAllProductsController extends GetxController {
   RxBool hasData = false.obs;
   RxBool drawer = false.obs;
   RxBool drawer2 = false.obs;
+  String CategoriId = "";
+  String SubCategoriId = "";
   StoreModule storeModule = StoreModule();
   // Rx<SfRangeValues> values =  SfRangeValues(100, 30000).obs;
   Rx<RangeValues> values1 =  RangeValues(0, 100).obs;
@@ -335,5 +338,57 @@ class TopSellingStoreAllProductsController extends GetxController {
       Get.snackbar("Error", e.toString(),snackPosition: SnackPosition.BOTTOM,);
 
     }
+  }
+
+  GetFilterData({required List reqList,required BuildContext context}) async {
+
+    Map<String,dynamic> queryParameters = {};
+    queryParameters["skip"]="0";
+    queryParameters["limit"]="10";
+    queryParameters["search"]="";
+    queryParameters["sort"]="newArrivals";
+    queryParameters["category"]="${CategoriId}";
+    queryParameters["subCategory"]="${SubCategoriId}";
+    queryParameters["priceMin"]="";
+    queryParameters["priceMax"]="";
+    queryParameters["discountMin"]="0";
+    queryParameters["discountMax"]="0";
+    queryParameters["sellerId"]="62dd1f3f8fc27b7077099db4";
+    queryParameters["latitude"]="21.1702401";
+    queryParameters["longitude"]="72.83106070000001";
+    if(!isNullEmptyOrFalse(reqList)){
+      reqList.forEach((element) {
+        queryParameters[element[0]] = (isNullEmptyOrFalse(element[1]))?element[1]:jsonEncode(element[1]);
+      });
+    }
+
+   print("Query Parameter := ${queryParameters}");
+   print("Query Parameter := ${queryParameters}");
+
+    // var url = Uri.https(baseUrl,ApiConstant.getAllProductUsers,queryParameters);
+
+    var uri =
+    Uri.https("api.waggs.in", '/api/v1/products', queryParameters);
+    var response = await http.get(uri);
+    if(response.statusCode == 200){
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Success.......")));
+
+    }
+    else if (response.statusCode == 404){
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Product Not Found")));
+      print("Product Not Found");
+    }
+    else{
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Something went wrong.......")));
+      print("Something went wrong.......");
+    }
+// Dio dio = Dio();
+//
+// dio.get(baseUrl+ApiConstant.getAllProductUsers,queryParameters: queryParameters).then((value) {
+//   print("Value := ${value}");
+// }).catchError((error){
+//   print("Error:=${error}");
+// });
+
   }
 }

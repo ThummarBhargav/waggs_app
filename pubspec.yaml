@@ -11,6 +11,7 @@ dependencies:
   google_fonts:
   get_storage: ^2.0.3
   otp_text_field:
+  dio:
   cached_network_image:
   syncfusion_flutter_sliders:
   flutter_rating_bar: ^4.0.1
