@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 
 import '../../main.dart';
 import '../constant/ConstantUrl.dart';
+import '../modules/Add_To_Cart_Shipping_View/bindings/add_to_cart_shipping_view_binding.dart';
+import '../modules/Add_To_Cart_Shipping_View/views/add_to_cart_shipping_view_view.dart';
 import '../modules/OTP_screen/bindings/o_t_p_screen_binding.dart';
 import '../modules/OTP_screen/views/o_t_p_screen_view.dart';
 import '../modules/Top_selling_Store_all_Products/bindings/top_selling_store_all_products_binding.dart';
@@ -16,7 +18,6 @@ import '../modules/login_screen/bindings/login_screen_binding.dart';
 import '../modules/login_screen/views/login_screen_view.dart';
 import '../modules/product/bindings/product_binding.dart';
 import '../modules/product/views/product_view.dart';
-
 import '../modules/product_list_screen/bindings/product_list_screen_binding.dart';
 import '../modules/product_list_screen/views/product_list_screen_view.dart';
 import '../modules/singup_screen/bindings/singup_screen_binding.dart';
@@ -88,6 +89,11 @@ class AppPages {
       name: _Paths.VIEW_ALL_MY_CART,
       page: () => const ViewAllMyCartView(),
       binding: ViewAllMyCartBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADD_TO_CART_SHIPPING_VIEW,
+      page: () => const AddToCartShippingViewView(),
+      binding: AddToCartShippingViewBinding(),
     ),
   ];
 }
