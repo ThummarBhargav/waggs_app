@@ -23,6 +23,9 @@ class ViewAllMyCartController extends GetxController {
   Rx<TextEditingController> lastNameController = TextEditingController().obs;
   Rx<TextEditingController> addressController = TextEditingController().obs;
   Rx<TextEditingController> apartmentController = TextEditingController().obs;
+  Rx<TextEditingController> cityController = TextEditingController().obs;
+  Rx<TextEditingController> pinCodeController = TextEditingController().obs;
+  Rx<TextEditingController> mobileNumberController = TextEditingController().obs;
   Rx<TextEditingController> couponController = TextEditingController().obs;
   RxBool emailVisible = true.obs;
   RxBool nameVisible = true.obs;

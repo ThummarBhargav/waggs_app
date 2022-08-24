@@ -968,7 +968,7 @@ class TopSellingStoreAllProductsView
                           ),
                         ),
                         DropdownButton(
-                          value: 0,
+                          value: controller.selectedValue,
                           onChanged: (value) {
                             value = controller.selectedValue;
                           }, items: [
