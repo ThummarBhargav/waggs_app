@@ -790,7 +790,6 @@ class TopSellingStoreAllProductsView
                              }
                             }
                             data.add(selectedValue);
-
                           }
                           else{
                             data.add([]);
