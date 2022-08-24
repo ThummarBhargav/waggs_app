@@ -27,7 +27,7 @@ class TopSellingStoreAllProductsController extends GetxController {
   StoreModule storeModule = StoreModule();
   // Rx<SfRangeValues> values =  SfRangeValues(100, 30000).obs;
   Rx<RangeValues> values1 =  RangeValues(0, 100).obs;
-  Rx<RangeValues> values4 = RangeValues(100, 30000).obs;
+  Rx<RangeValues> values4 = RangeValues(0, 100).obs;
   // Rx<RangeLabels> labels =RangeLabels('1', "100").obs;
   RxBool isOp = false.obs;
   RxBool isOp1 = false.obs;
