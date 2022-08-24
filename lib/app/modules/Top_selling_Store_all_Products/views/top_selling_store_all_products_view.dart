@@ -518,8 +518,8 @@ class TopSellingStoreAllProductsView
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
-                                height: 210,
                                 child: ListView.builder(
+                                  shrinkWrap: true,
                                   physics: NeverScrollableScrollPhysics(),
                                   itemCount: controller.CatagoryList.length,
                                   itemBuilder: (context, index) {
@@ -624,8 +624,8 @@ class TopSellingStoreAllProductsView
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Container(
-                                    height: 230,
                                     child: ListView.builder(
+                                      shrinkWrap: true,
                                       physics: NeverScrollableScrollPhysics(),
                                       itemCount: controller.subData.length,
                                       itemBuilder: (context, index) {
@@ -671,11 +671,11 @@ class TopSellingStoreAllProductsView
                         )
                         ),
                      controller.subData.isEmpty?Container():Container(
-                           // height: 450,
-                           margin: EdgeInsets.only(left: 15,top: 5),
+                         margin: EdgeInsets.only(left: 15,top: 5),
                            padding: EdgeInsets.only(top: 15,right: 10),
                            child:ListView.builder(
                              shrinkWrap: true,
+                             physics: NeverScrollableScrollPhysics(),
                              itemCount: controller.subData[controller
                                  .subDataIndex.value].fields!
                                  .length,
@@ -713,7 +713,6 @@ class TopSellingStoreAllProductsView
                                     if(controller.subData[controller
                                         .subDataIndex.value].fields![index].isExpanded!.value)
                                       Container(
-                                        // height:250,
                                         child: ListView.builder(
                                             shrinkWrap: true,
                                            physics: NeverScrollableScrollPhysics(),
@@ -754,7 +753,6 @@ class TopSellingStoreAllProductsView
                   height: 60,
                   child: InkWell(
                     onTap: () {
-
                     },
                     child: Container(
                       margin: EdgeInsets.only(
