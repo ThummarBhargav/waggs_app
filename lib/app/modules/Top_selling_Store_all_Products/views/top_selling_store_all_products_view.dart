@@ -896,6 +896,74 @@ class TopSellingStoreAllProductsView
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(onPressed: () {
+                        controller.isFilterDrawer.value=  true;;
+                        ScaffoldKey2.currentState!.openEndDrawer();
+                      }, child:
+                      Row(children: [
+                        Container(
+                          child: Text("Filters",
+                            style: GoogleFonts.raleway(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 5,),
+                        Icon(Icons.filter_list, color: Colors.black, size: 18,),
+                      ],),),
+                      SizedBox(width: 10,),
+                      TextButton(onPressed: () {
+
+                      }, child:
+                      Row(children: [
+                        Container(
+                          child: Text("Sort By: ",
+                            style: GoogleFonts.raleway(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                        DropdownButton(
+                          value: 0,
+                          onChanged: (value) {
+                            value = controller.selectedValue;
+                          }, items: [
+                          DropdownMenuItem(child: Text(
+                            "New Arrivals", textAlign: TextAlign.center,
+                            style: GoogleFonts.raleway(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black54,
+                            ),), value: 0,),
+                          DropdownMenuItem(child: Text(
+                            "Price: Low-High", style: GoogleFonts.raleway(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black54,
+                          ),), value: 1,),
+                          DropdownMenuItem(child: Text(
+                            "Price: High-Low", style: GoogleFonts.raleway(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black54,
+                          ),), value: 2,),
+                          DropdownMenuItem(child: Text(
+                            "Discount: Low-High", style: GoogleFonts.raleway(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black54,
+                          ),), value: 3,),
+                          DropdownMenuItem(child: Text(
+                            "Discount: High-Low", style: GoogleFonts.raleway(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black54,
+                          ),), value: 4,),
+                        ],),
+                      ],),),
+                      SizedBox(width: 5,),
+                    ],
+                  ),
                   Container(
                     height: 300,
                     width: 250,
@@ -913,74 +981,6 @@ class TopSellingStoreAllProductsView
             )
                 : Column(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    TextButton(onPressed: () {
-                      controller.isFilterDrawer.value=  true;;
-                      ScaffoldKey2.currentState!.openEndDrawer();
-                    }, child:
-                    Row(children: [
-                      Container(
-                        child: Text("Filters",
-                          style: GoogleFonts.raleway(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 5,),
-                      Icon(Icons.filter_list, color: Colors.black, size: 18,),
-                    ],),),
-                    SizedBox(width: 10,),
-                    TextButton(onPressed: () {
-
-                    }, child:
-                    Row(children: [
-                      Container(
-                        child: Text("Sort By: ",
-                          style: GoogleFonts.raleway(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
-                      DropdownButton(
-                        value: 0,
-                        onChanged: (value) {
-                          value = controller.selectedValue;
-                        }, items: [
-                        DropdownMenuItem(child: Text(
-                          "New Arrivals", textAlign: TextAlign.center,
-                          style: GoogleFonts.raleway(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black54,
-                          ),), value: 0,),
-                        DropdownMenuItem(child: Text(
-                          "Price: Low-High", style: GoogleFonts.raleway(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black54,
-                        ),), value: 1,),
-                        DropdownMenuItem(child: Text(
-                          "Price: High-Low", style: GoogleFonts.raleway(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black54,
-                        ),), value: 2,),
-                        DropdownMenuItem(child: Text(
-                          "Discount: Low-High", style: GoogleFonts.raleway(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black54,
-                        ),), value: 3,),
-                        DropdownMenuItem(child: Text(
-                          "Discount: High-Low", style: GoogleFonts.raleway(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black54,
-                        ),), value: 4,),
-                      ],),
-                    ],),),
-                    SizedBox(width: 5,),
-                  ],
-                ),
                 Expanded(
                   child: GridView.builder(
                       itemCount:

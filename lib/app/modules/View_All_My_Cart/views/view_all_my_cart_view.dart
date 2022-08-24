@@ -1139,37 +1139,40 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                           Container(
                             child: Row(
                               children: [
-                                Container(
-                                  width: 60,
-                                  height: 30,
-                                  margin: EdgeInsets.only(left: 20),
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      image: AssetImage("assets/visa.png"),
+                                Expanded(
+                                  child: Container(
+                                    margin: EdgeInsets.only(left: 10),
+                                    padding: EdgeInsets.only(top: 15,bottom: 15),
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        image: AssetImage("assets/visa.png"),
+                                      ),
+                                      border: Border.all(width: 1,color: Colors.grey.shade300)
                                     ),
-                                    border: Border.all(width: 1,color: Colors.grey.shade300)
                                   ),
                                 ),
-                                Container(
-                                  width: 60,
-                                  height: 30,
-                                  margin: EdgeInsets.only(left: 12),
-                                  decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        image: AssetImage("assets/mastercard.jpg"),
-                                      ),
-                                      border: Border.all(width: 1,color: Colors.grey.shade300)
+                                Expanded(
+                                  child: Container(
+                                    margin: EdgeInsets.only(left: 12),
+                                    padding: EdgeInsets.only(top: 15,bottom: 15),
+                                    decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: AssetImage("assets/mastercard.jpg"),
+                                        ),
+                                        border: Border.all(width: 1,color: Colors.grey.shade300)
+                                    ),
                                   ),
                                 ),
-                                Container(
-                                  width: 60,
-                                  height: 30,
-                                  margin: EdgeInsets.only(left: 12),
-                                  decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        image: AssetImage("assets/rupay.png"),
-                                      ),
-                                      border: Border.all(width: 1,color: Colors.grey.shade300)
+                                Expanded(
+                                  child: Container(
+                                    margin: EdgeInsets.only(left: 12),
+                                    padding: EdgeInsets.only(top: 15,bottom: 15),
+                                    decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: AssetImage("assets/rupay.png"),
+                                        ),
+                                        border: Border.all(width: 1,color: Colors.grey.shade300)
+                                    ),
                                   ),
                                 ),
                                 Expanded(
@@ -1186,7 +1189,7 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                                 ),
                                 Expanded(
                                   child: Container(
-                                    margin: EdgeInsets.only(left: 12),
+                                    margin: EdgeInsets.only(left: 12,right: 10),
                                     padding: EdgeInsets.only(top: 15,bottom: 15),
                                     decoration: BoxDecoration(
                                         image: DecorationImage(
