@@ -344,7 +344,7 @@ class _TopSellingStoreWidgetState extends State<TopSellingStoreWidget> {
                           );
                         },
                       )),
-                  controller.cartProductList == null
+                  controller.cartProductList.isEmpty
                       ? Container()
                       : Expanded(
                       flex: 2,

@@ -346,7 +346,7 @@ class _TopSellingProductListWidgetState
                           );
                         },
                       )),
-                  controller.cartProductList == null
+                  controller.cartProductList.isEmpty
                       ? Container()
                       : Expanded(
                       flex: 2,

@@ -42,7 +42,6 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                             children: [
                               InkWell(
                                 onTap: () {
-
                                 },
                                 child: Row(
                                   children: [

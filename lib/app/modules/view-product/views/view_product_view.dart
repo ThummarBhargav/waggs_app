@@ -333,7 +333,7 @@ class ViewProductView extends GetWidget<ViewProductController> {
                             );
                           },
                         )),
-                    controller.cartProductList == null
+                    controller.cartProductList.isEmpty
                         ? Container()
                         : Expanded(
                         flex: 2,

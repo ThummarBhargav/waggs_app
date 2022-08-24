@@ -332,7 +332,7 @@ class CatagoryPageView extends GetWidget<HomeController> {
                         );
                       },
                     )),
-                controller.cartProductList == null
+                controller.cartProductList.isEmpty
                     ? Container()
                     : Expanded(
                     flex: 2,
