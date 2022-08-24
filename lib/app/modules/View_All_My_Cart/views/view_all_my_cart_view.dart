@@ -24,9 +24,9 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
               IconButton(onPressed: () {
 
               }, icon: Icon(Icons.search,color: Colors.black,)),
-              IconButton(onPressed: () {
-
-              }, icon: Icon(Icons.shopping_cart_outlined,color: Colors.black,)),
+              // IconButton(onPressed: () {
+              //
+              // }, icon: Icon(Icons.shopping_cart_outlined,color: Colors.black,)),
             ],
           ),
           backgroundColor: Colors.white,
@@ -1232,6 +1232,7 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                                   },
                                   child: Container(
                                     margin: EdgeInsets.only(left: 20),
+                                    padding: EdgeInsets.only(top: 10,bottom: 10),
                                     child: Text("RETURN TO CART",
                                       style: GoogleFonts.raleway(
                                           fontSize: 16,
