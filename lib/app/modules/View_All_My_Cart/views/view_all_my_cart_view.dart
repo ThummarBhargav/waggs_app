@@ -1134,6 +1134,90 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                                 ),
                               );
                             },),
+                          SizedBox(height: 20,),
+                          Container(
+                            child: Row(
+                              children: [
+                                Container(
+                                  width: 60,
+                                  height: 30,
+                                  margin: EdgeInsets.only(left: 20),
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      image: AssetImage("assets/visa.png"),
+                                    ),
+                                    border: Border.all(width: 1,color: Colors.grey.shade300)
+                                  ),
+                                ),
+                                Container(
+                                  width: 60,
+                                  height: 30,
+                                  margin: EdgeInsets.only(left: 12),
+                                  decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        image: AssetImage("assets/mastercard.jpg"),
+                                      ),
+                                      border: Border.all(width: 1,color: Colors.grey.shade300)
+                                  ),
+                                ),
+                                Container(
+                                  width: 60,
+                                  height: 30,
+                                  margin: EdgeInsets.only(left: 12),
+                                  decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        image: AssetImage("assets/rupay.png"),
+                                      ),
+                                      border: Border.all(width: 1,color: Colors.grey.shade300)
+                                  ),
+                                ),
+                                Container(
+                                  width: 60,
+                                  height: 30,
+                                  margin: EdgeInsets.only(left: 12),
+                                  decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        image: AssetImage("assets/bhim.jpg"),
+                                      ),
+                                      border: Border.all(width: 1,color: Colors.grey.shade300)
+                                  ),
+                                ),
+                                Container(
+                                  width: 60,
+                                  height: 30,
+                                  margin: EdgeInsets.only(left: 12),
+                                  decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        image: AssetImage("assets/paytm.png"),
+                                      ),
+                                      border: Border.all(width: 1,color: Colors.grey.shade300)
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 20,),
+                          Container(
+                            child: Row(
+                              children: [
+                                Expanded(flex: 2,child: Container(
+                                  padding: EdgeInsets.only(top: 10,bottom: 10),
+                                  color: Colors.black,
+                                  child: Text("CONTINUE SHOPPING",
+                                    style: GoogleFonts.raleway(
+                                      fontSize: 16,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w600
+                                    ),
+                                  ),
+                                )),
+                                Expanded(flex: 2,child: Container(
+                                  child: Text("RETURN TO CART"),
+                                )),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 40,),
                         ],
                       ),
                     ),
