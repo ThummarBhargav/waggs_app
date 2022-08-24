@@ -340,7 +340,7 @@ class TopSellingStoreAllProductsController extends GetxController {
     }
   }
 
-  GetFilterData({required List reqList,required BuildContext context}) async {
+  getFilterData({required List reqList,required BuildContext context}) async {
 
     Map<String,dynamic> queryParameters = {};
     queryParameters["skip"]="0";
@@ -369,10 +369,26 @@ class TopSellingStoreAllProductsController extends GetxController {
 
     var uri =
     Uri.https("api.waggs.in", '/api/v1/products', queryParameters);
-    var response = await http.get(uri);
+    print(uri);
+    var response ;
+    await http.get(uri).then((value) {
+      response = value;
+      mainProductList.clear();
+
+    });
+    dynamic result = jsonDecode(response.body);
+    storeModule = StoreModule.fromJson(result);
+
     if(response.statusCode == 200){
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Success.......")));
-
+      if (!isNullEmptyOrFalse(storeModule.data)) {
+        if (!isNullEmptyOrFalse(storeModule.data!.products)) {
+          storeModule.data!.products!.forEach((element) {
+            mainProductList.add(element);
+          });
+        }
+      }
+      mainProductList.refresh();
     }
     else if (response.statusCode == 404){
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Product Not Found")));
@@ -382,13 +398,6 @@ class TopSellingStoreAllProductsController extends GetxController {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Something went wrong.......")));
       print("Something went wrong.......");
     }
-// Dio dio = Dio();
-//
-// dio.get(baseUrl+ApiConstant.getAllProductUsers,queryParameters: queryParameters).then((value) {
-//   print("Value := ${value}");
-// }).catchError((error){
-//   print("Error:=${error}");
-// });
 
   }
 }

@@ -804,7 +804,7 @@ class TopSellingStoreAllProductsView
                             .subDataIndex.value].fields![i].values}==> ${controller.subData[controller
                             .subDataIndex.value].fields![i].isChecked}" );
                       }
-                      controller.GetFilterData(reqList: reqList,context: context);
+                      controller.getFilterData(reqList: reqList,context: context);
                     },
                     child: Container(
                       margin: EdgeInsets.only(
