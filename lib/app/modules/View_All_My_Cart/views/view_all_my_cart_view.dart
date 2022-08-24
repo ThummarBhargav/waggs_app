@@ -739,17 +739,16 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                                         child: Row(
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Container(
+                                            Expanded(flex: 2,
                                               child: Text("Country/Region",
                                                 style: GoogleFonts.raleway(
-                                                    fontSize: 14,
+                                                    fontSize: 12,
                                                     fontWeight: FontWeight.w500,
                                                   color: Colors.grey.shade700,
                                                 ),
                                               ),
                                             ),
-                                            Container(
-                                              margin: EdgeInsets.only(right: 10),
+                                            Expanded(flex: 1,
                                                 child: Icon(Icons.keyboard_arrow_down_outlined),
                                             ),
                                           ],
@@ -778,7 +777,7 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                                       child: Row(
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Container(
+                                          Expanded(flex: 2,
                                             child: Text("State",
                                               style: GoogleFonts.raleway(
                                                 fontSize: 14,
@@ -787,8 +786,7 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                                               ),
                                             ),
                                           ),
-                                          Container(
-                                            margin: EdgeInsets.only(right: 10),
+                                          Expanded(flex: 1,
                                             child: Icon(Icons.keyboard_arrow_down_outlined),
                                           ),
                                         ],
