@@ -20,9 +20,14 @@ class ViewAllMyCartController extends GetxController {
   RxBool isLoading = false.obs;
   Rx<TextEditingController> emailController = TextEditingController().obs;
   Rx<TextEditingController> nameController = TextEditingController().obs;
+  Rx<TextEditingController> lastNameController = TextEditingController().obs;
+  Rx<TextEditingController> addressController = TextEditingController().obs;
+  Rx<TextEditingController> apartmentController = TextEditingController().obs;
+  Rx<TextEditingController> couponController = TextEditingController().obs;
   RxBool emailVisible = true.obs;
   RxBool nameVisible = true.obs;
   RxBool emailCheckBox = false.obs;
+  RxBool detailCheckBox = false.obs;
 
   final key = GlobalKey<FormState>();
 
