@@ -585,7 +585,6 @@ class TopSellingStoreAllProductsView
                             print(controller.isOp1.value);
                           },
                           child: Container(
-                            height: 50,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -671,8 +670,8 @@ class TopSellingStoreAllProductsView
                         )
                         ),
                      controller.subData.isEmpty?Container():Container(
-                         margin: EdgeInsets.only(left: 15,top: 5),
-                           padding: EdgeInsets.only(top: 15,right: 10),
+                         margin: EdgeInsets.only(left: 10),
+                           padding: EdgeInsets.only(right: 10),
                            child:ListView.builder(
                              shrinkWrap: true,
                              physics: NeverScrollableScrollPhysics(),
