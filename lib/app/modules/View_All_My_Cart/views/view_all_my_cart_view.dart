@@ -295,7 +295,7 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                                                   children: [
                                                     Text(
                                                       "${controller.cartProductList[index].product!.description}",
-                                                      style: TextStyle(
+                                                        style: TextStyle(
                                                         fontWeight:
                                                         FontWeight
                                                             .w400,
