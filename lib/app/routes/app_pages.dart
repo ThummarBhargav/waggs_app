@@ -32,9 +32,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static String INITIAL = (box.read(ArgumentConstant.isUserLogin) == null)
-      ? Routes.LOGIN_SCREEN
-      : Routes.HOME;
+  static String INITIAL = Routes.HOME;
 
   static final routes = [
     GetPage(
