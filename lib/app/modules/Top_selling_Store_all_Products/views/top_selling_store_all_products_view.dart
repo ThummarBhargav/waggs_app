@@ -1285,27 +1285,25 @@ class TopSellingStoreAllProductsView
                                                     },
                                                   ));
                                         },
-                                        child: Container(
-                                          height: 20,
-                                          width: 100,
-                                          decoration: BoxDecoration(
-                                            border: Border.all(
-                                                color: Colors.grey.shade300),
-                                            borderRadius: BorderRadius.circular(
-                                              10,
-                                            ),
-                                          ),
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 20),
+                                        child: Expanded(
                                           child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                                             children: [
-                                              Text(
-                                                controller.price.value,
-                                                style: TextStyle(fontSize: 15,color: Colors.black),
+                                              Container(
+                                                child: Text("${controller.price.value}",
+                                                  style: GoogleFonts.raleway(
+                                                      fontWeight: FontWeight.w600,
+                                                      color: Colors.black,
+                                                      fontSize: 15
+                                                  ),
+                                                ),
                                               ),
-                                              Spacer(),
-                                              Icon(Icons.arrow_drop_down,
-                                                  color: Colors.black),
+                                              SizedBox(width: 10,),
+                                              Container(
+                                                child: Icon(Icons.keyboard_arrow_down_outlined,
+                                                  color: Colors.black,
+                                                ),
+                                              )
                                             ],
                                           ),
                                         ),
@@ -1397,27 +1395,25 @@ class TopSellingStoreAllProductsView
                                                   },
                                                 ));
                                       },
-                                      child: Container(
-                                        height: 20,
-                                        width: 200,
-                                        decoration: BoxDecoration(
-                                          border: Border.all(
-                                              color: Colors.grey.shade300),
-                                          borderRadius: BorderRadius.circular(
-                                            10,
-                                          ),
-                                        ),
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 20),
+                                      child: Expanded(
                                         child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceAround,
                                           children: [
-                                            Text(
-                                              controller.price.value,
-                                              style: TextStyle(fontSize: 15,color: Colors.black),
+                                            Container(
+                                              child: Text("${controller.price.value}",
+                                                style: GoogleFonts.raleway(
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Colors.black,
+                                                  fontSize: 15
+                                                ),
+                                              ),
                                             ),
-                                            Spacer(),
-                                            Icon(Icons.arrow_drop_down,
-                                                color: Colors.black),
+                                            SizedBox(width: 10,),
+                                            Container(
+                                              child: Icon(Icons.keyboard_arrow_down_outlined,
+                                                color: Colors.black,
+                                              ),
+                                            )
                                           ],
                                         ),
                                       ),
