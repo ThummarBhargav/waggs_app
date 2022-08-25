@@ -26,7 +26,8 @@ class HomeView extends GetView<HomeController> {
             key: scaffoldKey,
             endDrawer: Drawer(
                 width: 250,
-                child: Column(
+                child: controller.isFilterDrawer.isFalse
+                    ?Column(
                   children: [
                     Expanded(
                       flex: 1,
@@ -405,6 +406,129 @@ class HomeView extends GetView<HomeController> {
                               },
                             ))
                   ],
+                )
+                    :ListView(
+                 children: [
+                   Expanded(
+                     flex: 1,
+                     child: DrawerHeader(
+                         decoration: BoxDecoration(
+                             color: Color.fromRGBO(32, 193, 244, 1)),
+                         child: Row(
+                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                           children: [
+                             Row(
+                               children: [
+                                 Container(
+                                   width: 30,
+                                   margin: EdgeInsets.only(right: 10),
+                                   child: IconButton(
+                                       onPressed: () {
+                                         Get.back();
+                                       },
+                                       icon: Icon(
+                                         Icons.person_outline,
+                                         color: Colors.white,
+                                         size: 28,
+                                       )),
+                                 ),
+                                 Container(
+                                   height: 30,
+                                   margin: EdgeInsets.only(top: 10),
+                                   child: Text(
+                                     " Sign  In ",
+                                     style: GoogleFonts.aleo(
+                                       fontWeight: FontWeight.w400,
+                                       fontSize: 20,
+                                       color: Colors.white,
+                                     ),
+                                   ),
+                                 ),
+                               ],
+                             ),
+                             IconButton(onPressed:(){Get.back();},
+                                 icon: Icon(Icons.close,color: Colors.white,
+                                   size: 18,))
+
+                           ],
+                         )),
+                   ),
+                   Expanded( child: Column(
+                     children: [
+                       ListTile(
+                         leading: IconButton(
+                           onPressed: (){},
+                           icon: Icon(Icons.widgets_outlined),),
+                         title: Text('All Categories',style: TextStyle(fontSize: 15),),
+                       ),
+                       ListTile(
+                         leading: IconButton(
+                           onPressed: (){},
+                           icon: Icon(Icons.discount_outlined),),
+                         title: Text('Alpha Clube',style: TextStyle(fontSize: 15),),
+                       ),
+                       ListTile(
+                         leading: IconButton(
+                           onPressed: (){},
+                           icon: Icon(Icons.shopping_cart_outlined),),
+                         title: Text('My Cart',style: TextStyle(fontSize: 15),),
+                       ),
+                       ListTile(
+                         leading: IconButton(
+                           onPressed: (){},
+                           icon: Icon(Icons.drive_folder_upload),),
+                         title: Text('My Order',style: TextStyle(fontSize: 15),),
+                       ),
+                       ListTile(
+                         leading: IconButton(
+                           onPressed: (){},
+                           icon: Icon(Icons.pets_outlined),),
+                         title: Text('My pets',style: TextStyle(fontSize: 15),),
+                       ),
+                       ListTile(
+                         leading: IconButton(
+                           onPressed: (){},
+                           icon: Icon(Icons.account_circle_outlined),),
+                         title: Text('My Account',style: TextStyle(fontSize: 15),),
+                       ),
+                       ListTile(
+                         leading: IconButton(
+                           onPressed: (){},
+                           icon: Icon(Icons.notifications_none_outlined),),
+                         title: Text('My Notification',style: TextStyle(fontSize: 15),),
+                       ),
+                       ListTile(
+                         leading: IconButton(
+                           onPressed: (){},
+                           icon: Icon(Icons.favorite_border_outlined),),
+                         title: Text('My Wishlist',style: TextStyle(fontSize: 15),),
+                       ),
+                     ],
+                   ),),
+                   Divider(
+                     indent: 2,
+                     color: Colors.grey.shade500,
+                     endIndent: 2,
+                     thickness: 1.5,
+                   ),
+                   Expanded(child: Column(
+                     crossAxisAlignment: CrossAxisAlignment.start,
+                     children: [
+                       Padding(
+                         padding: const EdgeInsets.only(left: 30.0,top: 15),
+                         child: Text("Contact us",style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500),),
+                       ),
+                         Padding(
+                           padding: const EdgeInsets.only(left: 30.0,top: 25),
+                           child: Text("legal",style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500),),
+                         ),
+                         Padding(
+                           padding: const EdgeInsets.only(left: 30.0,top: 15),
+                           child: Text("Help",style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500),),
+                         )
+                     ],
+                   ))
+                 ],
                 )),
             body: Column(
               children: [
@@ -458,7 +582,7 @@ class HomeView extends GetView<HomeController> {
                                       decoration: InputDecoration(
                                         hintText: "Search Product...",
                                         hintStyle: GoogleFonts.roboto(
-                                          fontSize: 15,
+                                          fontSize: 12,
                                           fontWeight: FontWeight.w500,
                                         ),
                                         enabledBorder: InputBorder.none,
@@ -474,9 +598,13 @@ class HomeView extends GetView<HomeController> {
                                 Expanded(
                                   flex: 1,
                                   child: IconButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        controller.isFilterDrawer.value = true;
+                                        scaffoldKey.currentState!
+                                            .openEndDrawer();
+                                      },
                                       icon: Icon(
-                                        Icons.menu,
+                                        Icons.person,
                                         color: Colors.grey[500],
                                       )),
                                 ),
@@ -489,15 +617,12 @@ class HomeView extends GetView<HomeController> {
                                             onPressed: () {
                                               if((box.read(ArgumentConstant.isUserLogin) == null)){
                                                 Get.toNamed(Routes.LOGIN_SCREEN);
-                                                scaffoldKey.currentState!.closeEndDrawer();
                                               }
-                                              else{
-                                                controller.CartProductApi();
-                                                controller.CartCount();
-                                                scaffoldKey.currentState!
-                                                    .openEndDrawer();
-                                              }
-
+                                              controller.CartProductApi();
+                                              controller.CartCount();
+                                              controller.isFilterDrawer.value = false;
+                                              scaffoldKey.currentState!
+                                                  .openEndDrawer();
                                             },
                                             icon: Icon(
                                               Icons.shopping_cart,

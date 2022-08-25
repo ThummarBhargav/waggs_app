@@ -38,6 +38,7 @@ class HomeController extends GetxController {
   RxList<Products0> TopProductlist = RxList<Products0>([]);
   RxList<Sellers> SellersList = RxList<Sellers>([]);
   RxList<Count1> Countlist = RxList<Count1>([]);
+  RxBool isFilterDrawer = false.obs;
   List<String> imageList = ['assets/category01.jpg','assets/category02.jpg',
     'assets/category03.jpg','assets/category04.jpg','assets/category05.jpg'].obs;
   List respons =[];
