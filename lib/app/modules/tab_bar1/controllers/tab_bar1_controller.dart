@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:waggs_app/app/modules/View_All_My_Cart/bindings/view_all_my_cart_binding.dart';
+import 'package:waggs_app/app/modules/View_All_My_Cart/views/view_all_my_cart_view.dart';
 
 import '../../../../main.dart';
 import '../../../Modal/CartCountModel.dart';
@@ -12,7 +14,6 @@ import 'package:http/http.dart' as http;
 
 class TabBar1Controller extends GetxController with GetSingleTickerProviderStateMixin{
   //TODO: Implement TabBar1Controller
-
   late TabController tabController;
   RxBool hasData = false.obs;
   RxList<Details> cartProductList = RxList<Details>([]);
