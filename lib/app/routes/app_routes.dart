@@ -21,6 +21,7 @@ abstract class Routes {
   static const ADD_TO_CART_SHIPPING_VIEW = _Paths.ADD_TO_CART_SHIPPING_VIEW;
 
   static const TAB_BAR1 = _Paths.TAB_BAR1;
+  static const SPLASH_SCREEN = _Paths.SPLASH_SCREEN;
 }
 
 abstract class _Paths {
@@ -43,4 +44,5 @@ abstract class _Paths {
   static const ADD_TO_CART_SHIPPING_VIEW = '/add-to-cart-shipping-view';
 
   static const TAB_BAR1 = '/tab-bar1';
+  static const SPLASH_SCREEN = '/splash-screen';
 }

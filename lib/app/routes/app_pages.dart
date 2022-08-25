@@ -22,6 +22,8 @@ import '../modules/product_list_screen/bindings/product_list_screen_binding.dart
 import '../modules/product_list_screen/views/product_list_screen_view.dart';
 import '../modules/singup_screen/bindings/singup_screen_binding.dart';
 import '../modules/singup_screen/views/singup_screen_view.dart';
+import '../modules/splash_screen/bindings/splash_screen_binding.dart';
+import '../modules/splash_screen/views/splash_screen_view.dart';
 import '../modules/tab_bar1/bindings/tab_bar1_binding.dart';
 import '../modules/tab_bar1/views/tab_bar1_view.dart';
 import '../modules/view-product/bindings/view_product_binding.dart';
@@ -32,7 +34,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static String INITIAL = Routes.HOME;
+  static String INITIAL = Routes.SPLASH_SCREEN;
 
   static final routes = [
     GetPage(
@@ -99,6 +101,11 @@ class AppPages {
       name: _Paths.TAB_BAR1,
       page: () => const TabBar1View(),
       binding: TabBar1Binding(),
+    ),
+    GetPage(
+      name: _Paths.SPLASH_SCREEN,
+      page: () => const SplashScreenView(),
+      binding: SplashScreenBinding(),
     ),
   ];
 }
