@@ -169,6 +169,7 @@ class TabBar1View extends GetView<TabBar1Controller> {
           ),
           backgroundColor: Colors.white,
           body: TabBarView(
+            physics: NeverScrollableScrollPhysics(),
               controller: controller.tabController,
             children: [
               // Icon(Icons.directions_car),
