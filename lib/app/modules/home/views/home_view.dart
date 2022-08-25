@@ -411,47 +411,50 @@ class HomeView extends GetView<HomeController> {
                  children: [
                    Expanded(
                      flex: 1,
-                     child: DrawerHeader(
-                         decoration: BoxDecoration(
-                             color: Color.fromRGBO(32, 193, 244, 1)),
-                         child: Row(
-                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                           children: [
-                             Row(
-                               children: [
-                                 Container(
-                                   width: 30,
-                                   margin: EdgeInsets.only(right: 10),
-                                   child: IconButton(
-                                       onPressed: () {
-                                         Get.back();
-                                       },
-                                       icon: Icon(
-                                         Icons.person_outline,
+                     child: Container(
+                       height: 80,
+                       child: DrawerHeader(
+                           decoration: BoxDecoration(
+                               color: Color.fromRGBO(32, 193, 244, 1)),
+                           child: Row(
+                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                             children: [
+                               Row(
+                                 children: [
+                                   Container(
+                                     width: 30,
+                                     margin: EdgeInsets.only(right: 10),
+                                     child: IconButton(
+                                         onPressed: () {
+                                           Get.back();
+                                         },
+                                         icon: Icon(
+                                           Icons.person_outline,
+                                           color: Colors.white,
+                                           size: 28,
+                                         )),
+                                   ),
+                                   Container(
+                                     height: 30,
+                                     margin: EdgeInsets.only(top: 10),
+                                     child: Text(
+                                       " Sign  In ",
+                                       style: GoogleFonts.aleo(
+                                         fontWeight: FontWeight.w400,
+                                         fontSize: 15,
                                          color: Colors.white,
-                                         size: 28,
-                                       )),
-                                 ),
-                                 Container(
-                                   height: 30,
-                                   margin: EdgeInsets.only(top: 10),
-                                   child: Text(
-                                     " Sign  In ",
-                                     style: GoogleFonts.aleo(
-                                       fontWeight: FontWeight.w400,
-                                       fontSize: 20,
-                                       color: Colors.white,
+                                       ),
                                      ),
                                    ),
-                                 ),
-                               ],
-                             ),
-                             IconButton(onPressed:(){Get.back();},
-                                 icon: Icon(Icons.close,color: Colors.white,
-                                   size: 18,))
+                                 ],
+                               ),
+                               IconButton(onPressed:(){Get.back();},
+                                   icon: Icon(Icons.close,color: Colors.white,
+                                     size: 15,))
 
-                           ],
-                         )),
+                             ],
+                           )),
+                     ),
                    ),
                    Expanded( child: Column(
                      children: [
