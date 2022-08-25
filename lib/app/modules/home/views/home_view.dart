@@ -456,57 +456,70 @@ class HomeView extends GetView<HomeController> {
                            )),
                      ),
                    ),
-                   Expanded( child: Column(
-                     children: [
-                       ListTile(
-                         leading: IconButton(
-                           onPressed: (){},
-                           icon: Icon(Icons.widgets_outlined),),
-                         title: Text('All Categories',style: TextStyle(fontSize: 15),),
-                       ),
-                       ListTile(
-                         leading: IconButton(
-                           onPressed: (){},
-                           icon: Icon(Icons.discount_outlined),),
-                         title: Text('Alpha Clube',style: TextStyle(fontSize: 15),),
-                       ),
-                       ListTile(
-                         leading: IconButton(
-                           onPressed: (){},
-                           icon: Icon(Icons.shopping_cart_outlined),),
-                         title: Text('My Cart',style: TextStyle(fontSize: 15),),
-                       ),
-                       ListTile(
-                         leading: IconButton(
-                           onPressed: (){},
-                           icon: Icon(Icons.drive_folder_upload),),
-                         title: Text('My Order',style: TextStyle(fontSize: 15),),
-                       ),
-                       ListTile(
-                         leading: IconButton(
-                           onPressed: (){},
-                           icon: Icon(Icons.pets_outlined),),
-                         title: Text('My pets',style: TextStyle(fontSize: 15),),
-                       ),
-                       ListTile(
-                         leading: IconButton(
-                           onPressed: (){},
-                           icon: Icon(Icons.account_circle_outlined),),
-                         title: Text('My Account',style: TextStyle(fontSize: 15),),
-                       ),
-                       ListTile(
-                         leading: IconButton(
-                           onPressed: (){},
-                           icon: Icon(Icons.notifications_none_outlined),),
-                         title: Text('My Notification',style: TextStyle(fontSize: 15),),
-                       ),
-                       ListTile(
-                         leading: IconButton(
-                           onPressed: (){},
-                           icon: Icon(Icons.favorite_border_outlined),),
-                         title: Text('My Wishlist',style: TextStyle(fontSize: 15),),
-                       ),
-                     ],
+                   Expanded( child: Padding(
+                     padding: const EdgeInsets.only(left: 10.0),
+                     child: Column(
+                       children: [
+                         InkWell(
+                           onTap:(){},
+                           child: ListTile(
+                             leading: Icon(Icons.widgets_outlined),
+                             title: Text('All Categories',style: TextStyle(fontSize: 15),),
+                           ),
+                         ),
+                         InkWell(
+                           onTap: (){
+                             Get.toNamed(Routes.TAB_BAR1);
+                           },
+                           child: ListTile(
+                             leading: Icon(Icons.discount_outlined),
+                             title: Text('Alpha Clube',style: TextStyle(fontSize: 15),),
+                           ),
+                         ),
+                         InkWell(
+                           onTap:(){},
+                           child: ListTile(
+                             leading: Icon(Icons.shopping_cart_outlined),
+                             title: Text('My Cart',style: TextStyle(fontSize: 15),),
+                           ),
+                         ),
+                         InkWell(
+                           onTap:(){},
+                           child: ListTile(
+                             leading:  Icon(Icons.drive_folder_upload),
+                             title: Text('My Order',style: TextStyle(fontSize: 15),),
+                           ),
+                         ),
+                         InkWell(
+                           onTap:(){},
+                           child: ListTile(
+                             leading: Icon(Icons.pets_outlined),
+                             title: Text('My pets',style: TextStyle(fontSize: 15),),
+                           ),
+                         ),
+                         InkWell(
+                           onTap:(){},
+                           child: ListTile(
+                             leading: Icon(Icons.account_circle_outlined),
+                             title: Text('My Account',style: TextStyle(fontSize: 15),),
+                           ),
+                         ),
+                         InkWell(
+                           onTap:(){},
+                           child: ListTile(
+                             leading:  Icon(Icons.notifications_none_outlined),
+                             title: Text('My Notification',style: TextStyle(fontSize: 15),),
+                           ),
+                         ),
+                         InkWell(
+                           onTap:(){},
+                           child: ListTile(
+                             leading:  Icon(Icons.favorite_border_outlined),
+                             title: Text('My Wishlist',style: TextStyle(fontSize: 15),),
+                           ),
+                         ),
+                       ],
+                     ),
                    ),),
                    Divider(
                      indent: 2,
