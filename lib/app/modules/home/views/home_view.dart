@@ -439,7 +439,7 @@ class HomeView extends GetView<HomeController> {
                                 Expanded(
                                   flex: 5,
                                   child: Container(
-                                    height: 40,
+                                    height: 50,
                                     // width: ,
                                     margin: EdgeInsets.only(left: 15),
                                     padding: EdgeInsets.only(bottom: 10
@@ -487,6 +487,9 @@ class HomeView extends GetView<HomeController> {
                                       children: [
                                         IconButton(
                                             onPressed: () {
+                                              if((box.read(ArgumentConstant.isUserLogin) == null)){
+                                                Get.toNamed(Routes.LOGIN_SCREEN);
+                                              }
                                               controller.CartProductApi();
                                               controller.CartCount();
                                               scaffoldKey.currentState!
