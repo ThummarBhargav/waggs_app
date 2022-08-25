@@ -25,10 +25,8 @@ class TopSellingStoreAllProductsController extends GetxController {
   String CategoriId = "";
   String SubCategoriId = "";
   StoreModule storeModule = StoreModule();
-  // Rx<SfRangeValues> values =  SfRangeValues(100, 30000).obs;
   Rx<RangeValues> values1 =  RangeValues(0, 100).obs;
   Rx<RangeValues> values4 = RangeValues(0, 100).obs;
-  // Rx<RangeLabels> labels =RangeLabels('1', "100").obs;
   RxBool isOp = false.obs;
   RxBool isOp1 = false.obs;
   RxBool isOp2 = false.obs;
@@ -44,6 +42,7 @@ class TopSellingStoreAllProductsController extends GetxController {
   Count1 count1 = Count1();
   RxList<Count1> Countlist = RxList<Count1>([]);
   RxList<Fields> fieldData = RxList<Fields>([]);
+  RxString price = "select role".obs;
   RxList<String> location = RxList<String>(["New Arrivals","Price: Low-High","Price: High-Low","Discount: Low-High","Discount: High-Low"]);
   RxList<Products> productList = RxList<Products>([]);
   RxList<SubCategoryData> SubCatagoryList = RxList<SubCategoryData>([]);
