@@ -19,6 +19,8 @@ abstract class Routes {
   static const PRODUCT_DETAIL_VIEW = _Paths.PRODUCT_DETAIL_VIEW;
   static const VIEW_ALL_MY_CART = _Paths.VIEW_ALL_MY_CART;
   static const ADD_TO_CART_SHIPPING_VIEW = _Paths.ADD_TO_CART_SHIPPING_VIEW;
+
+  static const TAB_BAR1 = _Paths.TAB_BAR1;
 }
 
 abstract class _Paths {
@@ -39,4 +41,6 @@ abstract class _Paths {
   static const PRODUCT_DETAIL_VIEW = '/product-detail-view';
   static const VIEW_ALL_MY_CART = '/view-all-my-cart';
   static const ADD_TO_CART_SHIPPING_VIEW = '/add-to-cart-shipping-view';
+
+  static const TAB_BAR1 = '/tab-bar1';
 }

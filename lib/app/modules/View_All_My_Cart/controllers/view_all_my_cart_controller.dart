@@ -10,7 +10,8 @@ import '../../../constant/ConstantUrl.dart';
 import '../../../constant/SizeConstant.dart';
 import 'package:http/http.dart' as http;
 
-class ViewAllMyCartController extends GetxController {
+class ViewAllMyCartController extends GetxController  {
+
 
   RxBool hasData = false.obs;
   RxList<Details> cartProductList = RxList<Details>([]);
