@@ -41,7 +41,6 @@ class TabBar1Controller extends GetxController with GetSingleTickerProviderState
     tabController=TabController(length: 3, vsync: this);
     CartProductApi();
     CartCount();
-
     super.onInit();
   }
 
