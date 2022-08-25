@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import '../../../../main.dart';
@@ -17,6 +18,7 @@ class AddToCartShippingViewController extends GetxController {
   RxString selected1 = "add".obs;
   RxString selected2 = "add1".obs;
   RxString Gselected = "".obs;
+  Rx<TextEditingController> couponController = TextEditingController().obs;
   @override
   void onInit() {
     super.onInit();
