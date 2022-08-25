@@ -26,7 +26,7 @@ class TopSellingStoreAllProductsController extends GetxController {
   String SubCategoriId = "";
   StoreModule storeModule = StoreModule();
   Rx<RangeValues> values1 =  RangeValues(0, 100).obs;
-  Rx<RangeValues> values4 = RangeValues(0, 100).obs;
+  Rx<RangeValues> values4 = RangeValues(100, 3000).obs;
   RxBool isOp = false.obs;
   RxBool isOp1 = false.obs;
   RxBool isOp2 = false.obs;
