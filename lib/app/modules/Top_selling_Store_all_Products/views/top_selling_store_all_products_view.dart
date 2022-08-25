@@ -28,7 +28,16 @@ class TopSellingStoreAllProductsView
             controller.radioGValues.value = "";
             controller.isOp2.value = false;
             controller.isOp.value = false;
+            controller.subData[controller.subDataIndex.value].fields!.forEach((element) {
+              element.isChecked!.forEach((element) {
+                element = false;
+              });
+              element.isChecked!.refresh();
+            });
             controller.subData.clear();
+            controller.AllCategory();
+            controller.SubCategory();
+
             print("Value :::=== $val");
           },
           endDrawer: GestureDetector(
@@ -469,7 +478,22 @@ class TopSellingStoreAllProductsView
                                   controller.radioGValues.value = "";
                                   controller.isOp2.value = false;
                                   controller.isOp.value = false;
+                                  controller.subData.forEach((ele) {
+                                    ele.fields!.forEach((element) {
+                                      element.isExpanded!.value = false;
+                                      element.isChecked!.forEach((element) {
+                                        element = false;
+                                      });
+                                      element.isChecked!.refresh();
+                                      element.isExpanded!.refresh();
+                                      controller.refresh();
+                                    });
+                                  });
+
                                   controller.subData.clear();
+                                  controller.AllCategory();
+                                  controller.SubCategory();
+
                                 },
                                 child: Container(
                                   child: Text(
