@@ -25,12 +25,13 @@ class TopSellingStoreAllProductsView
           key: ScaffoldKey2,
           drawerEdgeDragWidth: 0,
           onEndDrawerChanged: (val) {
-            controller.values4.value= RangeValues(100, 30000);
-            controller.values1.value= RangeValues(0, 100);
+            controller.values4.value = RangeValues(100, 30000);
+            controller.values1.value = RangeValues(0, 100);
             controller.radioGValues.value = "";
             controller.isOp2.value = false;
             controller.isOp.value = false;
-            controller.subData[controller.subDataIndex.value].fields!.forEach((element) {
+            controller.subData[controller.subDataIndex.value].fields!
+                .forEach((element) {
               element.isChecked!.forEach((element) {
                 element = false;
               });
@@ -282,8 +283,10 @@ class TopSellingStoreAllProductsView
                                                                   },
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsets.only(
-                                                                        left: 8.0,
+                                                                    padding: const EdgeInsets
+                                                                            .only(
+                                                                        left:
+                                                                            8.0,
                                                                         right:
                                                                             5),
                                                                     child: Icon(
@@ -475,8 +478,10 @@ class TopSellingStoreAllProductsView
                               ),
                               InkWell(
                                 onTap: () {
-                                  controller.values4.value= RangeValues(100, 30000);
-                                  controller.values1.value= RangeValues(0, 100);
+                                  controller.values4.value =
+                                      RangeValues(100, 30000);
+                                  controller.values1.value =
+                                      RangeValues(0, 100);
                                   controller.radioGValues.value = "";
                                   controller.isOp2.value = false;
                                   controller.isOp.value = false;
@@ -495,7 +500,6 @@ class TopSellingStoreAllProductsView
                                   controller.subData.clear();
                                   controller.AllCategory();
                                   controller.SubCategory();
-
                                 },
                                 child: Container(
                                   child: Text(
@@ -577,7 +581,7 @@ class TopSellingStoreAllProductsView
                                     max: 100,
                                     values: controller.values1.value,
                                     labels: RangeLabels(
-                                       "${controller.values1.value.start.round().toString()}%",
+                                        "${controller.values1.value.start.round().toString()}%",
                                         "${controller.values1.value.end.round().toString()}%"),
                                     onChanged: (value) {
                                       controller.values1.value = value;
@@ -662,10 +666,15 @@ class TopSellingStoreAllProductsView
                                                                     244,
                                                                     1),
                                                             onChanged: (value) {
-                                                              controller.radioGValues.value =
+                                                              controller
+                                                                      .radioGValues
+                                                                      .value =
                                                                   value
                                                                       as String;
-                                                              controller.radioGValues.value != null ? controller
+                                                              controller.radioGValues
+                                                                          .value !=
+                                                                      null
+                                                                  ? controller
                                                                           .isOp2
                                                                           .value ==
                                                                       true
@@ -711,6 +720,8 @@ class TopSellingStoreAllProductsView
                                                                           .name
                                                                           .toString());
                                                                 } else {}
+
+
                                                               });
                                                               controller
                                                                   .radioGValues1
@@ -839,7 +850,9 @@ class TopSellingStoreAllProductsView
                                                                 onChanged:
                                                                     (value) {
                                                                   // value = false;
-                                                                  controller.radioGValues1.value =
+                                                                  controller
+                                                                          .radioGValues1
+                                                                          .value =
                                                                       value
                                                                           as String;
                                                                   controller.radioGValues1
@@ -923,7 +936,8 @@ class TopSellingStoreAllProductsView
                                                   children: [
                                                     InkWell(
                                                       onTap: () {
-                                                        controller.subData[controller
+                                                        controller
+                                                            .subData[controller
                                                                 .subDataIndex
                                                                 .value]
                                                             .fields!
@@ -1049,63 +1063,88 @@ class TopSellingStoreAllProductsView
                           child: InkWell(
                             onTap: () {
                               List reqList = [];
-                              for (int i = 0;
-                                  i <
-                                      controller
-                                          .subData[
-                                              controller.subDataIndex.value]
-                                          .fields!
-                                          .length;
-                                  i++) {
-                                if (!isNullEmptyOrFalse(controller
-                                    .subData[controller.subDataIndex.value]
-                                    .fields![i]
-                                    .id)) {
-                                  List data = [];
-                                  data.add(controller
-                                      .subData[controller.subDataIndex.value]
-                                      .fields![i]
-                                      .id);
+                              if (controller.subData.isEmpty) {
+                                controller.getProduct();
+                              } else {
+                                for (int i = 0;
+                                    i <
+                                        controller
+                                            .subData[
+                                                controller.subDataIndex.value]
+                                            .fields!
+                                            .length;
+                                    i++) {
                                   if (!isNullEmptyOrFalse(controller
                                       .subData[controller.subDataIndex.value]
                                       .fields![i]
-                                      .values)) {
-                                    List selectedValue = [];
-                                    for (int j = 0;
-                                        j <
-                                            controller
+                                      .id)) {
+                                    List data = [];
+                                    data.add(controller
+                                        .subData[controller.subDataIndex.value]
+                                        .fields![i]
+                                        .id);
+                                    if (!isNullEmptyOrFalse(controller
+                                        .subData[controller.subDataIndex.value]
+                                        .fields![i]
+                                        .values)) {
+                                      List selectedValue = [];
+                                      for (int j = 0;
+                                          j <
+                                              controller
+                                                  .subData[controller
+                                                      .subDataIndex.value]
+                                                  .fields![i]
+                                                  .values!
+                                                  .length;
+                                          j++) {
+                                        if (controller
                                                 .subData[controller
                                                     .subDataIndex.value]
                                                 .fields![i]
-                                                .values!
-                                                .length;
-                                        j++) {
-                                      if (controller
+                                                .isChecked![j] ==
+                                            true) {
+                                          selectedValue.add(controller
                                               .subData[
                                                   controller.subDataIndex.value]
                                               .fields![i]
-                                              .isChecked![j] ==
-                                          true) {
-                                        selectedValue.add(controller
-                                            .subData[
-                                                controller.subDataIndex.value]
-                                            .fields![i]
-                                            .values![j]);
+                                              .values![j]);
+                                        }
                                       }
+                                      data.add(selectedValue);
+                                    } else {
+                                      data.add([]);
                                     }
-                                    data.add(selectedValue);
-                                  } else {
-                                    data.add([]);
+                                    reqList.add(data);
                                   }
-                                  reqList.add(data);
-                                }
-                                print("Request List := ${reqList}");
+                                  print("Request List := ${reqList}");
 
-                                print(
-                                    "${controller.subData[controller.subDataIndex.value].fields![i].values}==> ${controller.subData[controller.subDataIndex.value].fields![i].isChecked}");
+                                  print(
+                                      "${controller.subData[controller.subDataIndex.value].fields![i].values}==> ${controller.subData[controller.subDataIndex.value].fields![i].isChecked}");
+                                }
+                                controller.getFilterData(
+                                    reqList: reqList, context: context);
                               }
-                              controller.getFilterData(
-                                  reqList: reqList, context: context);
+
+                                controller.values4.value = RangeValues(100, 30000);
+                                controller.values1.value = RangeValues(0, 100);
+                                controller.radioGValues.value = "";
+                                controller.isOp2.value = false;
+                                controller.isOp.value = false;
+                                controller.subData[controller.subDataIndex.value].fields!
+                                    .forEach((element) {
+                                  element.isChecked!.forEach((element) {
+                                    element = false;
+                                  });
+                                  element.isChecked!.refresh();
+                                });
+                                controller.subData.clear();
+                                controller.AllCategory();
+                                controller.SubCategory();
+
+
+
+                              ScaffoldKey2.currentState!.closeEndDrawer();
+                              // Navigator.of(context).pop;
                             },
                             child: Container(
                               margin: EdgeInsets.only(
@@ -1275,20 +1314,26 @@ class TopSellingStoreAllProductsView
                                         },
                                         child: Expanded(
                                           child: Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
                                             children: [
                                               Container(
-                                                child: Text("${controller.price.value}",
+                                                child: Text(
+                                                  "${controller.price.value}",
                                                   style: GoogleFonts.raleway(
-                                                      fontWeight: FontWeight.w600,
+                                                      fontWeight:
+                                                          FontWeight.w600,
                                                       color: Colors.black,
-                                                      fontSize: 15
-                                                  ),
+                                                      fontSize: 15),
                                                 ),
                                               ),
-                                              SizedBox(width: 10,),
+                                              SizedBox(
+                                                width: 10,
+                                              ),
                                               Container(
-                                                child: Icon(Icons.keyboard_arrow_down_outlined,
+                                                child: Icon(
+                                                  Icons
+                                                      .keyboard_arrow_down_outlined,
                                                   color: Colors.black,
                                                 ),
                                               )
@@ -1384,20 +1429,25 @@ class TopSellingStoreAllProductsView
                                       },
                                       child: Expanded(
                                         child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
                                           children: [
                                             Container(
-                                              child: Text("${controller.price.value}",
+                                              child: Text(
+                                                "${controller.price.value}",
                                                 style: GoogleFonts.raleway(
-                                                  fontWeight: FontWeight.w600,
-                                                  color: Colors.black,
-                                                  fontSize: 15
-                                                ),
+                                                    fontWeight: FontWeight.w600,
+                                                    color: Colors.black,
+                                                    fontSize: 15),
                                               ),
                                             ),
-                                            SizedBox(width: 10,),
+                                            SizedBox(
+                                              width: 10,
+                                            ),
                                             Container(
-                                              child: Icon(Icons.keyboard_arrow_down_outlined,
+                                              child: Icon(
+                                                Icons
+                                                    .keyboard_arrow_down_outlined,
                                                 color: Colors.black,
                                               ),
                                             )

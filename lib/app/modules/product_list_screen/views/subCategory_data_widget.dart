@@ -1073,63 +1073,72 @@ class _SubCategoryWidgetState extends State<SubCategoryWidget> {
                       child: InkWell(
                         onTap: () {
                           List reqList = [];
-                          for (int i = 0;
-                          i <
-                              controller
-                                  .subData[
-                              controller.subDataIndex.value]
-                                  .fields!
-                                  .length;
-                          i++) {
-                            if (!isNullEmptyOrFalse(controller
-                                .subData[controller.subDataIndex.value]
-                                .fields![i]
-                                .id)) {
-                              List data = [];
-                              data.add(controller
-                                  .subData[controller.subDataIndex.value]
-                                  .fields![i]
-                                  .id);
-                              if (!isNullEmptyOrFalse(controller
-                                  .subData[controller.subDataIndex.value]
-                                  .fields![i]
-                                  .values)) {
-                                List selectedValue = [];
-                                for (int j = 0;
-                                j <
-                                    controller
-                                        .subData[controller
-                                        .subDataIndex.value]
-                                        .fields![i]
-                                        .values!
-                                        .length;
-                                j++) {
-                                  if (controller
-                                      .subData[
-                                  controller.subDataIndex.value]
-                                      .fields![i]
-                                      .isChecked![j] ==
-                                      true) {
-                                    selectedValue.add(controller
-                                        .subData[
-                                    controller.subDataIndex.value]
-                                        .fields![i]
-                                        .values![j]);
-                                  }
-                                }
-                                data.add(selectedValue);
-                              } else {
-                                data.add([]);
-                              }
-                              reqList.add(data);
+                          if(controller.subData.isEmpty)
+                            {
+                              controller.getProduct();
                             }
-                            print("Request List := ${reqList}");
+                          else{
+                              for (int i = 0;
+                                  i <
+                                      controller
+                                          .subData[
+                                              controller.subDataIndex.value]
+                                          .fields!
+                                          .length;
+                                  i++) {
+                                if (!isNullEmptyOrFalse(controller
+                                    .subData[controller.subDataIndex.value]
+                                    .fields![i]
+                                    .id)) {
+                                  List data = [];
+                                  data.add(controller
+                                      .subData[controller.subDataIndex.value]
+                                      .fields![i]
+                                      .id);
+                                  if (!isNullEmptyOrFalse(controller
+                                      .subData[controller.subDataIndex.value]
+                                      .fields![i]
+                                      .values)) {
+                                    List selectedValue = [];
+                                    for (int j = 0;
+                                        j <
+                                            controller
+                                                .subData[controller
+                                                    .subDataIndex.value]
+                                                .fields![i]
+                                                .values!
+                                                .length;
+                                        j++) {
+                                      if (controller
+                                              .subData[
+                                                  controller.subDataIndex.value]
+                                              .fields![i]
+                                              .isChecked![j] ==
+                                          true) {
+                                        selectedValue.add(controller
+                                            .subData[
+                                                controller.subDataIndex.value]
+                                            .fields![i]
+                                            .values![j]);
+                                      }
+                                    }
+                                    data.add(selectedValue);
+                                  } else {
+                                    data.add([]);
+                                  }
+                                  reqList.add(data);
+                                }
+                                print("Request List := ${reqList}");
 
-                            print(
-                                "${controller.subData[controller.subDataIndex.value].fields![i].values}==> ${controller.subData[controller.subDataIndex.value].fields![i].isChecked}");
-                          }
-                          controller.getFilterData(
-                              reqList: reqList, context: context);
+                                print(
+                                    "${controller.subData[controller.subDataIndex.value].fields![i].values}==> ${controller.subData[controller.subDataIndex.value].fields![i].isChecked}");
+                                controller.getFilterData(
+                                    reqList: reqList, context: context);
+                              }
+                            }
+
+                            scaffoldKey.currentState!.closeEndDrawer();
+
                         },
                         child: Container(
                           margin: EdgeInsets.only(

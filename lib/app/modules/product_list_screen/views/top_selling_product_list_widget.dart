@@ -38,6 +38,7 @@ class _TopSellingProductListWidgetState
         return Scaffold(
           key: scaffoldKey,
           backgroundColor: Colors.white,
+
           appBar: AppBar(
             title: Text(
               "TOP SELLING PRODUCTS",
@@ -544,7 +545,6 @@ class _TopSellingProductListWidgetState
                                 controller.subData.clear();
                                 controller.AllCategory();
                                 controller.SubCategory();
-
                               },
                               child: Container(
                                 child: Text(
@@ -1112,63 +1112,88 @@ class _TopSellingProductListWidgetState
                     child: InkWell(
                       onTap: () {
                         List reqList = [];
-                        for (int i = 0;
-                        i <
-                            controller
-                                .subData[
-                            controller.subDataIndex.value]
-                                .fields!
-                                .length;
-                        i++) {
-                          if (!isNullEmptyOrFalse(controller
-                              .subData[controller.subDataIndex.value]
-                              .fields![i]
-                              .id)) {
-                            List data = [];
-                            data.add(controller
-                                .subData[controller.subDataIndex.value]
-                                .fields![i]
-                                .id);
-                            if (!isNullEmptyOrFalse(controller
-                                .subData[controller.subDataIndex.value]
-                                .fields![i]
-                                .values)) {
-                              List selectedValue = [];
-                              for (int j = 0;
-                              j <
-                                  controller
-                                      .subData[controller
-                                      .subDataIndex.value]
+                        if(controller.subData.isEmpty){
+                          controller.TopSellingProductApi();
+
+                        }
+                        else{
+                                for (int i = 0;
+                                    i <
+                                        controller
+                                            .subData[
+                                                controller.subDataIndex.value]
+                                            .fields!
+                                            .length;
+                                    i++) {
+                                  if (!isNullEmptyOrFalse(controller
+                                      .subData[controller.subDataIndex.value]
                                       .fields![i]
-                                      .values!
-                                      .length;
-                              j++) {
-                                if (controller
-                                    .subData[
-                                controller.subDataIndex.value]
-                                    .fields![i]
-                                    .isChecked![j] ==
-                                    true) {
-                                  selectedValue.add(controller
-                                      .subData[
-                                  controller.subDataIndex.value]
-                                      .fields![i]
-                                      .values![j]);
+                                      .id)) {
+                                    List data = [];
+                                    data.add(controller
+                                        .subData[controller.subDataIndex.value]
+                                        .fields![i]
+                                        .id);
+                                    if (!isNullEmptyOrFalse(controller
+                                        .subData[controller.subDataIndex.value]
+                                        .fields![i]
+                                        .values)) {
+                                      List selectedValue = [];
+                                      for (int j = 0;
+                                          j <
+                                              controller
+                                                  .subData[controller
+                                                      .subDataIndex.value]
+                                                  .fields![i]
+                                                  .values!
+                                                  .length;
+                                          j++) {
+                                        if (controller
+                                                .subData[controller
+                                                    .subDataIndex.value]
+                                                .fields![i]
+                                                .isChecked![j] ==
+                                            true) {
+                                          selectedValue.add(controller
+                                              .subData[
+                                                  controller.subDataIndex.value]
+                                              .fields![i]
+                                              .values![j]);
+                                        }
+                                      }
+                                      data.add(selectedValue);
+                                    } else {
+                                      data.add([]);
+                                    }
+                                    reqList.add(data);
+                                  }
+                                  print("Request List := ${reqList}");
+
+                                  print(
+                                      "${controller.subData[controller.subDataIndex.value].fields![i].values}==> ${controller.subData[controller.subDataIndex.value].fields![i].isChecked}");
+                                  controller.getTopFilterData(
+                                      reqList: reqList, context: context);
                                 }
                               }
-                              data.add(selectedValue);
-                            } else {
-                              data.add([]);
-                            }
-                            reqList.add(data);
-                          }
-                          print("Request List := ${reqList}");
+                              scaffoldKey.currentState!.closeEndDrawer();
+                        controller.radioGValues.value = "";
+                        controller.isOp2.value = false;
+                        controller.isOp.value = false;
+                        controller.subData.forEach((ele) {
+                          ele.fields!.forEach((element) {
+                            element.isExpanded!.value = false;
+                            element.isChecked!.forEach((element) {
+                              element = false;
+                            });
+                            element.isChecked!.refresh();
+                            element.isExpanded!.refresh();
+                            controller.refresh();
+                          });
+                        });
 
-                          print(
-                              "${controller.subData[controller.subDataIndex.value].fields![i].values}==> ${controller.subData[controller.subDataIndex.value].fields![i].isChecked}");
-                        }
-                        controller.getFilterData(
-                            reqList: reqList, context: context);
+                        controller.subData.clear();
+                        controller.AllCategory();
+                        controller.SubCategory();
                       },
                       child: Container(
                         margin: EdgeInsets.only(
@@ -1200,7 +1225,7 @@ class _TopSellingProductListWidgetState
           body: Obx(
                 () => (controller.hasData.isFalse)
                 ? Center(child: CircularProgressIndicator())
-                : (isNullEmptyOrFalse(controller.TopProductlist))
+                : (isNullEmptyOrFalse(controller.mainProductList))
                 ? Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -1414,7 +1439,7 @@ class _TopSellingProductListWidgetState
                         height: 670,
                         width: 400,
                         child: GridView.builder(
-                            itemCount: controller.TopProductlist.length,
+                            itemCount: controller.mainProductList.length,
                             scrollDirection: Axis.vertical,
                             shrinkWrap: true,
                             itemBuilder: (context, index) {
@@ -1445,7 +1470,7 @@ class _TopSellingProductListWidgetState
                                                           child: CachedNetworkImage(
                                                               imageUrl:
                                                               "${controller
-                                                                  .TopProductlist[index]
+                                                                  .mainProductList[index]
                                                                   .images![0]}",
                                                               imageBuilder: (context,
                                                                   imageProvider) =>
@@ -1526,7 +1551,7 @@ class _TopSellingProductListWidgetState
                                                                   child:
                                                                   Text(
                                                                     "Save ${controller
-                                                                        .TopProductlist[index]
+                                                                        .mainProductList[index]
                                                                         .discount!
                                                                         .toStringAsFixed(
                                                                         2)} %",
@@ -1556,7 +1581,7 @@ class _TopSellingProductListWidgetState
                                           child: Align(
                                               alignment: Alignment.center,
                                               child: Text(
-                                                "${controller.TopProductlist[index]
+                                                "${controller.mainProductList[index]
                                                     .sellerId!.companyName}",
                                                 style: GoogleFonts.raleway(
                                                     fontWeight:
@@ -1575,9 +1600,9 @@ class _TopSellingProductListWidgetState
                                           child: Align(
                                               alignment: Alignment.center,
                                               child: Text(
-                                                "${controller.TopProductlist[index]
+                                                "${controller.mainProductList[index]
                                                     .category!.name} - ${controller
-                                                    .TopProductlist[index]
+                                                    .mainProductList[index]
                                                     .subCategory!.name} ",
                                                 style: TextStyle(
                                                     fontSize: 10,
@@ -1590,7 +1615,7 @@ class _TopSellingProductListWidgetState
                                               margin:
                                               EdgeInsets.only(left: 10),
                                               child: Text(
-                                                "₹${controller.TopProductlist[index]
+                                                "₹${controller.mainProductList[index]
                                                     .price!.toStringAsFixed(2)}",
                                                 style: GoogleFonts.roboto(
                                                     decoration:
@@ -1605,7 +1630,7 @@ class _TopSellingProductListWidgetState
                                             ),
                                             Container(
                                               child: Text(
-                                                "₹${controller.TopProductlist[index]
+                                                "₹${controller.mainProductList[index]
                                                     .discountedPrice!.toStringAsFixed(
                                                     2)}",
                                                 style:
@@ -1614,7 +1639,7 @@ class _TopSellingProductListWidgetState
                                             ),
                                             RatingBarIndicator(
                                               rating: double.parse(
-                                                  controller.TopProductlist[index]
+                                                  controller.mainProductList[index]
                                                       .rating
                                                       .toString()),
                                               itemBuilder:
@@ -1636,7 +1661,7 @@ class _TopSellingProductListWidgetState
                                           onTap: () {
                                             controller.addToCart(
                                                 data: controller
-                                                    .TopProductlist[index]);
+                                                    .mainProductList[index]);
                                           },
                                           child: Container(
                                             width: 150,

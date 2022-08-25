@@ -86,6 +86,7 @@ class TopSellingStoreAllProductsController extends GetxController {
 
   getProduct() async {
     hasData.value = false;
+    mainProductList.clear();
     var URl = Uri.parse(
         baseUrl + ApiConstant.getAllProductUsers + "?sellerId=${data.sId}");
     var response;
@@ -353,7 +354,7 @@ class TopSellingStoreAllProductsController extends GetxController {
     queryParameters["priceMax"]="";
     queryParameters["discountMin"]="0";
     queryParameters["discountMax"]="0";
-    queryParameters["sellerId"]="62dd1f3f8fc27b7077099db4";
+    queryParameters["sellerId"]="${data.sId}";
     queryParameters["latitude"]="21.1702401";
     queryParameters["longitude"]="72.83106070000001";
     if(!isNullEmptyOrFalse(reqList)){

@@ -433,77 +433,7 @@ class _TopSellingStoreWidgetState extends State<TopSellingStoreWidget> {
                           );
                         },
                       )),
-                  controller.cartProductList == null
-                      ? Container()
-                      : Expanded(
-                      flex: 2,
-                      child: ListView.builder(
-                        itemCount: 1,
-                        itemBuilder: (context, index) {
-                          var sum = 0;
-                          controller.cartProductList
-                              .forEach((element) {
-                            sum += element.product!.discountedPrice! *
-                                element.quantity!;
-                          });
-                          return Container(
-                            margin: EdgeInsets.all(15),
-                            child: Column(
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      "SUBTOTAL",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w700,
-                                          color:
-                                          Colors.grey.shade600),
-                                    ),
-                                    Padding(
-                                      padding:
-                                      const EdgeInsets.all(8.0),
-                                      child: Text(
-                                        "\u{20B9}${sum}.00",
-                                        style: TextStyle(
-                                            color: Colors.orange,
-                                            fontWeight:
-                                            FontWeight.w800),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                InkWell(
-                                  onTap: () {
-                                    Get.toNamed(
-                                        Routes.VIEW_ALL_MY_CART);
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 15.0, left: 8, right: 8),
-                                    child: getcon(
-                                        alignment: Alignment.center,
-                                        color: Color.fromRGBO(
-                                            32, 193, 244, 1),
-                                        height: 30,
-                                        width: MediaQuery.of(context)
-                                            .size
-                                            .width,
-                                        text: Text(
-                                          "VIEW CART",
-                                          style: TextStyle(
-                                              fontWeight:
-                                              FontWeight.w800,
-                                              color: Colors.white),
-                                        )),
-                                  ),
-                                )
-                              ],
-                            ),
-                          );
-                        },
-                      ))
+
                 ],
               )
                   : Column(
@@ -1196,6 +1126,7 @@ class _TopSellingStoreWidgetState extends State<TopSellingStoreWidget> {
                 ],
               ),
             ),
+
           ),
           body: Obx(
                 () => (controller.hasData.isFalse)
@@ -1205,99 +1136,6 @@ class _TopSellingStoreWidgetState extends State<TopSellingStoreWidget> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      TextButton(
-                        onPressed: () {
-                          controller.isFilterDrawer.value = true;
-                          ;
-                          scaffoldKey.currentState!.openEndDrawer();
-                        },
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Container(
-                              child: Text(
-                                "Filters",
-                                style: GoogleFonts.raleway(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Icon(
-                              Icons.filter_list,
-                              color: Colors.black,
-                              size: 18,
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      TextButton(
-                        onPressed: () {},
-                        child: Row(
-                          children: [
-                            Container(
-                              child: Text(
-                                "Sort By: ",
-                                style: GoogleFonts.raleway(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
-                            PopupMenuButton<int>(
-                              itemBuilder: (context) {
-                                return List.generate(
-                                    controller.location.length,
-                                        (index) => PopupMenuItem(
-                                      child: Text(controller
-                                          .location[index]),
-                                      onTap: () {
-                                        controller.price.value =
-                                        controller
-                                            .location[index];
-                                        controller.price
-                                            .refresh();
-                                      },
-                                    ));
-                              },
-                              child: Expanded(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                  children: [
-                                    Container(
-                                      child: Text("${controller.price.value}",
-                                        style: GoogleFonts.raleway(
-                                            fontWeight: FontWeight.w600,
-                                            color: Colors.black,
-                                            fontSize: 15
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(width: 10,),
-                                    Container(
-                                      child: Icon(Icons.keyboard_arrow_down_outlined,
-                                        color: Colors.black,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  Spacer(),
                   Container(
                     height: 300,
                     width: 250,
@@ -1316,98 +1154,98 @@ class _TopSellingStoreWidgetState extends State<TopSellingStoreWidget> {
             )
                 : Column(
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        TextButton(
-                          onPressed: () {
-                            controller.isFilterDrawer.value = true;
-                            ;
-                            scaffoldKey.currentState!.openEndDrawer();
-                          },
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Container(
-                                child: Text(
-                                  "Filters",
-                                  style: GoogleFonts.raleway(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              Icon(
-                                Icons.filter_list,
-                                color: Colors.black,
-                                size: 18,
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        TextButton(
-                          onPressed: () {},
-                          child: Row(
-                            children: [
-                              Container(
-                                child: Text(
-                                  "Sort By: ",
-                                  style: GoogleFonts.raleway(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              ),
-                              PopupMenuButton<int>(
-                                itemBuilder: (context) {
-                                  return List.generate(
-                                      controller.location.length,
-                                          (index) => PopupMenuItem(
-                                        child: Text(controller
-                                            .location[index]),
-                                        onTap: () {
-                                          controller.price.value =
-                                          controller
-                                              .location[index];
-                                          controller.price
-                                              .refresh();
-                                        },
-                                      ));
-                                },
-                                child: Expanded(
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                    children: [
-                                      Container(
-                                        child: Text("${controller.price.value}",
-                                          style: GoogleFonts.raleway(
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.black,
-                                              fontSize: 15
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(width: 10,),
-                                      Container(
-                                        child: Icon(Icons.keyboard_arrow_down_outlined,
-                                          color: Colors.black,
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.end,
+                    //   children: [
+                    //     TextButton(
+                    //       onPressed: () {
+                    //         controller.isFilterDrawer.value = true;
+                    //         ;
+                    //         scaffoldKey.currentState!.openEndDrawer();
+                    //       },
+                    //       child: Row(
+                    //         mainAxisAlignment: MainAxisAlignment.start,
+                    //         children: [
+                    //           Container(
+                    //             child: Text(
+                    //               "Filters",
+                    //               style: GoogleFonts.raleway(
+                    //                 fontWeight: FontWeight.bold,
+                    //                 color: Colors.black,
+                    //               ),
+                    //             ),
+                    //           ),
+                    //           SizedBox(
+                    //             width: 5,
+                    //           ),
+                    //           Icon(
+                    //             Icons.filter_list,
+                    //             color: Colors.black,
+                    //             size: 18,
+                    //           ),
+                    //         ],
+                    //       ),
+                    //     ),
+                    //     SizedBox(
+                    //       width: 10,
+                    //     ),
+                    //     TextButton(
+                    //       onPressed: () {},
+                    //       child: Row(
+                    //         children: [
+                    //           Container(
+                    //             child: Text(
+                    //               "Sort By: ",
+                    //               style: GoogleFonts.raleway(
+                    //                 fontWeight: FontWeight.bold,
+                    //                 color: Colors.black,
+                    //               ),
+                    //             ),
+                    //           ),
+                    //           PopupMenuButton<int>(
+                    //             itemBuilder: (context) {
+                    //               return List.generate(
+                    //                   controller.location.length,
+                    //                       (index) => PopupMenuItem(
+                    //                     child: Text(controller
+                    //                         .location[index]),
+                    //                     onTap: () {
+                    //                       controller.price.value =
+                    //                       controller
+                    //                           .location[index];
+                    //                       controller.price
+                    //                           .refresh();
+                    //                     },
+                    //                   ));
+                    //             },
+                    //             child: Expanded(
+                    //               child: Row(
+                    //                 mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    //                 children: [
+                    //                   Container(
+                    //                     child: Text("${controller.price.value}",
+                    //                       style: GoogleFonts.raleway(
+                    //                           fontWeight: FontWeight.w600,
+                    //                           color: Colors.black,
+                    //                           fontSize: 15
+                    //                       ),
+                    //                     ),
+                    //                   ),
+                    //                   SizedBox(width: 10,),
+                    //                   Container(
+                    //                     child: Icon(Icons.keyboard_arrow_down_outlined,
+                    //                       color: Colors.black,
+                    //                     ),
+                    //                   )
+                    //                 ],
+                    //               ),
+                    //             ),
+                    //           ),
+                    //         ],
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
                     Expanded(
                       child: GridView.builder(
                           itemCount: controller.sellerList.length,
