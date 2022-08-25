@@ -1054,7 +1054,7 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                               children: [
                                 Expanded(flex: 2,child: InkWell(
                                   onTap: () {
-                                    Get.toNamed(Routes.ADD_TO_CART_SHIPPING_VIEW);
+
                                   },
                                   child: Container(
                                     alignment: Alignment.center,
