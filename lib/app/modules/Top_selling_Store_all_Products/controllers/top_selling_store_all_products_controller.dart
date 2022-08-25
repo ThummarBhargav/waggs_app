@@ -26,8 +26,18 @@ class TopSellingStoreAllProductsController extends GetxController {
   String SubCategoriId = "";
   StoreModule storeModule = StoreModule();
   // Rx<SfRangeValues> values =  SfRangeValues(100, 30000).obs;
+  final selected = "New Arrivals".obs;
+
+  void setSelected(String value){
+    selected.value = value;
+  }
   Rx<RangeValues> values1 =  RangeValues(0, 100).obs;
-  Rx<RangeValues> values4 = RangeValues(0, 100).obs;
+  Rx<RangeValues> values4 = RangeValues(100, 30000).obs;
+  String selectedValue = "New Arrivals";
+
+  List<String> DropdownData= [
+    "New Arrivals","Price:Low-High","Price:High-Low","Discount:Low-High","Discount:High-Low"
+  ];
   // Rx<RangeLabels> labels =RangeLabels('1', "100").obs;
   RxBool isOp = false.obs;
   RxBool isOp1 = false.obs;
@@ -39,8 +49,7 @@ class TopSellingStoreAllProductsController extends GetxController {
   RxBool isOp7 = false.obs;
   RxBool checkBox = false.obs;
   RxBool colorCheckBox = false.obs;
-  String selectedValue = "";
-  RxInt subDataIndex= 0.obs;
+    RxInt subDataIndex= 0.obs;
   Count1 count1 = Count1();
   RxList<Count1> Countlist = RxList<Count1>([]);
   RxList<Fields> fieldData = RxList<Fields>([]);
