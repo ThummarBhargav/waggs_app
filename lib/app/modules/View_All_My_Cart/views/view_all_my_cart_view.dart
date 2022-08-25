@@ -1054,7 +1054,6 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                               children: [
                                 Expanded(flex: 2,child: InkWell(
                                   onTap: () {
-
                                   },
                                   child: Container(
                                     alignment: Alignment.center,

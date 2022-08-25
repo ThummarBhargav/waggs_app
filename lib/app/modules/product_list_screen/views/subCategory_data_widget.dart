@@ -7,6 +7,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/constant/Container.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
 
+import '../../../../main.dart';
+import '../../../constant/ConstantUrl.dart';
 import '../../../constant/SizeConstant.dart';
 import '../controllers/product_list_screen_controller.dart';
 
@@ -1186,9 +1188,11 @@ class _SubCategoryWidgetState extends State<SubCategoryWidget> {
                   children: [
                     IconButton(
                         onPressed: () {
+                          if((box.read(ArgumentConstant.isUserLogin) == null)){
+                            Get.toNamed(Routes.LOGIN_SCREEN);
+                          }
                           controller.isFilterDrawer.value = false;
-                          scaffoldKey.currentState!
-                              .openEndDrawer();
+                          scaffoldKey.currentState!.openEndDrawer();
                         },
                         icon: Icon(
                           Icons.shopping_cart,

@@ -7,6 +7,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/constant/Container.dart';
 import 'package:waggs_app/app/constant/SizeConstant.dart';
 
+import '../../../../main.dart';
+import '../../../constant/ConstantUrl.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/product_list_screen_controller.dart';
 
@@ -1233,35 +1235,19 @@ class _TopSellingProductListWidgetState
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      TextButton(
-                        onPressed: () {
-                          controller.isFilterDrawer.value = true;
-                          ;
-                          scaffoldKey.currentState!.openEndDrawer();
-                        },
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Container(
-                              child: Text(
-                                "Filters",
-                                style: GoogleFonts.raleway(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Icon(
-                              Icons.filter_list,
-                              color: Colors.black,
-                              size: 18,
-                            ),
-                          ],
-                        ),
-                      ),
+                      IconButton(
+                          onPressed: () {
+                            if((box.read(ArgumentConstant.isUserLogin) == null)){
+                              Get.toNamed(Routes.LOGIN_SCREEN);
+                            }
+                            controller.isFilterDrawer.value = false;
+                            scaffoldKey.currentState!.openEndDrawer();
+                          },
+                          icon: Icon(
+                            Icons.shopping_cart,
+                            size: 25,
+                            color: Colors.grey[500],
+                          )),
                       SizedBox(
                         width: 10,
                       ),

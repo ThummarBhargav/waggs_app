@@ -6,6 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/constant/Container.dart';
 import 'package:waggs_app/app/constant/SizeConstant.dart';
 
+import '../../../../main.dart';
+import '../../../constant/ConstantUrl.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/product_list_screen_controller.dart';
 
@@ -55,10 +57,17 @@ class _TopSellingStoreWidgetState extends State<TopSellingStoreWidget> {
                 children: [
                   IconButton(
                       onPressed: () {
-                        scaffoldKey.currentState!
-                            .openEndDrawer();
-                        controller.CartCount();
-                        controller.CartProductApi();
+                        if((box.read(ArgumentConstant.isUserLogin) == null)){
+                          Get.toNamed(Routes.LOGIN_SCREEN);
+                          scaffoldKey.currentState!.closeEndDrawer();
+                        }
+                        else{
+                          controller.CartProductApi();
+                          controller.CartCount();
+                          scaffoldKey.currentState!
+                              .openEndDrawer();
+                        }
+
                       },
                       icon: Icon(
                         Icons.shopping_cart,

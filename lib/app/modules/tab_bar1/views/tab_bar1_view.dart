@@ -165,7 +165,9 @@ class TabBar1View extends GetView<TabBar1Controller> {
             physics: NeverScrollableScrollPhysics(),
               controller: controller.tabController,
             children: [
-              ViewAllMyCartView(),
+              ViewAllMyCartView(
+
+              ),
               AddToCartShippingViewView(),
               // Tab(
               //     // Get.toNamed(Routes.O_T_P_SCREEN);

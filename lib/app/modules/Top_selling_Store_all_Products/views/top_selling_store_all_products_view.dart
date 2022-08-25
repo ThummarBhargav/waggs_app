@@ -11,6 +11,8 @@ import 'package:waggs_app/app/constant/Container.dart';
 import 'package:waggs_app/app/constant/sizeConstant.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
 
+import '../../../../main.dart';
+import '../../../constant/ConstantUrl.dart';
 import '../controllers/top_selling_store_all_products_controller.dart';
 
 class TopSellingStoreAllProductsView
@@ -1190,6 +1192,9 @@ class TopSellingStoreAllProductsView
                 children: [
                   IconButton(
                       onPressed: () {
+                        if((box.read(ArgumentConstant.isUserLogin) == null)){
+                          Get.toNamed(Routes.LOGIN_SCREEN);
+                        }
                         controller.isFilterDrawer.value = false;
                         ScaffoldKey2.currentState!.openEndDrawer();
                       },

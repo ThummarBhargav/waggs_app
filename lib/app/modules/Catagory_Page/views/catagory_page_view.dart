@@ -9,6 +9,7 @@ import 'package:waggs_app/app/constant/Container.dart';
 import 'package:waggs_app/app/modules/home/controllers/home_controller.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
 
+import '../../../../main.dart';
 import '../../../Modal/SubCategoryModel.dart';
 import '../../../constant/ConstantUrl.dart';
 import '../../../constant/SizeConstant.dart';
@@ -433,8 +434,16 @@ class CatagoryPageView extends GetWidget<HomeController> {
                             children: [
                               IconButton(
                                   onPressed: () {
-                                    scaffoldKey.currentState!
-                                        .openEndDrawer();
+                                    if((box.read(ArgumentConstant.isUserLogin) == null)){
+                                      Get.toNamed(Routes.LOGIN_SCREEN);
+                                      scaffoldKey.currentState!.closeEndDrawer();
+                                    }
+                                    else{
+                                      controller.CartProductApi();
+                                      controller.CartCount();
+                                      scaffoldKey.currentState!
+                                          .openEndDrawer();
+                                    }
                                   },
                                   icon: Icon(
                                     Icons.shopping_cart,
