@@ -620,12 +620,15 @@ class HomeView extends GetView<HomeController> {
                                             onPressed: () {
                                               if((box.read(ArgumentConstant.isUserLogin) == null)){
                                                 Get.toNamed(Routes.LOGIN_SCREEN);
+                                              }else
+                                              {
+                                                controller.CartProductApi();
+                                                controller.CartCount();
+                                                controller.isFilterDrawer
+                                                    .value = false;
+                                                scaffoldKey.currentState!
+                                                    .openEndDrawer();
                                               }
-                                              controller.CartProductApi();
-                                              controller.CartCount();
-                                              controller.isFilterDrawer.value = false;
-                                              scaffoldKey.currentState!
-                                                  .openEndDrawer();
                                             },
                                             icon: Icon(
                                               Icons.shopping_cart,
