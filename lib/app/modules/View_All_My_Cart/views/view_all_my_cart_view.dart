@@ -295,7 +295,7 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                                                   children: [
                                                     Text(
                                                       "${controller.cartProductList[index].product!.description}",
-                                                      style: TextStyle(
+                                                        style: TextStyle(
                                                         fontWeight:
                                                         FontWeight
                                                             .w400,
@@ -817,7 +817,7 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                                       ),
                                     ),
                                     child: TextFormField(
-                                      controller: controller.nameController.value,
+                                      controller: controller.cityController.value,
                                       validator: (input) => !isNullEmptyOrFalse(input)
                                           ? null
                                           : "Please Enter City",
@@ -850,7 +850,7 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                                       ),
                                     ),
                                     child: TextFormField(
-                                      controller: controller.lastNameController.value,
+                                      controller: controller.pinCodeController.value,
                                       validator: (input) => !isNullEmptyOrFalse(input)
                                           ? null
                                           : "Please Enter Pincode",
@@ -887,12 +887,12 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                                 ),
                               ),
                               child: TextFormField(
-                                controller: controller.apartmentController.value,
+                                controller: controller.mobileNumberController.value,
                                 validator: (input) => !isNullEmptyOrFalse(input)
                                     ? null
                                     : "Please Enter Mobile Number",
                                 // obscureText: controller.emailVisible.value,
-                                keyboardType: TextInputType.streetAddress,
+                                keyboardType: TextInputType.phone,
                                 decoration: InputDecoration(
                                   hintText: "Mobile Number",
                                   hintStyle: GoogleFonts.raleway(

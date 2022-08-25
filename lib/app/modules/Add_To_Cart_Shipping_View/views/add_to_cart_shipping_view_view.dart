@@ -9,17 +9,25 @@ class AddToCartShippingViewView
   const AddToCartShippingViewView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('AddToCartShippingViewView'),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Text(
-          'AddToCartShippingViewView is working',
-          style: TextStyle(fontSize: 20),
-        ),
-      ),
+    return SafeArea(
+        child: Scaffold(
+          appBar: AppBar(
+            elevation: 0.0,
+            backgroundColor: Colors.white,
+            leading: IconButton(onPressed: () {
+              Get.back();
+            }, icon: Icon(Icons.arrow_back,color: Colors.black,)),
+            actions: [
+              IconButton(onPressed: () {
+
+              }, icon: Icon(Icons.search,color: Colors.black,)),
+              // IconButton(onPressed: () {
+              //
+              // }, icon: Icon(Icons.shopping_cart_outlined,color: Colors.black,)),
+            ],
+          ),
+          body: Container(),
+        )
     );
   }
 }

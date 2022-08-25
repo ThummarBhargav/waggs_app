@@ -25,11 +25,21 @@ class TopSellingStoreAllProductsView
           key: ScaffoldKey2,
           drawerEdgeDragWidth: 0,
           onEndDrawerChanged: (val) {
+            controller.values4.value= RangeValues(100, 30000);
+            controller.values1.value= RangeValues(0, 100);
             controller.radioGValues.value = "";
             controller.isOp2.value = false;
-            controller.isOp1.value = false;
             controller.isOp.value = false;
+            controller.subData[controller.subDataIndex.value].fields!.forEach((element) {
+              element.isChecked!.forEach((element) {
+                element = false;
+              });
+              element.isChecked!.refresh();
+            });
             controller.subData.clear();
+            controller.AllCategory();
+            controller.SubCategory();
+
             print("Value :::=== $val");
           },
           endDrawer: GestureDetector(
@@ -272,10 +282,8 @@ class TopSellingStoreAllProductsView
                                                                   },
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsets
-                                                                            .only(
-                                                                        left:
-                                                                            8.0,
+                                                                    padding: const EdgeInsets.only(
+                                                                        left: 8.0,
                                                                         right:
                                                                             5),
                                                                     child: Icon(
@@ -467,11 +475,27 @@ class TopSellingStoreAllProductsView
                               ),
                               InkWell(
                                 onTap: () {
+                                  controller.values4.value= RangeValues(100, 30000);
+                                  controller.values1.value= RangeValues(0, 100);
                                   controller.radioGValues.value = "";
                                   controller.isOp2.value = false;
                                   controller.isOp.value = false;
-                                  controller.isOp1.value = false;
+                                  controller.subData.forEach((ele) {
+                                    ele.fields!.forEach((element) {
+                                      element.isExpanded!.value = false;
+                                      element.isChecked!.forEach((element) {
+                                        element = false;
+                                      });
+                                      element.isChecked!.refresh();
+                                      element.isExpanded!.refresh();
+                                      controller.refresh();
+                                    });
+                                  });
+
                                   controller.subData.clear();
+                                  controller.AllCategory();
+                                  controller.SubCategory();
+
                                 },
                                 child: Container(
                                   child: Text(
@@ -502,27 +526,38 @@ class TopSellingStoreAllProductsView
                                 ),
                                 Obx(
                                   () => RangeSlider(
-                                    divisions: 10,
+                                    values: controller.values4.value,
                                     activeColor: Colors.lightBlue[300],
                                     inactiveColor: Colors.lightBlue[200],
                                     min: 100,
                                     max: 30000,
-                                    values: controller.values4.value,
+                                    divisions: 3000,
                                     labels: RangeLabels(
-                                        controller.values4.value.start
-                                            .round()
-                                            .toString(),
-                                        controller.values4.value.end
-                                            .round()
-                                            .toString()),
-                                    onChanged: (value) {
-                                      controller.values4.value = value;
-                                      print(
-                                          'value=>${controller.values4.value}');
-                                      print(
-                                          '${RangeLabels(controller.values4.value.start.round().toString(), controller.values4.value.end.round().toString())}');
+                                      "\u{20B9}${controller.values4.value.start.round().toString()}",
+                                      "\u{20B9}${controller.values4.value.end.round().toString()}",
+                                    ),
+                                    onChanged: (RangeValues values) {
+                                      controller.values4.value = values;
                                     },
                                   ),
+                                  //         RangeSlider(
+                                  //     divisions: 300,
+                                  //   activeColor: Colors.lightBlue[300],
+                                  //   inactiveColor: Colors.lightBlue[200],
+                                  //   min: 100,
+                                  //   max: 30000,
+                                  //   values: controller.values4.value,
+                                  //     labels: RangeLabels(controller.values4.value.start.round().toString()
+                                  //         ,controller.values4.value.end.round().toString()),
+                                  //    onChanged: (value) {
+                                  //     controller.values4.value = value;
+                                  //     print('value=>${controller.values4.value}');
+                                  //     print('${RangeLabels(
+                                  //         controller.values4.value.start.round().toString()
+                                  //         ,controller.values4.value.end.round().toString())}');
+                                  //    },
+                                  //
+                                  // ),
                                 ),
                                 ListTile(
                                   title: Text(
@@ -542,12 +577,8 @@ class TopSellingStoreAllProductsView
                                     max: 100,
                                     values: controller.values1.value,
                                     labels: RangeLabels(
-                                        controller.values1.value.start
-                                            .round()
-                                            .toString(),
-                                        controller.values1.value.end
-                                            .round()
-                                            .toString()),
+                                       "${controller.values1.value.start.round().toString()}%",
+                                        "${controller.values1.value.end.round().toString()}%"),
                                     onChanged: (value) {
                                       controller.values1.value = value;
                                       print(
@@ -631,15 +662,10 @@ class TopSellingStoreAllProductsView
                                                                     244,
                                                                     1),
                                                             onChanged: (value) {
-                                                              controller
-                                                                      .radioGValues
-                                                                      .value =
+                                                              controller.radioGValues.value =
                                                                   value
                                                                       as String;
-                                                              controller.radioGValues
-                                                                          .value !=
-                                                                      null
-                                                                  ? controller
+                                                              controller.radioGValues.value != null ? controller
                                                                           .isOp2
                                                                           .value ==
                                                                       true
@@ -813,9 +839,7 @@ class TopSellingStoreAllProductsView
                                                                 onChanged:
                                                                     (value) {
                                                                   // value = false;
-                                                                  controller
-                                                                          .radioGValues1
-                                                                          .value =
+                                                                  controller.radioGValues1.value =
                                                                       value
                                                                           as String;
                                                                   controller.radioGValues1
@@ -899,8 +923,7 @@ class TopSellingStoreAllProductsView
                                                   children: [
                                                     InkWell(
                                                       onTap: () {
-                                                        controller
-                                                            .subData[controller
+                                                        controller.subData[controller
                                                                 .subDataIndex
                                                                 .value]
                                                             .fields!
@@ -1026,68 +1049,63 @@ class TopSellingStoreAllProductsView
                           child: InkWell(
                             onTap: () {
                               List reqList = [];
-                              if (controller.subData.isEmpty) {
-
-                              } else {
-                                for (int i = 0;
-                                    i <
-                                        controller
-                                            .subData[
-                                                controller.subDataIndex.value]
-                                            .fields!
-                                            .length;
-                                    i++) {
+                              for (int i = 0;
+                                  i <
+                                      controller
+                                          .subData[
+                                              controller.subDataIndex.value]
+                                          .fields!
+                                          .length;
+                                  i++) {
+                                if (!isNullEmptyOrFalse(controller
+                                    .subData[controller.subDataIndex.value]
+                                    .fields![i]
+                                    .id)) {
+                                  List data = [];
+                                  data.add(controller
+                                      .subData[controller.subDataIndex.value]
+                                      .fields![i]
+                                      .id);
                                   if (!isNullEmptyOrFalse(controller
                                       .subData[controller.subDataIndex.value]
                                       .fields![i]
-                                      .id)) {
-                                    List data = [];
-                                    data.add(controller
-                                        .subData[controller.subDataIndex.value]
-                                        .fields![i]
-                                        .id);
-                                    if (!isNullEmptyOrFalse(controller
-                                        .subData[controller.subDataIndex.value]
-                                        .fields![i]
-                                        .values)) {
-                                      List selectedValue = [];
-                                      for (int j = 0;
-                                          j <
-                                              controller
-                                                  .subData[controller
-                                                      .subDataIndex.value]
-                                                  .fields![i]
-                                                  .values!
-                                                  .length;
-                                          j++) {
-                                        if (controller
+                                      .values)) {
+                                    List selectedValue = [];
+                                    for (int j = 0;
+                                        j <
+                                            controller
                                                 .subData[controller
                                                     .subDataIndex.value]
                                                 .fields![i]
-                                                .isChecked![j] ==
-                                            true) {
-                                          selectedValue.add(controller
+                                                .values!
+                                                .length;
+                                        j++) {
+                                      if (controller
                                               .subData[
                                                   controller.subDataIndex.value]
                                               .fields![i]
-                                              .values![j]);
-                                        }
+                                              .isChecked![j] ==
+                                          true) {
+                                        selectedValue.add(controller
+                                            .subData[
+                                                controller.subDataIndex.value]
+                                            .fields![i]
+                                            .values![j]);
                                       }
-                                      data.add(selectedValue);
-                                    } else {
-                                      data.add([]);
                                     }
-                                    reqList.add(data);
+                                    data.add(selectedValue);
+                                  } else {
+                                    data.add([]);
                                   }
-                                  print("Request List := ${reqList}");
-
-                                  print(
-                                      "${controller.subData[controller.subDataIndex.value].fields![i].values}==> ${controller.subData[controller.subDataIndex.value].fields![i].isChecked}");
+                                  reqList.add(data);
                                 }
+                                print("Request List := ${reqList}");
+
+                                print(
+                                    "${controller.subData[controller.subDataIndex.value].fields![i].values}==> ${controller.subData[controller.subDataIndex.value].fields![i].isChecked}");
                               }
                               controller.getFilterData(
                                   reqList: reqList, context: context);
-                              Get.back();
                             },
                             child: Container(
                               margin: EdgeInsets.only(
@@ -1239,74 +1257,51 @@ class TopSellingStoreAllProductsView
                                           ),
                                         ),
                                       ),
-                                      DropdownButton(
-                                        value: controller.selectedValue,
-                                        onChanged: (value) {
-                                          controller.selectedValue = value.toString();
+                                      PopupMenuButton<int>(
+                                        itemBuilder: (context) {
+                                          return List.generate(
+                                              controller.location.length,
+                                              (index) => PopupMenuItem(
+                                                    child: Text(controller
+                                                        .location[index]),
+                                                    onTap: () {
+                                                      controller.price.value =
+                                                          controller
+                                                              .location[index];
+                                                      controller.price
+                                                          .refresh();
+                                                    },
+                                                  ));
                                         },
-
-                                        items: [
-                                          DropdownMenuItem(
-                                            child: Text(
-                                              "New Arrivals",
-                                              textAlign: TextAlign.center,
-                                              style: GoogleFonts.raleway(
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.black54,
+                                        child: Expanded(
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Container(
+                                                child: Text("${controller.price.value}",
+                                                  style: GoogleFonts.raleway(
+                                                      fontWeight: FontWeight.w600,
+                                                      color: Colors.black,
+                                                      fontSize: 15
+                                                  ),
+                                                ),
                                               ),
-                                            ),
-                                            value: 0,
+                                              SizedBox(width: 10,),
+                                              Container(
+                                                child: Icon(Icons.keyboard_arrow_down_outlined,
+                                                  color: Colors.black,
+                                                ),
+                                              )
+                                            ],
                                           ),
-                                          DropdownMenuItem(
-                                            child: Text(
-                                              "Price: Low-High",
-                                              style: GoogleFonts.raleway(
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.black54,
-                                              ),
-                                            ),
-                                            value: 1,
-                                          ),
-                                          DropdownMenuItem(
-                                            child: Text(
-                                              "Price: High-Low",
-                                              style: GoogleFonts.raleway(
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.black54,
-                                              ),
-                                            ),
-                                            value: 2,
-                                          ),
-                                          DropdownMenuItem(
-                                            child: Text(
-                                              "Discount: Low-High",
-                                              style: GoogleFonts.raleway(
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.black54,
-                                              ),
-                                            ),
-                                            value: 3,
-                                          ),
-                                          DropdownMenuItem(
-                                            child: Text(
-                                              "Discount: High-Low",
-                                              style: GoogleFonts.raleway(
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.black54,
-                                              ),
-                                            ),
-                                            value: 4,
-                                          ),
-                                        ],
+                                        ),
                                       ),
                                     ],
                                   ),
                                 ),
-                                SizedBox(
-                                  width: 5,
-                                ),
                               ],
                             ),
+                            Spacer(),
                             Container(
                               height: 300,
                               width: 250,
@@ -1319,6 +1314,7 @@ class TopSellingStoreAllProductsView
                                   fontSize: 20,
                                   color: Color.fromRGBO(33, 43, 54, 1)),
                             ),
+                            Spacer(),
                           ],
                         ),
                       )
@@ -1371,83 +1367,44 @@ class TopSellingStoreAllProductsView
                                         ),
                                       ),
                                     ),
-                                    // Obx( () => DropdownButton(
-                                    //   hint: Text(
-                                    //     'Book Type',
-                                    //   ),
-                                    //   onChanged: (newValue) {
-                                    //     controller.setSelected(newValue.toString());
-                                    //   },
-                                    //   value: controller.selected.value,
-                                    //   items: controller.DropdownData.map((selectedType) {
-                                    //     return DropdownMenuItem(
-                                    //       child: new Text(
-                                    //         selectedType,
-                                    //       ),
-                                    //       value: selectedType,
-                                    //     );
-                                    //   }).toList(),
-                                    // )
-                                    // ),
-                                    // DropdownButton(
-                                    //   value: 1,
-                                    //   onChanged: (value) {
-                                    //      controller.selectedValue = value.toString();
-                                    //   },
-                                    //   items: [
-                                    //     DropdownMenuItem(
-                                    //       child: Text(
-                                    //         "New Arrivals",
-                                    //         textAlign: TextAlign.center,
-                                    //         style: GoogleFonts.raleway(
-                                    //           fontWeight: FontWeight.bold,
-                                    //           color: Colors.black54,
-                                    //         ),
-                                    //       ),
-                                    //       value: 0,
-                                    //     ),
-                                    //     DropdownMenuItem(
-                                    //       child: Text(
-                                    //         "Price: Low-High",
-                                    //         style: GoogleFonts.raleway(
-                                    //           fontWeight: FontWeight.bold,
-                                    //           color: Colors.black54,
-                                    //         ),
-                                    //       ),
-                                    //       value: 1,
-                                    //     ),
-                                    //     DropdownMenuItem(
-                                    //       child: Text(
-                                    //         "Price: High-Low",
-                                    //         style: GoogleFonts.raleway(
-                                    //           fontWeight: FontWeight.bold,
-                                    //           color: Colors.black54,
-                                    //         ),
-                                    //       ),
-                                    //       value: 2,
-                                    //     ),
-                                    //     DropdownMenuItem(
-                                    //       child: Text(
-                                    //         "Discount: Low-High",
-                                    //         style: GoogleFonts.raleway(
-                                    //           fontWeight: FontWeight.bold,
-                                    //           color: Colors.black54,
-                                    //         ),
-                                    //       ),
-                                    //       value: 3,
-                                    //     ),
-                                    //     DropdownMenuItem(
-                                    //       child: Text(
-                                    //         "Discount: High-Low",
-                                    //         style: GoogleFonts.raleway(
-                                    //           fontWeight: FontWeight.bold,
-                                    //           color: Colors.black54,
-                                    //         ),
-                                    //       ),
-                                    //       value: 4,
-                                    //     ),
-                                    //   ],
-                                    // ),
+                                    PopupMenuButton<int>(
+                                      itemBuilder: (context) {
+                                        return List.generate(
+                                            controller.location.length,
+                                            (index) => PopupMenuItem(
+                                                  child: Text(controller
+                                                      .location[index]),
+                                                  onTap: () {
+                                                    controller.price.value =
+                                                        controller
+                                                            .location[index];
+                                                    controller.price.refresh();
+                                                  },
+                                                ));
+                                      },
+                                      child: Expanded(
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                          children: [
+                                            Container(
+                                              child: Text("${controller.price.value}",
+                                                style: GoogleFonts.raleway(
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Colors.black,
+                                                  fontSize: 15
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(width: 10,),
+                                            Container(
+                                              child: Icon(Icons.keyboard_arrow_down_outlined,
+                                                color: Colors.black,
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
