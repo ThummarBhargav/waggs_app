@@ -14,6 +14,8 @@ import 'package:http/http.dart' as http;
 import 'package:waggs_app/app/constant/SizeConstant.dart';
 import 'package:waggs_app/main.dart';
 
+import '../../../routes/app_pages.dart';
+
 class TopSellingStoreAllProductsController extends GetxController {
   //TODO: Implement TopSellingStoreAllProductsController
   Sellers data = Get.arguments;
@@ -179,29 +181,39 @@ class TopSellingStoreAllProductsController extends GetxController {
   }
 
   Future<void> addToCart({required Products0 data}) async {
-    print('Bearer ${box.read(ArgumentConstant.token)}');
-    print('${data.sId}');
-    try{
-      var url = Uri.parse(baseUrl+ApiConstant.Cart);
-      var response = await http.post(url, body: {
-        'productId': '${data.sId}',
-      },headers: {
-        'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
-      }
-      );
-      respons.add(response.body);
-      print(jsonDecode(response.body).runtimeType);
-      print('Response status: ${response.statusCode}');
-      print('Response body: ${response.body}');
-      if(response.statusCode==200){
-        Get.snackbar("Success","Product Successfully add to cart",snackPosition: SnackPosition.BOTTOM);
-      }
-      else{
-        Get.snackbar("Error", "Product already in cart",snackPosition: SnackPosition.BOTTOM);
-      }
-    }catch(e){
-      Get.snackbar("Error", e.toString(),snackPosition: SnackPosition.BOTTOM,);
+    if((box.read(ArgumentConstant.isUserLogin) == null)){
+      Get.toNamed(Routes.LOGIN_SCREEN);
+    }else{
+      print('Bearer ${box.read(ArgumentConstant.token)}');
+      try{
+        var url = Uri.parse(baseUrl+ApiConstant.Cart);
+        var response ;
+        await http.post(url, body: {
+          'productId': '${data.sId}',
+        },headers: {
+          'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+        }
+        ).then((value) {
+          response = value;
+          CartProductApi();
+          CartCount();
 
+        });
+        respons.add(response.body);
+        print(jsonDecode(response.body).runtimeType);
+        print('Response status: ${response.statusCode}');
+        print('Response body: ${response.body}');
+        if(response.statusCode==200){
+          Get.snackbar("Success","Product Successfully add to cart",snackPosition: SnackPosition.BOTTOM,backgroundColor: Colors.green);
+
+        }
+        else{
+          Get.snackbar("Error", "Product already in cart",snackPosition: SnackPosition.BOTTOM,backgroundColor: Colors.orangeAccent);
+        }
+      }catch(e){
+        Get.snackbar("Error", e.toString(),snackPosition: SnackPosition.BOTTOM,backgroundColor: Colors.orangeAccent);
+
+      }
     }
   }
 
