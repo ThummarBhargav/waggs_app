@@ -13,7 +13,7 @@ class TabBar1View extends GetView<TabBar1Controller> {
   const TabBar1View({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return Obx(()=>SafeArea(
         child:  Scaffold(
           appBar: AppBar(
             elevation: 0.0,
@@ -31,8 +31,8 @@ class TabBar1View extends GetView<TabBar1Controller> {
             ],
             bottom:TabBar(
               onTap: (index){
-                // controller.activeIndex = index;
-                // print("i==>${controller.activeIndex}");
+                controller.activeIndex.value = index;
+                print("i==>${controller.activeIndex.value}");
               },
               controller: controller.tabController,
               indicatorColor:Colors.transparent,
@@ -46,7 +46,7 @@ class TabBar1View extends GetView<TabBar1Controller> {
                       width: 30,
                       // margin: EdgeInsets.only(left: 5,top: 0),
                       decoration: BoxDecoration(
-                        color: Colors.orange,
+                        color: controller.activeIndex.value==0?Colors.orange:Colors.grey,
                         shape: BoxShape.circle,
                       ),
                       child: Icon(Icons.location_on_outlined,color: Colors.white,),
@@ -62,7 +62,7 @@ class TabBar1View extends GetView<TabBar1Controller> {
                               style: GoogleFonts.raleway(
                                 fontSize: 12,
                                 fontWeight: FontWeight.bold,
-                                color:controller.activeIndex==0?Color.fromRGBO(32, 193, 244, 1):Colors.white,
+                                color:Color.fromRGBO(32, 193, 244, 1),
                               ),
                             ),
                           ),
@@ -72,7 +72,7 @@ class TabBar1View extends GetView<TabBar1Controller> {
                               style: GoogleFonts.raleway(
                                 fontSize: 10,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.orange,
+                                color:controller.activeIndex.value==0? Colors.orange:Colors.grey,
                               ),
                             ),
                           ),
@@ -87,7 +87,7 @@ class TabBar1View extends GetView<TabBar1Controller> {
                       height: 30,
                       width: 30,
                       decoration: BoxDecoration(
-                        color: Colors.grey,
+                        color: controller.activeIndex.value==1? Colors.orange:Colors.grey,
                         shape: BoxShape.circle,
                       ),
                       child: Icon(Icons.local_shipping_outlined,color: Colors.white,),
@@ -113,7 +113,7 @@ class TabBar1View extends GetView<TabBar1Controller> {
                               style: GoogleFonts.raleway(
                                 fontSize: 10,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.grey,
+                                color: controller.activeIndex.value==1? Colors.orange:Colors.grey,
                               ),
                             ),
                           ),
@@ -129,7 +129,7 @@ class TabBar1View extends GetView<TabBar1Controller> {
                       width: 30,
                       // margin: EdgeInsets.only(left: 5,top: 20),
                       decoration: BoxDecoration(
-                        color: Colors.grey,
+                        color: controller.activeIndex.value==2? Colors.orange:Colors.grey,
                         shape: BoxShape.circle,
                       ),
                       child: Icon(Icons.payment,color: Colors.white,),
@@ -154,7 +154,7 @@ class TabBar1View extends GetView<TabBar1Controller> {
                             style: GoogleFonts.raleway(
                               fontSize: 10,
                               fontWeight: FontWeight.bold,
-                              color: Colors.grey,
+                              color: controller.activeIndex.value==2? Colors.orange:Colors.grey,
                             ),
                           ),
                         ),
@@ -169,10 +169,10 @@ class TabBar1View extends GetView<TabBar1Controller> {
           body: TabBarView(
               controller: controller.tabController,
               children:[
-               // Get.toNamed(Routes.VIEW_ALL_MY_CART),
+                // Get.toNamed(Routes.VIEW_ALL_MY_CART),
               ]
           ),
         )
-    );
+    ));
   }
 }
