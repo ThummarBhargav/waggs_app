@@ -174,10 +174,10 @@ class TabBar1View extends GetView<TabBar1Controller> {
             children: [
               // Icon(Icons.directions_car),
               ViewAllMyCartView(),
+              AddToCartShippingViewView(),
               // Tab(
               //     // Get.toNamed(Routes.O_T_P_SCREEN);
-              // ),
-              Icon(Icons.directions_transit),
+              // )
               Icon(Icons.directions_bike),
             ],
               // children:[
