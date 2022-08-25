@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:waggs_app/app/Modal/CartCountModel.dart';
 import 'package:waggs_app/app/Modal/CartProductModel.dart';
@@ -90,14 +91,14 @@ class ViewProductController extends GetxController {
       print('Response status: ${response.statusCode}');
       print('Response body: ${response.body}');
       if(response.statusCode==200){
-        Get.snackbar("Success","Product Successfully add to cart",snackPosition: SnackPosition.BOTTOM);
+        Get.snackbar("Success","Product Successfully add to cart",snackPosition: SnackPosition.BOTTOM,backgroundColor: Colors.green);
 
       }
       else{
-        Get.snackbar("Error", "Product already in cart",snackPosition: SnackPosition.BOTTOM);
+        Get.snackbar("Error", "Product already in cart",snackPosition: SnackPosition.BOTTOM,backgroundColor: Colors.orangeAccent);
       }
     }catch(e){
-      Get.snackbar("Error", e.toString(),snackPosition: SnackPosition.BOTTOM,);
+      Get.snackbar("Error", e.toString(),snackPosition: SnackPosition.BOTTOM,backgroundColor: Colors.orangeAccent);
 
     }
   }
