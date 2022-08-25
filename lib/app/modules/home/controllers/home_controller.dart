@@ -8,6 +8,7 @@ import 'package:waggs_app/app/Modal/CategoryModel.dart';
 import 'package:waggs_app/app/Modal/SubCategoryModel.dart';
 import 'package:waggs_app/app/Modal/TopSellingStore.dart';
 import 'package:waggs_app/app/constant/sizeConstant.dart';
+import 'package:waggs_app/app/routes/app_pages.dart';
 import '../../../../main.dart';
 import '../../../Modal/GetAllProductModule.dart';
 import '../../../Modal/bannerAllProductModel.dart';
@@ -178,35 +179,39 @@ class HomeController extends GetxController {
   }
 
   Future<void> addToCart({required Products0 data}) async {
-    print('Bearer ${box.read(ArgumentConstant.token)}');
-    try{
-      var url = Uri.parse(baseUrl+ApiConstant.Cart);
-      var response ;
-       await http.post(url, body: {
-        'productId': '${data.sId}',
-      },headers: {
-        'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
-      }
-      ).then((value) {
-        response = value;
-        CartProductApi();
-        CartCount();
+    if((box.read(ArgumentConstant.isUserLogin) == null)){
+      Get.toNamed(Routes.LOGIN_SCREEN);
+    }else{
+      print('Bearer ${box.read(ArgumentConstant.token)}');
+      try{
+        var url = Uri.parse(baseUrl+ApiConstant.Cart);
+        var response ;
+        await http.post(url, body: {
+          'productId': '${data.sId}',
+        },headers: {
+          'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+        }
+        ).then((value) {
+          response = value;
+          CartProductApi();
+          CartCount();
 
-       });
-      respons.add(response.body);
-      print(jsonDecode(response.body).runtimeType);
-      print('Response status: ${response.statusCode}');
-      print('Response body: ${response.body}');
-      if(response.statusCode==200){
-        Get.snackbar("Success","Product Successfully add to cart",snackPosition: SnackPosition.BOTTOM);
+        });
+        respons.add(response.body);
+        print(jsonDecode(response.body).runtimeType);
+        print('Response status: ${response.statusCode}');
+        print('Response body: ${response.body}');
+        if(response.statusCode==200){
+          Get.snackbar("Success","Product Successfully add to cart",snackPosition: SnackPosition.BOTTOM);
+
+        }
+        else{
+          Get.snackbar("Error", "Product already in cart",snackPosition: SnackPosition.BOTTOM);
+        }
+      }catch(e){
+        Get.snackbar("Error", e.toString(),snackPosition: SnackPosition.BOTTOM,);
 
       }
-      else{
-        Get.snackbar("Error", "Product already in cart",snackPosition: SnackPosition.BOTTOM);
-      }
-    }catch(e){
-      Get.snackbar("Error", e.toString(),snackPosition: SnackPosition.BOTTOM,);
-
     }
   }
 
