@@ -1195,8 +1195,10 @@ class TopSellingStoreAllProductsView
                         if((box.read(ArgumentConstant.isUserLogin) == null)){
                           Get.toNamed(Routes.LOGIN_SCREEN);
                         }
-                        controller.isFilterDrawer.value = false;
-                        ScaffoldKey2.currentState!.openEndDrawer();
+                       else{
+                          controller.isFilterDrawer.value = false;
+                          ScaffoldKey2.currentState!.openEndDrawer();
+                        }
                       },
                       icon: Icon(
                         Icons.shopping_cart,
