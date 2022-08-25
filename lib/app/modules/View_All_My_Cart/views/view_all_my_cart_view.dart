@@ -12,7 +12,7 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
   const ViewAllMyCartView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return GetBuilder<ViewAllMyCartController>(init: ViewAllMyCartController(),builder: (controller){return SafeArea(
         child: Obx(() => Scaffold(
           backgroundColor: Colors.white,
           body: Container(
@@ -34,8 +34,8 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                                   margin: EdgeInsets.all(10),
                                   padding: EdgeInsets.only(bottom: 20),
                                   decoration: BoxDecoration(
-                                    border: Border.all(width: 1,color: Colors.grey.shade400),
-                                    borderRadius: BorderRadius.all(Radius.circular(10))
+                                      border: Border.all(width: 1,color: Colors.grey.shade400),
+                                      borderRadius: BorderRadius.all(Radius.circular(10))
                                   ),
                                   child: Column(
                                     children: [
@@ -91,7 +91,7 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                                                                 ))),
                                                   ),
                                                   Positioned(
-                                                    width: 20,
+                                                      width: 20,
                                                       height: 20,
                                                       left: 110,
                                                       top: 6,
@@ -105,7 +105,7 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                                                           fontWeight: FontWeight.bold,
                                                           color: Colors.white,
                                                         ),),
-                                                  ))
+                                                      ))
                                                 ],
                                               )
                                             ],
@@ -114,63 +114,63 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                                               child:
                                               Column(
                                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                              Padding(
-                                                padding:
-                                                const EdgeInsets.only(
-                                                  left: 20.0,bottom: 10.0,top: 10),
-                                                child: Column(
-                                                  children: [
-                                                    Text(
-                                                      "${controller.cartProductList[index].product!.title}",
-                                                      style: TextStyle(
-                                                        fontWeight:
-                                                        FontWeight
-                                                            .bold,
-                                                        color: Color.fromRGBO(32, 193, 244, 1),
-                                                      ),
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                    const EdgeInsets.only(
+                                                        left: 20.0,bottom: 10.0,top: 10),
+                                                    child: Column(
+                                                      children: [
+                                                        Text(
+                                                          "${controller.cartProductList[index].product!.title}",
+                                                          style: TextStyle(
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .bold,
+                                                            color: Color.fromRGBO(32, 193, 244, 1),
+                                                          ),
+                                                        ),
+                                                      ],
                                                     ),
-                                                  ],
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding:
-                                                const EdgeInsets.only(
-                                                    left: 20.0,bottom: 10.0),
-                                                child: Column(
-                                                  children: [
-                                                    Text(
-                                                      "${controller.cartProductList[index].product!.description}",
-                                                        style: TextStyle(
-                                                        fontWeight:
-                                                        FontWeight
-                                                            .w400,
-                                                        color: Colors.black,
-                                                      ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                    const EdgeInsets.only(
+                                                        left: 20.0,bottom: 10.0),
+                                                    child: Column(
+                                                      children: [
+                                                        Text(
+                                                          "${controller.cartProductList[index].product!.description}",
+                                                          style: TextStyle(
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .w400,
+                                                            color: Colors.black,
+                                                          ),
+                                                        ),
+                                                      ],
                                                     ),
-                                                  ],
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding:
-                                                const EdgeInsets.only(
-                                                    left: 20.0),
-                                                child: Column(
-                                                  children: [
-                                                    Text(
-                                                      "${controller.cartProductList[index].product!.weight} Kg",
-                                                      style: TextStyle(
-                                                        fontWeight:
-                                                        FontWeight
-                                                            .w400,
-                                                        color: Colors.black,
-                                                      ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                    const EdgeInsets.only(
+                                                        left: 20.0),
+                                                    child: Column(
+                                                      children: [
+                                                        Text(
+                                                          "${controller.cartProductList[index].product!.weight} Kg",
+                                                          style: TextStyle(
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .w400,
+                                                            color: Colors.black,
+                                                          ),
+                                                        ),
+                                                      ],
                                                     ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ))
+                                                  ),
+                                                ],
+                                              ))
                                         ],
                                       ),
                                       SizedBox(height: 10,),
@@ -336,7 +336,7 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                             child: Container(
                               margin: EdgeInsets.only(left: 15, right: 15,top: 10,),
                               padding: EdgeInsets.only(
-                                left: 15
+                                  left: 15
                               ),
                               decoration: BoxDecoration(
                                 color: Colors.grey[200],
@@ -354,13 +354,13 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                                 // obscureText: controller.emailVisible.value,
                                 keyboardType: TextInputType.emailAddress,
                                 decoration: InputDecoration(
-                                    hintText: "Enter Email Address",
-                                    hintStyle: GoogleFonts.raleway(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                    enabledBorder: InputBorder.none,
-                                    focusedBorder: InputBorder.none,
+                                  hintText: "Enter Email Address",
+                                  hintStyle: GoogleFonts.raleway(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                  enabledBorder: InputBorder.none,
+                                  focusedBorder: InputBorder.none,
                                 ),
                               ),
                             ),
@@ -372,13 +372,13 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                                 Checkbox(
                                     activeColor: Colors.orange,
                                     onChanged: (value) {
-                                  controller.emailCheckBox.value = value as bool;
-                                },value: controller.emailCheckBox.value),
+                                      controller.emailCheckBox.value = value as bool;
+                                    },value: controller.emailCheckBox.value),
                                 Expanded(
                                   child: Text("SubScribe To Our New Sletter And Receive Special News And Offers",
                                     style: GoogleFonts.raleway(
-                                      fontSize: 12,
-                                      color: Colors.grey
+                                        fontSize: 12,
+                                        color: Colors.grey
                                     ),
                                   ),
                                 ),
@@ -402,9 +402,9 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                                 padding: EdgeInsets.only(left: 15,top: 10),
                                 child: Text("SHIPPING ADDRESS",
                                   style: GoogleFonts.raleway(
-                                      color: Colors.orange,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18,
+                                    color: Colors.orange,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18,
                                   ),
                                 ),
                               ),
@@ -589,14 +589,14 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                                             Expanded(flex: 4,
                                               child: Text("Country/Region",
                                                 style: GoogleFonts.raleway(
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.w500,
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w500,
                                                   color: Colors.grey.shade700,
                                                 ),
                                               ),
                                             ),
                                             Expanded(flex: 1,
-                                                child: Icon(Icons.keyboard_arrow_down_outlined),
+                                              child: Icon(Icons.keyboard_arrow_down_outlined),
                                             ),
                                           ],
                                         ),
@@ -605,40 +605,40 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                                 ),
                                 Expanded(
                                   child: Container(
-                                    margin: EdgeInsets.only(left: 15, right: 15,top: 10,),
-                                    padding: EdgeInsets.only(
-                                        left: 15,top: 15,bottom: 15
-                                    ),
-                                    decoration: BoxDecoration(
-                                      color: Colors.grey[200],
-                                      borderRadius: BorderRadius.only(
-                                        bottomLeft: Radius.circular(25),
-                                        topRight: Radius.circular(25),
-                                        bottomRight: Radius.circular(25),
+                                      margin: EdgeInsets.only(left: 15, right: 15,top: 10,),
+                                      padding: EdgeInsets.only(
+                                          left: 15,top: 15,bottom: 15
                                       ),
-                                    ),
-                                    child: InkWell(
-                                      onTap: () {
+                                      decoration: BoxDecoration(
+                                        color: Colors.grey[200],
+                                        borderRadius: BorderRadius.only(
+                                          bottomLeft: Radius.circular(25),
+                                          topRight: Radius.circular(25),
+                                          bottomRight: Radius.circular(25),
+                                        ),
+                                      ),
+                                      child: InkWell(
+                                        onTap: () {
 
-                                      },
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Expanded(flex: 2,
-                                            child: Text("State",
-                                              style: GoogleFonts.raleway(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w500,
-                                                color: Colors.grey.shade700,
+                                        },
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Expanded(flex: 2,
+                                              child: Text("State",
+                                                style: GoogleFonts.raleway(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: Colors.grey.shade700,
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                          Expanded(flex: 1,
-                                            child: Icon(Icons.keyboard_arrow_down_outlined),
-                                          ),
-                                        ],
-                                      ),
-                                    )
+                                            Expanded(flex: 1,
+                                              child: Icon(Icons.keyboard_arrow_down_outlined),
+                                            ),
+                                          ],
+                                        ),
+                                      )
                                   ),
                                 ),
                               ],
@@ -740,14 +740,14 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                                 // obscureText: controller.emailVisible.value,
                                 keyboardType: TextInputType.phone,
                                 decoration: InputDecoration(
-                                  hintText: "Mobile Number",
-                                  hintStyle: GoogleFonts.raleway(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                  enabledBorder: InputBorder.none,
-                                  focusedBorder: InputBorder.none,
-                                  suffixIcon: Icon(Icons.question_mark_rounded,color: Colors.black,)
+                                    hintText: "Mobile Number",
+                                    hintStyle: GoogleFonts.raleway(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                    enabledBorder: InputBorder.none,
+                                    focusedBorder: InputBorder.none,
+                                    suffixIcon: Icon(Icons.question_mark_rounded,color: Colors.black,)
                                 ),
                               ),
                             ),
@@ -841,7 +841,7 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                                       },
                                       child: Container(
                                         padding: EdgeInsets.only(
-                                          top: 13,bottom: 13
+                                            top: 13,bottom: 13
                                         ),
                                         alignment: Alignment.center,
                                         decoration: BoxDecoration(
@@ -990,10 +990,10 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                                     margin: EdgeInsets.only(left: 10),
                                     padding: EdgeInsets.only(top: 15,bottom: 15),
                                     decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        image: AssetImage("assets/visa.png"),
-                                      ),
-                                      border: Border.all(width: 1,color: Colors.grey.shade300)
+                                        image: DecorationImage(
+                                          image: AssetImage("assets/visa.png"),
+                                        ),
+                                        border: Border.all(width: 1,color: Colors.grey.shade300)
                                     ),
                                   ),
                                 ),
@@ -1070,9 +1070,9 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                                     ),
                                     child: Text("CONTINUE SHOPPING",
                                       style: GoogleFonts.raleway(
-                                        fontSize: 14,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w600
+                                          fontSize: 14,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w600
                                       ),
                                     ),
                                   ),
@@ -1106,6 +1106,6 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
             ),
           ),
         ))
-    );
+    );});
   }
 }

@@ -378,6 +378,7 @@ class HomeView extends GetView<HomeController> {
                                       InkWell(
                                         onTap: () {
                                           Get.toNamed(Routes.TAB_BAR1);
+                                          // Get.toNamed(Routes.TAB_BAR1);
                                         },
                                         child: Padding(
                                           padding: const EdgeInsets.only(
