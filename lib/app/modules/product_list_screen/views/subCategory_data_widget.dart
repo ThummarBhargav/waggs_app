@@ -1325,6 +1325,7 @@ class _SubCategoryWidgetState extends State<SubCategoryWidget> {
                         fontSize: 20,
                         color: Color.fromRGBO(33, 43, 54, 1)),
                   ),
+                  Spacer(),
                 ],
               ),
             )

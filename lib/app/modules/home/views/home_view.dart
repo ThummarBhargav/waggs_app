@@ -805,7 +805,7 @@ class HomeView extends GetView<HomeController> {
                                               height: 35,
                                               alignment: Alignment.center,
                                               decoration: BoxDecoration(
-                                                color: Colors.cyan,
+                                                color: Color.fromRGBO(32, 193, 244, 1),
                                                 borderRadius: BorderRadius.only(
                                                   topRight: Radius.circular(25),
                                                   bottomRight:
@@ -1106,7 +1106,7 @@ class HomeView extends GetView<HomeController> {
                                                     height: 35,
                                                     alignment: Alignment.center,
                                                     decoration: BoxDecoration(
-                                                      color: Colors.cyan,
+                                                      color: Color.fromRGBO(32, 193, 244, 1),
                                                       borderRadius:
                                                           BorderRadius.only(
                                                         topRight:
