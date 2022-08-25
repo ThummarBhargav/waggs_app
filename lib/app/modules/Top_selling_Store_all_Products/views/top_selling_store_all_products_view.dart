@@ -1287,11 +1287,9 @@ class TopSellingStoreAllProductsView
                                     ],
                                   ),
                                 ),
-                                SizedBox(
-                                  width: 5,
-                                ),
                               ],
                             ),
+                            Spacer(),
                             Container(
                               height: 300,
                               width: 250,
@@ -1304,6 +1302,7 @@ class TopSellingStoreAllProductsView
                                   fontSize: 20,
                                   color: Color.fromRGBO(33, 43, 54, 1)),
                             ),
+                            Spacer(),
                           ],
                         ),
                       )
