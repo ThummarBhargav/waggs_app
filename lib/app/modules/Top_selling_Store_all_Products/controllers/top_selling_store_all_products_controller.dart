@@ -42,7 +42,7 @@ class TopSellingStoreAllProductsController extends GetxController {
   Count1 count1 = Count1();
   RxList<Count1> Countlist = RxList<Count1>([]);
   RxList<Fields> fieldData = RxList<Fields>([]);
-  RxString price = "select role".obs;
+  RxString price = "New Arrivals".obs;
   RxList<String> location = RxList<String>(["New Arrivals","Price: Low-High","Price: High-Low","Discount: Low-High","Discount: High-Low"]);
   RxList<Products> productList = RxList<Products>([]);
   RxList<SubCategoryData> SubCatagoryList = RxList<SubCategoryData>([]);
