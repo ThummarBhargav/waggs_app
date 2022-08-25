@@ -28,7 +28,16 @@ class TopSellingStoreAllProductsView
             controller.radioGValues.value = "";
             controller.isOp2.value = false;
             controller.isOp.value = false;
+            controller.subData[controller.subDataIndex.value].fields!.forEach((element) {
+              element.isChecked!.forEach((element) {
+                element = false;
+              });
+              element.isChecked!.refresh();
+            });
             controller.subData.clear();
+            controller.AllCategory();
+            controller.SubCategory();
+
             print("Value :::=== $val");
           },
           endDrawer: GestureDetector(
@@ -469,7 +478,22 @@ class TopSellingStoreAllProductsView
                                   controller.radioGValues.value = "";
                                   controller.isOp2.value = false;
                                   controller.isOp.value = false;
+                                  controller.subData.forEach((ele) {
+                                    ele.fields!.forEach((element) {
+                                      element.isExpanded!.value = false;
+                                      element.isChecked!.forEach((element) {
+                                        element = false;
+                                      });
+                                      element.isChecked!.refresh();
+                                      element.isExpanded!.refresh();
+                                      controller.refresh();
+                                    });
+                                  });
+
                                   controller.subData.clear();
+                                  controller.AllCategory();
+                                  controller.SubCategory();
+
                                 },
                                 child: Container(
                                   child: Text(
@@ -1263,7 +1287,7 @@ class TopSellingStoreAllProductsView
                                         },
                                         child: Container(
                                           height: 20,
-                                          width: 300,
+                                          width: 100,
                                           decoration: BoxDecoration(
                                             border: Border.all(
                                                 color: Colors.grey.shade300),
@@ -1277,7 +1301,7 @@ class TopSellingStoreAllProductsView
                                             children: [
                                               Text(
                                                 controller.price.value,
-                                                style: TextStyle(fontSize: 15),
+                                                style: TextStyle(fontSize: 15,color: Colors.black),
                                               ),
                                               Spacer(),
                                               Icon(Icons.arrow_drop_down,
@@ -1389,7 +1413,7 @@ class TopSellingStoreAllProductsView
                                           children: [
                                             Text(
                                               controller.price.value,
-                                              style: TextStyle(fontSize: 15),
+                                              style: TextStyle(fontSize: 15,color: Colors.black),
                                             ),
                                             Spacer(),
                                             Icon(Icons.arrow_drop_down,

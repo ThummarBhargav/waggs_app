@@ -37,12 +37,12 @@ class TopSellingStoreAllProductsController extends GetxController {
   RxBool isOp7 = false.obs;
   RxBool checkBox = false.obs;
   RxBool colorCheckBox = false.obs;
-  String selectedValue = "";
+  String selectedValue = "New Arrivals";
   RxInt subDataIndex= 0.obs;
   Count1 count1 = Count1();
   RxList<Count1> Countlist = RxList<Count1>([]);
   RxList<Fields> fieldData = RxList<Fields>([]);
-  RxString price = "select role".obs;
+  RxString price = "New Arrivals".obs;
   RxList<String> location = RxList<String>(["New Arrivals","Price: Low-High","Price: High-Low","Discount: Low-High","Discount: High-Low"]);
   RxList<Products> productList = RxList<Products>([]);
   RxList<SubCategoryData> SubCatagoryList = RxList<SubCategoryData>([]);
@@ -147,6 +147,7 @@ class TopSellingStoreAllProductsController extends GetxController {
   }
 
   SubCategory() async {
+    SubCatagoryList.clear();
     var url = Uri.parse(baseUrl + ApiConstant.AllSubCategory);
     var response = await http.get(url);
     print('response status:${response.request}');
