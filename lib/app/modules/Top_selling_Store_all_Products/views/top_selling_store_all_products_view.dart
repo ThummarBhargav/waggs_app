@@ -25,6 +25,8 @@ class TopSellingStoreAllProductsView
           key: ScaffoldKey2,
           drawerEdgeDragWidth: 0,
           onEndDrawerChanged: (val) {
+            controller.values4.value= RangeValues(100, 30000);
+            controller.values1.value= RangeValues(0, 100);
             controller.radioGValues.value = "";
             controller.isOp2.value = false;
             controller.isOp.value = false;
@@ -280,10 +282,8 @@ class TopSellingStoreAllProductsView
                                                                   },
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsets
-                                                                            .only(
-                                                                        left:
-                                                                            8.0,
+                                                                    padding: const EdgeInsets.only(
+                                                                        left: 8.0,
                                                                         right:
                                                                             5),
                                                                     child: Icon(
@@ -475,6 +475,8 @@ class TopSellingStoreAllProductsView
                               ),
                               InkWell(
                                 onTap: () {
+                                  controller.values4.value= RangeValues(100, 30000);
+                                  controller.values1.value= RangeValues(0, 100);
                                   controller.radioGValues.value = "";
                                   controller.isOp2.value = false;
                                   controller.isOp.value = false;
@@ -525,16 +527,14 @@ class TopSellingStoreAllProductsView
                                 Obx(
                                   () => RangeSlider(
                                     values: controller.values4.value,
-                                    min: 0,
-                                    max: 100,
-                                    divisions: 1,
+                                    activeColor: Colors.lightBlue[300],
+                                    inactiveColor: Colors.lightBlue[200],
+                                    min: 100,
+                                    max: 30000,
+                                    divisions: 3000,
                                     labels: RangeLabels(
-                                      controller.values4.value.start
-                                          .round()
-                                          .toString(),
-                                      controller.values4.value.end
-                                          .round()
-                                          .toString(),
+                                      "\u{20B9}${controller.values4.value.start.round().toString()}",
+                                      "\u{20B9}${controller.values4.value.end.round().toString()}",
                                     ),
                                     onChanged: (RangeValues values) {
                                       controller.values4.value = values;
@@ -577,12 +577,8 @@ class TopSellingStoreAllProductsView
                                     max: 100,
                                     values: controller.values1.value,
                                     labels: RangeLabels(
-                                        controller.values1.value.start
-                                            .round()
-                                            .toString(),
-                                        controller.values1.value.end
-                                            .round()
-                                            .toString()),
+                                       "${controller.values1.value.start.round().toString()}%",
+                                        "${controller.values1.value.end.round().toString()}%"),
                                     onChanged: (value) {
                                       controller.values1.value = value;
                                       print(
@@ -666,15 +662,10 @@ class TopSellingStoreAllProductsView
                                                                     244,
                                                                     1),
                                                             onChanged: (value) {
-                                                              controller
-                                                                      .radioGValues
-                                                                      .value =
+                                                              controller.radioGValues.value =
                                                                   value
                                                                       as String;
-                                                              controller.radioGValues
-                                                                          .value !=
-                                                                      null
-                                                                  ? controller
+                                                              controller.radioGValues.value != null ? controller
                                                                           .isOp2
                                                                           .value ==
                                                                       true
@@ -848,9 +839,7 @@ class TopSellingStoreAllProductsView
                                                                 onChanged:
                                                                     (value) {
                                                                   // value = false;
-                                                                  controller
-                                                                          .radioGValues1
-                                                                          .value =
+                                                                  controller.radioGValues1.value =
                                                                       value
                                                                           as String;
                                                                   controller.radioGValues1
@@ -934,8 +923,7 @@ class TopSellingStoreAllProductsView
                                                   children: [
                                                     InkWell(
                                                       onTap: () {
-                                                        controller
-                                                            .subData[controller
+                                                        controller.subData[controller
                                                                 .subDataIndex
                                                                 .value]
                                                             .fields!
