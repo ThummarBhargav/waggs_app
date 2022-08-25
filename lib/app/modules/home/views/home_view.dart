@@ -458,7 +458,7 @@ class HomeView extends GetView<HomeController> {
                                       decoration: InputDecoration(
                                         hintText: "Search Product...",
                                         hintStyle: GoogleFonts.roboto(
-                                          fontSize: 12,
+                                          fontSize: 15,
                                           fontWeight: FontWeight.w500,
                                         ),
                                         enabledBorder: InputBorder.none,
@@ -489,11 +489,15 @@ class HomeView extends GetView<HomeController> {
                                             onPressed: () {
                                               if((box.read(ArgumentConstant.isUserLogin) == null)){
                                                 Get.toNamed(Routes.LOGIN_SCREEN);
+                                                scaffoldKey.currentState!.closeEndDrawer();
                                               }
-                                              controller.CartProductApi();
-                                              controller.CartCount();
-                                              scaffoldKey.currentState!
-                                                  .openEndDrawer();
+                                              else{
+                                                controller.CartProductApi();
+                                                controller.CartCount();
+                                                scaffoldKey.currentState!
+                                                    .openEndDrawer();
+                                              }
+
                                             },
                                             icon: Icon(
                                               Icons.shopping_cart,
