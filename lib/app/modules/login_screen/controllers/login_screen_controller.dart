@@ -53,6 +53,7 @@ Rx<TextEditingController> passController = TextEditingController().obs;
               box.write(ArgumentConstant.token, res.data!.token);
               box.write(ArgumentConstant.isUserLogin, true);
               box.write(ArgumentConstant.email, res.data!.user!.email);
+              box.write(ArgumentConstant.email, '${passController.value.text}');
               box.write(ArgumentConstant.name, res.data!.user!.name);
               box.write(ArgumentConstant.address, res.data!.user!.address);
               box.write(ArgumentConstant.phone, res.data!.user!.mobile);

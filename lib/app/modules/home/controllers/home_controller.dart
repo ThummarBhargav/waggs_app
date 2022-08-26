@@ -74,6 +74,8 @@ class HomeController extends GetxController {
     super.onClose();
   }
 
+
+
   AllCategory() async {
     var url = Uri.parse(baseUrl+ApiConstant.AllCategory);
     var response = await http.get(url);

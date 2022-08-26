@@ -565,9 +565,12 @@ class HomeView extends GetWidget<HomeController> {
                                           confirmTextColor: Colors.white,
                                           cancelTextColor: Colors.cyan,
                                           buttonColor: Colors.cyan,
-                                          onCancel: (){},
+                                          onCancel: (){
+
+                                          },
                                           onConfirm: (){
-                                          Get.back();
+                                          box.erase();
+                                          Get.offAllNamed(Routes.HOME);
                                           },
                                           );
                               },
