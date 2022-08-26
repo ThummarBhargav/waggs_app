@@ -164,11 +164,15 @@ class TabBar1View extends GetView<TabBar1Controller> {
             physics: NeverScrollableScrollPhysics(),
               controller: controller.tabController,
             children: [
-              ViewAllMyCartView(
-
-              ),
+              ViewAllMyCartView(),
               AddToCartShippingViewView(),
-              Icon(Icons.directions_bike),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text("Payment coming soon",style: TextStyle(color: Colors.orange,fontWeight: FontWeight.bold,fontSize: 30),),
+                ],
+              ),
             ],
           ),
         )

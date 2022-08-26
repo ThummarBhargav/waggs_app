@@ -419,7 +419,7 @@ class _SubCategoryWidgetState extends State<SubCategoryWidget> {
                                   );
                                 },
                               )),
-                          controller.cartProductList == null
+                          controller.cartProductList.isEmpty
                               ? Container()
                               : Expanded(
                               flex: 2,

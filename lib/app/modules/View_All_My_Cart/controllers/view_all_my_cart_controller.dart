@@ -171,4 +171,39 @@ class ViewAllMyCartController extends GetxController  {
 
     }
   }
+
+  Future<void> CartDeleteApi({required Details data}) async {
+    print('Bearer ${box.read(ArgumentConstant.token)}');
+    print('${data.productId}');
+    try{
+      var headers = {
+        'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+        'Content-Type': 'application/json'
+      };
+      var request = http.Request('PUT', Uri.parse('https://api.waggs.in/api/v1/cart'));
+      request.body = json.encode({
+        "productId": "${data.productId}",
+        "quantity": 0
+      });
+      request.headers.addAll(headers);
+      http.StreamedResponse? response ;
+      await request.send().then((value){
+        response = value;
+        isLoading.value = true;
+        CartProductApi();
+        CartCount();
+      });
+      if (response!.statusCode == 200) {
+
+        Get.snackbar("Success","Product Remove From Your Cart ",snackPosition: SnackPosition.BOTTOM);
+      }
+      else {
+        print(response!.reasonPhrase);
+      }
+    }catch(e){
+      Get.snackbar("Error", e.toString(),snackPosition: SnackPosition.BOTTOM,);
+
+    }
+  }
+
 }
