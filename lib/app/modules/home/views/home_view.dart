@@ -445,7 +445,7 @@ class HomeView extends GetView<HomeController> {
                                          fontSize: 15,
                                          color: Colors.white,
                                        ),
-                                     ):Text("${box.read()}",
+                                     ):Text("${box.read(ArgumentConstant.email)}",
                                        style: GoogleFonts.aleo(
                                          fontWeight: FontWeight.w400,
                                          fontSize: 15,
