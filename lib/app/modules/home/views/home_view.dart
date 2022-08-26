@@ -448,7 +448,16 @@ class HomeView extends GetWidget<HomeController> {
                                       ),
                                       child: IconButton(
                                           onPressed: () {
-                                            Get.toNamed(Routes.LOGIN_SCREEN);
+                                            if ((box.read(ArgumentConstant
+                                                .isUserLogin) == null)) {
+                                              Get.toNamed(
+                                                  Routes.LOGIN_SCREEN);
+                                            } else {
+                                              // controller.CartProductApi();
+                                              // controller.CartCount();
+                                              // Get.toNamed(Routes.TAB_BAR1);
+                                            }
+                                            // Get.toNamed(Routes.LOGIN_SCREEN);
                                           },
                                           icon: Icon(
                                             Icons.person_outline,
