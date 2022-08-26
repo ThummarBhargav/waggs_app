@@ -23,6 +23,7 @@ abstract class Routes {
   static const TAB_BAR1 = _Paths.TAB_BAR1;
   static const SPLASH_SCREEN = _Paths.SPLASH_SCREEN;
   static const MY_ACCOUNT = _Paths.MY_ACCOUNT;
+  static const FILTER = _Paths.FILTER;
 }
 
 abstract class _Paths {
@@ -47,4 +48,5 @@ abstract class _Paths {
   static const TAB_BAR1 = '/tab-bar1';
   static const SPLASH_SCREEN = '/splash-screen';
   static const MY_ACCOUNT = '/my-account';
+  static const FILTER = '/filter';
 }

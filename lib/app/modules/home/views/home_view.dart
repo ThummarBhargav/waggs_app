@@ -10,6 +10,7 @@ import 'package:waggs_app/app/constant/ConstantUrl.dart';
 import 'package:waggs_app/app/constant/Container.dart';
 import 'package:waggs_app/app/constant/SizeConstant.dart';
 import 'package:waggs_app/app/modules/Catagory_Page/views/catagory_page_view.dart';
+import 'package:waggs_app/app/modules/filter/views/filter_view.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
 import 'package:waggs_app/main.dart';
 import '../controllers/home_controller.dart';
@@ -27,6 +28,7 @@ class HomeView extends GetWidget<HomeController> {
           controller.cartProductList.refresh();
           return Scaffold(
               key: scaffoldKey,
+              // endDrawer: FilterView(),
               endDrawer: Drawer(
                   width: 280,
                   child: controller.isFilterDrawer.isFalse

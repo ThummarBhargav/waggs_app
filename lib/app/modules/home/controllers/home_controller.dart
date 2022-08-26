@@ -290,7 +290,6 @@ class HomeController extends GetxController {
 
     }
   }
-
   Future<void> UpdateCartRemove({required Details data}) async {
     print('Bearer ${box.read(ArgumentConstant.token)}');
     var count = data.quantity!;
