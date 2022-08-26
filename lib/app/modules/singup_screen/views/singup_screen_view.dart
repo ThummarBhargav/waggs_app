@@ -316,38 +316,52 @@ class SingupScreenView extends GetView<SingupScreenController> {
                     );
                   }),
                   SizedBox(height: 20,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  Wrap(
                     children: [
-                      Container(
-                        child: Text("By Registering, I Agree To",
-                          style: GoogleFonts.roboto(
-                              fontSize: 13,
-                              color: Colors.grey
-                          ),),
-                      ),
-                      Container(
-                        child: Text(" Team Of Service",
-                          style: GoogleFonts.roboto(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black,
-                          ),),
-                      ),
-                      Container(
-                        child: Text(" And ",
-                          style: GoogleFonts.roboto(
-                              fontSize: 13,
-                              color: Colors.grey
-                          ),),
-                      ),
-                      Container(
-                        child: Text("Privacy Policy",
-                          style: GoogleFonts.roboto(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black
-                          ),),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            child: Text("By Registering, I Agree To",
+                              style: GoogleFonts.roboto(
+                                  fontSize: 13,
+                                  color: Colors.grey
+                              ),),
+                          ),
+                          InkWell(
+                            onTap: () {
+
+                            },
+                            child: Container(
+                              child: Text(" Team Of Service",
+                                style: GoogleFonts.roboto(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black,
+                                ),),
+                            ),
+                          ),
+                          Container(
+                            child: Text(" And ",
+                              style: GoogleFonts.roboto(
+                                  fontSize: 13,
+                                  color: Colors.grey
+                              ),),
+                          ),
+                          InkWell(
+                            onTap: () {
+
+                            },
+                            child: Container(
+                              child: Text("Privacy Policy",
+                                style: GoogleFonts.roboto(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black
+                                ),),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
@@ -409,6 +423,9 @@ class SingupScreenView extends GetView<SingupScreenController> {
                         ),
                       ),
                     ],
+                  ),
+                  SizedBox(
+                    height: 40,
                   ),
                 ],
               ),
