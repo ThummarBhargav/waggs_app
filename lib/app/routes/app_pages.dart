@@ -4,8 +4,6 @@ import '../../main.dart';
 import '../constant/ConstantUrl.dart';
 import '../modules/Add_To_Cart_Shipping_View/bindings/add_to_cart_shipping_view_binding.dart';
 import '../modules/Add_To_Cart_Shipping_View/views/add_to_cart_shipping_view_view.dart';
-import '../modules/Change_Password_Send_Otp_View/bindings/change_password_send_otp_view_binding.dart';
-import '../modules/Change_Password_Send_Otp_View/views/change_password_send_otp_view_view.dart';
 import '../modules/OTP_screen/bindings/o_t_p_screen_binding.dart';
 import '../modules/OTP_screen/views/o_t_p_screen_view.dart';
 import '../modules/Top_selling_Store_all_Products/bindings/top_selling_store_all_products_binding.dart';
@@ -16,6 +14,8 @@ import '../modules/email_screen/bindings/email_screen_binding.dart';
 import '../modules/email_screen/views/email_screen_view.dart';
 import '../modules/filter/bindings/filter_binding.dart';
 import '../modules/filter/views/filter_view.dart';
+import '../modules/forgot_password/bindings/forgot_password_binding.dart';
+import '../modules/forgot_password/views/forgot_password_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/login_screen/bindings/login_screen_binding.dart';
@@ -124,9 +124,9 @@ class AppPages {
       binding: FilterBinding(),
     ),
     GetPage(
-      name: _Paths.CHANGE_PASSWORD_SEND_OTP_VIEW,
-      page: () => const ChangePasswordSendOtpViewView(),
-      binding: ChangePasswordSendOtpViewBinding(),
+      name: _Paths.FORGOT_PASSWORD,
+      page: () => const ForgotPasswordView(),
+      binding: ForgotPasswordBinding(),
     ),
   ];
 }

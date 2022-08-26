@@ -25,7 +25,7 @@ class ApiConstant {
 class ArgumentConstant{
   static String token = "token";
   static String email = "email";
-  static String password = "password";
+  // static String password = "password";
   static String name = "name";
   static String  phone = "phone";
   static String address = "address";
