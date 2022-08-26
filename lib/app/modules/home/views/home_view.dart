@@ -26,7 +26,7 @@ class HomeView extends GetView<HomeController> {
         return Scaffold(
             key: scaffoldKey,
             endDrawer: Drawer(
-                width: 250,
+                width: 280,
                 child: controller.isFilterDrawer.isFalse
                     ?Column(
                   children: [
@@ -413,31 +413,36 @@ class HomeView extends GetView<HomeController> {
                    Expanded(
                      flex: 1,
                      child: Container(
-                       height: 80,
+                       height: 122,
                        child: DrawerHeader(
                            decoration: BoxDecoration(
                                color: Color.fromRGBO(32, 193, 244, 1)),
                            child: Row(
                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                              children: [
-                               Row(
+                               Column(
                                  children: [
                                    Container(
-                                     width: 30,
-                                     margin: EdgeInsets.only(right: 10),
+                                     width: 50,
+                                     height: 50,
+                                     margin: EdgeInsets.only(left: 25),
+                                     decoration: BoxDecoration(
+                                         color: Colors.white,
+                                         shape: BoxShape.circle
+                                     ),
                                      child: IconButton(
                                          onPressed: () {
                                            Get.back();
                                          },
                                          icon: Icon(
                                            Icons.person_outline,
-                                           color: Colors.white,
+                                           color: Color.fromRGBO(32, 193, 244, 1),
                                            size: 28,
                                          )),
                                    ),
                                    Container(
                                      height: 30,
-                                     margin: EdgeInsets.only(top: 10),
+                                     margin: EdgeInsets.only(top: 10,left: 25),
                                      child:box.read(ArgumentConstant.isUserLogin) == null? Text(
                                        " Sign  In ",
                                        style: GoogleFonts.aleo(
@@ -453,9 +458,6 @@ class HomeView extends GetView<HomeController> {
                                    ),)
                                  ],
                                ),
-                               IconButton(onPressed:(){Get.back();},
-                                   icon: Icon(Icons.close,color: Colors.white,
-                                     size: 15,))
                              ],
                            )),
                      ),

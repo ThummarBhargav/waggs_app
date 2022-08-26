@@ -45,8 +45,6 @@ Rx<TextEditingController> passController = TextEditingController().obs;
       print(jsonDecode(response.body).runtimeType);
       print('Response status: ${response.statusCode}');
       print('Response body: ${response.body}');
-
-
       if(response.statusCode==200){
         LoginModel res  = LoginModel.fromJson(jsonDecode(response.body));
         if(res.responseCode == 200){
@@ -55,8 +53,7 @@ Rx<TextEditingController> passController = TextEditingController().obs;
               box.write(ArgumentConstant.token, res.data!.token);
               box.write(ArgumentConstant.isUserLogin, true);
               box.write(ArgumentConstant.email, res.data!.user!.email);
-              // Get.toNamed(Routes.HOME);
-              Get.back();
+               Get.offAllNamed(Routes.HOME);
               print(box.read(ArgumentConstant.isUserLogin));
             }
           }
