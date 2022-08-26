@@ -119,14 +119,20 @@ class MyAccountView extends GetView<MyAccountController> {
                             child: Text("*********",
                               style: TextStyle(fontSize: 18),),
                           ),
-                          getcon(
-                              height: 30,
-                              width: 150,
-                              color: Colors.orange,
-                              alignment: Alignment.center,
-                              text: Text("Change Password",style: TextStyle(
-                                  color: Colors.white,fontWeight: FontWeight.w500
-                              ),))
+                          GestureDetector(
+                            onTap: () {
+                              controller.sendOtpUser();
+
+                            },
+                            child: getcon(
+                                height: 30,
+                                width: 150,
+                                color: Colors.orange,
+                                alignment: Alignment.center,
+                                text: Text("Change Password",style: TextStyle(
+                                    color: Colors.white,fontWeight: FontWeight.w500
+                                ),)),
+                          )
                         ],
                       ),
                       Divider(color: Colors.black, height: 5,endIndent: 150,),
