@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/constant/SizeConstant.dart';
+import 'package:waggs_app/app/modules/forgot_password/views/forgot_password_view.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
 import '../../../../main.dart';
 import '../../../constant/ConstantUrl.dart';
@@ -170,14 +171,19 @@ class LoginScreenView extends GetView<LoginScreenController> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Container(
-                        margin: EdgeInsets.only(top: 8, right: 10),
-                        child: Text(
-                          "Lost Your Password?",
-                          style: GoogleFonts.roboto(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                            color: Colors.cyan,
+                      GestureDetector(
+                        onTap: (){
+                          Get.toNamed(Routes.FORGOT_PASSWORD);
+                        },
+                        child: Container(
+                          margin: EdgeInsets.only(top: 8, right: 10),
+                          child: Text(
+                            "Lost Your Password?",
+                            style: GoogleFonts.roboto(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                              color: Colors.cyan,
+                            ),
                           ),
                         ),
                       ),
