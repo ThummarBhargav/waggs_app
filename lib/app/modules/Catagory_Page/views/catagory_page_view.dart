@@ -17,7 +17,6 @@ import '../../../constant/SizeConstant.dart';
 class CatagoryPageView extends GetWidget<HomeController> {
   CategoryData data;
   RxList<SubCategoryData> subData;
-
   CatagoryPageView({required this.data, required this.subData});
 
   var scaffoldKey = GlobalKey<ScaffoldState>();
