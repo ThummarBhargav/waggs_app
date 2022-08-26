@@ -446,7 +446,7 @@ class HomeView extends GetWidget<HomeController> {
                                       ),
                                       child: IconButton(
                                           onPressed: () {
-                                            Get.back();
+                                            Get.toNamed(Routes.LOGIN_SCREEN);
                                           },
                                           icon: Icon(
                                             Icons.person_outline,
@@ -504,7 +504,15 @@ class HomeView extends GetWidget<HomeController> {
                             ),
                             InkWell(
                               onTap: () {
-                                Get.toNamed(Routes.TAB_BAR1);
+                                if ((box.read(ArgumentConstant
+                                    .isUserLogin) == null)) {
+                                  Get.toNamed(
+                                      Routes.LOGIN_SCREEN);
+                                } else {
+                                  controller.CartProductApi();
+                                  controller.CartCount();
+                                  Get.toNamed(Routes.TAB_BAR1);
+                                }
                               },
                               child: ListTile(
                                 leading: Icon(Icons.shopping_cart_outlined),
@@ -513,7 +521,17 @@ class HomeView extends GetWidget<HomeController> {
                               ),
                             ),
                             InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                if ((box.read(ArgumentConstant
+                                    .isUserLogin) == null)) {
+                                  Get.toNamed(
+                                      Routes.LOGIN_SCREEN);
+                                } else {
+                                  // controller.CartProductApi();
+                                  // controller.CartCount();
+                                  // Get.toNamed(Routes.TAB_BAR1);
+                                }
+                              },
                               child: ListTile(
                                 leading: Icon(Icons.drive_folder_upload),
                                 title: Text(
@@ -530,7 +548,15 @@ class HomeView extends GetWidget<HomeController> {
                             ),
                             InkWell(
                               onTap: () {
-                                Get.toNamed(Routes.MY_ACCOUNT);
+                                if ((box.read(ArgumentConstant
+                                    .isUserLogin) == null)) {
+                                  Get.toNamed(
+                                      Routes.LOGIN_SCREEN);
+                                } else {
+                                  controller.CartProductApi();
+                                  controller.CartCount();
+                                  Get.toNamed(Routes.MY_ACCOUNT);
+                                }
                               },
                               child: ListTile(
                                 leading: Icon(Icons.account_circle_outlined),
