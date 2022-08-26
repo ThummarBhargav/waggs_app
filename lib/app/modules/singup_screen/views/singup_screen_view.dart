@@ -98,32 +98,68 @@ class SingupScreenView extends GetView<SingupScreenController> {
                     ],
                   ),
                   SizedBox(height: 8,),
-                  Container(
-                    margin: EdgeInsets.only(left: 15,right: 15),
-                    padding: EdgeInsets.only(left: 15,),
-                    decoration: BoxDecoration(
-                      color: Colors.grey[300],
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10),
-                        topRight: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
-                      ),
-                    ),
-                    child: TextFormField(
-                      controller: controller.mobileController.value,
-                      validator: (input) => !isNullEmptyOrFalse(input)
-                          ? null
-                          : "Please Enter Your Phone Number",
-                      decoration: InputDecoration(
-                        hintText: "Enter Your Phone Number",
-                        hintStyle: GoogleFonts.roboto(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
+                  Row(
+                    children: [
+                      Expanded(flex: 1,
+                        child: Container(
+                          alignment: Alignment.center,
+                          margin: EdgeInsets.only(left: 15),
+                          padding: EdgeInsets.only(left: 15,),
+                          decoration: BoxDecoration(
+                            color: Colors.grey[300],
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(10),
+                              topRight: Radius.circular(10),
+                              bottomRight: Radius.circular(10),
+                            ),
+                          ),
+                          child: TextFormField(
+                            controller: controller.mobileController.value,
+                            validator: (input) => !isNullEmptyOrFalse(input)
+                                ? null
+                                : "Please Enter Your Country Code",
+                            decoration: InputDecoration(
+                              hintText: "+91",
+                              hintStyle: GoogleFonts.roboto(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                              ),
+                              enabledBorder: InputBorder.none,
+                              focusedBorder: InputBorder.none,
+                            ),
+                          ),
                         ),
-                        enabledBorder: InputBorder.none,
-                        focusedBorder: InputBorder.none,
                       ),
-                    ),
+                      Expanded(flex: 3,
+                        child: Container(
+                          margin: EdgeInsets.only(left: 15,right: 15),
+                          padding: EdgeInsets.only(left: 15,),
+                          decoration: BoxDecoration(
+                            color: Colors.grey[300],
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(10),
+                              topRight: Radius.circular(10),
+                              bottomRight: Radius.circular(10),
+                            ),
+                          ),
+                          child: TextFormField(
+                            controller: controller.mobileController.value,
+                            validator: (input) => !isNullEmptyOrFalse(input)
+                                ? null
+                                : "Please Enter Your Phone Number",
+                            decoration: InputDecoration(
+                              hintText: "Enter Your Phone Number",
+                              hintStyle: GoogleFonts.roboto(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                              ),
+                              enabledBorder: InputBorder.none,
+                              focusedBorder: InputBorder.none,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                   SizedBox(height: 20,),
                   Row(
