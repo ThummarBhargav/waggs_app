@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/Modal/sign_up_response_model.dart';
 import 'package:waggs_app/app/constant/ConstantUrl.dart';
 import 'package:http/http.dart' as http;
@@ -70,7 +71,7 @@ class SingupScreenController extends GetxController {
   //   print('Response status: ${response.statusCode}');
   //   print('Response body: ${response.body}');
   // }
-  Future<void> signUpApi() async {
+  Future<void> signUpApi(BuildContext context) async {
     var url = Uri.parse("https://api.waggs.in/api/v1/users/signup");
     var response = await http.post(
         url, body: {'name': '${firstnameController.value.text.trim()}',
@@ -81,7 +82,11 @@ class SingupScreenController extends GetxController {
     });
     if(response.statusCode == 200){
       SignUpResponseModel res = SignUpResponseModel.fromJson(jsonDecode(response.body));
-
+      showDialog(builder: (context) {
+        return AlertDialog(
+          title: Text("Success"),
+        );
+      },context: context);
     }
     print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');
