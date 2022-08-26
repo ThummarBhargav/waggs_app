@@ -70,6 +70,7 @@ class SingupScreenView extends GetView<SingupScreenController> {
                     ),
                     child: TextFormField(
                       controller: controller.firstnameController.value,
+                      keyboardType: TextInputType.name,
                       validator: (input) => !isNullEmptyOrFalse(input)
                           ? null
                           : "Please Enter Your First Name",
@@ -110,6 +111,7 @@ class SingupScreenView extends GetView<SingupScreenController> {
                     ),
                     child: TextFormField(
                       controller: controller.emailController.value,
+                      keyboardType: TextInputType.emailAddress,
                       validator: (input) => !isNullEmptyOrFalse(input)
                           ? null
                           : "Please Enter Your Email",
@@ -154,6 +156,7 @@ class SingupScreenView extends GetView<SingupScreenController> {
                           ),
                           child: TextFormField(
                             controller: controller.countryController.value,
+                            keyboardType: TextInputType.number,
                             validator: (input) => !isNullEmptyOrFalse(input)
                                 ? null
                                 : "Please Enter Your Country Code",
@@ -183,6 +186,7 @@ class SingupScreenView extends GetView<SingupScreenController> {
                           ),
                           child: TextFormField(
                             controller: controller.mobileController.value,
+                            keyboardType: TextInputType.phone,
                             validator: (input) => !isNullEmptyOrFalse(input)
                                 ? null
                                 : "Please Enter Your Phone Number",
@@ -290,6 +294,7 @@ class SingupScreenView extends GetView<SingupScreenController> {
                             ? null
                             : "Please Confirm Enter Password",
                         obscureText: controller.passwordVisible.value,
+                        keyboardType: TextInputType.visiblePassword,
                         decoration: InputDecoration(
                             hintText: "Enter Your Confirm Password",
                             hintStyle: GoogleFonts.roboto(
