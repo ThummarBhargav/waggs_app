@@ -12,7 +12,7 @@ class SplashScreenController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    Timer(Duration(seconds: 1), () {
+    Timer(Duration(milliseconds: 500), () {
       Get.offAllNamed(Routes.HOME);
     });
   }

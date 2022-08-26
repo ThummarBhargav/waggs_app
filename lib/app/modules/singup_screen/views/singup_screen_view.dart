@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 import 'package:waggs_app/app/constant/SizeConstant.dart';
 import 'package:waggs_app/app/constant/text_field.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
@@ -250,13 +252,19 @@ class SingupScreenView extends GetView<SingupScreenController> {
                               color: Colors.grey
                           ),),
                       ),
-                      Container(
-                        child: Text(" Team Of Service",
-                          style: GoogleFonts.roboto(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black,
-                          ),),
+                      GestureDetector(
+                        onTap: () async {
+                          const url = 'https://waggs.in/terms-and-condition';
+                          await launch(url);
+                        },
+                        child: Container(
+                          child: Text(" Terms Of Service",
+                            style: GoogleFonts.roboto(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                            ),),
+                        ),
                       ),
                       Container(
                         child: Text(" And ",
@@ -265,13 +273,19 @@ class SingupScreenView extends GetView<SingupScreenController> {
                               color: Colors.grey
                           ),),
                       ),
-                      Container(
-                        child: Text("Privacy Policy",
-                          style: GoogleFonts.roboto(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black
-                          ),),
+                      GestureDetector(
+                        onTap: () async {
+                          const url = 'https://waggs.in/privacy-policy';
+                          await launch(url);
+                        },
+                        child: Container(
+                          child: Text("Privacy Policy",
+                            style: GoogleFonts.roboto(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black
+                            ),),
+                        ),
                       ),
                     ],
                   ),
