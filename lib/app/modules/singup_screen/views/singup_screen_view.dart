@@ -72,6 +72,7 @@ class SingupScreenView extends GetView<SingupScreenController> {
                     ),
                     child: TextFormField(
                       controller: controller.firstnameController.value,
+                      keyboardType: TextInputType.name,
                       validator: (input) => !isNullEmptyOrFalse(input)
                           ? null
                           : "Please Enter Your First Name",
@@ -112,6 +113,7 @@ class SingupScreenView extends GetView<SingupScreenController> {
                     ),
                     child: TextFormField(
                       controller: controller.emailController.value,
+                      keyboardType: TextInputType.emailAddress,
                       validator: (input) => !isNullEmptyOrFalse(input)
                           ? null
                           : "Please Enter Your Email Address",
