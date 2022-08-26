@@ -87,7 +87,7 @@ class EmailScreenView extends GetView<SingupScreenController> {
                 InkWell(
                   onTap: () {
                     if (controller.formKey.currentState!.validate()) {
-                      controller.otpApi();
+                      controller.otpApi(context);
                       // Get.defaultDialog(
                       //     title: "VERIFICATION",
                       //     titleStyle: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),
