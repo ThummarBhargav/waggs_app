@@ -563,8 +563,8 @@ class HomeView extends GetWidget<HomeController> {
                             InkWell(
                               onTap: () {
                                           Get.defaultDialog(
-                                          title: "Delete user",
-                                          middleText: 'Are You Sure To Delete User ?',
+                                          title: "Log Out",
+                                          middleText: 'Are You Sure To Log Out ?',
                                           textCancel: "cancle",
                                           textConfirm: "Confirm",
                                           confirmTextColor: Colors.white,
