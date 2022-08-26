@@ -625,7 +625,7 @@ class HomeView extends GetWidget<HomeController> {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 30.0, top: 25),
-                            child: Text("legal", style: TextStyle(
+                            child: Text("Legal", style: TextStyle(
                                 fontSize: 15, fontWeight: FontWeight.w500),),
                           ),
                           Padding(
