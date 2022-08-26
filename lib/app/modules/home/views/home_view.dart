@@ -555,6 +555,28 @@ class HomeView extends GetWidget<HomeController> {
                                   style: TextStyle(fontSize: 15),),
                               ),
                             ),
+                            InkWell(
+                              onTap: () {
+                                          Get.defaultDialog(
+                                          title: "Log Out",
+                                          middleText: 'Are You Sure To Log Out ?',
+                                          textCancel: "cancle",
+                                          textConfirm: "Confirm",
+                                          confirmTextColor: Colors.white,
+                                          cancelTextColor: Colors.cyan,
+                                          buttonColor: Colors.cyan,
+                                          onCancel: (){},
+                                          onConfirm: (){
+                                          Get.back();
+                                          },
+                                          );
+                              },
+                              child: ListTile(
+                                leading: Icon(Icons.logout),
+                                title: Text('Log Out',
+                                  style: TextStyle(fontSize: 15),),
+                              ),
+                            ),
                           ],
                         ),
                       ),
