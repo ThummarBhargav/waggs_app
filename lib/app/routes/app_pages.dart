@@ -12,6 +12,8 @@ import '../modules/View_All_My_Cart/bindings/view_all_my_cart_binding.dart';
 import '../modules/View_All_My_Cart/views/view_all_my_cart_view.dart';
 import '../modules/email_screen/bindings/email_screen_binding.dart';
 import '../modules/email_screen/views/email_screen_view.dart';
+import '../modules/filter/bindings/filter_binding.dart';
+import '../modules/filter/views/filter_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/login_screen/bindings/login_screen_binding.dart';
@@ -113,6 +115,11 @@ class AppPages {
       name: _Paths.MY_ACCOUNT,
       page: () => const MyAccountView(),
       binding: MyAccountBinding(),
+    ),
+    GetPage(
+      name: _Paths.FILTER,
+      page: () => const FilterView(),
+      binding: FilterBinding(),
     ),
   ];
 }
