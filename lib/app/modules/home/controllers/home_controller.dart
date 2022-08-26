@@ -51,14 +51,17 @@ class HomeController extends GetxController {
   RxString url = ''.obs;
   @override
   void onInit() {
-    bannerAllProduct();
-    AllCategory();
-    SubCategory();
-    TopSellingStoreApi();
-    TopSellingProductApi();
-    CartCount();
-    CartProductApi();
-    super.onInit();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async{
+      bannerAllProduct();
+      AllCategory();
+      SubCategory();
+      TopSellingStoreApi();
+      TopSellingProductApi();
+      CartCount();
+      CartProductApi();
+      super.onInit();
+    });
+
   }
 
   @override
