@@ -47,7 +47,7 @@ class MyAccountController extends GetxController {
       if(response.statusCode==200){
         LoginModel res  = LoginModel.fromJson(jsonDecode(response.body));
         if(res.responseCode == 200){
-          Get.toNamed(Routes.);
+          // Get.toNamed(Routes.CHANGE_PASSWORD_SEND_OTP_VIEW);
         }
 
       }

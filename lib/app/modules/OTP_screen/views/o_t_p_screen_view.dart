@@ -88,7 +88,7 @@ class OTPScreenView extends GetView<SingupScreenController> {
                 InkWell(
                   onTap: () {
                     if (controller.formKey.currentState!.validate()) {
-                      controller.otpApi();
+                      controller.otpApi(context);
                     }
                   },
                   child: Container(

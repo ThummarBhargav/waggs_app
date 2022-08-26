@@ -38,16 +38,67 @@ class SingupScreenController extends GetxController {
     super.onClose();
   }
 
-  void otpApi() async {
+  void otpApi(BuildContext context) async {
     var url = Uri.parse("https://api.waggs.in/api/v1/users/verifyOtp");
-    var response = await http.post(
+    var response ;
+     await http.post(
         url, body: {'email': '${emailController.value.text.trim()}',
       'countryCode': '${countryController.value.text.trim()}',
       'mobile': '${mobileController.value.text.trim()}',
-      'otp': '${otpController.value.text.trim()}'});
+      'otp': '${otpController.value.text.trim()}'}).then((value) {
+        response = value;
+        signUpApi(context);
+        showDialog(barrierDismissible: false,builder: (context) {
+
+          return AlertDialog(
+
+            title: Column(
+              children: [
+                Container(
+                  height: 40,
+                  width: 40,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("assets/tick.png"),
+                    ),
+                  ),
+                ),
+                Text("Success",style: GoogleFonts.raleway(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),),
+              ],
+            ),
+            content: Text("Sign up Successful. Check email for email verification."),
+            titleTextStyle: GoogleFonts.raleway(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+            contentTextStyle: GoogleFonts.raleway(
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+            ),
+            actions: [
+              TextButton(onPressed: () {
+                Get.toNamed(Routes.LOGIN_SCREEN);
+              }, child: Text("Login",style: GoogleFonts.raleway(
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+                color: Color.fromRGBO(
+                    32, 193, 244, 1),
+              ),))
+            ],
+          );
+        },context: context);
+
+     });
     print('Response status: ${response.statusCode}');
     if(response.statusCode == 200){
       signUpApi(Get.context!);
+      // Get.snackbar("title", "message");
     }
     print('Response body: ${response.body}');
   }
@@ -66,59 +117,67 @@ class SingupScreenController extends GetxController {
   
   Future<void> signUpApi(BuildContext context) async {
     var url = Uri.parse("https://api.waggs.in/api/v1/users/signup");
-    var response = await http.post(
+    var response;
+    await http.post(
         url, body: {'name': '${firstnameController.value.text.trim()}',
       'mobile': '${mobileController.value.text.trim()}',
       'countryCode': '${countryController.value.text.trim()}',
       'email': '${emailController.value.text.trim()}',
       'password': '${passController.value.text.trim()}'
-    });
-    if(response.statusCode == 200){
-      SignUpResponseModel res = SignUpResponseModel.fromJson(jsonDecode(response.body));
-      showDialog(builder: (context) {
-        return AlertDialog(
-          title: Column(
-            children: [
-              Container(
-                height: 40,
-                width: 40,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage("assets/tick.png"),
+    }).then((value) {
+      response = value;
+      if(response.statusCode == 200){
+        SignUpResponseModel res = SignUpResponseModel.fromJson(jsonDecode(response.body));
+        showDialog(barrierDismissible: false,builder: (context) {
+
+          return AlertDialog(
+
+            title: Column(
+              children: [
+                Container(
+                  height: 40,
+                  width: 40,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("assets/tick.png"),
+                    ),
                   ),
                 ),
-              ),
-              Text("Success",style: GoogleFonts.raleway(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-              ),),
-            ],
-          ),
-          content: Text("Sign up Successful. Check email for email verification."),
-          titleTextStyle: GoogleFonts.raleway(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
-          ),
-          contentTextStyle: GoogleFonts.raleway(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-            fontSize: 16,
-          ),
-          actions: [
-            TextButton(onPressed: () {
-              Get.toNamed(Routes.LOGIN_SCREEN);
-            }, child: Text("Login",style: GoogleFonts.raleway(
-              fontSize: 14,
+                Text("Success",style: GoogleFonts.raleway(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),),
+              ],
+            ),
+            content: Text("Sign up Successful. Check email for email verification."),
+            titleTextStyle: GoogleFonts.raleway(
+              fontSize: 18,
               fontWeight: FontWeight.bold,
-              color: Color.fromRGBO(
-                  32, 193, 244, 1),
-            ),))
-          ],
-        );
-      },context: context);
-    }
+              color: Colors.black,
+            ),
+            contentTextStyle: GoogleFonts.raleway(
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+            ),
+            actions: [
+              TextButton(onPressed: () {
+                Get.toNamed(Routes.LOGIN_SCREEN);
+              }, child: Text("Login",style: GoogleFonts.raleway(
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+                color: Color.fromRGBO(
+                    32, 193, 244, 1),
+              ),))
+            ],
+          );
+        },context: context);
+      }
+    }).catchError((error){
+      print(error);
+    });
+
     print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');
   }
