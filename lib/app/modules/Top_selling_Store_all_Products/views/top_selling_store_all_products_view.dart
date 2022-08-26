@@ -1260,8 +1260,7 @@ class TopSellingStoreAllProductsView
                               children: [
                                 TextButton(
                                   onPressed: () {
-                                    controller.isFilterDrawer.value = true;
-                                    ;
+                                    controller.isFilterDrawer.value = true;;
                                     ScaffoldKey2.currentState!.openEndDrawer();
                                   },
                                   child: Row(
