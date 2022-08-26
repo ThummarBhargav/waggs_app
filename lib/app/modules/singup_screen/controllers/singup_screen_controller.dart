@@ -62,16 +62,7 @@ class SingupScreenController extends GetxController {
 
     print('Response body: ${response.body}');
   }
-
-  // Future<void>EmailApi() async {
-  //   var url = Uri.parse("https://api.waggs.in/api/v1/users/verifyEmail");
-  //   var response = await http.post(url, body: {
-  //     '_id': '${emailController.value.text.trim()}',
-  //     'emailVerificationToken':'${emailvController.value.text.trim()}',
-  //   });
-  //   print('Response status: ${response.statusCode}');
-  //   print('Response body: ${response.body}');
-  // }
+  
   Future<void> signUpApi(BuildContext context) async {
     var url = Uri.parse("https://api.waggs.in/api/v1/users/signup");
     var response = await http.post(

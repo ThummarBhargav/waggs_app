@@ -7,6 +7,7 @@ import 'package:waggs_app/app/Modal/CartProductModel.dart';
 import 'package:waggs_app/app/Modal/CategoryModel.dart';
 import 'package:waggs_app/app/Modal/SubCategoryModel.dart';
 import 'package:waggs_app/app/Modal/TopSellingStore.dart';
+import 'package:waggs_app/app/Modal/login_model.dart';
 import 'package:waggs_app/app/constant/sizeConstant.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
 import '../../../../main.dart';
@@ -39,6 +40,7 @@ class HomeController extends GetxController {
   RxList<Sellers> SellersList = RxList<Sellers>([]);
   RxList<Count1> Countlist = RxList<Count1>([]);
   RxBool isFilterDrawer = false.obs;
+  // RxList<LoginModel>login = RxList<LoginModel>([]);
   List<String> imageList = ['assets/category01.jpg','assets/category02.jpg',
     'assets/category03.jpg','assets/category04.jpg','assets/category05.jpg'].obs;
   List respons =[];

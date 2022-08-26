@@ -5,6 +5,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:waggs_app/app/Modal/login_model.dart';
 import 'package:waggs_app/app/constant/ConstantUrl.dart';
 import 'package:waggs_app/app/constant/Container.dart';
 import 'package:waggs_app/app/constant/SizeConstant.dart';
@@ -437,21 +438,24 @@ class HomeView extends GetView<HomeController> {
                                    Container(
                                      height: 30,
                                      margin: EdgeInsets.only(top: 10),
-                                     child: Text(
+                                     child:box.read(ArgumentConstant.isUserLogin) == null? Text(
                                        " Sign  In ",
                                        style: GoogleFonts.aleo(
                                          fontWeight: FontWeight.w400,
                                          fontSize: 15,
                                          color: Colors.white,
                                        ),
-                                     ),
-                                   ),
+                                     ):Text("${box.read()}",
+                                       style: GoogleFonts.aleo(
+                                         fontWeight: FontWeight.w400,
+                                         fontSize: 15,
+                                         color: Colors.white,),
+                                   ),)
                                  ],
                                ),
                                IconButton(onPressed:(){Get.back();},
                                    icon: Icon(Icons.close,color: Colors.white,
                                      size: 15,))
-
                              ],
                            )),
                      ),
@@ -469,7 +473,7 @@ class HomeView extends GetView<HomeController> {
                          ),
                          InkWell(
                            onTap: (){
-                             Get.toNamed(Routes.TAB_BAR1);
+
                            },
                            child: ListTile(
                              leading: Icon(Icons.discount_outlined),
@@ -477,7 +481,9 @@ class HomeView extends GetView<HomeController> {
                            ),
                          ),
                          InkWell(
-                           onTap:(){},
+                           onTap:(){
+                             Get.toNamed(Routes.TAB_BAR1);
+                           },
                            child: ListTile(
                              leading: Icon(Icons.shopping_cart_outlined),
                              title: Text('My Cart',style: TextStyle(fontSize: 15),),
@@ -498,7 +504,9 @@ class HomeView extends GetView<HomeController> {
                            ),
                          ),
                          InkWell(
-                           onTap:(){},
+                           onTap:(){
+                             Get.toNamed(Routes.MY_ACCOUNT);
+                           },
                            child: ListTile(
                              leading: Icon(Icons.account_circle_outlined),
                              title: Text('My Account',style: TextStyle(fontSize: 15),),
@@ -782,7 +790,7 @@ class HomeView extends GetView<HomeController> {
                           children: [
                             Container(
                               margin: EdgeInsets.only(left: 10, bottom: 10),
-                              child: Text(
+                              child:Text(
                                 "TOP SELLING STORES",
                                 style: GoogleFonts.roboto(
                                     color: Colors.orangeAccent,
@@ -797,8 +805,7 @@ class HomeView extends GetView<HomeController> {
                                       ArgumentConstant.isFromSellingStore: true,
                                       ArgumentConstant.isFromSubCategory: false,
                                       ArgumentConstant.isFromTopProducts: false,
-                                      ArgumentConstant.sellerList:
-                                          controller.SellersList,
+                                      ArgumentConstant.sellerList: controller.SellersList,
                                     });
                               },
                               child: Container(
