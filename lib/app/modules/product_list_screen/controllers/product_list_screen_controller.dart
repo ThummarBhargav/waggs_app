@@ -72,7 +72,6 @@ class ProductListScreenController extends GetxController {
   void onInit() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async{
       CartCount();
-
     CartProductApi();
       AllCategory();
       SubCategory();
