@@ -577,7 +577,9 @@ class HomeView extends GetWidget<HomeController> {
                                           },
                                           );
                               },
-                              child: ListTile(
+                              child:box.read(
+                                  ArgumentConstant.isUserLogin) ==
+                                  null ?SizedBox(): ListTile(
                                 leading: Icon(Icons.logout),
                                 title: Text('Log Out',
                                   style: TextStyle(fontSize: 15),),
