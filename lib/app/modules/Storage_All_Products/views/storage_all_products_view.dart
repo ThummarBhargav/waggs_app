@@ -79,10 +79,9 @@ class StorageAllProductsView extends GetView<StorageAllProductsController> {
                                           placeholder: (context, url) =>
                                               CircularProgressIndicator(),
                                           errorWidget: (context, url, error) =>
-                                              Expanded(
-                                                  child: Container(
+                                              Container(
                                                 color: Colors.grey[100],
-                                              ))),
+                                              )),
                                     ),
                                   ],
                                 ),

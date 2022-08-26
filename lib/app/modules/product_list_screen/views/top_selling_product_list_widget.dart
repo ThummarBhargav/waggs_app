@@ -211,13 +211,11 @@ class _TopSellingProductListWidgetState
                                             errorWidget: (context,
                                                 url,
                                                 error) =>
-                                                Expanded(
-                                                    child:
-                                                    Container(
-                                                      color: Colors
-                                                          .grey[
-                                                      100],
-                                                    ))),
+                                                Container(
+                                                  color: Colors
+                                                      .grey[
+                                                  100],
+                                                )),
                                       ],
                                     ),
                                     Expanded(
@@ -1280,27 +1278,25 @@ class _TopSellingProductListWidgetState
                                       },
                                     ));
                               },
-                              child: Expanded(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                  children: [
-                                    Container(
-                                      child: Text("${controller.price.value}",
-                                        style: GoogleFonts.raleway(
-                                            fontWeight: FontWeight.w600,
-                                            color: Colors.black,
-                                            fontSize: 15
-                                        ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                  Container(
+                                    child: Text("${controller.price.value}",
+                                      style: GoogleFonts.raleway(
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.black,
+                                          fontSize: 15
                                       ),
                                     ),
-                                    SizedBox(width: 10,),
-                                    Container(
-                                      child: Icon(Icons.keyboard_arrow_down_outlined,
-                                        color: Colors.black,
-                                      ),
-                                    )
-                                  ],
-                                ),
+                                  ),
+                                  SizedBox(width: 10,),
+                                  Container(
+                                    child: Icon(Icons.keyboard_arrow_down_outlined,
+                                      color: Colors.black,
+                                    ),
+                                  )
+                                ],
                               ),
                             ),
                           ],
@@ -1391,27 +1387,25 @@ class _TopSellingProductListWidgetState
                                         },
                                       ));
                                 },
-                                child: Expanded(
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                    children: [
-                                      Container(
-                                        child: Text("${controller.price.value}",
-                                          style: GoogleFonts.raleway(
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.black,
-                                              fontSize: 15
-                                          ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Container(
+                                      child: Text("${controller.price.value}",
+                                        style: GoogleFonts.raleway(
+                                            fontWeight: FontWeight.w600,
+                                            color: Colors.black,
+                                            fontSize: 15
                                         ),
                                       ),
-                                      SizedBox(width: 10,),
-                                      Container(
-                                        child: Icon(Icons.keyboard_arrow_down_outlined,
-                                          color: Colors.black,
-                                        ),
-                                      )
-                                    ],
-                                  ),
+                                    ),
+                                    SizedBox(width: 10,),
+                                    Container(
+                                      child: Icon(Icons.keyboard_arrow_down_outlined,
+                                        color: Colors.black,
+                                      ),
+                                    )
+                                  ],
                                 ),
                               ),
                             ],
@@ -1483,11 +1477,10 @@ class _TopSellingProductListWidgetState
                                                               errorWidget: (context,
                                                                   url,
                                                                   error) =>
-                                                                  Expanded(
-                                                                      child: Container(
-                                                                        color: Colors
-                                                                            .grey[100],
-                                                                      ))),
+                                                                  Container(
+                                                                    color: Colors
+                                                                        .grey[100],
+                                                                  )),
                                                         ),
                                                       ],
                                                     ),

@@ -133,12 +133,10 @@ class ViewProductView extends GetWidget<ViewProductController> {
                                                   CircularProgressIndicator(),
                                               errorWidget: (context,
                                                   url, error) =>
-                                                  Expanded(
-                                                      child:
-                                                      Container(
-                                                        color: Colors
-                                                            .grey[100],
-                                                      ))),
+                                                  Container(
+                                                    color: Colors
+                                                        .grey[100],
+                                                  )),
                                         ],
                                       ),
                                       Expanded(
@@ -547,10 +545,9 @@ class ViewProductView extends GetWidget<ViewProductController> {
                                             placeholder: (context, url) =>
                                                 CircularProgressIndicator(),
                                             errorWidget: (context, url, error) =>
-                                                Expanded(
-                                                    child: Container(
-                                                      color: Colors.grey[100],
-                                                    )))),
+                                                Container(
+                                                  color: Colors.grey[100],
+                                                ))),
 
                                     // Image.network(width: 160,height:160,
                                     //     "${data.images![0]}"),

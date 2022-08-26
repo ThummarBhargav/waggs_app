@@ -1299,10 +1299,9 @@ class _TopSellingStoreWidgetState extends State<TopSellingStoreWidget> {
                                                       CircularProgressIndicator(),
                                                   errorWidget: (context, url,
                                                       error) =>
-                                                      Expanded(
-                                                          child: Container(
-                                                            color: Colors.grey[100],
-                                                          ))),
+                                                      Container(
+                                                        color: Colors.grey[100],
+                                                      )),
                                             ),
                                           ],
                                         ),

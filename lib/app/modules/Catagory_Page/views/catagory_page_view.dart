@@ -144,12 +144,10 @@ class CatagoryPageView extends GetWidget<HomeController> {
                                                   CircularProgressIndicator(),
                                               errorWidget: (context,
                                                   url, error) =>
-                                                  Expanded(
-                                                      child:
-                                                      Container(
-                                                        color: Colors
-                                                            .grey[100],
-                                                      ))),
+                                                  Container(
+                                                    color: Colors
+                                                        .grey[100],
+                                                  )),
                                         ],
                                       ),
                                       Expanded(
@@ -428,65 +426,62 @@ class CatagoryPageView extends GetWidget<HomeController> {
                 )
                     : ListView(
                   children: [
-                    Expanded(
-                      flex: 1,
-                      child: Container(
-                        height: 122,
-                        child: DrawerHeader(
-                            decoration: BoxDecoration(
-                                color: Color.fromRGBO(32, 193, 244, 1)),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  children: [
-                                    Container(
-                                      width: 50,
-                                      height: 50,
-                                      margin: EdgeInsets.only(left: 25),
-                                      decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          shape: BoxShape.circle
-                                      ),
-                                      child: IconButton(
-                                          onPressed: () {
-                                            Get.back();
-                                          },
-                                          icon: Icon(
-                                            Icons.person_outline,
-                                            color: Color.fromRGBO(
-                                                32, 193, 244, 1),
-                                            size: 28,
-                                          )),
+                    Container(
+                      height: 122,
+                      child: DrawerHeader(
+                          decoration: BoxDecoration(
+                              color: Color.fromRGBO(32, 193, 244, 1)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                children: [
+                                  Container(
+                                    width: 50,
+                                    height: 50,
+                                    margin: EdgeInsets.only(left: 25),
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        shape: BoxShape.circle
                                     ),
-                                    Container(
-                                      height: 30,
-                                      margin: EdgeInsets.only(
-                                          top: 10, left: 25),
-                                      child: box.read(
-                                          ArgumentConstant.isUserLogin) == null
-                                          ? Text(
-                                        " Sign  In ",
-                                        style: GoogleFonts.aleo(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 15,
-                                          color: Colors.white,
-                                        ),
-                                      )
-                                          : Text(
-                                        "${box.read(ArgumentConstant.email)}",
-                                        style: GoogleFonts.aleo(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 15,
-                                          color: Colors.white,),
-                                      ),)
-                                  ],
-                                ),
-                              ],
-                            )),
-                      ),
+                                    child: IconButton(
+                                        onPressed: () {
+                                          Get.back();
+                                        },
+                                        icon: Icon(
+                                          Icons.person_outline,
+                                          color: Color.fromRGBO(
+                                              32, 193, 244, 1),
+                                          size: 28,
+                                        )),
+                                  ),
+                                  Container(
+                                    height: 30,
+                                    margin: EdgeInsets.only(
+                                        top: 10, left: 25),
+                                    child: box.read(
+                                        ArgumentConstant.isUserLogin) == null
+                                        ? Text(
+                                      " Sign  In ",
+                                      style: GoogleFonts.aleo(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 15,
+                                        color: Colors.white,
+                                      ),
+                                    )
+                                        : Text(
+                                      "${box.read(ArgumentConstant.email)}",
+                                      style: GoogleFonts.aleo(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 15,
+                                        color: Colors.white,),
+                                    ),)
+                                ],
+                              ),
+                            ],
+                          )),
                     ),
-                    Expanded(child: Padding(
+                    Padding(
                       padding: const EdgeInsets.only(left: 10.0),
                       child: Column(
                         children: [
@@ -562,14 +557,14 @@ class CatagoryPageView extends GetWidget<HomeController> {
                           ),
                         ],
                       ),
-                    ),),
+                    ),
                     Divider(
                       indent: 2,
                       color: Colors.grey.shade500,
                       endIndent: 2,
                       thickness: 1.5,
                     ),
-                    Expanded(child: Column(
+                    Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
@@ -588,7 +583,7 @@ class CatagoryPageView extends GetWidget<HomeController> {
                               fontSize: 15, fontWeight: FontWeight.w500),),
                         )
                       ],
-                    ))
+                    )
                   ],
                 )),
             body: Column(
@@ -770,28 +765,26 @@ class CatagoryPageView extends GetWidget<HomeController> {
 
                                           // Get.toNamed(Routes.PRODUCT,arguments: subData[index]);
                                         },
-                                        child: Expanded(
-                                          child: Container(
-                                            margin: EdgeInsets.only(
-                                                top: 60, right: 40),
-                                            padding: EdgeInsets.all(10),
-                                            alignment: Alignment.center,
-                                            decoration: BoxDecoration(
-                                              color: Color(0xffeb9d4f),
-                                              borderRadius: BorderRadius.only(
-                                                bottomLeft: Radius.circular(25),
-                                                bottomRight: Radius.circular(
-                                                    25),
-                                                topRight: Radius.circular(25),
-                                              ),
+                                        child: Container(
+                                          margin: EdgeInsets.only(
+                                              top: 60, right: 40),
+                                          padding: EdgeInsets.all(10),
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                            color: Color(0xffeb9d4f),
+                                            borderRadius: BorderRadius.only(
+                                              bottomLeft: Radius.circular(25),
+                                              bottomRight: Radius.circular(
+                                                  25),
+                                              topRight: Radius.circular(25),
                                             ),
-                                            child: Text(
-                                              "${subData[index].name}",
-                                              style: GoogleFonts.roboto(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.w800,
-                                                  color: Colors.white
-                                              ),
+                                          ),
+                                          child: Text(
+                                            "${subData[index].name}",
+                                            style: GoogleFonts.roboto(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w800,
+                                                color: Colors.white
                                             ),
                                           ),
                                         ),

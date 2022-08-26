@@ -162,13 +162,11 @@ class TopSellingStoreAllProductsView
                                                             errorWidget: (context,
                                                                     url,
                                                                     error) =>
-                                                                Expanded(
-                                                                    child:
-                                                                        Container(
+                                                                Container(
                                                                   color: Colors
-                                                                          .grey[
+                                                                  .grey[
                                                                       100],
-                                                                ))),
+                                                                )),
                                                       ],
                                                     ),
                                                     Expanded(
@@ -431,7 +429,7 @@ class TopSellingStoreAllProductsView
                                           InkWell(
                                             onTap: () {
                                               Get.toNamed(
-                                                  Routes.VIEW_ALL_MY_CART);
+                                                  Routes.TAB_BAR1);
                                             },
                                             child: Padding(
                                               padding: const EdgeInsets.only(
@@ -1318,33 +1316,31 @@ class TopSellingStoreAllProductsView
                                                     },
                                                   ));
                                         },
-                                        child: Expanded(
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceAround,
-                                            children: [
-                                              Container(
-                                                child: Text(
-                                                  "${controller.price.value}",
-                                                  style: GoogleFonts.raleway(
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      color: Colors.black,
-                                                      fontSize: 15),
-                                                ),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          children: [
+                                            Container(
+                                              child: Text(
+                                                "${controller.price.value}",
+                                                style: GoogleFonts.raleway(
+                                                    fontWeight:
+                                                        FontWeight.w600,
+                                                    color: Colors.black,
+                                                    fontSize: 15),
                                               ),
-                                              SizedBox(
-                                                width: 10,
+                                            ),
+                                            SizedBox(
+                                              width: 10,
+                                            ),
+                                            Container(
+                                              child: Icon(
+                                                Icons
+                                                    .keyboard_arrow_down_outlined,
+                                                color: Colors.black,
                                               ),
-                                              Container(
-                                                child: Icon(
-                                                  Icons
-                                                      .keyboard_arrow_down_outlined,
-                                                  color: Colors.black,
-                                                ),
-                                              )
-                                            ],
-                                          ),
+                                            )
+                                          ],
                                         ),
                                       ),
                                     ],
@@ -1433,32 +1429,30 @@ class TopSellingStoreAllProductsView
                                                   },
                                                 ));
                                       },
-                                      child: Expanded(
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          children: [
-                                            Container(
-                                              child: Text(
-                                                "${controller.price.value}",
-                                                style: GoogleFonts.raleway(
-                                                    fontWeight: FontWeight.w600,
-                                                    color: Colors.black,
-                                                    fontSize: 15),
-                                              ),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Container(
+                                            child: Text(
+                                              "${controller.price.value}",
+                                              style: GoogleFonts.raleway(
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Colors.black,
+                                                  fontSize: 15),
                                             ),
-                                            SizedBox(
-                                              width: 10,
+                                          ),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          Container(
+                                            child: Icon(
+                                              Icons
+                                                  .keyboard_arrow_down_outlined,
+                                              color: Colors.black,
                                             ),
-                                            Container(
-                                              child: Icon(
-                                                Icons
-                                                    .keyboard_arrow_down_outlined,
-                                                color: Colors.black,
-                                              ),
-                                            )
-                                          ],
-                                        ),
+                                          )
+                                        ],
                                       ),
                                     ),
                                   ],
@@ -1525,11 +1519,10 @@ class TopSellingStoreAllProductsView
                                                                       errorWidget: (context,
                                                                               url,
                                                                               error) =>
-                                                                          Expanded(
-                                                                              child: Container(
+                                                                          Container(
                                                                             color:
-                                                                                Colors.grey[100],
-                                                                          ))),
+                                                                            Colors.grey[100],
+                                                                          )),
                                                             ),
                                                           ],
                                                         ),
