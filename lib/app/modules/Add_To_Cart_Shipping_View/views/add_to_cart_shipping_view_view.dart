@@ -214,11 +214,17 @@ class AddToCartShippingViewView
                                               Expanded(
                                                 child: InkWell(
                                                     onTap: () {
-                                                      controller.UpdateCartRemove(
-                                                        data: controller
-                                                            .cartProductList[
-                                                        index],
-                                                      );
+                                                      if(controller.cartProductList[index].quantity==1)
+                                                        {
+
+                                                        }else {
+                                                        controller
+                                                            .UpdateCartRemove(
+                                                          data: controller
+                                                              .cartProductList[
+                                                          index],
+                                                        );
+                                                      }
                                                     },
                                                     child: Padding(
                                                       padding:
@@ -753,7 +759,7 @@ class AddToCartShippingViewView
                           children: [
                             Expanded(flex: 2,child: InkWell(
                               onTap: () {
-                                Get.toNamed(Routes.ADD_TO_CART_SHIPPING_VIEW);
+                                // Get.toNamed(Routes.ADD_TO_CART_SHIPPING_VIEW);
                               },
                               child: Container(
                                 alignment: Alignment.center,

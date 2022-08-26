@@ -70,10 +70,13 @@ class ProductListScreenController extends GetxController {
   String SubCategoriId = "";
   @override
   void onInit() {
-    CartCount();
-    CartProductApi();
-    AllCategory();
-    SubCategory();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async{
+      CartCount();
+      CartProductApi();
+      AllCategory();
+      SubCategory();
+    });
+
     if (Get.arguments != null) {
       isFromTopProducts = Get.arguments[ArgumentConstant.isFromTopProducts];
       isFromSubCategory = Get.arguments[ArgumentConstant.isFromSubCategory];

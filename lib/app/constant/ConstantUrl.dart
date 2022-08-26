@@ -24,6 +24,7 @@ class ApiConstant {
 
 class ArgumentConstant{
   static String token = "token";
+  static String email = "email";
   static const isUserLogin = "isUserLogin";
   static String isFromSellingStore = "isFromSellingStore";
   static String isFromTopProducts = "isFromTopProducts";

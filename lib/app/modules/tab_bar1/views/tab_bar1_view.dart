@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/modules/Add_To_Cart_Shipping_View/views/add_to_cart_shipping_view_view.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
-
 import '../../../constant/SizeConstant.dart';
 import '../../View_All_My_Cart/controllers/view_all_my_cart_controller.dart';
 import '../../View_All_My_Cart/views/view_all_my_cart_view.dart';
@@ -165,14 +164,15 @@ class TabBar1View extends GetView<TabBar1Controller> {
             physics: NeverScrollableScrollPhysics(),
               controller: controller.tabController,
             children: [
-              ViewAllMyCartView(
-
-              ),
+              ViewAllMyCartView(),
               AddToCartShippingViewView(),
-              // Tab(
-              //     // Get.toNamed(Routes.O_T_P_SCREEN);
-              // )
-              Icon(Icons.directions_bike),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text("Payment coming soon",style: TextStyle(color: Colors.orange,fontWeight: FontWeight.bold,fontSize: 30),),
+                ],
+              ),
             ],
           ),
         )

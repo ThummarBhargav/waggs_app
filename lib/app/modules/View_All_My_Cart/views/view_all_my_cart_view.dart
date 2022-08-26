@@ -220,12 +220,17 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                                                   Expanded(
                                                     child: InkWell(
                                                         onTap: () {
-                                                          controller
-                                                              .UpdateCartRemove(
-                                                            data: controller
-                                                                .cartProductList[
-                                                            index],
-                                                          );
+                                                          if(controller.cartProductList[index].quantity == 1) {
+
+                                                          }else
+                                                            {
+                                                              controller
+                                                                  .UpdateCartRemove(
+                                                                data: controller
+                                                                    .cartProductList[
+                                                                index],
+                                                              );
+                                                            }
                                                         },
                                                         child: Padding(
                                                           padding:
