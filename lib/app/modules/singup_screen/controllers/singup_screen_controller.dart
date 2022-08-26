@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/Modal/sign_up_response_model.dart';
@@ -76,7 +77,24 @@ class SingupScreenController extends GetxController {
       SignUpResponseModel res = SignUpResponseModel.fromJson(jsonDecode(response.body));
       showDialog(builder: (context) {
         return AlertDialog(
-          title: Text("Success"),
+          title: Column(
+            children: [
+              Container(
+                height: 40,
+                width: 40,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage("assets/tick.png"),
+                  ),
+                ),
+              ),
+              Text("Success",style: GoogleFonts.raleway(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),),
+            ],
+          ),
           content: Text("Sign up Successful. Check email for email verification."),
           titleTextStyle: GoogleFonts.raleway(
             fontSize: 18,
