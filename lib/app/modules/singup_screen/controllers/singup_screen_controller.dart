@@ -60,7 +60,6 @@ class SingupScreenController extends GetxController {
       'email': '${emailController.value.text.trim()}',
     });
     print('Response status: ${response.statusCode}');
-
     print('Response body: ${response.body}');
   }
   
