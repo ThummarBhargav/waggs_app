@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/Modal/sign_up_response_model.dart';
 import 'package:waggs_app/app/constant/ConstantUrl.dart';
 import 'package:http/http.dart' as http;
+import 'package:waggs_app/app/routes/app_pages.dart';
 class SingupScreenController extends GetxController {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   Rx<TextEditingController> firstnameController = TextEditingController().obs;
@@ -45,7 +46,7 @@ class SingupScreenController extends GetxController {
       'otp': '${otpController.value.text.trim()}'});
     print('Response status: ${response.statusCode}');
     if(response.statusCode == 200){
-      signUpApi();
+      signUpApi(Get.context!);
     }
     print('Response body: ${response.body}');
   }
@@ -85,6 +86,27 @@ class SingupScreenController extends GetxController {
       showDialog(builder: (context) {
         return AlertDialog(
           title: Text("Success"),
+          content: Text("Sign up Successful. Check email for email verification."),
+          titleTextStyle: GoogleFonts.raleway(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+          contentTextStyle: GoogleFonts.raleway(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+          ),
+          actions: [
+            TextButton(onPressed: () {
+              Get.toNamed(Routes.LOGIN_SCREEN);
+            }, child: Text("Login",style: GoogleFonts.raleway(
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+              color: Color.fromRGBO(
+                  32, 193, 244, 1),
+            ),))
+          ],
         );
       },context: context);
     }

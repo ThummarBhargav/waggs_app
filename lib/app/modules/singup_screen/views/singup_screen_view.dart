@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:waggs_app/app/constant/SizeConstant.dart';
 import 'package:waggs_app/app/constant/text_field.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
@@ -141,10 +140,11 @@ class SingupScreenView extends GetView<SingupScreenController> {
                   SizedBox(height: 8,),
                   Row(
                     children: [
-                      Expanded(flex: 2,
+                      Expanded(flex: 1,
                         child: Container(
                           alignment: Alignment.center,
-                          margin: EdgeInsets.only(left: 15,right: 15),
+                          margin: EdgeInsets.only(left: 15),
+                          padding: EdgeInsets.only(left: 15,),
                           decoration: BoxDecoration(
                             color: Colors.grey[300],
                             borderRadius: BorderRadius.only(
@@ -153,9 +153,13 @@ class SingupScreenView extends GetView<SingupScreenController> {
                               bottomRight: Radius.circular(10),
                             ),
                           ),
-                          child: IntlPhoneField(
+                          child: TextFormField(
+                            controller: controller.countryController.value,
+                            validator: (input) => !isNullEmptyOrFalse(input)
+                                ? null
+                                : "Please Enter Your Country Code",
                             decoration: InputDecoration(
-                              hintText: "Phone Number",
+                              hintText: "+91",
                               hintStyle: GoogleFonts.roboto(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w500,
@@ -163,16 +167,37 @@ class SingupScreenView extends GetView<SingupScreenController> {
                               enabledBorder: InputBorder.none,
                               focusedBorder: InputBorder.none,
                             ),
-                            disableLengthCheck: true,
-                            controller: controller.mobileController.value,
-                            flagsButtonMargin: EdgeInsets.only(left: 5,bottom: 5),
-                            keyboardType: TextInputType.phone,
-                            initialCountryCode: 'IN',
-                            onChanged: (phone) {
-                              print(phone.completeNumber);
-                            },
+                          ),
                         ),
                       ),
+                      Expanded(flex: 3,
+                        child: Container(
+                          margin: EdgeInsets.only(left: 15,right: 15),
+                          padding: EdgeInsets.only(left: 15,),
+                          decoration: BoxDecoration(
+                            color: Colors.grey[300],
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(10),
+                              topRight: Radius.circular(10),
+                              bottomRight: Radius.circular(10),
+                            ),
+                          ),
+                          child: TextFormField(
+                            controller: controller.mobileController.value,
+                            validator: (input) => !isNullEmptyOrFalse(input)
+                                ? null
+                                : "Please Enter Your Phone Number",
+                            decoration: InputDecoration(
+                              hintText: "Enter Your Phone Number",
+                              hintStyle: GoogleFonts.roboto(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                              ),
+                              enabledBorder: InputBorder.none,
+                              focusedBorder: InputBorder.none,
+                            ),
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -333,6 +358,8 @@ class SingupScreenView extends GetView<SingupScreenController> {
                       InkWell(
                         onTap: () {
                           if (controller.formKey.currentState!.validate()) {
+                            Get.toNamed(Routes.O_T_P_SCREEN);
+                            controller.sendotpApi();
                           }
                         },
                         child: Container(
@@ -376,7 +403,8 @@ class SingupScreenView extends GetView<SingupScreenController> {
                             style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w500,
-                                color: Colors.cyan
+                                color: Color.fromRGBO(
+                                    32, 193, 244, 1),
                             ),),
                         ),
                       ),
