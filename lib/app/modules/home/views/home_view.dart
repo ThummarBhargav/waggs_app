@@ -567,7 +567,13 @@ class HomeView extends GetWidget<HomeController> {
                                           buttonColor: Colors.cyan,
                                           onCancel: (){},
                                           onConfirm: (){
-                                          Get.back();
+                                         box.remove(ArgumentConstant.isUserLogin);
+                                         box.remove(ArgumentConstant.token);
+                                         box.remove(ArgumentConstant.phone);
+                                         box.remove(ArgumentConstant.address);
+                                         box.remove(ArgumentConstant.email);
+                                         box.remove(ArgumentConstant.name);
+                                         Get.toNamed(Routes.LOGIN_SCREEN);
                                           },
                                           );
                               },
