@@ -24,6 +24,7 @@ abstract class Routes {
   static const SPLASH_SCREEN = _Paths.SPLASH_SCREEN;
   static const MY_ACCOUNT = _Paths.MY_ACCOUNT;
   static const FILTER = _Paths.FILTER;
+  static const FORGOT_PASSWORD = _Paths.FORGOT_PASSWORD;
 }
 
 abstract class _Paths {
@@ -49,4 +50,5 @@ abstract class _Paths {
   static const SPLASH_SCREEN = '/splash-screen';
   static const MY_ACCOUNT = '/my-account';
   static const FILTER = '/filter';
+  static const FORGOT_PASSWORD = '/forgot-password';
 }
