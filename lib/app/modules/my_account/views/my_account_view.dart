@@ -105,7 +105,7 @@ class MyAccountView extends GetView<MyAccountController> {
                               child: Text("${box.read(ArgumentConstant.address)}",
                                 style: TextStyle(fontSize: 18),),
                             ),
-                            IconButton(onPressed: (){}, icon: Icon(Icons.check,color: Colors.grey,))
+                            IconButton(onPressed: (){}, icon: Icon(Icons.edit,color: Colors.grey,))
                           ],
                         ),
                         Divider(color: Colors.black, height: 5,),
