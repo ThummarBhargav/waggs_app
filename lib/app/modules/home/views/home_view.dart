@@ -620,20 +620,6 @@ class HomeView extends GetView<HomeController> {
                                 ),
                                 // Spacer(),
                                 Expanded(
-                                  flex: 1,
-                                  child: IconButton(
-                                      onPressed: () {
-                                        controller.isFilterDrawer.value = true;
-                                        scaffoldKey.currentState!
-                                            .openEndDrawer();
-                                      },
-                                      icon: Icon(
-                                        Icons.person,
-                                        color: Colors.grey[500],
-                                      )),
-                                ),
-
-                                Expanded(
                                     flex: 1,
                                     child: Stack(
                                       children: [
@@ -679,7 +665,20 @@ class HomeView extends GetView<HomeController> {
                                                   ),
                                                 )),
                                       ],
-                                    ))
+                                    )),
+                                Expanded(
+                                  flex: 1,
+                                  child: IconButton(
+                                      onPressed: () {
+                                        controller.isFilterDrawer.value = true;
+                                        scaffoldKey.currentState!
+                                            .openEndDrawer();
+                                      },
+                                      icon: Icon(
+                                        Icons.person,
+                                        color: Colors.grey[500],
+                                      )),
+                                ),
                               ],
                             ),
                           ),
