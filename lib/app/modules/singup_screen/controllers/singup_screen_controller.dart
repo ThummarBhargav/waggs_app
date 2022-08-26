@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:waggs_app/app/Modal/sign_up_response_model.dart';
 import 'package:waggs_app/app/constant/ConstantUrl.dart';
 import 'package:http/http.dart' as http;
 class SingupScreenController extends GetxController {
@@ -33,38 +36,42 @@ class SingupScreenController extends GetxController {
   }
 
   void otpApi() async {
-    var url = Uri.parse(baseUrl + ApiConstant.verifyOtpUsers);
+    var url = Uri.parse("https://api.waggs.in/api/v1/users/verifyOtp");
     var response = await http.post(
         url, body: {'email': '${emailController.value.text.trim()}',
       'countryCode': '${countryController.value.text.trim()}',
       'mobile': '${mobileController.value.text.trim()}',
       'otp': '${otpController.value.text.trim()}'});
     print('Response status: ${response.statusCode}');
+    if(response.statusCode == 200){
+      signUpApi();
+    }
     print('Response body: ${response.body}');
   }
 
   Future<void> sendotpApi() async {
-    var url = Uri.parse(baseUrl + ApiConstant.sendOtpUsers);
+    var url = Uri.parse("https://api.waggs.in/api/v1/users/sendOtp");
     var response = await http.post(url, body: {
       'mobile': '${mobileController.value.text.trim()}',
       'countryCode': '${countryController.value.text.trim()}',
       'email': '${emailController.value.text.trim()}',
     });
     print('Response status: ${response.statusCode}');
+
     print('Response body: ${response.body}');
   }
 
-  Future<void>EmailApi() async {
-    var url = Uri.parse(baseUrl + ApiConstant.verifyEmailUsers);
-    var response = await http.post(url, body: {
-      '_id': '${emailController.value.text.trim()}',
-      'emailVerificationToken':'${emailvController.value.text.trim()}',
-    });
-    print('Response status: ${response.statusCode}');
-    print('Response body: ${response.body}');
-  }
+  // Future<void>EmailApi() async {
+  //   var url = Uri.parse("https://api.waggs.in/api/v1/users/verifyEmail");
+  //   var response = await http.post(url, body: {
+  //     '_id': '${emailController.value.text.trim()}',
+  //     'emailVerificationToken':'${emailvController.value.text.trim()}',
+  //   });
+  //   print('Response status: ${response.statusCode}');
+  //   print('Response body: ${response.body}');
+  // }
   Future<void> signUpApi() async {
-    var url = Uri.parse(baseUrl + ApiConstant.signUpUsers);
+    var url = Uri.parse("https://api.waggs.in/api/v1/users/signup");
     var response = await http.post(
         url, body: {'name': '${firstnameController.value.text.trim()}',
       'mobile': '${mobileController.value.text.trim()}',
@@ -72,6 +79,10 @@ class SingupScreenController extends GetxController {
       'email': '${emailController.value.text.trim()}',
       'password': '${passController.value.text.trim()}'
     });
+    if(response.statusCode == 200){
+      SignUpResponseModel res = SignUpResponseModel.fromJson(jsonDecode(response.body));
+
+    }
     print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');
   }

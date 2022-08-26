@@ -89,8 +89,6 @@ class OTPScreenView extends GetView<SingupScreenController> {
                   onTap: () {
                     if (controller.formKey.currentState!.validate()) {
                       controller.otpApi();
-                      controller.EmailApi();
-                      Get.toNamed(Routes.EMAIL_SCREEN);
                     }
                   },
                   child: Container(

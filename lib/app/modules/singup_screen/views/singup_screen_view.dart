@@ -85,6 +85,46 @@ class SingupScreenView extends GetView<SingupScreenController> {
                       ),
                     ),
                   ),
+                  SizedBox(height: 8,),
+                  Row(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(left: 15,),
+                        child: Text("Email Address",style: GoogleFonts.roboto(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500
+                        ),),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 8,),
+                  Container(
+                    margin: EdgeInsets.only(left: 15,right: 15),
+                    padding: EdgeInsets.only(left: 15,),
+                    decoration: BoxDecoration(
+                      color: Colors.grey[300],
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(10),
+                        topRight: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      ),
+                    ),
+                    child: TextFormField(
+                      controller: controller.emailController.value,
+                      validator: (input) => !isNullEmptyOrFalse(input)
+                          ? null
+                          : "Please Enter Your Email",
+                      decoration: InputDecoration(
+                        hintText: "Enter Your Email",
+                        hintStyle: GoogleFonts.roboto(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        enabledBorder: InputBorder.none,
+                        focusedBorder: InputBorder.none,
+                      ),
+                    ),
+                  ),
                   SizedBox(height: 20,),
                   Row(
                     children: [
@@ -114,7 +154,7 @@ class SingupScreenView extends GetView<SingupScreenController> {
                             ),
                           ),
                           child: TextFormField(
-                            controller: controller.mobileController.value,
+                            controller: controller.countryController.value,
                             validator: (input) => !isNullEmptyOrFalse(input)
                                 ? null
                                 : "Please Enter Your Country Code",
@@ -318,6 +358,8 @@ class SingupScreenView extends GetView<SingupScreenController> {
                       InkWell(
                         onTap: () {
                           if (controller.formKey.currentState!.validate()) {
+                            Get.toNamed(Routes.O_T_P_SCREEN);
+                            controller.sendotpApi();
                           }
                         },
                         child: Container(
