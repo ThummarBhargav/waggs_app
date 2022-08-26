@@ -137,7 +137,9 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                                                   child: Column(
                                                     children: [
                                                       Text(
+                                                        overflow: TextOverflow.ellipsis,
                                                         "${controller.cartProductList[index].product!.description}",
+
                                                         style: TextStyle(
                                                           fontWeight:
                                                           FontWeight

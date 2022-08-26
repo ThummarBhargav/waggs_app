@@ -179,38 +179,34 @@ class _SubCategoryWidgetState extends State<SubCategoryWidget> {
                                                     errorWidget: (context,
                                                         url,
                                                         error) =>
-                                                        Expanded(
-                                                            child:
-                                                            Container(
-                                                              color: Colors
-                                                                  .grey[
-                                                              100],
-                                                            ))),
+                                                        Container(
+                                                          color: Colors
+                                                              .grey[
+                                                          100],
+                                                        )),
                                               ],
                                             ),
-                                            Expanded(
-                                              child: Padding(
-                                                padding:
-                                                const EdgeInsets
-                                                    .only(
-                                                    left: 8.0,
-                                                    top: 10),
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                                  children: [
-                                                    Text(
-                                                      "${controller
-                                                          .cartProductList[index]
-                                                          .product!.title}",
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                          FontWeight
-                                                              .w800),
-                                                    ),
-                                                  ],
-                                                ),
+                                            Padding(
+                                              padding:
+                                              const EdgeInsets
+                                                  .only(
+                                                  left: 8.0,
+                                                  top: 10),
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                MainAxisAlignment
+                                                    .spaceBetween,
+                                                children: [
+                                                  Text(
+                                                    "${controller
+                                                        .cartProductList[index]
+                                                        .product!.title}",
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                        FontWeight
+                                                            .w800),
+                                                  ),
+                                                ],
                                               ),
                                             ),
                                             Column(
@@ -1399,7 +1395,7 @@ class _SubCategoryWidgetState extends State<SubCategoryWidget> {
                                                 },
                                               ));
                                     },
-                                    child: Expanded(
+                                    child: Container(
                                       child: Row(
                                         mainAxisAlignment: MainAxisAlignment
                                             .spaceAround,
@@ -1512,7 +1508,7 @@ class _SubCategoryWidgetState extends State<SubCategoryWidget> {
                                                 },
                                               ));
                                     },
-                                    child: Expanded(
+                                    child: Container(
                                       child: Row(
                                         mainAxisAlignment: MainAxisAlignment
                                             .spaceAround,
