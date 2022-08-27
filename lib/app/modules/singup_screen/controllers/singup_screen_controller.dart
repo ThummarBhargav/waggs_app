@@ -45,7 +45,6 @@ gettimer(){
       refresh();
 
     } else {
-
       enableResend.value = true;
       refresh();
     }
@@ -114,7 +113,7 @@ gettimer(){
       } else {
         isNumberExist.value = true;
         ErrorResponse res = ErrorResponse.fromJson(jsonDecode(value.body));
-        // Get.snackbar("Error", res.message.toString(),snackPosition: SnackPosition.TOP);
+         Get.snackbar("Error", res.message.toString(),snackPosition: SnackPosition.TOP);
       }
     });
   }

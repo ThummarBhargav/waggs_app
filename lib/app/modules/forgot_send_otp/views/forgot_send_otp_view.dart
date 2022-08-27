@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:waggs_app/app/modules/forgot_password/controllers/forgot_password_controller.dart';
 import '../../../constant/SizeConstant.dart';
-import '../controllers/forgot_send_otp_controller.dart';
 
-class ForgotSendOtpView extends GetView<ForgotSendOtpController> {
+class ForgotSendOtpView extends GetWidget<ForgotPasswordController> {
   const ForgotSendOtpView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -53,7 +52,7 @@ class ForgotSendOtpView extends GetView<ForgotSendOtpController> {
                           ),
                         ),
                         child: TextFormField(
-                          controller: controller.mobileController.value,
+                          controller: controller.otpController.value,
                           keyboardType: TextInputType.phone,
                           validator: (input) => !isNullEmptyOrFalse(input)
                               ? null
@@ -75,10 +74,7 @@ class ForgotSendOtpView extends GetView<ForgotSendOtpController> {
                 SizedBox(height: 25,),
                 InkWell(
                   onTap: () {
-                    if(controller.formKey.currentState!.validate())
-                    {
-                      controller.verifyotp();
-                    }
+                    controller.verifyotp();
                   },
                   child: Container(
                     width: 180,

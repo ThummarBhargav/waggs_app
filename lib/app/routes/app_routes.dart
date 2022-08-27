@@ -29,6 +29,7 @@ abstract class Routes {
   static const FORGOT_SEND_OTP = _Paths.FORGOT_SEND_OTP;
   static const CHANGED_PASSWORD_SEND_OTP_VIEW =
       _Paths.CHANGED_PASSWORD_SEND_OTP_VIEW;
+  static const FORGOT_NEW_PASSWORD = _Paths.FORGOT_NEW_PASSWORD;
 }
 
 abstract class _Paths {
@@ -59,4 +60,5 @@ abstract class _Paths {
   static const CHANGED_PASSWORD_SEND_OTP_VIEW =
       '/changed-password-send-otp-view';
   static const FORGOT_SEND_OTP = '/forgot-send-otp';
+  static const FORGOT_NEW_PASSWORD = '/forgot-new-password';
 }

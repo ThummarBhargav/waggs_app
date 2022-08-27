@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:waggs_app/app/routes/app_pages.dart';
 import '../../../constant/ConstantUrl.dart';
 
 class ForgotSendOtpController extends GetxController {
@@ -25,7 +26,6 @@ class ForgotSendOtpController extends GetxController {
   }
   sendOtp() async {
     var url = Uri.parse(baseUrl2 + ApiConstant.sendOtpUsers);
-
     var response;
     await http.post(url, body: {
       "email": "forgot",
@@ -37,24 +37,8 @@ class ForgotSendOtpController extends GetxController {
       print(error);
     });
     if(response.hashCode==200){
-      print("Success");
-    }
-  }
-  verifyotp() async {
-    var url = Uri.parse("https://api.waggs.in/api/v1/users/verifyOtpNewPassword");
-    var response;
-    await http.post(url, body: {
-      "otp": "${sendotp.value.text.trim()}",
-      "countryCode": "${countryController.value.text.trim()}",
-      "mobile": "${mobileController.value.text.trim()}"
-    }).then((value) {
-      response = value;
-    }).catchError((error){
-      print(error);
-    });
-    if(response.hashCode==200){
-      print("Success");
-    }
-  }
+      Get.toNamed(Routes.FORGOT_SEND_OTP);
 
+    }
+  }
 }

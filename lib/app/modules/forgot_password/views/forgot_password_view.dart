@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:waggs_app/app/routes/app_pages.dart';
-
 import '../../../constant/SizeConstant.dart';
 import '../controllers/forgot_password_controller.dart';
 
@@ -109,7 +107,6 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
                 InkWell(
                   onTap: () {
                     if(controller.formKey.currentState!.validate()) {
-                      Get.offNamed(Routes.FORGOT_SEND_OTP);
                       controller.sendOtp();
                     }
                   },
