@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -175,6 +176,34 @@ class PlaneView extends GetView<PlaneController> {
                           )
                         ],
                       ),
+                      Text("SUBSCRIPTION  PLANS",
+                        style: GoogleFonts.lato(fontWeight: FontWeight.w700,color: Colors.orange,fontSize: 20),),
+                      SizedBox(height: 15,),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 18.0,right: 18),
+                        child: Text("Welcome to Waggs.in, your trustable ally in your search for quality food, supplements and toys for your pets. Created by loving pet parents themselves, "
+                            "Waggs.in is born out of sheer passion, love and care for those better halves of our lives.",
+                          style: GoogleFonts.actor(fontSize: 13,color: Colors.grey,fontWeight: FontWeight.w500),),
+                      ),
+                      SizedBox(height: 30,),
+                      Container(
+                        height: 250.0,
+                        width: 230.0,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage(
+                                'assets/plan1.png'),
+                            fit: BoxFit.fill,
+                          ),
+                          borderRadius:
+                          BorderRadius.only(bottomLeft: Radius.circular(15),topLeft:Radius.circular(15),bottomRight:Radius.circular(15),topRight: Radius.circular(15)  ),
+                        ),
+                      ),
+                      SizedBox(height: 30,),
+                      Text("TREAT YOUR DOG TO ROYALTY",
+                        style: GoogleFonts.lato(fontWeight: FontWeight.w600,color: Colors.orange,fontSize: 20),),
+                      SizedBox(height: 15,),
+
                     ],
                   ),
                 ))
@@ -184,3 +213,6 @@ class PlaneView extends GetView<PlaneController> {
     );
   }
 }
+
+//AssetImage("assets/catagory.jpg"),
+//AssetImage("assets/ca.png"),
