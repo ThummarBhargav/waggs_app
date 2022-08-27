@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ import 'package:http/http.dart' as http;
 import 'package:waggs_app/app/routes/app_pages.dart';
 
 class SingupScreenController extends GetxController {
+  RxBool colorOtpVerification = false.obs;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final GlobalKey<FormState> formKey2 = GlobalKey<FormState>();
   Rx<TextEditingController> firstnameController = TextEditingController().obs;
@@ -26,12 +28,28 @@ class SingupScreenController extends GetxController {
   RxBool isEmailExist = false.obs;
   RxBool isChecked = false.obs;
   RxBool passwordVisible = true.obs;
-
+  RxInt secondsRemaining = 30.obs;
+  RxBool enableResend = false.obs;
+  late Timer timer;
   @override
   void onInit() {
+
     super.onInit();
   }
+gettimer(){
+  timer = Timer.periodic(Duration(seconds: 1), (_) {
+    if (secondsRemaining.value != 0) {
+      enableResend.value = false;
+      secondsRemaining.value--;
+      refresh();
 
+    } else {
+
+      enableResend.value = true;
+      refresh();
+    }
+  });
+}
   @override
   void onReady() {
     super.onReady();
