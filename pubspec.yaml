@@ -16,6 +16,7 @@ dependencies:
   cached_network_image:
   syncfusion_flutter_sliders:
   flutter_rating_bar: ^4.0.1
+  otp_timer_button: ^1.1.0
   flutter_image_slideshow: ^0.1.2
   carousel_slider:
   flutter_svg: ^1.1.3

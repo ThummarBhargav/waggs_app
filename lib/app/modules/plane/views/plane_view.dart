@@ -375,9 +375,12 @@ class PlaneView extends GetView<PlaneController> {
                             child: Text("Our customers don’t want to wait in long queues at the salons on busy days like public holidays and weekends.",
                               style: GoogleFonts.actor(fontWeight: FontWeight.w500,color: Colors.grey,fontSize: 14),),
                           ),
-                          SizedBox(height: 15,),
                         ],
                       ),
+                      SizedBox(height: 40,),
+                      Text("SUBSCRIPTION  PLANS",
+                        style: GoogleFonts.lato(fontWeight: FontWeight.w700,color: Colors.orange,fontSize: 20),),
+                      SizedBox(height: 30,),
                     ],
                   ),
                 ))

@@ -27,6 +27,8 @@ abstract class Routes {
   static const PLANE = _Paths.PLANE;
   static const FORGOT_PASSWORD = _Paths.FORGOT_PASSWORD;
   static const FORGOT_SEND_OTP = _Paths.FORGOT_SEND_OTP;
+  static const CHANGED_PASSWORD_SEND_OTP_VIEW =
+      _Paths.CHANGED_PASSWORD_SEND_OTP_VIEW;
 }
 
 abstract class _Paths {
@@ -54,5 +56,7 @@ abstract class _Paths {
   static const FILTER = '/filter';
   static const PLANE = '/plane';
   static const FORGOT_PASSWORD = '/forgot-password';
+  static const CHANGED_PASSWORD_SEND_OTP_VIEW =
+      '/changed-password-send-otp-view';
   static const FORGOT_SEND_OTP = '/forgot-send-otp';
 }
