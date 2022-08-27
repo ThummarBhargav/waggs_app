@@ -19,12 +19,14 @@ abstract class Routes {
   static const PRODUCT_DETAIL_VIEW = _Paths.PRODUCT_DETAIL_VIEW;
   static const VIEW_ALL_MY_CART = _Paths.VIEW_ALL_MY_CART;
   static const ADD_TO_CART_SHIPPING_VIEW = _Paths.ADD_TO_CART_SHIPPING_VIEW;
+
   static const TAB_BAR1 = _Paths.TAB_BAR1;
   static const SPLASH_SCREEN = _Paths.SPLASH_SCREEN;
   static const MY_ACCOUNT = _Paths.MY_ACCOUNT;
   static const FILTER = _Paths.FILTER;
   static const PLANE = _Paths.PLANE;
   static const FORGOT_PASSWORD = _Paths.FORGOT_PASSWORD;
+  static const FORGOT_SEND_OTP = _Paths.FORGOT_SEND_OTP;
   static const CHANGED_PASSWORD_SEND_OTP_VIEW =
       _Paths.CHANGED_PASSWORD_SEND_OTP_VIEW;
 }
@@ -47,6 +49,7 @@ abstract class _Paths {
   static const PRODUCT_DETAIL_VIEW = '/product-detail-view';
   static const VIEW_ALL_MY_CART = '/view-all-my-cart';
   static const ADD_TO_CART_SHIPPING_VIEW = '/add-to-cart-shipping-view';
+
   static const TAB_BAR1 = '/tab-bar1';
   static const SPLASH_SCREEN = '/splash-screen';
   static const MY_ACCOUNT = '/my-account';
@@ -55,4 +58,5 @@ abstract class _Paths {
   static const FORGOT_PASSWORD = '/forgot-password';
   static const CHANGED_PASSWORD_SEND_OTP_VIEW =
       '/changed-password-send-otp-view';
+  static const FORGOT_SEND_OTP = '/forgot-send-otp';
 }

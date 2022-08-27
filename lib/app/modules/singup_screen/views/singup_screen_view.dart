@@ -350,6 +350,9 @@ class SingupScreenView extends GetWidget<SingupScreenController> {
                               ),
                               enabledBorder: InputBorder.none,
                               focusedBorder: InputBorder.none,
+                              errorText: (controller.ispass.isTrue)
+                                  ? "Does not match password"
+                                  : null,
                               suffixIcon: IconButton(
                                   onPressed: () {
                                     controller.passwordVisible.toggle();
@@ -363,6 +366,19 @@ class SingupScreenView extends GetWidget<SingupScreenController> {
                                     Icons.visibility,
                                     color: Colors.grey,
                                   ))),
+                          onChanged: (val){
+                            controller.ispass.value = false;
+                          },
+                          onFieldSubmitted: (val){
+                            if(controller.passController.value.text == controller.confirmPassController.value.text)
+                              {
+                                controller.ispass.value = false;
+                              }
+                            else
+                              {
+                                controller.ispass.value =true;
+                              }
+                          },
                         ),
                       );
                     }),
@@ -426,11 +442,15 @@ class SingupScreenView extends GetWidget<SingupScreenController> {
                           onTap: () {
                             controller.verifyEmail(context).then((value) {
                               if (controller.formKey.currentState!.validate()) {
-
                                 if(controller.isNumberExist.isFalse && controller.isEmailExist.isFalse){
-                                  controller.sendotpApi();
-                                }
+                                  if(controller.passController == controller.confirmPassController)
+                                    {
+                                      controller.sendotpApi();
+                                    }else
+                                      {
 
+                                      }
+                                }
                               }
                             });
 

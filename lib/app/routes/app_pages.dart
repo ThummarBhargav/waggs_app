@@ -1,7 +1,4 @@
 import 'package:get/get.dart';
-
-import '../../main.dart';
-import '../constant/ConstantUrl.dart';
 import '../modules/Add_To_Cart_Shipping_View/bindings/add_to_cart_shipping_view_binding.dart';
 import '../modules/Add_To_Cart_Shipping_View/views/add_to_cart_shipping_view_view.dart';
 import '../modules/Changed_Password_Send_Otp_View/bindings/changed_password_send_otp_view_binding.dart';
@@ -18,6 +15,8 @@ import '../modules/filter/bindings/filter_binding.dart';
 import '../modules/filter/views/filter_view.dart';
 import '../modules/forgot_password/bindings/forgot_password_binding.dart';
 import '../modules/forgot_password/views/forgot_password_view.dart';
+import '../modules/forgot_send_otp/bindings/forgot_send_otp_binding.dart';
+import '../modules/forgot_send_otp/views/forgot_send_otp_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/login_screen/bindings/login_screen_binding.dart';
@@ -136,6 +135,11 @@ class AppPages {
       name: _Paths.PLANE,
       page: () => const PlaneView(),
       binding: PlaneBinding(),
+    ),
+    GetPage(
+      name: _Paths.FORGOT_SEND_OTP,
+      page: () => const ForgotSendOtpView(),
+      binding: ForgotSendOtpBinding(),
     ),
     GetPage(
       name: _Paths.CHANGED_PASSWORD_SEND_OTP_VIEW,

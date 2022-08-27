@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:waggs_app/app/routes/app_pages.dart';
 
 import '../../../constant/SizeConstant.dart';
-import '../controllers/forgot_password_controller.dart';
+import '../controllers/forgot_send_otp_controller.dart';
 
-class ForgotPasswordView extends GetView<ForgotPasswordController> {
-  const ForgotPasswordView({Key? key}) : super(key: key);
+class ForgotSendOtpView extends GetView<ForgotSendOtpController> {
+  const ForgotSendOtpView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -20,7 +19,7 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
               Image.asset("assets/logo111.png",height: 100,width: 100),
               SizedBox(height: 15,),
               Text(
-                "- FORGOT PASSWORD",
+                "- VERIFY MOBILE",
                 style: GoogleFonts.roboto(
                     color: Color.fromRGBO(242, 160, 87, 1),
                     height: 1.5,
@@ -31,7 +30,7 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  "Please enter the mobile number associated with your account and We will sent you a OTP to reset your password.",
+                  "We have sent a 6-digit confirmation code to your mobile, please enter the code in below box to verify your mobile.",
                   style: GoogleFonts.roboto(
                       color: Color.fromRGBO(99, 115, 129, 1),
                       fontSize: 16,
@@ -40,38 +39,7 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
               ),
               Row(
                 children: [
-                  Expanded(flex: 1,
-                    child: Container(
-                      alignment: Alignment.center,
-                      margin: EdgeInsets.only(left: 15),
-                      padding: EdgeInsets.only(left: 15,),
-                      decoration: BoxDecoration(
-                        color: Colors.grey[300],
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(10),
-                          topRight: Radius.circular(10),
-                          bottomRight: Radius.circular(10),
-                        ),
-                      ),
-                      child: TextFormField(
-                        controller: controller.countryController.value,
-                        keyboardType: TextInputType.text,
-                        validator: (input) => !isNullEmptyOrFalse(input)
-                            ? null
-                            : "Please Enter Your Country Code",
-                        decoration: InputDecoration(
-                          hintText: "+91",
-                          hintStyle: GoogleFonts.roboto(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                          ),
-                          enabledBorder: InputBorder.none,
-                          focusedBorder: InputBorder.none,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Expanded(flex: 3,
+                  Expanded(
                     child: Container(
                       margin: EdgeInsets.only(left: 15,right: 15),
                       padding: EdgeInsets.only(left: 15,),
@@ -88,9 +56,9 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
                         keyboardType: TextInputType.phone,
                         validator: (input) => !isNullEmptyOrFalse(input)
                             ? null
-                            : "Please Enter Your Phone Number",
+                            : "Please Enter otp",
                         decoration: InputDecoration(
-                          hintText: "Enter Your Phone Number",
+                          hintText: "Enter otp",
                           hintStyle: GoogleFonts.roboto(
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
@@ -106,8 +74,7 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
               SizedBox(height: 25,),
               InkWell(
                 onTap: () {
-                  Get.offNamed(Routes.FORGOT_SEND_OTP);
-                  controller.sendOtp();
+                  controller.verifyotp();
                 },
                 child: Container(
                   width: 180,
@@ -121,7 +88,7 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
                       bottomLeft: Radius.circular(25),
                     ),
                   ),
-                  child: Text("Send OTP",style: GoogleFonts.roboto(
+                  child: Text("verify",style: GoogleFonts.roboto(
                       fontSize: 18,
                       fontWeight: FontWeight.w400,
                       color: Colors.white

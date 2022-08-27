@@ -26,6 +26,7 @@ class SingupScreenController extends GetxController {
   RxList<ErrorResponse> errorList = RxList<ErrorResponse>([]);
   RxBool isNumberExist = false.obs;
   RxBool isEmailExist = false.obs;
+  RxBool ispass = false.obs;
   RxBool isChecked = false.obs;
   RxBool passwordVisible = true.obs;
   RxInt secondsRemaining = 30.obs;
