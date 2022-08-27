@@ -29,17 +29,33 @@ import 'package:waggs_app/app/routes/app_pages.dart';
       return Scaffold(
         body:  GetX<SingupScreenController>(builder: (controller) {
           return   Form(
-            key: controller.formKey,
+            key: controller.formKey2,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
-                      height: 60,
-                      width: 60,
-                      margin: EdgeInsets.only(left: 28),
+                      height: 120,
+                      width: 180,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage("assets/logo111.png")),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      height: 50,
+                      width: 200,
                       child: Text(" - CREATE ACCOUNT",
                         style: GoogleFonts.raleway(
                           fontSize: 20,
@@ -50,14 +66,14 @@ import 'package:waggs_app/app/routes/app_pages.dart';
                     ),
                   ],
                 ),
-                SizedBox(height: 30,),
+                SizedBox(height: 50,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      child: Text("Enter verification code",
+                      child: Text("Enter otp sent to mobile no",
                         style: GoogleFonts.roboto(
-                          fontSize: 28,
+                          fontSize: 16,
                           color: Colors.black,
                           fontWeight: FontWeight.w600,
                         ),
@@ -65,48 +81,43 @@ import 'package:waggs_app/app/routes/app_pages.dart';
                     ),
                   ],
                 ),
-                SizedBox(height: 8,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      child: Text("code was sent to Contact Number",
-                        style: GoogleFonts.roboto(
-                            fontSize: 18,
-                            color: Colors.black45
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-                SizedBox(height: 80,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      padding: EdgeInsets.only(
-                        top: 20,
-                      ),
-                      width:350,
-                      child: getTextField(
-                        textEditingController:
-                        controller.otpController.value,
-                        // borderRadius: 20,
-                        hintText: "OTP",
-                        validator: (input) => !isNullEmptyOrFalse(input)
-                            ? null
-                            :"please enter otp ",
-                      ),
+                SizedBox(height: 20,),
+                Container(
+                  margin: EdgeInsets.only(left: 15, right: 15),
+                  padding: EdgeInsets.only(
+                    left: 15,
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.grey[300],
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(10),
+                      topRight: Radius.circular(10),
+                      bottomRight: Radius.circular(10),
                     ),
-                  ],
+                  ),
+                  child: TextFormField(
+                    controller: controller.otpController.value,
+                    validator: (input) => !isNullEmptyOrFalse(input)
+                        ? null
+                        : "Please Enter Your Verification OTP",
+                    decoration: InputDecoration(
+                      hintText: "Enter OTP",
+                      hintStyle: GoogleFonts.roboto(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      enabledBorder: InputBorder.none,
+                      focusedBorder: InputBorder.none,
+                    ),
+                  ),
                 ),
+                SizedBox(height: 10,),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Container(
-                      margin: EdgeInsets.only(right: 15),
+                      margin: EdgeInsets.only(left: 22),
                       child: InkWell(
-
                         onTap: () {
                           if(screenController.enableResend.value)
                             {
@@ -145,8 +156,12 @@ import 'package:waggs_app/app/routes/app_pages.dart';
                         height: 50,
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
-                            color: Colors.black,
-                            borderRadius: BorderRadius.all(Radius.circular(80))
+                            color: Color.fromRGBO(32, 193, 244, 1),
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(25),
+                              bottomLeft: Radius.circular(25),
+                              bottomRight: Radius.circular(25),
+                            )
                         ),
                         child: Text("Verify",
                           style: GoogleFonts.roboto(
