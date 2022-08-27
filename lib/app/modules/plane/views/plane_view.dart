@@ -200,10 +200,66 @@ class PlaneView extends GetView<PlaneController> {
                         ),
                       ),
                       SizedBox(height: 30,),
-                      Text("TREAT YOUR DOG TO ROYALTY",
-                        style: GoogleFonts.lato(fontWeight: FontWeight.w600,color: Colors.orange,fontSize: 20),),
-                      SizedBox(height: 15,),
-
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 18.0,right: 18),
+                            child: Text("TREAT YOUR DOG TO ROYALTY",
+                              style: GoogleFonts.lato(fontWeight: FontWeight.w600,color: Colors.orange,fontSize: 20),),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 18.0,right: 18,top: 20),
+                            child: Text("Benefits of joining Alpha Club",
+                              style: GoogleFonts.roboto(fontWeight: FontWeight.w600,color: Colors.black,fontSize: 18),),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 18.0,right: 18,top: 20),
+                            child: Text("Assure your dog of proactive health care",
+                              style: GoogleFonts.lato(fontWeight: FontWeight.w800,color: Colors.orange,fontSize: 18),),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 18.0,right: 18,top: 15),
+                            child: Text("Book experienced top quality vets to visit your home to check on your dog’s well-being",
+                              style: GoogleFonts.actor(fontWeight: FontWeight.w500,color: Colors.grey,fontSize: 14),),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 18.0,right: 18,top: 20),
+                            child: Text("Assure your dog of proactive health care",
+                              style: GoogleFonts.lato(fontWeight: FontWeight.w800,color: Colors.orange,fontSize: 18),),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 18.0,right: 18,top: 15),
+                            child: Text("Book experienced top quality vets to visit your home to check on your dog’s well-being",
+                              style: GoogleFonts.actor(fontWeight: FontWeight.w500,color: Colors.grey,fontSize: 14),),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ))
