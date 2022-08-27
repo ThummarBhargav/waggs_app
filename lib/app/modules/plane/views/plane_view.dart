@@ -164,7 +164,7 @@ class PlaneView extends GetView<PlaneController> {
                                     margin: EdgeInsets.only(top: 5,left: 2),
                                     child: Text("Subscription Package",
                                         style: GoogleFonts.roboto(
-                                            fontSize: 12,
+                                            fontSize: 10,
                                             fontWeight: FontWeight.bold,
                                             color: Colors.grey.shade600
                                         )
@@ -234,7 +234,7 @@ class PlaneView extends GetView<PlaneController> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(left: 18.0,right: 18,top: 15),
+                            padding: const EdgeInsets.only(left: 18.0,right: 18,top: 12),
                             child: Text("Book experienced top quality vets to visit your home to check on your dog’s well-being",
                               style: GoogleFonts.actor(fontWeight: FontWeight.w500,color: Colors.grey,fontSize: 14),),
                           ),
@@ -245,7 +245,7 @@ class PlaneView extends GetView<PlaneController> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(left: 18.0,right: 18,top: 20),
-                            child: Text("Assure your dog of proactive health care",
+                            child: Text("Secure Salon spots on busy days",
                               style: GoogleFonts.lato(fontWeight: FontWeight.w800,color: Colors.orange,fontSize: 18),),
                           ),
                         ],
@@ -254,10 +254,128 @@ class PlaneView extends GetView<PlaneController> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(left: 18.0,right: 18,top: 15),
-                            child: Text("Book experienced top quality vets to visit your home to check on your dog’s well-being",
+                            padding: const EdgeInsets.only(left: 18.0,right: 18,top: 12),
+                            child: Text("Get Salon appointments secured from the top Salon partners we have ready for you",
                               style: GoogleFonts.actor(fontWeight: FontWeight.w500,color: Colors.grey,fontSize: 14),),
                           ),
+                        ],
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 18.0,right: 18,top: 20),
+                            child: Text("Free shipping on all orders",
+                              style: GoogleFonts.lato(fontWeight: FontWeight.w800,color: Colors.orange,fontSize: 18),),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 18.0,right: 18,top: 12),
+                            child: Text("No matter how small the order is or how far you live, save on free shipping",
+                              style: GoogleFonts.actor(fontWeight: FontWeight.w500,color: Colors.grey,fontSize: 14),),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 25,),
+                      Container(
+                        height: 250.0,
+                        width: 230.0,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage(
+                                'assets/plan2.png'),
+                            fit: BoxFit.fill,
+                          ),
+                          borderRadius:
+                          BorderRadius.only(bottomLeft: Radius.circular(15),topLeft:Radius.circular(15),bottomRight:Radius.circular(15),topRight: Radius.circular(15)  ),
+                        ),
+                      ),
+                      SizedBox(height: 25,),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 15.0,right: 18),
+                            child: Text("WHY BECOME PART OF ALPHA CLUB",
+                              style: GoogleFonts.lato(fontWeight: FontWeight.w600,color: Colors.orange,fontSize: 19),),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 18.0,right: 18,top: 20),
+                            child: Text("A few reasons why so many of our valued customers choose Alpha Club",
+                              style: GoogleFonts.roboto(fontWeight: FontWeight.w600,color: Colors.black,fontSize: 18),),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 18.0,right: 18,top: 20),
+                            child: Text("Subscription saves time",
+                              style: GoogleFonts.lato(fontWeight: FontWeight.w800,color: Colors.orange,fontSize: 18),),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 18.0,right: 18,top: 12),
+                            child: Text("Our customers are busy working professionals but they don’t want to be too busy for their furry friends. "
+                                "Subscription plan offers the peace of mind. Pay once and let us deal with the rest.",
+                              style: GoogleFonts.actor(fontWeight: FontWeight.w500,color: Colors.grey,fontSize: 14),),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 18.0,right: 18,top: 20),
+                            child: Text("Convenience of vet appointments",
+                              style: GoogleFonts.lato(fontWeight: FontWeight.w800,color: Colors.orange,fontSize: 18),),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 18.0,right: 18,top: 12),
+                            child: Text("Our customers want to be proactive about their dog's health. "
+                                "They like vets visiting them at regular intervals to check on their dog's health and not wait till something happens",
+                              style: GoogleFonts.actor(fontWeight: FontWeight.w500,color: Colors.grey,fontSize: 14),),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 18.0,right: 18,top: 20),
+                            child: Text("Secure Salon spots on busy days",
+                              style: GoogleFonts.lato(fontWeight: FontWeight.w800,color: Colors.orange,fontSize: 18),),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 18.0,right: 18,top: 12),
+                            child: Text("Our customers don’t want to wait in long queues at the salons on busy days like public holidays and weekends.",
+                              style: GoogleFonts.actor(fontWeight: FontWeight.w500,color: Colors.grey,fontSize: 14),),
+                          ),
+                          SizedBox(height: 15,),
                         ],
                       ),
                     ],
