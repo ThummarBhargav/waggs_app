@@ -494,7 +494,8 @@ class HomeView extends GetWidget<HomeController> {
                         child: Column(
                           children: [
                             InkWell(
-                              onTap: () {},
+                              onTap: () {
+                              },
                               child: ListTile(
                                 leading: Icon(Icons.widgets_outlined),
                                 title: Text('All Categories',
@@ -503,7 +504,7 @@ class HomeView extends GetWidget<HomeController> {
                             ),
                             InkWell(
                               onTap: () {
-
+                                Get.toNamed(Routes.PLANE);
                               },
                               child: ListTile(
                                 leading: Icon(Icons.discount_outlined),
@@ -600,7 +601,9 @@ class HomeView extends GetWidget<HomeController> {
                                           confirmTextColor: Colors.white,
                                           cancelTextColor: Colors.cyan,
                                           buttonColor: Colors.cyan,
-                                          onCancel: (){},
+                                          onCancel: (){
+                                            Get.back();
+                                          },
                                           onConfirm: (){
                                           box.erase();
                                           Get.offAllNamed(Routes.HOME);
