@@ -100,9 +100,11 @@ class MyAccountView extends GetView<MyAccountController> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Container(
-                            child: Text("${box.read(ArgumentConstant.address)}",
-                              style: TextStyle(fontSize: 18),),
+                          Expanded(
+                            child: Container(
+                              child: Text("${box.read(ArgumentConstant.address)}",
+                                style: TextStyle(fontSize: 18),),
+                            ),
                           ),
                           IconButton(onPressed: (){}, icon: Icon(Icons.edit,color: Colors.grey,))
                         ],
