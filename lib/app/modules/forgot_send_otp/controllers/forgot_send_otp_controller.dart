@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import '../../../constant/ConstantUrl.dart';
 
 class ForgotSendOtpController extends GetxController {
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   Rx<TextEditingController> sendotp = TextEditingController().obs;
   Rx<TextEditingController> countryController = TextEditingController().obs;
   Rx<TextEditingController> mobileController = TextEditingController().obs;

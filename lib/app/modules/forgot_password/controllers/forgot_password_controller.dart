@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 
 class ForgotPasswordController extends GetxController {
   //TODO: Implement ForgotPasswordController
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   Rx<TextEditingController> countryController = TextEditingController().obs;
   Rx<TextEditingController> mobileController = TextEditingController().obs;
   @override
