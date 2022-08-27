@@ -342,9 +342,7 @@ class HomeController extends GetxController {
     }
     Countlist.refresh();
   }
-
   CartProductApi() async {
-
     hasData.value = false;
     cartProductList.clear();
     var url =await Uri.parse("https://api.waggs.in/api/v1/cart");

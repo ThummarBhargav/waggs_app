@@ -6,12 +6,12 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/Modal/ErrorResponse.dart';
 import 'package:waggs_app/app/Modal/sign_up_response_model.dart';
-import 'package:waggs_app/app/constant/ConstantUrl.dart';
 import 'package:http/http.dart' as http;
 import 'package:waggs_app/app/routes/app_pages.dart';
 
 class SingupScreenController extends GetxController {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> formKey2 = GlobalKey<FormState>();
   Rx<TextEditingController> firstnameController = TextEditingController().obs;
   Rx<TextEditingController> emailController = TextEditingController().obs;
   Rx<TextEditingController> passController = TextEditingController().obs;
@@ -22,7 +22,8 @@ class SingupScreenController extends GetxController {
   Rx<TextEditingController> emailvController = TextEditingController().obs;
   ErrorResponse error = ErrorResponse();
   RxList<ErrorResponse> errorList = RxList<ErrorResponse>([]);
-
+  RxBool isNumberExist = false.obs;
+  RxBool isEmailExist = false.obs;
   RxBool isChecked = false.obs;
   RxBool passwordVisible = true.obs;
 
@@ -43,78 +44,58 @@ class SingupScreenController extends GetxController {
 
   void otpApi(BuildContext context) async {
     var url = Uri.parse("https://api.waggs.in/api/v1/users/verifyOtp");
-    // var response;
     await http.post(url, body: {
       'email': '${emailController.value.text.trim()}',
       'countryCode': '${countryController.value.text.trim()}',
       'mobile': '${mobileController.value.text.trim()}',
       'otp': '${otpController.value.text.trim()}'
     }).then((value) {
-
-      // signUpApi(context);
       print(value.statusCode);
       if (value.statusCode == 200) {
         ErrorResponse res = ErrorResponse.fromJson(jsonDecode(value.body));
         if (res.responseCode == 200) {
           signUpApi(context);
-        } else {
-          showDialog(
-              barrierDismissible: false,
-              builder: (context) {
-                return AlertDialog(
-                  title: Column(
-                    children: [
-                      Container(
-                        height: 40,
-                        width: 40,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage("assets/tick.png"),
-                          ),
-                        ),
-                      ),
-                      Text(
-                        "Success",
-                        style: GoogleFonts.raleway(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ],
-                  ),
-                  content: Text(
-                      "Sign up Successful. Check email for email verification."),
-                  titleTextStyle: GoogleFonts.raleway(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
-                  contentTextStyle: GoogleFonts.raleway(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
-                  actions: [
-                    TextButton(
-                        onPressed: () {
-                          Get.toNamed(Routes.LOGIN_SCREEN);
-                        },
-                        child: Text(
-                          "Login",
-                          style: GoogleFonts.raleway(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                            color: Color.fromRGBO(32, 193, 244, 1),
-                          ),
-                        ))
-                  ],
-                );
-              },
-              context: context);
         }
       } else {
         Get.snackbar("Error", "Something Went Wrong!!!");
+      }
+    });
+  }
+
+  Future verifyEmail(BuildContext context) async {
+    var url = Uri.parse("https://api.waggs.in/api/v1/users/verifyExists");
+    await http.post(url, body: {
+      'email': '${emailController.value.text.trim()}',
+    }).then((value) {
+      print(value.statusCode);
+      if (value.statusCode == 200) {
+        ErrorResponse res = ErrorResponse.fromJson(jsonDecode(value.body));
+        if (res.responseCode == 200) {
+
+        }
+      } else {
+        isEmailExist.value = true;
+        ErrorResponse res = ErrorResponse.fromJson(jsonDecode(value.body));
+        // Get.snackbar("Error", res.message.toString(),snackPosition: SnackPosition.TOP);
+      }
+    });
+  }
+
+  void verifyPhone(BuildContext context) async {
+    var url = Uri.parse("https://api.waggs.in/api/v1/users/verifyExists");
+    await http.post(url, body: {
+      'mobile': '${mobileController.value.text.trim()}',
+    }).then((value) {
+      print(value.statusCode);
+      if (value.statusCode == 200) {
+        ErrorResponse res = ErrorResponse.fromJson(jsonDecode(value.body));
+        if (res.responseCode == 200) {
+
+        }
+      } else {
+        isNumberExist.value = true;
+        ErrorResponse res = ErrorResponse.fromJson(jsonDecode(value.body));
+        // Get.snackbar("Error", res.message.toString(),snackPosition: SnackPosition.TOP);
       }
     });
   }
@@ -126,6 +107,9 @@ class SingupScreenController extends GetxController {
       'countryCode': '${countryController.value.text.trim()}',
       'email': '${emailController.value.text.trim()}',
     });
+    if(response.statusCode == 200){
+      Get.toNamed(Routes.O_T_P_SCREEN);
+    }
     print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');
   }

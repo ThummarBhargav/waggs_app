@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:waggs_app/app/Modal/login_model.dart';
@@ -61,15 +62,13 @@ Rx<TextEditingController> passController = TextEditingController().obs;
             }
           }
         }
-
       }
       else{
-        Get.snackbar("Error", response.body,snackPosition: SnackPosition.BOTTOM);
+        LoginModel res  = LoginModel.fromJson(jsonDecode(response.body));
+        Get.snackbar("Error", res.message.toString(),snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.red,colorText: Colors.white);
       }
     }catch(e){
-
     Get.snackbar("Error", e.toString(),snackPosition: SnackPosition.BOTTOM,);
-
     }
   }
 }

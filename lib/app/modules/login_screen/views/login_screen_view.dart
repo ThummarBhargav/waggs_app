@@ -263,7 +263,9 @@ class LoginScreenView extends GetView<LoginScreenController> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       InkWell(
+
                         onTap: () {
+                          FocusScope.of(context).unfocus();
                           if (controller.formKey2.currentState!.validate()) {
                             controller.LoginUser();
                           }
@@ -308,6 +310,7 @@ class LoginScreenView extends GetView<LoginScreenController> {
                       ),
                       InkWell(
                         onTap: () {
+                          FocusScope.of(context).unfocus();
                           Get.toNamed(Routes.SINGUP_SCREEN);
                         },
                         child: Container(

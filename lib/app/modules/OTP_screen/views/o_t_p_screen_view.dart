@@ -6,13 +6,13 @@ import 'package:waggs_app/app/constant/text_field.dart';
 import 'package:waggs_app/app/modules/singup_screen/controllers/singup_screen_controller.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
 
-class OTPScreenView extends GetView<SingupScreenController> {
+class OTPScreenView extends GetWidget<SingupScreenController> {
   const OTPScreenView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Form(
-        key: controller.formKey,
+        key: controller.formKey2,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -87,7 +87,7 @@ class OTPScreenView extends GetView<SingupScreenController> {
               children: [
                 InkWell(
                   onTap: () {
-                    if (controller.formKey.currentState!.validate()) {
+                    if (controller.formKey2.currentState!.validate()) {
                       controller.otpApi(context);
                     }
                   },
