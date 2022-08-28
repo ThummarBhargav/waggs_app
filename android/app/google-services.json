@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "312438667205",
+    "project_id": "waggs-cf353",
+    "storage_bucket": "waggs-cf353.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:312438667205:android:779ef02a130755eb4d3dac",
+        "android_client_info": {
+          "package_name": "com.example.waggs_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "312438667205-bs451it5kkc3h1rsu0phkvbmbodatttt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtTu0h3q4RpLvb4_pTEJkwSK0fIgPIEGk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "312438667205-bs451it5kkc3h1rsu0phkvbmbodatttt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

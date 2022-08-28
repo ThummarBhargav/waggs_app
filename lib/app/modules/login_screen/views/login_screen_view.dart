@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:waggs_app/app/constant/SizeConstant.dart';
 import 'package:waggs_app/app/modules/forgot_password/views/forgot_password_view.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
@@ -228,7 +230,26 @@ class LoginScreenView extends GetView<LoginScreenController> {
                         width: 10,
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Future<UserCredential> signInWithGoogle() async {
+                            final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+                            final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+                            final credential = GoogleAuthProvider.credential(
+                              accessToken: googleAuth?.accessToken,
+                              idToken: googleAuth?.idToken,
+                            );
+                            return await FirebaseAuth.instance.signInWithCredential(credential);
+                          }
+                          // controller.googleAuth.signIn().then((result) {
+                          //   result!.authentication.then((googlekey){
+                          //     FirebaseAuth.instance.signInWith
+                          //   }).catchError((e){
+                          //     print(e);
+                          //   });
+                          // }).catchError((e){
+                          //   print(e);
+                          // });
+                        },
                         child: Container(
                           height: 40,
                           width: 50,
