@@ -27,6 +27,7 @@ class ArgumentConstant{
   static String token = "token";
   static String token1 = "token1";
   static String email = "email";
+  static String countryCode = "countryCode";
   static String name = "name";
   static String  phone = "phone";
   static String address = "address";

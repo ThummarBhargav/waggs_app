@@ -1,22 +1,20 @@
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:waggs_app/app/constant/ConstantUrl.dart';
-import 'package:http/http.dart' as http;
 
 import '../../../../main.dart';
 import '../../../Modal/login_model.dart';
-import '../../../constant/SizeConstant.dart';
+import '../../../constant/ConstantUrl.dart';
 import '../../../routes/app_pages.dart';
+import 'package:http/http.dart' as http;
 
-class MyAccountController extends GetxController {
-  //TODO: Implement MyAccountController
+class MyAccountChangePasswordController extends GetxController {
 
-  TextEditingController name = TextEditingController();
-  Rx<TextEditingController> emailController = TextEditingController().obs;
-  Rx<TextEditingController> passController = TextEditingController().obs;
+  Rx<TextEditingController> otpController = TextEditingController().obs;
+
   List respons =[];
+
   @override
   void onInit() {
     super.onInit();
@@ -32,13 +30,13 @@ class MyAccountController extends GetxController {
     super.onClose();
   }
 
-  Future<void> sendOtpUser() async {
+  Future<void> verifyOtpUsers() async {
     try{
-      var url = Uri.parse("https://api.waggs.in/api/v1/users/sendOtp");
+      var url = Uri.parse("https://api.waggs.in/api/v1/users/verifyOtpNewPassword");
       var response = await http.post(url, body: {
         'countryCode': '${box.read(ArgumentConstant.countryCode)}',
-        'email': 'forgot',
         'mobile': '${box.read(ArgumentConstant.phone)}',
+        'otp': '${otpController.value.text.trim()}',
       }
       );
       respons.add(response.body);
@@ -50,15 +48,12 @@ class MyAccountController extends GetxController {
         if(res.responseCode == 200){
           Get.toNamed(Routes.MY_ACCOUNT_CHANGE_PASSWORD);
         }
-
       }
       else{
         Get.snackbar("Error", response.body,snackPosition: SnackPosition.BOTTOM);
       }
     }catch(e){
-
       Get.snackbar("Error", e.toString(),snackPosition: SnackPosition.BOTTOM,);
-
     }
   }
 

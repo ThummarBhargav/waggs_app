@@ -94,7 +94,7 @@ class ForgotPasswordController extends GetxController {
     }).then((value) {
       if(value.statusCode == 200){
         FpassModel res  = FpassModel.fromJson(jsonDecode(value.body));
-              box.write(ArgumentConstant.token1, res.data!.newPasswordToken);
+              box.write(ArgumentConstant.token, res.data!.newPasswordToken);
               // Get.offAllNamed(ForgotNewPasswordView());
         // Get.offAllNamed(ForgotNewPasswordView());
         Get.offAll(ForgotNewPasswordView());
