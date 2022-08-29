@@ -382,10 +382,10 @@ class PlaneView extends GetView<PlaneController> {
                         style: GoogleFonts.lato(fontWeight: FontWeight.w700,color: Colors.orange,fontSize: 20),),
                       SizedBox(height: 30,),
                       Container(
-                        height: 500,
-                        margin: EdgeInsets.all(15),
+                        height: 450,
+                        margin: EdgeInsets.all(35),
                         decoration: BoxDecoration(
-                            color: Colors.grey.shade200,
+                            color: Colors.white,
                             borderRadius: BorderRadius.all(Radius.circular(5))
                         ),
                         child: Column(
@@ -393,12 +393,12 @@ class PlaneView extends GetView<PlaneController> {
                               Stack(
                                 children: [
                               Container(
-                                height: 180,
+                                height: 140,
                                 decoration: BoxDecoration(
                                     color: Colors.lightBlue.shade200,
                                     borderRadius: BorderRadius.only(
-                                    bottomRight: Radius.circular(300),
-                                    bottomLeft: Radius.circular(300),
+                                    bottomRight: Radius.circular(250),
+                                    bottomLeft: Radius.circular(250),
                                   ),
                                 ),
                               ),
@@ -406,15 +406,15 @@ class PlaneView extends GetView<PlaneController> {
                                     width: 90,
                                     height: 90,
                                     alignment: Alignment.center,
-                                    margin: EdgeInsets.only(left: 130,top: 130),
+                                    margin: EdgeInsets.only(left: 120,top: 100),
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                       color: Colors.white,
                                       image: DecorationImage(
                                           image: AssetImage("assets/p1.JPG"),
-                                      )
+                                      ),
                                     ),
-                                  )
+                                  ),
                                 ],
                               ),
                             SizedBox(height: 10,),
