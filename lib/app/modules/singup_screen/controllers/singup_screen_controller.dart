@@ -34,7 +34,6 @@ class SingupScreenController extends GetxController {
   late Timer timer;
   @override
   void onInit() {
-
     super.onInit();
   }
 gettimer(){

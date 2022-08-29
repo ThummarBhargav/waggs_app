@@ -141,7 +141,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.FORGOT_SEND_OTP,
-      page: () => const ForgotSendOtpView(),
+      page: () =>  ForgotSendOtpView(),
       binding: ForgotSendOtpBinding(),
     ),
     GetPage(

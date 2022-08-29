@@ -24,6 +24,8 @@ import 'package:waggs_app/app/routes/app_pages.dart';
   screenController.gettimer();
     super.initState();
   }
+
+
     @override
     Widget build(BuildContext context) {
       return Scaffold(
@@ -182,7 +184,6 @@ import 'package:waggs_app/app/routes/app_pages.dart';
 
       );
     }
-
     timer(){
       Timer(Duration(seconds: 30), () {
         print("Yeah, this line is printed after 3 second");
