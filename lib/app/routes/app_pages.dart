@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:waggs_app/app/modules/My_Account_Change_Password/bindings/my_account_change_password_binding.dart';
+import 'package:waggs_app/app/modules/My_Account_Change_Password/views/my_account_change_password_view.dart';
 
 import '../modules/Add_To_Cart_Shipping_View/bindings/add_to_cart_shipping_view_binding.dart';
 import '../modules/Add_To_Cart_Shipping_View/views/add_to_cart_shipping_view_view.dart';
@@ -143,6 +145,10 @@ class AppPages {
       page: () => const ChangedPasswordSendOtpViewView(),
       binding: ChangedPasswordSendOtpViewBinding(),
     ),
-
+    GetPage(
+      name: _Paths.MY_ACCOUNT_CHANGE_PASSWORD,
+      page: () => const MyAccountChangePasswordView(),
+      binding: MyAccountChangePasswordBinding(),
+    ),
   ];
 }
