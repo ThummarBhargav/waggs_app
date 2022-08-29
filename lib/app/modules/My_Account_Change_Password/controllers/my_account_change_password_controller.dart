@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:waggs_app/app/Modal/ErrorResponse.dart';
+import 'package:waggs_app/app/Modal/Forget_passwordmodel.dart';
 
 import '../../../../main.dart';
 import '../../../Modal/login_model.dart';
@@ -31,7 +32,7 @@ class MyAccountChangePasswordController extends GetxController {
     super.onClose();
   }
   Future<void>verifyOtpUsers() async {
-    var url = Uri.parse("https://api.waggs.in/api/v1/users/sendOtp");
+    var url = Uri.parse("https://api.waggs.in/api/v1/users/verifyOtpNewPassword");
     var response;
     await http.post(url, body: {
       'countryCode': '${box.read(ArgumentConstant.countryCode)}',
@@ -39,6 +40,8 @@ class MyAccountChangePasswordController extends GetxController {
       'otp': '${otpController.value.text.trim()}',
     }).then((value) {
       if(value.statusCode == 200){
+        FpassModel res  = FpassModel.fromJson(jsonDecode(value.body));
+        box.write(ArgumentConstant.token1, res.data!.newPasswordToken);
         Get.toNamed(Routes.MY_ACCOUNT_NEW_CHANGED_AND_OLD_PASSWORD_CHANGE);
       }
       else

@@ -39,7 +39,7 @@ class MyAccountNewChangedAndOldPasswordChangeController extends GetxController {
     await http.post(url, body: {
       "countryCode":"${box.read(ArgumentConstant.countryCode)}",
       "mobile":"${box.read(ArgumentConstant.phone)}",
-      "newPasswordToken":"${box.read(ArgumentConstant.token)}",
+      "newPasswordToken":"${box.read(ArgumentConstant.token1)}",
       "password":"${passController.value.text.trim()}"
     }).then((value) {
       if(value.statusCode == 200){

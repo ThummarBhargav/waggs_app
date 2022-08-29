@@ -86,8 +86,6 @@ class ForgotSendOtpView extends GetWidget<ForgotPasswordController> {
                             controller.sendOtp();
                             controller.refresh();
                           }
-
-
                         },
 
                         child:Obx(()=>Text(controller.enableResend1.value==true?"Resend Otp":"Resend Otp ${controller.secondsRemaining1}",
