@@ -38,7 +38,6 @@ class LoginScreenController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
   // void google_signIn() async{
   //    GoogleSignInAccount? googleUser = await googleSignIn.signIn();
   //    GoogleSignInAuthentication? googleAuth = await googleUser!.authentication;

@@ -92,6 +92,7 @@ class LoginScreenView extends GetView<LoginScreenController> {
                     ),
                     child: TextFormField(
                       controller: controller.emailController.value,
+                      keyboardType: TextInputType.emailAddress,
                       validator: (input) => !isNullEmptyOrFalse(input)
                           ? null
                           : "Please Enter Email Address",
