@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:waggs_app/app/modules/forgot_password/controllers/forgot_password_controller.dart';
 import '../../../constant/SizeConstant.dart';
+import '../controllers/forgot_password_controller.dart';
 
 class ForgotSendOtpView extends GetWidget<ForgotPasswordController> {
-  const ForgotSendOtpView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -27,7 +26,8 @@ class ForgotSendOtpView extends GetWidget<ForgotPasswordController> {
                       fontWeight: FontWeight.w400),
                 ),
                 SizedBox(height: 15,),
-                Padding(
+                Container(
+                  margin: EdgeInsets.only(left: 15),
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
                     "We have sent a 6-digit confirmation code to your mobile, please enter the code in below box to verify your mobile.",
@@ -71,7 +71,37 @@ class ForgotSendOtpView extends GetWidget<ForgotPasswordController> {
                     ),
                   ],
                 ),
-                SizedBox(height: 25,),
+                SizedBox(height: 10,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(left: 22),
+                      child: InkWell(
+                        onTap: () {
+                          if(controller.enableResend1.value == true)
+                          {
+                            controller.secondsRemaining1=30.obs;
+                            // otpScreenController.gettimer();
+                            controller.sendOtp();
+                            controller.refresh();
+                          }
+
+
+                        },
+
+                        child:Obx(()=>Text(controller.enableResend1.value==true?"Resend Otp":"Resend Otp ${controller.secondsRemaining1}",
+                          style: GoogleFonts.raleway(
+                              color:  controller.enableResend1.value==true?Color.fromRGBO(32, 193, 244, 1):
+                              Colors.grey,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600
+                          ),
+                        )),),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 60,),
                 InkWell(
                   onTap: () {
                     controller.verifyotp();
@@ -103,3 +133,30 @@ class ForgotSendOtpView extends GetWidget<ForgotPasswordController> {
     );
   }
 }
+
+// class ForgotSendOtpView extends StatefulWidget {
+//
+//   @override
+//   State<ForgotSendOtpView> createState() => _ForgotSendOtpViewState();
+// }
+//
+// class _ForgotSendOtpViewState extends State<ForgotSendOtpView> {
+//
+//   ForgotSendOtpController otpScreenController= Get.put(ForgotSendOtpController());
+//
+//
+//   @override
+//   void initState() {
+//     otpScreenController.gettimer();
+//     super.initState();
+//   }
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: GetX<ForgotSendOtpController>(builder: (controller) {
+//         return
+//       },),
+//     );
+//   }
+// }
+

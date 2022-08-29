@@ -14,12 +14,11 @@ import '../modules/email_screen/bindings/email_screen_binding.dart';
 import '../modules/email_screen/views/email_screen_view.dart';
 import '../modules/filter/bindings/filter_binding.dart';
 import '../modules/filter/views/filter_view.dart';
-import '../modules/forgot_new_password/bindings/forgot_new_password_binding.dart';
-import '../modules/forgot_new_password/views/forgot_new_password_view.dart';
+import '../modules/forgot_password/views/forgot_new_password_view.dart';
 import '../modules/forgot_password/bindings/forgot_password_binding.dart';
 import '../modules/forgot_password/views/forgot_password_view.dart';
-import '../modules/forgot_send_otp/bindings/forgot_send_otp_binding.dart';
-import '../modules/forgot_send_otp/views/forgot_send_otp_view.dart';
+
+import '../modules/forgot_password/views/forgot_send_otp_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/login_screen/bindings/login_screen_binding.dart';
@@ -140,19 +139,10 @@ class AppPages {
       binding: PlaneBinding(),
     ),
     GetPage(
-      name: _Paths.FORGOT_SEND_OTP,
-      page: () => const ForgotSendOtpView(),
-      binding: ForgotSendOtpBinding(),
-    ),
-    GetPage(
       name: _Paths.CHANGED_PASSWORD_SEND_OTP_VIEW,
       page: () => const ChangedPasswordSendOtpViewView(),
       binding: ChangedPasswordSendOtpViewBinding(),
     ),
-    GetPage(
-      name: _Paths.FORGOT_NEW_PASSWORD,
-      page: () =>  const ForgotNewPasswordView(),
-      binding: ForgotNewPasswordBinding(),
-    ),
+
   ];
 }

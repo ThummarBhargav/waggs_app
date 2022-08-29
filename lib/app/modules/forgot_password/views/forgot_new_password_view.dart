@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/constant/SizeConstant.dart';
+import 'package:waggs_app/app/modules/forgot_password/controllers/forgot_password_controller.dart';
+import 'package:waggs_app/app/modules/forgot_password/views/forgot_password_view.dart';
 
-import '../controllers/forgot_new_password_controller.dart';
 
-class ForgotNewPasswordView extends GetWidget<ForgotNewPasswordController> {
-  const ForgotNewPasswordView({Key? key}) : super(key: key);
+class ForgotNewPasswordView extends GetWidget<ForgotPasswordController> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
