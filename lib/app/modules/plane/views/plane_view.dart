@@ -525,13 +525,13 @@ class PlaneView extends GetView<PlaneController> {
                                                 ),
                                               ),
                                             ),
-                                            SizedBox(height: 10,),
+                                            SizedBox(height: 20,),
                                             InkWell(
                                               onTap: () {
 
                                               },
                                               child: Container(
-                                                height: 50,
+                                                height: 40,
                                                 width: 150,
                                                 alignment: Alignment.center,
                                                 decoration: BoxDecoration(
