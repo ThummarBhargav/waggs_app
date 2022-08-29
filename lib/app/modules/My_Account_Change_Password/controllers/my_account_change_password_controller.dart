@@ -46,7 +46,7 @@ class MyAccountChangePasswordController extends GetxController {
       if(response.statusCode==200){
         LoginModel res  = LoginModel.fromJson(jsonDecode(response.body));
         if(res.responseCode == 200){
-          Get.toNamed(Routes.MY_ACCOUNT_CHANGE_PASSWORD);
+          // Get.toNamed(Routes.MY_ACCOUNT_CHANGE_PASSWORD);
         }
       }
       else{
