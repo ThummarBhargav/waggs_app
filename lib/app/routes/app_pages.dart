@@ -1,9 +1,6 @@
 import 'package:get/get.dart';
-
 import '../modules/Add_To_Cart_Shipping_View/bindings/add_to_cart_shipping_view_binding.dart';
 import '../modules/Add_To_Cart_Shipping_View/views/add_to_cart_shipping_view_view.dart';
-import '../modules/Changed_Password_Send_Otp_View/bindings/changed_password_send_otp_view_binding.dart';
-import '../modules/Changed_Password_Send_Otp_View/views/changed_password_send_otp_view_view.dart';
 import '../modules/My_Account_Change_Password/bindings/my_account_change_password_binding.dart';
 import '../modules/My_Account_Change_Password/views/my_account_change_password_view.dart';
 import '../modules/My_Account_new_changed_And_Old_Password_Change/bindings/my_account_new_changed_and_old_password_change_binding.dart';
@@ -16,12 +13,8 @@ import '../modules/View_All_My_Cart/bindings/view_all_my_cart_binding.dart';
 import '../modules/View_All_My_Cart/views/view_all_my_cart_view.dart';
 import '../modules/email_screen/bindings/email_screen_binding.dart';
 import '../modules/email_screen/views/email_screen_view.dart';
-import '../modules/filter/bindings/filter_binding.dart';
-import '../modules/filter/views/filter_view.dart';
 import '../modules/forgot_password/bindings/forgot_password_binding.dart';
-import '../modules/forgot_password/views/forgot_new_password_view.dart';
 import '../modules/forgot_password/views/forgot_password_view.dart';
-import '../modules/forgot_password/views/forgot_send_otp_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/login_screen/bindings/login_screen_binding.dart';
@@ -127,11 +120,6 @@ class AppPages {
       binding: MyAccountBinding(),
     ),
     GetPage(
-      name: _Paths.FILTER,
-      page: () => const FilterView(),
-      binding: FilterBinding(),
-    ),
-    GetPage(
       name: _Paths.FORGOT_PASSWORD,
       page: () => const ForgotPasswordView(),
       binding: ForgotPasswordBinding(),
@@ -140,11 +128,6 @@ class AppPages {
       name: _Paths.PLANE,
       page: () => const PlaneView(),
       binding: PlaneBinding(),
-    ),
-    GetPage(
-      name: _Paths.CHANGED_PASSWORD_SEND_OTP_VIEW,
-      page: () => const ChangedPasswordSendOtpViewView(),
-      binding: ChangedPasswordSendOtpViewBinding(),
     ),
     GetPage(
       name: _Paths.MY_ACCOUNT_CHANGE_PASSWORD,
