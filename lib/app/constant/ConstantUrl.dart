@@ -20,6 +20,7 @@ class ApiConstant {
   static const alsoLike = "products";
   static const Cart = "cart";
   static const Count = "cart/count";
+  static const Plans = "subscription/plans";
 }
 
 class ArgumentConstant{
