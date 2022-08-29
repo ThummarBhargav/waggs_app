@@ -381,15 +381,137 @@ class PlaneView extends GetView<PlaneController> {
                       Text("SUBSCRIPTION  PLANS",
                         style: GoogleFonts.lato(fontWeight: FontWeight.w700,color: Colors.orange,fontSize: 20),),
                       SizedBox(height: 30,),
+                      Container(
+                        height: 450,
+                        margin: EdgeInsets.all(35),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.all(Radius.circular(5))
+                        ),
+                        child: Column(
+                          children: [
+                              Stack(
+                                children: [
+                              Container(
+                                height: 140,
+                                decoration: BoxDecoration(
+                                    color: Colors.lightBlue.shade200,
+                                    borderRadius: BorderRadius.only(
+                                    bottomRight: Radius.circular(250),
+                                    bottomLeft: Radius.circular(250),
+                                  ),
+                                ),
+                              ),
+                                Container(
+                                    width: 90,
+                                    height: 90,
+                                    alignment: Alignment.center,
+                                    margin: EdgeInsets.only(left: 120,top: 100),
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Colors.white,
+                                      image: DecorationImage(
+                                          image: AssetImage("assets/p1.JPG"),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            SizedBox(height: 10,),
+                            Container(
+                              child: Text("2 Vet Visits",
+                                style: GoogleFonts.raleway(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.black54
+                                ),
+                              ),
+                            ),
+                            Container(
+                              height: 15,
+                              child: Divider(
+                                indent: 20,
+                                color: Colors.black54,
+                                endIndent: 20,
+                                height: 1,
+                              ),
+                            ),
+                            SizedBox(height: 10,),
+                            Container(
+                              child: Text("2 Salon Visits",
+                                style: GoogleFonts.raleway(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.black54
+                                ),
+                              ),
+                            ),
+                            Container(
+                              height: 15,
+                              child: Divider(
+                                indent: 20,
+                                color: Colors.black54,
+                                endIndent: 20,
+                                height: 1,
+                              ),
+                            ),
+                            SizedBox(height: 10,),
+                            Container(
+                              child: Text("₹9500.00",
+                                style: GoogleFonts.raleway(
+                                  color: Colors.orange,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 20,),
+                            Container(
+                              child: Text("FOR 3 MONTHS",
+                                style: GoogleFonts.raleway(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                  fontSize: 16
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 30,),
+                            InkWell(
+                              onTap: () {
+
+                              },
+                              child: Container(
+                                height: 50,
+                                width: 150,
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  color: Colors.orange.shade400,
+                                  borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(25),
+                                    bottomLeft: Radius.circular(25),
+                                    bottomRight: Radius.circular(25),
+                                  ),
+                                ),
+                                child: Text("PAY NOW",
+                                  style: GoogleFonts.raleway(
+                                    fontSize: 16,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
-                ))
+                )),
           ],
         ),
       ),
     );
   }
 }
-
 //AssetImage("assets/catagory.jpg"),
 //AssetImage("assets/ca.png"),

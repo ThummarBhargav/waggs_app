@@ -24,6 +24,8 @@ import 'package:waggs_app/app/routes/app_pages.dart';
   screenController.gettimer();
     super.initState();
   }
+
+
     @override
     Widget build(BuildContext context) {
       return Scaffold(
@@ -119,10 +121,10 @@ import 'package:waggs_app/app/routes/app_pages.dart';
                       margin: EdgeInsets.only(left: 22),
                       child: InkWell(
                         onTap: () {
-                          if(screenController.enableResend.value)
+                          if(screenController.enableResend.value == true)
                             {
                               screenController.secondsRemaining=30.obs;
-                              screenController.gettimer();
+                              // screenController.gettimer();
                               screenController.refresh();
                               controller.sendotpApi();
                             }
@@ -182,7 +184,6 @@ import 'package:waggs_app/app/routes/app_pages.dart';
 
       );
     }
-
     timer(){
       Timer(Duration(seconds: 30), () {
         print("Yeah, this line is printed after 3 second");

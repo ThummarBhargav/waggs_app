@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,6 +16,8 @@ class ForgotPasswordController extends GetxController {
   Rx<TextEditingController> countryController = TextEditingController().obs;
   Rx<TextEditingController> mobileController = TextEditingController().obs;
   Rx<TextEditingController> otpController = TextEditingController().obs;
+  RxBool passwordVisible = true.obs;
+
   @override
   void onInit() {
     countryController.value.text = "+91";
@@ -53,8 +56,6 @@ class ForgotPasswordController extends GetxController {
       print(error);
     });
   }
-
-
   Future<void>verifyotp() async {
     var url = Uri.parse("https://api.waggs.in/api/v1/users/verifyOtpNewPassword");
     var response;
