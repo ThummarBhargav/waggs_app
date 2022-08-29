@@ -34,7 +34,7 @@ class SingupScreenController extends GetxController {
   late Timer timer;
   @override
   void onInit() {
-
+    countryController.value.text = "+91";
     super.onInit();
   }
 gettimer(){
