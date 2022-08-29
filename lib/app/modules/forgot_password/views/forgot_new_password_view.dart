@@ -184,6 +184,9 @@ class ForgotNewPasswordView extends GetWidget<ForgotPasswordController> {
                           controller.NewPassword();
                         }else
                         {
+                          controller.ispass.value = true;
+
+                          // Get.snackbar("Error", "Password dose not match",snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.red,colorText: Colors.white);
 
                         }
                       }
