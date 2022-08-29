@@ -124,7 +124,7 @@ class MyAccountView extends GetView<MyAccountController> {
                           ),
                           InkWell(
                             onTap: () {
-                              controller.sendOtpUser();
+                              controller.sendOtp();
                             },
                             child: getcon(
                                 height: 30,
