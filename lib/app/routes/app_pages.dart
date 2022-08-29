@@ -151,7 +151,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.FORGOT_NEW_PASSWORD,
-      page: () => const ForgotNewPasswordView(),
+      page: () =>  const ForgotNewPasswordView(),
       binding: ForgotNewPasswordBinding(),
     ),
   ];

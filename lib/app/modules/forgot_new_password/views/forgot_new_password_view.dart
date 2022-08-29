@@ -6,7 +6,7 @@ import 'package:waggs_app/app/constant/SizeConstant.dart';
 
 import '../controllers/forgot_new_password_controller.dart';
 
-class ForgotNewPasswordView extends GetView<ForgotNewPasswordController> {
+class ForgotNewPasswordView extends GetWidget<ForgotNewPasswordController> {
   const ForgotNewPasswordView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -179,7 +179,7 @@ class ForgotNewPasswordView extends GetView<ForgotNewPasswordController> {
                   InkWell(
                     onTap: () {
                       if(controller.formKey.currentState!.validate()) {
-                        if(controller.passController == controller.confirmPassController)
+                        if(controller.passController.value.text == controller.confirmPassController.value.text)
                         {
                           controller.NewPassword();
                         }else

@@ -3,8 +3,10 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:waggs_app/app/Modal/ErrorResponse.dart';
+import 'package:waggs_app/app/Modal/Forget_passwordmodel.dart';
+import 'package:waggs_app/app/constant/ConstantUrl.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
+import 'package:waggs_app/main.dart';
 
 class ForgotNewPasswordController extends GetxController {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -16,6 +18,7 @@ class ForgotNewPasswordController extends GetxController {
   RxBool ispass = false.obs;
   @override
   void onInit() {
+
     super.onInit();
   }
 
@@ -30,24 +33,24 @@ class ForgotNewPasswordController extends GetxController {
   }
 
   Future<void>NewPassword() async {
-    var url = Uri.parse("https://api.waggs.in/api/v1/users/changePassword");
+    var url = Uri.parse("https://api.waggs.in/api/v1/users/verifyOtpNewPassword");
     var response;
     await http.post(url, body: {
-      "password":"${passController.value.text.trim()}",
       "countryCode": "${countryController.value.text.trim()}",
-      "mobile": "${mobileController.value.text.trim()}"
+      "mobile": "${mobileController.value.text.trim()}",
+      "password":"${passController.value.text.trim()}",
+      "newPasswordToken":"${box.read(ArgumentConstant.token1)}",
     }).then((value) {
       if(value.statusCode == 200){
-        Get.toNamed(Routes.LOGIN_SCREEN);
+        FpassModel res  = FpassModel.fromJson(jsonDecode(value.body));
+        Get.offAll(Routes.LOGIN_SCREEN);
       }
-      else
-      {
-        ErrorResponse res = ErrorResponse.fromJson(jsonDecode(value.body));
-        Get.snackbar("Error", res.message.toString(),snackPosition: SnackPosition.BOTTOM,colorText: Colors.white,backgroundColor: Colors.red);
+      else{
+        FpassModel res  = FpassModel.fromJson(jsonDecode(value.body));
+        Get.snackbar("Error", res.message.toString(),snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.red,colorText: Colors.white);
       }
-      print('Response status: ${value.statusCode}');
-      print('Response body: ${value.body}');
-    }).catchError((error){
+    }
+    ).catchError((error){
       print(error);
     });
   }

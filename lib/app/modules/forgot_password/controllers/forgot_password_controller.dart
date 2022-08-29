@@ -1,9 +1,11 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:waggs_app/app/Modal/Forget_passwordmodel.dart';
 import 'package:waggs_app/app/constant/ConstantUrl.dart';
 import 'package:http/http.dart' as http;
 import 'package:waggs_app/app/routes/app_pages.dart';
+import 'package:waggs_app/main.dart';
 
 import '../../../Modal/ErrorResponse.dart';
 
@@ -62,16 +64,17 @@ class ForgotPasswordController extends GetxController {
       "mobile": "${mobileController.value.text.trim()}"
     }).then((value) {
       if(value.statusCode == 200){
-        Get.offAllNamed(Routes.FORGOT_NEW_PASSWORD);
+        FpassModel res  = FpassModel.fromJson(jsonDecode(value.body));
+              box.write(ArgumentConstant.token1, res.data!.newPasswordToken);
+              Get.offAllNamed(Routes.FORGOT_NEW_PASSWORD);
+
       }
-      else
-        {
-          ErrorResponse res = ErrorResponse.fromJson(jsonDecode(value.body));
-          Get.snackbar("Error", res.message.toString(),snackPosition: SnackPosition.BOTTOM,colorText: Colors.white,backgroundColor: Colors.red);
-        }
-      print('Response status: ${value.statusCode}');
-      print('Response body: ${value.body}');
-    }).catchError((error){
+      else{
+        FpassModel res  = FpassModel.fromJson(jsonDecode(value.body));
+        Get.snackbar("Error", res.message.toString(),snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.red,colorText: Colors.white);
+      }
+      }
+    ).catchError((error){
       print(error);
     });
   }
