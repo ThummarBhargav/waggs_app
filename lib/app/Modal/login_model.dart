@@ -23,13 +23,13 @@ class LoginModel {
 }
 
 class Data {
-  User? user;
+  User1? user;
   String? token;
 
   Data({this.user, this.token});
 
   Data.fromJson(Map<String, dynamic> json) {
-    user = json['user'] != null ? new User.fromJson(json['user']) : null;
+    user = json['user'] != null ? new User1.fromJson(json['user']) : null;
     token = json['token'];
   }
 
@@ -43,7 +43,7 @@ class Data {
   }
 }
 
-class User {
+class User1 {
   String? sId;
   String? name;
   String? email;
@@ -54,7 +54,7 @@ class User {
   double? latitude;
   double? longitude;
 
-  User(
+  User1(
       {this.sId,
         this.name,
         this.email,
@@ -65,7 +65,7 @@ class User {
         this.latitude,
         this.longitude});
 
-  User.fromJson(Map<String, dynamic> json) {
+  User1.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
     name = json['name'];
     email = json['email'];

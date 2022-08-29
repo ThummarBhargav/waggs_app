@@ -443,14 +443,13 @@ class SingupScreenView extends GetWidget<SingupScreenController> {
                             controller.verifyEmail(context).then((value) {
                               if (controller.formKey.currentState!.validate()) {
                                 if(controller.isNumberExist.isFalse && controller.isEmailExist.isFalse){
-                                  // if(controller.passController == controller.confirmPassController)
-                                  //   {
+                                  if(controller.passController.value.text == controller.confirmPassController.value.text)
+                                    {
                                       controller.sendotpApi();
-                                    // }
-                                  // else
-                                  //     {
-                                  //
-                                  //     }
+                                    }else
+                                      {
+                                        controller.ispass.value = true;
+                                      }
                                 }
                               }
                             });

@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,19 +7,21 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 import 'package:waggs_app/app/Modal/login_model.dart';
 import 'package:waggs_app/app/constant/sizeConstant.dart';
+import 'package:waggs_app/app/modules/home/views/home_view.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
 import 'package:waggs_app/main.dart';
-
 import '../../../constant/ConstantUrl.dart';
 
 class LoginScreenController extends GetxController {
 
-  GoogleSignIn googleAuth = new GoogleSignIn();
   final GlobalKey<FormState> formKey2 = GlobalKey<FormState>();
   Rx<TextEditingController> emailController = TextEditingController().obs;
-Rx<TextEditingController> passController = TextEditingController().obs;
+  Rx<TextEditingController> passController = TextEditingController().obs;
   RxBool isChecked = false.obs;
   RxBool passwordVisible = true.obs;
+  FirebaseAuth _auth = FirebaseAuth.instance;
+  GoogleSignIn googleSignIn = GoogleSignIn(scopes: ['email']);
+  Rx<User>? _firebaseUser;
 
   List respons =[];
   @override
@@ -36,6 +38,23 @@ Rx<TextEditingController> passController = TextEditingController().obs;
   void onClose() {
     super.onClose();
   }
+
+  void google_signIn() async{
+     GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+     GoogleSignInAuthentication? googleAuth = await googleUser!.authentication;
+     AuthCredential credential = GoogleAuthProvider.credential(
+       idToken: googleAuth.idToken,
+       accessToken: googleAuth.accessToken,
+     );
+     User user = (await _auth.signInWithCredential(credential).then((value) async=> await  Get.offAll(HomeView())));
+  }
+
+
+  void google_signout() async{
+    await googleSignIn.signOut();
+  }
+
+
 
   Future<void> LoginUser() async {
     try{
@@ -74,4 +93,6 @@ Rx<TextEditingController> passController = TextEditingController().obs;
     Get.snackbar("Error", e.toString(),snackPosition: SnackPosition.BOTTOM,);
     }
   }
+
+
 }

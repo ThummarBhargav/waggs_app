@@ -231,24 +231,7 @@ class LoginScreenView extends GetView<LoginScreenController> {
                       ),
                       InkWell(
                         onTap: () {
-                          Future<UserCredential> signInWithGoogle() async {
-                            final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-                            final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
-                            final credential = GoogleAuthProvider.credential(
-                              accessToken: googleAuth?.accessToken,
-                              idToken: googleAuth?.idToken,
-                            );
-                            return await FirebaseAuth.instance.signInWithCredential(credential);
-                          }
-                          // controller.googleAuth.signIn().then((result) {
-                          //   result!.authentication.then((googlekey){
-                          //     FirebaseAuth.instance.signInWith
-                          //   }).catchError((e){
-                          //     print(e);
-                          //   });
-                          // }).catchError((e){
-                          //   print(e);
-                          // });
+                          controller.google_signIn();
                         },
                         child: Container(
                           height: 40,
