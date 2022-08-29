@@ -1,11 +1,13 @@
 import 'package:get/get.dart';
-import 'package:waggs_app/app/modules/My_Account_Change_Password/bindings/my_account_change_password_binding.dart';
-import 'package:waggs_app/app/modules/My_Account_Change_Password/views/my_account_change_password_view.dart';
 
 import '../modules/Add_To_Cart_Shipping_View/bindings/add_to_cart_shipping_view_binding.dart';
 import '../modules/Add_To_Cart_Shipping_View/views/add_to_cart_shipping_view_view.dart';
 import '../modules/Changed_Password_Send_Otp_View/bindings/changed_password_send_otp_view_binding.dart';
 import '../modules/Changed_Password_Send_Otp_View/views/changed_password_send_otp_view_view.dart';
+import '../modules/My_Account_Change_Password/bindings/my_account_change_password_binding.dart';
+import '../modules/My_Account_Change_Password/views/my_account_change_password_view.dart';
+import '../modules/My_Account_new_changed_And_Old_Password_Change/bindings/my_account_new_changed_and_old_password_change_binding.dart';
+import '../modules/My_Account_new_changed_And_Old_Password_Change/views/my_account_new_changed_and_old_password_change_view.dart';
 import '../modules/OTP_screen/bindings/o_t_p_screen_binding.dart';
 import '../modules/OTP_screen/views/o_t_p_screen_view.dart';
 import '../modules/Top_selling_Store_all_Products/bindings/top_selling_store_all_products_binding.dart';
@@ -16,10 +18,9 @@ import '../modules/email_screen/bindings/email_screen_binding.dart';
 import '../modules/email_screen/views/email_screen_view.dart';
 import '../modules/filter/bindings/filter_binding.dart';
 import '../modules/filter/views/filter_view.dart';
-import '../modules/forgot_password/views/forgot_new_password_view.dart';
 import '../modules/forgot_password/bindings/forgot_password_binding.dart';
+import '../modules/forgot_password/views/forgot_new_password_view.dart';
 import '../modules/forgot_password/views/forgot_password_view.dart';
-
 import '../modules/forgot_password/views/forgot_send_otp_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
@@ -149,6 +150,11 @@ class AppPages {
       name: _Paths.MY_ACCOUNT_CHANGE_PASSWORD,
       page: () => const MyAccountChangePasswordView(),
       binding: MyAccountChangePasswordBinding(),
+    ),
+    GetPage(
+      name: _Paths.MY_ACCOUNT_NEW_CHANGED_AND_OLD_PASSWORD_CHANGE,
+      page: () => const MyAccountNewChangedAndOldPasswordChangeView(),
+      binding: MyAccountNewChangedAndOldPasswordChangeBinding(),
     ),
   ];
 }

@@ -39,7 +39,7 @@ class MyAccountChangePasswordController extends GetxController {
       'otp': '${otpController.value.text.trim()}',
     }).then((value) {
       if(value.statusCode == 200){
-        // Get.toNamed(Routes.MY_ACCOUNT_CHANGE_PASSWORD);
+        Get.toNamed(Routes.MY_ACCOUNT_NEW_CHANGED_AND_OLD_PASSWORD_CHANGE);
       }
       else
       {
