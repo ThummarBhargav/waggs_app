@@ -40,13 +40,14 @@ class LoginScreenController extends GetxController {
   }
 
   void google_signIn() async{
+    _auth.signOut();
      GoogleSignInAccount? googleUser = await googleSignIn.signIn();
      GoogleSignInAuthentication? googleAuth = await googleUser!.authentication;
      AuthCredential credential = GoogleAuthProvider.credential(
        idToken: googleAuth.idToken,
        accessToken: googleAuth.accessToken,
      );
-     User user = (await _auth.signInWithCredential(credential).then((value) async=> await  Get.offAll(HomeView())));
+     User user = (await _auth.signInWithCredential(credential).then((value) async=> await  Get.offAllNamed(Routes.HOME)));
   }
 
 
