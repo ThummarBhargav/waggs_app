@@ -1,16 +1,11 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:waggs_app/app/constant/SizeConstant.dart';
-import 'package:waggs_app/app/modules/forgot_password/views/forgot_password_view.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
-import '../../../../main.dart';
-import '../../../constant/ConstantUrl.dart';
 import '../controllers/login_screen_controller.dart';
 
+// ignore: must_be_immutable
 class LoginScreenView extends GetView<LoginScreenController> {
   SizedBox sizedBox = SizedBox(
     height: 10,
@@ -216,7 +211,9 @@ class LoginScreenView extends GetView<LoginScreenController> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          controller.signInWithFacebook();
+                        },
                         child: Container(
                           height: 40,
                           width: 50,

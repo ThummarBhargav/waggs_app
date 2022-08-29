@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
@@ -48,7 +49,7 @@ class LoginScreenController extends GetxController {
   //    User user = (await _auth.signInWithCredential(credential).then((value) async=> await  Get.offAndToNamed(Routes.HOME)));
   // }
   Future<UserCredential> signInWithGoogle() async {
-    await google_signout();
+    _auth.signOut();
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
     final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
     final credential = GoogleAuthProvider.credential(
@@ -59,6 +60,19 @@ class LoginScreenController extends GetxController {
   }
   Future google_signout() async{
     await googleSignIn.signOut();
+  }
+
+
+  Future<UserCredential> signInWithFacebook() async {
+    // Trigger the sign-in flow
+    FacebookAuth.instance.logOut();
+    final LoginResult loginResult = await FacebookAuth.instance.login();
+
+    // Create a credential from the access token
+    final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.token);
+
+    // Once signed in, return the UserCredential
+    return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential).then((value) async  => await Get.offAllNamed(Routes.HOME));
   }
 
 
