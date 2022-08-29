@@ -403,14 +403,15 @@ class PlaneView extends GetView<PlaneController> {
                                 ),
                               ),
                                 Container(
-                                    width: 100,
-                                    height: 100,
+                                    width: 90,
+                                    height: 90,
+                                    alignment: Alignment.center,
                                     margin: EdgeInsets.only(left: 130,top: 130),
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                       color: Colors.white,
                                       image: DecorationImage(
-                                          image: AssetImage("assets/logo111.png"),
+                                          image: AssetImage("assets/p1.JPG"),
                                       )
                                     ),
                                   )
