@@ -39,18 +39,26 @@ class LoginScreenController extends GetxController {
     super.onClose();
   }
 
-  void google_signIn() async{
-     GoogleSignInAccount? googleUser = await googleSignIn.signIn();
-     GoogleSignInAuthentication? googleAuth = await googleUser!.authentication;
-     AuthCredential credential = GoogleAuthProvider.credential(
-       idToken: googleAuth.idToken,
-       accessToken: googleAuth.accessToken,
-     );
-     User user = (await _auth.signInWithCredential(credential).then((value) async=> await  Get.offAll(HomeView())));
+  // void google_signIn() async{
+  //    GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+  //    GoogleSignInAuthentication? googleAuth = await googleUser!.authentication;
+  //    AuthCredential credential = GoogleAuthProvider.credential(
+  //      idToken: googleAuth.idToken,
+  //      accessToken: googleAuth.accessToken,
+  //    );
+  //    User user = (await _auth.signInWithCredential(credential).then((value) async=> await  Get.offAndToNamed(Routes.HOME)));
+  // }
+  Future<UserCredential> signInWithGoogle() async {
+    await google_signout();
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+    return await FirebaseAuth.instance.signInWithCredential(credential).then((value) async  => await Get.offAllNamed(Routes.HOME));
   }
-
-
-  void google_signout() async{
+  Future google_signout() async{
     await googleSignIn.signOut();
   }
 
