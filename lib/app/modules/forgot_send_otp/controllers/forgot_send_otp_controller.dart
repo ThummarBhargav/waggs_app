@@ -22,10 +22,10 @@ class ForgotSendOtpController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    gettimer();
+    getTimer1();
   }
 
-  gettimer(){
+  getTimer1(){
     timer1 = Timer.periodic(Duration(seconds: 1), (_) {
       if (secondsRemaining1.value != 0) {
         enableResend1.value = false;
@@ -33,7 +33,6 @@ class ForgotSendOtpController extends GetxController {
         refresh();
 
       } else {
-
         enableResend1.value = true;
         refresh();
       }

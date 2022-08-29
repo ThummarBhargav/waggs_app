@@ -121,10 +121,10 @@ import 'package:waggs_app/app/routes/app_pages.dart';
                       margin: EdgeInsets.only(left: 22),
                       child: InkWell(
                         onTap: () {
-                          if(screenController.enableResend.value)
+                          if(screenController.enableResend.value == true)
                             {
                               screenController.secondsRemaining=30.obs;
-                              screenController.gettimer();
+                              // screenController.gettimer();
                               screenController.refresh();
                               controller.sendotpApi();
                             }

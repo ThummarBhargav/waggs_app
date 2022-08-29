@@ -43,7 +43,6 @@ gettimer(){
       enableResend.value = false;
       secondsRemaining.value--;
       refresh();
-
     } else {
       enableResend.value = true;
       refresh();

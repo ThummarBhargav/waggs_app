@@ -79,7 +79,7 @@ class ForgotSendOtpView extends GetWidget<ForgotSendOtpController> {
                       margin: EdgeInsets.only(left: 22),
                       child: InkWell(
                         onTap: () {
-                          if(controller.enableResend1.value)
+                          if(controller.enableResend1.value == true)
                           {
                             controller.secondsRemaining1=30.obs;
                             // otpScreenController.gettimer();
