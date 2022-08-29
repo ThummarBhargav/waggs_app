@@ -231,7 +231,7 @@ class LoginScreenView extends GetView<LoginScreenController> {
                       ),
                       InkWell(
                         onTap: () {
-                          controller.google_signIn();
+                          controller.signInWithGoogle();
                         },
                         child: Container(
                           height: 40,
