@@ -1,12 +1,9 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:waggs_app/app/Modal/ErrorResponse.dart';
 import 'package:waggs_app/app/Modal/Forget_passwordmodel.dart';
-
 import '../../../../main.dart';
-import '../../../Modal/login_model.dart';
 import '../../../constant/ConstantUrl.dart';
 import '../../../routes/app_pages.dart';
 import 'package:http/http.dart' as http;

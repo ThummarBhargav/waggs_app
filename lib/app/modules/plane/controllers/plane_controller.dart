@@ -86,13 +86,12 @@ List respons=[];
           var options = {
             "key": "rzp_live_ILgsfZCZoFIKMb",
             "amount": data.amount!.toInt() * 100,
-            // Convert Paisa to Rupees
             "name": "Waggs Payment",
             "description": "This is a Test Payment",
             "timeout": "180",
             "currency": "INR",
             'send_sms_hash': true,
-            "prefill": {"contact": "8888888888", "email": "test@razorpay.com"},
+            "prefill": {"contact": "", "email": "test@razorpay.com"},
             "external": {
               "wallets": ["paytm"]
             }
@@ -103,12 +102,6 @@ List respons=[];
             print(e.toString());
           }
         }
-
-        // Get.snackbar("Success","Payment Done",snackPosition: SnackPosition.BOTTOM,backgroundColor: Colors.green);
-
-       // else{
-       //    Get.snackbar("Error", "Payment Not Done",snackPosition: SnackPosition.BOTTOM,backgroundColor: Colors.orangeAccent);
-       //  }
       }catch(e){
         Get.snackbar("Error", e.toString(),snackPosition: SnackPosition.BOTTOM,backgroundColor: Colors.orangeAccent);
       }

@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:waggs_app/app/routes/app_pages.dart';
 
 import '../controllers/plane_controller.dart';
 
@@ -152,14 +153,19 @@ class PlaneView extends GetView<PlaneController> {
                                 ),
                                 Row(
                                   children: [
-                                    Container(
-                                      margin: EdgeInsets.only(top: 5, left: 25),
-                                      child: Text("Home >",
-                                          style: GoogleFonts.roboto(
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.black
-                                          )
+                                    InkWell(
+                                      onTap: () {
+                                        Get.back();
+                                      },
+                                      child: Container(
+                                        margin: EdgeInsets.only(top: 5, left: 25),
+                                        child: Text("Home >",
+                                            style: GoogleFonts.roboto(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.black
+                                            )
+                                        ),
                                       ),
                                     ),
                                     Container(

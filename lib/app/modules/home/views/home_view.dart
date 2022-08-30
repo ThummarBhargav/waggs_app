@@ -451,9 +451,7 @@ class HomeView extends GetWidget<HomeController> {
                                               Get.toNamed(
                                                   Routes.LOGIN_SCREEN);
                                             } else {
-                                              // controller.CartProductApi();
-                                              // controller.CartCount();
-                                              // Get.toNamed(Routes.TAB_BAR1);
+
                                             }
                                             // Get.toNamed(Routes.LOGIN_SCREEN);
                                           },
@@ -537,9 +535,6 @@ class HomeView extends GetWidget<HomeController> {
                                   Get.toNamed(
                                       Routes.LOGIN_SCREEN);
                                 } else {
-                                  // controller.CartProductApi();
-                                  // controller.CartCount();
-                                  // Get.toNamed(Routes.TAB_BAR1);
                                 }
                               },
                               child: ListTile(
