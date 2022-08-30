@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+
 import '../modules/Add_To_Cart_Shipping_View/bindings/add_to_cart_shipping_view_binding.dart';
 import '../modules/Add_To_Cart_Shipping_View/views/add_to_cart_shipping_view_view.dart';
 import '../modules/My_Account_Change_Password/bindings/my_account_change_password_binding.dart';
@@ -21,6 +22,8 @@ import '../modules/login_screen/bindings/login_screen_binding.dart';
 import '../modules/login_screen/views/login_screen_view.dart';
 import '../modules/my_account/bindings/my_account_binding.dart';
 import '../modules/my_account/views/my_account_view.dart';
+import '../modules/my_pet/bindings/my_pet_binding.dart';
+import '../modules/my_pet/views/my_pet_view.dart';
 import '../modules/plane/bindings/plane_binding.dart';
 import '../modules/plane/views/plane_view.dart';
 import '../modules/product/bindings/product_binding.dart';
@@ -138,6 +141,11 @@ class AppPages {
       name: _Paths.MY_ACCOUNT_NEW_CHANGED_AND_OLD_PASSWORD_CHANGE,
       page: () => const MyAccountNewChangedAndOldPasswordChangeView(),
       binding: MyAccountNewChangedAndOldPasswordChangeBinding(),
+    ),
+    GetPage(
+      name: _Paths.MY_PET,
+      page: () => const MyPetView(),
+      binding: MyPetBinding(),
     ),
   ];
 }

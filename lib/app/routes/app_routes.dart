@@ -33,6 +33,7 @@ abstract class Routes {
   static const MY_ACCOUNT_CHANGE_PASSWORD = _Paths.MY_ACCOUNT_CHANGE_PASSWORD;
   static const MY_ACCOUNT_NEW_CHANGED_AND_OLD_PASSWORD_CHANGE =
       _Paths.MY_ACCOUNT_NEW_CHANGED_AND_OLD_PASSWORD_CHANGE;
+  static const MY_PET = _Paths.MY_PET;
 }
 
 abstract class _Paths {
@@ -67,4 +68,5 @@ abstract class _Paths {
   static const MY_ACCOUNT_CHANGE_PASSWORD = '/my-account-change-password';
   static const MY_ACCOUNT_NEW_CHANGED_AND_OLD_PASSWORD_CHANGE =
       '/my-account-new-changed-and-old-password-change';
+  static const MY_PET = '/my-pet';
 }

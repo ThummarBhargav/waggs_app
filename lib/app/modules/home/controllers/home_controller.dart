@@ -372,3 +372,4 @@ class HomeController extends GetxController {
     cartProductList.refresh();
   }
  }
+

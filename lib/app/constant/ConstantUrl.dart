@@ -21,6 +21,7 @@ class ApiConstant {
   static const Cart = "cart";
   static const Count = "cart/count";
   static const Plans = "subscription/plans";
+  static const PlansPlayment = "transaction/subscription";
 }
 
 class ArgumentConstant{

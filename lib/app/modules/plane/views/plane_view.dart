@@ -381,8 +381,8 @@ class PlaneView extends GetView<PlaneController> {
                         SizedBox(height: 40,),
                         Text("SUBSCRIPTION  PLANS",
                           style: GoogleFonts.lato(fontWeight: FontWeight.w700,color: Colors.orange,fontSize: 20),),
-                        SizedBox(height: 30,),
-                        Container(
+                        SizedBox(height: 20,),
+                        controller.planList.isEmpty?CircularProgressIndicator():Container(
                           child: Column(
                             children: [
                               Container(
@@ -407,8 +407,8 @@ class PlaneView extends GetView<PlaneController> {
                                                   height: 100,
                                                   decoration: BoxDecoration(
                                                     color: controller.planList[index].id=='basic'?Colors.lightBlue.shade100:
-                                                     controller.planList[index].id=='standard'?Colors.orange.shade400
-                                                         :Colors.lightBlue.shade500,
+                                                    controller.planList[index].id=='standard'?Colors.orange.shade400
+                                                        :Colors.lightBlue.shade500,
                                                     borderRadius: BorderRadius.only(
                                                       bottomRight: Radius.circular(250),
                                                       bottomLeft: Radius.circular(250),
@@ -425,43 +425,43 @@ class PlaneView extends GetView<PlaneController> {
                                                   alignment: Alignment.center,
                                                   margin: EdgeInsets.only(left:80,top: 60),
                                                   decoration: BoxDecoration(
-                                                    shape: BoxShape.circle,
-                                                    color: Colors.white,
-                                                    image: controller.planList[index].id=='basic'?DecorationImage(
-                                                      image: AssetImage("assets/p1.JPG"),
-                                                    )
-                                                        :controller.planList[index].id=='standard'?DecorationImage(
-                                                      image: AssetImage("assets/p2.JPG")
-                                                    )
-                                                        :DecorationImage(
-                                                        image: AssetImage("assets/p3.png")
-                                                    )
+                                                      shape: BoxShape.circle,
+                                                      color: Colors.white,
+                                                      image: controller.planList[index].id=='basic'?DecorationImage(
+                                                        image: AssetImage("assets/p1.JPG"),
+                                                      )
+                                                          :controller.planList[index].id=='standard'?DecorationImage(
+                                                          image: AssetImage("assets/p2.JPG")
+                                                      )
+                                                          :DecorationImage(
+                                                          image: AssetImage("assets/p3.png")
+                                                      )
                                                   ),
                                                 ),
                                               ],
                                             ),
                                             SizedBox(height: 10,),
                                             Container(
-                                              child: controller.planList[index].id=='basic'?Text("2 Vet Visits",
-                                                style: GoogleFonts.raleway(
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.w500,
-                                                    color: Colors.black54
-                                                ),
-                                              )
-                                                  :controller.planList[index].id=='standard'?Text("4 Vet Visits",
-                                                style: GoogleFonts.raleway(
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.w500,
-                                                    color: Colors.black54
-                                                ),
-                                              ):Text("9 Vet Visits",
-                                                style: GoogleFonts.raleway(
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.w500,
-                                                    color: Colors.black54
-                                                ),
-                                              )
+                                                child: controller.planList[index].id=='basic'?Text("2 Vet Visits",
+                                                  style: GoogleFonts.raleway(
+                                                      fontSize: 16,
+                                                      fontWeight: FontWeight.w500,
+                                                      color: Colors.black54
+                                                  ),
+                                                )
+                                                    :controller.planList[index].id=='standard'?Text("4 Vet Visits",
+                                                  style: GoogleFonts.raleway(
+                                                      fontSize: 16,
+                                                      fontWeight: FontWeight.w500,
+                                                      color: Colors.black54
+                                                  ),
+                                                ):Text("9 Vet Visits",
+                                                  style: GoogleFonts.raleway(
+                                                      fontSize: 16,
+                                                      fontWeight: FontWeight.w500,
+                                                      color: Colors.black54
+                                                  ),
+                                                )
                                             ),
                                             Container(
                                               height: 15,
@@ -474,27 +474,27 @@ class PlaneView extends GetView<PlaneController> {
                                             ),
                                             SizedBox(height: 10,),
                                             Container(
-                                              child: controller.planList[index].id=='basic'? Text("2 Salon Visits",
-                                                style: GoogleFonts.raleway(
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.w500,
-                                                    color: Colors.black54
-                                                ),
-                                              )
-                                                  : controller.planList[index].id=='standard'?Text("4 Salon Visits",
-                                                style: GoogleFonts.raleway(
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.w500,
-                                                    color: Colors.black54
-                                                ),
-                                              )
-                                                  :Text("9 Salon Visits",
-                                                style: GoogleFonts.raleway(
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.w500,
-                                                    color: Colors.black54
-                                                ),
-                                              )
+                                                child: controller.planList[index].id=='basic'? Text("2 Salon Visits",
+                                                  style: GoogleFonts.raleway(
+                                                      fontSize: 16,
+                                                      fontWeight: FontWeight.w500,
+                                                      color: Colors.black54
+                                                  ),
+                                                )
+                                                    : controller.planList[index].id=='standard'?Text("4 Salon Visits",
+                                                  style: GoogleFonts.raleway(
+                                                      fontSize: 16,
+                                                      fontWeight: FontWeight.w500,
+                                                      color: Colors.black54
+                                                  ),
+                                                )
+                                                    :Text("9 Salon Visits",
+                                                  style: GoogleFonts.raleway(
+                                                      fontSize: 16,
+                                                      fontWeight: FontWeight.w500,
+                                                      color: Colors.black54
+                                                  ),
+                                                )
                                             ),
                                             Container(
                                               height: 15,
@@ -511,7 +511,7 @@ class PlaneView extends GetView<PlaneController> {
                                                 style: GoogleFonts.raleway(
                                                   color: Colors.orange,
                                                   fontWeight: FontWeight.bold,
-                                                  fontSize: 16,
+                                                  fontSize: 20,
                                                 ),
                                               ),
                                             ),
@@ -528,7 +528,7 @@ class PlaneView extends GetView<PlaneController> {
                                             SizedBox(height: 20,),
                                             InkWell(
                                               onTap: () {
-
+                                                controller.PayMent(data: controller.planList[index]);
                                               },
                                               child: Container(
                                                 height: 40,

@@ -549,7 +549,10 @@ class HomeView extends GetWidget<HomeController> {
                               ),
                             ),
                             InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                Get.toNamed(
+                                    Routes.MY_PET);
+                              },
                               child: ListTile(
                                 leading: Icon(Icons.pets_outlined),
                                 title: Text(
