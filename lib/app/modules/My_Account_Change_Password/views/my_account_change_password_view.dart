@@ -100,6 +100,33 @@ class MyAccountChangePasswordView
                       ),
                     ),
                   ),
+                  SizedBox(height: 10,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(left: 22),
+                        child: InkWell(
+                          onTap: () {
+                            if(controller.enableResend1.value == true)
+                            {
+                              controller.secondsRemaining1=30.obs;
+                              controller.sendOtp();
+                              controller.refresh();
+                            }
+                          },
+
+                          child:Obx(()=>Text(controller.enableResend1.value==true?"Resend Otp":"Resend Otp ${controller.secondsRemaining1} Sec",
+                            style: GoogleFonts.raleway(
+                                color:  controller.enableResend1.value==true?Color.fromRGBO(32, 193, 244, 1):
+                                Colors.grey,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600
+                            ),
+                          )),),
+                      ),
+                    ],
+                  ),
                   SizedBox(height: 30,),
                   InkWell(
                     onTap: () {

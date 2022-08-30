@@ -82,13 +82,12 @@ class ForgotSendOtpView extends GetWidget<ForgotPasswordController> {
                           if(controller.enableResend1.value == true)
                           {
                             controller.secondsRemaining1=30.obs;
-                            // otpScreenController.gettimer();
                             controller.sendOtp();
                             controller.refresh();
                           }
                         },
 
-                        child:Obx(()=>Text(controller.enableResend1.value==true?"Resend Otp":"Resend Otp ${controller.secondsRemaining1}",
+                        child:Obx(()=>Text(controller.enableResend1.value==true?"Resend Otp":"Resend Otp ${controller.secondsRemaining1} Sec",
                           style: GoogleFonts.raleway(
                               color:  controller.enableResend1.value==true?Color.fromRGBO(32, 193, 244, 1):
                               Colors.grey,
