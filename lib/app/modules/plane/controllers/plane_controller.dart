@@ -81,7 +81,7 @@ List respons=[];
         print('Response body: ${response.body}');
         if (response.statusCode == 200) {
           var options = {
-            "key": "rzp_live_ILgsfZCZoFIKMb",
+            "key": "rzp_test_Ad3xOmLFP1EkRf",
             "amount": data.amount!.toInt() * 100,
             "name": "Waggs Payment",
             "description": data.name.toString(),
