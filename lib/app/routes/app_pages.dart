@@ -12,6 +12,8 @@ import '../modules/Top_selling_Store_all_Products/bindings/top_selling_store_all
 import '../modules/Top_selling_Store_all_Products/views/top_selling_store_all_products_view.dart';
 import '../modules/View_All_My_Cart/bindings/view_all_my_cart_binding.dart';
 import '../modules/View_All_My_Cart/views/view_all_my_cart_view.dart';
+import '../modules/add_pet/bindings/add_pet_binding.dart';
+import '../modules/add_pet/views/add_pet_view.dart';
 import '../modules/email_screen/bindings/email_screen_binding.dart';
 import '../modules/email_screen/views/email_screen_view.dart';
 import '../modules/forgot_password/bindings/forgot_password_binding.dart';
@@ -146,6 +148,11 @@ class AppPages {
       name: _Paths.MY_PET,
       page: () => const MyPetView(),
       binding: MyPetBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADD_PET,
+      page: () => const AddPetView(),
+      binding: AddPetBinding(),
     ),
   ];
 }

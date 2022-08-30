@@ -113,6 +113,7 @@ List respons=[];
   void _handlePaymentSuccess(PaymentSuccessResponse response) {
     print('Success Response: $response');
     Get.snackbar("Success","Payment Done",snackPosition: SnackPosition.BOTTOM,backgroundColor: Colors.green);
+    Get.toNamed(Routes.ADD_PET);
     /*Fluttertoast.showToast(
         msg: "SUCCESS: " + response.paymentId!,
         toastLength: Toast.LENGTH_SHORT); */

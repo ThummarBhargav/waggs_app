@@ -1,14 +1,13 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:waggs_app/app/constant/Container.dart';
-import 'package:waggs_app/app/routes/app_pages.dart';
 
-import '../controllers/my_pet_controller.dart';
+import '../controllers/add_pet_controller.dart';
 
-class MyPetView extends GetView<MyPetController> {
-  const MyPetView({Key? key}) : super(key: key);
+class AddPetView extends GetView<AddPetController> {
+  const AddPetView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -162,7 +161,17 @@ class MyPetView extends GetView<MyPetController> {
                                   ),
                                   Container(
                                     margin: EdgeInsets.only(top: 5,left: 2),
-                                    child: Text("My Pets",
+                                    child: Text("My Pets >",
+                                        style: GoogleFonts.roboto(
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.grey.shade600
+                                        )
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.only(top: 5,left: 2),
+                                    child: Text("Edit Pets",
                                         style: GoogleFonts.roboto(
                                             fontSize: 10,
                                             fontWeight: FontWeight.bold,
@@ -172,29 +181,60 @@ class MyPetView extends GetView<MyPetController> {
                                   ),
                                 ],
                               ),
+
                             ],
                           )
                         ],
                       ),
+                      SizedBox(height: 10,),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          InkWell(
-                            onTap: (){
-                              Get.toNamed(Routes.ADD_PET);
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 20.0),
-                              child: getcon(
-                                color: Colors.orange,
-                                text: Text(" + ADD PETS",style: TextStyle(color: Colors.white),),
-                                width: 120,
-                                height: 45,
-                                alignment: Alignment.center,
-                              ),
-                            ),
-                          )
+                          Text("FILL PET DETAILS",style: TextStyle(color: Colors.orange,fontWeight: FontWeight.w500,fontSize: 20),),
                         ],
+                      ),
+                      SizedBox(height: 10,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Container(
+                            margin: EdgeInsets.symmetric(horizontal: 20,vertical: 15),
+                            color: Colors.grey.shade200,
+                            height: 180,
+                            width: 180,
+                            child: Center(child: Text("+ Pet Image",style: TextStyle(color: Colors.cyan,fontSize: 15),)),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(left: 15, right: 15),
+                        padding: EdgeInsets.only(
+                          left: 15,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(10),
+                            topRight: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
+                          ),
+                        ),
+                        child: TextFormField(
+                           controller: controller.name,
+                          keyboardType: TextInputType.emailAddress,
+                          // validator: (input) => !isNullEmptyOrFalse(input)
+                          //     ? null
+                          //     : "Please Enter Email Address",
+                          decoration: InputDecoration(
+                            hintText: "Pet Name ",
+                            hintStyle: GoogleFonts.roboto(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            enabledBorder: InputBorder.none,
+                            focusedBorder: InputBorder.none,
+                          ),
+                        ),
                       )
                     ],
                   ),
