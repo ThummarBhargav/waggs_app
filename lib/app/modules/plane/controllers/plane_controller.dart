@@ -1,13 +1,11 @@
   import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:waggs_app/app/Modal/PlanModel.dart';
 import 'package:http/http.dart' as http;
-import 'package:waggs_app/app/Modal/PlanModel.dart';
 import '../../../../main.dart';
 import '../../../Modal/PlanModel.dart';
 import '../../../constant/ConstantUrl.dart';
@@ -88,11 +86,11 @@ List respons=[];
             "amount": data.amount!.toInt() * 100,
             // Convert Paisa to Rupees
             "name": "Waggs Payment",
-            "description": "This is a Test Payment",
+            "description": data.name.toString(),
             "timeout": "180",
             "currency": "INR",
             'send_sms_hash': true,
-            "prefill": {"contact": "8888888888", "email": "test@razorpay.com"},
+            "prefill": {"contact": "${box.read(ArgumentConstant.phone)}", "email": "${box.read(ArgumentConstant.email)}"},
             "external": {
               "wallets": ["paytm"]
             }
