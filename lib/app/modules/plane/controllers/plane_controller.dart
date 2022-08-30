@@ -17,6 +17,7 @@ class PlaneController extends GetxController {
   RxList<PlanData> planList = RxList<PlanData>([]);
 List respons=[];
 
+
   static const platform = const MethodChannel("razorpay_flutter");
   late Razorpay _razorpay;
   @override
