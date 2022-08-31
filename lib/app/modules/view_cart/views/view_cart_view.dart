@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:waggs_app/app/constant/ConstantUrl.dart';
 import 'package:waggs_app/app/constant/Container.dart';
 import 'package:waggs_app/app/constant/SizeConstant.dart';
+import 'package:waggs_app/main.dart';
 
 import '../controllers/view_cart_controller.dart';
 
@@ -352,10 +354,11 @@ class ViewCartView extends GetView<ViewCartController> {
                           Container(
                             height: 150,
                             width: double.maxFinite,
+                            padding: EdgeInsets.only(left: 10,top: 10),
                             margin: EdgeInsets.only(right: 20,left: 20),
                             child: Text(
-                              "test",
-                              style: TextStyle(color: Colors.white),
+                              "${box.read(ArgumentConstant.address)}",
+                              style: TextStyle(color: Colors.black,fontSize: 20),
                             ),
                             decoration: BoxDecoration(
                               borderRadius:
