@@ -371,7 +371,7 @@ class ViewCartView extends GetView<ViewCartController> {
                                 child: Text(
                                   "Change",
                                   style: GoogleFonts.raleway(
-                                    color: Colors.black,
+                                    color: Colors.blue,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 18,
                                   ),
@@ -598,7 +598,9 @@ class ViewCartView extends GetView<ViewCartController> {
                             height: 20,
                           ),
                           InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              controller.checkoutApi();
+                            },
                             child: Padding(
                               padding: const EdgeInsets.only(
                                   top: 15, left: 20, right: 20),

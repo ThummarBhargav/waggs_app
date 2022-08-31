@@ -3,6 +3,9 @@ import 'package:get/get.dart';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:razorpay_flutter/razorpay_flutter.dart';
+import 'package:waggs_app/app/Modal/ErrorResponse.dart';
+import 'package:waggs_app/app/Modal/checkoutModel.dart';
 import '../../../../main.dart';
 import '../../../Modal/CartCountModel.dart';
 import '../../../Modal/CartProductModel.dart';
@@ -11,13 +14,13 @@ import '../../../constant/SizeConstant.dart';
 import 'package:http/http.dart' as http;
 
 class ViewCartController extends GetxController  {
-
-
   RxBool hasData = false.obs;
   RxList<Details> cartProductList = RxList<Details>([]);
   CartProduct cartProduct =CartProduct();
-  RxList<Count1> Countlist = RxList<Count1>([]);
   Count1 count1 = Count1();
+  RxList<Count1> Countlist = RxList<Count1>([]);
+  Checkout checkout = Checkout();
+  Order? Checkoutlist;
   RxBool isLoading = false.obs;
   Rx<TextEditingController> emailController = TextEditingController().obs;
   Rx<TextEditingController> nameController = TextEditingController().obs;
@@ -32,7 +35,7 @@ class ViewCartController extends GetxController  {
   RxBool nameVisible = true.obs;
   RxBool emailCheckBox = false.obs;
   RxBool detailCheckBox = false.obs;
-
+  late Razorpay _razorpay;
   final key = GlobalKey<FormState>();
 
   @override
@@ -40,6 +43,10 @@ class ViewCartController extends GetxController  {
     super.onInit();
     CartProductApi();
     CartCount();
+    _razorpay = Razorpay();
+    _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
+    _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR,  _handlePaymentError);
+    _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
   }
 
   @override
@@ -204,6 +211,59 @@ class ViewCartController extends GetxController  {
       Get.snackbar("Error", e.toString(),snackPosition: SnackPosition.BOTTOM,);
 
     }
+  }
+
+  Future<void> checkoutApi() async {
+    var url = Uri.parse("https://api.waggs.in/api/v1/transaction/checkout");
+    var response = await http.post(url, body: {
+    },headers: {
+      'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+    });
+    dynamic result = jsonDecode(response.body);
+    checkout= Checkout.fromJson(result);
+    if(response.statusCode == 200){
+      if (!isNullEmptyOrFalse(checkout)) {
+        Checkoutlist=checkout.data!.order;
+      }
+      cartProductList.refresh();
+      var options = {
+        "key": "rzp_test_Ad3xOmLFP1EkRf",
+        "amount": "${checkout.data!.order!.amount}",
+        "name": "Waggs Payment",
+        "description": "",
+        "timeout": "180",
+        "currency": "INR",
+        'send_sms_hash': true,
+        "prefill": {"contact": "${box.read(ArgumentConstant.phone)}", "email": "${box.read(ArgumentConstant.email)}"},
+        "external": {
+          "wallets": ["paytm"]
+        }
+      };
+      try {
+        _razorpay.open(options);
+      } catch (e) {
+        print(e.toString());
+      }
+    }
+    else
+      {
+        ErrorResponse res = ErrorResponse.fromJson(jsonDecode(response.body));
+        Get.snackbar("Error", res.message.toString(),snackPosition: SnackPosition.BOTTOM,backgroundColor: Colors.red,colorText: Colors.white);
+      }
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+  }
+  void _handlePaymentSuccess(PaymentSuccessResponse response) {
+    print('Success Response: $response');
+    Get.snackbar("Success","Payment Done",snackPosition: SnackPosition.BOTTOM,backgroundColor: Colors.green);
+  }
+
+  void _handlePaymentError(PaymentFailureResponse response) {
+    print('Error Response: $response');
+  }
+
+  void _handleExternalWallet(ExternalWalletResponse response) {
+    print('External SDK Response: $response');
   }
 
 }
