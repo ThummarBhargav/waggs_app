@@ -48,7 +48,7 @@ class AddPetController extends GetxController {
         'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
         'Content-Type': 'application/json'
       };
-      var request = http.Request('PUT', Uri.parse('https://api.waggs.in/api/v1/pet'+'${}'));
+      var request = http.Request('PUT', Uri.parse('https://api.waggs.in/api/v1/pet'));
       request.body = json.encode({
           "name": "${name}",
           "age": "${age}",

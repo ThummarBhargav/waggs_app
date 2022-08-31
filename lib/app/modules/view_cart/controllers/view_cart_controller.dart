@@ -20,7 +20,7 @@ import 'package:http/http.dart' as http;
 class ViewCartController extends GetxController {
   RxBool hasData = false.obs;
   RxList<Details> cartProductList = RxList<Details>([]);
-  CartProduct cartProduct =CartProduct();
+  CartProduct cartProduct = CartProduct();
   RxList<Count1> Countlist = RxList<Count1>([]);
   Count1 count1 = Count1();
   Checkout checkout = Checkout();
@@ -41,10 +41,9 @@ class ViewCartController extends GetxController {
   RxBool nameVisible = true.obs;
   RxBool emailCheckBox = false.obs;
   RxBool detailCheckBox = false.obs;
-
   Rx<Position>? _currentPosition;
-
-String _currentAddress = '';
+  String _currentAddress = '';
+  Geolocator geolocator = Geolocator();
   late Razorpay _razorpay;
   final key = GlobalKey<FormState>();
 
@@ -52,16 +51,18 @@ String _currentAddress = '';
   void onInit() {
     super.onInit();
     CartProductApi();
-    _getCurrentLocation();
+    getCurrentLocation();
     CartCount();
     _razorpay = Razorpay();
     _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
-    _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR,  _handlePaymentError);
+    _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
     _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
   }
-  _getCurrentLocation() {
-    Geolocator
-        .getCurrentPosition(desiredAccuracy: LocationAccuracy.best, forceAndroidLocationManager: true)
+
+
+
+  getCurrentLocation() {
+        Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best, forceAndroidLocationManager: true)
         .then((Position position) {
           _currentPosition=position.obs;
           _getAddressFromLatLng();
@@ -73,16 +74,17 @@ String _currentAddress = '';
   _getAddressFromLatLng() async {
     try {
       List<Placemark> placemarks = await placemarkFromCoordinates(
-          _currentPosition!.value.latitude,
-          _currentPosition!.value.longitude
-      );
+          _currentPosition!.value.latitude, _currentPosition!.value.longitude);
       Placemark place = placemarks[0];
-        _currentAddress = "${place.locality}, ${place.postalCode}, ${place.country}";
-        print("CurrentAddress===================="+_currentAddress);
+      _currentAddress =
+          "${place.locality}, ${place.postalCode}, ${place.country}";
+      print("CurrentAddress====================" + _currentAddress);
     } catch (e) {
       print(e);
     }
   }
+
+
   @override
   void onReady() {
     super.onReady();
@@ -117,23 +119,22 @@ String _currentAddress = '';
       if (!isNullEmptyOrFalse(cartProduct.data!.details)) {
         cartProduct.data!.details!.forEach((element) {
           cartProductList.add(element);
-        }
-        );
+        });
       }
     }
     cartProductList.refresh();
   }
 
-  CartCount () async {
+  CartCount() async {
     Countlist.clear();
-    var url = Uri.parse(baseUrl+ApiConstant.Count);
-    var response = await http.get(url,headers: {
+    var url = Uri.parse(baseUrl + ApiConstant.Count);
+    var response = await http.get(url, headers: {
       'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
       'Content-Type': 'application/json',
-    } );
+    });
     print('response status:${response.body}');
     dynamic result = jsonDecode(response.body);
-    count1= Count1.fromJson(result);
+    count1 = Count1.fromJson(result);
     print(result);
     if (!isNullEmptyOrFalse(count1.data)) {
       Countlist.add(count1);
@@ -145,19 +146,18 @@ String _currentAddress = '';
     print('Bearer ${box.read(ArgumentConstant.token)}');
     var count = data.quantity!;
     print('${data.productId}');
-    try{
+    try {
       var headers = {
         'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
         'Content-Type': 'application/json'
       };
-      var request = http.Request('PUT', Uri.parse('https://api.waggs.in/api/v1/cart'));
-      request.body = json.encode({
-        "productId": "${data.productId}",
-        "quantity": "${++count}"
-      });
+      var request =
+          http.Request('PUT', Uri.parse('https://api.waggs.in/api/v1/cart'));
+      request.body = json
+          .encode({"productId": "${data.productId}", "quantity": "${++count}"});
       request.headers.addAll(headers);
-      http.StreamedResponse? response ;
-      await request.send().then((value){
+      http.StreamedResponse? response;
+      await request.send().then((value) {
         response = value;
         isLoading.value = true;
         CartProductApi();
@@ -165,15 +165,17 @@ String _currentAddress = '';
       });
 
       if (response!.statusCode == 200) {
-
-        Get.snackbar("Success","Qunatity Updated",snackPosition: SnackPosition.BOTTOM);
-      }
-      else {
+        Get.snackbar("Success", "Qunatity Updated",
+            snackPosition: SnackPosition.BOTTOM);
+      } else {
         print(response!.reasonPhrase);
       }
-    }catch(e){
-      Get.snackbar("Error", e.toString(),snackPosition: SnackPosition.BOTTOM,);
-
+    } catch (e) {
+      Get.snackbar(
+        "Error",
+        e.toString(),
+        snackPosition: SnackPosition.BOTTOM,
+      );
     }
   }
 
@@ -181,19 +183,18 @@ String _currentAddress = '';
     print('Bearer ${box.read(ArgumentConstant.token)}');
     var count = data.quantity!;
     print('${data.productId}');
-    try{
+    try {
       var headers = {
         'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
         'Content-Type': 'application/json'
       };
-      var request = http.Request('PUT', Uri.parse('https://api.waggs.in/api/v1/cart'));
-      request.body = json.encode({
-        "productId": "${data.productId}",
-        "quantity": "${--count}"
-      });
+      var request =
+          http.Request('PUT', Uri.parse('https://api.waggs.in/api/v1/cart'));
+      request.body = json
+          .encode({"productId": "${data.productId}", "quantity": "${--count}"});
       request.headers.addAll(headers);
-      http.StreamedResponse? response ;
-      await request.send().then((value){
+      http.StreamedResponse? response;
+      await request.send().then((value) {
         response = value;
         isLoading.value = true;
         CartProductApi();
@@ -201,15 +202,17 @@ String _currentAddress = '';
       });
 
       if (response!.statusCode == 200) {
-
-        Get.snackbar("Success","Qunatity Updated",snackPosition: SnackPosition.BOTTOM);
-      }
-      else {
+        Get.snackbar("Success", "Qunatity Updated",
+            snackPosition: SnackPosition.BOTTOM);
+      } else {
         print(response!.reasonPhrase);
       }
-    }catch(e){
-      Get.snackbar("Error", e.toString(),snackPosition: SnackPosition.BOTTOM,);
-
+    } catch (e) {
+      Get.snackbar(
+        "Error",
+        e.toString(),
+        snackPosition: SnackPosition.BOTTOM,
+      );
     }
   }
 
@@ -221,12 +224,10 @@ String _currentAddress = '';
         'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
         'Content-Type': 'application/json'
       };
-      var request = http.Request(
-          'PUT', Uri.parse('https://api.waggs.in/api/v1/cart'));
-      request.body = json.encode({
-        "productId": "${data.productId}",
-        "quantity": 0
-      });
+      var request =
+          http.Request('PUT', Uri.parse('https://api.waggs.in/api/v1/cart'));
+      request.body =
+          json.encode({"productId": "${data.productId}", "quantity": 0});
       request.headers.addAll(headers);
       http.StreamedResponse? response;
       await request.send().then((value) {
@@ -238,163 +239,195 @@ String _currentAddress = '';
       if (response!.statusCode == 200) {
         Get.snackbar("Success", "Product Remove From Your Cart ",
             snackPosition: SnackPosition.BOTTOM);
-      }
-      else {
+      } else {
         print(response!.reasonPhrase);
       }
     } catch (e) {
-      Get.snackbar("Error", e.toString(), snackPosition: SnackPosition.BOTTOM,);
+      Get.snackbar(
+        "Error",
+        e.toString(),
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    }
+  }
 
-      dialogBox(BuildContext context) {
-        showDialog(
-            context: context,
-            builder: (context) {
-              return AlertDialog(
-                content: Container(
-                  child: Column(
-                    children: [
-                      Align(
-                        alignment: Alignment.topLeft,
-                        child: Text(
-                          "Select address",
-                          style: GoogleFonts.publicSans(
-                              fontWeight: FontWeight.w700,
-                              fontSize: 18,
-                              color: Colors.black),
-                        ),
+  dialogBox(BuildContext context) {
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+
+        builder: (context) {
+          return AlertDialog(
+            content: Container(
+              height: 300,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      "Select address",
+                      style: GoogleFonts.publicSans(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 18,
+                          color: Colors.black),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.grey[300],
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(10),
+                        topRight: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
                       ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Colors.grey[300],
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(10),
-                            topRight: Radius.circular(10),
-                            bottomRight: Radius.circular(10),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextFormField(
+                        validator: (input) => !isNullEmptyOrFalse(input)
+                            ? null
+                            : "Please Enter Password",
+                        decoration: InputDecoration(
+                          hintText: "Search for area",
+                          hintStyle: GoogleFonts.roboto(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
                           ),
+                          enabledBorder: InputBorder.none,
+                          focusedBorder: InputBorder.none,
                         ),
-                        child: TextFormField(
-                          validator: (input) =>
-                          !isNullEmptyOrFalse(input)
-                              ? null
-                              : "Please Enter Password",
-                          decoration: InputDecoration(
-                            hintText: "Search for area",
-                            hintStyle: GoogleFonts.roboto(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      print(
+                          "latitude===============${_currentPosition!.value.latitude}");
+                      print(
+                          "longitude===============${_currentPosition!.value.longitude}");
+                      _getAddressFromLatLng();
+                    },
+                    child: Container(
+                      height: 75,
+                      decoration: BoxDecoration(
+                        border: Border.all(),
+                      ),
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Icon(
+                              Icons.my_location,
+                              color: Colors.black,
+                              size: 25,
                             ),
-                            enabledBorder: InputBorder.none,
-                            focusedBorder: InputBorder.none,
                           ),
-                        ),
-                      ),
-                      SizedBox(height: 15,),
-                      GestureDetector(
-                        onTap: () {
-                          print("latitude===============${_currentPosition!
-                              .value.latitude}");
-                          print("longitude===============${_currentPosition!
-                              .value.longitude}");
-                        },
-                        child: Container(
-                          height: 75,
-                          decoration: BoxDecoration(
-                            border: Border.all(),
+                          SizedBox(
+                            width: 10,
+                            height: 15,
                           ),
-                          child: Row(
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Icon(Icons.location_searching_rounded,
-                                color: Colors.black, size: 25,),
-                              SizedBox(width: 10, height: 15,),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Get Current location",
-                                    style: GoogleFonts.publicSans(fontSize: 16,
-                                        fontWeight: FontWeight.w400,
-                                        color: Color.fromRGBO(33, 43, 54, 1)),
-                                  ),
-                                  SizedBox(height: 5,),
-                                  Text(
-                                    "Using gps",
-                                    style: GoogleFonts.publicSans(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w400,
-                                      color: Color.fromRGBO(99, 115, 129, 1),
-                                    ),
-                                  ),
-                                ],
+                              Text(
+                                "Get Current location",
+                                style: GoogleFonts.publicSans(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400,
+                                    color: Color.fromRGBO(33, 43, 54, 1)),
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Text(
+                                "Using gps",
+                                style: GoogleFonts.publicSans(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color.fromRGBO(99, 115, 129, 1),
+                                ),
                               ),
                             ],
                           ),
-                        ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
-                ),
-              );
-            });
-      }
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.pop(context);
+                    },
+                    child: Align(
+                      alignment: Alignment.bottomRight,
+                      child: Container(
+                        child: Text("Cancel",style: GoogleFonts.publicSans(fontWeight: FontWeight.w700,color: Color.fromRGBO(31, 193, 244, 1),fontSize: 14),),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
 
-      Future<void> checkoutApi() async {
-        var url = Uri.parse("https://api.waggs.in/api/v1/transaction/checkout");
-        var response = await http.post(url, body: {
-        }, headers: {
-          'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+          );
         });
-        dynamic result = jsonDecode(response.body);
-        checkout = Checkout.fromJson(result);
-        if (response.statusCode == 200) {
-          if (!isNullEmptyOrFalse(checkout)) {
-            Checkoutlist = checkout.data!.order;
-          }
-          cartProductList.refresh();
-          var options = {
-            "key": "rzp_test_Ad3xOmLFP1EkRf",
-            "amount": "${checkout.data!.order!.amount}",
-            "name": "Waggs Payment",
-            "description": "",
-            "timeout": "180",
-            "currency": "INR",
-            'send_sms_hash': true,
-            "prefill": {
-              "contact": "${box.read(ArgumentConstant.phone)}",
-              "email": "${box.read(ArgumentConstant.email)}"
-            },
-            "external": {
-              "wallets": ["paytm"]
-            }
-          };
-          try {
-            _razorpay.open(options);
-          } catch (e) {
-            print(e.toString());
-          }
-        }
-        else {
-          ErrorResponse res = ErrorResponse.fromJson(jsonDecode(response.body));
-          Get.snackbar("Error", res.message.toString(),
-              snackPosition: SnackPosition.BOTTOM,
-              backgroundColor: Colors.red,
-              colorText: Colors.white);
-        }
-        print('Response status: ${response.statusCode}');
-        print('Response body: ${response.body}');
-      }
-    }
-
-
   }
+
+  Future<void> checkoutApi() async {
+    var url = Uri.parse("https://api.waggs.in/api/v1/transaction/checkout");
+    var response = await http.post(url, body: {}, headers: {
+      'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+    });
+    dynamic result = jsonDecode(response.body);
+    checkout = Checkout.fromJson(result);
+    if (response.statusCode == 200) {
+      if (!isNullEmptyOrFalse(checkout)) {
+        Checkoutlist = checkout.data!.order;
+      }
+      cartProductList.refresh();
+      var options = {
+        "key": "rzp_test_Ad3xOmLFP1EkRf",
+        "amount": "${checkout.data!.order!.amount}",
+        "name": "Waggs Payment",
+        "description": "",
+        "timeout": "180",
+        "currency": "INR",
+        'send_sms_hash': true,
+        "prefill": {
+          "contact": "${box.read(ArgumentConstant.phone)}",
+          "email": "${box.read(ArgumentConstant.email)}"
+        },
+        "external": {
+          "wallets": ["paytm"]
+        }
+      };
+      try {
+        _razorpay.open(options);
+      } catch (e) {
+        print(e.toString());
+      }
+    } else {
+      ErrorResponse res = ErrorResponse.fromJson(jsonDecode(response.body));
+      Get.snackbar("Error", res.message.toString(),
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white);
+    }
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+  }
+
   void _handlePaymentSuccess(PaymentSuccessResponse response) {
     print('Success Response: $response');
-    Get.snackbar(
-        "Success", "Payment Done", snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.green);
+    Get.snackbar("Success", "Payment Done",
+        snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.green);
   }
 
   void _handlePaymentError(PaymentFailureResponse response) {
@@ -405,4 +438,3 @@ String _currentAddress = '';
     print('External SDK Response: $response');
   }
 }
-

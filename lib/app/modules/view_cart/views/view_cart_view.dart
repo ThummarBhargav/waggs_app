@@ -371,6 +371,7 @@ class ViewCartView extends GetView<ViewCartController> {
                               GestureDetector(
                                 onTap: () {
                                   controller.dialogBox(context);
+                                  controller.getCurrentLocation();
                                 },
                                 child: Container(
                                   padding: EdgeInsets.only(right: 20, top: 10),
