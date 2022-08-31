@@ -354,11 +354,10 @@ class ViewCartView extends GetView<ViewCartController> {
                           Container(
                             height: 150,
                             width: double.maxFinite,
-                            padding: EdgeInsets.only(left: 10,top: 10),
                             margin: EdgeInsets.only(right: 20,left: 20),
                             child: Text(
-                              "${box.read(ArgumentConstant.address)}",
-                              style: TextStyle(color: Colors.black,fontSize: 20),
+                              "test",
+                              style: TextStyle(color: Colors.white),
                             ),
                             decoration: BoxDecoration(
                               borderRadius:
@@ -369,14 +368,19 @@ class ViewCartView extends GetView<ViewCartController> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              Container(
-                                padding: EdgeInsets.only(right: 20, top: 10),
-                                child: Text(
-                                  "Change",
-                                  style: GoogleFonts.raleway(
-                                    color: Colors.blue,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18,
+                              GestureDetector(
+                                onTap: () {
+                                  controller.dialogBox(context);
+                                },
+                                child: Container(
+                                  padding: EdgeInsets.only(right: 20, top: 10),
+                                  child: Text(
+                                    "Change",
+                                    style: GoogleFonts.raleway(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                    ),
                                   ),
                                 ),
                               ),
