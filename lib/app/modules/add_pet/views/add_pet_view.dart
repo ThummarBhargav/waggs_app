@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:waggs_app/app/constant/Container.dart';
 
 import '../controllers/add_pet_controller.dart';
 
@@ -11,7 +12,7 @@ class AddPetView extends GetView<AddPetController> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
+      child: Obx(()=>Scaffold(
         body: Column(
           children: [
             Container(
@@ -193,7 +194,7 @@ class AddPetView extends GetView<AddPetController> {
                           Text("FILL PET DETAILS",style: TextStyle(color: Colors.orange,fontWeight: FontWeight.w500,fontSize: 20),),
                         ],
                       ),
-                      SizedBox(height: 10,),
+                      SizedBox(height: 5,),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
@@ -212,7 +213,7 @@ class AddPetView extends GetView<AddPetController> {
                           left: 15,
                         ),
                         decoration: BoxDecoration(
-                          color: Colors.grey[300],
+                          color: Colors.grey[200],
                           borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(10),
                             topRight: Radius.circular(10),
@@ -220,20 +221,134 @@ class AddPetView extends GetView<AddPetController> {
                           ),
                         ),
                         child: TextFormField(
-                           controller: controller.name,
+                          controller: controller.name,
                           keyboardType: TextInputType.emailAddress,
                           // validator: (input) => !isNullEmptyOrFalse(input)
                           //     ? null
                           //     : "Please Enter Email Address",
-                          decoration: InputDecoration(
-                            hintText: "Pet Name ",
-                            hintStyle: GoogleFonts.roboto(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                            ),
-                            enabledBorder: InputBorder.none,
-                            focusedBorder: InputBorder.none,
+                          decoration: const InputDecoration(
+                            border: InputBorder.none,
+                            labelText: 'Pet Name',
+                            labelStyle: TextStyle(fontSize: 20,color: Colors.cyan),
                           ),
+                          // decoration: InputDecoration(
+                          //   hintText: "Pet Name ",
+                          //   hintStyle: GoogleFonts.roboto(
+                          //     fontSize: 16,
+                          //     fontWeight: FontWeight.w500,
+                          //   ),
+                          //   enabledBorder: InputBorder.none,
+                          //   focusedBorder: InputBorder.none,
+                          // ),
+                        ),
+                      ),
+                      SizedBox(height: 15,),
+                      Container(
+                          width: 150,
+                          margin: EdgeInsets.only(left: 15, right: 15),
+                          padding: EdgeInsets.only(
+                            left: 15,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.grey[200],
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(10),
+                              topRight: Radius.circular(10),
+                              bottomRight: Radius.circular(10),
+                            ),
+                          ),
+                          child:DropdownButton(
+                            items: controller.gender.map((element) => DropdownMenuItem(
+                            child: new Text("${element}"),
+                            value: element,
+                          )).toList(),
+                            onChanged: (value) {
+                              controller.select.value=value.toString();
+                          },
+                            hint: Text("${controller.select.value}"),
+                          )
+                      ),
+                      SizedBox(height: 15,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Flexible(
+                            child: Container(
+                              margin: EdgeInsets.only(left: 15, right: 5),
+                              padding: EdgeInsets.only(
+                                left: 15,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.grey[200],
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(10),
+                                  topRight: Radius.circular(10),
+                                  bottomRight: Radius.circular(10),
+                                ),
+                              ),
+                              child: TextFormField(
+                                controller: controller.age,
+                                keyboardType: TextInputType.emailAddress,
+                                // validator: (input) => !isNullEmptyOrFalse(input)
+                                //     ? null
+                                //     : "Please Enter Email Address",
+                                decoration: const InputDecoration(
+                                  border: InputBorder.none,
+                                  labelText: 'Age(In Years)',
+                                  labelStyle: TextStyle(fontSize: 15,color: Colors.cyan),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 20.0,),
+                          Flexible(
+                            child: Container(
+                              margin: EdgeInsets.only(left: 5, right: 15),
+                              padding: EdgeInsets.only(
+                                left: 15,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.grey[200],
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(10),
+                                  topRight: Radius.circular(10),
+                                  bottomRight: Radius.circular(10),
+                                ),
+                              ),
+                              child: TextFormField(
+                                controller: controller.breed,
+                                keyboardType: TextInputType.emailAddress,
+                                // validator: (input) => !isNullEmptyOrFalse(input)
+                                //     ? null
+                                //     : "Please Enter Email Address",
+                                decoration: const InputDecoration(
+                                  border: InputBorder.none,
+                                  labelText: 'Breed',
+                                  labelStyle: TextStyle(fontSize: 15,color: Colors.cyan),
+                                ),
+                                // decoration: InputDecoration(
+                                //   hintText: "Pet Name ",
+                                //   hintStyle: GoogleFonts.roboto(
+                                //     fontSize: 16,
+                                //     fontWeight: FontWeight.w500,
+                                //   ),
+                                //   enabledBorder: InputBorder.none,
+                                //   focusedBorder: InputBorder.none,
+                                // ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 15,),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: getcon(
+                            color: Colors.orange,
+                            text: Text("SUBMIT",style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500),),
+                            alignment: Alignment.center,
+                            height: 40,
+                            width: 140
                         ),
                       )
                     ],
@@ -241,7 +356,7 @@ class AddPetView extends GetView<AddPetController> {
                 ))
           ],
         ),
-      ),
+      ),)
     );
   }
 }
