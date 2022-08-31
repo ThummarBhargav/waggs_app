@@ -40,7 +40,7 @@ class AddPetController extends GetxController {
 
   Future<void> UpdatePet() async {
     print('Bearer ${box.read(ArgumentConstant.token)}');
-      print('sid==>${data}');
+      // print('sid==>${data}');
     try{
       var headers = {
         'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
@@ -72,6 +72,4 @@ class AddPetController extends GetxController {
 
     }
   }
-
-
 }
