@@ -1,12 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/modules/Add_To_Cart_Shipping_View/views/add_to_cart_shipping_view_view.dart';
-import 'package:waggs_app/app/routes/app_pages.dart';
-import '../../../constant/SizeConstant.dart';
-import '../../View_All_My_Cart/controllers/view_all_my_cart_controller.dart';
 import '../../View_All_My_Cart/views/view_all_my_cart_view.dart';
 import '../controllers/tab_bar1_controller.dart';
 
@@ -26,9 +21,6 @@ class TabBar1View extends GetView<TabBar1Controller> {
               IconButton(onPressed: () {
 
               }, icon: Icon(Icons.search,color: Colors.black,)),
-              // IconButton(onPressed: () {
-              //
-              // }, icon: Icon(Icons.shopping_cart_outlined,color: Colors.black,))
             ],
             bottom:TabBar(
               onTap: (index){

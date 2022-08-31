@@ -393,7 +393,7 @@ class HomeView extends GetWidget<HomeController> {
                                     ),
                                     InkWell(
                                       onTap: () {
-                                        Get.toNamed(Routes.TAB_BAR1);
+                                        Get.toNamed(Routes.VIEW_CART);
                                         // Get.toNamed(Routes.TAB_BAR1);
                                       },
                                       child: Padding(

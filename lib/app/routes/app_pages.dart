@@ -40,6 +40,8 @@ import '../modules/tab_bar1/bindings/tab_bar1_binding.dart';
 import '../modules/tab_bar1/views/tab_bar1_view.dart';
 import '../modules/view-product/bindings/view_product_binding.dart';
 import '../modules/view-product/views/view_product_view.dart';
+import '../modules/view_cart/bindings/view_cart_binding.dart';
+import '../modules/view_cart/views/view_cart_view.dart';
 
 part 'app_routes.dart';
 
@@ -153,6 +155,11 @@ class AppPages {
       name: _Paths.ADD_PET,
       page: () => const AddPetView(),
       binding: AddPetBinding(),
+    ),
+    GetPage(
+      name: _Paths.VIEW_CART,
+      page: () => const ViewCartView(),
+      binding: ViewCartBinding(),
     ),
   ];
 }
