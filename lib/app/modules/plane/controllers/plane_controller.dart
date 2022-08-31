@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
+import 'package:waggs_app/app/Modal/PetModel.dart';
 import 'package:waggs_app/app/Modal/PlanModel.dart';
 import 'package:http/http.dart' as http;
+import 'package:waggs_app/app/Modal/SubscriptionModel.dart';
 import '../../../../main.dart';
 import '../../../Modal/PlanModel.dart';
 import '../../../constant/ConstantUrl.dart';
@@ -14,6 +16,8 @@ import '../../../routes/app_pages.dart';
 class PlaneController extends GetxController {
 
   PlanModel planModel =  PlanModel();
+  subscriprion subscriptions = subscriprion();
+  Transaction? transactionList;
   RxList<PlanData> planList = RxList<PlanData>([]);
 List respons=[];
 
@@ -78,9 +82,12 @@ List respons=[];
         });
         respons.add(response.body);
         print(jsonDecode(response.body).runtimeType);
+        dynamic result = jsonDecode(response.body);
+        subscriptions = subscriprion.fromJson(result);
         print('Response status: ${response.statusCode}');
         print('Response body: ${response.body}');
         if (response.statusCode == 200) {
+            transactionList=subscriptions.data!.transaction;
           var options = {
             "key": "rzp_test_Ad3xOmLFP1EkRf",
             "amount": data.amount!.toInt() * 100,
@@ -100,9 +107,7 @@ List respons=[];
             print(e.toString());
           }
         }
-
         // Get.snackbar("Success","Payment Done",snackPosition: SnackPosition.BOTTOM,backgroundColor: Colors.green);
-
        // else{
        //    Get.snackbar("Error", "Payment Not Done",snackPosition: SnackPosition.BOTTOM,backgroundColor: Colors.orangeAccent);
        //  }
@@ -114,7 +119,8 @@ List respons=[];
   void _handlePaymentSuccess(PaymentSuccessResponse response) {
     print('Success Response: $response');
     Get.snackbar("Success","Payment Done",snackPosition: SnackPosition.BOTTOM,backgroundColor: Colors.green);
-    Get.toNamed(Routes.ADD_PET);
+    print("Id===>${transactionList!.sId}");
+    Get.toNamed(Routes.ADD_PET,arguments: transactionList!.sId);
     /*Fluttertoast.showToast(
         msg: "SUCCESS: " + response.paymentId!,
         toastLength: Toast.LENGTH_SHORT); */

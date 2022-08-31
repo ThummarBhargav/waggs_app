@@ -343,7 +343,7 @@ class AddPetView extends GetView<AddPetController> {
                       SizedBox(height: 15,),
                       InkWell(
                         onTap: (){
-                          // controller.addPet();
+                           controller.UpdatePet();
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),

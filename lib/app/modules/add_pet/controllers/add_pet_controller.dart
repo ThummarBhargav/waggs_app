@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:waggs_app/app/Modal/SubscriptionModel.dart';
 import '../../../../main.dart';
 import '../../../Modal/PetModel.dart';
 import '../../../constant/ConstantUrl.dart';
@@ -13,6 +14,7 @@ import '../../../routes/app_pages.dart';
 class AddPetController extends GetxController {
   //TODO: Implement AddPetController
 
+  String data = Get.arguments;
   TextEditingController name = TextEditingController(text: 'New Pet');
   TextEditingController Gender = TextEditingController(text: 'New Pet');
   TextEditingController age = TextEditingController();
@@ -22,6 +24,7 @@ class AddPetController extends GetxController {
   RxList<PetData> petList = RxList<PetData>([]);
   List respons=[];
   PetModel petModel = PetModel();
+
 
   @override
   void onInit() {
@@ -42,13 +45,13 @@ class AddPetController extends GetxController {
 
   Future<void> UpdatePet() async {
     print('Bearer ${box.read(ArgumentConstant.token)}');
-     // print('${petModel.data.}');
+      print('sid==>${data}');
     try{
       var headers = {
         'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
         'Content-Type': 'application/json'
       };
-      var request = http.Request('PUT', Uri.parse('https://api.waggs.in/api/v1/pet'));
+      var request = http.Request('PUT', Uri.parse('https://api.waggs.in/api/v1/pet'+'${data}'));
       request.body = json.encode({
           "name": "${name}",
           "age": "${age}",
@@ -66,6 +69,7 @@ class AddPetController extends GetxController {
         Get.snackbar("Success","Pet Update",snackPosition: SnackPosition.BOTTOM);
       }
       else {
+        Get.snackbar("Success",response!.reasonPhrase.toString(),snackPosition: SnackPosition.BOTTOM);
         print(response!.reasonPhrase);
       }
     }catch(e){
