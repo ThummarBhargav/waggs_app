@@ -1,6 +1,7 @@
 const baseUrl2 = "https://waggs.in/api/v1/users/";
 const baseuel1 = "https://api-stg.waggs.in/api/v1/";
 const baseUrl = "https://api.waggs.in/api/v1/";
+const baseUrl3 = "https://api.waggs.in/api/v1/users/";
 
 class ApiConstant {
   static const signUpUsers = "signup";
@@ -10,8 +11,8 @@ class ApiConstant {
   static const sendOtpUsers = "sendOtp";
   static const verifyOtpUsers = "verifyOtp";
   static const verifyExistsUsers = "verifyExists";
-  static const verifyNewPasswordUsers = "verifyOtpNewPassword";
-  static const changePasswordUsers = "changePassword";
+  static const verifyOtpNewPassword = "verifyOtpNewPassword";
+  static const changePassword = "changePassword";
   static const bannerProductUsers = "banner";
   static const getAllProductUsers = "products";
   static const AllCategory = "category";
@@ -19,7 +20,10 @@ class ApiConstant {
   static const TopStore = "landing?latitude=&longitude=";
   static const alsoLike = "products";
   static const Cart = "cart";
+  static const pet= "pet";
   static const Count = "cart/count";
+  static const orderlist="order/list";
+  static const checkout = "transaction/checkout";
   static const Plans = "subscription/plans";
   static const PlansPlayment = "transaction/subscription";
   static const AddPet = "pet/list?skip=0&limit=20";

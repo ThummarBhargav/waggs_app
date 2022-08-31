@@ -36,6 +36,7 @@ abstract class Routes {
   static const MY_PET = _Paths.MY_PET;
   static const ADD_PET = _Paths.ADD_PET;
   static const VIEW_CART = _Paths.VIEW_CART;
+  static const ORDER_PAGE = _Paths.ORDER_PAGE;
 }
 
 abstract class _Paths {
@@ -73,4 +74,5 @@ abstract class _Paths {
   static const MY_PET = '/my-pet';
   static const ADD_PET = '/add-pet';
   static const VIEW_CART = '/view-cart';
+  static const ORDER_PAGE = '/order-page';
 }

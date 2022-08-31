@@ -33,7 +33,7 @@ class MyAccountController extends GetxController {
   }
 
   Future<void>sendOtp() async {
-    var url = Uri.parse("https://api.waggs.in/api/v1/users/sendOtp");
+    var url = Uri.parse(baseUrl3+ApiConstant.sendOtpUsers);
     var response;
     await http.post(url, body: {
       'countryCode': '${box.read(ArgumentConstant.countryCode)}',

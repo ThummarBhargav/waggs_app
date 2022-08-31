@@ -85,7 +85,7 @@ class ForgotPasswordController extends GetxController {
     });
   }
   Future<void>verifyotp() async {
-    var url = Uri.parse("https://api.waggs.in/api/v1/users/verifyOtpNewPassword");
+    var url = Uri.parse(baseUrl3+ApiConstant.verifyOtpNewPassword);
     var response;
     await http.post(url, body: {
       "otp": "${otpController.value.text.trim()}",
@@ -108,7 +108,7 @@ class ForgotPasswordController extends GetxController {
   }
 
   Future<void>NewPassword() async {
-    var url = Uri.parse("https://api.waggs.in/api/v1/users/changePassword");
+    var url = Uri.parse(baseUrl3+ApiConstant.changePassword);
     var response;
     await http.post(url, body: {
       "countryCode":"${countryController.value.text.trim()}",

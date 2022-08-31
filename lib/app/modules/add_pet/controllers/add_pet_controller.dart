@@ -7,8 +7,6 @@ import 'package:http/http.dart' as http;
 import '../../../../main.dart';
 import '../../../Modal/PetModel.dart';
 import '../../../constant/ConstantUrl.dart';
-import '../../../constant/SizeConstant.dart';
-import '../../../routes/app_pages.dart';
 
 class AddPetController extends GetxController {
   //TODO: Implement AddPetController
@@ -42,13 +40,12 @@ class AddPetController extends GetxController {
 
   Future<void> UpdatePet() async {
     print('Bearer ${box.read(ArgumentConstant.token)}');
-     // print('${petModel.data.}');
     try{
       var headers = {
         'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
         'Content-Type': 'application/json'
       };
-      var request = http.Request('PUT', Uri.parse('https://api.waggs.in/api/v1/pet'+'${}'));
+      var request = http.Request('PUT', Uri.parse(baseUrl+ApiConstant.pet));
       request.body = json.encode({
           "name": "${name}",
           "age": "${age}",

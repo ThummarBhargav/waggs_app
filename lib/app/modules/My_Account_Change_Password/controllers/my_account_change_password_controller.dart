@@ -47,7 +47,7 @@ class MyAccountChangePasswordController extends GetxController {
     super.onClose();
   }
   Future<void>verifyOtpUsers() async {
-    var url = Uri.parse("https://api.waggs.in/api/v1/users/verifyOtpNewPassword");
+    var url = Uri.parse(baseUrl3+ApiConstant.verifyOtpNewPassword);
     var response;
     await http.post(url, body: {
       'countryCode': '${box.read(ArgumentConstant.countryCode)}',
@@ -72,7 +72,7 @@ class MyAccountChangePasswordController extends GetxController {
   }
 
   Future<void>sendOtp() async {
-    var url = Uri.parse("https://api.waggs.in/api/v1/users/sendOtp");
+    var url = Uri.parse(baseUrl3+ApiConstant.sendOtpUsers);
     var response;
     await http.post(url, body: {
       'countryCode': '${box.read(ArgumentConstant.countryCode)}',

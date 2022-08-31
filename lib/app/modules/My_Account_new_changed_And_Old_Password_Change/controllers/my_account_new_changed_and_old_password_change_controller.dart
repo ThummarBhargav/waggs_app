@@ -34,7 +34,7 @@ class MyAccountNewChangedAndOldPasswordChangeController extends GetxController {
   }
 
   Future<void>NewPassword() async {
-    var url = Uri.parse("https://api.waggs.in/api/v1/users/changePassword");
+    var url = Uri.parse(baseUrl3+ApiConstant.changePassword);
     var response;
     await http.post(url, body: {
       "countryCode":"${box.read(ArgumentConstant.countryCode)}",

@@ -14,8 +14,6 @@ import '../modules/View_All_My_Cart/bindings/view_all_my_cart_binding.dart';
 import '../modules/View_All_My_Cart/views/view_all_my_cart_view.dart';
 import '../modules/add_pet/bindings/add_pet_binding.dart';
 import '../modules/add_pet/views/add_pet_view.dart';
-import '../modules/email_screen/bindings/email_screen_binding.dart';
-import '../modules/email_screen/views/email_screen_view.dart';
 import '../modules/forgot_password/bindings/forgot_password_binding.dart';
 import '../modules/forgot_password/views/forgot_password_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -26,6 +24,8 @@ import '../modules/my_account/bindings/my_account_binding.dart';
 import '../modules/my_account/views/my_account_view.dart';
 import '../modules/my_pet/bindings/my_pet_binding.dart';
 import '../modules/my_pet/views/my_pet_view.dart';
+import '../modules/order_page/bindings/order_page_binding.dart';
+import '../modules/order_page/views/order_page_view.dart';
 import '../modules/plane/bindings/plane_binding.dart';
 import '../modules/plane/views/plane_view.dart';
 import '../modules/product/bindings/product_binding.dart';
@@ -70,11 +70,6 @@ class AppPages {
       name: _Paths.O_T_P_SCREEN,
       page: () => OTPScreenView(),
       binding: OTPScreenBinding(),
-    ),
-    GetPage(
-      name: _Paths.EMAIL_SCREEN,
-      page: () => const EmailScreenView(),
-      binding: EmailScreenBinding(),
     ),
     GetPage(
       name: _Paths.VIEW_PRODUCT,
@@ -160,6 +155,11 @@ class AppPages {
       name: _Paths.VIEW_CART,
       page: () => const ViewCartView(),
       binding: ViewCartBinding(),
+    ),
+    GetPage(
+      name: _Paths.ORDER_PAGE,
+      page: () => const OrderPageView(),
+      binding: OrderPageBinding(),
     ),
   ];
 }

@@ -8,6 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/Modal/ErrorResponse.dart';
 import 'package:waggs_app/app/Modal/sign_up_response_model.dart';
 import 'package:http/http.dart' as http;
+import 'package:waggs_app/app/constant/ConstantUrl.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
 
 class SingupScreenController extends GetxController {
@@ -132,7 +133,7 @@ gettimer(){
   }
 
   Future<void> signUpApi(BuildContext context) async {
-    var url = Uri.parse("https://api.waggs.in/api/v1/users/signup");
+    var url = Uri.parse(baseUrl3+ApiConstant.signUpUsers);
     var response;
     await http.post(url, body: {
       'name': '${firstnameController.value.text.trim()}',

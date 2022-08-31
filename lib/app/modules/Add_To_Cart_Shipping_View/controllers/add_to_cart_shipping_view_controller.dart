@@ -39,7 +39,7 @@ class AddToCartShippingViewController extends GetxController {
   CartProductApi() async {
     hasData.value = false;
     cartProductList.clear();
-    var url =await Uri.parse("https://api.waggs.in/api/v1/cart");
+    var url =await Uri.parse(baseUrl+ApiConstant.Cart);
     var response;
     await http.get(url,headers: {
       'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
@@ -93,7 +93,7 @@ class AddToCartShippingViewController extends GetxController {
         'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
         'Content-Type': 'application/json'
       };
-      var request = http.Request('PUT', Uri.parse('https://api.waggs.in/api/v1/cart'));
+      var request = http.Request('PUT', Uri.parse(baseUrl+ApiConstant.Cart));
       request.body = json.encode({
         "productId": "${data.productId}",
         "quantity": "${++count}"
@@ -129,7 +129,7 @@ class AddToCartShippingViewController extends GetxController {
         'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
         'Content-Type': 'application/json'
       };
-      var request = http.Request('PUT', Uri.parse('https://api.waggs.in/api/v1/cart'));
+      var request = http.Request('PUT', Uri.parse(baseUrl+ApiConstant.Cart));
       request.body = json.encode({
         "productId": "${data.productId}",
         "quantity": "${--count}"

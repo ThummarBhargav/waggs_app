@@ -38,7 +38,6 @@ class HomeController extends GetxController {
   RxList<Sellers> SellersList = RxList<Sellers>([]);
   RxList<Count1> Countlist = RxList<Count1>([]);
   RxBool isFilterDrawer = false.obs;
-  // RxList<LoginModel>login = RxList<LoginModel>([]);
   List<String> imageList = ['assets/category01.jpg','assets/category02.jpg',
     'assets/category03.jpg','assets/category04.jpg','assets/category05.jpg'].obs;
   List respons =[];
@@ -229,7 +228,7 @@ class HomeController extends GetxController {
         'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
         'Content-Type': 'application/json'
       };
-      var request = http.Request('PUT', Uri.parse('https://api.waggs.in/api/v1/cart'));
+      var request = http.Request('PUT', Uri.parse(baseUrl+ApiConstant.Cart));
       request.body = json.encode({
         "productId": "${data.productId}",
         "quantity": 0
@@ -264,7 +263,7 @@ class HomeController extends GetxController {
         'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
         'Content-Type': 'application/json'
       };
-      var request = http.Request('PUT', Uri.parse('https://api.waggs.in/api/v1/cart'));
+      var request = http.Request('PUT', Uri.parse(baseUrl+ApiConstant.Cart));
       request.body = json.encode({
         "productId": "${data.productId}",
         "quantity": "${++count}"
@@ -299,7 +298,7 @@ class HomeController extends GetxController {
         'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
         'Content-Type': 'application/json'
       };
-      var request = http.Request('PUT', Uri.parse('https://api.waggs.in/api/v1/cart'));
+      var request = http.Request('PUT', Uri.parse(baseUrl+ApiConstant.Cart));
       request.body = json.encode({
         "productId": "${data.productId}",
         "quantity": "${--count}"
@@ -345,7 +344,7 @@ class HomeController extends GetxController {
   CartProductApi() async {
     hasData.value = false;
     cartProductList.clear();
-    var url =await Uri.parse("https://api.waggs.in/api/v1/cart");
+    var url =await Uri.parse(baseUrl+ApiConstant.Cart);
     var response;
     await http.get(url,headers: {
       'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',

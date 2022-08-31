@@ -62,7 +62,7 @@ class ViewCartController extends GetxController  {
   CartProductApi() async {
     hasData.value = false;
     cartProductList.clear();
-    var url =await Uri.parse("https://api.waggs.in/api/v1/cart");
+    var url =await Uri.parse(baseUrl+ApiConstant.Cart);
     var response;
     await http.get(url,headers: {
       'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
@@ -70,7 +70,6 @@ class ViewCartController extends GetxController  {
       hasData.value = true;
       print(value);
       response = value;
-      // respons = value as List;
     }).catchError((error){
       hasData.value = false;
     });
@@ -116,7 +115,7 @@ class ViewCartController extends GetxController  {
         'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
         'Content-Type': 'application/json'
       };
-      var request = http.Request('PUT', Uri.parse('https://api.waggs.in/api/v1/cart'));
+      var request = http.Request('PUT', Uri.parse(baseUrl+ApiConstant.Cart));
       request.body = json.encode({
         "productId": "${data.productId}",
         "quantity": "${++count}"
@@ -152,7 +151,7 @@ class ViewCartController extends GetxController  {
         'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
         'Content-Type': 'application/json'
       };
-      var request = http.Request('PUT', Uri.parse('https://api.waggs.in/api/v1/cart'));
+      var request = http.Request('PUT', Uri.parse(baseUrl+ApiConstant.Cart));
       request.body = json.encode({
         "productId": "${data.productId}",
         "quantity": "${--count}"
@@ -187,7 +186,7 @@ class ViewCartController extends GetxController  {
         'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
         'Content-Type': 'application/json'
       };
-      var request = http.Request('PUT', Uri.parse('https://api.waggs.in/api/v1/cart'));
+      var request = http.Request('PUT', Uri.parse(baseUrl+ApiConstant.Cart));
       request.body = json.encode({
         "productId": "${data.productId}",
         "quantity": 0
@@ -214,13 +213,13 @@ class ViewCartController extends GetxController  {
   }
 
   Future<void> checkoutApi() async {
-    var url = Uri.parse("https://api.waggs.in/api/v1/transaction/checkout");
+    var url = Uri.parse(baseUrl+ApiConstant.checkout);
     var response = await http.post(url, body: {
     },headers: {
       'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
     });
     dynamic result = jsonDecode(response.body);
-    checkout= Checkout.fromJson(result);
+    checkout = Checkout.fromJson(result);
     if(response.statusCode == 200){
       if (!isNullEmptyOrFalse(checkout)) {
         Checkoutlist=checkout.data!.order;
