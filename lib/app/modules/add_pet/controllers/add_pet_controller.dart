@@ -40,6 +40,7 @@ class AddPetController extends GetxController {
 
   Future<void> UpdatePet() async {
     print('Bearer ${box.read(ArgumentConstant.token)}');
+      print('sid==>${data}');
     try{
       var headers = {
         'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
@@ -63,6 +64,7 @@ class AddPetController extends GetxController {
         Get.snackbar("Success","Pet Update",snackPosition: SnackPosition.BOTTOM);
       }
       else {
+        Get.snackbar("Success",response!.reasonPhrase.toString(),snackPosition: SnackPosition.BOTTOM);
         print(response!.reasonPhrase);
       }
     }catch(e){
