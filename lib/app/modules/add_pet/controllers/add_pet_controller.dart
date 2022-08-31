@@ -1,5 +1,14 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
+import '../../../../main.dart';
+import '../../../Modal/PetModel.dart';
+import '../../../constant/ConstantUrl.dart';
+import '../../../constant/SizeConstant.dart';
+import '../../../routes/app_pages.dart';
 
 class AddPetController extends GetxController {
   //TODO: Implement AddPetController
@@ -9,7 +18,11 @@ class AddPetController extends GetxController {
   TextEditingController age = TextEditingController();
   TextEditingController breed = TextEditingController();
   RxList<String> gender = RxList<String>(["Male","Female"]);
-  RxString select=''.obs;
+  RxString select='Male'.obs;
+  RxList<PetData> petList = RxList<PetData>([]);
+  List respons=[];
+  PetModel petModel = PetModel();
+
   @override
   void onInit() {
     super.onInit();
@@ -23,6 +36,42 @@ class AddPetController extends GetxController {
   @override
   void onClose() {
     super.onClose();
+  }
+
+
+
+  Future<void> UpdatePet() async {
+    print('Bearer ${box.read(ArgumentConstant.token)}');
+     // print('${petModel.data.}');
+    try{
+      var headers = {
+        'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+        'Content-Type': 'application/json'
+      };
+      var request = http.Request('PUT', Uri.parse('https://api.waggs.in/api/v1/pet'+'${}'));
+      request.body = json.encode({
+          "name": "${name}",
+          "age": "${age}",
+          "breed": "${breed}",
+          "gender": "${select}",
+          "image":""
+      });
+      request.headers.addAll(headers);
+      http.StreamedResponse? response ;
+      await request.send().then((value){
+        response = value;
+      });
+      if (response!.statusCode == 200) {
+
+        Get.snackbar("Success","Pet Update",snackPosition: SnackPosition.BOTTOM);
+      }
+      else {
+        print(response!.reasonPhrase);
+      }
+    }catch(e){
+      Get.snackbar("Error", e.toString(),snackPosition: SnackPosition.BOTTOM,);
+
+    }
   }
 
 

@@ -244,7 +244,7 @@ class AddPetView extends GetView<AddPetController> {
                       ),
                       SizedBox(height: 15,),
                       Container(
-                          width: 150,
+                          width: 400,
                           margin: EdgeInsets.only(left: 15, right: 15),
                           padding: EdgeInsets.only(
                             left: 15,
@@ -341,14 +341,19 @@ class AddPetView extends GetView<AddPetController> {
                         ],
                       ),
                       SizedBox(height: 15,),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: getcon(
-                            color: Colors.orange,
-                            text: Text("SUBMIT",style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500),),
-                            alignment: Alignment.center,
-                            height: 40,
-                            width: 140
+                      InkWell(
+                        onTap: (){
+                          controller.addPet();
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: getcon(
+                              color: Colors.orange,
+                              text: Text("SUBMIT",style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500),),
+                              alignment: Alignment.center,
+                              height: 40,
+                              width: 140
+                          ),
                         ),
                       )
                     ],
