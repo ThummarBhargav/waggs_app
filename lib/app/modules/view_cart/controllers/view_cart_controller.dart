@@ -267,6 +267,9 @@ class ViewCartController extends GetxController {
     if (!isNullEmptyOrFalse(orders1.data)) {
       OrderList.add(orders1);
       print(OrderList);
+      Get.toNamed(Routes.ORDER_PAGE,arguments: OrderList);
+      Get.snackbar("Success", "Payment Done",
+          snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.green);
     }
     OrderList.refresh();
   }
@@ -448,9 +451,7 @@ class ViewCartController extends GetxController {
   void _handlePaymentSuccess(PaymentSuccessResponse response) {
     print('Success Response: $response');
     Allorder();
-    Get.toNamed(Routes.ORDER_PAGE);
-    Get.snackbar("Success", "Payment Done",
-        snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.green);
+
   }
 
   void _handlePaymentError(PaymentFailureResponse response) {
