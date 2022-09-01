@@ -1,11 +1,11 @@
-class Order {
+class Orders1 {
   int? responseCode;
   Data? data;
   String? message;
 
-  Order({this.responseCode, this.data, this.message});
+  Orders1({this.responseCode, this.data, this.message});
 
-  Order.fromJson(Map<String, dynamic> json) {
+  Orders1.fromJson(Map<String, dynamic> json) {
     responseCode = json['responseCode'];
     data = json['data'] != null ? new Data.fromJson(json['data']) : null;
     message = json['message'];
@@ -260,7 +260,7 @@ class Product {
     unit = json['unit'];
     price = json['price'];
     discountedPrice = json['discountedPrice'];
-    discount = json['discount'];
+    discount = (json['discount'].runtimeType == int )?double.tryParse(json['discount'].toString()):json['discount'];
     brand = json['brand'];
     images = json['images'].cast<String>();
     color = json['color'];

@@ -6,10 +6,12 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:waggs_app/app/Modal/OrderModel.dart';
 import 'package:waggs_app/app/constant/text_field.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:waggs_app/app/Modal/ErrorResponse.dart';
 import 'package:waggs_app/app/Modal/checkoutModel.dart';
+import 'package:waggs_app/app/routes/app_pages.dart';
 import '../../../../main.dart';
 import '../../../Modal/CartCountModel.dart';
 import '../../../Modal/CartProductModel.dart';
@@ -46,7 +48,8 @@ class ViewCartController extends GetxController {
   Geolocator geolocator = Geolocator();
   late Razorpay _razorpay;
   final key = GlobalKey<FormState>();
-
+  Orders1 orders1 = Orders1();
+  RxList<Orders1> OrderList = RxList<Orders1>([]);
   @override
   void onInit() {
     super.onInit();
@@ -252,6 +255,21 @@ class ViewCartController extends GetxController {
       );
     }
   }
+  Future<void>Allorder() async {
+    var url = Uri.parse(baseUrl+ApiConstant.orderlist);
+    var response = await http.get(url,headers: {
+    'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+    });
+    print('response status:${response.request}');
+    dynamic result = jsonDecode(response.body);
+    orders1 = Orders1.fromJson(result);
+    print(result);
+    if (!isNullEmptyOrFalse(orders1.data)) {
+      OrderList.add(orders1);
+      print(OrderList);
+    }
+    OrderList.refresh();
+  }
 
   dialogBox(BuildContext context) {
     showDialog(
@@ -429,6 +447,8 @@ class ViewCartController extends GetxController {
 
   void _handlePaymentSuccess(PaymentSuccessResponse response) {
     print('Success Response: $response');
+    Allorder();
+    Get.toNamed(Routes.ORDER_PAGE);
     Get.snackbar("Success", "Payment Done",
         snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.green);
   }

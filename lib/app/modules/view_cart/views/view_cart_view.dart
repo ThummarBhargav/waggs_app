@@ -354,10 +354,11 @@ class ViewCartView extends GetView<ViewCartController> {
                           Container(
                             height: 150,
                             width: double.maxFinite,
+                            padding: EdgeInsets.only(right: 10,left: 10,top: 10),
                             margin: EdgeInsets.only(right: 20,left: 20),
                             child: Text(
-                              "test",
-                              style: TextStyle(color: Colors.white),
+                              "${box.read(ArgumentConstant.address)}",
+                              style: TextStyle(color: Colors.black,fontSize: 20),
                             ),
                             decoration: BoxDecoration(
                               borderRadius:

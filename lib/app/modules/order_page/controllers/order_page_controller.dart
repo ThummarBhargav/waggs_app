@@ -7,13 +7,12 @@ import 'package:waggs_app/app/constant/ConstantUrl.dart';
 import 'package:waggs_app/app/constant/SizeConstant.dart';
 
 class OrderPageController extends GetxController {
-  Order order = Order();
-  RxList<Order> OrderList = RxList<Order>([]);
+  Orders1 order = Orders1();
+  RxList<Orders1> OrderList = RxList<Orders1>([]);
 
 
   @override
   void onInit() {
-    Allorder();
     super.onInit();
   }
 
@@ -27,15 +26,15 @@ class OrderPageController extends GetxController {
     super.onClose();
   }
 
-  Allorder() async {
-    var url = Uri.parse(baseUrl+ApiConstant.orderlist);
-    var response = await http.get(url);
-    print('response status:${response.request}');
-    dynamic result = jsonDecode(response.body);
-    order = Order.fromJson(result);
-    print(result);
-    if (!isNullEmptyOrFalse(order)) {
-      OrderList.add(order);
-    }
-  }
+  // Allorder() async {
+  //   var url = Uri.parse(baseUrl+ApiConstant.orderlist);
+  //   var response = await http.get(url);
+  //   print('response status:${response.request}');
+  //   dynamic result = jsonDecode(response.body);
+  //   orders1 = Orders1.fromJson(result);
+  //   print(result);
+  //   if (!isNullEmptyOrFalse(orders1)) {
+  //     OrderList.add(order);
+  //   }
+  // }
 }
