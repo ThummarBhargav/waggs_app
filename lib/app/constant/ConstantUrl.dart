@@ -45,4 +45,5 @@ class ArgumentConstant{
   static String TopProductlist = "TopProductlist";
   static String subcategoryData = "subcategoryData";
   static String orderData = "OrderData";
+  static String permission = "permission";
 }
