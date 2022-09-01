@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:waggs_app/app/Modal/CartCountModel.dart';
 import 'package:waggs_app/app/Modal/CartProductModel.dart';
 import 'package:waggs_app/app/Modal/CategoryModel.dart';
+import 'package:waggs_app/app/Modal/OrderModel.dart';
 import 'package:waggs_app/app/Modal/SubCategoryModel.dart';
 import 'package:waggs_app/app/Modal/TopSellingStore.dart';
 import 'package:waggs_app/app/constant/sizeConstant.dart';
@@ -46,6 +47,9 @@ class HomeController extends GetxController {
   RxBool isOpen = false.obs;
   RxBool isOpen1 = false.obs;
   RxString url = ''.obs;
+  Orders1 orders1 = Orders1();
+  RxList<Orders1> OrderList = RxList<Orders1>([]);
+  RxList<Map<String,dynamic>> orderData = RxList<Map<String,dynamic>>([]);
   @override
   void onInit() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async{
@@ -370,5 +374,48 @@ class HomeController extends GetxController {
     }
     cartProductList.refresh();
   }
+
+  Future<void>Allorder() async {
+    var url = Uri.parse(baseUrl+ApiConstant.orderlist);
+    var response = await http.get(url,headers: {
+      'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+    });
+    print('response status:${response.request}');
+    dynamic result = jsonDecode(response.body);
+    orders1 = Orders1.fromJson(result);
+    print(result);
+    if (!isNullEmptyOrFalse(orders1.data)) {
+      OrderList.add(orders1);
+
+      print(OrderList);
+
+
+      if(!isNullEmptyOrFalse(OrderList)){
+        if(!isNullEmptyOrFalse(OrderList[0].data)){
+          if(!isNullEmptyOrFalse(OrderList[0].data!.orderDetails)){
+            OrderList[0].data!.orderDetails!.forEach((element) {
+
+              Map<String,dynamic> dict= {};
+              dict["GroupBy"] = element.orderNo!;
+              dict["OrderData"] = element ;
+
+              orderData.add(dict);
+
+
+
+            });
+          }
+        }
+        print(orderData);
+        Get.toNamed(Routes.ORDER_PAGE,arguments: {
+          ArgumentConstant.orderData : orderData,
+        });
+      }
+    }else{
+
+    }
+    OrderList.refresh();
+  }
+
  }
 

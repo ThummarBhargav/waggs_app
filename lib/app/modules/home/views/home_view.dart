@@ -551,6 +551,7 @@ class HomeView extends GetWidget<HomeController> {
                                   Get.toNamed(
                                       Routes.LOGIN_SCREEN);
                                 } else {
+                                  controller.Allorder();
                                 }
                               },
                               child: ListTile(
