@@ -21,6 +21,7 @@ class ApiConstant {
   static const Cart = "cart";
   static const pet= "pet";
   static const Count = "cart/count";
+  static const socialLogin = "users/socialLogin";
   static const orderlist="order/list?skip=0&limit=15";
   static const checkout = "transaction/checkout";
   static const Plans = "subscription/plans";
@@ -43,4 +44,5 @@ class ArgumentConstant{
   static String sellerList = "sellerList";
   static String TopProductlist = "TopProductlist";
   static String subcategoryData = "subcategoryData";
+  static String orderData = "OrderData";
 }

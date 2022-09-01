@@ -158,7 +158,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.ORDER_PAGE,
-      page: () => const OrderPageView(),
+      page: () =>  OrderPageView(),
       binding: OrderPageBinding(),
     ),
   ];

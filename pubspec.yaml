@@ -28,6 +28,7 @@ dependencies:
   flutter_svg: ^1.1.3
   geolocator: ^9.0.1
   geocoding: ^2.0.5
+  grouped_list: ^5.1.2
   geocode:
   shared_preferences: ^2.0.15
   http:

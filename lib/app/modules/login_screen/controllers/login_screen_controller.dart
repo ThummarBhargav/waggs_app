@@ -14,7 +14,6 @@ import 'package:waggs_app/main.dart';
 import '../../../constant/ConstantUrl.dart';
 
 class LoginScreenController extends GetxController {
-
   final GlobalKey<FormState> formKey2 = GlobalKey<FormState>();
   Rx<TextEditingController> emailController = TextEditingController().obs;
   Rx<TextEditingController> passController = TextEditingController().obs;
@@ -24,7 +23,7 @@ class LoginScreenController extends GetxController {
   GoogleSignIn googleSignIn = GoogleSignIn(scopes: ['email']);
   Rx<User>? _firebaseUser;
 
-  List respons =[];
+  List respons = [];
   @override
   void onInit() {
     super.onInit();
@@ -39,82 +38,82 @@ class LoginScreenController extends GetxController {
   void onClose() {
     super.onClose();
   }
-  // void google_signIn() async{
-  //    GoogleSignInAccount? googleUser = await googleSignIn.signIn();
-  //    GoogleSignInAuthentication? googleAuth = await googleUser!.authentication;
-  //    AuthCredential credential = GoogleAuthProvider.credential(
-  //      idToken: googleAuth.idToken,
-  //      accessToken: googleAuth.accessToken,
-  //    );
-  //    User user = (await _auth.signInWithCredential(credential).then((value) async=> await  Get.offAndToNamed(Routes.HOME)));
-  // }
+
+
   Future<UserCredential> signInWithGoogle() async {
+    // Trigger the authentication flow
     _auth.signOut();
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    // Obtain the auth details from the request
     final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+
+    // Create a new credential
     final credential = GoogleAuthProvider.credential(
       accessToken: googleAuth?.accessToken,
       idToken: googleAuth?.idToken,
     );
-    return await FirebaseAuth.instance.signInWithCredential(credential).then((value) async  => await Get.offAllNamed(Routes.HOME));
-  }
-  Future google_signout() async{
-    await googleSignIn.signOut();
+
+    // Once signed in, return the UserCredential
+    return await FirebaseAuth.instance.signInWithCredential(credential).then((value) async =>await Get.offAllNamed(Routes.HOME));
+
   }
 
 
   Future<UserCredential> signInWithFacebook() async {
-    // Trigger the sign-in flow
     FacebookAuth.instance.logOut();
     final LoginResult loginResult = await FacebookAuth.instance.login();
 
-    // Create a credential from the access token
-    final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.token);
+    final OAuthCredential facebookAuthCredential =
+        FacebookAuthProvider.credential(loginResult.accessToken!.token);
 
-    // Once signed in, return the UserCredential
-    return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential).then((value) async  => await Get.offAllNamed(Routes.HOME));
+    return FirebaseAuth.instance
+        .signInWithCredential(facebookAuthCredential)
+        .then((value) async => await Get.offAllNamed(Routes.HOME));
   }
 
-
-
   Future<void> LoginUser() async {
-    try{
-      var url = Uri.parse(baseUrl2+ApiConstant.loginUsers);
+    try {
+      var url = Uri.parse(baseUrl2 + ApiConstant.loginUsers);
       var response = await http.post(url, body: {
         'email': '${emailController.value.text.trim()}',
         'password': '${passController.value.text.trim()}',
-      }
-      );
+      });
       respons.add(response.body);
       print(jsonDecode(response.body).runtimeType);
       print('Response status: ${response.statusCode}');
       print('Response body: ${response.body}');
-      if(response.statusCode==200){
-        LoginModel res  = LoginModel.fromJson(jsonDecode(response.body));
-        if(res.responseCode == 200){
-          if(!isNullEmptyOrFalse(res.data)){
-            if(!isNullEmptyOrFalse(res.data!.token)){
+      if (response.statusCode == 200) {
+        LoginModel res = LoginModel.fromJson(jsonDecode(response.body));
+        if (res.responseCode == 200) {
+          if (!isNullEmptyOrFalse(res.data)) {
+            if (!isNullEmptyOrFalse(res.data!.token)) {
               box.write(ArgumentConstant.token, res.data!.token);
               box.write(ArgumentConstant.isUserLogin, true);
               box.write(ArgumentConstant.email, res.data!.user!.email);
               box.write(ArgumentConstant.name, res.data!.user!.name);
-              box.write(ArgumentConstant.countryCode, res.data!.user!.countryCode);
+              box.write(
+                  ArgumentConstant.countryCode, res.data!.user!.countryCode);
               box.write(ArgumentConstant.address, res.data!.user!.address);
               box.write(ArgumentConstant.phone, res.data!.user!.mobile);
-               Get.offAllNamed(Routes.HOME);
+              Get.offAllNamed(Routes.HOME);
               print(box.read(ArgumentConstant.isUserLogin));
             }
           }
         }
+      } else {
+        LoginModel res = LoginModel.fromJson(jsonDecode(response.body));
+        Get.snackbar("Error", res.message.toString(),
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.red,
+            colorText: Colors.white);
       }
-      else{
-        LoginModel res  = LoginModel.fromJson(jsonDecode(response.body));
-        Get.snackbar("Error", res.message.toString(),snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.red,colorText: Colors.white);
-      }
-    }catch(e){
-    Get.snackbar("Error", e.toString(),snackPosition: SnackPosition.BOTTOM,);
+    } catch (e) {
+      Get.snackbar(
+        "Error",
+        e.toString(),
+        snackPosition: SnackPosition.BOTTOM,
+      );
     }
   }
-
-
 }

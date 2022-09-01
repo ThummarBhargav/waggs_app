@@ -50,6 +50,8 @@ class ViewCartController extends GetxController {
   final key = GlobalKey<FormState>();
   Orders1 orders1 = Orders1();
   RxList<Orders1> OrderList = RxList<Orders1>([]);
+  RxList<Map<String,dynamic>> orderData = RxList<Map<String,dynamic>>([]);
+
   @override
   void onInit() {
     super.onInit();
@@ -266,7 +268,33 @@ class ViewCartController extends GetxController {
     print(result);
     if (!isNullEmptyOrFalse(orders1.data)) {
       OrderList.add(orders1);
+
       print(OrderList);
+
+
+      if(!isNullEmptyOrFalse(OrderList)){
+        if(!isNullEmptyOrFalse(OrderList[0].data)){
+          if(!isNullEmptyOrFalse(OrderList[0].data!.orderDetails)){
+            OrderList[0].data!.orderDetails!.forEach((element) {
+
+              Map<String,dynamic> dict= {};
+              dict["GroupBy"] = element.orderNo!;
+              dict["OrderData"] = element ;
+
+              orderData.add(dict);
+
+
+
+            });
+          }
+        }
+        print(orderData);
+        Get.toNamed(Routes.ORDER_PAGE,arguments: {
+          ArgumentConstant.orderData : orderData,
+        });
+      }
+    }else{
+
     }
     OrderList.refresh();
   }
@@ -448,7 +476,7 @@ class ViewCartController extends GetxController {
   void _handlePaymentSuccess(PaymentSuccessResponse response) {
     print('Success Response: $response');
     Allorder();
-    Get.toNamed(Routes.ORDER_PAGE);
+    // Get.toNamed(Routes.ORDER_PAGE);
     Get.snackbar("Success", "Payment Done",
         snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.green);
   }
