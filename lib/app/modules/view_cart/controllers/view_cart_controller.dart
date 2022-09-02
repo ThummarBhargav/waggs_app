@@ -10,7 +10,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/Modal/OrderModel.dart';
-import 'package:waggs_app/app/constant/text_field.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:waggs_app/app/Modal/ErrorResponse.dart';
 import 'package:waggs_app/app/Modal/checkoutModel.dart';
@@ -63,8 +62,6 @@ class ViewCartController extends GetxController {
     CartCount();
 
   }
-
-
 
   getCurrentLocation() {
         Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best, forceAndroidLocationManager: true)
@@ -293,8 +290,9 @@ class ViewCartController extends GetxController {
         print(orderData);
 
       }
-    }else{
-
+    }
+    else{
+      
     }
     OrderList.refresh();
   }
@@ -497,13 +495,10 @@ class ViewCartController extends GetxController {
         },
         options: option,
       );
-      // log("message " + response.request.path);
-      // responseJson = _returnResponse(response);
       print("UPDATE=========" + response.toString());
       if (response.statusCode == 200||response.statusCode == 201) {
         print(response.data);
 
-        // final StoreUserContoller _storeUserContoller =
 
       }
       else if(response.statusCode == 400){
@@ -516,28 +511,6 @@ class ViewCartController extends GetxController {
     } on SocketException {
 
     }
-    // var headers = {
-    //   'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
-    // };
-    // var request = http.Request('PUT', Uri.parse(baseUrl+ApiConstant.transcation+"/${checkout.data!.transaction!.sId}"));
-    // request.body = json.encode({
-    //   "paymentDetails":{
-    //     "paymentId":"${paymentId}",
-    //     "orderId":"${OrderId}",
-    //     "signature":"${Signature}"
-    //   }
-    // });
-    //
-    //
-    // request.headers.addAll(headers);
-    // var response;
-    // http.StreamedResponse res = http.StreamedResponse as http.StreamedResponse;
-    // await request.send().then((value) {
-    //   response = value;
-    //   print("tars==========="+"${response}");
-    //   dynamic result = jsonDecode(response);
-    //
-    // });
 
   }
 

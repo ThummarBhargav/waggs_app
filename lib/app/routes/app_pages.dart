@@ -36,8 +36,6 @@ import '../modules/singup_screen/bindings/singup_screen_binding.dart';
 import '../modules/singup_screen/views/singup_screen_view.dart';
 import '../modules/splash_screen/bindings/splash_screen_binding.dart';
 import '../modules/splash_screen/views/splash_screen_view.dart';
-import '../modules/tab_bar1/bindings/tab_bar1_binding.dart';
-import '../modules/tab_bar1/views/tab_bar1_view.dart';
 import '../modules/view-product/bindings/view_product_binding.dart';
 import '../modules/view-product/views/view_product_view.dart';
 import '../modules/view_cart/bindings/view_cart_binding.dart';
@@ -105,11 +103,6 @@ class AppPages {
       name: _Paths.ADD_TO_CART_SHIPPING_VIEW,
       page: () => const AddToCartShippingViewView(),
       binding: AddToCartShippingViewBinding(),
-    ),
-    GetPage(
-      name: _Paths.TAB_BAR1,
-      page: () => const TabBar1View(),
-      binding: TabBar1Binding(),
     ),
     GetPage(
       name: _Paths.SPLASH_SCREEN,
