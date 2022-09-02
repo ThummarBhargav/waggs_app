@@ -268,10 +268,7 @@ class ViewCartController extends GetxController {
     print(result);
     if (!isNullEmptyOrFalse(orders1.data)) {
       OrderList.add(orders1);
-
       print(OrderList);
-
-
       if(!isNullEmptyOrFalse(OrderList)){
         if(!isNullEmptyOrFalse(OrderList[0].data)){
           if(!isNullEmptyOrFalse(OrderList[0].data!.orderDetails)){
@@ -285,7 +282,7 @@ class ViewCartController extends GetxController {
         }
         print(orderData);
         Get.toNamed(Routes.ORDER_PAGE,arguments: {
-          ArgumentConstant.orderData : orderData.length,
+          ArgumentConstant.orderData : orderData
         });
       }
     }else{
