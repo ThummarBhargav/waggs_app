@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/constant/SizeConstant.dart';
 import '../../../../main.dart';
 import '../../../constant/ConstantUrl.dart';
+import '../../../constant/shopcard_const.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/product_list_screen_controller.dart';
 
@@ -1259,136 +1260,22 @@ class _TopSellingStoreWidgetState extends State<TopSellingStoreWidget> {
                           scrollDirection: Axis.vertical,
                           shrinkWrap: true,
                           itemBuilder: (context, index) {
-                            return Card(
-                              elevation: 2,
-                              child: GestureDetector(
-                                onTap: () {},
-                                child: Container(
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        child: Column(
-                                          children: [
-                                            Container(
-                                              width: 180,
-                                              height: 130,
-                                              alignment: Alignment.center,
-                                              color: Colors.white,
-                                              margin: EdgeInsets.only(
-                                                  top: 25, left: 10, right: 10),
-                                              child: CachedNetworkImage(
-                                                  imageUrl:
-                                                  "${controller.sellerList[index]
-                                                      .logoUrl}",
-                                                  imageBuilder:
-                                                      (context, imageProvider) =>
-                                                      Container(
-                                                        decoration: BoxDecoration(
-                                                          image: DecorationImage(
-                                                              image: imageProvider,
-                                                              fit: BoxFit.cover,
-                                                              colorFilter:
-                                                              ColorFilter.mode(
-                                                                  Colors
-                                                                      .transparent,
-                                                                  BlendMode
-                                                                      .colorBurn)),
-                                                        ),
-                                                      ),
-                                                  placeholder: (context, url) =>
-                                                      CircularProgressIndicator(),
-                                                  errorWidget: (context, url,
-                                                      error) =>
-                                                      Container(
-                                                        color: Colors.grey[100],
-                                                      )),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 8,
-                                      ),
-                                      Container(
-                                        width: 150,
-                                        child: Align(
-                                          alignment: Alignment.center,
-                                          child: controller.sellerList[index]
-                                              .companyName == null ? Container(
-                                            child: Text("N/A", style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                color: Color.fromRGBO(
-                                                    32, 193, 244, 1)),),) : Text(
-                                            "${controller.sellerList[index]
-                                                .companyName}",
-                                            style: GoogleFonts.raleway(
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: 13,
-                                                color: Color.fromRGBO(
-                                                    32, 193, 244, 1)),
-                                          ),
-                                        ),
-                                      ),
-                                      Container(
-                                        margin: EdgeInsets.only(left: 5, right: 5),
-                                        height: 40,
-                                        width: 200,
-                                        child: Align(
-                                            alignment: Alignment.center,
-                                            child: controller.sellerList[index]
-                                                .companyName == null ? Container(
-                                              child: Text("N/A", style: TextStyle(
-                                                  fontSize: 10,
-                                                  color: Colors.grey),),) : Text(
-                                              "${controller.sellerList[index]
-                                                  .address}",
-                                              overflow: TextOverflow.ellipsis,
-                                              maxLines: 2,
-                                              style: TextStyle(
-                                                  fontSize: 10, color: Colors.grey),
-                                              textAlign: TextAlign.center,
-                                            )),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: InkWell(
-                                          onTap: () {
-                                            Get.toNamed(
-                                                Routes.TOP_SELLING_STORE_ALL_PRODUCTS,
-                                                arguments: controller
-                                                    .sellerList[index]);
-                                          },
-                                          child: Container(
-                                            width: 130,
-                                            height: 35,
-                                            alignment: Alignment.center,
-                                            decoration: BoxDecoration(
-                                              color: Colors.cyan,
-                                              borderRadius: BorderRadius.only(
-                                                topRight: Radius.circular(25),
-                                                bottomRight: Radius.circular(25),
-                                                bottomLeft: Radius.circular(25),
-                                              ),
-                                            ),
-                                            child: Text(
-                                              "SHOP NOW",
-                                              style: GoogleFonts.raleway(
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: 13,
-                                                color: Colors.white,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
+                            return shopCard(
+                                image: controller.sellerList[index].logoUrl,
+                                companyName: controller.sellerList[index].companyName,
+                                address: controller.sellerList[index].address,
+                                onTap: (){
+                                  Get.toNamed(
+                                      Routes
+                                          .TOP_SELLING_STORE_ALL_PRODUCTS,
+                                      arguments: controller
+                                          .sellerList[index]);
+                                },
+                                ButtonText: "SHOP NOW"
                             );
                           },
                           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2, childAspectRatio: 0.64)),
+                              crossAxisCount: 2, childAspectRatio: 0.75)),
                     ),
                   ],
                 ),

@@ -9,6 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/constant/Container.dart';
 import 'package:waggs_app/app/constant/SizeConstant.dart';
 import 'package:waggs_app/app/constant/productCard_const.dart';
+import 'package:waggs_app/app/constant/shopcard_const.dart';
 import 'package:waggs_app/app/modules/Catagory_Page/views/catagory_page_view.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
 import 'package:waggs_app/main.dart';
@@ -951,175 +952,188 @@ class HomeView extends GetWidget<HomeController> {
                                 scrollDirection: Axis.horizontal,
                                 shrinkWrap: true,
                                 itemBuilder: (context, index) {
-                                  return Card(
-                                    elevation: 2,
-                                    child: GestureDetector(
-                                      onTap: () {},
-                                      child: Container(
-                                        child: Column(
-                                          children: [
-                                            Container(
-                                              child: Column(
-                                                children: [
-                                                  Container(
-                                                    width: 130,
-                                                    height: 130,
-                                                    alignment: Alignment.center,
-                                                    color: Colors.white,
-                                                    margin: EdgeInsets.only(
-                                                        top: 25,
-                                                        left: 10,
-                                                        right: 10),
-                                                    child: CachedNetworkImage(
-                                                        imageUrl:
-                                                        "${controller
-                                                            .SellersList[index]
-                                                            .logoUrl}",
-                                                        imageBuilder: (context,
-                                                            imageProvider) =>
-                                                            Container(
-                                                              decoration:
-                                                              BoxDecoration(
-                                                                image: DecorationImage(
-                                                                    image:
-                                                                    imageProvider,
-                                                                    fit: BoxFit
-                                                                        .cover,
-                                                                    colorFilter: ColorFilter
-                                                                        .mode(
-                                                                        Colors
-                                                                            .transparent,
-                                                                        BlendMode
-                                                                            .colorBurn)),
-                                                              ),
-                                                            ),
-                                                        placeholder: (context,
-                                                            url) =>
-                                                            CircularProgressIndicator(),
-                                                        errorWidget: (context,
-                                                            url, error) =>
-                                                            Container(
-                                                              color: Colors
-                                                                  .grey[100],
-                                                            )),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              height: 8,
-                                            ),
-                                            Container(
-                                              width: 150,
-                                              child: Align(
-                                                alignment: Alignment.center,
-                                                child: controller
-                                                    .SellersList[index]
-                                                    .companyName ==
-                                                    null
-                                                    ? Container(
-                                                  child: Text(
-                                                    "N/A",
-                                                    style: TextStyle(
-                                                        fontWeight:
-                                                        FontWeight.bold,
-                                                        color:
-                                                        Color.fromRGBO(
-                                                            32,
-                                                            193,
-                                                            244,
-                                                            1)),
-                                                  ),
-                                                )
-                                                    : Text(
-                                                  "${controller
-                                                      .SellersList[index]
-                                                      .companyName}",
-                                                  style:
-                                                  GoogleFonts.raleway(
-                                                      fontWeight:
-                                                      FontWeight
-                                                          .w700,
-                                                      fontSize: 13,
-                                                      color: Color
-                                                          .fromRGBO(
-                                                          32,
-                                                          193,
-                                                          244,
-                                                          1)),
-                                                ),
-                                              ),
-                                            ),
-                                            Container(
-                                              margin: EdgeInsets.only(
-                                                  left: 5, right: 5),
-                                              height: 40,
-                                              width: 200,
-                                              child: Align(
-                                                  alignment: Alignment.center,
-                                                  child: controller
-                                                      .SellersList[index]
-                                                      .address ==
-                                                      null
-                                                      ? Text(
-                                                    "N/A",
-                                                    style: TextStyle(
-                                                        fontSize: 10,
-                                                        color: Colors.grey),
-                                                  )
-                                                      : Text(
-                                                    "${controller
-                                                        .SellersList[index]
-                                                        .address}",
-                                                    overflow: TextOverflow.ellipsis,
-                                                    maxLines: 2,
-                                                    style: TextStyle(
-                                                        fontSize: 10,
-                                                        color: Colors.grey),
-                                                    textAlign:
-                                                    TextAlign.center,
-                                                  )),
-                                            ),
-                                            InkWell(
-                                              onTap: () {
-                                                Get.toNamed(
-                                                    Routes
-                                                        .TOP_SELLING_STORE_ALL_PRODUCTS,
-                                                    arguments: controller
-                                                        .SellersList[index]);
-                                              },
-                                              child: Container(
-                                                width: 130,
-                                                height: 35,
-                                                alignment: Alignment.center,
-                                                decoration: BoxDecoration(
-                                                  color: Color.fromRGBO(
-                                                      32, 193, 244, 1),
-                                                  borderRadius: BorderRadius
-                                                      .only(
-                                                    topRight: Radius.circular(
-                                                        25),
-                                                    bottomRight:
-                                                    Radius.circular(25),
-                                                    bottomLeft:
-                                                    Radius.circular(25),
-                                                  ),
-                                                ),
-                                                child: Text(
-                                                  "SHOP NOW",
-                                                  style: GoogleFonts.raleway(
-                                                    fontWeight: FontWeight.w700,
-                                                    fontSize: 13,
-                                                    color: Colors.white,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
+                                  return shopCard(
+                                    image: controller.SellersList[index].logoUrl,
+                                    companyName: controller.SellersList[index].companyName,
+                                    address: controller.SellersList[index].address,
+                                    onTap: (){
+                                      Get.toNamed(
+                                                            Routes
+                                                                .TOP_SELLING_STORE_ALL_PRODUCTS,
+                                                            arguments: controller
+                                                                .SellersList[index]);
+                                    },
+                                    ButtonText: "SHOP NOW"
                                   );
+                                  // return Card(
+                                  //   elevation: 2,
+                                  //   child: GestureDetector(
+                                  //     onTap: () {},
+                                  //     child: Container(
+                                  //       child: Column(
+                                  //         children: [
+                                  //           Container(
+                                  //             child: Column(
+                                  //               children: [
+                                  //                 Container(
+                                  //                   width: 130,
+                                  //                   height: 130,
+                                  //                   alignment: Alignment.center,
+                                  //                   color: Colors.white,
+                                  //                   margin: EdgeInsets.only(
+                                  //                       top: 25,
+                                  //                       left: 10,
+                                  //                       right: 10),
+                                  //                   child: CachedNetworkImage(
+                                  //                       imageUrl:
+                                  //                       "${controller
+                                  //                           .SellersList[index]
+                                  //                           .logoUrl}",
+                                  //                       imageBuilder: (context,
+                                  //                           imageProvider) =>
+                                  //                           Container(
+                                  //                             decoration:
+                                  //                             BoxDecoration(
+                                  //                               image: DecorationImage(
+                                  //                                   image:
+                                  //                                   imageProvider,
+                                  //                                   fit: BoxFit
+                                  //                                       .cover,
+                                  //                                   colorFilter: ColorFilter
+                                  //                                       .mode(
+                                  //                                       Colors
+                                  //                                           .transparent,
+                                  //                                       BlendMode
+                                  //                                           .colorBurn)),
+                                  //                             ),
+                                  //                           ),
+                                  //                       placeholder: (context,
+                                  //                           url) =>
+                                  //                           CircularProgressIndicator(),
+                                  //                       errorWidget: (context,
+                                  //                           url, error) =>
+                                  //                           Container(
+                                  //                             color: Colors
+                                  //                                 .grey[100],
+                                  //                           )),
+                                  //                 ),
+                                  //               ],
+                                  //             ),
+                                  //           ),
+                                  //           SizedBox(
+                                  //             height: 8,
+                                  //           ),
+                                  //           Container(
+                                  //             width: 150,
+                                  //             child: Align(
+                                  //               alignment: Alignment.center,
+                                  //               child: controller
+                                  //                   .SellersList[index]
+                                  //                   .companyName ==
+                                  //                   null
+                                  //                   ? Container(
+                                  //                 child: Text(
+                                  //                   "N/A",
+                                  //                   style: TextStyle(
+                                  //                       fontWeight:
+                                  //                       FontWeight.bold,
+                                  //                       color:
+                                  //                       Color.fromRGBO(
+                                  //                           32,
+                                  //                           193,
+                                  //                           244,
+                                  //                           1)),
+                                  //                 ),
+                                  //               )
+                                  //                   : Text(
+                                  //                 "${controller
+                                  //                     .SellersList[index]
+                                  //                     .companyName}",
+                                  //                 style:
+                                  //                 GoogleFonts.raleway(
+                                  //                     fontWeight:
+                                  //                     FontWeight
+                                  //                         .w700,
+                                  //                     fontSize: 13,
+                                  //                     color: Color
+                                  //                         .fromRGBO(
+                                  //                         32,
+                                  //                         193,
+                                  //                         244,
+                                  //                         1)),
+                                  //               ),
+                                  //             ),
+                                  //           ),
+                                  //           Container(
+                                  //             margin: EdgeInsets.only(
+                                  //                 left: 5, right: 5),
+                                  //             height: 40,
+                                  //             width: 200,
+                                  //             child: Align(
+                                  //                 alignment: Alignment.center,
+                                  //                 child: controller
+                                  //                     .SellersList[index]
+                                  //                     .address ==
+                                  //                     null
+                                  //                     ? Text(
+                                  //                   "N/A",
+                                  //                   style: TextStyle(
+                                  //                       fontSize: 10,
+                                  //                       color: Colors.grey),
+                                  //                 )
+                                  //                     : Text(
+                                  //                   "${controller
+                                  //                       .SellersList[index]
+                                  //                       .address}",
+                                  //                   overflow: TextOverflow.ellipsis,
+                                  //                   maxLines: 2,
+                                  //                   style: TextStyle(
+                                  //                       fontSize: 10,
+                                  //                       color: Colors.grey),
+                                  //                   textAlign:
+                                  //                   TextAlign.center,
+                                  //                 )),
+                                  //           ),
+                                  //           InkWell(
+                                  //             onTap: () {
+                                  //               Get.toNamed(
+                                  //                   Routes
+                                  //                       .TOP_SELLING_STORE_ALL_PRODUCTS,
+                                  //                   arguments: controller
+                                  //                       .SellersList[index]);
+                                  //             },
+                                  //             child: Container(
+                                  //               width: 130,
+                                  //               height: 35,
+                                  //               alignment: Alignment.center,
+                                  //               decoration: BoxDecoration(
+                                  //                 color: Color.fromRGBO(
+                                  //                     32, 193, 244, 1),
+                                  //                 borderRadius: BorderRadius
+                                  //                     .only(
+                                  //                   topRight: Radius.circular(
+                                  //                       25),
+                                  //                   bottomRight:
+                                  //                   Radius.circular(25),
+                                  //                   bottomLeft:
+                                  //                   Radius.circular(25),
+                                  //                 ),
+                                  //               ),
+                                  //               child: Text(
+                                  //                 "SHOP NOW",
+                                  //                 style: GoogleFonts.raleway(
+                                  //                   fontWeight: FontWeight.w700,
+                                  //                   fontSize: 13,
+                                  //                   color: Colors.white,
+                                  //                 ),
+                                  //               ),
+                                  //             ),
+                                  //           ),
+                                  //         ],
+                                  //       ),
+                                  //     ),
+                                  //   ),
+                                  // );
                                 },
                                 gridDelegate:
                                 SliverGridDelegateWithFixedCrossAxisCount(
@@ -1215,336 +1229,7 @@ class HomeView extends GetWidget<HomeController> {
                                           icon: Icons.add_shopping_cart,
 
                                         );
-                                        // return Card(
-                                        //   elevation: 2,
-                                        //   child: GestureDetector(
-                                        //     onTap: () {
-                                        //       Get.toNamed(Routes.VIEW_PRODUCT,
-                                        //           arguments: controller
-                                        //               .TopProductlist[index]);
-                                        //     },
-                                        //     child: Container(
-                                        //       child: Column(
-                                        //         children: [
-                                        //           Container(
-                                        //             child: Column(
-                                        //               children: [
-                                        //                 Stack(
-                                        //                   children: [
-                                        //                     Container(
-                                        //                       child: Column(
-                                        //                         children: [
-                                        //                           Container(
-                                        //                             width: 120,
-                                        //                             height: 120,
-                                        //                             alignment:
-                                        //                             Alignment
-                                        //                                 .center,
-                                        //                             color: Colors
-                                        //                                 .white,
-                                        //                             margin: EdgeInsets
-                                        //                                 .only(
-                                        //                                 top:
-                                        //                                 25,
-                                        //                                 left:
-                                        //                                 20,
-                                        //                                 right:
-                                        //                                 10),
-                                        //                             child: CachedNetworkImage(
-                                        //                                 imageUrl: "${controller
-                                        //                                     .TopProductlist[index]
-                                        //                                     .images![0]}",
-                                        //                                 imageBuilder: (
-                                        //                                     context,
-                                        //                                     imageProvider) =>
-                                        //                                     Container(
-                                        //                                       decoration:
-                                        //                                       BoxDecoration(
-                                        //                                         image: DecorationImage(
-                                        //                                             image: imageProvider,
-                                        //                                             fit: BoxFit
-                                        //                                                 .cover,
-                                        //                                             colorFilter: ColorFilter
-                                        //                                                 .mode(
-                                        //                                                 Colors
-                                        //                                                     .transparent,
-                                        //                                                 BlendMode
-                                        //                                                     .colorBurn)),
-                                        //                                       ),
-                                        //                                     ),
-                                        //                                 placeholder: (
-                                        //                                     context,
-                                        //                                     url) =>
-                                        //                                     CircularProgressIndicator(),
-                                        //                                 errorWidget: (
-                                        //                                     context,
-                                        //                                     url,
-                                        //                                     error) =>
-                                        //                                     Container(
-                                        //                                       color:
-                                        //                                       Colors
-                                        //                                           .grey[100],
-                                        //                                     )),
-                                        //                           ),
-                                        //                         ],
-                                        //                       ),
-                                        //                     ),
-                                        //                     Positioned(
-                                        //                       child: Column(
-                                        //                         children: [
-                                        //                           Container(
-                                        //                             width: double
-                                        //                                 .maxFinite,
-                                        //                             height: 80,
-                                        //                             child: Row(
-                                        //                               mainAxisAlignment:
-                                        //                               MainAxisAlignment
-                                        //                                   .center,
-                                        //                               children: [
-                                        //                                 Container(
-                                        //                                   margin: EdgeInsets
-                                        //                                       .only(
-                                        //                                       left:
-                                        //                                       45),
-                                        //                                   height:
-                                        //                                   20,
-                                        //                                   width:
-                                        //                                   70,
-                                        //                                   decoration:
-                                        //                                   BoxDecoration(
-                                        //                                     color:
-                                        //                                     Colors
-                                        //                                         .red,
-                                        //                                     borderRadius:
-                                        //                                     BorderRadius
-                                        //                                         .only(
-                                        //                                       topLeft:
-                                        //                                       Radius
-                                        //                                           .circular(
-                                        //                                           20),
-                                        //                                       topRight:
-                                        //                                       Radius
-                                        //                                           .circular(
-                                        //                                           20),
-                                        //                                       bottomRight:
-                                        //                                       Radius
-                                        //                                           .circular(
-                                        //                                           20),
-                                        //                                       bottomLeft:
-                                        //                                       Radius
-                                        //                                           .circular(
-                                        //                                           20),
-                                        //                                     ),
-                                        //                                   ),
-                                        //                                   child:
-                                        //                                   Center(
-                                        //                                     child:
-                                        //                                     Text(
-                                        //                                       "Save ${controller
-                                        //                                           .TopProductlist[index]
-                                        //                                           .discount!
-                                        //                                           .toStringAsFixed(
-                                        //                                           2)} %",
-                                        //                                       style: TextStyle(
-                                        //                                           color: Colors
-                                        //                                               .white,
-                                        //                                           fontWeight: FontWeight
-                                        //                                               .bold,
-                                        //                                           fontSize: 9),
-                                        //                                     ),
-                                        //                                   ),
-                                        //                                 ),
-                                        //                               ],
-                                        //                             ),
-                                        //                           ),
-                                        //                         ],
-                                        //                       ),
-                                        //                     )
-                                        //                   ],
-                                        //                 )
-                                        //               ],
-                                        //             ),
-                                        //           ),
-                                        //           Container(
-                                        //             margin: EdgeInsets.only(
-                                        //               // left: 20,
-                                        //               top: 5, left: 5,
-                                        //             ),
-                                        //             child: Align(
-                                        //                 alignment:
-                                        //                 Alignment.center,
-                                        //                 child: Text(
-                                        //                   "${controller
-                                        //                       .TopProductlist[index]
-                                        //                       .sellerId!
-                                        //                       .companyName}",
-                                        //                   style:
-                                        //                   GoogleFonts.raleway(
-                                        //                       fontWeight:
-                                        //                       FontWeight
-                                        //                           .w700,
-                                        //                       fontSize: 13,
-                                        //                       color: Color
-                                        //                           .fromRGBO(
-                                        //                           32,
-                                        //                           193,
-                                        //                           244,
-                                        //                           1)),
-                                        //                 )),
-                                        //           ),
-                                        //           Container(
-                                        //             height: 30,
-                                        //             width: 180,
-                                        //             margin: EdgeInsets.only(),
-                                        //             child: Align(
-                                        //                 alignment:
-                                        //                 Alignment.center,
-                                        //                 child: Padding(
-                                        //                   padding: const EdgeInsets.only(top:3.0,bottom: 3.0),
-                                        //                   child: Text(
-                                        //                     "${controller
-                                        //                         .TopProductlist[index]
-                                        //                         .category!
-                                        //                         .name} - ${controller
-                                        //                         .TopProductlist[index]
-                                        //                         .subCategory!
-                                        //                         .name} ",
-                                        //                     style: TextStyle(
-                                        //                         fontSize: 10,
-                                        //                         color: Colors
-                                        //                             .grey),
-                                        //                     textAlign: TextAlign.center,
-                                        //
-                                        //                   ),
-                                        //                 )),
-                                        //           ),
-                                        //           Row(
-                                        //             mainAxisAlignment:
-                                        //             MainAxisAlignment.start,
-                                        //             children: [
-                                        //               Container(
-                                        //                 margin: EdgeInsets.only(
-                                        //                   left: 15,
-                                        //                 ),
-                                        //                 child: Text(
-                                        //                   "₹${controller
-                                        //                       .TopProductlist[index]
-                                        //                       .price!
-                                        //                       .toStringAsFixed(
-                                        //                       2)}",
-                                        //                   style: GoogleFonts
-                                        //                       .roboto(
-                                        //                       decoration:
-                                        //                       TextDecoration
-                                        //                           .lineThrough,
-                                        //                       color: Colors
-                                        //                           .grey,
-                                        //                       fontSize: 8),
-                                        //                 ),
-                                        //               ),
-                                        //               SizedBox(
-                                        //                 width: 3,
-                                        //               ),
-                                        //               Container(
-                                        //                 child: Text(
-                                        //                   "₹${controller
-                                        //                       .TopProductlist[index]
-                                        //                       .discountedPrice}",
-                                        //                   style: TextStyle(
-                                        //                       fontSize: 9),
-                                        //                 ),
-                                        //               ),
-                                        //               RatingBarIndicator(
-                                        //                 rating: double.parse(
-                                        //                     controller
-                                        //                         .TopProductlist[
-                                        //                     index]
-                                        //                         .rating
-                                        //                         .toString()),
-                                        //                 itemBuilder:
-                                        //                     (context, index) =>
-                                        //                     Icon(
-                                        //                       Icons.star,
-                                        //                       color: Colors
-                                        //                           .amber,
-                                        //                     ),
-                                        //                 itemCount: 5,
-                                        //                 itemSize: 15.0,
-                                        //                 direction:
-                                        //                 Axis.horizontal,
-                                        //               ),
-                                        //             ],
-                                        //           ),
-                                        //           SizedBox(
-                                        //             height: 10,
-                                        //           ),
-                                        //           InkWell(
-                                        //             onTap: () {
-                                        //               print(
-                                        //                   "${controller
-                                        //                       .TopProductlist[index]
-                                        //                       .sId}");
-                                        //               print(
-                                        //                   "Bearer ${box.read(
-                                        //                       ArgumentConstant
-                                        //                           .token)}");
-                                        //               controller.addToCart(
-                                        //                   data: controller
-                                        //                       .TopProductlist[
-                                        //                   index]);
-                                        //             },
-                                        //             child: Container(
-                                        //               width: 130,
-                                        //               height: 35,
-                                        //               alignment: Alignment
-                                        //                   .center,
-                                        //               decoration: BoxDecoration(
-                                        //                 color: Color.fromRGBO(
-                                        //                     32, 193, 244, 1),
-                                        //                 borderRadius:
-                                        //                 BorderRadius.only(
-                                        //                   topRight:
-                                        //                   Radius.circular(25),
-                                        //                   bottomRight:
-                                        //                   Radius.circular(25),
-                                        //                   bottomLeft:
-                                        //                   Radius.circular(25),
-                                        //                 ),
-                                        //               ),
-                                        //               child: Row(
-                                        //                 children: [
-                                        //                   SizedBox(
-                                        //                     width: 10,
-                                        //                   ),
-                                        //                   Icon(
-                                        //                       Icons
-                                        //                           .add_shopping_cart,
-                                        //                       color: Colors
-                                        //                           .white,
-                                        //                       size: 18),
-                                        //                   SizedBox(
-                                        //                     width: 10,
-                                        //                   ),
-                                        //                   Text(
-                                        //                     "ADD TO CART",
-                                        //                     style: GoogleFonts
-                                        //                         .raleway(
-                                        //                       fontWeight:
-                                        //                       FontWeight.w700,
-                                        //                       fontSize: 12,
-                                        //                       color: Colors
-                                        //                           .white,
-                                        //                     ),
-                                        //                   ),
-                                        //                 ],
-                                        //               ),
-                                        //             ),
-                                        //           ),
-                                        //         ],
-                                        //       ),
-                                        //     ),
-                                        //   ),
-                                        // );
+
                                       },
                                       gridDelegate:
                                       SliverGridDelegateWithFixedCrossAxisCount(
