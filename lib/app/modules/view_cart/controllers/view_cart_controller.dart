@@ -285,7 +285,7 @@ class ViewCartController extends GetxController {
         }
         print(orderData);
         Get.toNamed(Routes.ORDER_PAGE,arguments: {
-          ArgumentConstant.orderData : orderData,
+          ArgumentConstant.orderData : orderData.length,
         });
       }
     }else{

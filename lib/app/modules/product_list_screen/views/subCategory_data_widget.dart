@@ -458,8 +458,7 @@ class _SubCategoryWidgetState extends State<SubCategoryWidget> {
                                         ),
                                         InkWell(
                                           onTap: () {
-                                            Get.toNamed(
-                                                Routes.VIEW_ALL_MY_CART);
+                                            Get.toNamed(Routes.VIEW_CART);
                                           },
                                           child: Padding(
                                             padding: const EdgeInsets.only(

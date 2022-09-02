@@ -394,8 +394,8 @@ class CatagoryPageView extends GetWidget<HomeController> {
                                   ),
                                   InkWell(
                                     onTap: () {
-                                      Get.toNamed(Routes.TAB_BAR1);
                                       // Get.toNamed(Routes.TAB_BAR1);
+                                      Get.toNamed(Routes.VIEW_CART);
                                     },
                                     child: Padding(
                                       padding: const EdgeInsets.only(
