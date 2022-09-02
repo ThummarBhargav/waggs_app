@@ -303,7 +303,7 @@ class LoginScreenView extends GetView<LoginScreenController> {
                     children: [
                       Container(
                         child: Text(
-                          "Don't An Account? ",
+                          "Don't Have An Account? ",
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
