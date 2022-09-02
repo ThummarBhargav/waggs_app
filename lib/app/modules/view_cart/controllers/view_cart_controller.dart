@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:dio/dio.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
@@ -58,10 +61,7 @@ class ViewCartController extends GetxController {
     CartProductApi();
     getCurrentLocation();
     CartCount();
-    _razorpay = Razorpay();
-    _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
-    _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
-    _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
+
   }
 
 
@@ -283,15 +283,15 @@ class ViewCartController extends GetxController {
 
               orderData.add(dict);
 
-
+              Get.toNamed(Routes.ORDER_PAGE,arguments: {
+                    ArgumentConstant.orderData : orderData,
+                  });
 
             });
           }
         }
         print(orderData);
-        Get.toNamed(Routes.ORDER_PAGE,arguments: {
-          ArgumentConstant.orderData : orderData,
-        });
+
       }
     }else{
 
@@ -429,6 +429,10 @@ class ViewCartController extends GetxController {
   }
 
   Future<void> checkoutApi() async {
+    _razorpay = Razorpay();
+    _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
+    _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
+    _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
     var url = Uri.parse(baseUrl+ApiConstant.checkout);
     var response = await http.post(url, body: {
     },headers: {
@@ -442,23 +446,23 @@ class ViewCartController extends GetxController {
       }
       cartProductList.refresh();
       var options = {
-        "key": "rzp_test_Ad3xOmLFP1EkRf",
+        "key": "${ApiConstant.paymentKey}",
         "amount": "${checkout.data!.order!.amount}",
-        "name": "Waggs Payment",
-        "description": "",
-        "timeout": "180",
+        "name": "Waggs",
+        "order_id":"${checkout.data!.order!.id}",
+        // "timeout": "180",
         "currency": "INR",
-        'send_sms_hash': true,
+        // 'send_sms_hash': true,
         "prefill": {
           "contact": "${box.read(ArgumentConstant.phone)}",
-          "email": "${box.read(ArgumentConstant.email)}"
+          "email": "${box.read(ArgumentConstant.email)}",
+          "name": "${box.read(ArgumentConstant.name)}"
         },
-        "external": {
-          "wallets": ["paytm"]
-        }
+
       };
+      print(options);
       try {
-        _razorpay.open(options);
+         _razorpay.open(options);
       } catch (e) {
         print(e.toString());
       }
@@ -473,11 +477,77 @@ class ViewCartController extends GetxController {
     print('Response body: ${response.body}');
   }
 
+
+  updateTrans(String paymentId,String OrderId,String Signature) async {
+    Dio dio = Dio();
+    Options option = Options(headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+    });
+    try {
+      final response = await dio.put(
+        baseUrl + ApiConstant.transcation+"/${checkout.data!.transaction!.sId}",
+        data:{
+          "paymentDetails": {
+            "paymentId": "${paymentId}",
+            "orderId": "${OrderId}",
+            "signature": "${Signature}"
+          }
+        },
+        options: option,
+      );
+      // log("message " + response.request.path);
+      // responseJson = _returnResponse(response);
+      print("UPDATE=========" + response.toString());
+      if (response.statusCode == 200||response.statusCode == 201) {
+        print(response.data);
+
+        // final StoreUserContoller _storeUserContoller =
+
+      }
+      else if(response.statusCode == 400){
+
+      }
+      else{
+
+      }
+
+    } on SocketException {
+
+    }
+    // var headers = {
+    //   'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+    // };
+    // var request = http.Request('PUT', Uri.parse(baseUrl+ApiConstant.transcation+"/${checkout.data!.transaction!.sId}"));
+    // request.body = json.encode({
+    //   "paymentDetails":{
+    //     "paymentId":"${paymentId}",
+    //     "orderId":"${OrderId}",
+    //     "signature":"${Signature}"
+    //   }
+    // });
+    //
+    //
+    // request.headers.addAll(headers);
+    // var response;
+    // http.StreamedResponse res = http.StreamedResponse as http.StreamedResponse;
+    // await request.send().then((value) {
+    //   response = value;
+    //   print("tars==========="+"${response}");
+    //   dynamic result = jsonDecode(response);
+    //
+    // });
+
+  }
+
   void _handlePaymentSuccess(PaymentSuccessResponse response) {
     print('Success Response: $response');
+    updateTrans(response.paymentId.toString(),response.orderId.toString(),response.signature.toString());
     Allorder();
-    // Get.toNamed(Routes.ORDER_PAGE);
+
     Get.snackbar("Success", "Payment Done",
+
         snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.green);
   }
 

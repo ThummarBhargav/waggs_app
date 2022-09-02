@@ -430,7 +430,7 @@ class TopSellingStoreAllProductsView
                                           InkWell(
                                             onTap: () {
                                               Get.toNamed(
-                                                  Routes.TAB_BAR1);
+                                                  Routes.VIEW_CART);
                                             },
                                             child: Padding(
                                               padding: const EdgeInsets.only(
@@ -1618,6 +1618,7 @@ class TopSellingStoreAllProductsView
                                                     style: TextStyle(
                                                         fontSize: 10,
                                                         color: Colors.grey),
+                                                    textAlign: TextAlign.center,
                                                   )),
                                             ),
                                             Row(

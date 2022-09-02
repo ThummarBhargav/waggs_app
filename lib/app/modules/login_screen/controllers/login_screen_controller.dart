@@ -91,6 +91,7 @@ class LoginScreenController extends GetxController {
               box.write(ArgumentConstant.token, res.data!.token);
               box.write(ArgumentConstant.isUserLogin, true);
               box.write(ArgumentConstant.email, res.data!.user!.email);
+              box.write(ArgumentConstant.userid, res.data!.user!.sId);
               box.write(ArgumentConstant.name, res.data!.user!.name);
               box.write(
                   ArgumentConstant.countryCode, res.data!.user!.countryCode);

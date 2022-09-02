@@ -518,11 +518,15 @@ class HomeView extends GetWidget<HomeController> {
                             ),
                             InkWell(
                               onTap: () {
-                                Get.toNamed(Routes.PLANE);
+                                if ((box.read(ArgumentConstant
+                                    .isUserLogin) == null)) {
+                                  Get.toNamed(
+                                      Routes.PLANE);
+                                }
                               },
                               child: ListTile(
                                 leading: Icon(Icons.discount_outlined),
-                                title: Text('Alpha Clube',
+                                title: Text('Alpha Club',
                                   style: TextStyle(fontSize: 15),),
                               ),
                             ),
@@ -568,7 +572,7 @@ class HomeView extends GetWidget<HomeController> {
                               child: ListTile(
                                 leading: Icon(Icons.pets_outlined),
                                 title: Text(
-                                  'My pets', style: TextStyle(fontSize: 15),),
+                                  'My Pets', style: TextStyle(fontSize: 15),),
                               ),
                             ),
                             InkWell(
@@ -647,7 +651,7 @@ class HomeView extends GetWidget<HomeController> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(left: 30.0, top: 15),
-                            child: Text("Contact us", style: TextStyle(
+                            child: Text("Contact Us", style: TextStyle(
                                 fontSize: 15, fontWeight: FontWeight.w500),),
                           ),
                           Padding(
@@ -722,7 +726,10 @@ class HomeView extends GetWidget<HomeController> {
                                           ),
                                           enabledBorder: InputBorder.none,
                                           focusedBorder: InputBorder.none,
-                                          prefixIcon: Icon(Icons.search),
+                                          prefixIcon: Padding(
+                                            padding: const EdgeInsets.only(top:10.0),
+                                            child: Icon(Icons.search),
+                                          ),
                                           prefixIconColor: Colors.grey[200],
                                           focusColor: Colors.grey,
                                         ),
@@ -1079,6 +1086,8 @@ class HomeView extends GetWidget<HomeController> {
                                                     "${controller
                                                         .SellersList[index]
                                                         .address}",
+                                                    overflow: TextOverflow.ellipsis,
+                                                    maxLines: 2,
                                                     style: TextStyle(
                                                         fontSize: 10,
                                                         color: Colors.grey),
@@ -1367,25 +1376,29 @@ class HomeView extends GetWidget<HomeController> {
                                                         )),
                                                   ),
                                                   Container(
-                                                    height: 20,
+                                                    height: 30,
                                                     width: 180,
-                                                    alignment: Alignment.center,
                                                     margin: EdgeInsets.only(),
                                                     child: Align(
                                                         alignment:
                                                         Alignment.center,
-                                                        child: Text(
-                                                          "${controller
-                                                              .TopProductlist[index]
-                                                              .category!
-                                                              .name} - ${controller
-                                                              .TopProductlist[index]
-                                                              .subCategory!
-                                                              .name} ",
-                                                          style: TextStyle(
-                                                              fontSize: 10,
-                                                              color: Colors
-                                                                  .grey),
+                                                        child: Padding(
+                                                          padding: const EdgeInsets.only(top:3.0,bottom: 3.0),
+                                                          child: Text(
+                                                            "${controller
+                                                                .TopProductlist[index]
+                                                                .category!
+                                                                .name} - ${controller
+                                                                .TopProductlist[index]
+                                                                .subCategory!
+                                                                .name} ",
+                                                            style: TextStyle(
+                                                                fontSize: 10,
+                                                                color: Colors
+                                                                    .grey),
+                                                            textAlign: TextAlign.center,
+
+                                                          ),
                                                         )),
                                                   ),
                                                   Row(

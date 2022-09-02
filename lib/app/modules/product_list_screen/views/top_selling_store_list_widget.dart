@@ -1342,6 +1342,8 @@ class _TopSellingStoreWidgetState extends State<TopSellingStoreWidget> {
                                                   color: Colors.grey),),) : Text(
                                               "${controller.sellerList[index]
                                                   .address}",
+                                              overflow: TextOverflow.ellipsis,
+                                              maxLines: 2,
                                               style: TextStyle(
                                                   fontSize: 10, color: Colors.grey),
                                               textAlign: TextAlign.center,

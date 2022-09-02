@@ -4,6 +4,7 @@ const baseUrl = "https://api-stg.waggs.in/api/v1/";
 const baseUrl3 = "https://api-stg.waggs.in/api/v1/users/";
 class ApiConstant {
   static const signUpUsers = "signup";
+  static const paymentKey = "rzp_test_pfJrUULLPTmEYK";
   static const loginUsers = "login";
   static const logoutUsers = "logout";
   static const verifyEmailUsers = "verifyEmail";
@@ -26,6 +27,7 @@ class ApiConstant {
   static const checkout = "transaction/checkout";
   static const Plans = "subscription/plans";
   static const PlansPlayment = "transaction/subscription";
+  static const transcation = "transaction";
   static const AddPet = "pet/list?skip=0&limit=20";
 }
 
@@ -33,6 +35,7 @@ class ArgumentConstant{
   static String token = "token";
   static String token1 = "token1";
   static String email = "email";
+  static String userid = "userId";
   static String countryCode = "countryCode";
   static String name = "name";
   static String  phone = "phone";
