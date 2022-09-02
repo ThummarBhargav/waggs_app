@@ -1618,7 +1618,6 @@ class TopSellingStoreAllProductsView
                                                     style: TextStyle(
                                                         fontSize: 10,
                                                         color: Colors.grey),
-                                                    textAlign: TextAlign.center,
                                                   )),
                                             ),
                                             Row(

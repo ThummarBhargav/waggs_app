@@ -394,15 +394,11 @@ class HomeController extends GetxController {
         if(!isNullEmptyOrFalse(OrderList[0].data)){
           if(!isNullEmptyOrFalse(OrderList[0].data!.orderDetails)){
             OrderList[0].data!.orderDetails!.forEach((element) {
-
               Map<String,dynamic> dict= {};
-              dict["GroupBy"] = element.orderNo!;
+              dict["GroupBy"] = element.orderNo! + "_" + element.createdAt!;
               dict["OrderData"] = element ;
-
+              print(element.createdAt!);
               orderData.add(dict);
-
-
-
             });
           }
         }

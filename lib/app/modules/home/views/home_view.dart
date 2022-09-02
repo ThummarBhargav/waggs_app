@@ -349,22 +349,6 @@ class HomeView extends GetWidget<HomeController> {
                                         )
                                       ],
                                     ),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: [
-                                          Padding(
-                                            padding: const EdgeInsets.only(right: 8),
-                                            child: Text(
-                                              "+ \u{20B9}${controller
-                                                  .cartProductList[index].product!.price}.00",
-                                              style: TextStyle(
-                                                  color: Colors.orange,
-                                                  fontWeight:
-                                                  FontWeight.w800),
-                                            ),
-                                          ),
-                                      ],
-                                    ),
                                   ],
                                 ),
                               );

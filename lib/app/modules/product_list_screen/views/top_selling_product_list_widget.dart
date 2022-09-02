@@ -1578,18 +1578,14 @@ class _TopSellingProductListWidgetState
                                           EdgeInsets.only(right: 25),
                                           child: Align(
                                               alignment: Alignment.center,
-                                              child: Padding(
-                                                padding: const EdgeInsets.only(top:3.0,bottom: 3.0),
-                                                child: Text(
-                                                  "${controller.mainProductList[index]
-                                                      .category!.name} - ${controller
-                                                      .mainProductList[index]
-                                                      .subCategory!.name} ",
-                                                  style: TextStyle(
-                                                      fontSize: 10,
-                                                      color: Colors.grey),
-                                                  textAlign: TextAlign.center,
-                                                ),
+                                              child: Text(
+                                                "${controller.mainProductList[index]
+                                                    .category!.name} - ${controller
+                                                    .mainProductList[index]
+                                                    .subCategory!.name} ",
+                                                style: TextStyle(
+                                                    fontSize: 10,
+                                                    color: Colors.grey),
                                               )),
                                         ),
                                         Row(
@@ -1606,7 +1602,6 @@ class _TopSellingProductListWidgetState
                                                         .lineThrough,
                                                     color: Colors.grey,
                                                     fontSize: 8),
-                                                textAlign: TextAlign.center,
                                               ),
                                             ),
                                             SizedBox(
@@ -1698,7 +1693,7 @@ class _TopSellingProductListWidgetState
                             gridDelegate:
                             SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 2,
-                                childAspectRatio: 0.65)),
+                                childAspectRatio: 0.60)),
                       ),
                     ),
                   ],
