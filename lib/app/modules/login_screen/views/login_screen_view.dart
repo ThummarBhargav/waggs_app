@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/constant/SizeConstant.dart';
+import 'package:waggs_app/app/modules/mobileVerify/views/mobile_verify_view.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
+import '../../../constant/ConstantUrl.dart';
 import '../controllers/login_screen_controller.dart';
 
 // ignore: must_be_immutable
-class LoginScreenView extends GetView<LoginScreenController> {
+class LoginScreenView extends GetWidget<LoginScreenController> {
   SizedBox sizedBox = SizedBox(
     height: 10,
   );
@@ -212,7 +214,14 @@ class LoginScreenView extends GetView<LoginScreenController> {
                     children: [
                       InkWell(
                         onTap: () {
-                          controller.signInWithFacebook();
+                          controller.signInWithFacebook().then((value) {
+                            if(!isNullEmptyOrFalse(value)){
+                             Get.toNamed(Routes.MOBILE_VERIFY,arguments: {
+                               ArgumentConstant.isFromFacebookLogin : true ,
+                               ArgumentConstant.userData : value,
+                             });
+                            }
+                          });
                         },
                         child: Container(
                           height: 40,

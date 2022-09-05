@@ -123,7 +123,6 @@ import 'package:waggs_app/app/routes/app_pages.dart';
                           if(screenController.enableResend.value == true)
                             {
                               screenController.secondsRemaining=30.obs;
-                               screenController.gettimer();
                               screenController.refresh();
                               controller.sendotpApi();
                             }

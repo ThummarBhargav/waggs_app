@@ -20,12 +20,16 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/login_screen/bindings/login_screen_binding.dart';
 import '../modules/login_screen/views/login_screen_view.dart';
+import '../modules/mobileVerify/bindings/mobile_verify_binding.dart';
+import '../modules/mobileVerify/views/mobile_verify_view.dart';
 import '../modules/my_account/bindings/my_account_binding.dart';
 import '../modules/my_account/views/my_account_view.dart';
 import '../modules/my_pet/bindings/my_pet_binding.dart';
 import '../modules/my_pet/views/my_pet_view.dart';
 import '../modules/order_page/bindings/order_page_binding.dart';
 import '../modules/order_page/views/order_page_view.dart';
+import '../modules/otpVerify/bindings/otp_verify_binding.dart';
+import '../modules/otpVerify/views/otp_verify_view.dart';
 import '../modules/plane/bindings/plane_binding.dart';
 import '../modules/plane/views/plane_view.dart';
 import '../modules/product/bindings/product_binding.dart';
@@ -51,7 +55,7 @@ class AppPages {
   static final routes = [
     GetPage(
       name: _Paths.HOME,
-      page: () =>  HomeView(),
+      page: () => HomeView(),
       binding: HomeBinding(),
     ),
     GetPage(
@@ -151,9 +155,18 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.ORDER_PAGE,
-      page: () =>
-          OrderPageView(),
+      page: () => OrderPageView(),
       binding: OrderPageBinding(),
+    ),
+    GetPage(
+      name: _Paths.MOBILE_VERIFY,
+      page: () => const MobileVerifyView(),
+      binding: MobileVerifyBinding(),
+    ),
+    GetPage(
+      name: _Paths.OTP_VERIFY,
+      page: () => const OtpVerifyView(),
+      binding: OtpVerifyBinding(),
     ),
   ];
 }

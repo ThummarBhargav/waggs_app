@@ -37,6 +37,8 @@ abstract class Routes {
   static const ADD_PET = _Paths.ADD_PET;
   static const VIEW_CART = _Paths.VIEW_CART;
   static const ORDER_PAGE = _Paths.ORDER_PAGE;
+  static const MOBILE_VERIFY = _Paths.MOBILE_VERIFY;
+  static const OTP_VERIFY = _Paths.OTP_VERIFY;
 }
 
 abstract class _Paths {
@@ -75,4 +77,6 @@ abstract class _Paths {
   static const ADD_PET = '/add-pet';
   static const VIEW_CART = '/view-cart';
   static const ORDER_PAGE = '/order-page';
+  static const MOBILE_VERIFY = '/mobile-verify';
+  static const OTP_VERIFY = '/otp-verify';
 }

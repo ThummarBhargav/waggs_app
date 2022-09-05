@@ -109,7 +109,7 @@ class ViewAllMyCartController extends GetxController  {
         'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
         'Content-Type': 'application/json'
       };
-      var request = http.Request('PUT', Uri.parse('https://api.waggs.in/api/v1/cart'));
+      var request = http.Request('PUT', Uri.parse(baseUrl3+ApiConstant.Cart));
       request.body = json.encode({
         "productId": "${data.productId}",
         "quantity": "${++count}"

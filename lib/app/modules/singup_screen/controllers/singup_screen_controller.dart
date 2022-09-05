@@ -36,9 +36,10 @@ class SingupScreenController extends GetxController {
   @override
   void onInit() {
     countryController.value.text = "+91";
+    gettimer();
     super.onInit();
   }
-gettimer(){
+ gettimer(){
   timer = Timer.periodic(Duration(seconds: 1), (timer) {
     if (secondsRemaining.value != 0) {
       enableResend.value = false;
@@ -74,18 +75,16 @@ gettimer(){
       response=value;
       print(response);
       if (value.statusCode == 200) {
-
-
          await signUpApi(context);
-
       } else {
-        Get.snackbar("Error", "Something Went Wrong!!!");
+        ErrorResponse res = ErrorResponse.fromJson(jsonDecode(value.body));
+        Get.snackbar("Error", "${res.message}",snackPosition: SnackPosition.BOTTOM);
       }
     });
   }
 
   Future verifyEmail(BuildContext context) async {
-    var url = Uri.parse("https://api.waggs.in/api/v1/users/verifyExists");
+    var url = Uri.parse(baseUrl3+ApiConstant.verifyExistsUsers);
     await http.post(url, body: {
       'email': '${emailController.value.text.trim()}',
     }).then((value) {
@@ -104,7 +103,7 @@ gettimer(){
   }
 
   void verifyPhone(BuildContext context) async {
-    var url = Uri.parse("https://api.waggs.in/api/v1/users/verifyExists");
+    var url = Uri.parse(baseUrl3+ApiConstant.verifyExistsUsers);
     await http.post(url, body: {
       'mobile': '${mobileController.value.text.trim()}',
     }).then((value) {
@@ -130,7 +129,7 @@ gettimer(){
       'email': '${emailController.value.text.trim()}',
     });
     if(response.statusCode == 200){
-      Get.toNamed(Routes.O_T_P_SCREEN);
+      Get.offAllNamed(Routes.O_T_P_SCREEN);
     }
     print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');

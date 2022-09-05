@@ -49,4 +49,11 @@ class ArgumentConstant{
   static String subcategoryData = "subcategoryData";
   static String orderData = "OrderData";
   static String permission = "permission";
+  static String isFromFacebookLogin = "isFromFacebookLogin";
+  static String isFromMobile = "isFromMobile";
+  static String userData = "userData";
+  static String socialId = "socialId";
+  static String socialType = "socialType";
+  static String mobile = "mobile";
+
 }
