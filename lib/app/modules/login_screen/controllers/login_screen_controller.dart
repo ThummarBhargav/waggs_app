@@ -22,7 +22,7 @@ class LoginScreenController extends GetxController {
   FirebaseAuth _auth = FirebaseAuth.instance;
   GoogleSignIn googleSignIn = GoogleSignIn(scopes: ['email']);
   Rx<User>? _firebaseUser;
-
+  User? user;
   List respons = [];
   @override
   void onInit() {
@@ -40,37 +40,104 @@ class LoginScreenController extends GetxController {
   }
 
 
-  Future<UserCredential> signInWithGoogle() async {
-    // Trigger the authentication flow
-    _auth.signOut();
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-    // Obtain the auth details from the request
-    final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
 
-    // Create a new credential
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth?.accessToken,
-      idToken: googleAuth?.idToken,
-    );
+  //  signInWithGoogle() async {
+  //   // Trigger the authentication flow
+  //   final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+  //
+  //   // Obtain the auth details from the request
+  //   final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+  //
+  //   // Create a new credential
+  //   final credential = GoogleAuthProvider.credential(
+  //     accessToken: googleAuth?.accessToken,
+  //     idToken: googleAuth?.idToken,
+  //   );
+  //
+  //   // Once signed in, return the UserCredential
+  //
+  //   try {
+  //     final UserCredential userCredential =
+  //     await _auth.signInWithCredential(credential);
+  //
+  //     user = userCredential.user;
+  //    // await Get.offAllNamed(Routes.HOME);
+  //
+  //     } on FirebaseAuthException catch (e) {
+  //     if (e.code == 'account-exists-with-different-credential') {
+  //       Get.snackbar("Sign in Failed","The account already exists with a different credential.");
+  //
+  //     } else if (e.code == 'invalid-credential') {
+  //       Get.snackbar("Sign in Failed","Error occurred while accessing credentials. Try again.");
+  //
+  //     }
+  //   } catch (e) {
+  //     Get.snackbar("Sign in Failed","Error occurred using Google Sign-In. Try again.");
+  //
+  //   }
+  //   // return await FirebaseAuth.instance.signInWithCredential(credential).then((value) async => await Get.offAllNamed(Routes.HOME)).catchError((error){
+  //   //   Get.snackbar("Sign in Failed", error.toString());
+  //   // });
+  // }
 
-    // Once signed in, return the UserCredential
-    return await FirebaseAuth.instance.signInWithCredential(credential).then((value) async =>await Get.offAllNamed(Routes.HOME));
+   Future<User?> signInWithGoogle() async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    User? user;
 
+    final GoogleSignIn googleSignIn = GoogleSignIn();
+
+    final GoogleSignInAccount? googleSignInAccount =
+    await googleSignIn.signIn();
+
+    if (googleSignInAccount != null) {
+      final GoogleSignInAuthentication googleSignInAuthentication =
+      await googleSignInAccount.authentication;
+
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleSignInAuthentication.accessToken,
+        idToken: googleSignInAuthentication.idToken,
+      );
+
+      try {
+        final UserCredential userCredential =
+        await auth.signInWithCredential(credential);
+
+        user = userCredential.user;
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'account-exists-with-different-credential') {
+          Get.snackbar("Sign in Failed", "The account already exists with a different credential.");
+
+
+        } else if (e.code == 'invalid-credential') {
+          Get.snackbar("Sign in Failed", "Error occurred while accessing credentials. Try again.");
+
+        }
+      } catch (e) {
+        Get.snackbar("Sign in Failed", "Error occurred using Google Sign-In. Try again.");
+
+      }
+    }
+
+    return user;
   }
-
 
   Future<UserCredential> signInWithFacebook() async {
-    FacebookAuth.instance.logOut();
-    final LoginResult loginResult = await FacebookAuth.instance.login();
-
+    // Trigger the sign-in flow
+    late LoginResult loginResult ;
+    await FacebookAuth.instance.login(permissions: ['email']).then((value) {
+      loginResult = value;
+    }).catchError((error){
+      print("Error := $error");
+    });
+    // Create a credential from the access token
     final OAuthCredential facebookAuthCredential =
-        FacebookAuthProvider.credential(loginResult.accessToken!.token);
+    FacebookAuthProvider.credential(loginResult.accessToken!.token);
 
-    return FirebaseAuth.instance
-        .signInWithCredential(facebookAuthCredential)
-        .then((value) async => await Get.offAllNamed(Routes.HOME));
+    // Once signed in, return the UserCredential
+    return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
   }
+
 
   Future<void> LoginUser() async {
     try {

@@ -21,7 +21,6 @@ import 'package:waggs_app/app/routes/app_pages.dart';
 @override
   void initState() {
     // TODO: implement initState
-  screenController.gettimer();
     super.initState();
   }
 
@@ -124,7 +123,7 @@ import 'package:waggs_app/app/routes/app_pages.dart';
                           if(screenController.enableResend.value == true)
                             {
                               screenController.secondsRemaining=30.obs;
-                              // screenController.gettimer();
+                               screenController.gettimer();
                               screenController.refresh();
                               controller.sendotpApi();
                             }
