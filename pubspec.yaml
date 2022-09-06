@@ -5,7 +5,7 @@ description: A new Flutter project.
 environment: 
   sdk: '>=2.17.3 <3.0.0'
 
-dependencies: 
+dependencies:
   cupertino_icons: ^1.0.2
   get: 4.6.5
   get_cli: ^1.8.1
@@ -23,7 +23,7 @@ dependencies:
   firebase_core:
   google_sign_in:
   carousel_slider:
-  linkedin_login: ^2.2.1
+  linkedin_login:
   flutter_facebook_auth: ^3.1.0
   razorpay_flutter:
   flutter_svg: ^1.1.3

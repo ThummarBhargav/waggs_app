@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
+import 'package:linkedin_login/linkedin_login.dart';
 import 'package:waggs_app/app/Modal/login_model.dart';
 import 'package:waggs_app/app/constant/sizeConstant.dart';
 import 'package:waggs_app/app/modules/home/views/home_view.dart';
@@ -26,6 +27,7 @@ class LoginScreenController extends GetxController {
   RxBool isChecked = false.obs;
   RxBool isTap = false.obs;
   late Timer timer;
+  bool logoutUser = false;
 
   RxBool passwordVisible = true.obs;
   FirebaseAuth _auth = FirebaseAuth.instance;
@@ -49,6 +51,40 @@ class LoginScreenController extends GetxController {
   void onClose() {
     super.onClose();
   }
+
+  // signInWithLinkedin()async{
+  //     LinkedInUserWidget(
+  //       destroySession: logoutUser,
+  //       redirectUrl: "https://waggs.in/",
+  //       clientId: "78buicazyv5os8",
+  //       clientSecret: "DjMTZ6XgYSxBQkal",
+  //       projection: [
+  //         ProjectionParameters.id,
+  //         ProjectionParameters.localizedFirstName,
+  //         ProjectionParameters.localizedLastName,
+  //         ProjectionParameters.firstName,
+  //         ProjectionParameters.lastName,
+  //         ProjectionParameters.profilePicture,
+  //       ],
+  //       onGetUserProfile: (final UserSucceededAction linkedInUser) {
+  //
+  //         user = UserObject(
+  //           firstName: linkedInUser.user.firstName?.localized?.label,
+  //           lastName: linkedInUser.user.lastName?.localized?.label,
+  //           email: linkedInUser?.user?.email?.elements![0]
+  //               ?.handleDeep?.emailAddress,
+  //           profileImageUrl: linkedInUser
+  //               ?.user
+  //               ?.profilePicture
+  //               ?.displayImageContent
+  //               ?.elements![0]
+  //               ?.identifiers![0]
+  //               ?.identifier,
+  //         );
+  //
+  //       },
+  //     );
+  // }
 
   Future<User?> signInWithGoogle() async {
     FirebaseAuth auth = FirebaseAuth.instance;
@@ -246,4 +282,17 @@ class LoginScreenController extends GetxController {
 
 
 
+}
+class UserObject {
+  UserObject({
+    this.firstName,
+    this.lastName,
+    this.email,
+    this.profileImageUrl,
+  });
+
+  final String? firstName;
+  final String? lastName;
+  final String? email;
+  final String? profileImageUrl;
 }

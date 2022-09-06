@@ -116,7 +116,9 @@ class MobileVerifyView extends GetWidget<MobileVerifyController> {
                 InkWell(
                   onTap: () {
                     if(controller.formKey2.currentState!.validate()) {
-                      controller.sendOtp();
+    if(controller.isNumberExist.isFalse) {
+      controller.sendOtp();
+    }
                     }
                   },
                   child: Container(

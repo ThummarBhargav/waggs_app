@@ -254,7 +254,9 @@ class LoginScreenView extends GetWidget<LoginScreenController> {
                         width: 10,
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+
+                        },
                         child: Container(
                           height: 40,
                           width: 50,

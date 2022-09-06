@@ -25,6 +25,7 @@ class MobileVerifyController extends GetxController {
   String socialType = '';
   @override
   void onInit() {
+    countryController.value.text = "+91";
     if(Get.arguments!=null){
       if(!isNullEmptyOrFalse(Get.arguments[ArgumentConstant.isFromFacebookLogin])){
         isFromFacebook = Get.arguments[ArgumentConstant.isFromFacebookLogin];
@@ -69,10 +70,9 @@ class MobileVerifyController extends GetxController {
   }
 
   Future<void>sendOtp() async {
-    var url = Uri.parse(baseUrl2 + ApiConstant.sendOtpUsers);
+    var url = Uri.parse(baseUrl3 + ApiConstant.sendOtpUsers);
     var response;
     await http.post(url, body: {
-      "email": "forgot",
       "countryCode": "${countryController.value.text.trim()}",
       "mobile": "${mobileController.value.text.trim()}"
     }).then((value) {

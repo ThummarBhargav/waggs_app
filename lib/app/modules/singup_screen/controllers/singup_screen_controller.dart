@@ -78,7 +78,7 @@ class SingupScreenController extends GetxController {
          await signUpApi(context);
       } else {
         ErrorResponse res = ErrorResponse.fromJson(jsonDecode(value.body));
-        Get.snackbar("Error", "${res.message}",snackPosition: SnackPosition.BOTTOM);
+        Get.snackbar("Error", "${res.message}",snackPosition: SnackPosition.BOTTOM,backgroundColor: Colors.red,colorText: Colors.white,duration: Duration(seconds: 2));
       }
     });
   }
