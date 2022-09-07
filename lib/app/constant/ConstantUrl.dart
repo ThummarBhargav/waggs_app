@@ -28,7 +28,7 @@ class ApiConstant {
   static const Plans = "subscription/plans";
   static const PlansPlayment = "transaction/subscription";
   static const transcation = "transaction";
-  static const AddPet = "pet/list?skip=0&limit=20";
+  static const getpet = "pet/list?skip=0&limit=20";
 }
 
 class ArgumentConstant{

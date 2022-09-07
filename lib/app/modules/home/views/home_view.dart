@@ -509,6 +509,8 @@ class HomeView extends GetWidget<HomeController> {
                                   Get.toNamed(
                                       Routes.PLANE);
                                 }
+                                Get.toNamed(
+                                    Routes.PLANE);
                               },
                               child: ListTile(
                                 leading: Icon(Icons.discount_outlined),
@@ -525,7 +527,7 @@ class HomeView extends GetWidget<HomeController> {
                                 } else {
                                   controller.CartProductApi();
                                   controller.CartCount();
-                                  Get.toNamed(Routes.TAB_BAR1);
+                                  // Get.toNamed(Routes.TAB_BAR1);
                                 }
                               },
                               child: ListTile(

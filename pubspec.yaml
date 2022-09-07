@@ -23,7 +23,7 @@ dependencies:
   firebase_core:
   google_sign_in:
   carousel_slider:
-  linkedin_login:
+  linkedin_login: ^2.2.1
   flutter_facebook_auth: ^3.1.0
   razorpay_flutter:
   flutter_svg: ^1.1.3
