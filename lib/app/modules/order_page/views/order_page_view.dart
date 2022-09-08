@@ -7,6 +7,7 @@ import 'package:waggs_app/app/Modal/OrderModel.dart';
 import 'package:waggs_app/app/constant/Container.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
 
+import '../../../constant/ConstantUrl.dart';
 import '../controllers/order_page_controller.dart';
 
 class OrderPageView extends GetView<OrderPageController> {
@@ -275,7 +276,11 @@ class OrderPageView extends GetView<OrderPageController> {
                                 ),
                               ),
                               InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  Get.toNamed(Routes.ORDER_DETAIL,arguments: {
+                                    ArgumentConstant.orderId:orderData.sId,
+                                  });
+                                },
                                 child: Padding(
                                   padding: const EdgeInsets.only(
                                       right: 30, top: 5, bottom: 10),
