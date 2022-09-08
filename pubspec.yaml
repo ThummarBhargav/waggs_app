@@ -3,7 +3,7 @@ version: 1.0.0+1
 publish_to: none
 description: A new Flutter project.
 environment: 
-  sdk: '>=2.17.3 <3.0.0'
+  sdk: '>=2.17.1 <3.0.0'
 
 dependencies:
   cupertino_icons: ^1.0.2
@@ -12,7 +12,7 @@ dependencies:
   google_fonts:
   get_storage: ^2.0.3
   otp_text_field:
-  dio:
+  dio: ^4.0.6
   intl_phone_field:
   cached_network_image:
   syncfusion_flutter_sliders:
@@ -23,7 +23,7 @@ dependencies:
   firebase_core:
   google_sign_in:
   carousel_slider:
-  linkedin_login:
+  linkedin_login: ^2.2.1
   flutter_facebook_auth: ^3.1.0
   razorpay_flutter:
   flutter_svg: ^1.1.3

@@ -2,8 +2,10 @@ const baseUrl2 = "https://api-stg.waggs.in/api/v1/users/";
 const baseuel1 = "https://api-stg.waggs.in/api/v1/";
 const baseUrl = "https://api-stg.waggs.in/api/v1/";
 const baseUrl3 = "https://api-stg.waggs.in/api/v1/users/";
+
 class ApiConstant {
   static const signUpUsers = "signup";
+  static const socialLoginApi = "https://api.waggs.in/api/v1/users/socialLogin";
   static const paymentKey = "rzp_test_pfJrUULLPTmEYK";
   static const loginUsers = "login";
   static const logoutUsers = "logout";
@@ -20,10 +22,10 @@ class ApiConstant {
   static const TopStore = "landing?latitude=&longitude=";
   static const alsoLike = "products";
   static const Cart = "cart";
-  static const pet= "pet";
+  static const pet = "pet";
   static const Count = "cart/count";
   static const socialLogin = "users/socialLogin";
-  static const orderlist="order/list?skip=0&limit=15";
+  static const orderlist = "order/list?skip=0&limit=15";
   static const checkout = "transaction/checkout";
   static const Plans = "subscription/plans";
   static const PlansPlayment = "transaction/subscription";
@@ -31,14 +33,14 @@ class ApiConstant {
   static const AddPet = "pet/list?skip=0&limit=20";
 }
 
-class ArgumentConstant{
+class ArgumentConstant {
   static String token = "token";
   static String token1 = "token1";
   static String email = "email";
   static String userid = "userId";
   static String countryCode = "countryCode";
   static String name = "name";
-  static String  phone = "phone";
+  static String phone = "phone";
   static String address = "address";
   static const isUserLogin = "isUserLogin";
   static String isFromSellingStore = "isFromSellingStore";
@@ -55,5 +57,4 @@ class ArgumentConstant{
   static String socialId = "socialId";
   static String socialType = "socialType";
   static String mobile = "mobile";
-
 }

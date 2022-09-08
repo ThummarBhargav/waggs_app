@@ -172,7 +172,7 @@ class LoginScreenView extends GetWidget<LoginScreenController> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       GestureDetector(
-                        onTap: (){
+                        onTap: () {
                           Get.toNamed(Routes.FORGOT_PASSWORD);
                         },
                         child: Container(
@@ -215,11 +215,11 @@ class LoginScreenView extends GetWidget<LoginScreenController> {
                       InkWell(
                         onTap: () {
                           controller.signInWithFacebook().then((value) {
-                            if(!isNullEmptyOrFalse(value)){
-                             Get.toNamed(Routes.MOBILE_VERIFY,arguments: {
-                               ArgumentConstant.isFromFacebookLogin : true ,
-                               ArgumentConstant.userData : value,
-                             });
+                            if (!isNullEmptyOrFalse(value)) {
+                              Get.toNamed(Routes.MOBILE_VERIFY, arguments: {
+                                ArgumentConstant.isFromFacebookLogin: true,
+                                ArgumentConstant.userData: value,
+                              });
                             }
                           });
                         },
@@ -255,7 +255,7 @@ class LoginScreenView extends GetWidget<LoginScreenController> {
                       ),
                       InkWell(
                         onTap: () {
-
+                          controller.linkedInLogin(context: context);
                         },
                         child: Container(
                           height: 40,
@@ -276,7 +276,6 @@ class LoginScreenView extends GetWidget<LoginScreenController> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       InkWell(
-
                         onTap: () {
                           FocusScope.of(context).unfocus();
                           if (controller.formKey2.currentState!.validate()) {

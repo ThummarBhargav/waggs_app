@@ -41,7 +41,7 @@ class TopSellingStoreAllProductsView
             controller.AllCategory();
             controller.SubCategory();
 
-            print("Value :::=== $val" );
+            print("Value :::=== $val");
           },
           endDrawer: GestureDetector(
             onHorizontalDragStart: (val) {},
@@ -157,14 +157,14 @@ class TopSellingStoreAllProductsView
                                                             placeholder: (context,
                                                                     url) =>
                                                                 CircularProgressIndicator(),
-                                                            errorWidget: (context,
-                                                                    url,
-                                                                    error) =>
-                                                                Container(
-                                                                  color: Colors
-                                                                  .grey[
-                                                                      100],
-                                                                )),
+                                                            errorWidget:
+                                                                (context, url,
+                                                                        error) =>
+                                                                    Container(
+                                                                      color: Colors
+                                                                              .grey[
+                                                                          100],
+                                                                    )),
                                                       ],
                                                     ),
                                                     Expanded(
@@ -426,8 +426,7 @@ class TopSellingStoreAllProductsView
                                           ),
                                           InkWell(
                                             onTap: () {
-                                              Get.toNamed(
-                                                  Routes.VIEW_CART);
+                                              Get.toNamed(Routes.VIEW_CART);
                                             },
                                             child: Padding(
                                               padding: const EdgeInsets.only(
@@ -656,7 +655,7 @@ class TopSellingStoreAllProductsView
                                                     children: [
                                                       Container(
                                                         child: Obx(() {
-                                                          return Radio(
+                                                          return Radio<String>(
                                                             activeColor:
                                                                 Color.fromRGBO(
                                                                     32,
@@ -718,8 +717,6 @@ class TopSellingStoreAllProductsView
                                                                           .name
                                                                           .toString());
                                                                 } else {}
-
-
                                                               });
                                                               controller
                                                                   .radioGValues1
@@ -735,7 +732,7 @@ class TopSellingStoreAllProductsView
                                                             value: controller
                                                                 .CatagoryList[
                                                                     index]
-                                                                .name,
+                                                                .name!,
                                                             groupValue:
                                                                 controller
                                                                     .radioGValues
@@ -836,7 +833,8 @@ class TopSellingStoreAllProductsView
                                                         children: [
                                                           Container(
                                                             child: Obx(() {
-                                                              return Radio(
+                                                              return Radio<
+                                                                  String>(
                                                                 activeColor: Color
                                                                     .fromRGBO(
                                                                         32,
@@ -886,7 +884,8 @@ class TopSellingStoreAllProductsView
                                                                 value: controller
                                                                     .subData[
                                                                         index]
-                                                                    .name,
+                                                                    .name
+                                                                    .toString(),
                                                                 groupValue:
                                                                     controller
                                                                         .radioGValues1
@@ -1123,23 +1122,23 @@ class TopSellingStoreAllProductsView
                                     reqList: reqList, context: context);
                               }
 
-                                controller.values4.value = RangeValues(100, 30000);
-                                controller.values1.value = RangeValues(0, 100);
-                                controller.radioGValues.value = "";
-                                controller.isOp2.value = false;
-                                controller.isOp.value = false;
-                                controller.subData[controller.subDataIndex.value].fields!
-                                    .forEach((element) {
-                                  element.isChecked!.forEach((element) {
-                                    element = false;
-                                  });
-                                  element.isChecked!.refresh();
+                              controller.values4.value =
+                                  RangeValues(100, 30000);
+                              controller.values1.value = RangeValues(0, 100);
+                              controller.radioGValues.value = "";
+                              controller.isOp2.value = false;
+                              controller.isOp.value = false;
+                              controller.subData[controller.subDataIndex.value]
+                                  .fields!
+                                  .forEach((element) {
+                                element.isChecked!.forEach((element) {
+                                  element = false;
                                 });
-                                controller.subData.clear();
-                                controller.AllCategory();
-                                controller.SubCategory();
-
-
+                                element.isChecked!.refresh();
+                              });
+                              controller.subData.clear();
+                              controller.AllCategory();
+                              controller.SubCategory();
 
                               ScaffoldKey2.currentState!.closeEndDrawer();
                               // Navigator.of(context).pop;
@@ -1188,10 +1187,9 @@ class TopSellingStoreAllProductsView
                 children: [
                   IconButton(
                       onPressed: () {
-                        if((box.read(ArgumentConstant.isUserLogin) == null)){
+                        if ((box.read(ArgumentConstant.isUserLogin) == null)) {
                           Get.toNamed(Routes.LOGIN_SCREEN);
-                        }
-                       else{
+                        } else {
                           controller.isFilterDrawer.value = false;
                           ScaffoldKey2.currentState!.openEndDrawer();
                         }
@@ -1256,7 +1254,8 @@ class TopSellingStoreAllProductsView
                               children: [
                                 TextButton(
                                   onPressed: () {
-                                    controller.isFilterDrawer.value = true;;
+                                    controller.isFilterDrawer.value = true;
+                                    ;
                                     ScaffoldKey2.currentState!.openEndDrawer();
                                   },
                                   child: Row(
@@ -1311,7 +1310,6 @@ class TopSellingStoreAllProductsView
                                                               .location[index];
                                                       controller.price
                                                           .refresh();
-
                                                     },
                                                   ));
                                         },
@@ -1323,8 +1321,7 @@ class TopSellingStoreAllProductsView
                                               child: Text(
                                                 "${controller.price.value}",
                                                 style: GoogleFonts.raleway(
-                                                    fontWeight:
-                                                        FontWeight.w600,
+                                                    fontWeight: FontWeight.w600,
                                                     color: Colors.black,
                                                     fontSize: 15),
                                               ),
@@ -1469,36 +1466,46 @@ class TopSellingStoreAllProductsView
                                 shrinkWrap: true,
                                 itemBuilder: (context, index) {
                                   return productCard(
-                                    onTap: (){
+                                    onTap: () {
                                       Get.toNamed(Routes.VIEW_PRODUCT,
                                           arguments: controller
                                               .mainProductList[index]);
                                     },
-                                    image: controller.mainProductList[index].images![0],
-                                    discount: controller.mainProductList[index].discount!.toStringAsFixed(2),
-                                    companyName: controller.mainProductList[index].sellerId!.companyName,
-                                    categoryName: controller.mainProductList[index].category!.name,
-                                    subCategoryName: controller.mainProductList[index].subCategory!.name,
-                                    price: controller.mainProductList[index].price.toString(),
-                                    discountedPrice: controller.mainProductList[index].discountedPrice.toString(),
-                                    rating: controller.mainProductList[index].rating.toString(),
+                                    image: controller
+                                        .mainProductList[index].images![0],
+                                    discount: controller
+                                        .mainProductList[index].discount!
+                                        .toStringAsFixed(2),
+                                    companyName: controller
+                                        .mainProductList[index]
+                                        .sellerId!
+                                        .companyName,
+                                    categoryName: controller
+                                        .mainProductList[index].category!.name,
+                                    subCategoryName: controller
+                                        .mainProductList[index]
+                                        .subCategory!
+                                        .name,
+                                    price: controller
+                                        .mainProductList[index].price
+                                        .toString(),
+                                    discountedPrice: controller
+                                        .mainProductList[index].discountedPrice
+                                        .toString(),
+                                    rating: controller
+                                        .mainProductList[index].rating
+                                        .toString(),
                                     ButtonText: "ADD TO CART",
-                                    ButtonTap: (){
+                                    ButtonTap: () {
                                       print(
-                                          "${controller
-                                              .mainProductList[index]
-                                              .sId}");
+                                          "${controller.mainProductList[index].sId}");
                                       print(
-                                          "Bearer ${box.read(
-                                              ArgumentConstant
-                                                  .token)}");
+                                          "Bearer ${box.read(ArgumentConstant.token)}");
                                       controller.addToCart(
                                           data: controller
-                                              .mainProductList[
-                                          index]);
+                                              .mainProductList[index]);
                                     },
                                     icon: Icons.add_shopping_cart,
-
                                   );
                                   // return Card(
                                   //   elevation: 2,

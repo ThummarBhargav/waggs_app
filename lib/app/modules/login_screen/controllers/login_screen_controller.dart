@@ -1,10 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
+import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart' hide Response;
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
@@ -37,8 +39,6 @@ class LoginScreenController extends GetxController {
   List respons = [];
   @override
   void onInit() {
-
-
     super.onInit();
   }
 
@@ -93,11 +93,11 @@ class LoginScreenController extends GetxController {
     final GoogleSignIn googleSignIn = GoogleSignIn();
 
     final GoogleSignInAccount? googleSignInAccount =
-    await googleSignIn.signIn();
+        await googleSignIn.signIn();
 
     if (googleSignInAccount != null) {
       final GoogleSignInAuthentication googleSignInAuthentication =
-      await googleSignInAccount.authentication;
+          await googleSignInAccount.authentication;
 
       final AuthCredential credential = GoogleAuthProvider.credential(
         accessToken: googleSignInAuthentication.accessToken,
@@ -106,21 +106,20 @@ class LoginScreenController extends GetxController {
 
       try {
         final UserCredential userCredential =
-        await auth.signInWithCredential(credential);
+            await auth.signInWithCredential(credential);
 
         user = userCredential.user;
       } on FirebaseAuthException catch (e) {
         if (e.code == 'account-exists-with-different-credential') {
-          Get.snackbar("Sign in Failed", "The account already exists with a different credential.");
-
-
+          Get.snackbar("Sign in Failed",
+              "The account already exists with a different credential.");
         } else if (e.code == 'invalid-credential') {
-          Get.snackbar("Sign in Failed", "Error occurred while accessing credentials. Try again.");
-
+          Get.snackbar("Sign in Failed",
+              "Error occurred while accessing credentials. Try again.");
         }
       } catch (e) {
-        Get.snackbar("Sign in Failed", "Error occurred using Google Sign-In. Try again.");
-
+        Get.snackbar("Sign in Failed",
+            "Error occurred using Google Sign-In. Try again.");
       }
     }
 
@@ -129,20 +128,55 @@ class LoginScreenController extends GetxController {
 
   Future<UserCredential> signInWithFacebook() async {
     // Trigger the sign-in flow
-    late LoginResult loginResult ;
+    late LoginResult loginResult;
     await FacebookAuth.instance.login(permissions: ['email']).then((value) {
       loginResult = value;
-    }).catchError((error){
+    }).catchError((error) {
       print("Error := $error");
     });
     // Create a credential from the access token
     final OAuthCredential facebookAuthCredential =
-    FacebookAuthProvider.credential(loginResult.accessToken!.token);
+        FacebookAuthProvider.credential(loginResult.accessToken!.token);
 
     // Once signed in, return the UserCredential
     return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
   }
 
+  linkedInLogin({required BuildContext context}) async {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (BuildContext context) => LinkedInUserWidget(
+          appBar: AppBar(
+            title: Text("Linkedin"),
+          ),
+          redirectUrl: "https://stg.waggs.in/linkedin",
+          clientId: "78buicazyv5os8",
+          clientSecret: "DjMTZ6XgYSxBQkal",
+          onGetUserProfile: (UserSucceededAction linkedInUser) async {
+            print("Maja response := ${linkedInUser.user.userId}");
+            if (!isNullEmptyOrFalse(linkedInUser.user.userId)) {
+              await socialLoginApi(
+                  socialId: linkedInUser.user.userId!, socialType: "linkedin");
+            }
+          },
+        ),
+        fullscreenDialog: true,
+      ),
+    );
+  }
+
+  socialLoginApi({required String socialId, required String socialType}) async {
+    Dio dio = Dio();
+    await dio.post(ApiConstant.socialLoginApi, data: {
+      "socialId": socialId,
+      "socialType": socialType,
+    }).then((value) {
+      print("My Response :=  $value");
+    }).catchError((error) {
+      print("Error := $error");
+    });
+  }
 
   Future<void> LoginUser() async {
     try {
@@ -190,24 +224,30 @@ class LoginScreenController extends GetxController {
     }
   }
 
-
-  Future<void> signUp({String? countryCode,String? email,String? mobile,String? name,String? socialId,String? socialType,required BuildContext context}) async {
+  Future<void> signUp(
+      {String? countryCode,
+      String? email,
+      String? mobile,
+      String? name,
+      String? socialId,
+      String? socialType,
+      required BuildContext context}) async {
     try {
       var url = Uri.parse(baseUrl2 + ApiConstant.signUpUsers);
       var response;
       await http.post(url, body: {
-        "name":"${name}",
-        "mobile":"${mobile}",
-        "countryCode":"${countryCode}",
-        "email":"${email}",
-        "socialId":"${socialId}",
-        "socialType":"${socialType}"
+        "name": "${name}",
+        "mobile": "${mobile}",
+        "countryCode": "${countryCode}",
+        "email": "${email}",
+        "socialId": "${socialId}",
+        "socialType": "${socialType}"
       }).then((value) {
         print(value.body);
         response = value;
         if (response.statusCode == 200) {
           SignUpResponseModel res =
-          SignUpResponseModel.fromJson(jsonDecode(response.body));
+              SignUpResponseModel.fromJson(jsonDecode(response.body));
           showDialog(
               barrierDismissible: false,
               builder: (context) {
@@ -262,15 +302,13 @@ class LoginScreenController extends GetxController {
                 );
               },
               context: context);
-        }
-        else{
+        } else {
           ErrorResponse res = ErrorResponse.fromJson(jsonDecode(response.body));
           Get.snackbar("Error", res.message.toString());
         }
       }).catchError((error) {
         print(error);
       });
-
     } catch (e) {
       Get.snackbar(
         "Error",
@@ -279,10 +317,8 @@ class LoginScreenController extends GetxController {
       );
     }
   }
-
-
-
 }
+
 class UserObject {
   UserObject({
     this.firstName,
