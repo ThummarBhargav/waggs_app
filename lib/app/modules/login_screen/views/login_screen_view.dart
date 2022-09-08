@@ -37,12 +37,13 @@ class LoginScreenView extends GetWidget<LoginScreenController> {
                       redirectUrl: 'https://www.youtube.com/callback',
                       clientId: "78buicazyv5os8",
                       clientSecret: "DjMTZ6XgYSxBQkal",
-
-                      onGetUserProfile:
-                          (UserSucceededAction linkedInUser) {
-                        print('Access token ${linkedInUser.user.token.accessToken}');
-                        print('First name: ${linkedInUser.user.firstName!.localized!.label}');
-                        print('Last name: ${linkedInUser.user.lastName!.localized!.label}');
+                      onGetUserProfile: (UserSucceededAction linkedInUser) {
+                        print(
+                            'Access token ${linkedInUser.user.token.accessToken}');
+                        print(
+                            'First name: ${linkedInUser.user.firstName!.localized!.label}');
+                        print(
+                            'Last name: ${linkedInUser.user.lastName!.localized!.label}');
                       },
                       onError: (UserFailedAction e) {
                         print('Error: ${e.toString()}');
@@ -193,7 +194,7 @@ class LoginScreenView extends GetWidget<LoginScreenController> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       GestureDetector(
-                        onTap: (){
+                        onTap: () {
                           Get.toNamed(Routes.FORGOT_PASSWORD);
                         },
                         child: Container(
@@ -236,11 +237,11 @@ class LoginScreenView extends GetWidget<LoginScreenController> {
                       InkWell(
                         onTap: () {
                           controller.signInWithFacebook().then((value) {
-                            if(!isNullEmptyOrFalse(value)){
-                             Get.toNamed(Routes.MOBILE_VERIFY,arguments: {
-                               ArgumentConstant.isFromFacebookLogin : true ,
-                               ArgumentConstant.userData : value,
-                             });
+                            if (!isNullEmptyOrFalse(value)) {
+                              Get.toNamed(Routes.MOBILE_VERIFY, arguments: {
+                                ArgumentConstant.isFromFacebookLogin: true,
+                                ArgumentConstant.userData: value,
+                              });
                             }
                           });
                         },
@@ -259,7 +260,9 @@ class LoginScreenView extends GetWidget<LoginScreenController> {
                       ),
                       InkWell(
                         onTap: () {
-                          controller.signInWithGoogle();
+                          controller.signInWithGoogle().then((value) {
+                            print(value);
+                          });
                         },
                         child: Container(
                           height: 40,
@@ -275,9 +278,7 @@ class LoginScreenView extends GetWidget<LoginScreenController> {
                         width: 10,
                       ),
                       InkWell(
-                        onTap: () {
-
-                        },
+                        onTap: () {},
                         child: Container(
                           height: 40,
                           width: 50,
@@ -297,7 +298,6 @@ class LoginScreenView extends GetWidget<LoginScreenController> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       InkWell(
-
                         onTap: () {
                           FocusScope.of(context).unfocus();
                           if (controller.formKey2.currentState!.validate()) {

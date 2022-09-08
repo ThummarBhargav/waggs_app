@@ -40,6 +40,7 @@ abstract class Routes {
   static const MOBILE_VERIFY = _Paths.MOBILE_VERIFY;
   static const OTP_VERIFY = _Paths.OTP_VERIFY;
   static const ORDER_DETAIL = _Paths.ORDER_DETAIL;
+  static const CART_DRAWER = _Paths.CART_DRAWER;
 }
 
 abstract class _Paths {
@@ -81,4 +82,5 @@ abstract class _Paths {
   static const MOBILE_VERIFY = '/mobile-verify';
   static const OTP_VERIFY = '/otp-verify';
   static const ORDER_DETAIL = '/order-detail';
+  static const CART_DRAWER = '/cart-drawer';
 }
