@@ -1,4 +1,6 @@
   import 'dart:convert';
+import 'dart:io';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -8,6 +10,7 @@ import 'package:waggs_app/app/Modal/PlanModel.dart';
 import 'package:http/http.dart' as http;
 import 'package:waggs_app/app/Modal/SubscriptionModel.dart';
 import '../../../../main.dart';
+import '../../../Modal/ErrorResponse.dart';
 import '../../../Modal/PlanModel.dart';
 import '../../../constant/ConstantUrl.dart';
 import '../../../constant/SizeConstant.dart';
@@ -20,19 +23,16 @@ class PlaneController extends GetxController {
   Transaction? transactionList;
   RxList<PlanData> planList = RxList<PlanData>([]);
 List respons=[];
-
-
+  List respons1=[];
+  PetModel petModel = PetModel();
+ Data1? data ;
   static const platform = const MethodChannel("razorpay_flutter");
   late Razorpay _razorpay;
   @override
   void onInit() {
     AllPlans();
     super.onInit();
-    _razorpay = Razorpay();
 
-    _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS,   _handlePaymentSuccess);
-    _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR,  _handlePaymentError);
-    _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
   }
 
   @override
@@ -62,13 +62,17 @@ List respons=[];
   }
 
   Future<void> PayMent({required PlanData data}) async {
+    _razorpay = Razorpay();
+
+    _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
+    _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR,  _handlePaymentError);
+    _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
     if((box.read(ArgumentConstant.isUserLogin) == null)){
       Get.toNamed(Routes.LOGIN_SCREEN);
     }
     else
       {
       print('Bearer ${box.read(ArgumentConstant.token)}');
-      try {
         var url = Uri.parse(baseUrl + ApiConstant.PlansPlayment);
         var response;
         await http.post(url, body: {
@@ -89,10 +93,11 @@ List respons=[];
         if (response.statusCode == 200) {
             transactionList=subscriptions.data!.transaction;
           var options = {
-            "key": "rzp_test_Ad3xOmLFP1EkRf",
+            "key": "${ApiConstant.paymentKey}",
             "amount": data.amount!.toInt() * 100,
-            "name": "Waggs Payment",
+            "name": "Waggs",
             "description": data.name.toString(),
+            "order_id":"${subscriptions.data!.order!.id}",
             "timeout": "180",
             "currency": "INR",
             'send_sms_hash': true,
@@ -106,39 +111,78 @@ List respons=[];
           } catch (e) {
             print(e.toString());
           }
+        }else{
+          ErrorResponse res = ErrorResponse.fromJson(jsonDecode(response.body));
+          Get.snackbar("Error", res.message.toString(),
+              snackPosition: SnackPosition.BOTTOM,
+              backgroundColor: Colors.red,
+              colorText: Colors.white);
         }
-        // Get.snackbar("Success","Payment Done",snackPosition: SnackPosition.BOTTOM,backgroundColor: Colors.green);
-       // else{
-       //    Get.snackbar("Error", "Payment Not Done",snackPosition: SnackPosition.BOTTOM,backgroundColor: Colors.orangeAccent);
-       //  }
-      }catch(e){
-        Get.snackbar("Error", e.toString(),snackPosition: SnackPosition.BOTTOM,backgroundColor: Colors.orangeAccent);
-      }
+        print('Response status: ${response.statusCode}');
+        print('Response body: ${response.body}');
+
     }
   }
+
+  updateTrans(String paymentId,String OrderId,String Signature) async {
+    Dio dio = Dio();
+    Options option = Options(headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+    });
+    try {
+      var response = await dio.put(
+        baseUrl + ApiConstant.transcation+"/${subscriptions.data!.transaction!.sId}",
+        data:{
+          "paymentDetails": {
+            "paymentId": "${paymentId}",
+            "orderId": "${OrderId}",
+            "signature": "${Signature}"
+          }
+        },
+        options: option,
+      );
+      print("UPDATE=========>" + response.toString());
+      if (response.statusCode == 200||response.statusCode == 201) {
+        print(response.data);
+        // print(jsonDecode(response.data).runtimeType);
+        // dynamic result = jsonDecode(response.data);
+        // print('${result}');
+       petModel = PetModel.fromJson(response.data);
+        data=petModel.data;
+        print('petid=====${petModel.data!.pet}');
+        print('petid=====${data!.pet}');
+        Get.toNamed(Routes.ADD_PET,arguments: data);
+      }
+      else if(response.statusCode == 400){
+
+      }
+      else{
+
+      }
+
+    } on SocketException {
+
+    }
+
+  }
+
   void _handlePaymentSuccess(PaymentSuccessResponse response) {
     print('Success Response: $response');
-    Get.snackbar("Success","Payment Done",snackPosition: SnackPosition.BOTTOM,backgroundColor: Colors.green);
-    print("Id===>${transactionList!.sId}");
-   Get.toNamed(Routes.ADD_PET,arguments: transactionList!.sId);
-    /*Fluttertoast.showToast(
-        msg: "SUCCESS: " + response.paymentId!,
-        toastLength: Toast.LENGTH_SHORT); */
+    updateTrans(response.paymentId.toString(),response.orderId.toString(),response.signature.toString());
+    Get.snackbar("Success", "Payment Done",
+        snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.green);
   }
 
   void _handlePaymentError(PaymentFailureResponse response) {
     print('Error Response: $response');
-    /* Fluttertoast.showToast(
-        msg: "ERROR: " + response.code.toString() + " - " + response.message!,
-        toastLength: Toast.LENGTH_SHORT); */
   }
 
   void _handleExternalWallet(ExternalWalletResponse response) {
     print('External SDK Response: $response');
-    /* Fluttertoast.showToast(
-        msg: "EXTERNAL_WALLET: " + response.walletName!,
-        toastLength: Toast.LENGTH_SHORT); */
   }
+
 
 }
 

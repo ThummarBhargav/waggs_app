@@ -30,6 +30,7 @@ class ApiConstant {
   static const transcation = "transaction";
   static const AddPet = "pet/list?skip=0&limit=20";
   static const orderDetail = "order/find/";
+  static const getpet = "pet/list?skip=0&limit=20";
 }
 
 class ArgumentConstant{
