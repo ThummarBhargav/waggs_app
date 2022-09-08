@@ -316,7 +316,8 @@ class _TopSellingProductListWidgetState
                                                       children: [
                                                         Container(
                                                           child: Obx(() {
-                                                            return Radio(
+                                                            return Radio<
+                                                                String>(
                                                               activeColor: Color
                                                                   .fromRGBO(
                                                                       32,
@@ -396,7 +397,7 @@ class _TopSellingProductListWidgetState
                                                               value: controller
                                                                   .CatagoryList[
                                                                       index]
-                                                                  .name,
+                                                                  .name!,
                                                               groupValue:
                                                                   controller
                                                                       .radioGValues
@@ -499,7 +500,8 @@ class _TopSellingProductListWidgetState
                                                           children: [
                                                             Container(
                                                               child: Obx(() {
-                                                                return Radio(
+                                                                return Radio<
+                                                                    String>(
                                                                   activeColor: Color
                                                                       .fromRGBO(
                                                                           32,
@@ -543,7 +545,7 @@ class _TopSellingProductListWidgetState
                                                                   value: controller
                                                                       .subData[
                                                                           index]
-                                                                      .name,
+                                                                      .name!,
                                                                   groupValue:
                                                                       controller
                                                                           .radioGValues1

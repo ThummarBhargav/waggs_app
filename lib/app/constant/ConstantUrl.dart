@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 const baseUrl = "https://api-stg.waggs.in/api/v1/";
 const baseUrl3 = "https://api-stg.waggs.in/api/v1/users/";
+
 class ApiConstant {
   static const signUpUsers = "signup";
   static const socialLoginApi = "https://api.waggs.in/api/v1/users/socialLogin";
@@ -37,7 +38,7 @@ class ApiConstant {
   static const createImageSlot = "file/";
   static const updatePet = "pet/";
   static const orderCancel = "order/";
-  static const getpet = "pet/list?skip=0&limit=20";
+  // static const getpet = "pet/list?skip=0&limit=20";
 }
 
 class ArgumentConstant {

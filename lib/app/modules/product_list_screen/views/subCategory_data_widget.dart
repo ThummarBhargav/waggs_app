@@ -306,7 +306,8 @@ class _SubCategoryWidgetState extends State<SubCategoryWidget> {
                                                       children: [
                                                         Container(
                                                           child: Obx(() {
-                                                            return Radio(
+                                                            return Radio<
+                                                                String>(
                                                               activeColor: Color
                                                                   .fromRGBO(
                                                                       32,
@@ -386,7 +387,7 @@ class _SubCategoryWidgetState extends State<SubCategoryWidget> {
                                                               value: controller
                                                                   .CatagoryList[
                                                                       index]
-                                                                  .name,
+                                                                  .name!,
                                                               groupValue:
                                                                   controller
                                                                       .radioGValues
@@ -489,7 +490,8 @@ class _SubCategoryWidgetState extends State<SubCategoryWidget> {
                                                           children: [
                                                             Container(
                                                               child: Obx(() {
-                                                                return Radio(
+                                                                return Radio<
+                                                                    String>(
                                                                   activeColor: Color
                                                                       .fromRGBO(
                                                                           32,
@@ -533,7 +535,7 @@ class _SubCategoryWidgetState extends State<SubCategoryWidget> {
                                                                   value: controller
                                                                       .subData[
                                                                           index]
-                                                                      .name,
+                                                                      .name!,
                                                                   groupValue:
                                                                       controller
                                                                           .radioGValues1
