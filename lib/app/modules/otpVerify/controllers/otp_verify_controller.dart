@@ -37,6 +37,7 @@ class OtpVerifyController extends GetxController {
       socialId = Get.arguments[ArgumentConstant.socialId];
       socialType = Get.arguments[ArgumentConstant.socialType];
     }
+    gettimer();
     super.onInit();
   }
 
@@ -168,5 +169,27 @@ class OtpVerifyController extends GetxController {
         snackPosition: SnackPosition.BOTTOM,
       );
     }
+  }
+
+  Future<void> sendOtp() async {
+    var url = Uri.parse(baseUrl3 + ApiConstant.sendOtpUsers);
+    var response;
+    await http.post(url, body: {
+      "countryCode": "${countryCode}",
+      "mobile": "${mobileNumber}"
+    }).then((value) {
+      if (value.statusCode == 200) {
+      } else {
+        ErrorResponse res = ErrorResponse.fromJson(jsonDecode(value.body));
+        Get.snackbar("Error", res.message.toString(),
+            snackPosition: SnackPosition.BOTTOM,
+            colorText: Colors.white,
+            backgroundColor: Colors.red);
+      }
+      print('Response status: ${value.statusCode}');
+      print('Response body: ${value.body}');
+    }).catchError((error) {
+      print(error);
+    });
   }
 }

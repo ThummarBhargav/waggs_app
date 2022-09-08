@@ -41,20 +41,20 @@ class Data {
 
   Data(
       {this.sId,
-        this.status,
-        this.isProductRated,
-        this.paymentStatus,
-        this.orderId,
-        this.orderNo,
-        this.productId,
-        this.product,
-        this.quantity,
-        this.sellerId,
-        this.shippingCharge,
-        this.userId,
-        this.iV,
-        this.createdAt,
-        this.updatedAt});
+      this.status,
+      this.isProductRated,
+      this.paymentStatus,
+      this.orderId,
+      this.orderNo,
+      this.productId,
+      this.product,
+      this.quantity,
+      this.sellerId,
+      this.shippingCharge,
+      this.userId,
+      this.iV,
+      this.createdAt,
+      this.updatedAt});
 
   Data.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -62,18 +62,18 @@ class Data {
     isProductRated = json['isProductRated'];
     paymentStatus = json['paymentStatus'];
     orderId =
-    json['orderId'] != null ? new OrderId.fromJson(json['orderId']) : null;
+        json['orderId'] != null ? new OrderId.fromJson(json['orderId']) : null;
     orderNo = json['orderNo'];
     productId = json['productId'];
     product =
-    json['product'] != null ? new Product.fromJson(json['product']) : null;
+        json['product'] != null ? new Product.fromJson(json['product']) : null;
     quantity = json['quantity'];
     sellerId = json['sellerId'] != null
         ? new SellerId.fromJson(json['sellerId'])
         : null;
     shippingCharge = json['shippingCharge'];
     userId =
-    json['userId'] != null ? new UserId.fromJson(json['userId']) : null;
+        json['userId'] != null ? new UserId.fromJson(json['userId']) : null;
     iV = json['__v'];
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
@@ -125,18 +125,18 @@ class OrderId {
 
   OrderId(
       {this.sId,
-        this.orderNo,
-        this.userId,
-        this.amount,
-        this.address,
-        this.latitude,
-        this.longitude,
-        this.gstAmount,
-        this.taxableAmount,
-        this.transactionId,
-        this.createdAt,
-        this.updatedAt,
-        this.iV});
+      this.orderNo,
+      this.userId,
+      this.amount,
+      this.address,
+      this.latitude,
+      this.longitude,
+      this.gstAmount,
+      this.taxableAmount,
+      this.transactionId,
+      this.createdAt,
+      this.updatedAt,
+      this.iV});
 
   OrderId.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -182,40 +182,40 @@ class Product {
   String? subCategory;
   int? weight;
   String? unit;
-  Null? color;
-  int? price;
-  int? discountedPrice;
-  double? discount;
+  String? color;
+  num? price;
+  num? discountedPrice;
+  num? discount;
   String? lifeStage;
   String? brand;
   String? breedSize;
   String? flavor;
   String? productType;
-  Null? materialUsed;
+  String? materialUsed;
   String? vegNonveg;
   List<String>? images;
 
   Product(
       {this.sId,
-        this.sellerId,
-        this.title,
-        this.description,
-        this.category,
-        this.subCategory,
-        this.weight,
-        this.unit,
-        this.color,
-        this.price,
-        this.discountedPrice,
-        this.discount,
-        this.lifeStage,
-        this.brand,
-        this.breedSize,
-        this.flavor,
-        this.productType,
-        this.materialUsed,
-        this.vegNonveg,
-        this.images});
+      this.sellerId,
+      this.title,
+      this.description,
+      this.category,
+      this.subCategory,
+      this.weight,
+      this.unit,
+      this.color,
+      this.price,
+      this.discountedPrice,
+      this.discount,
+      this.lifeStage,
+      this.brand,
+      this.breedSize,
+      this.flavor,
+      this.productType,
+      this.materialUsed,
+      this.vegNonveg,
+      this.images});
 
   Product.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -295,26 +295,26 @@ class SellerId {
 
   SellerId(
       {this.sId,
-        this.isEmailVerified,
-        this.isApproved,
-        this.waiveOffShipping,
-        this.name,
-        this.email,
-        this.mobile,
-        this.countryCode,
-        this.address,
-        this.latitude,
-        this.longitude,
-        this.city,
-        this.companyName,
-        this.country,
-        this.fssaiNumber,
-        this.gstNo,
-        this.logoUrl,
-        this.panNo,
-        this.pincode,
-        this.shippingLimit,
-        this.state});
+      this.isEmailVerified,
+      this.isApproved,
+      this.waiveOffShipping,
+      this.name,
+      this.email,
+      this.mobile,
+      this.countryCode,
+      this.address,
+      this.latitude,
+      this.longitude,
+      this.city,
+      this.companyName,
+      this.country,
+      this.fssaiNumber,
+      this.gstNo,
+      this.logoUrl,
+      this.panNo,
+      this.pincode,
+      this.shippingLimit,
+      this.state});
 
   SellerId.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -380,14 +380,14 @@ class UserId {
 
   UserId(
       {this.sId,
-        this.isEmailVerified,
-        this.name,
-        this.email,
-        this.mobile,
-        this.countryCode,
-        this.address,
-        this.latitude,
-        this.longitude});
+      this.isEmailVerified,
+      this.name,
+      this.email,
+      this.mobile,
+      this.countryCode,
+      this.address,
+      this.latitude,
+      this.longitude});
 
   UserId.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];

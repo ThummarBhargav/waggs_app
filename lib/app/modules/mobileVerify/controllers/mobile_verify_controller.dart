@@ -92,11 +92,11 @@ class MobileVerifyController extends GetxController {
         email = (isFromFacebook)
             ? userDataFaceBook!.user!.email.toString()
             : userDataLinkedIn!
-                .user.email!.elements![0].handleDeep!.emailAddress!;
+            .user.email!.elements![0].handleDeep!.emailAddress!;
         socialId = (isFromFacebook)
             ? (!isNullEmptyOrFalse(box.read(ArgumentConstant.facebookUserId)))
-                ? box.read(ArgumentConstant.facebookUserId)
-                : userDataFaceBook!.additionalUserInfo!.providerId.toString()
+            ? box.read(ArgumentConstant.facebookUserId)
+            : userDataFaceBook!.additionalUserInfo!.providerId.toString()
             : userDataLinkedIn!.user.userId!;
         socialType = (isFromFacebook) ? "facebook" : "linkedin";
         Get.toNamed(Routes.OTP_VERIFY, arguments: {

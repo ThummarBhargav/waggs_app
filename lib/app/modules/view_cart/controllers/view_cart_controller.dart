@@ -52,7 +52,7 @@ class ViewCartController extends GetxController {
   final key = GlobalKey<FormState>();
   Orders1 orders1 = Orders1();
   RxList<Orders1> OrderList = RxList<Orders1>([]);
-  RxList<Map<String,dynamic>> orderData = RxList<Map<String,dynamic>>([]);
+  RxList<Map<String, dynamic>> orderData = RxList<Map<String, dynamic>>([]);
 
   @override
   void onInit() {
@@ -60,14 +60,15 @@ class ViewCartController extends GetxController {
     CartProductApi();
     getCurrentLocation();
     CartCount();
-
   }
 
   getCurrentLocation() {
-        Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best, forceAndroidLocationManager: true)
+    Geolocator.getCurrentPosition(
+            desiredAccuracy: LocationAccuracy.best,
+            forceAndroidLocationManager: true)
         .then((Position position) {
-          _currentPosition=position.obs;
-          _getAddressFromLatLng();
+      _currentPosition = position.obs;
+      _getAddressFromLatLng();
     }).catchError((e) {
       print(e);
     });
@@ -86,7 +87,6 @@ class ViewCartController extends GetxController {
     }
   }
 
-
   @override
   void onReady() {
     super.onReady();
@@ -100,7 +100,7 @@ class ViewCartController extends GetxController {
   CartProductApi() async {
     hasData.value = false;
     cartProductList.clear();
-    var url =await Uri.parse(baseUrl+ApiConstant.Cart);
+    var url = await Uri.parse(baseUrl + ApiConstant.Cart);
     var response;
     await http.get(url, headers: {
       'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
@@ -108,7 +108,7 @@ class ViewCartController extends GetxController {
       hasData.value = true;
       print(value);
       response = value;
-    }).catchError((error){
+    }).catchError((error) {
       hasData.value = false;
     });
     print('Response status: ${response.statusCode}');
@@ -152,21 +152,25 @@ class ViewCartController extends GetxController {
         'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
         'Content-Type': 'application/json'
       };
-      var request = http.Request('PUT', Uri.parse(baseUrl+ApiConstant.Cart));
-      request.body = json.encode({
-        "productId": "${data.productId}",
-        "quantity": "${++count}"
-      });
+      var request = http.Request('PUT', Uri.parse(baseUrl + ApiConstant.Cart));
+      request.body = json
+          .encode({"productId": "${data.productId}", "quantity": "${++count}"});
       request.headers.addAll(headers);
       http.StreamedResponse? response;
       await request.send().then((value) {
         response = value;
-        isLoading.value = true;
-        CartProductApi();
-        cartProductList.refresh();
+        // isLoading.value = true;
+        // CartProductApi();
+        CartCount();
       });
 
       if (response!.statusCode == 200) {
+        cartProductList.forEach((element) {
+          if (element.productId == data.productId) {
+            element.quantity = element.quantity! + 1;
+          }
+        });
+        cartProductList.refresh();
         Get.snackbar("Success", "Qunatity Updated",
             snackPosition: SnackPosition.BOTTOM);
       } else {
@@ -190,23 +194,27 @@ class ViewCartController extends GetxController {
         'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
         'Content-Type': 'application/json'
       };
-      var request = http.Request('PUT', Uri.parse(baseUrl+ApiConstant.Cart));
-      request.body = json.encode({
-        "productId": "${data.productId}",
-        "quantity": "${--count}"
-      });
+      var request = http.Request('PUT', Uri.parse(baseUrl + ApiConstant.Cart));
+      request.body = json
+          .encode({"productId": "${data.productId}", "quantity": "${--count}"});
       request.headers.addAll(headers);
       http.StreamedResponse? response;
       await request.send().then((value) {
         response = value;
-        isLoading.value = true;
-        CartProductApi();
+        // isLoading.value = true;
+        // CartProductApi();
         CartCount();
       });
 
       if (response!.statusCode == 200) {
         Get.snackbar("Success", "Qunatity Updated",
             snackPosition: SnackPosition.BOTTOM);
+        cartProductList.forEach((element) {
+          if (element.productId == data.productId) {
+            element.quantity = element.quantity! - 1;
+          }
+        });
+        cartProductList.refresh();
       } else {
         print(response!.reasonPhrase);
       }
@@ -227,11 +235,9 @@ class ViewCartController extends GetxController {
         'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
         'Content-Type': 'application/json'
       };
-      var request = http.Request('PUT', Uri.parse(baseUrl+ApiConstant.Cart));
-      request.body = json.encode({
-        "productId": "${data.productId}",
-        "quantity": 0
-      });
+      var request = http.Request('PUT', Uri.parse(baseUrl + ApiConstant.Cart));
+      request.body =
+          json.encode({"productId": "${data.productId}", "quantity": 0});
       request.headers.addAll(headers);
       http.StreamedResponse? response;
       await request.send().then((value) {
@@ -254,10 +260,11 @@ class ViewCartController extends GetxController {
       );
     }
   }
-  Future<void>Allorder() async {
-    var url = Uri.parse(baseUrl+ApiConstant.orderlist);
-    var response = await http.get(url,headers: {
-    'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+
+  Future<void> Allorder() async {
+    var url = Uri.parse(baseUrl + ApiConstant.orderlist);
+    var response = await http.get(url, headers: {
+      'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
     });
     print('response status:${response.request}');
     dynamic result = jsonDecode(response.body);
@@ -268,32 +275,25 @@ class ViewCartController extends GetxController {
 
       print(OrderList);
 
-
-      if(!isNullEmptyOrFalse(OrderList)){
-        if(!isNullEmptyOrFalse(OrderList[0].data)){
-          if(!isNullEmptyOrFalse(OrderList[0].data!.orderDetails)){
+      if (!isNullEmptyOrFalse(OrderList)) {
+        if (!isNullEmptyOrFalse(OrderList[0].data)) {
+          if (!isNullEmptyOrFalse(OrderList[0].data!.orderDetails)) {
             OrderList[0].data!.orderDetails!.forEach((element) {
-
-              Map<String,dynamic> dict= {};
+              Map<String, dynamic> dict = {};
               dict["GroupBy"] = element.orderNo!;
-              dict["OrderData"] = element ;
+              dict["OrderData"] = element;
 
               orderData.add(dict);
 
-              Get.toNamed(Routes.ORDER_PAGE,arguments: {
-                    ArgumentConstant.orderData : orderData,
-                  });
-
+              Get.toNamed(Routes.ORDER_PAGE, arguments: {
+                ArgumentConstant.orderData: orderData,
+              });
             });
           }
         }
         print(orderData);
-
       }
-    }
-    else{
-      
-    }
+    } else {}
     OrderList.refresh();
   }
 
@@ -301,7 +301,6 @@ class ViewCartController extends GetxController {
     showDialog(
         context: context,
         barrierDismissible: false,
-
         builder: (context) {
           return AlertDialog(
             content: Container(
@@ -408,20 +407,25 @@ class ViewCartController extends GetxController {
                     ),
                   ),
                   GestureDetector(
-                    onTap: (){
+                    onTap: () {
                       Navigator.pop(context);
                     },
                     child: Align(
                       alignment: Alignment.bottomRight,
                       child: Container(
-                        child: Text("Cancel",style: GoogleFonts.publicSans(fontWeight: FontWeight.w700,color: Color.fromRGBO(31, 193, 244, 1),fontSize: 14),),
+                        child: Text(
+                          "Cancel",
+                          style: GoogleFonts.publicSans(
+                              fontWeight: FontWeight.w700,
+                              color: Color.fromRGBO(31, 193, 244, 1),
+                              fontSize: 14),
+                        ),
                       ),
                     ),
                   ),
                 ],
               ),
             ),
-
           );
         });
   }
@@ -431,14 +435,13 @@ class ViewCartController extends GetxController {
     _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
     _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
     _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
-    var url = Uri.parse(baseUrl+ApiConstant.checkout);
-    var response = await http.post(url, body: {
-    },headers: {
+    var url = Uri.parse(baseUrl + ApiConstant.checkout);
+    var response = await http.post(url, body: {}, headers: {
       'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
     });
     dynamic result = jsonDecode(response.body);
     checkout = Checkout.fromJson(result);
-    if(response.statusCode == 200){
+    if (response.statusCode == 200) {
       if (!isNullEmptyOrFalse(checkout)) {
         Checkoutlist = checkout.data!.order;
       }
@@ -447,7 +450,7 @@ class ViewCartController extends GetxController {
         "key": "${ApiConstant.paymentKey}",
         "amount": "${checkout.data!.order!.amount}",
         "name": "Waggs",
-        "order_id":"${checkout.data!.order!.id}",
+        "order_id": "${checkout.data!.order!.id}",
         // "timeout": "180",
         "currency": "INR",
         // 'send_sms_hash': true,
@@ -456,11 +459,10 @@ class ViewCartController extends GetxController {
           "email": "${box.read(ArgumentConstant.email)}",
           "name": "${box.read(ArgumentConstant.name)}"
         },
-
       };
       print(options);
       try {
-         _razorpay.open(options);
+        _razorpay.open(options);
       } catch (e) {
         print(e.toString());
       }
@@ -475,8 +477,7 @@ class ViewCartController extends GetxController {
     print('Response body: ${response.body}');
   }
 
-
-  updateTrans(String paymentId,String OrderId,String Signature) async {
+  updateTrans(String paymentId, String OrderId, String Signature) async {
     Dio dio = Dio();
     Options option = Options(headers: {
       'Content-Type': 'application/json',
@@ -485,8 +486,10 @@ class ViewCartController extends GetxController {
     });
     try {
       final response = await dio.put(
-        baseUrl + ApiConstant.transcation+"/${checkout.data!.transaction!.sId}",
-        data:{
+        baseUrl +
+            ApiConstant.transcation +
+            "/${checkout.data!.transaction!.sId}",
+        data: {
           "paymentDetails": {
             "paymentId": "${paymentId}",
             "orderId": "${OrderId}",
@@ -496,31 +499,20 @@ class ViewCartController extends GetxController {
         options: option,
       );
       print("UPDATE=========" + response.toString());
-      if (response.statusCode == 200||response.statusCode == 201) {
+      if (response.statusCode == 200 || response.statusCode == 201) {
         print(response.data);
-
-
-      }
-      else if(response.statusCode == 400){
-
-      }
-      else{
-
-      }
-
-    } on SocketException {
-
-    }
-
+      } else if (response.statusCode == 400) {
+      } else {}
+    } on SocketException {}
   }
 
   void _handlePaymentSuccess(PaymentSuccessResponse response) {
     print('Success Response: $response');
-    updateTrans(response.paymentId.toString(),response.orderId.toString(),response.signature.toString());
+    updateTrans(response.paymentId.toString(), response.orderId.toString(),
+        response.signature.toString());
     Allorder();
 
     Get.snackbar("Success", "Payment Done",
-
         snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.green);
   }
 

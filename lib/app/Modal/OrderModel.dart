@@ -75,18 +75,18 @@ class Orders {
 
   Orders(
       {this.sId,
-        this.orderNo,
-        this.userId,
-        this.amount,
-        this.address,
-        this.latitude,
-        this.longitude,
-        this.gstAmount,
-        this.taxableAmount,
-        this.transactionId,
-        this.createdAt,
-        this.updatedAt,
-        this.iV});
+      this.orderNo,
+      this.userId,
+      this.amount,
+      this.address,
+      this.latitude,
+      this.longitude,
+      this.gstAmount,
+      this.taxableAmount,
+      this.transactionId,
+      this.createdAt,
+      this.updatedAt,
+      this.iV});
 
   Orders.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -142,20 +142,20 @@ class OrderDetails {
 
   OrderDetails(
       {this.sId,
-        this.status,
-        this.isProductRated,
-        this.paymentStatus,
-        this.orderId,
-        this.orderNo,
-        this.productId,
-        this.product,
-        this.quantity,
-        this.sellerId,
-        this.shippingCharge,
-        this.userId,
-        this.iV,
-        this.createdAt,
-        this.updatedAt});
+      this.status,
+      this.isProductRated,
+      this.paymentStatus,
+      this.orderId,
+      this.orderNo,
+      this.productId,
+      this.product,
+      this.quantity,
+      this.sellerId,
+      this.shippingCharge,
+      this.userId,
+      this.iV,
+      this.createdAt,
+      this.updatedAt});
 
   OrderDetails.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -166,7 +166,7 @@ class OrderDetails {
     orderNo = json['orderNo'];
     productId = json['productId'];
     product =
-    json['product'] != null ? new Product.fromJson(json['product']) : null;
+        json['product'] != null ? new Product.fromJson(json['product']) : null;
     quantity = json['quantity'];
     sellerId = json['sellerId'] != null
         ? new SellerId.fromJson(json['sellerId'])
@@ -217,35 +217,35 @@ class Product {
   double? discount;
   String? brand;
   List<String>? images;
-  Null? color;
+  String? color;
   String? lifeStage;
   String? breedSize;
   String? flavor;
   String? productType;
-  Null? materialUsed;
+  String? materialUsed;
   String? vegNonveg;
 
   Product(
       {this.sId,
-        this.sellerId,
-        this.title,
-        this.description,
-        this.category,
-        this.subCategory,
-        this.weight,
-        this.unit,
-        this.price,
-        this.discountedPrice,
-        this.discount,
-        this.brand,
-        this.images,
-        this.color,
-        this.lifeStage,
-        this.breedSize,
-        this.flavor,
-        this.productType,
-        this.materialUsed,
-        this.vegNonveg});
+      this.sellerId,
+      this.title,
+      this.description,
+      this.category,
+      this.subCategory,
+      this.weight,
+      this.unit,
+      this.price,
+      this.discountedPrice,
+      this.discount,
+      this.brand,
+      this.images,
+      this.color,
+      this.lifeStage,
+      this.breedSize,
+      this.flavor,
+      this.productType,
+      this.materialUsed,
+      this.vegNonveg});
 
   Product.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -260,7 +260,9 @@ class Product {
     unit = json['unit'];
     price = json['price'];
     discountedPrice = json['discountedPrice'];
-    discount = (json['discount'].runtimeType == int )?double.tryParse(json['discount'].toString()):json['discount'];
+    discount = (json['discount'].runtimeType == int)
+        ? double.tryParse(json['discount'].toString())
+        : json['discount'];
     brand = json['brand'];
     images = json['images'].cast<String>();
     color = json['color'];
@@ -325,26 +327,26 @@ class SellerId {
 
   SellerId(
       {this.sId,
-        this.isEmailVerified,
-        this.isApproved,
-        this.waiveOffShipping,
-        this.name,
-        this.email,
-        this.mobile,
-        this.countryCode,
-        this.address,
-        this.latitude,
-        this.longitude,
-        this.city,
-        this.companyName,
-        this.country,
-        this.fssaiNumber,
-        this.gstNo,
-        this.logoUrl,
-        this.panNo,
-        this.pincode,
-        this.shippingLimit,
-        this.state});
+      this.isEmailVerified,
+      this.isApproved,
+      this.waiveOffShipping,
+      this.name,
+      this.email,
+      this.mobile,
+      this.countryCode,
+      this.address,
+      this.latitude,
+      this.longitude,
+      this.city,
+      this.companyName,
+      this.country,
+      this.fssaiNumber,
+      this.gstNo,
+      this.logoUrl,
+      this.panNo,
+      this.pincode,
+      this.shippingLimit,
+      this.state});
 
   SellerId.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
