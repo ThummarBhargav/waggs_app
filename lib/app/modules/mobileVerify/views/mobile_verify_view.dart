@@ -9,6 +9,7 @@ import '../controllers/mobile_verify_controller.dart';
 
 class MobileVerifyView extends GetWidget<MobileVerifyController> {
   const MobileVerifyView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -19,8 +20,10 @@ class MobileVerifyView extends GetWidget<MobileVerifyController> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset("assets/logo111.png",height: 100,width: 100),
-                SizedBox(height: 15,),
+                Image.asset("assets/logo111.png", height: 100, width: 100),
+                SizedBox(
+                  height: 15,
+                ),
                 Text(
                   "- Verify Mobile",
                   style: GoogleFonts.roboto(
@@ -29,14 +32,19 @@ class MobileVerifyView extends GetWidget<MobileVerifyController> {
                       fontSize: 24,
                       fontWeight: FontWeight.w400),
                 ),
-                SizedBox(height: 15,),
+                SizedBox(
+                  height: 15,
+                ),
                 Row(
                   children: [
-                    Expanded(flex: 1,
+                    Expanded(
+                      flex: 1,
                       child: Container(
                         alignment: Alignment.center,
                         margin: EdgeInsets.only(left: 15),
-                        padding: EdgeInsets.only(left: 15,),
+                        padding: EdgeInsets.only(
+                          left: 15,
+                        ),
                         decoration: BoxDecoration(
                           color: Colors.grey[300],
                           borderRadius: BorderRadius.only(
@@ -48,8 +56,7 @@ class MobileVerifyView extends GetWidget<MobileVerifyController> {
                         child: TextFormField(
                           controller: controller.countryController.value,
                           keyboardType: TextInputType.phone,
-                          validator: (input) =>
-                          !isNullEmptyOrFalse(input)
+                          validator: (input) => !isNullEmptyOrFalse(input)
                               ? null
                               : "Please Enter Your Country Code",
                           decoration: InputDecoration(
@@ -64,10 +71,13 @@ class MobileVerifyView extends GetWidget<MobileVerifyController> {
                         ),
                       ),
                     ),
-                    Expanded(flex: 3,
+                    Expanded(
+                      flex: 3,
                       child: Container(
                         margin: EdgeInsets.only(left: 15, right: 15),
-                        padding: EdgeInsets.only(left: 15,),
+                        padding: EdgeInsets.only(
+                          left: 15,
+                        ),
                         decoration: BoxDecoration(
                           color: Colors.grey[300],
                           borderRadius: BorderRadius.only(
@@ -80,12 +90,13 @@ class MobileVerifyView extends GetWidget<MobileVerifyController> {
                           keyboardType: TextInputType.number,
                           inputFormatters: [
                             FilteringTextInputFormatter.digitsOnly,
-                            LengthLimitingTextInputFormatter(10,),
+                            LengthLimitingTextInputFormatter(
+                              10,
+                            ),
                             //n is maximum number of characters you want in textfield
                           ],
                           controller: controller.mobileController.value,
-                          validator: (input) =>
-                          !isNullEmptyOrFalse(input)
+                          validator: (input) => !isNullEmptyOrFalse(input)
                               ? null
                               : "Please Enter Your Phone Number",
                           decoration: InputDecoration(
@@ -98,9 +109,7 @@ class MobileVerifyView extends GetWidget<MobileVerifyController> {
                               focusedBorder: InputBorder.none,
                               errorText: (controller.isNumberExist.isTrue)
                                   ? "Mobile number already registered"
-                                  : null
-                          ),
-
+                                  : null),
                           onChanged: (val) {
                             controller.isNumberExist.value = false;
                             if (val.length == 10) {
@@ -112,13 +121,15 @@ class MobileVerifyView extends GetWidget<MobileVerifyController> {
                     ),
                   ],
                 ),
-                SizedBox(height: 25,),
+                SizedBox(
+                  height: 25,
+                ),
                 InkWell(
                   onTap: () {
-                    if(controller.formKey2.currentState!.validate()) {
-    if(controller.isNumberExist.isFalse) {
-      controller.sendOtp();
-    }
+                    if (controller.formKey2.currentState!.validate()) {
+                      if (controller.isNumberExist.isFalse) {
+                        controller.sendOtp();
+                      }
                     }
                   },
                   child: Container(
@@ -133,11 +144,13 @@ class MobileVerifyView extends GetWidget<MobileVerifyController> {
                         bottomLeft: Radius.circular(25),
                       ),
                     ),
-                    child: Text("Send OTP",style: GoogleFonts.roboto(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.white
-                    ),),
+                    child: Text(
+                      "Send OTP",
+                      style: GoogleFonts.roboto(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.white),
+                    ),
                   ),
                 )
               ],

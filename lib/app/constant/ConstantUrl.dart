@@ -1,5 +1,7 @@
-const baseUrl2 = "https://api-stg.waggs.in/api/v1/users/";
-const baseuel1 = "https://api-stg.waggs.in/api/v1/";
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 const baseUrl = "https://api-stg.waggs.in/api/v1/";
 const baseUrl3 = "https://api-stg.waggs.in/api/v1/users/";
 
@@ -32,7 +34,9 @@ class ApiConstant {
   static const transcation = "transaction";
   static const AddPet = "pet/list?skip=0&limit=20";
   static const orderDetail = "order/find/";
-  static const getpet = "pet/list?skip=0&limit=20";
+  static const getpet = "pet/";
+  static const createImageSlot = "file/";
+  static const updatePet = "pet/";
 }
 
 class ArgumentConstant {
@@ -54,11 +58,21 @@ class ArgumentConstant {
   static String orderData = "OrderData";
   static String permission = "permission";
   static String isFromFacebookLogin = "isFromFacebookLogin";
+  static String isFromLinkedinLogin = "isFromLinkedinLogin";
   static String isFromMobile = "isFromMobile";
+  static String facebookUserId = "facebookUserId";
   static String userData = "userData";
   static String socialId = "socialId";
   static String socialType = "socialType";
   static String mobile = "mobile";
   static String orderId = "orderId";
+  static String patId = "patId";
+}
 
+getMySnackBar(
+    {required BuildContext context,
+    required String title,
+    required String message,
+    Color backColor = Colors.green}) {
+  return Get.snackbar(title, message, backgroundColor: backColor);
 }

@@ -29,26 +29,6 @@ class LoginScreenView extends GetWidget<LoginScreenController> {
                   SizedBox(
                     height: 80,
                   ),
-                  SizedBox(
-                    height: 80,
-                    width: 100,
-                    child: LinkedInUserWidget(
-                      appBar: AppBar(title: Text("test")),
-                      redirectUrl: 'https://www.youtube.com/callback',
-                      clientId: "78buicazyv5os8",
-                      clientSecret: "DjMTZ6XgYSxBQkal",
-
-                      onGetUserProfile:
-                          (UserSucceededAction linkedInUser) {
-                        print('Access token ${linkedInUser.user.token.accessToken}');
-                        print('First name: ${linkedInUser.user.firstName!.localized!.label}');
-                        print('Last name: ${linkedInUser.user.lastName!.localized!.label}');
-                      },
-                      onError: (UserFailedAction e) {
-                        print('Error: ${e.toString()}');
-                      },
-                    ),
-                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -210,9 +190,7 @@ class LoginScreenView extends GetWidget<LoginScreenController> {
                       ),
                     ],
                   ),
-                  SizedBox(
-                    height: 10,
-                  ),
+                  SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

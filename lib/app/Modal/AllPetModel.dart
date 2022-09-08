@@ -1,20 +1,13 @@
-import 'package:waggs_app/app/Modal/GetPetModel.dart';
-
-class AllPetModel {
+class PetListModel {
   int? responseCode;
-  List<AllData>? data;
+  Data? data;
   String? message;
 
-  AllPetModel({this.responseCode, this.data, this.message});
+  PetListModel({this.responseCode, this.data, this.message});
 
-  AllPetModel.fromJson(Map<String, dynamic> json) {
+  PetListModel.fromJson(Map<String, dynamic> json) {
     responseCode = json['responseCode'];
-    if (json['data'] != null) {
-      data = <AllData>[];
-      json['data'].forEach((v) {
-        data!.add(new AllData.fromJson(v));
-      });
-    }
+    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
     message = json['message'];
   }
 
@@ -22,20 +15,20 @@ class AllPetModel {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['responseCode'] = this.responseCode;
     if (this.data != null) {
-      data['data'] = this.data!.map((v) => v.toJson()).toList();
+      data['data'] = this.data!.toJson();
     }
     data['message'] = this.message;
     return data;
   }
 }
 
-class AllData {
+class Data {
   List<Pets>? pets;
   int? totalCount;
 
-  AllData({this.pets, this.totalCount});
+  Data({this.pets, this.totalCount});
 
-  AllData.fromJson(Map<String, dynamic> json) {
+  Data.fromJson(Map<String, dynamic> json) {
     if (json['pets'] != null) {
       pets = <Pets>[];
       json['pets'].forEach((v) {
@@ -67,19 +60,21 @@ class Pets {
   Subscription? subscription;
   String? age;
   String? breed;
+  String? image;
 
   Pets(
       {this.sId,
-        this.user,
-        this.name,
-        this.gender,
-        this.uniqueNo,
-        this.createdAt,
-        this.updatedAt,
-        this.iV,
-        this.subscription,
-        this.age,
-        this.breed});
+      this.user,
+      this.name,
+      this.gender,
+      this.uniqueNo,
+      this.createdAt,
+      this.updatedAt,
+      this.iV,
+      this.subscription,
+      this.age,
+      this.breed,
+      this.image});
 
   Pets.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -95,6 +90,7 @@ class Pets {
         : null;
     age = json['age'];
     breed = json['breed'];
+    image = json['image'];
   }
 
   Map<String, dynamic> toJson() {
@@ -112,6 +108,7 @@ class Pets {
     }
     data['age'] = this.age;
     data['breed'] = this.breed;
+    data['image'] = this.image;
     return data;
   }
 }
@@ -131,16 +128,16 @@ class Subscription {
 
   Subscription(
       {this.appointmentLimit,
-        this.sId,
-        this.user,
-        this.planId,
-        this.expiryDate,
-        this.pet,
-        this.transaction,
-        this.amount,
-        this.createdAt,
-        this.updatedAt,
-        this.iV});
+      this.sId,
+      this.user,
+      this.planId,
+      this.expiryDate,
+      this.pet,
+      this.transaction,
+      this.amount,
+      this.createdAt,
+      this.updatedAt,
+      this.iV});
 
   Subscription.fromJson(Map<String, dynamic> json) {
     appointmentLimit = json['appointmentLimit'];

@@ -1,4 +1,4 @@
-  import 'dart:convert';
+import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -17,22 +17,20 @@ import '../../../constant/SizeConstant.dart';
 import '../../../routes/app_pages.dart';
 
 class PlaneController extends GetxController {
-
-  PlanModel planModel =  PlanModel();
+  PlanModel planModel = PlanModel();
   subscriprion subscriptions = subscriprion();
   Transaction? transactionList;
   RxList<PlanData> planList = RxList<PlanData>([]);
-List respons=[];
-  List respons1=[];
+  List respons = [];
+  List respons1 = [];
   PetModel petModel = PetModel();
- Data1? data ;
+  Data1? data;
   static const platform = const MethodChannel("razorpay_flutter");
   late Razorpay _razorpay;
   @override
   void onInit() {
     AllPlans();
     super.onInit();
-
   }
 
   @override
@@ -56,8 +54,7 @@ List respons=[];
     if (!isNullEmptyOrFalse(planModel.data)) {
       planModel.data!.forEach((element) {
         planList.add(element);
-      }
-      );
+      });
     }
   }
 
@@ -65,66 +62,65 @@ List respons=[];
     _razorpay = Razorpay();
 
     _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
-    _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR,  _handlePaymentError);
+    _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
     _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
-    if((box.read(ArgumentConstant.isUserLogin) == null)){
+    if ((box.read(ArgumentConstant.isUserLogin) == null)) {
       Get.toNamed(Routes.LOGIN_SCREEN);
-    }
-    else
-      {
+    } else {
       print('Bearer ${box.read(ArgumentConstant.token)}');
-        var url = Uri.parse(baseUrl + ApiConstant.PlansPlayment);
-        var response;
-        await http.post(url, body: {
-          'planId': '${data.id}',
-          'amount': '${data.amount}'
-        }, headers: {
-          'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
-        }
-        ).then((value) {
-          response = value;
-        });
-        respons.add(response.body);
-        print(jsonDecode(response.body).runtimeType);
-        dynamic result = jsonDecode(response.body);
-        subscriptions = subscriprion.fromJson(result);
-        print('Response status: ${response.statusCode}');
-        print('Response body: ${response.body}');
-        if (response.statusCode == 200) {
-            transactionList=subscriptions.data!.transaction;
-          var options = {
-            "key": "${ApiConstant.paymentKey}",
-            "amount": data.amount!.toInt() * 100,
-            "name": "Waggs",
-            "description": data.name.toString(),
-            "order_id":"${subscriptions.data!.order!.id}",
-            "timeout": "180",
-            "currency": "INR",
-            'send_sms_hash': true,
-            "prefill": {"contact": "${box.read(ArgumentConstant.phone)}", "email": "${box.read(ArgumentConstant.email)}"},
-            "external": {
-              "wallets": ["paytm"]
-            }
-          };
-          try {
-            _razorpay.open(options);
-          } catch (e) {
-            print(e.toString());
+      var url = Uri.parse(baseUrl + ApiConstant.PlansPlayment);
+      var response;
+      await http.post(url, body: {
+        'planId': '${data.id}',
+        'amount': '${data.amount}'
+      }, headers: {
+        'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+      }).then((value) {
+        response = value;
+      });
+      respons.add(response.body);
+      print(jsonDecode(response.body).runtimeType);
+      dynamic result = jsonDecode(response.body);
+      subscriptions = subscriprion.fromJson(result);
+      print('Response status: ${response.statusCode}');
+      print('Response body: ${response.body}');
+      if (response.statusCode == 200) {
+        transactionList = subscriptions.data!.transaction;
+        var options = {
+          "key": "${ApiConstant.paymentKey}",
+          "amount": data.amount!.toInt() * 100,
+          "name": "Waggs",
+          "description": data.name.toString(),
+          "order_id": "${subscriptions.data!.order!.id}",
+          "timeout": "180",
+          "currency": "INR",
+          'send_sms_hash': true,
+          "prefill": {
+            "contact": "${box.read(ArgumentConstant.phone)}",
+            "email": "${box.read(ArgumentConstant.email)}"
+          },
+          "external": {
+            "wallets": ["paytm"]
           }
-        }else{
-          ErrorResponse res = ErrorResponse.fromJson(jsonDecode(response.body));
-          Get.snackbar("Error", res.message.toString(),
-              snackPosition: SnackPosition.BOTTOM,
-              backgroundColor: Colors.red,
-              colorText: Colors.white);
+        };
+        try {
+          _razorpay.open(options);
+        } catch (e) {
+          print(e.toString());
         }
-        print('Response status: ${response.statusCode}');
-        print('Response body: ${response.body}');
-
+      } else {
+        ErrorResponse res = ErrorResponse.fromJson(jsonDecode(response.body));
+        Get.snackbar("Error", res.message.toString(),
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.red,
+            colorText: Colors.white);
+      }
+      print('Response status: ${response.statusCode}');
+      print('Response body: ${response.body}');
     }
   }
 
-  updateTrans(String paymentId,String OrderId,String Signature) async {
+  updateTrans(String paymentId, String OrderId, String Signature) async {
     Dio dio = Dio();
     Options option = Options(headers: {
       'Content-Type': 'application/json',
@@ -133,8 +129,10 @@ List respons=[];
     });
     try {
       var response = await dio.put(
-        baseUrl + ApiConstant.transcation+"/${subscriptions.data!.transaction!.sId}",
-        data:{
+        baseUrl +
+            ApiConstant.transcation +
+            "/${subscriptions.data!.transaction!.sId}",
+        data: {
           "paymentDetails": {
             "paymentId": "${paymentId}",
             "orderId": "${OrderId}",
@@ -144,33 +142,33 @@ List respons=[];
         options: option,
       );
       print("UPDATE=========>" + response.toString());
-      if (response.statusCode == 200||response.statusCode == 201) {
+      if (response.statusCode == 200 || response.statusCode == 201) {
         print(response.data);
         // print(jsonDecode(response.data).runtimeType);
         // dynamic result = jsonDecode(response.data);
         // print('${result}');
-       petModel = PetModel.fromJson(response.data);
-        data=petModel.data;
+        petModel = PetModel.fromJson(response.data);
+        data = petModel.data;
         print('petid=====${petModel.data!.pet}');
         print('petid=====${data!.pet}');
-        Get.toNamed(Routes.ADD_PET,arguments: data);
-      }
-      else if(response.statusCode == 400){
-
-      }
-      else{
-
-      }
-
-    } on SocketException {
-
-    }
-
+        String petId = "";
+        if (!isNullEmptyOrFalse(petModel.data)) {
+          if (!isNullEmptyOrFalse(petModel.data!.pet)) {
+            petId = petModel.data!.pet!;
+          }
+        }
+        Get.toNamed(Routes.ADD_PET, arguments: {
+          ArgumentConstant.patId: petId,
+        });
+      } else if (response.statusCode == 400) {
+      } else {}
+    } on SocketException {}
   }
 
   void _handlePaymentSuccess(PaymentSuccessResponse response) {
     print('Success Response: $response');
-    updateTrans(response.paymentId.toString(),response.orderId.toString(),response.signature.toString());
+    updateTrans(response.paymentId.toString(), response.orderId.toString(),
+        response.signature.toString());
     Get.snackbar("Success", "Payment Done",
         snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.green);
   }
@@ -182,7 +180,4 @@ List respons=[];
   void _handleExternalWallet(ExternalWalletResponse response) {
     print('External SDK Response: $response');
   }
-
-
 }
-

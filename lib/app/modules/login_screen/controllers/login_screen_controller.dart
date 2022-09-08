@@ -39,7 +39,6 @@ class LoginScreenController extends GetxController {
   List respons = [];
   @override
   void onInit() {
-
     super.onInit();
   }
 
@@ -132,6 +131,12 @@ class LoginScreenController extends GetxController {
     late LoginResult loginResult;
     await FacebookAuth.instance.login(permissions: ['email']).then((value) {
       loginResult = value;
+      if (!isNullEmptyOrFalse(loginResult.accessToken)) {
+        if (!isNullEmptyOrFalse(loginResult.accessToken!.userId)) {
+          box.write(
+              ArgumentConstant.facebookUserId, loginResult.accessToken!.userId);
+        }
+      }
     }).catchError((error) {
       print("Error := $error");
     });
@@ -158,7 +163,9 @@ class LoginScreenController extends GetxController {
             print("Maja response := ${linkedInUser.user.userId}");
             if (!isNullEmptyOrFalse(linkedInUser.user.userId)) {
               await socialLoginApi(
-                  socialId: linkedInUser.user.userId!, socialType: "linkedin");
+                  socialId: linkedInUser.user.userId!,
+                  socialType: "linkedin",
+                  userData: linkedInUser);
             }
           },
         ),
@@ -167,7 +174,10 @@ class LoginScreenController extends GetxController {
     );
   }
 
-  socialLoginApi({required String socialId, required String socialType}) async {
+  socialLoginApi(
+      {required String socialId,
+      required String socialType,
+      required UserSucceededAction userData}) async {
     Dio dio = Dio();
     await dio.post(ApiConstant.socialLoginApi, data: {
       "socialId": socialId,
@@ -175,13 +185,24 @@ class LoginScreenController extends GetxController {
     }).then((value) {
       print("My Response :=  $value");
     }).catchError((error) {
+      DioError dioError = error as DioError;
+      print(dioError);
+      if (!isNullEmptyOrFalse(dioError.response)) {
+        if (dioError.response!.statusCode == 404) {
+          Get.toNamed(Routes.MOBILE_VERIFY, arguments: {
+            ArgumentConstant.isFromLinkedinLogin: true,
+            ArgumentConstant.userData: userData,
+          });
+        }
+      }
+
       print("Error := $error");
     });
   }
 
   Future<void> LoginUser() async {
     try {
-      var url = Uri.parse(baseUrl2 + ApiConstant.loginUsers);
+      var url = Uri.parse(baseUrl3 + ApiConstant.loginUsers);
       var response = await http.post(url, body: {
         'email': '${emailController.value.text.trim()}',
         'password': '${passController.value.text.trim()}',
@@ -234,7 +255,7 @@ class LoginScreenController extends GetxController {
       String? socialType,
       required BuildContext context}) async {
     try {
-      var url = Uri.parse(baseUrl2 + ApiConstant.signUpUsers);
+      var url = Uri.parse(baseUrl3 + ApiConstant.signUpUsers);
       var response;
       await http.post(url, body: {
         "name": "${name}",

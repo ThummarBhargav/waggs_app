@@ -1386,7 +1386,7 @@ class _SubCategoryWidgetState extends State<SubCategoryWidget> {
                                   TextButton(
                                     onPressed: () {
                                       controller.isFilterDrawer.value = true;
-                                      ;
+
                                       scaffoldKey.currentState!.openEndDrawer();
                                     },
                                     child: Row(

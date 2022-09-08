@@ -27,8 +27,6 @@ class ForgotPasswordController extends GetxController {
   RxInt secondsRemaining1 = 30.obs;
   late Timer timer1;
 
-
-
   @override
   void onInit() {
     countryController.value.text = "+91";
@@ -36,20 +34,18 @@ class ForgotPasswordController extends GetxController {
     super.onInit();
   }
 
-  getTimer1(){
+  getTimer1() {
     timer1 = Timer.periodic(Duration(seconds: 1), (_) {
       if (secondsRemaining1.value != 0) {
         enableResend1.value = false;
         secondsRemaining1.value--;
         refresh();
-
       } else {
         enableResend1.value = true;
         refresh();
       }
     });
   }
-
 
   @override
   void onReady() {
@@ -61,74 +57,80 @@ class ForgotPasswordController extends GetxController {
     super.onClose();
   }
 
-  Future<void>sendOtp() async {
-    var url = Uri.parse(baseUrl2 + ApiConstant.sendOtpUsers);
+  Future<void> sendOtp() async {
+    var url = Uri.parse(baseUrl3 + ApiConstant.sendOtpUsers);
     var response;
     await http.post(url, body: {
       "email": "forgot",
       "countryCode": "${countryController.value.text.trim()}",
       "mobile": "${mobileController.value.text.trim()}"
     }).then((value) {
-      if(value.statusCode == 200){
+      if (value.statusCode == 200) {
         // Get.offAllNamed(Routes.FORGOT_SEND_OTP);
         Get.to(ForgotSendOtpView());
+      } else {
+        ErrorResponse res = ErrorResponse.fromJson(jsonDecode(value.body));
+        Get.snackbar("Error", res.message.toString(),
+            snackPosition: SnackPosition.BOTTOM,
+            colorText: Colors.white,
+            backgroundColor: Colors.red);
       }
-      else
-        {
-          ErrorResponse res = ErrorResponse.fromJson(jsonDecode(value.body));
-          Get.snackbar("Error", res.message.toString(),snackPosition: SnackPosition.BOTTOM,colorText: Colors.white,backgroundColor: Colors.red);
-        }
       print('Response status: ${value.statusCode}');
       print('Response body: ${value.body}');
-    }).catchError((error){
+    }).catchError((error) {
       print(error);
     });
   }
-  Future<void>verifyotp() async {
-    var url = Uri.parse(baseUrl3+ApiConstant.verifyOtpNewPassword);
+
+  Future<void> verifyotp() async {
+    var url = Uri.parse(baseUrl3 + ApiConstant.verifyOtpNewPassword);
     var response;
     await http.post(url, body: {
       "otp": "${otpController.value.text.trim()}",
       "countryCode": "${countryController.value.text.trim()}",
       "mobile": "${mobileController.value.text.trim()}"
     }).then((value) {
-      if(value.statusCode == 200){
-        FpassModel res  = FpassModel.fromJson(jsonDecode(value.body));
-              box.write(ArgumentConstant.token1, res.data!.newPasswordToken);
-              Get.offAll(ForgotNewPasswordView());
+      if (value.statusCode == 200) {
+        FpassModel res = FpassModel.fromJson(jsonDecode(value.body));
+        box.write(ArgumentConstant.token1, res.data!.newPasswordToken);
+        Get.offAll(ForgotNewPasswordView());
+      } else {
+        FpassModel res = FpassModel.fromJson(jsonDecode(value.body));
+        Get.snackbar("Error", res.message.toString(),
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.red,
+            colorText: Colors.white);
       }
-      else{
-        FpassModel res  = FpassModel.fromJson(jsonDecode(value.body));
-        Get.snackbar("Error", res.message.toString(),snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.red,colorText: Colors.white);
-      }
-      }
-    ).catchError((error){
+    }).catchError((error) {
       print(error);
     });
   }
 
-  Future<void>NewPassword() async {
-    var url = Uri.parse(baseUrl3+ApiConstant.changePassword);
+  Future<void> NewPassword() async {
+    var url = Uri.parse(baseUrl3 + ApiConstant.changePassword);
     var response;
     await http.post(url, body: {
-      "countryCode":"${countryController.value.text.trim()}",
-      "mobile":"${mobileController.value.text.trim()}",
-      "newPasswordToken":"${box.read(ArgumentConstant.token1)}",
-      "password":"${passController.value.text.trim()}"
+      "countryCode": "${countryController.value.text.trim()}",
+      "mobile": "${mobileController.value.text.trim()}",
+      "newPasswordToken": "${box.read(ArgumentConstant.token1)}",
+      "password": "${passController.value.text.trim()}"
     }).then((value) {
-      if(value.statusCode == 200){
-        FpassModel res  = FpassModel.fromJson(jsonDecode(value.body));
-        Get.snackbar("Success", res.message.toString(),snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.green,colorText: Colors.white);
+      if (value.statusCode == 200) {
+        FpassModel res = FpassModel.fromJson(jsonDecode(value.body));
+        Get.snackbar("Success", res.message.toString(),
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.green,
+            colorText: Colors.white);
         Get.offAllNamed(Routes.LOGIN_SCREEN);
+      } else {
+        FpassModel res = FpassModel.fromJson(jsonDecode(value.body));
+        Get.snackbar("Error", res.message.toString(),
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.red,
+            colorText: Colors.white);
       }
-      else{
-        FpassModel res  = FpassModel.fromJson(jsonDecode(value.body));
-        Get.snackbar("Error", res.message.toString(),snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.red,colorText: Colors.white);
-      }
-    }
-    ).catchError((error){
+    }).catchError((error) {
       print(error);
     });
   }
-
 }

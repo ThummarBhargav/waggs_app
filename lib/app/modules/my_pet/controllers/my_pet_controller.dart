@@ -1,19 +1,21 @@
 import 'dart:convert';
-
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:waggs_app/app/Modal/AllPetModel.dart';
 import '../../../../main.dart';
 import '../../../constant/ConstantUrl.dart';
 import '../../../constant/SizeConstant.dart';
 
 class MyPetController extends GetxController {
-
-AllPetModel allPetModel =AllPetModel();
-RxList<AllData> AllpetList = RxList<AllData>([]);
+  RefreshController refreshController = RefreshController();
+  RxList<Pets> allPetList = RxList<Pets>([]);
+  RxBool hasData = false.obs;
+  RxInt itemCount = 0.obs;
   @override
   void onInit() {
-    GetAllpet();
+    getAllPet(context: Get.context!);
     super.onInit();
   }
 
@@ -27,22 +29,28 @@ RxList<AllData> AllpetList = RxList<AllData>([]);
     super.onClose();
   }
 
-  GetAllpet() async {
-    var url = Uri.parse(baseUrl+ApiConstant.getpet);
-    var response = await http.get(url,headers: {
-    'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+  getAllPet({required BuildContext context, bool isFromLoading = false}) async {
+    var url = Uri.parse(
+        baseUrl + ApiConstant.getpet + "list?skip=${itemCount.value}&limit=20");
+    var response = await http.get(url, headers: {
+      'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
     });
-    print('response status:${response.request}');
-    print('response status:${response.body}');
-    dynamic result = jsonDecode(response.body);
-    allPetModel = AllPetModel.fromJson(result);
-    print(result);
-    if (!isNullEmptyOrFalse(allPetModel.data)) {
-      allPetModel.data!.forEach((element) {
-        AllpetList.add(element);
+    hasData.value = true;
+    if (response.statusCode == 200) {
+      PetListModel res = PetListModel.fromJson(jsonDecode(response.body));
+      if (!isNullEmptyOrFalse(res)) {
+        if (!isNullEmptyOrFalse(res.data)) {
+          if (!isNullEmptyOrFalse(res.data!.pets)) {
+            res.data!.pets!.forEach((element) {
+              allPetList.add(element);
+            });
+            itemCount.value = allPetList.length;
+            if (isFromLoading) {
+              refreshController.loadComplete();
+            }
+          }
+        }
       }
-      );
     }
   }
-
 }

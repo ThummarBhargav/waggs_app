@@ -13,6 +13,9 @@ dependencies:
   get_storage: ^2.0.3
   otp_text_field:
   dio: ^4.0.6
+  image_picker: ^0.8.5+3
+  get_it: ^7.2.0
+  pull_to_refresh: ^2.0.0
   intl_phone_field:
   cached_network_image:
   syncfusion_flutter_sliders:

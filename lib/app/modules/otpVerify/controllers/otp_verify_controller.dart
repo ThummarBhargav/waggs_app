@@ -23,28 +23,19 @@ class OtpVerifyController extends GetxController {
   String email = '';
   String socialId = '';
   String socialType = '';
-late Timer timer;
-bool isFromMobile = false;
+  late Timer timer;
+  bool isFromMobile = false;
   final count = 0.obs;
   @override
   void onInit() {
-    if(Get.arguments!=null){
-      if(!isNullEmptyOrFalse(Get.arguments[ArgumentConstant.isFromFacebookLogin])){
-        isFromMobile = Get.arguments[ArgumentConstant.isFromMobile];
-        mobileNumber = Get.arguments[ArgumentConstant.mobile];
-        countryCode = Get.arguments[ArgumentConstant.countryCode];
-        name = Get.arguments[ArgumentConstant.name];
-        email = Get.arguments[ArgumentConstant.email];
-        socialId = Get.arguments[ArgumentConstant.socialId];
-        socialType = Get.arguments[ArgumentConstant.socialType];
-
-      }
-      else{
-        isFromMobile = false;
-      }
-    }
-    else{
-      isFromMobile = false;
+    if (Get.arguments != null) {
+      isFromMobile = Get.arguments[ArgumentConstant.isFromMobile];
+      mobileNumber = Get.arguments[ArgumentConstant.mobile];
+      countryCode = Get.arguments[ArgumentConstant.countryCode];
+      name = Get.arguments[ArgumentConstant.name];
+      email = Get.arguments[ArgumentConstant.email];
+      socialId = Get.arguments[ArgumentConstant.socialId];
+      socialType = Get.arguments[ArgumentConstant.socialType];
     }
     super.onInit();
   }
@@ -58,7 +49,8 @@ bool isFromMobile = false;
   void onClose() {
     super.onClose();
   }
-  gettimer(){
+
+  gettimer() {
     timer = Timer.periodic(Duration(seconds: 1), (timer) {
       if (secondsRemaining.value != 0) {
         enableResend.value = false;
@@ -70,8 +62,9 @@ bool isFromMobile = false;
       }
     });
   }
+
   void otpApi(BuildContext context) async {
-    var url = Uri.parse(baseUrl3+ApiConstant.verifyOtpUsers);
+    var url = Uri.parse(baseUrl3 + ApiConstant.verifyOtpUsers);
     var response;
     await http.post(url, body: {
       'countryCode': countryCode,
@@ -80,7 +73,7 @@ bool isFromMobile = false;
     }).then((value) async {
       print(value.statusCode);
       print(value.body);
-      response=value;
+      response = value;
       print(response);
       if (value.statusCode == 200) {
         signUp(context);
@@ -92,21 +85,21 @@ bool isFromMobile = false;
 
   Future<void> signUp(BuildContext context) async {
     try {
-      var url = Uri.parse(baseUrl2 + ApiConstant.signUpUsers);
+      var url = Uri.parse(baseUrl3 + ApiConstant.signUpUsers);
       var response;
       await http.post(url, body: {
-        "name":"${name}",
-        "mobile":"${mobileNumber}",
-        "countryCode":"${countryCode}",
-        "email":"${email}",
-        "socialId":"${socialId}",
-        "socialType":"${socialType}"
+        "name": "${name}",
+        "mobile": "${mobileNumber}",
+        "countryCode": "${countryCode}",
+        "email": "${email}",
+        "socialId": "${socialId}",
+        "socialType": "${socialType}"
       }).then((value) {
         print(value.body);
         response = value;
         if (response.statusCode == 200) {
           SignUpResponseModel res =
-          SignUpResponseModel.fromJson(jsonDecode(response.body));
+              SignUpResponseModel.fromJson(jsonDecode(response.body));
           showDialog(
               barrierDismissible: false,
               builder: (context) {
@@ -161,15 +154,13 @@ bool isFromMobile = false;
                 );
               },
               context: context);
-        }
-        else{
+        } else {
           ErrorResponse res = ErrorResponse.fromJson(jsonDecode(response.body));
           Get.snackbar("Error", res.message.toString());
         }
       }).catchError((error) {
         print(error);
       });
-
     } catch (e) {
       Get.snackbar(
         "Error",
@@ -178,5 +169,4 @@ bool isFromMobile = false;
       );
     }
   }
-
 }
