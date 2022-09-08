@@ -39,6 +39,7 @@ class LoginScreenController extends GetxController {
   List respons = [];
   @override
   void onInit() {
+
     super.onInit();
   }
 

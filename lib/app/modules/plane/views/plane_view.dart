@@ -228,7 +228,7 @@ class PlaneView extends GetView<PlaneController> {
                             ),
                           ],
                         ),
-                        Row(
+                        Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(

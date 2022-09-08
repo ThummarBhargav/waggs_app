@@ -26,6 +26,8 @@ import '../modules/my_account/bindings/my_account_binding.dart';
 import '../modules/my_account/views/my_account_view.dart';
 import '../modules/my_pet/bindings/my_pet_binding.dart';
 import '../modules/my_pet/views/my_pet_view.dart';
+import '../modules/order_detail/bindings/order_detail_binding.dart';
+import '../modules/order_detail/views/order_detail_view.dart';
 import '../modules/order_page/bindings/order_page_binding.dart';
 import '../modules/order_page/views/order_page_view.dart';
 import '../modules/otpVerify/bindings/otp_verify_binding.dart';
@@ -167,6 +169,11 @@ class AppPages {
       name: _Paths.OTP_VERIFY,
       page: () => const OtpVerifyView(),
       binding: OtpVerifyBinding(),
+    ),
+    GetPage(
+      name: _Paths.ORDER_DETAIL,
+      page: () =>  OrderDetailView(),
+      binding: OrderDetailBinding(),
     ),
   ];
 }

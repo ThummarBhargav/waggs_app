@@ -31,6 +31,8 @@ class ApiConstant {
   static const PlansPlayment = "transaction/subscription";
   static const transcation = "transaction";
   static const AddPet = "pet/list?skip=0&limit=20";
+  static const orderDetail = "order/find/";
+  static const getpet = "pet/list?skip=0&limit=20";
 }
 
 class ArgumentConstant {
@@ -57,4 +59,6 @@ class ArgumentConstant {
   static String socialId = "socialId";
   static String socialType = "socialType";
   static String mobile = "mobile";
+  static String orderId = "orderId";
+
 }

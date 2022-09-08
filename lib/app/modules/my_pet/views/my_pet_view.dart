@@ -181,7 +181,7 @@ class MyPetView extends GetView<MyPetController> {
                         children: [
                           InkWell(
                             onTap: (){
-                              Get.toNamed(Routes.ADD_PET);
+                              Get.toNamed(Routes.PLANE);
                             },
                             child: Padding(
                               padding: const EdgeInsets.only(right: 20.0),

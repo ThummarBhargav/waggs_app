@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:linkedin_login/linkedin_login.dart';
 import 'package:waggs_app/app/constant/SizeConstant.dart';
 import 'package:waggs_app/app/modules/mobileVerify/views/mobile_verify_view.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
@@ -27,6 +28,26 @@ class LoginScreenView extends GetWidget<LoginScreenController> {
                 children: [
                   SizedBox(
                     height: 80,
+                  ),
+                  SizedBox(
+                    height: 80,
+                    width: 100,
+                    child: LinkedInUserWidget(
+                      appBar: AppBar(title: Text("test")),
+                      redirectUrl: 'https://www.youtube.com/callback',
+                      clientId: "78buicazyv5os8",
+                      clientSecret: "DjMTZ6XgYSxBQkal",
+
+                      onGetUserProfile:
+                          (UserSucceededAction linkedInUser) {
+                        print('Access token ${linkedInUser.user.token.accessToken}');
+                        print('First name: ${linkedInUser.user.firstName!.localized!.label}');
+                        print('Last name: ${linkedInUser.user.lastName!.localized!.label}');
+                      },
+                      onError: (UserFailedAction e) {
+                        print('Error: ${e.toString()}');
+                      },
+                    ),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

@@ -933,10 +933,7 @@ class TopSellingStoreAllProductsView
                                                   children: [
                                                     InkWell(
                                                       onTap: () {
-                                                        controller
-                                                            .subData[controller
-                                                                .subDataIndex
-                                                                .value]
+                                                        controller.subData[controller.subDataIndex.value]
                                                             .fields!
                                                             .forEach((element) {
                                                           element.isExpanded!
