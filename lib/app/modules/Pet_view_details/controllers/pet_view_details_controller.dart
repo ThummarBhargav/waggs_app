@@ -1,9 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:waggs_app/app/Modal/AllPetModel.dart';
-import 'package:waggs_app/app/Modal/PetModel.dart';
 import 'package:waggs_app/app/Modal/view_pet_details.dart';
 import 'package:waggs_app/app/constant/ConstantUrl.dart';
 import 'package:http/http.dart' as http;
