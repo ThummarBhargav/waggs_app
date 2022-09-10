@@ -1148,7 +1148,7 @@ class _SubCategoryWidgetState extends State<SubCategoryWidget> {
                                     gridDelegate:
                                         SliverGridDelegateWithFixedCrossAxisCount(
                                             crossAxisCount: 2,
-                                            childAspectRatio: 0.75)),
+                                            childAspectRatio: 0.67)),
                               ),
                             ],
                           ),

@@ -1369,7 +1369,7 @@ class TopSellingStoreAllProductsView
                                 gridDelegate:
                                     SliverGridDelegateWithFixedCrossAxisCount(
                                         crossAxisCount: 2,
-                                        childAspectRatio: 0.70)),
+                                        childAspectRatio: 0.65)),
                           ),
                         ],
                       ),
