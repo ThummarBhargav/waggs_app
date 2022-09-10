@@ -15,302 +15,305 @@ class PetViewDetailsView extends GetWidget<PetViewDetailsController> {
     return SafeArea(
       child: Obx(() {
         return Scaffold(
-            body: (controller.hasData.isFalse)
-                ? Center(
-                    child: CircularProgressIndicator(color: Colors.orange),
-                  )
-                : Column(
-                    children: [
-                      Container(
-                        height: 60,
-                        width: double.maxFinite,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    IconButton(
-                                        onPressed: () {
-                                          Get.back();
-                                        },
-                                        icon: Icon(
-                                            Icons.keyboard_backspace_outlined))
-                                  ],
-                                ),
-                                Spacer(),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    // SizedBox(width: 200,),
-                                    IconButton(
-                                        onPressed: () {},
-                                        icon: Icon(
-                                          Icons.search,
-                                          size: 25,
-                                          color: Colors.grey,
-                                        )),
+            body: SingleChildScrollView(
+              child: (controller.hasData.isFalse)
+                  ? Center(
+                      child: CircularProgressIndicator(color: Colors.orange),
+                    )
+                  : Column(
+                      children: [
+                        Container(
+                          height: 60,
+                          width: double.maxFinite,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Row(
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      IconButton(
+                                          onPressed: () {
+                                            Get.back();
+                                          },
+                                          icon: Icon(
+                                              Icons.keyboard_backspace_outlined))
+                                    ],
+                                  ),
+                                  Spacer(),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      // SizedBox(width: 200,),
+                                      IconButton(
+                                          onPressed: () {},
+                                          icon: Icon(
+                                            Icons.search,
+                                            size: 25,
+                                            color: Colors.grey,
+                                          )),
 
-                                    Stack(
-                                      children: [
-                                        IconButton(
-                                            onPressed: () {},
-                                            icon: Icon(
-                                              Icons.shopping_cart,
-                                              size: 25,
-                                              color: Colors.grey[500],
-                                            )),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      width: 8,
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          InkWell(
-                            onTap: () {},
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.only(right: 10.0, top: 10),
-                              child: getcon(
-                                color: Colors.orange,
-                                text: Text(
-                                  "Book Salon",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                width: 120,
-                                height: 45,
-                                alignment: Alignment.center,
+                                      Stack(
+                                        children: [
+                                          IconButton(
+                                              onPressed: () {},
+                                              icon: Icon(
+                                                Icons.shopping_cart,
+                                                size: 25,
+                                                color: Colors.grey[500],
+                                              )),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        width: 8,
+                                      ),
+                                    ],
+                                  ),
+                                ],
                               ),
-                            ),
+                            ],
                           ),
-                        ],
-                      ),
-                      Container(
-                        color: Colors.grey[200],
-                        margin: EdgeInsets.only(top: 10),
-                        height: 300,
-                        width: 360,
-                        child: getImageByLink(
-                          url: controller.petData.image.toString(),
-                          boxFit: BoxFit.cover,
-                          height: 100,
-                          width: 150,
                         ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(left: 10, top: 30),
-                        alignment: AlignmentDirectional.topStart,
-                        child: Text(
-                          textAlign: TextAlign.start,
-                          "${controller.petData.name}",
-                          style: TextStyle(
-                              color: Color.fromRGBO(32, 193, 244, 1),
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(right: 10, left: 10),
-                        padding: EdgeInsets.only(bottom: 10),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.orange, width: 2),
-                          borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(20),
-                              bottomRight: Radius.circular(20),
-                              bottomLeft: Radius.circular(20)),
-                        ),
-                        child: Column(
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Row(
-                              children: [
-                                Container(
-                                  margin: EdgeInsets.only(left: 10, top: 10),
-                                  child: Text(
-                                    "Pet Id",
-                                    style: TextStyle(color: Colors.grey),
-                                  ),
-                                ),
-                                Container(
-                                  margin: EdgeInsets.only(left: 10, top: 10),
-                                  child: Text(
-                                    "${controller.petData.uniqueNo}",
+                            InkWell(
+                              onTap: () {},
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.only(right: 10.0, top: 10),
+                                child: getcon(
+                                  color: Colors.orange,
+                                  text: Text(
+                                    "Book Salon",
                                     style: TextStyle(
-                                        color: Colors.black,
+                                        color: Colors.white,
                                         fontWeight: FontWeight.bold),
                                   ),
-                                )
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Container(
-                                  margin: EdgeInsets.only(left: 10, top: 10),
-                                  child: Text(
-                                    "Gender",
-                                    style: TextStyle(color: Colors.grey),
-                                  ),
+                                  width: 120,
+                                  height: 45,
+                                  alignment: Alignment.center,
                                 ),
-                                Container(
-                                  margin: EdgeInsets.only(left: 10, top: 10),
-                                  child: Text(
-                                    "${controller.petData.gender!.toUpperCase()}",
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                )
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Container(
-                                  margin: EdgeInsets.only(left: 10, top: 10),
-                                  child: Text(
-                                    "Age",
-                                    style: TextStyle(color: Colors.grey),
-                                  ),
-                                ),
-                                controller.petData.age == null
-                                    ? Container(
-                                        margin:
-                                            EdgeInsets.only(left: 10, top: 10),
-                                        child: Text(
-                                          " years old",
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      )
-                                    : Container(
-                                        margin:
-                                            EdgeInsets.only(left: 10, top: 10),
-                                        child: Text(
-                                          "${controller.petData.age} years old",
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      )
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Container(
-                                  margin: EdgeInsets.only(left: 10, top: 10),
-                                  child: Text(
-                                    "Breed",
-                                    style: TextStyle(color: Colors.grey),
-                                  ),
-                                ),
-                                controller.petData.age == null
-                                    ? Container(
-                                        margin:
-                                            EdgeInsets.only(left: 10, top: 10),
-                                        child: Text(
-                                          "",
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      )
-                                    : Container(
-                                        margin:
-                                            EdgeInsets.only(left: 10, top: 10),
-                                        child: Text(
-                                          "${controller.petData.breed}",
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      )
-                              ],
+                              ),
                             ),
                           ],
                         ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        children: [
-                          Container(
-                            margin: EdgeInsets.only(left: 10),
-                            alignment: AlignmentDirectional.topStart,
-                            child: Text(
-                              textAlign: TextAlign.start,
-                              "Subscription Plan:",
-                              style: TextStyle(
-                                  color: Color.fromRGBO(32, 193, 244, 1),
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold),
-                            ),
+                        Container(
+                          color: Colors.grey[200],
+                          margin: EdgeInsets.only(top: 10),
+                          height: 300,
+                          width: 360,
+                          child: getImageByLink(
+                            url: controller.petData.image.toString(),
+                            boxFit: BoxFit.cover,
+                            height: 100,
+                            width: 150,
                           ),
-                        ],
-                      ),
-                      Row(
-                       children: [
-                         Container(
-                           margin: EdgeInsets.only(left: 10,top: 10),
-                           child: Text(
-                             "${controller.petData.subscription!.planId!.toUpperCase()}",
-                             style: TextStyle(
-                                 color: Colors.black,
-                                 fontSize: 20,
-                                 fontWeight: FontWeight.bold),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(left: 10, top: 30),
+                          alignment: AlignmentDirectional.topStart,
+                          child: Text(
+                            textAlign: TextAlign.start,
+                            "${controller.petData.name}",
+                            style: TextStyle(
+                                color: Color.fromRGBO(32, 193, 244, 1),
+                                fontSize: 30,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(right: 10, left: 10),
+                          padding: EdgeInsets.only(bottom: 10),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.orange, width: 2),
+                            borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(20),
+                                bottomRight: Radius.circular(20),
+                                bottomLeft: Radius.circular(20)),
+                          ),
+                          child: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Container(
+                                    margin: EdgeInsets.only(left: 10, top: 10),
+                                    child: Text(
+                                      "Pet Id",
+                                      style: TextStyle(color: Colors.grey),
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.only(left: 10, top: 10),
+                                    child: Text(
+                                      "${controller.petData.uniqueNo}",
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  )
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Container(
+                                    margin: EdgeInsets.only(left: 10, top: 10),
+                                    child: Text(
+                                      "Gender",
+                                      style: TextStyle(color: Colors.grey),
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.only(left: 10, top: 10),
+                                    child: Text(
+                                      "${controller.petData.gender!.toUpperCase()}",
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  )
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Container(
+                                    margin: EdgeInsets.only(left: 10, top: 10),
+                                    child: Text(
+                                      "Age",
+                                      style: TextStyle(color: Colors.grey),
+                                    ),
+                                  ),
+                                  controller.petData.age == null
+                                      ? Container(
+                                          margin:
+                                              EdgeInsets.only(left: 10, top: 10),
+                                          child: Text(
+                                            " years old",
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        )
+                                      : Container(
+                                          margin:
+                                              EdgeInsets.only(left: 10, top: 10),
+                                          child: Text(
+                                            "${controller.petData.age} years old",
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        )
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Container(
+                                    margin: EdgeInsets.only(left: 10, top: 10),
+                                    child: Text(
+                                      "Breed",
+                                      style: TextStyle(color: Colors.grey),
+                                    ),
+                                  ),
+                                  controller.petData.age == null
+                                      ? Container(
+                                          margin:
+                                              EdgeInsets.only(left: 10, top: 10),
+                                          child: Text(
+                                            "",
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        )
+                                      : Container(
+                                          margin:
+                                              EdgeInsets.only(left: 10, top: 10),
+                                          child: Text(
+                                            "${controller.petData.breed}",
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        )
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          children: [
+                            Container(
+                              margin: EdgeInsets.only(left: 10),
+                              alignment: AlignmentDirectional.topStart,
+                              child: Text(
+                                textAlign: TextAlign.start,
+                                "Subscription Plan:",
+                                style: TextStyle(
+                                    color: Color.fromRGBO(32, 193, 244, 1),
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                         children: [
+                           Container(
+                             margin: EdgeInsets.only(left: 10,top: 10),
+                             child: Text(
+                               "${controller.petData.subscription!.planId!.toUpperCase()}",
+                               style: TextStyle(
+                                   color: Colors.black,
+                                   fontSize: 20,
+                                   fontWeight: FontWeight.bold),
+                             ),
                            ),
-                         ),
-                       ],
-                      ),
-                      Row(
-                        children: [
-                          Container(
-                            margin: EdgeInsets.only(left: 10,top: 10),
-                            child:Text(
-                              DateFormat("MM/dd/yyyy").format(
-                                DateTime.parse("${controller.petData.subscription!.createdAt}"),
+                         ],
+                        ),
+                        Row(
+                          children: [
+                            Container(
+                              margin: EdgeInsets.only(left: 10,top: 10),
+                              child:Text(
+                                DateFormat("MM/dd/yyyy").format(
+                                  DateTime.parse("${controller.petData.subscription!.createdAt}"),
+                                ),
+                                style: TextStyle(fontWeight: FontWeight.bold,color: Colors.green,fontSize: 20),
                               ),
-                              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.green,fontSize: 20),
                             ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(left: 10,top: 10),
-                            child:Text("To",
-                              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.green,fontSize: 20),
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(left: 10,top: 10),
-                            child:Text(
-                              DateFormat("MM/dd/yyyy").format(
-                                DateTime.parse("${controller.petData.subscription!.expiryDate}"),
+                            Container(
+                              margin: EdgeInsets.only(left: 10,top: 10),
+                              child:Text("To",
+                                style: TextStyle(fontWeight: FontWeight.bold,color: Colors.green,fontSize: 20),
                               ),
-                              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.green,fontSize: 20),
                             ),
-                          ),
-                        ],
-                      )
-                    ],
-                  ));
+                            Container(
+                              margin: EdgeInsets.only(left: 10,top: 10),
+                              child:Text(
+                                DateFormat("MM/dd/yyyy").format(
+                                  DateTime.parse("${controller.petData.subscription!.expiryDate}"),
+                                ),
+                                style: TextStyle(fontWeight: FontWeight.bold,color: Colors.green,fontSize: 20),
+                              ),
+                            ),
+                          ],
+                        ),
+
+                      ],
+                    ),
+            ));
       }),
     );
   }

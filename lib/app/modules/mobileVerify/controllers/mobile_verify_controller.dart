@@ -111,7 +111,7 @@ class MobileVerifyController extends GetxController {
             ? (!isNullEmptyOrFalse(box.read(ArgumentConstant.facebookUserId)))
                 ? box.read(ArgumentConstant.facebookUserId)
                 : userDataFaceBook!.additionalUserInfo!.providerId.toString()
-            : (9isFromGoogle)
+            : (isFromGoogle)
                 ? userDataGoogle!.uid.toString()
                 : userDataLinkedIn!.user.userId;
         socialType = (isFromFacebook)
