@@ -60,6 +60,7 @@ class ArgumentConstant {
   static String orderData = "OrderData";
   static String permission = "permission";
   static String isFromFacebookLogin = "isFromFacebookLogin";
+  static String isFromGoogleLogin = "isFromGoogleLogin";
   static String isFromLinkedinLogin = "isFromLinkedinLogin";
   static String isFromMobile = "isFromMobile";
   static String facebookUserId = "facebookUserId";

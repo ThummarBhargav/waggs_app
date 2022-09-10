@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart' hide Response;
+import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
@@ -89,7 +90,7 @@ class LoginScreenController extends GetxController {
   Future<User?> signInWithGoogle() async {
     FirebaseAuth auth = FirebaseAuth.instance;
     User? user;
-
+    auth.signOut();
     final GoogleSignIn googleSignIn = GoogleSignIn();
 
     final GoogleSignInAccount? googleSignInAccount =
@@ -105,10 +106,18 @@ class LoginScreenController extends GetxController {
       );
 
       try {
-        final UserCredential userCredential =
-            await auth.signInWithCredential(credential);
+        UserCredential? userCredential;
+        await auth.signInWithCredential(credential).then((value) async {
+          userCredential = value;
 
-        user = userCredential.user;
+          user = userCredential!.user;
+
+          await socialLoginApi(
+              socialId: value.user!.uid,
+              socialType: "facebook",
+              isForGoogle: true,
+              userGoogleData: user);
+        });
       } on FirebaseAuthException catch (e) {
         if (e.code == 'account-exists-with-different-credential') {
           Get.snackbar("Sign in Failed",
@@ -129,12 +138,18 @@ class LoginScreenController extends GetxController {
   Future<UserCredential> signInWithFacebook() async {
     // Trigger the sign-in flow
     late LoginResult loginResult;
-    await FacebookAuth.instance.login(permissions: ['email']).then((value) {
+    await FacebookAuth.instance
+        .login(permissions: ['email']).then((value) async {
       loginResult = value;
       if (!isNullEmptyOrFalse(loginResult.accessToken)) {
         if (!isNullEmptyOrFalse(loginResult.accessToken!.userId)) {
           box.write(
               ArgumentConstant.facebookUserId, loginResult.accessToken!.userId);
+          await socialLoginApi(
+              socialId: loginResult.accessToken!.userId,
+              socialType: "facebook",
+              isForFacebook: true,
+              userFacebookData: loginResult);
         }
       }
     }).catchError((error) {
@@ -165,7 +180,8 @@ class LoginScreenController extends GetxController {
               await socialLoginApi(
                   socialId: linkedInUser.user.userId!,
                   socialType: "linkedin",
-                  userData: linkedInUser);
+                  isForLinkedIn: true,
+                  userLinkedInData: linkedInUser);
             }
           },
         ),
@@ -177,24 +193,37 @@ class LoginScreenController extends GetxController {
   socialLoginApi(
       {required String socialId,
       required String socialType,
-      required UserSucceededAction userData}) async {
+      UserSucceededAction? userLinkedInData,
+      LoginResult? userFacebookData,
+      User? userGoogleData,
+      bool isForFacebook = false,
+      bool isForLinkedIn = false,
+      bool isForGoogle = false}) async {
     Dio dio = Dio();
     await dio.post(ApiConstant.socialLoginApi, data: {
       "socialId": socialId,
       "socialType": socialType,
     }).then((value) {
       print("My Response :=  $value");
+      if (!isNullEmptyOrFalse(value)) {
+        box.write(ArgumentConstant.isUserLogin, true);
+        Get.offAllNamed(Routes.HOME);
+      }
     }).catchError((error) {
       DioError dioError = error as DioError;
       print(dioError);
       if (!isNullEmptyOrFalse(dioError.response)) {
         if (dioError.response!.statusCode == 404) {
           Get.toNamed(Routes.MOBILE_VERIFY, arguments: {
-            ArgumentConstant.isFromLinkedinLogin: true,
-            ArgumentConstant.userData: userData,
+            ArgumentConstant.isFromLinkedinLogin: isForLinkedIn,
+            ArgumentConstant.isFromFacebookLogin: isForFacebook,
+            ArgumentConstant.isFromGoogleLogin: isForGoogle,
+            ArgumentConstant.userData: (isForFacebook)
+                ? userFacebookData
+                : (isForGoogle)
+                    ? userGoogleData
+                    : userLinkedInData,
           });
-        } else {
-          Get.offAllNamed(Routes.HOME);
         }
       }
 

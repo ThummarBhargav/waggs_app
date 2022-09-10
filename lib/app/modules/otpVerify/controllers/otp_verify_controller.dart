@@ -141,7 +141,7 @@ class OtpVerifyController extends GetxController {
                   actions: [
                     TextButton(
                         onPressed: () {
-                          Get.toNamed(Routes.HOME);
+                          Get.offAllNamed(Routes.LOGIN_SCREEN);
                         },
                         child: Text(
                           "Login",
@@ -157,7 +157,8 @@ class OtpVerifyController extends GetxController {
               context: context);
         } else {
           ErrorResponse res = ErrorResponse.fromJson(jsonDecode(response.body));
-          Get.snackbar("Error", res.message.toString());
+          Get.snackbar("Error", res.message.toString(),
+              snackPosition: SnackPosition.BOTTOM);
         }
       }).catchError((error) {
         print(error);

@@ -213,14 +213,7 @@ class LoginScreenView extends GetWidget<LoginScreenController> {
                     children: [
                       InkWell(
                         onTap: () {
-                          controller.signInWithFacebook().then((value) {
-                            if (!isNullEmptyOrFalse(value)) {
-                              Get.toNamed(Routes.MOBILE_VERIFY, arguments: {
-                                ArgumentConstant.isFromFacebookLogin: true,
-                                ArgumentConstant.userData: value,
-                              });
-                            }
-                          });
+                          controller.signInWithFacebook();
                         },
                         child: Container(
                           height: 40,

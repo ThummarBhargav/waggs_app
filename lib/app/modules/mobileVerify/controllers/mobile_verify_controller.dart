@@ -20,8 +20,10 @@ class MobileVerifyController extends GetxController {
   RxBool isNumberExist = false.obs;
   bool isFromFacebook = false;
   bool isFromLinkedIn = false;
+  bool isFromGoogle = false;
   UserCredential? userDataFaceBook;
   UserSucceededAction? userDataLinkedIn;
+  User? userDataGoogle;
   String name = '';
   String email = '';
   String socialId = '';
@@ -44,9 +46,17 @@ class MobileVerifyController extends GetxController {
       } else {
         isFromLinkedIn = false;
       }
+      if (!isNullEmptyOrFalse(
+          Get.arguments[ArgumentConstant.isFromGoogleLogin])) {
+        isFromGoogle = Get.arguments[ArgumentConstant.isFromGoogleLogin];
+        userDataGoogle = Get.arguments[ArgumentConstant.userData];
+      } else {
+        isFromLinkedIn = false;
+      }
     } else {
       isFromFacebook = false;
       isFromLinkedIn = false;
+      isFromGoogle = false;
     }
     super.onInit();
   }
@@ -88,17 +98,27 @@ class MobileVerifyController extends GetxController {
       if (value.statusCode == 200) {
         name = (isFromFacebook)
             ? userDataFaceBook!.user!.displayName.toString()
-            : userDataLinkedIn!.user.localizedFirstName.toString();
+            : (isFromGoogle)
+                ? userDataGoogle!.displayName.toString()
+                : userDataLinkedIn!.user.localizedFirstName.toString();
         email = (isFromFacebook)
             ? userDataFaceBook!.user!.email.toString()
-            : userDataLinkedIn!
-                .user.email!.elements![0].handleDeep!.emailAddress!;
+            : (isFromGoogle)
+                ? userDataGoogle!.email.toString()
+                : userDataLinkedIn!
+                    .user.email!.elements![0].handleDeep!.emailAddress!;
         socialId = (isFromFacebook)
             ? (!isNullEmptyOrFalse(box.read(ArgumentConstant.facebookUserId)))
                 ? box.read(ArgumentConstant.facebookUserId)
                 : userDataFaceBook!.additionalUserInfo!.providerId.toString()
-            : userDataLinkedIn!.user.userId!;
-        socialType = (isFromFacebook) ? "facebook" : "linkedin";
+            : (9isFromGoogle)
+                ? userDataGoogle!.uid.toString()
+                : userDataLinkedIn!.user.userId;
+        socialType = (isFromFacebook)
+            ? "facebook"
+            : (isFromGoogle)
+                ? "google"
+                : "linkedin";
         Get.toNamed(Routes.OTP_VERIFY, arguments: {
           ArgumentConstant.isFromMobile: true,
           ArgumentConstant.name: name,
