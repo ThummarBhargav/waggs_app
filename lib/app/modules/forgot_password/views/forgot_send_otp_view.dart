@@ -15,8 +15,10 @@ class ForgotSendOtpView extends GetWidget<ForgotPasswordController> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset("assets/logo111.png",height: 100,width: 100),
-                SizedBox(height: 15,),
+                Image.asset("assets/logo111.png", height: 100, width: 100),
+                SizedBox(
+                  height: 15,
+                ),
                 Text(
                   "- VERIFY MOBILE",
                   style: GoogleFonts.roboto(
@@ -25,7 +27,9 @@ class ForgotSendOtpView extends GetWidget<ForgotPasswordController> {
                       fontSize: 24,
                       fontWeight: FontWeight.w400),
                 ),
-                SizedBox(height: 15,),
+                SizedBox(
+                  height: 15,
+                ),
                 Container(
                   margin: EdgeInsets.only(left: 15),
                   padding: const EdgeInsets.all(8.0),
@@ -41,8 +45,10 @@ class ForgotSendOtpView extends GetWidget<ForgotPasswordController> {
                   children: [
                     Expanded(
                       child: Container(
-                        margin: EdgeInsets.only(left: 15,right: 15),
-                        padding: EdgeInsets.only(left: 15,),
+                        margin: EdgeInsets.only(left: 15, right: 15),
+                        padding: EdgeInsets.only(
+                          left: 15,
+                        ),
                         decoration: BoxDecoration(
                           color: Colors.grey[300],
                           borderRadius: BorderRadius.only(
@@ -71,7 +77,9 @@ class ForgotSendOtpView extends GetWidget<ForgotPasswordController> {
                     ),
                   ],
                 ),
-                SizedBox(height: 10,),
+                SizedBox(
+                  height: 10,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -79,26 +87,31 @@ class ForgotSendOtpView extends GetWidget<ForgotPasswordController> {
                       margin: EdgeInsets.only(left: 22),
                       child: InkWell(
                         onTap: () {
-                          if(controller.enableResend1.value == true)
-                          {
-                            controller.secondsRemaining1=30.obs;
-                            controller.sendOtp();
+                          if (controller.enableResend.value == true) {
+                            controller.secondsRemaining = 30.obs;
+                            controller.gettimer();
                             controller.refresh();
+                            controller.sendOtp();
                           }
                         },
-
-                        child:Obx(()=>Text(controller.enableResend1.value==true?"Resend Otp":"Resend Otp ${controller.secondsRemaining1} Sec",
-                          style: GoogleFonts.raleway(
-                              color:  controller.enableResend1.value==true?Color.fromRGBO(32, 193, 244, 1):
-                              Colors.grey,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600
-                          ),
-                        )),),
+                        child: Obx(() => Text(
+                              controller.enableResend.value == true
+                                  ? "Resend Otp"
+                                  : "Resend Otp ${controller.secondsRemaining}",
+                              style: GoogleFonts.raleway(
+                                  color: controller.enableResend.value == true
+                                      ? Color.fromRGBO(32, 193, 244, 1)
+                                      : Colors.grey,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600),
+                            )),
+                      ),
                     ),
                   ],
                 ),
-                SizedBox(height: 60,),
+                SizedBox(
+                  height: 60,
+                ),
                 InkWell(
                   onTap: () {
                     controller.verifyotp();
@@ -115,11 +128,13 @@ class ForgotSendOtpView extends GetWidget<ForgotPasswordController> {
                         bottomLeft: Radius.circular(25),
                       ),
                     ),
-                    child: Text("verify",style: GoogleFonts.roboto(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.white
-                    ),),
+                    child: Text(
+                      "verify",
+                      style: GoogleFonts.roboto(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.white),
+                    ),
                   ),
                 )
               ],
@@ -156,4 +171,3 @@ class ForgotSendOtpView extends GetWidget<ForgotPasswordController> {
 //     );
 //   }
 // }
-

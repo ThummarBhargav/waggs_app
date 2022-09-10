@@ -23,25 +23,25 @@ class ForgotPasswordController extends GetxController {
 
   RxBool passwordVisible = false.obs;
   RxBool ispass = false.obs;
-  RxBool enableResend1 = false.obs;
-  RxInt secondsRemaining1 = 30.obs;
+  RxBool enableResend = false.obs;
+  RxInt secondsRemaining = 30.obs;
   late Timer timer1;
 
   @override
   void onInit() {
     countryController.value.text = "+91";
-    getTimer1();
+    // getTimer();
     super.onInit();
   }
 
-  getTimer1() {
+  getTimer() {
     timer1 = Timer.periodic(Duration(seconds: 1), (_) {
-      if (secondsRemaining1.value != 0) {
-        enableResend1.value = false;
-        secondsRemaining1.value--;
+      if (secondsRemaining.value != 0) {
+        enableResend.value = false;
+        secondsRemaining.value--;
         refresh();
       } else {
-        enableResend1.value = true;
+        enableResend.value = true;
         refresh();
       }
     });
