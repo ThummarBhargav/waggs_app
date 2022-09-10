@@ -13,12 +13,10 @@ import 'package:waggs_app/main.dart';
 class PetViewDetailsController extends GetxController {
   //TODO: Implement PetViewDetailsController
   RxBool hasData = false.obs;
-  RefreshController refreshController = RefreshController();
-  pet1 pet11 = pet1();
-  RxList<pet1> petview = RxList<pet1>([]);
+  PetData petData = PetData();
   @override
   void onInit() {
-    var Data1= Get.arguments;
+    var Data1 = Get.arguments;
     MyPet(context: Get.context!);
     super.onInit();
   }
@@ -32,9 +30,9 @@ class PetViewDetailsController extends GetxController {
   void onClose() {
     super.onClose();
   }
+
   MyPet({required BuildContext context, bool isFromLoading = false}) async {
-    var url = Uri.parse(
-        baseUrl + ApiConstant.getpet +"${Get.arguments}");
+    var url = Uri.parse(baseUrl + ApiConstant.getpet + "${Get.arguments}");
     var response = await http.get(url, headers: {
       'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
     });
@@ -43,14 +41,9 @@ class PetViewDetailsController extends GetxController {
       pet1 res = pet1.fromJson(jsonDecode(response.body));
       if (!isNullEmptyOrFalse(res)) {
         if (!isNullEmptyOrFalse(res.data)) {
-              petview.add(pet11);
-            if (isFromLoading) {
-              refreshController.loadComplete();
-            }
-
+          petData = res.data!;
         }
       }
     }
   }
-
 }

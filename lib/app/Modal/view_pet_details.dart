@@ -1,13 +1,13 @@
 class pet1 {
   int? responseCode;
-  Data? data;
+  PetData? data;
   String? message;
 
   pet1({this.responseCode, this.data, this.message});
 
   pet1.fromJson(Map<String, dynamic> json) {
     responseCode = json['responseCode'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? PetData.fromJson(json['data']) : null;
     message = json['message'];
   }
 
@@ -22,7 +22,7 @@ class pet1 {
   }
 }
 
-class Data {
+class PetData {
   String? sId;
   String? user;
   String? name;
@@ -32,21 +32,27 @@ class Data {
   String? updatedAt;
   int? iV;
   Subscription? subscription;
+  String? age;
+  String? breed;
+  String? image;
   int? remainingAppointments;
 
-  Data(
+  PetData(
       {this.sId,
-        this.user,
-        this.name,
-        this.gender,
-        this.uniqueNo,
-        this.createdAt,
-        this.updatedAt,
-        this.iV,
-        this.subscription,
-        this.remainingAppointments});
+      this.user,
+      this.name,
+      this.gender,
+      this.uniqueNo,
+      this.createdAt,
+      this.updatedAt,
+      this.iV,
+      this.subscription,
+      this.age,
+      this.breed,
+      this.image,
+      this.remainingAppointments});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  PetData.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
     user = json['user'];
     name = json['name'];
@@ -58,6 +64,9 @@ class Data {
     subscription = json['subscription'] != null
         ? new Subscription.fromJson(json['subscription'])
         : null;
+    age = json['age'];
+    breed = json['breed'];
+    image = json['image'];
     remainingAppointments = json['remainingAppointments'];
   }
 
@@ -74,6 +83,9 @@ class Data {
     if (this.subscription != null) {
       data['subscription'] = this.subscription!.toJson();
     }
+    data['age'] = this.age;
+    data['breed'] = this.breed;
+    data['image'] = this.image;
     data['remainingAppointments'] = this.remainingAppointments;
     return data;
   }
@@ -94,16 +106,16 @@ class Subscription {
 
   Subscription(
       {this.sId,
-        this.appointmentLimit,
-        this.user,
-        this.planId,
-        this.expiryDate,
-        this.pet,
-        this.transaction,
-        this.amount,
-        this.createdAt,
-        this.updatedAt,
-        this.iV});
+      this.appointmentLimit,
+      this.user,
+      this.planId,
+      this.expiryDate,
+      this.pet,
+      this.transaction,
+      this.amount,
+      this.createdAt,
+      this.updatedAt,
+      this.iV});
 
   Subscription.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];

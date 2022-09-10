@@ -9,15 +9,14 @@ class PetViewDetailsView extends GetWidget<PetViewDetailsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('PetViewDetailsView'),
-        centerTitle: true,
-      ),
-      body: Container(
-        height: 10,
-        width: 10,
-        child: Text("${controller.petview.first.data!.sId}"),
-      )
-    );
+        appBar: AppBar(
+          title: const Text('PetViewDetailsView'),
+          centerTitle: true,
+        ),
+        body: Container(
+          height: 100,
+          width: 100,
+          child: Text("${controller.petData.user}"),
+        ));
   }
 }
