@@ -115,9 +115,9 @@ class OtpVerifyView extends GetWidget<OtpVerifyController> {
                         onTap: () {
                           if (controller.enableResend.value == true) {
                             controller.secondsRemaining = 30.obs;
-                            controller.gettimer();
+                            // controller.gettimer();
                             controller.refresh();
-                            // controller.sendOtp();
+                            controller.sendOtp();
                           }
                         },
                         child: Obx(() => Text(

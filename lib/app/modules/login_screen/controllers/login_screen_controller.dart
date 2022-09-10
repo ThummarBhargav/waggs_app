@@ -193,6 +193,8 @@ class LoginScreenController extends GetxController {
             ArgumentConstant.isFromLinkedinLogin: true,
             ArgumentConstant.userData: userData,
           });
+        } else {
+          Get.offAllNamed(Routes.HOME);
         }
       }
 
