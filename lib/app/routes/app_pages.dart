@@ -8,6 +8,8 @@ import '../modules/My_Account_new_changed_And_Old_Password_Change/bindings/my_ac
 import '../modules/My_Account_new_changed_And_Old_Password_Change/views/my_account_new_changed_and_old_password_change_view.dart';
 import '../modules/OTP_screen/bindings/o_t_p_screen_binding.dart';
 import '../modules/OTP_screen/views/o_t_p_screen_view.dart';
+import '../modules/Pet_view_details/bindings/pet_view_details_binding.dart';
+import '../modules/Pet_view_details/views/pet_view_details_view.dart';
 import '../modules/Top_selling_Store_all_Products/bindings/top_selling_store_all_products_binding.dart';
 import '../modules/Top_selling_Store_all_Products/views/top_selling_store_all_products_view.dart';
 import '../modules/View_All_My_Cart/bindings/view_all_my_cart_binding.dart';
@@ -181,6 +183,11 @@ class AppPages {
       name: _Paths.CART_DRAWER,
       page: () => const CartDrawerView(),
       binding: CartDrawerBinding(),
+    ),
+    GetPage(
+      name: _Paths.PET_VIEW_DETAILS,
+      page: () => const PetViewDetailsView(),
+      binding: PetViewDetailsBinding(),
     ),
   ];
 }

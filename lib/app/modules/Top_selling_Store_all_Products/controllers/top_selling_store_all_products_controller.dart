@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:waggs_app/app/Modal/CartCountModel.dart';
 import 'package:waggs_app/app/Modal/CartProductModel.dart';
@@ -18,9 +19,11 @@ import '../../../routes/app_pages.dart';
 
 class TopSellingStoreAllProductsController extends GetxController {
   //TODO: Implement TopSellingStoreAllProductsController
+  RefreshController refreshController = RefreshController();
   Sellers data = Get.arguments;
   GetAllproduct getAllproduct = GetAllproduct();
   RxList<Products0> mainProductList = RxList<Products0>([]);
+  RxInt productsCount = 0.obs;
   RxBool hasData = false.obs;
   RxBool drawer = false.obs;
   RxBool drawer2 = false.obs;
@@ -68,6 +71,7 @@ class TopSellingStoreAllProductsController extends GetxController {
   RxString sidValues = "".obs;
   RxString subSidValues = "".obs;
   RxBool isFilterDrawer = false.obs;
+  RxBool isEnablePullUp = true.obs;
   CartProduct cartProduct = CartProduct();
   RxList<Details> cartProductList = RxList<Details>([]);
   RxBool isLoading = false.obs;
@@ -92,11 +96,16 @@ class TopSellingStoreAllProductsController extends GetxController {
     super.onClose();
   }
 
-  getProduct() async {
-    hasData.value = false;
-    mainProductList.clear();
-    var URl = Uri.parse(
-        baseUrl + ApiConstant.getAllProductUsers + "?sellerId=${data.sId}");
+  getProduct({bool isForLoading = false, String sort = ""}) async {
+    if (!isForLoading) {
+      hasData.value = false;
+      isEnablePullUp.value = true;
+      productsCount.value = 0;
+      mainProductList.clear();
+    }
+    var URl = Uri.parse(baseUrl +
+        ApiConstant.getAllProductUsers +
+        "?sellerId=${data.sId}&skip=${productsCount.value}&limit=10&sort=$sort");
     var response;
     await http.get(URl).then((value) {
       hasData.value = true;
@@ -107,13 +116,25 @@ class TopSellingStoreAllProductsController extends GetxController {
     print(response.body);
     dynamic result = jsonDecode(response.body);
     storeModule = StoreModule.fromJson(result);
-    if (!isNullEmptyOrFalse(storeModule.data)) {
-      if (!isNullEmptyOrFalse(storeModule.data!.products)) {
-        storeModule.data!.products!.forEach((element) {
-          mainProductList.add(element);
-        });
+    if (storeModule.responseCode == 404) {
+      if (isForLoading) {
+        refreshController.loadComplete();
+        isEnablePullUp.value = false;
+      }
+    } else {
+      if (!isNullEmptyOrFalse(storeModule.data)) {
+        if (!isNullEmptyOrFalse(storeModule.data!.products)) {
+          storeModule.data!.products!.forEach((element) {
+            mainProductList.add(element);
+          });
+          productsCount.value = mainProductList.length;
+          if (isForLoading) {
+            refreshController.loadComplete();
+          }
+        }
       }
     }
+
     mainProductList.refresh();
   }
 

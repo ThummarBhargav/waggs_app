@@ -72,6 +72,49 @@ class OrderPageView extends GetView<OrderPageController> {
                                   element["GroupBy"].toString().split("_")[0],
                               order: GroupedListOrder.DESC,
                               useStickyGroupSeparators: false,
+                              groupHeaderBuilder: (val) {
+                                return Container(
+                                  margin: EdgeInsets.only(
+                                      right: 10, left: 10, top: 20),
+                                  padding: EdgeInsets.only(top: 10, bottom: 10),
+                                  child: Row(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          "ORDER #" +
+                                              val["GroupBy"]
+                                                  .toString()
+                                                  .split("_")[0],
+                                          style: const TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ),
+                                      Spacer(),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          "Placed on:" +
+                                              DateFormat("dd/MM/yyyy").format(
+                                                  DateTime.parse(val["GroupBy"]
+                                                      .toString()
+                                                      .split("_")[1])),
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 15),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  decoration: BoxDecoration(
+                                      color: Colors.grey[300],
+                                      border: Border(
+                                          left: BorderSide(color: Colors.grey),
+                                          right: BorderSide(color: Colors.grey),
+                                          top: BorderSide(color: Colors.grey))),
+                                );
+                              },
                               groupSeparatorBuilder: (String value) {
                                 return Container(
                                   margin: EdgeInsets.only(
@@ -92,10 +135,15 @@ class OrderPageView extends GetView<OrderPageController> {
                                       Spacer(),
                                       // Padding(
                                       //   padding: const EdgeInsets.all(8.0),
-                                      //   child: Text("Placed on:"+
-                                      //     DateFormat("MM/dd/yyyy").format(
-                                      //         DateTime.parse(value.toString().split("_")[0])),
-                                      //     style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),
+                                      //   child: Text(
+                                      //     "Placed on:" +
+                                      //         DateFormat("MM/dd/yyyy").format(
+                                      //             DateTime.parse(value
+                                      //                 .toString()
+                                      //                 .split("_")[0])),
+                                      //     style: TextStyle(
+                                      //         fontWeight: FontWeight.bold,
+                                      //         fontSize: 15),
                                       //   ),
                                       // ),
                                     ],
