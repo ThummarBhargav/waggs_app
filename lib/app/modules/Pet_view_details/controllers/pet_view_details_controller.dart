@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:waggs_app/app/Modal/view_pet_details.dart';
 import 'package:waggs_app/app/constant/ConstantUrl.dart';
 import 'package:http/http.dart' as http;
@@ -42,5 +44,64 @@ class PetViewDetailsController extends GetxController {
         }
       }
     }
+  }
+
+  dilogBox(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            contentPadding: EdgeInsets.all(0.0),
+            content: Container(
+              height: 200,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Call to book your appointment",
+                    style: GoogleFonts.publicSans(
+                      color: Colors.black,
+                      fontSize: 18,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Text(
+                    "+91 9741588018",
+                    style: GoogleFonts.publicSans(
+                      color: Color(0xffeb9d4f),
+                      fontSize: 30,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    "Pet Id: ${petData.uniqueNo}",
+                    style: GoogleFonts.publicSans(
+                      color: Colors.black,
+                      fontSize: 24,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 10.0),
+                    child: Align(
+                      alignment: Alignment.bottomRight,
+                      child: Container(
+                          child: ElevatedButton(
+                        onPressed: () async {
+                          const url = 'tel:9741588018';
+                          await launch(url);
+                        },
+                        child: Text("Call Now"),
+                      )),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
   }
 }
