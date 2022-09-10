@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:waggs_app/app/routes/app_pages.dart';
 
 import '../controllers/plane_controller.dart';
 

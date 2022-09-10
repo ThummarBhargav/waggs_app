@@ -501,7 +501,7 @@ class OrderDetailView extends GetWidget<OrderDetailController> {
 
   showAlertDialog(BuildContext context) {
     // set up the buttons
-    Widget cancelButton = FlatButton(
+    Widget cancelButton = InkWell(
       child: Text(
         "No",
         style: TextStyle(
@@ -510,11 +510,11 @@ class OrderDetailView extends GetWidget<OrderDetailController> {
           fontWeight: FontWeight.bold,
         ),
       ),
-      onPressed: () {
+      onTap: () {
         Get.back();
       },
     );
-    Widget continueButton = FlatButton(
+    Widget continueButton = InkWell(
       child: Text(
         "Yes",
         style: TextStyle(
@@ -523,7 +523,7 @@ class OrderDetailView extends GetWidget<OrderDetailController> {
           fontWeight: FontWeight.bold,
         ),
       ),
-      onPressed: () {
+      onTap: () {
         if ((controller.orderDetailModel!.data!.status == "CANCELED")) {
           Get.back();
 
