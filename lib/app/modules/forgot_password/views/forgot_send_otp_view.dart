@@ -89,7 +89,7 @@ class ForgotSendOtpView extends GetWidget<ForgotPasswordController> {
                         onTap: () {
                           if (controller.enableResend.value == true) {
                             controller.secondsRemaining = 30.obs;
-                            controller.gettimer();
+                            controller.getTimer();
                             controller.refresh();
                             controller.sendOtp();
                           }

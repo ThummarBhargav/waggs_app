@@ -579,7 +579,7 @@ class PetViewDetailsView extends GetWidget<PetViewDetailsController> {
                                                       left: 10, top: 0),
                                                   child: Text(
                                                     DateFormat.yMd()
-                                                        .add_jms()
+                                                        .add_jm()
                                                         .format(
                                                           DateTime.parse(
                                                               "${controller.appointmentslist[index].date}"),
@@ -591,6 +591,39 @@ class PetViewDetailsView extends GetWidget<PetViewDetailsController> {
                                                         fontSize: 15),
                                                   ),
                                                 ),
+                                                Center(
+                                                  child: InkWell(
+                                                    onTap: () {},
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 10, top: 5),
+                                                      child: getcon(
+                                                        color: Colors.orange,
+                                                        text: Text(
+                                                          "CANCEL",
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.white,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
+                                                        width: 100,
+                                                        height: 40,
+                                                        alignment:
+                                                            Alignment.center,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                Center(
+                                                    child: Container(
+                                                  margin: EdgeInsets.only(
+                                                      bottom: 5, top: 5),
+                                                  child: Text(
+                                                      "${controller.appointmentslist[index].status} confirmation"),
+                                                )),
                                               ],
                                             ),
                                           );
