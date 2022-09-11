@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:waggs_app/app/constant/Container.dart';
 import 'package:waggs_app/app/constant/SizeConstant.dart';
@@ -85,7 +87,9 @@ class PetViewDetailsView extends GetWidget<PetViewDetailsController> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                controller.dilogBox(context);
+                              },
                               child: Padding(
                                 padding:
                                     const EdgeInsets.only(right: 10.0, top: 10),
@@ -107,7 +111,7 @@ class PetViewDetailsView extends GetWidget<PetViewDetailsController> {
                         ),
                         Container(
                           color: Colors.grey[200],
-                          margin: EdgeInsets.only(top: 10),
+                          margin: EdgeInsets.only(top: 10, left: 13, right: 13),
                           height: 300,
                           width: 360,
                           child: getImageByLink(
@@ -176,7 +180,7 @@ class PetViewDetailsView extends GetWidget<PetViewDetailsController> {
                                   Container(
                                     margin: EdgeInsets.only(left: 10, top: 10),
                                     child: Text(
-                                      "${controller.petData.gender!.toUpperCase()}",
+                                      "${controller.petData.gender.toString().toUpperCase()}",
                                       style: TextStyle(
                                           color: Colors.black,
                                           fontWeight: FontWeight.bold),
@@ -433,6 +437,167 @@ class PetViewDetailsView extends GetWidget<PetViewDetailsController> {
                             ),
                           ],
                         ),
+                        Divider(
+                          thickness: 2,
+                          indent: 10,
+                          endIndent: 10,
+                        ),
+                        (controller.hasData1.isFalse)
+                            ? Center(
+                                child: CircularProgressIndicator(
+                                    color: Colors.orange),
+                              )
+                            : (controller.appointmentslist.isEmpty)
+                                ? Center(
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Container(
+                                          height: 300,
+                                          width: 250,
+                                          child: SvgPicture.asset(
+                                              "assets/NoData.svg"),
+                                        ),
+                                        Text(
+                                          "No data found",
+                                          style: GoogleFonts.raleway(
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: 20,
+                                              color: Color.fromRGBO(
+                                                  33, 43, 54, 1)),
+                                        ),
+                                        SizedBox(
+                                          height: 20,
+                                        )
+                                      ],
+                                    ),
+                                  )
+                                : Column(
+                                    children: [
+                                      Container(
+                                        margin: EdgeInsets.only(
+                                            left: 10, bottom: 10),
+                                        alignment:
+                                            AlignmentDirectional.topStart,
+                                        child: Text(
+                                          textAlign: TextAlign.start,
+                                          "- APPOINTMENT LIST",
+                                          style: TextStyle(
+                                              color: Colors.orange,
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ),
+                                      ListView.builder(
+                                        shrinkWrap: true,
+                                        physics: NeverScrollableScrollPhysics(),
+                                        itemCount:
+                                            controller.appointmentslist.length,
+                                        itemBuilder: (context, index) {
+                                          return Container(
+                                            margin: EdgeInsets.only(
+                                                left: 10,
+                                                right: 10,
+                                                bottom: 10),
+                                            width: double.infinity,
+                                            decoration: BoxDecoration(
+                                                border: Border.all()),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Container(
+                                                  margin: EdgeInsets.only(
+                                                      left: 10,
+                                                      top: 10,
+                                                      bottom: 10),
+                                                  child: Text(
+                                                    "${controller.appointmentslist[index].pet!.uniqueNo}",
+                                                    style: TextStyle(
+                                                        color: Color.fromRGBO(
+                                                            32, 193, 244, 1),
+                                                        fontSize: 15,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                ),
+                                                Container(
+                                                  margin: EdgeInsets.only(
+                                                      left: 10, bottom: 5),
+                                                  child: Text(
+                                                    "Dr.${controller.appointmentslist[index].vet!.name}",
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Colors.black,
+                                                      fontSize: 15,
+                                                    ),
+                                                  ),
+                                                ),
+                                                Container(
+                                                  margin: EdgeInsets.only(
+                                                      left: 10, bottom: 0),
+                                                  child: Text(
+                                                    "${controller.appointmentslist[index].vet!.degree}",
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Colors.black,
+                                                      fontSize: 15,
+                                                    ),
+                                                  ),
+                                                ),
+                                                Container(
+                                                  margin: EdgeInsets.only(
+                                                      left: 10, bottom: 0),
+                                                  child: Text(
+                                                    "${controller.appointmentslist[index].vet!.experience} years of experience",
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Colors.black,
+                                                      fontSize: 15,
+                                                    ),
+                                                  ),
+                                                ),
+                                                Container(
+                                                  margin: EdgeInsets.only(
+                                                      left: 10, bottom: 3),
+                                                  child: Text(
+                                                    "${controller.appointmentslist[index].vet!.address}",
+                                                    style: TextStyle(
+                                                      color: Colors.grey[500],
+                                                      fontSize: 15,
+                                                    ),
+                                                  ),
+                                                ),
+                                                Container(
+                                                  margin: EdgeInsets.only(
+                                                      left: 10, top: 0),
+                                                  child: Text(
+                                                    DateFormat.yMd()
+                                                        .add_jms()
+                                                        .format(
+                                                          DateTime.parse(
+                                                              "${controller.appointmentslist[index].date}"),
+                                                        ),
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.black,
+                                                        fontSize: 15),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          );
+                                        },
+                                      )
+                                    ],
+                                  )
                       ],
                     )
                   ],

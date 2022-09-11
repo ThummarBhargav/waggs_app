@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:waggs_app/app/Modal/view_pet_details.dart';
+import 'package:waggs_app/app/Modal/appointments_models.dart';
+import 'package:waggs_app/app/Modal/view_pet_details_models.dart';
 import 'package:waggs_app/app/constant/ConstantUrl.dart';
 import 'package:http/http.dart' as http;
 import 'package:waggs_app/app/constant/SizeConstant.dart';
@@ -12,11 +13,15 @@ import 'package:waggs_app/main.dart';
 class PetViewDetailsController extends GetxController {
   //TODO: Implement PetViewDetailsController
   RxBool hasData = false.obs;
+  RxBool hasData1 = false.obs;
   PetData petData = PetData();
+  RxList<Appointments> appointmentslist = RxList([]);
+  Appointments1 appointments1 = Appointments1();
   @override
   void onInit() {
     var Data1 = Get.arguments;
     MyPet(context: Get.context!);
+    appointmentApi(context: Get.context!);
     super.onInit();
   }
 
@@ -103,5 +108,26 @@ class PetViewDetailsController extends GetxController {
             ),
           );
         });
+  }
+
+  appointmentApi(
+      {required BuildContext context, bool isFromLoading = false}) async {
+    var url = Uri.parse(
+        "https://api-stg.waggs.in/api/v1/appointment/list?skip=0&limit=15&petId=${Get.arguments}&status=&search=");
+    var response = await http.get(url, headers: {
+      'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+    });
+    hasData1.value = true;
+    dynamic result = jsonDecode(response.body);
+    appointments1 = Appointments1.fromJson(result);
+    if (response.statusCode == 200) {
+      if (!isNullEmptyOrFalse(appointments1)) {
+        if (!isNullEmptyOrFalse(appointments1.data!.appointments)) {
+          appointments1.data!.appointments!.forEach((element) {
+            appointmentslist.add(element);
+          });
+        }
+      }
+    }
   }
 }
