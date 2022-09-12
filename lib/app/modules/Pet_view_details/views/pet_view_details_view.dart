@@ -580,7 +580,7 @@ class PetViewDetailsView extends GetWidget<PetViewDetailsController> {
                                                   margin: EdgeInsets.only(
                                                       left: 10, bottom: 3),
                                                   child: Text(
-                                                    "${controller.appointmentslist[index].vet!.address}",
+                                                    "${controller.appointmentslist[index].vet!.address}.${controller.appointmentslist[index].vet!.city},${controller.appointmentslist[index].vet!.state},${controller.appointmentslist[index].vet!.country}",
                                                     style: TextStyle(
                                                       color: Colors.grey[500],
                                                       fontSize: 15,
@@ -616,32 +616,70 @@ class PetViewDetailsView extends GetWidget<PetViewDetailsController> {
                                                       padding:
                                                           const EdgeInsets.only(
                                                               left: 10, top: 5),
-                                                      child: getcon(
-                                                        color: Colors.orange,
-                                                        text: Text(
-                                                          "CANCEL",
-                                                          style: TextStyle(
+                                                      child: controller
+                                                                  .appointmentslist[
+                                                                      index]
+                                                                  .status ==
+                                                              "canceled"
+                                                          ? Container(
+                                                              margin: EdgeInsets
+                                                                  .only(
+                                                                      bottom:
+                                                                          5),
+                                                              child: Text(
+                                                                  "CANCELED"))
+                                                          : getcon(
                                                               color:
-                                                                  Colors.white,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold),
-                                                        ),
-                                                        width: 100,
-                                                        height: 40,
-                                                        alignment:
-                                                            Alignment.center,
-                                                      ),
+                                                                  Colors.orange,
+                                                              text: Text(
+                                                                "CANCEL",
+                                                                style: TextStyle(
+                                                                    color: Colors
+                                                                        .white,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold),
+                                                              ),
+                                                              width: 100,
+                                                              height: 40,
+                                                              alignment:
+                                                                  Alignment
+                                                                      .center,
+                                                            ),
                                                     ),
                                                   ),
                                                 ),
-                                                Center(
-                                                    child: Container(
-                                                  margin: EdgeInsets.only(
-                                                      bottom: 5, top: 5),
-                                                  child: Text(
-                                                      "${controller.appointmentslist[index].status} confirmation"),
-                                                )),
+                                                controller
+                                                            .appointmentslist[
+                                                                index]
+                                                            .status ==
+                                                        "canceled"
+                                                    ? (controller
+                                                                .appointmentslist[
+                                                                    index]
+                                                                .reason ==
+                                                            ""
+                                                        ? Container()
+                                                        : Center(
+                                                            child: Container(
+                                                            margin:
+                                                                EdgeInsets.only(
+                                                                    bottom: 5,
+                                                                    left: 15),
+                                                            child: Text(
+                                                              "Reason : ${controller.appointmentslist[index].reason}",
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .red),
+                                                            ),
+                                                          )))
+                                                    : Center(
+                                                        child: Container(
+                                                        margin: EdgeInsets.only(
+                                                            bottom: 5, top: 5),
+                                                        child: Text(
+                                                            "${controller.appointmentslist[index].status} confirmation"),
+                                                      )),
                                               ],
                                             ),
                                           );

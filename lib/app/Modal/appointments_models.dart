@@ -62,6 +62,7 @@ class Appointments {
   String? createdAt;
   String? updatedAt;
   int? iV;
+  String? reason;
 
   Appointments(
       {this.paymentStatus,
@@ -76,7 +77,8 @@ class Appointments {
       this.subscription,
       this.createdAt,
       this.updatedAt,
-      this.iV});
+      this.iV,
+      this.reason});
 
   Appointments.fromJson(Map<String, dynamic> json) {
     paymentStatus = json['paymentStatus'];
@@ -92,6 +94,7 @@ class Appointments {
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
     iV = json['__v'];
+    reason = json['reason'];
   }
 
   Map<String, dynamic> toJson() {
@@ -115,6 +118,7 @@ class Appointments {
     data['createdAt'] = this.createdAt;
     data['updatedAt'] = this.updatedAt;
     data['__v'] = this.iV;
+    data['reason'] = this.reason;
     return data;
   }
 }
@@ -231,7 +235,9 @@ class Vet {
     name = json['name'];
     email = json['email'];
     mobile = json['mobile'];
-    countryCode = json['countryCode'];
+    countryCode = (json['countryCode'].runtimeType == int)
+        ? double.parse(json['countryCode'].toString())
+        : json['countryCode'];
     address = json['address'];
     latitude = (json['latitude'].runtimeType == int)
         ? double.parse(json['latitude'].toString())
@@ -239,9 +245,7 @@ class Vet {
     longitude = (json['longitude'].runtimeType == int)
         ? double.parse(json['longitude'].toString())
         : json['longitude'];
-    city = (json['city'].runtimeType == int)
-        ? double.parse(json['city'].toString())
-        : json['city'];
+    city = json['city'];
     consultationLimit = json['consultationLimit'];
     country = json['country'];
     degree = json['degree'];
@@ -295,6 +299,9 @@ class Pet {
   String? updatedAt;
   int? iV;
   String? subscription;
+  String? age;
+  String? breed;
+  String? image;
 
   Pet(
       {this.sId,
@@ -305,7 +312,10 @@ class Pet {
       this.createdAt,
       this.updatedAt,
       this.iV,
-      this.subscription});
+      this.subscription,
+      this.age,
+      this.breed,
+      this.image});
 
   Pet.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -317,6 +327,9 @@ class Pet {
     updatedAt = json['updatedAt'];
     iV = json['__v'];
     subscription = json['subscription'];
+    age = json['age'];
+    breed = json['breed'];
+    image = json['image'];
   }
 
   Map<String, dynamic> toJson() {
@@ -330,6 +343,9 @@ class Pet {
     data['updatedAt'] = this.updatedAt;
     data['__v'] = this.iV;
     data['subscription'] = this.subscription;
+    data['age'] = this.age;
+    data['breed'] = this.breed;
+    data['image'] = this.image;
     return data;
   }
 }

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:waggs_app/app/Modal/UpdateAppointmentModel.dart';
 import 'package:waggs_app/app/Modal/appointments_models.dart';
 import 'package:waggs_app/app/Modal/view_pet_details_models.dart';
 import 'package:waggs_app/app/constant/ConstantUrl.dart';
@@ -263,8 +264,8 @@ class PetViewDetailsController extends GetxController {
     )
         .then((value) {
       response = value;
-      print("UPDATE=========" + response.toString());
       if (response.statusCode == 200 || response.statusCode == 201) {
+        Get.to(Routes.MY_PET);
         print(response.data);
       } else if (response.statusCode == 400) {
       } else {}
