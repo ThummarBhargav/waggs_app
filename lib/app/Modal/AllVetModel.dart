@@ -118,7 +118,7 @@ class Vets {
     degree = json['degree'];
     experience = json['experience'];
     description = json['description'];
-    latitude = (json['latitude'].runtimeType== int)?double.parse(json['latitude'].toString()):json['latitude'];
+      latitude = (json['latitude'].runtimeType== int)?double.parse(json['latitude'].toString()):json['latitude'];
     longitude = (json['longitude'].runtimeType== int)?double.parse(json['longitude'].toString()):json['longitude'];
     instaLink = json['instaLink'];
     fbLink = json['fbLink'];
