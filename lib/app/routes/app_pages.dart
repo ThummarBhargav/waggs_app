@@ -12,6 +12,8 @@ import '../modules/Pet_view_details/bindings/pet_view_details_binding.dart';
 import '../modules/Pet_view_details/views/pet_view_details_view.dart';
 import '../modules/Top_selling_Store_all_Products/bindings/top_selling_store_all_products_binding.dart';
 import '../modules/Top_selling_Store_all_Products/views/top_selling_store_all_products_view.dart';
+import '../modules/Vet_view_details/bindings/vet_view_details_binding.dart';
+import '../modules/Vet_view_details/views/vet_view_details_view.dart';
 import '../modules/View_All_My_Cart/bindings/view_all_my_cart_binding.dart';
 import '../modules/View_All_My_Cart/views/view_all_my_cart_view.dart';
 import '../modules/add_pet/bindings/add_pet_binding.dart';
@@ -195,6 +197,11 @@ class AppPages {
       name: _Paths.BOOK_APPOIMENT,
       page: () => const BookAppoimentView(),
       binding: BookAppoimentBinding(),
+    ),
+    GetPage(
+      name: _Paths.VET_VIEW_DETAILS,
+      page: () => const VetViewDetailsView(),
+      binding: VetViewDetailsBinding(),
     ),
   ];
 }

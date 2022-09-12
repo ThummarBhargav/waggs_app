@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:waggs_app/app/constant/Container.dart';
+import 'package:waggs_app/app/routes/app_pages.dart';
 
 import '../../../constant/SizeConstant.dart';
 import '../controllers/book_appoiment_controller.dart';
@@ -299,13 +300,19 @@ class BookAppoimentView extends GetView<BookAppoimentController> {
                                                     alignment: Alignment.center,
                                                     text: Text("VIEW DETAILS",style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500),)
                                                   ),
-                                                  getcon(
-                                                      color: Colors.cyan,
-                                                      width:100,
-                                                      height: 40,
-                                                      alignment: Alignment.center,
-                                                      text: Text("SELECT",style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500)
-                                                  ))
+                                                  InkWell(
+                                                    onTap: (){
+                                                      Get.toNamed(Routes.VET_VIEW_DETAILS,arguments:controller
+                                                          .vetList[index].sId);
+                                                    },
+                                                    child: getcon(
+                                                        color: Colors.cyan,
+                                                        width:100,
+                                                        height: 40,
+                                                        alignment: Alignment.center,
+                                                        text: Text("SELECT",style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500)
+                                                    )),
+                                                  )
                                                 ]
                                               )
                                             ],
