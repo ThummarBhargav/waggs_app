@@ -134,127 +134,6 @@ class ProductListScreenController extends GetxController {
     }
   }
 
-  getFilterData({required List reqList, required BuildContext context}) async {
-    Map<String, dynamic> queryParameters = {};
-    queryParameters["skip"] = "0";
-    queryParameters["limit"] = "10";
-    queryParameters["search"] = "";
-    queryParameters["sort"] = "newArrivals";
-    queryParameters["category"] = "${CategoriId}";
-    queryParameters["subCategory"] = "${SubCategoriId}";
-    queryParameters["priceMin"] = "";
-    queryParameters["priceMax"] = "";
-    queryParameters["discountMin"] = "0";
-    queryParameters["discountMax"] = "0";
-    queryParameters["sellerId"] = "62dd1f3f8fc27b7077099db4";
-    queryParameters["latitude"] = "21.1702401";
-    queryParameters["longitude"] = "72.83106070000001";
-    if (!isNullEmptyOrFalse(reqList)) {
-      reqList.forEach((element) {
-        queryParameters[element[0]] = (isNullEmptyOrFalse(element[1]))
-            ? element[1]
-            : jsonEncode(element[1]);
-      });
-    }
-
-    print("Query Parameter := ${queryParameters}");
-    print("Query Parameter := ${queryParameters}");
-
-    // var url = Uri.https(baseUrl,ApiConstant.getAllProductUsers,queryParameters);
-
-    var uri = Uri.https("api.waggs.in", '/api/v1/products', queryParameters);
-    print(uri);
-    var response;
-    await http.get(uri).then((value) {
-      response = value;
-      mainProductList.clear();
-    });
-    dynamic result = jsonDecode(response.body);
-    storeModule = StoreModule.fromJson(result);
-
-    if (response.statusCode == 200) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text("Success.......")));
-      if (!isNullEmptyOrFalse(storeModule.data)) {
-        if (!isNullEmptyOrFalse(storeModule.data!.products)) {
-          storeModule.data!.products!.forEach((element) {
-            mainProductList.add(element);
-          });
-        }
-      }
-      mainProductList.refresh();
-    } else if (response.statusCode == 404) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text("Product Not Found")));
-      print("Product Not Found");
-    } else {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text("Something went wrong.......")));
-      print("Something went wrong.......");
-    }
-  }
-
-  getTopFilterData(
-      {required List reqList, required BuildContext context}) async {
-    Map<String, dynamic> queryParameters = {};
-    queryParameters["skip"] = "0";
-    queryParameters["limit"] = "10";
-    queryParameters["search"] = "";
-    queryParameters["sort"] = "newArrivals";
-    queryParameters["category"] = "${CategoriId}";
-    queryParameters["subCategory"] = "${SubCategoriId}";
-    queryParameters["priceMin"] = "";
-    queryParameters["priceMax"] = "";
-    queryParameters["discountMin"] = "0";
-    queryParameters["discountMax"] = "0";
-    queryParameters["sellerId"] = "";
-    queryParameters["latitude"] = "21.1702401";
-    queryParameters["longitude"] = "72.83106070000001";
-    if (!isNullEmptyOrFalse(reqList)) {
-      reqList.forEach((element) {
-        queryParameters[element[0]] = (isNullEmptyOrFalse(element[1]))
-            ? element[1]
-            : jsonEncode(element[1]);
-      });
-    }
-
-    print("Query Parameter := ${queryParameters}");
-    print("Query Parameter := ${queryParameters}");
-
-    // var url = Uri.https(baseUrl,ApiConstant.getAllProductUsers,queryParameters);
-
-    var uri = Uri.https("api.waggs.in", '/api/v1/products', queryParameters);
-    print(uri);
-    var response;
-    await http.get(uri).then((value) {
-      response = value;
-      mainProductList.clear();
-    });
-    dynamic result = jsonDecode(response.body);
-    storeModule = StoreModule.fromJson(result);
-
-    if (response.statusCode == 200) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text("Success.......")));
-      if (!isNullEmptyOrFalse(storeModule.data)) {
-        if (!isNullEmptyOrFalse(storeModule.data!.products)) {
-          storeModule.data!.products!.forEach((element) {
-            mainProductList.add(element);
-          });
-        }
-      }
-      mainProductList.refresh();
-    } else if (response.statusCode == 404) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text("Product Not Found")));
-      print("Product Not Found");
-    } else {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text("Something went wrong.......")));
-      print("Something went wrong.......");
-    }
-  }
-
   CartProductApi() async {
     hasData.value = false;
     cartProductList.clear();
@@ -510,6 +389,66 @@ class ProductListScreenController extends GetxController {
         e.toString(),
         snackPosition: SnackPosition.BOTTOM,
       );
+    }
+  }
+
+  getFilterData({required List reqList, required BuildContext context}) async {
+    Map<String, dynamic> queryParameters = {};
+    queryParameters["skip"] = "0";
+    queryParameters["limit"] = "10";
+    queryParameters["search"] = "";
+    queryParameters["sort"] = "newArrivals";
+    queryParameters["category"] = "${CategoriId}";
+    queryParameters["subCategory"] = "${SubCategoriId}";
+    queryParameters["priceMin"] = "";
+    queryParameters["priceMax"] = "";
+    queryParameters["discountMin"] = "0";
+    queryParameters["discountMax"] = "0";
+    queryParameters["sellerId"] = "${data.sId}";
+    queryParameters["latitude"] = "21.1702401";
+    queryParameters["longitude"] = "72.83106070000001";
+    if (!isNullEmptyOrFalse(reqList)) {
+      reqList.forEach((element) {
+        queryParameters[element[0]] = (isNullEmptyOrFalse(element[1]))
+            ? element[1]
+            : jsonEncode(element[1]);
+      });
+    }
+
+    print("Query Parameter := ${queryParameters}");
+    print("Query Parameter := ${queryParameters}");
+
+    // var url = Uri.https(baseUrl,ApiConstant.getAllProductUsers,queryParameters);
+
+    var uri = Uri.https("api.waggs.in", '/api/v1/products', queryParameters);
+    print(uri);
+    var response;
+    await http.get(uri).then((value) {
+      response = value;
+      mainProductList.clear();
+    });
+    dynamic result = jsonDecode(response.body);
+    storeModule = StoreModule.fromJson(result);
+
+    if (response.statusCode == 200) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text("Success.......")));
+      if (!isNullEmptyOrFalse(storeModule.data)) {
+        if (!isNullEmptyOrFalse(storeModule.data!.products)) {
+          storeModule.data!.products!.forEach((element) {
+            mainProductList.add(element);
+          });
+        }
+      }
+      mainProductList.refresh();
+    } else if (response.statusCode == 404) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text("Product Not Found")));
+      print("Product Not Found");
+    } else {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text("Something went wrong.......")));
+      print("Something went wrong.......");
     }
   }
 }

@@ -47,8 +47,6 @@ class TopSellingStoreAllProductsView
 
             controller.AllCategory();
             controller.SubCategory();
-
-            print("Value :::=== $val");
           },
           endDrawer: GestureDetector(
             onHorizontalDragStart: (val) {},
