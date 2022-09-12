@@ -22,6 +22,8 @@ import '../modules/book_appoiment/bindings/book_appoiment_binding.dart';
 import '../modules/book_appoiment/views/book_appoiment_view.dart';
 import '../modules/cart_drawer/bindings/cart_drawer_binding.dart';
 import '../modules/cart_drawer/views/cart_drawer_view.dart';
+import '../modules/date_time_appoiment/bindings/date_time_appoiment_binding.dart';
+import '../modules/date_time_appoiment/views/date_time_appoiment_view.dart';
 import '../modules/forgot_password/bindings/forgot_password_binding.dart';
 import '../modules/forgot_password/views/forgot_password_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -202,6 +204,11 @@ class AppPages {
       name: _Paths.VET_VIEW_DETAILS,
       page: () => const VetViewDetailsView(),
       binding: VetViewDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.DATE_TIME_APPOIMENT,
+      page: () => const DateTimeAppoimentView(),
+      binding: DateTimeAppoimentBinding(),
     ),
   ];
 }
