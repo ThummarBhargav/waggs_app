@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/constant/SizeConstant.dart';
@@ -103,6 +104,10 @@ class _OTPScreenViewState extends State<OTPScreenView> {
                   ),
                 ),
                 child: TextFormField(
+                  inputFormatters: [
+                    FilteringTextInputFormatter.digitsOnly,
+                    LengthLimitingTextInputFormatter(6),
+                  ],
                   controller: controller.otpController.value,
                   validator: (input) => !isNullEmptyOrFalse(input)
                       ? null

@@ -8,6 +8,7 @@ import 'package:waggs_app/app/Modal/view_pet_details_models.dart';
 import 'package:waggs_app/app/constant/ConstantUrl.dart';
 import 'package:http/http.dart' as http;
 import 'package:waggs_app/app/constant/SizeConstant.dart';
+import 'package:waggs_app/app/routes/app_pages.dart';
 import 'package:waggs_app/main.dart';
 
 class PetViewDetailsController extends GetxController {
@@ -19,7 +20,6 @@ class PetViewDetailsController extends GetxController {
   Appointments1 appointments1 = Appointments1();
   @override
   void onInit() {
-    var Data1 = Get.arguments;
     MyPet(context: Get.context!);
     appointmentApi(context: Get.context!);
     super.onInit();
@@ -112,8 +112,8 @@ class PetViewDetailsController extends GetxController {
 
   appointmentApi(
       {required BuildContext context, bool isFromLoading = false}) async {
-    var url = Uri.parse(
-        "https://api-stg.waggs.in/api/v1/appointment/list?skip=0&limit=15&petId=${Get.arguments}&status=&search=");
+    var url = Uri.parse(baseUrl +
+        "appointment/list?skip=0&limit=15&petId=${Get.arguments}&status=&search=");
     var response = await http.get(url, headers: {
       'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
     });
@@ -129,5 +129,62 @@ class PetViewDetailsController extends GetxController {
         }
       }
     }
+  }
+
+  MyPetDelete(
+      {required BuildContext context, bool isFromLoading = false}) async {
+    var url = Uri.parse(baseUrl + ApiConstant.getpet + "${petData.sId}");
+    var response = await http.delete(url, headers: {
+      'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+    });
+    if (response.statusCode == 200) {
+      Get.offNamed(Routes.MY_PET);
+    }
+  }
+
+  DeletedilogBox(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            contentPadding: EdgeInsets.all(0.0),
+            content: Container(
+              margin: EdgeInsets.only(top: 20),
+              height: 100,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    child: Text(
+                      "Are you sure you want to delete this pet?",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        TextButton(
+                            onPressed: () {
+                              MyPetDelete(context: context);
+                            },
+                            child: Text("yes")),
+                        TextButton(
+                            onPressed: () {
+                              Get.back();
+                            },
+                            child: Text("No")),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
   }
 }

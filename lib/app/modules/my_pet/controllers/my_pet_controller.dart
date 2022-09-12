@@ -51,6 +51,8 @@ class MyPetController extends GetxController {
           }
         }
       }
+    } else {
+      refreshController.loadComplete();
     }
   }
 }

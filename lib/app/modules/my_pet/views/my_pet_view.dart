@@ -7,6 +7,7 @@ import 'package:waggs_app/app/constant/Container.dart';
 import 'package:waggs_app/app/constant/sizeConstant.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
 import '../controllers/my_pet_controller.dart';
+
 class MyPetView extends GetWidget<MyPetController> {
   const MyPetView({Key? key}) : super(key: key);
 
@@ -201,7 +202,7 @@ class MyPetView extends GetWidget<MyPetController> {
                               children: [
                                 InkWell(
                                   onTap: () {
-                                    Get.toNamed(Routes.PLANE);
+                                    Get.offAndToNamed(Routes.PLANE);
                                   },
                                   child: Padding(
                                     padding: const EdgeInsets.only(right: 20.0),
@@ -325,47 +326,49 @@ class MyPetView extends GetWidget<MyPetController> {
                                             ],
                                           ),
                                           Container(
-                                            margin:
-                                            EdgeInsets.only(left: 10),
-                                            alignment: AlignmentDirectional
-                                                .topStart,
-                                            child: controller
-                                                .allPetList[index]
-                                                .breed ==
-                                                null
+                                            margin: EdgeInsets.only(left: 10),
+                                            alignment:
+                                                AlignmentDirectional.topStart,
+                                            child: controller.allPetList[index]
+                                                        .breed ==
+                                                    null
                                                 ? Text(
-                                              "",
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 15),
-                                            )
+                                                    "",
+                                                    style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 15),
+                                                  )
                                                 : Text(
-                                              textAlign:
-                                              TextAlign.start,
-                                              "${controller.allPetList[index].breed}",
-                                              style: TextStyle(
-                                                  color: Colors.grey[400],
-                                                  fontSize: 15),
-                                            ),
+                                                    textAlign: TextAlign.start,
+                                                    "${controller.allPetList[index].breed}",
+                                                    style: TextStyle(
+                                                        color: Colors.grey[400],
+                                                        fontSize: 15),
+                                                  ),
                                           ),
                                           InkWell(
                                             onTap: () {
-                                              Get.toNamed(Routes.PET_VIEW_DETAILS,arguments: controller.allPetList[index].sId);
+                                              Get.offAndToNamed(
+                                                  Routes.PET_VIEW_DETAILS,
+                                                  arguments: controller
+                                                      .allPetList[index].sId);
                                             },
                                             child: Padding(
                                               padding: const EdgeInsets.only(
                                                   top: 5, left: 8, right: 8),
                                               child: getcon(
                                                   alignment: Alignment.center,
-                                                  color:
-                                                  Color.fromRGBO(32, 193, 244, 1),
+                                                  color: Color.fromRGBO(
+                                                      32, 193, 244, 1),
                                                   height: 30,
-                                                  width:
-                                                  MediaQuery.of(context).size.width,
+                                                  width: MediaQuery.of(context)
+                                                      .size
+                                                      .width,
                                                   text: Text(
                                                     "VIEW DETAILES",
                                                     style: TextStyle(
-                                                        fontWeight: FontWeight.w800,
+                                                        fontWeight:
+                                                            FontWeight.w800,
                                                         color: Colors.white),
                                                   )),
                                             ),

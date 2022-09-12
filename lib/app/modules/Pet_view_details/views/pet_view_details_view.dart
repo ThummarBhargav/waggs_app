@@ -402,7 +402,9 @@ class PetViewDetailsView extends GetWidget<PetViewDetailsController> {
                               child: CircleAvatar(
                                   backgroundColor: Colors.transparent,
                                   child: IconButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        controller.DeletedilogBox(context);
+                                      },
                                       icon: Icon(
                                         Icons.delete,
                                         color: Color.fromRGBO(32, 193, 244, 1),
