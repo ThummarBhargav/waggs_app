@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,8 +18,10 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset("assets/logo111.png",height: 100,width: 100),
-                SizedBox(height: 15,),
+                Image.asset("assets/logo111.png", height: 100, width: 100),
+                SizedBox(
+                  height: 15,
+                ),
                 Text(
                   "- FORGOT PASSWORD",
                   style: GoogleFonts.roboto(
@@ -27,7 +30,9 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
                       fontSize: 24,
                       fontWeight: FontWeight.w400),
                 ),
-                SizedBox(height: 15,),
+                SizedBox(
+                  height: 15,
+                ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
@@ -40,11 +45,14 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
                 ),
                 Row(
                   children: [
-                    Expanded(flex: 1,
+                    Expanded(
+                      flex: 1,
                       child: Container(
                         alignment: Alignment.center,
                         margin: EdgeInsets.only(left: 15),
-                        padding: EdgeInsets.only(left: 15,),
+                        padding: EdgeInsets.only(
+                          left: 15,
+                        ),
                         decoration: BoxDecoration(
                           color: Colors.grey[300],
                           borderRadius: BorderRadius.only(
@@ -71,10 +79,13 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
                         ),
                       ),
                     ),
-                    Expanded(flex: 3,
+                    Expanded(
+                      flex: 3,
                       child: Container(
-                        margin: EdgeInsets.only(left: 15,right: 15),
-                        padding: EdgeInsets.only(left: 15,),
+                        margin: EdgeInsets.only(left: 15, right: 15),
+                        padding: EdgeInsets.only(
+                          left: 15,
+                        ),
                         decoration: BoxDecoration(
                           color: Colors.grey[300],
                           borderRadius: BorderRadius.only(
@@ -84,6 +95,12 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
                           ),
                         ),
                         child: TextFormField(
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly,
+                            LengthLimitingTextInputFormatter(
+                              10,
+                            ),
+                          ],
                           controller: controller.mobileController.value,
                           keyboardType: TextInputType.phone,
                           validator: (input) => !isNullEmptyOrFalse(input)
@@ -98,15 +115,20 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
                             enabledBorder: InputBorder.none,
                             focusedBorder: InputBorder.none,
                           ),
+                          onChanged: (val) {
+                            if (val.length == 10) {}
+                          },
                         ),
                       ),
                     ),
                   ],
                 ),
-                SizedBox(height: 25,),
+                SizedBox(
+                  height: 25,
+                ),
                 InkWell(
                   onTap: () {
-                    if(controller.formKey.currentState!.validate()) {
+                    if (controller.formKey.currentState!.validate()) {
                       controller.sendOtp();
                     }
                   },
@@ -122,11 +144,13 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
                         bottomLeft: Radius.circular(25),
                       ),
                     ),
-                    child: Text("Send OTP",style: GoogleFonts.roboto(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.white
-                    ),),
+                    child: Text(
+                      "Send OTP",
+                      style: GoogleFonts.roboto(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.white),
+                    ),
                   ),
                 )
               ],

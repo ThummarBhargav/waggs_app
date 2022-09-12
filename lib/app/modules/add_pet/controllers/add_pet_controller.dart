@@ -3,10 +3,9 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Response, MultipartFile, FormData;
-import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
-import 'package:waggs_app/app/Modal/GetPetModel.dart';
 import 'package:waggs_app/app/Modal/create_image_slot_model.dart';
+import 'package:waggs_app/app/Modal/updatepet1model.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
 import 'package:waggs_app/utilities/custome_dialogs.dart';
 import '../../../../main.dart';
@@ -65,10 +64,13 @@ class AddPetController extends GetxController {
         .then((value) {
       hasData.value = true;
       if (!isNullEmptyOrFalse(value)) {
-        GetPetModel res = GetPetModel.fromJson(value.data);
+        UpdatePet res = UpdatePet.fromJson(value.data);
         if (!isNullEmptyOrFalse(res.data)) {
           if (!isNullEmptyOrFalse(res.data!.name)) {
             name.text = res.data!.name!;
+            age.text = res.data!.age!;
+            breed.text = res.data!.breed!;
+            imageUrl.value = res.data!.image!;
           }
           if (!isNullEmptyOrFalse(res.data!.gender)) {
             select.value = res.data!.gender.toString().toUpperCase();
@@ -128,7 +130,6 @@ class AddPetController extends GetxController {
     )
         .then((value) {
       getIt<CustomDialogs>().hideCircularDialog(context);
-
       if (!isNullEmptyOrFalse(value)) {
         CreateImageSlotModel res = CreateImageSlotModel.fromJson(value.data);
         if (!isNullEmptyOrFalse(res.data)) {
@@ -142,7 +143,17 @@ class AddPetController extends GetxController {
       print("VALUE : = $value");
     }).catchError((error) {
       getIt<CustomDialogs>().hideCircularDialog(context);
-
+      DioError dioError = error as DioError;
+      if (!isNullEmptyOrFalse(dioError.response)) {
+        if (!isNullEmptyOrFalse(dioError.response!.data)) {
+          getMySnackBar(
+              context: context,
+              title: "Error",
+              message: "${dioError.response!.data["message"]}",
+              backColor: Colors.red);
+          print(dioError.response!.data["message"]);
+        }
+      }
       print("ERROR : = $error");
     });
   }

@@ -77,5 +77,6 @@ getMySnackBar(
     required String title,
     required String message,
     Color backColor = Colors.green}) {
-  return Get.snackbar(title, message, backgroundColor: backColor);
+  return Get.snackbar(title, message,
+      backgroundColor: backColor, snackPosition: SnackPosition.BOTTOM);
 }

@@ -20,7 +20,6 @@ class ForgotPasswordController extends GetxController {
   Rx<TextEditingController> otpController = TextEditingController().obs;
   Rx<TextEditingController> passController = TextEditingController().obs;
   Rx<TextEditingController> confirmPassController = TextEditingController().obs;
-
   RxBool passwordVisible = false.obs;
   RxBool ispass = false.obs;
   RxBool enableResend = false.obs;
@@ -30,7 +29,7 @@ class ForgotPasswordController extends GetxController {
   @override
   void onInit() {
     countryController.value.text = "+91";
-    // getTimer();
+    getTimer();
     super.onInit();
   }
 

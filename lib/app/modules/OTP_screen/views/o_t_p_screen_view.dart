@@ -121,6 +121,9 @@ class _OTPScreenViewState extends State<OTPScreenView> {
                     enabledBorder: InputBorder.none,
                     focusedBorder: InputBorder.none,
                   ),
+                  onChanged: (val) {
+                    if (val.length == 6) {}
+                  },
                 ),
               ),
               SizedBox(

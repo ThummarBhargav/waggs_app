@@ -23,7 +23,9 @@ class SingupScreenView extends GetWidget<SingupScreenController> {
                 key: controller.formKey,
                 child: Column(
                   children: [
-                    SizedBox(height: 80,),
+                    SizedBox(
+                      height: 80,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -32,9 +34,8 @@ class SingupScreenView extends GetWidget<SingupScreenController> {
                           height: 120,
                           width: 180,
                           decoration: BoxDecoration(
-                            image: DecorationImage(image: AssetImage(
-                                "assets/logo111.png"
-                            )),
+                            image: DecorationImage(
+                                image: AssetImage("assets/logo111.png")),
                           ),
                         ),
                       ],
@@ -43,27 +44,39 @@ class SingupScreenView extends GetWidget<SingupScreenController> {
                       height: 30,
                     ),
                     Container(
-                      child: Text("Create Account", style: GoogleFonts.roboto(
-                        fontSize: 22,
-                        fontWeight: FontWeight.w700,
-                      ),),
+                      child: Text(
+                        "Create Account",
+                        style: GoogleFonts.roboto(
+                          fontSize: 22,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
                     ),
-                    SizedBox(height: 20,),
+                    SizedBox(
+                      height: 20,
+                    ),
                     Row(
                       children: [
                         Container(
-                          margin: EdgeInsets.only(left: 15,),
-                          child: Text("First Name", style: GoogleFonts.roboto(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500
-                          ),),
+                          margin: EdgeInsets.only(
+                            left: 15,
+                          ),
+                          child: Text(
+                            "First Name",
+                            style: GoogleFonts.roboto(
+                                fontSize: 18, fontWeight: FontWeight.w500),
+                          ),
                         ),
                       ],
                     ),
-                    SizedBox(height: 8,),
+                    SizedBox(
+                      height: 8,
+                    ),
                     Container(
                       margin: EdgeInsets.only(left: 15, right: 15),
-                      padding: EdgeInsets.only(left: 15,),
+                      padding: EdgeInsets.only(
+                        left: 15,
+                      ),
                       decoration: BoxDecoration(
                         color: Colors.grey[300],
                         borderRadius: BorderRadius.only(
@@ -73,45 +86,47 @@ class SingupScreenView extends GetWidget<SingupScreenController> {
                         ),
                       ),
                       child: TextFormField(
-
                         controller: controller.firstnameController.value,
                         keyboardType: TextInputType.name,
-
-                        validator: (input) =>
-                        !isNullEmptyOrFalse(input)
+                        validator: (input) => !isNullEmptyOrFalse(input)
                             ? null
                             : "Please Enter Your First Name",
-
                         decoration: InputDecoration(
-
                           hintText: "Enter Your First Name",
                           hintStyle: GoogleFonts.roboto(
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
                           ),
-
                           enabledBorder: InputBorder.none,
                           focusedBorder: InputBorder.none,
                         ),
                       ),
                     ),
-                    SizedBox(height: 8,),
+                    SizedBox(
+                      height: 8,
+                    ),
                     Row(
                       children: [
                         Container(
-                          margin: EdgeInsets.only(left: 15,),
+                          margin: EdgeInsets.only(
+                            left: 15,
+                          ),
                           child: Text(
-                            "Email Address", style: GoogleFonts.roboto(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500
-                          ),),
+                            "Email Address",
+                            style: GoogleFonts.roboto(
+                                fontSize: 18, fontWeight: FontWeight.w500),
+                          ),
                         ),
                       ],
                     ),
-                    SizedBox(height: 8,),
+                    SizedBox(
+                      height: 8,
+                    ),
                     Container(
                       margin: EdgeInsets.only(left: 15, right: 15),
-                      padding: EdgeInsets.only(left: 15,),
+                      padding: EdgeInsets.only(
+                        left: 15,
+                      ),
                       decoration: BoxDecoration(
                         color: Colors.grey[300],
                         borderRadius: BorderRadius.only(
@@ -121,58 +136,65 @@ class SingupScreenView extends GetWidget<SingupScreenController> {
                         ),
                       ),
                       child: FocusScope(
-                         onFocusChange: (val){
-                           controller.verifyEmail(context);
-                         },
+                        onFocusChange: (val) {
+                          controller.verifyEmail(context);
+                        },
                         child: TextFormField(
                           controller: controller.emailController.value,
                           keyboardType: TextInputType.emailAddress,
-                          validator: (input) =>
-                          !isNullEmptyOrFalse(input)
+                          validator: (input) => !isNullEmptyOrFalse(input)
                               ? null
                               : "Please Enter Your Email Address",
                           decoration: InputDecoration(
-                            hintText: "Enter Your Email Address",
-                            hintStyle: GoogleFonts.roboto(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                            ),
-
-                            enabledBorder: InputBorder.none,
-                            focusedBorder: InputBorder.none,
+                              hintText: "Enter Your Email Address",
+                              hintStyle: GoogleFonts.roboto(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                              ),
+                              enabledBorder: InputBorder.none,
+                              focusedBorder: InputBorder.none,
                               errorText: (controller.isEmailExist.isTrue)
                                   ? "Email already registered"
-                                  : null
-                          ),
-                          onChanged: (val){
+                                  : null),
+                          onChanged: (val) {
                             controller.isEmailExist.value = false;
                           },
-                          onFieldSubmitted: (val){
+                          onFieldSubmitted: (val) {
                             controller.verifyEmail(context);
                           },
                         ),
                       ),
                     ),
-                    SizedBox(height: 20,),
+                    SizedBox(
+                      height: 20,
+                    ),
                     Row(
                       children: [
                         Container(
-                          margin: EdgeInsets.only(left: 15,),
-                          child: Text("Phone Number", style: GoogleFonts.roboto(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500
-                          ),),
+                          margin: EdgeInsets.only(
+                            left: 15,
+                          ),
+                          child: Text(
+                            "Phone Number",
+                            style: GoogleFonts.roboto(
+                                fontSize: 18, fontWeight: FontWeight.w500),
+                          ),
                         ),
                       ],
                     ),
-                    SizedBox(height: 8,),
+                    SizedBox(
+                      height: 8,
+                    ),
                     Row(
                       children: [
-                        Expanded(flex: 1,
+                        Expanded(
+                          flex: 1,
                           child: Container(
                             alignment: Alignment.center,
                             margin: EdgeInsets.only(left: 15),
-                            padding: EdgeInsets.only(left: 15,),
+                            padding: EdgeInsets.only(
+                              left: 15,
+                            ),
                             decoration: BoxDecoration(
                               color: Colors.grey[300],
                               borderRadius: BorderRadius.only(
@@ -184,8 +206,7 @@ class SingupScreenView extends GetWidget<SingupScreenController> {
                             child: TextFormField(
                               controller: controller.countryController.value,
                               keyboardType: TextInputType.phone,
-                              validator: (input) =>
-                              !isNullEmptyOrFalse(input)
+                              validator: (input) => !isNullEmptyOrFalse(input)
                                   ? null
                                   : "Please Enter Your Country Code",
                               decoration: InputDecoration(
@@ -200,10 +221,13 @@ class SingupScreenView extends GetWidget<SingupScreenController> {
                             ),
                           ),
                         ),
-                        Expanded(flex: 3,
+                        Expanded(
+                          flex: 3,
                           child: Container(
                             margin: EdgeInsets.only(left: 15, right: 15),
-                            padding: EdgeInsets.only(left: 15,),
+                            padding: EdgeInsets.only(
+                              left: 15,
+                            ),
                             decoration: BoxDecoration(
                               color: Colors.grey[300],
                               borderRadius: BorderRadius.only(
@@ -216,12 +240,13 @@ class SingupScreenView extends GetWidget<SingupScreenController> {
                               keyboardType: TextInputType.number,
                               inputFormatters: [
                                 FilteringTextInputFormatter.digitsOnly,
-                                LengthLimitingTextInputFormatter(10,),
+                                LengthLimitingTextInputFormatter(
+                                  10,
+                                ),
                                 //n is maximum number of characters you want in textfield
                               ],
                               controller: controller.mobileController.value,
-                              validator: (input) =>
-                              !isNullEmptyOrFalse(input)
+                              validator: (input) => !isNullEmptyOrFalse(input)
                                   ? null
                                   : "Please Enter Your Phone Number",
                               decoration: InputDecoration(
@@ -234,9 +259,7 @@ class SingupScreenView extends GetWidget<SingupScreenController> {
                                   focusedBorder: InputBorder.none,
                                   errorText: (controller.isNumberExist.isTrue)
                                       ? "Mobile number already registered"
-                                      : null
-                              ),
-
+                                      : null),
                               onChanged: (val) {
                                 controller.isNumberExist.value = false;
                                 if (val.length == 10) {
@@ -248,19 +271,26 @@ class SingupScreenView extends GetWidget<SingupScreenController> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 20,),
+                    SizedBox(
+                      height: 20,
+                    ),
                     Row(
                       children: [
                         Container(
-                          margin: EdgeInsets.only(left: 15,),
-                          child: Text("Password", style: GoogleFonts.roboto(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500
-                          ),),
+                          margin: EdgeInsets.only(
+                            left: 15,
+                          ),
+                          child: Text(
+                            "Password",
+                            style: GoogleFonts.roboto(
+                                fontSize: 18, fontWeight: FontWeight.w500),
+                          ),
                         ),
                       ],
                     ),
-                    SizedBox(height: 8,),
+                    SizedBox(
+                      height: 8,
+                    ),
                     Obx(() {
                       return Container(
                         margin: EdgeInsets.only(left: 15, right: 15),
@@ -277,8 +307,7 @@ class SingupScreenView extends GetWidget<SingupScreenController> {
                         ),
                         child: TextFormField(
                           controller: controller.passController.value,
-                          validator: (input) =>
-                          !isNullEmptyOrFalse(input)
+                          validator: (input) => !isNullEmptyOrFalse(input)
                               ? null
                               : "Please Enter Password",
                           obscureText: controller.passwordVisible.value,
@@ -296,30 +325,36 @@ class SingupScreenView extends GetWidget<SingupScreenController> {
                                   },
                                   icon: (!controller.passwordVisible.value)
                                       ? Icon(
-                                    Icons.visibility_off,
-                                    color: Colors.grey,
-                                  )
+                                          Icons.visibility_off,
+                                          color: Colors.grey,
+                                        )
                                       : Icon(
-                                    Icons.visibility,
-                                    color: Colors.grey,
-                                  ))),
+                                          Icons.visibility,
+                                          color: Colors.grey,
+                                        ))),
                         ),
                       );
                     }),
-                    SizedBox(height: 20,),
+                    SizedBox(
+                      height: 20,
+                    ),
                     Row(
                       children: [
                         Container(
-                          margin: EdgeInsets.only(left: 15,),
+                          margin: EdgeInsets.only(
+                            left: 15,
+                          ),
                           child: Text(
-                            "Confirm Password", style: GoogleFonts.roboto(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500
-                          ),),
+                            "Confirm Password",
+                            style: GoogleFonts.roboto(
+                                fontSize: 18, fontWeight: FontWeight.w500),
+                          ),
                         ),
                       ],
                     ),
-                    SizedBox(height: 8,),
+                    SizedBox(
+                      height: 8,
+                    ),
                     Obx(() {
                       return Container(
                         margin: EdgeInsets.only(left: 15, right: 15),
@@ -336,8 +371,7 @@ class SingupScreenView extends GetWidget<SingupScreenController> {
                         ),
                         child: TextFormField(
                           controller: controller.confirmPassController.value,
-                          validator: (input) =>
-                          !isNullEmptyOrFalse(input)
+                          validator: (input) => !isNullEmptyOrFalse(input)
                               ? null
                               : "Please Confirm Enter Password",
                           obscureText: controller.passwordVisible.value,
@@ -359,62 +393,65 @@ class SingupScreenView extends GetWidget<SingupScreenController> {
                                   },
                                   icon: (!controller.passwordVisible.value)
                                       ? Icon(
-                                    Icons.visibility_off,
-                                    color: Colors.grey,
-                                  )
+                                          Icons.visibility_off,
+                                          color: Colors.grey,
+                                        )
                                       : Icon(
-                                    Icons.visibility,
-                                    color: Colors.grey,
-                                  ))),
-                          onChanged: (val){
+                                          Icons.visibility,
+                                          color: Colors.grey,
+                                        ))),
+                          onChanged: (val) {
                             controller.ispass.value = false;
                           },
-                          onFieldSubmitted: (val){
-                            if(controller.passController.value.text == controller.confirmPassController.value.text)
-                              {
-                                controller.ispass.value = false;
-                              }
-                            else
-                              {
-                                controller.ispass.value =true;
-                              }
+                          onFieldSubmitted: (val) {
+                            if (controller.passController.value.text ==
+                                controller.confirmPassController.value.text) {
+                              controller.ispass.value = false;
+                            } else {
+                              controller.ispass.value = true;
+                            }
                           },
                         ),
                       );
                     }),
-                    SizedBox(height: 20,),
+                    SizedBox(
+                      height: 20,
+                    ),
                     Wrap(
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Container(
-                              child: Text("By Registering, I Agree To",
+                              child: Text(
+                                "By Registering, I Agree To",
                                 style: GoogleFonts.roboto(
-                                    fontSize: 13,
-                                    color: Colors.grey
-                                ),),
+                                    fontSize: 13, color: Colors.grey),
+                              ),
                             ),
                             InkWell(
                               onTap: () async {
-                                const url = 'https://waggs.in/terms-and-condition';
+                                const url =
+                                    'https://waggs.in/terms-and-condition';
                                 await launch(url);
                               },
                               child: Container(
-                                child: Text(" Team Of Service",
+                                child: Text(
+                                  " Team Of Service",
                                   style: GoogleFonts.roboto(
                                     fontSize: 13,
                                     fontWeight: FontWeight.w600,
                                     color: Colors.black,
-                                  ),),
+                                  ),
+                                ),
                               ),
                             ),
                             Container(
-                              child: Text(" And ",
+                              child: Text(
+                                " And ",
                                 style: GoogleFonts.roboto(
-                                    fontSize: 13,
-                                    color: Colors.grey
-                                ),),
+                                    fontSize: 13, color: Colors.grey),
+                              ),
                             ),
                             InkWell(
                               onTap: () async {
@@ -422,19 +459,22 @@ class SingupScreenView extends GetWidget<SingupScreenController> {
                                 await launch(url);
                               },
                               child: Container(
-                                child: Text("Privacy Policy",
+                                child: Text(
+                                  "Privacy Policy",
                                   style: GoogleFonts.roboto(
                                       fontSize: 13,
                                       fontWeight: FontWeight.w600,
-                                      color: Colors.black
-                                  ),),
+                                      color: Colors.black),
+                                ),
                               ),
                             ),
                           ],
                         ),
                       ],
                     ),
-                    SizedBox(height: 20,),
+                    SizedBox(
+                      height: 20,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -442,18 +482,18 @@ class SingupScreenView extends GetWidget<SingupScreenController> {
                           onTap: () {
                             controller.verifyEmail(context).then((value) {
                               if (controller.formKey.currentState!.validate()) {
-                                if(controller.isNumberExist.isFalse && controller.isEmailExist.isFalse){
-                                  if(controller.passController.value.text == controller.confirmPassController.value.text)
-                                    {
-                                      controller.sendotpApi();
-                                    }else
-                                      {
-                                        controller.ispass.value = true;
-                                      }
+                                if (controller.isNumberExist.isFalse &&
+                                    controller.isEmailExist.isFalse) {
+                                  if (controller.passController.value.text ==
+                                      controller
+                                          .confirmPassController.value.text) {
+                                    controller.sendotpApi();
+                                  } else {
+                                    controller.ispass.value = true;
+                                  }
                                 }
                               }
                             });
-
                           },
                           child: Container(
                             width: 180,
@@ -468,38 +508,44 @@ class SingupScreenView extends GetWidget<SingupScreenController> {
                               ),
                             ),
                             child: Text(
-                              "Sign Up Now!", style: GoogleFonts.roboto(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.white
-                            ),),
+                              "Sign Up Now!",
+                              style: GoogleFonts.roboto(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.white),
+                            ),
                           ),
                         )
                       ],
                     ),
-                    SizedBox(height: 20,),
+                    SizedBox(
+                      height: 20,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          child: Text("Already Have An Account? ",
+                          child: Text(
+                            "Already Have An Account? ",
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w500,
-                            ),),
+                            ),
+                          ),
                         ),
                         InkWell(
                           onTap: () {
                             Get.toNamed(Routes.LOGIN_SCREEN);
                           },
                           child: Container(
-                            child: Text("Login Instead!",
+                            child: Text(
+                              "Login Instead!",
                               style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w500,
-                                color: Color.fromRGBO(
-                                    32, 193, 244, 1),
-                              ),),
+                                color: Color.fromRGBO(32, 193, 244, 1),
+                              ),
+                            ),
                           ),
                         ),
                       ],

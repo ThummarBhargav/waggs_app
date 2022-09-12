@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -58,6 +59,13 @@ class ForgotSendOtpView extends GetWidget<ForgotPasswordController> {
                           ),
                         ),
                         child: TextFormField(
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly,
+                            LengthLimitingTextInputFormatter(
+                              6,
+                            ),
+                            //n is maximum number of characters you want in textfield
+                          ],
                           controller: controller.otpController.value,
                           keyboardType: TextInputType.phone,
                           validator: (input) => !isNullEmptyOrFalse(input)
@@ -72,6 +80,9 @@ class ForgotSendOtpView extends GetWidget<ForgotPasswordController> {
                             enabledBorder: InputBorder.none,
                             focusedBorder: InputBorder.none,
                           ),
+                          onChanged: (val) {
+                            if (val.length == 6) {}
+                          },
                         ),
                       ),
                     ),
@@ -89,15 +100,14 @@ class ForgotSendOtpView extends GetWidget<ForgotPasswordController> {
                         onTap: () {
                           if (controller.enableResend.value == true) {
                             controller.secondsRemaining = 30.obs;
-                            controller.getTimer();
-                            controller.refresh();
                             controller.sendOtp();
+                            controller.refresh();
                           }
                         },
                         child: Obx(() => Text(
                               controller.enableResend.value == true
                                   ? "Resend Otp"
-                                  : "Resend Otp ${controller.secondsRemaining}",
+                                  : "Resend Otp ${controller.secondsRemaining} Sec",
                               style: GoogleFonts.raleway(
                                   color: controller.enableResend.value == true
                                       ? Color.fromRGBO(32, 193, 244, 1)

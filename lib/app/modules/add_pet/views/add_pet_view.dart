@@ -187,7 +187,7 @@ class AddPetView extends GetWidget<AddPetController> {
                                       Container(
                                         margin:
                                             EdgeInsets.only(top: 5, left: 2),
-                                        child: Text("Edit Pets",
+                                        child: Text("",
                                             style: GoogleFonts.roboto(
                                                 fontSize: 10,
                                                 fontWeight: FontWeight.bold,

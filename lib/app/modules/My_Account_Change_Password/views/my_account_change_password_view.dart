@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,9 +18,14 @@ class MyAccountChangePasswordView
         appBar: AppBar(
           elevation: 0.0,
           backgroundColor: Colors.white,
-          leading: IconButton(onPressed: () {
-            Get.back();
-          }, icon: Icon(Icons.arrow_back,color: Colors.black,)),
+          leading: IconButton(
+              onPressed: () {
+                Get.back();
+              },
+              icon: Icon(
+                Icons.arrow_back,
+                color: Colors.black,
+              )),
         ),
         body: Container(
           child: SingleChildScrollView(
@@ -63,14 +69,16 @@ class MyAccountChangePasswordView
                     margin: EdgeInsets.only(left: 15),
                     child: Text(
                       "We have sent a 6-digit confirmation code to your mobile, please rnter the code "
-                          "in below box to verify your mobile.",
+                      "in below box to verify your mobile.",
                       style: GoogleFonts.roboto(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
                   ),
-                  SizedBox(height: 20,),
+                  SizedBox(
+                    height: 20,
+                  ),
                   Container(
                     margin: EdgeInsets.only(left: 15, right: 15),
                     padding: EdgeInsets.only(
@@ -85,6 +93,12 @@ class MyAccountChangePasswordView
                       ),
                     ),
                     child: TextFormField(
+                      inputFormatters: [
+                        FilteringTextInputFormatter.digitsOnly,
+                        LengthLimitingTextInputFormatter(
+                          6,
+                        ),
+                      ],
                       controller: controller.otpController.value,
                       validator: (input) => !isNullEmptyOrFalse(input)
                           ? null
@@ -98,9 +112,14 @@ class MyAccountChangePasswordView
                         enabledBorder: InputBorder.none,
                         focusedBorder: InputBorder.none,
                       ),
+                      onChanged: (val) {
+                        if (val.length == 6) {}
+                      },
                     ),
                   ),
-                  SizedBox(height: 10,),
+                  SizedBox(
+                    height: 10,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -108,26 +127,31 @@ class MyAccountChangePasswordView
                         margin: EdgeInsets.only(left: 22),
                         child: InkWell(
                           onTap: () {
-                            if(controller.enableResend1.value == true)
-                            {
-                              controller.secondsRemaining1=30.obs;
+                            if (controller.enableResend1.value == true) {
+                              controller.secondsRemaining1 = 30.obs;
                               controller.sendOtp();
                               controller.refresh();
                             }
                           },
-
-                          child:Obx(()=>Text(controller.enableResend1.value==true?"Resend Otp":"Resend Otp ${controller.secondsRemaining1} Sec",
-                            style: GoogleFonts.raleway(
-                                color:  controller.enableResend1.value==true?Color.fromRGBO(32, 193, 244, 1):
-                                Colors.grey,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600
-                            ),
-                          )),),
+                          child: Obx(() => Text(
+                                controller.enableResend1.value == true
+                                    ? "Resend Otp"
+                                    : "Resend Otp ${controller.secondsRemaining1} Sec",
+                                style: GoogleFonts.raleway(
+                                    color:
+                                        controller.enableResend1.value == true
+                                            ? Color.fromRGBO(32, 193, 244, 1)
+                                            : Colors.grey,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600),
+                              )),
+                        ),
                       ),
                     ],
                   ),
-                  SizedBox(height: 30,),
+                  SizedBox(
+                    height: 30,
+                  ),
                   InkWell(
                     onTap: () {
                       controller.verifyOtpUsers();
@@ -144,7 +168,8 @@ class MyAccountChangePasswordView
                           bottomRight: Radius.circular(25),
                         ),
                       ),
-                      child: Text("Verify",
+                      child: Text(
+                        "Verify",
                         style: GoogleFonts.raleway(
                           fontSize: 18,
                           color: Colors.white,

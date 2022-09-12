@@ -4,8 +4,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:waggs_app/app/constant/ConstantUrl.dart';
 import 'package:waggs_app/app/constant/Container.dart';
 import 'package:waggs_app/app/constant/SizeConstant.dart';
+import 'package:waggs_app/app/routes/app_pages.dart';
 
 import '../controllers/pet_view_details_controller.dart';
 
@@ -385,7 +387,14 @@ class PetViewDetailsView extends GetWidget<PetViewDetailsController> {
                               child: CircleAvatar(
                                   backgroundColor: Colors.transparent,
                                   child: IconButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        Get.offAllNamed(Routes.ADD_PET,
+                                            arguments: {
+                                              ArgumentConstant.patId: controller
+                                                  .petData.sId
+                                                  .toString()
+                                            });
+                                      },
                                       icon: Icon(
                                         Icons.edit,
                                         color: Color.fromRGBO(32, 193, 244, 1),
