@@ -1000,6 +1000,36 @@ class _TopSellingProductListWidgetState
                                                   child: Text(controller
                                                       .location[index]),
                                                   onTap: () {
+                                                    if (index == 0) {
+                                                      controller
+                                                          .getFillterProduct(
+                                                              sort:
+                                                                  "newArrivals");
+                                                    }
+                                                    if (index == 1) {
+                                                      controller
+                                                          .getFillterProduct(
+                                                              sort:
+                                                                  "priceAsec");
+                                                    }
+                                                    if (index == 2) {
+                                                      controller
+                                                          .getFillterProduct(
+                                                              sort:
+                                                                  "priceDesc");
+                                                    }
+                                                    if (index == 3) {
+                                                      controller
+                                                          .getFillterProduct(
+                                                              sort:
+                                                                  "discountAsec");
+                                                    }
+                                                    if (index == 4) {
+                                                      controller
+                                                          .getFillterProduct(
+                                                              sort:
+                                                                  "discountDesc");
+                                                    }
                                                     controller.price.value =
                                                         controller
                                                             .location[index];
@@ -1097,7 +1127,8 @@ class _TopSellingProductListWidgetState
                                   gridDelegate:
                                       SliverGridDelegateWithFixedCrossAxisCount(
                                           crossAxisCount: 2,
-                                          childAspectRatio: 0.65)),
+                                          childAspectRatio:
+                                              double.minPositive)),
                             ),
                           ),
                         ],

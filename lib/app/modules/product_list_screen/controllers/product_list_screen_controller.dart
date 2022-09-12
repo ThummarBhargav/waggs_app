@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:waggs_app/app/Modal/CartCountModel.dart';
 import 'package:waggs_app/app/Modal/CartProductModel.dart';
 import 'package:waggs_app/app/constant/ConstantUrl.dart';
@@ -20,6 +21,8 @@ class ProductListScreenController extends GetxController {
   bool isFromSubCategory = false;
   RxBool hasData = false.obs;
   List<Sellers> sellerList = [];
+  RxBool isEnablePullUp = true.obs;
+
   RxBool isLoading = false.obs;
   RxList<Details> cartProductList = RxList<Details>([]);
   CartProduct cartProduct = CartProduct();
@@ -35,6 +38,9 @@ class ProductListScreenController extends GetxController {
   RxList<Count1> Countlist = RxList<Count1>([]);
   RxBool isOp = false.obs;
   RxBool isOp1 = false.obs;
+  RxInt productsCount = 0.obs;
+  RefreshController refreshController = RefreshController();
+
   RxBool isOp2 = false.obs;
   RxBool isOp3 = false.obs;
   RxBool isOp4 = false.obs;
@@ -511,5 +517,89 @@ class ProductListScreenController extends GetxController {
         snackPosition: SnackPosition.BOTTOM,
       );
     }
+  }
+
+  getFillterProduct({bool isForLoading = false, String sort = ""}) async {
+    if (!isForLoading) {
+      hasData.value = false;
+      isEnablePullUp.value = true;
+      productsCount.value = 0;
+      mainProductList.clear();
+    }
+    var URl = Uri.parse(baseUrl +
+        ApiConstant.TopStore +
+        "?sellerId=&skip=${productsCount.value}&limit=10&sort=$sort");
+    var response;
+    await http.get(URl).then((value) {
+      hasData.value = true;
+      response = value;
+    }).catchError((err) {
+      hasData.value = false;
+    });
+    print(response.body);
+    dynamic result = jsonDecode(response.body);
+    storeModule = StoreModule.fromJson(result);
+    if (storeModule.responseCode == 404) {
+      if (isForLoading) {
+        refreshController.loadComplete();
+        isEnablePullUp.value = false;
+      }
+    } else {
+      if (!isNullEmptyOrFalse(storeModule.data)) {
+        if (!isNullEmptyOrFalse(storeModule.data!.products)) {
+          storeModule.data!.products!.forEach((element) {
+            mainProductList.add(element);
+          });
+          productsCount.value = mainProductList.length;
+          if (isForLoading) {
+            refreshController.loadComplete();
+          }
+        }
+      }
+    }
+
+    mainProductList.refresh();
+  }
+
+  getSubcategoryProduct({bool isForLoading = false, String sort = ""}) async {
+    if (!isForLoading) {
+      hasData.value = false;
+      isEnablePullUp.value = true;
+      productsCount.value = 0;
+      mainProductList.clear();
+    }
+    var URl = Uri.parse(baseUrl +
+        ApiConstant.getAllProductUsers +
+        "?sellerId=&skip=${productsCount.value}&limit=10&sort=$sort&subCategory=${subCategoryData.sId}");
+    var response;
+    await http.get(URl).then((value) {
+      hasData.value = true;
+      response = value;
+    }).catchError((err) {
+      hasData.value = false;
+    });
+    print(response.body);
+    dynamic result = jsonDecode(response.body);
+    storeModule = StoreModule.fromJson(result);
+    if (storeModule.responseCode == 404) {
+      if (isForLoading) {
+        refreshController.loadComplete();
+        isEnablePullUp.value = false;
+      }
+    } else {
+      if (!isNullEmptyOrFalse(storeModule.data)) {
+        if (!isNullEmptyOrFalse(storeModule.data!.products)) {
+          storeModule.data!.products!.forEach((element) {
+            mainProductList.add(element);
+          });
+          productsCount.value = mainProductList.length;
+          if (isForLoading) {
+            refreshController.loadComplete();
+          }
+        }
+      }
+    }
+
+    mainProductList.refresh();
   }
 }

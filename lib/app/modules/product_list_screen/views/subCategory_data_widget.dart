@@ -1047,6 +1047,36 @@ class _SubCategoryWidgetState extends State<SubCategoryWidget> {
                                                       child: Text(controller
                                                           .location[index]),
                                                       onTap: () {
+                                                        if (index == 0) {
+                                                          controller
+                                                              .getSubcategoryProduct(
+                                                                  sort:
+                                                                      "newArrivals");
+                                                        }
+                                                        if (index == 1) {
+                                                          controller
+                                                              .getSubcategoryProduct(
+                                                                  sort:
+                                                                      "priceAsec");
+                                                        }
+                                                        if (index == 2) {
+                                                          controller
+                                                              .getSubcategoryProduct(
+                                                                  sort:
+                                                                      "priceDesc");
+                                                        }
+                                                        if (index == 3) {
+                                                          controller
+                                                              .getSubcategoryProduct(
+                                                                  sort:
+                                                                      "discountAsec");
+                                                        }
+                                                        if (index == 4) {
+                                                          controller
+                                                              .getSubcategoryProduct(
+                                                                  sort:
+                                                                      "discountDesc");
+                                                        }
                                                         controller.price.value =
                                                             controller.location[
                                                                 index];
@@ -1055,33 +1085,31 @@ class _SubCategoryWidgetState extends State<SubCategoryWidget> {
                                                       },
                                                     ));
                                           },
-                                          child: Container(
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceAround,
-                                              children: [
-                                                Container(
-                                                  child: Text(
-                                                    "${controller.price.value}",
-                                                    style: GoogleFonts.raleway(
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        color: Colors.black,
-                                                        fontSize: 15),
-                                                  ),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Container(
+                                                child: Text(
+                                                  "${controller.price.value}",
+                                                  style: GoogleFonts.raleway(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      color: Colors.black,
+                                                      fontSize: 15),
                                                 ),
-                                                SizedBox(
-                                                  width: 10,
+                                              ),
+                                              SizedBox(
+                                                width: 10,
+                                              ),
+                                              Container(
+                                                child: Icon(
+                                                  Icons
+                                                      .keyboard_arrow_down_outlined,
+                                                  color: Colors.black,
                                                 ),
-                                                Container(
-                                                  child: Icon(
-                                                    Icons
-                                                        .keyboard_arrow_down_outlined,
-                                                    color: Colors.black,
-                                                  ),
-                                                )
-                                              ],
-                                            ),
+                                              )
+                                            ],
                                           ),
                                         ),
                                       ],
