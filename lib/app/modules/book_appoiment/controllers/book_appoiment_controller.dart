@@ -1,21 +1,23 @@
 import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:waggs_app/app/Modal/AllPetModel.dart';
+
 import '../../../../main.dart';
+import '../../../Modal/AllVetModel.dart';
 import '../../../constant/ConstantUrl.dart';
 import '../../../constant/SizeConstant.dart';
-
-class MyPetController extends GetxController {
+class BookAppoimentController extends GetxController {
   RefreshController refreshController = RefreshController();
-  RxList<Pets> allPetList = RxList<Pets>([]);
-  RxBool hasData = false.obs;
   RxInt itemCount = 0.obs;
+  RxBool hasData = false.obs;
+  RxList<Vets> vetList = RxList<Vets>([]);
+
   @override
   void onInit() {
-    getAllPet(context: Get.context!);
+    getAllVet(context: Get.context!);
     super.onInit();
   }
 
@@ -28,23 +30,24 @@ class MyPetController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
-  getAllPet({required BuildContext context, bool isFromLoading = false}) async {
+  // find?skip=0&limit=15
+  getAllVet({required BuildContext context, bool isFromLoading = false}) async {
     var url = Uri.parse(
-        baseUrl + ApiConstant.getpet + "list?skip=${itemCount.value}&limit=20");
+        baseUrl + ApiConstant.getvet + "/find?skip=${itemCount.value}&limit=15");
     var response = await http.get(url, headers: {
       'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
     });
-    hasData.value = true;
+    hasData.value=true;
     if (response.statusCode == 200) {
-      PetListModel res = PetListModel.fromJson(jsonDecode(response.body));
-      if (!isNullEmptyOrFalse(res))   {
+      AllvetModel res = AllvetModel.fromJson(jsonDecode(response.body));
+      if (!isNullEmptyOrFalse(res)) {
         if (!isNullEmptyOrFalse(res.data)) {
-          if (!isNullEmptyOrFalse(res.data!.pets)) {
-            res.data!.pets!.forEach((element) {
-              allPetList.add(element);
+          if (!isNullEmptyOrFalse(res.data!.vets)) {
+            print('data:${res.data!.vets}');
+            res.data!.vets!.forEach((element) {
+              vetList.add(element);
             });
-            itemCount.value = allPetList.length;
+            itemCount.value = vetList.length;
             if (isFromLoading) {
               refreshController.loadComplete();
             }
@@ -54,5 +57,7 @@ class MyPetController extends GetxController {
     } else {
       refreshController.loadComplete();
     }
+
+    }
   }
-}
+

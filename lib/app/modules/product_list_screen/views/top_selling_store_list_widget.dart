@@ -34,6 +34,8 @@ class _TopSellingStoreWidgetState extends State<TopSellingStoreWidget> {
     var scaffoldKey = GlobalKey<ScaffoldState>();
     return SafeArea(
       child: Obx(() {
+        controller.Countlist.refresh();
+        controller.cartProductList.refresh();
         return Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(
@@ -938,7 +940,7 @@ class _TopSellingStoreWidgetState extends State<TopSellingStoreWidget> {
                                 gridDelegate:
                                     SliverGridDelegateWithFixedCrossAxisCount(
                                         crossAxisCount: 2,
-                                        childAspectRatio: 0.75)),
+                                        childAspectRatio: 0.65)),
                           ),
                         ],
                       ),

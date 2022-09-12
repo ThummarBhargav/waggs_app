@@ -358,7 +358,9 @@ class PetViewDetailsView extends GetWidget<PetViewDetailsController> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                Get.toNamed(Routes.BOOK_APPOIMENT);
+                              },
                               child: Padding(
                                 padding:
                                     const EdgeInsets.only(left: 10, top: 10),

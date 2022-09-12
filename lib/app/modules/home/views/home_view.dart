@@ -22,8 +22,8 @@ class HomeView extends GetWidget<HomeController> {
         builder: (controller) {
           return SafeArea(
             child: Obx(() {
-              // controller.Countlist.refresh();
-              // controller.cartProductList.refresh();
+              controller.Countlist.refresh();
+              controller.cartProductList.refresh();
               return Scaffold(
                   key: scaffoldKey,
                   // endDrawer: FilterView(),

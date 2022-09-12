@@ -42,6 +42,7 @@ abstract class Routes {
   static const ORDER_DETAIL = _Paths.ORDER_DETAIL;
   static const CART_DRAWER = _Paths.CART_DRAWER;
   static const PET_VIEW_DETAILS = _Paths.PET_VIEW_DETAILS;
+  static const BOOK_APPOIMENT = _Paths.BOOK_APPOIMENT;
 }
 
 abstract class _Paths {
@@ -85,4 +86,5 @@ abstract class _Paths {
   static const ORDER_DETAIL = '/order-detail';
   static const CART_DRAWER = '/cart-drawer';
   static const PET_VIEW_DETAILS = '/pet-view-details';
+  static const BOOK_APPOIMENT = '/book-appoiment';
 }

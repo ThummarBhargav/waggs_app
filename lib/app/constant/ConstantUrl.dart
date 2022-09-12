@@ -40,6 +40,7 @@ class ApiConstant {
   static const orderCancel = "order/";
   static const appointment = "appointment";
 // static const getpet = "pet/list?skip=0&limit=20";
+   static const getvet = "vet";
 }
 
 class ArgumentConstant {
