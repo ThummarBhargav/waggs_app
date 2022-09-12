@@ -627,7 +627,12 @@ class PetViewDetailsView extends GetWidget<PetViewDetailsController> {
                                                                       bottom:
                                                                           5),
                                                               child: Text(
-                                                                  "CANCELED"))
+                                                                "CANCELED",
+                                                                style: TextStyle(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold),
+                                                              ))
                                                           : getcon(
                                                               color:
                                                                   Colors.orange,
