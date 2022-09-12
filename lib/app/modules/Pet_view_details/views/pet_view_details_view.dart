@@ -604,7 +604,11 @@ class PetViewDetailsView extends GetWidget<PetViewDetailsController> {
                                                 ),
                                                 Center(
                                                   child: InkWell(
-                                                    onTap: () {},
+                                                    onTap: () {
+                                                      controller
+                                                          .cancelAppointment(
+                                                              context);
+                                                    },
                                                     child: Padding(
                                                       padding:
                                                           const EdgeInsets.only(

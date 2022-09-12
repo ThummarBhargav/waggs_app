@@ -11,6 +11,8 @@ import 'package:waggs_app/app/constant/SizeConstant.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
 import 'package:waggs_app/main.dart';
 
+import '../../../constant/Container.dart';
+
 class PetViewDetailsController extends GetxController {
   //TODO: Implement PetViewDetailsController
   RxBool hasData = false.obs;
@@ -18,6 +20,8 @@ class PetViewDetailsController extends GetxController {
   PetData petData = PetData();
   RxList<Appointments> appointmentslist = RxList([]);
   Appointments1 appointments1 = Appointments1();
+  Rx<TextEditingController> reasonController = TextEditingController().obs;
+
   @override
   void onInit() {
     MyPet(context: Get.context!);
@@ -101,6 +105,103 @@ class PetViewDetailsController extends GetxController {
                         },
                         child: Text("Call Now"),
                       )),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
+  }
+
+  cancelAppointment(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            contentPadding: EdgeInsets.all(0.0),
+            content: Container(
+              height: 300,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Reason",
+                    style: GoogleFonts.publicSans(
+                      color: Colors.black,
+                      fontSize: 18,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Container(
+                    height: 200,
+                    margin: EdgeInsets.only(left: 15, right: 15),
+                    padding: EdgeInsets.only(
+                      left: 15,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.grey[300],
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(10),
+                        topRight: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      ),
+                    ),
+                    child: TextFormField(
+                      controller: reasonController.value,
+                      keyboardType: TextInputType.text,
+                      maxLines: 7,
+                      decoration: InputDecoration(
+                        hintText: "Type your reason here...",
+                        hintStyle: GoogleFonts.roboto(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        enabledBorder: InputBorder.none,
+                        focusedBorder: InputBorder.none,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 10.0),
+                    child: Align(
+                      alignment: Alignment.bottomRight,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Container(
+                            child: TextButton(
+                              onPressed: () async {
+                                Navigator.of(context).pop();
+                              },
+                              child: Text(
+                                "CANCEL",
+                                style: TextStyle(color: Colors.orange),
+                              ),
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () {},
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 10, top: 5),
+                              child: getcon(
+                                color: Colors.orange,
+                                text: Text(
+                                  "SUBMIT",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                width: 100,
+                                height: 40,
+                                alignment: Alignment.center,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],
