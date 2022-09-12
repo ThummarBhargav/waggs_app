@@ -93,38 +93,46 @@ class OrderDetailView extends GetWidget<OrderDetailController> {
                                 SizedBox(
                                   height: 15,
                                 ),
-                                Align(
-                                  alignment: Alignment.centerRight,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        right: 0, top: 5, bottom: 10),
-                                    child: InkWell(
-                                      onTap: () {
-                                        showAlertDialog(context);
-                                      },
-                                      child: getcon(
-                                          alignment: Alignment.center,
-                                          color: Colors.orange,
-                                          height: 48,
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width /
-                                              2.5,
-                                          text: Text(
-                                            (controller.orderDetailModel!.data!
-                                                        .status ==
-                                                    "CANCELED")
-                                                ? "Raise Dispute"
-                                                : "Cancel Order",
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.w800,
-                                              color: Colors.white,
-                                              fontSize: 15,
-                                            ),
-                                          )),
-                                    ),
-                                  ),
-                                ),
+                                (controller.orderDetailModel!.data!.status ==
+                                        "COMPLETED")
+                                    ? Container()
+                                    : Align(
+                                        alignment: Alignment.centerRight,
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              right: 0, top: 5, bottom: 10),
+                                          child: InkWell(
+                                            onTap: () {
+                                              showAlertDialog(context);
+                                            },
+                                            child: getcon(
+                                                alignment: Alignment.center,
+                                                color: Colors.orange,
+                                                height: 48,
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width /
+                                                    2.5,
+                                                text: Text(
+                                                  (controller.orderDetailModel!
+                                                                  .data!.status ==
+                                                              "CANCELED" ||
+                                                          controller
+                                                                  .orderDetailModel!
+                                                                  .data!
+                                                                  .status !=
+                                                              "PENDING")
+                                                      ? "Raise Dispute"
+                                                      : "Cancel Order",
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.w800,
+                                                    color: Colors.white,
+                                                    fontSize: 15,
+                                                  ),
+                                                )),
+                                          ),
+                                        ),
+                                      ),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
