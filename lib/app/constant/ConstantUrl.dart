@@ -38,9 +38,9 @@ class ApiConstant {
   static const createImageSlot = "file/";
   static const updatePet = "pet/";
   static const orderCancel = "order/";
-  static const appointment = "appointment";
+  static const appointment = "appointment/";
 // static const getpet = "pet/list?skip=0&limit=20";
-   static const getvet = "vet";
+  static const getvet = "vet";
 }
 
 class ArgumentConstant {

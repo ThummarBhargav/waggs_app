@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'dart:io';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -114,7 +116,8 @@ class PetViewDetailsController extends GetxController {
         });
   }
 
-  cancelAppointment(BuildContext context) {
+  cancelAppointment(
+      {required BuildContext context, required String AppointmentId}) {
     showDialog(
         context: context,
         builder: (context) {
@@ -183,7 +186,9 @@ class PetViewDetailsController extends GetxController {
                             ),
                           ),
                           InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              deleteAppointment(AppointmentId);
+                            },
                             child: Padding(
                               padding: const EdgeInsets.only(left: 10, top: 5),
                               child: getcon(
@@ -241,6 +246,32 @@ class PetViewDetailsController extends GetxController {
     if (response.statusCode == 200) {
       Get.offNamed(Routes.MY_PET);
     }
+  }
+
+  deleteAppointment(String AppointmentId) async {
+    var URl = baseUrl + ApiConstant.appointment + "${AppointmentId}";
+    Dio dio = Dio();
+    Options option = Options(headers: {
+      'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+    });
+    var response;
+    await dio
+        .put(
+      URl,
+      data: {"status": "canceled", "reason": ""},
+      options: option,
+    )
+        .then((value) {
+      response = value;
+      print("UPDATE=========" + response.toString());
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        print(response.data);
+      } else if (response.statusCode == 400) {
+      } else {}
+    }).catchError((error) {
+      DioError err = error;
+      print("Error:==== ${err.response}");
+    });
   }
 
   DeletedilogBox(BuildContext context) {
