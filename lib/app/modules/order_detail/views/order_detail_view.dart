@@ -132,31 +132,43 @@ class OrderDetailView extends GetWidget<OrderDetailController> {
                                         orderStatus: "PENDING",
                                         status: controller
                                             .orderDetailModel!.data!.status!,
+                                        isDone: controller.listOfPassedStatus!
+                                            .contains("PENDING"),
                                         no: 1),
                                     getStatusWidget(
                                         orderStatus: "ACCEPTED",
                                         status: controller
                                             .orderDetailModel!.data!.status!,
+                                        isDone: controller.listOfPassedStatus!
+                                            .contains("ACCEPTED"),
                                         no: 2),
                                     getStatusWidget(
                                         orderStatus: "PROCESSING",
                                         status: controller
                                             .orderDetailModel!.data!.status!,
+                                        isDone: controller.listOfPassedStatus!
+                                            .contains("PROCESSING"),
                                         no: 3),
                                     getStatusWidget(
                                         orderStatus: "DISPATCHED",
                                         status: controller
                                             .orderDetailModel!.data!.status!,
+                                        isDone: controller.listOfPassedStatus!
+                                            .contains("DISPATCHED"),
                                         no: 4),
                                     getStatusWidget(
                                         orderStatus: "DELIVERED",
                                         status: controller
                                             .orderDetailModel!.data!.status!,
+                                        isDone: controller.listOfPassedStatus!
+                                            .contains("DELIVERED"),
                                         no: 5),
                                     getStatusWidget(
                                         orderStatus: "COMPLETED",
                                         status: controller
                                             .orderDetailModel!.data!.status!,
+                                        isDone: controller.listOfPassedStatus!
+                                            .contains("COMPLETED"),
                                         no: 6),
                                     if (controller
                                             .orderDetailModel!.data!.status ==
@@ -442,7 +454,10 @@ class OrderDetailView extends GetWidget<OrderDetailController> {
   }
 
   getStatusWidget(
-      {String status = "PENDING", orderStatus = "PENDING", int no = 1}) {
+      {String status = "PENDING",
+      orderStatus = "PENDING",
+      int no = 1,
+      bool isDone = false}) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -456,14 +471,21 @@ class OrderDetailView extends GetWidget<OrderDetailController> {
                   (controller.orderDetailModel!.data!.status.toString() ==
                           orderStatus)
                       ? Color(0xff20C1F4)
-                      : Colors.grey,
+                      : (isDone)
+                          ? Color(0xff20C1F4)
+                          : Colors.grey,
               child: Center(
-                child: Text(
-                  no.toString(),
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
+                child: (isDone)
+                    ? Icon(
+                        Icons.check,
+                        color: Colors.white,
+                      )
+                    : Text(
+                        no.toString(),
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
               ),
             ),
             if (orderStatus != "COMPLETED") ...[

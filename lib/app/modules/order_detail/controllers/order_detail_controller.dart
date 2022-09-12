@@ -16,6 +16,7 @@ class OrderDetailController extends GetxController {
   RxBool hasData = false.obs;
   OrderDetailModel? orderDetailModel;
   OrderPageController? orderPageController;
+  RxList<String>? listOfPassedStatus;
   @override
   void onInit() {
     // super.onInit();
@@ -104,6 +105,23 @@ class OrderDetailController extends GetxController {
     print('Response body: ${response.body}');
     dynamic result = jsonDecode(response.body);
     orderDetailModel = OrderDetailModel.fromJson(result);
+    if (orderDetailModel!.data!.status == "PENDING") {
+      listOfPassedStatus = [""].obs;
+    } else if (orderDetailModel!.data!.status == "ACCEPTED") {
+      listOfPassedStatus = ["PENDING"].obs;
+    } else if (orderDetailModel!.data!.status == "PROCESSING") {
+      listOfPassedStatus = ["PENDING", "ACCEPTED"].obs;
+    } else if (orderDetailModel!.data!.status == "DISPATCHED") {
+      listOfPassedStatus = ["PENDING", "ACCEPTED", "PROCESSING"].obs;
+    } else if (orderDetailModel!.data!.status == "DELIVERED") {
+      listOfPassedStatus =
+          ["PENDING", "ACCEPTED", "PROCESSING", "DISPATCHED"].obs;
+    } else if (orderDetailModel!.data!.status == "COMPLETED") {
+      listOfPassedStatus =
+          ["PENDING", "ACCEPTED", "PROCESSING", "DISPATCHED", "DELIVERED"].obs;
+    } else {
+      listOfPassedStatus = [""].obs;
+    }
     // if (!isNullEmptyOrFalse(bannerModel.data)) {
     //   bannerModel.data!.forEach((element) {
     //     bannerList.add(element);
