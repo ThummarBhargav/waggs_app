@@ -44,6 +44,7 @@ abstract class Routes {
   static const PET_VIEW_DETAILS = _Paths.PET_VIEW_DETAILS;
   static const BOOK_APPOIMENT = _Paths.BOOK_APPOIMENT;
   static const VET_VIEW_DETAILS = _Paths.VET_VIEW_DETAILS;
+  static const DATE_TIME_APPOIMENT = _Paths.DATE_TIME_APPOIMENT;
 }
 
 abstract class _Paths {
@@ -89,4 +90,5 @@ abstract class _Paths {
   static const PET_VIEW_DETAILS = '/pet-view-details';
   static const BOOK_APPOIMENT = '/book-appoiment';
   static const VET_VIEW_DETAILS = '/vet-view-details';
+  static const DATE_TIME_APPOIMENT = '/date-time-appoiment';
 }

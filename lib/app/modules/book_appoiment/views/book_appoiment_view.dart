@@ -366,7 +366,12 @@ class BookAppoimentView extends GetView<BookAppoimentController> {
                                                                     )),
                                                               ),
                                                               InkWell(
-                                                                onTap: () {},
+                                                                onTap: () {
+                                                                  Get.toNamed(
+                                                                    Routes
+                                                                        .DATE_TIME_APPOIMENT,
+                                                                  );
+                                                                },
                                                                 child: getcon(
                                                                     color: Colors
                                                                         .cyan,
