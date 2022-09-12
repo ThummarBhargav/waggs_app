@@ -167,10 +167,6 @@ class ViewProductView extends GetWidget<ViewProductController> {
                                         Container(
                                           color: Colors.grey[100],
                                         ))),
-
-                            // Image.network(width: 160,height:160,
-                            //     "${data.images![0]}"),
-
                             Expanded(
                                 child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,

@@ -207,7 +207,7 @@ class BookAppoimentView extends GetView<BookAppoimentController> {
                               ],
                             ),
                             Container(
-                              height: 480,
+                              height: 600,
                               width: 400,
                               child: GridView.builder(
                                   scrollDirection: Axis.vertical,
@@ -251,8 +251,8 @@ class BookAppoimentView extends GetView<BookAppoimentController> {
                                                     padding: EdgeInsets.only(
                                                         right: 10, left: 10),
                                                     margin: EdgeInsets.only(
-                                                        left: 25,
-                                                        right: 25,
+                                                        left: 35,
+                                                        right: 20,
                                                         bottom: 10,
                                                         top: 220),
                                                     height: 200,
