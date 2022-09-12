@@ -23,6 +23,7 @@ dependencies:
   otp_timer_button: ^1.1.0
   flutter_image_slideshow: ^0.1.2
   firebase_auth:
+  syncfusion_flutter_datepicker: ^20.2.48
   firebase_core:
   google_sign_in:
   carousel_slider:

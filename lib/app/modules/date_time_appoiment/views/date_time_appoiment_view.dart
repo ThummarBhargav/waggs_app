@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 import '../controllers/date_time_appoiment_controller.dart';
 
@@ -160,7 +161,14 @@ class DateTimeAppoimentView extends GetWidget<DateTimeAppoimentController> {
                               color: Colors.orange,
                             )),
                       ),
-                      Container(),
+                      Container(
+                        child: SfDateRangePicker(
+                          selectionMode: DateRangePickerSelectionMode.single,
+                          initialSelectedRange: PickerDateRange(
+                              DateTime.now().subtract(const Duration(days: 4)),
+                              DateTime.now().add(const Duration(days: 3))),
+                        ),
+                      ),
                     ],
                   ),
                 )
