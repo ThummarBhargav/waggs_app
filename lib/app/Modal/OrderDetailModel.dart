@@ -25,7 +25,7 @@ class OrderDetailModel {
 class Data {
   String? sId;
   String? status;
-  bool? isProductRated;
+  bool isProductRated = false;
   String? paymentStatus;
   OrderId? orderId;
   String? orderNo;
@@ -38,23 +38,25 @@ class Data {
   int? iV;
   String? createdAt;
   String? updatedAt;
-
-  Data(
-      {this.sId,
-      this.status,
-      this.isProductRated,
-      this.paymentStatus,
-      this.orderId,
-      this.orderNo,
-      this.productId,
-      this.product,
-      this.quantity,
-      this.sellerId,
-      this.shippingCharge,
-      this.userId,
-      this.iV,
-      this.createdAt,
-      this.updatedAt});
+  double rating = 0.0;
+  Data({
+    this.sId,
+    this.status,
+    this.isProductRated = false,
+    this.paymentStatus,
+    this.orderId,
+    this.orderNo,
+    this.productId,
+    this.product,
+    this.quantity,
+    this.sellerId,
+    this.shippingCharge,
+    this.userId,
+    this.iV,
+    this.createdAt,
+    this.updatedAt,
+    this.rating = 0.0,
+  });
 
   Data.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -77,6 +79,9 @@ class Data {
     iV = json['__v'];
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
+    if (isProductRated) {
+      rating = json["rating"];
+    }
   }
 
   Map<String, dynamic> toJson() {
