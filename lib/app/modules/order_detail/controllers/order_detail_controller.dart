@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 
 import '../../../../main.dart';
@@ -11,16 +12,16 @@ import 'package:http/http.dart' as http;
 import '../../order_page/controllers/order_page_controller.dart';
 
 class OrderDetailController extends GetxController {
-  final count = 0.obs;
   String? orderId;
   RxBool hasData = false.obs;
   OrderDetailModel? orderDetailModel;
   OrderPageController? orderPageController;
   RxList<String>? listOfPassedStatus;
+  RxDouble initialRating = 0.0.obs;
+  bool isVertical = false;
+  RxDouble rating = 0.0.obs;
   @override
   void onInit() {
-    // super.onInit();
-    // Get.lazyPut(OrderDetailController());
     orderPageController = Get.find<OrderPageController>();
     if (Get.arguments != null) {
       orderId = Get.arguments[ArgumentConstant.orderId];
@@ -131,10 +132,36 @@ class OrderDetailController extends GetxController {
     // }
   }
 
+  ratingApi() async {
+    var URl = baseUrl + "order/${orderId}";
+    Dio dio = Dio();
+    Options option = Options(headers: {
+      'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+    });
+    var response;
+    await dio
+        .put(
+      URl,
+      data: {
+        "rating": rating.value,
+      },
+      options: option,
+    )
+        .then((value) {
+      response = value;
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        Get.back();
+        print(response.data);
+      } else if (response.statusCode == 400) {
+      } else {}
+    }).catchError((error) {
+      DioError err = error as DioError;
+      print("Error:==== ${err.response}");
+    });
+  }
+
   @override
   void onClose() {
     super.onClose();
   }
-
-  void increment() => count.value++;
 }

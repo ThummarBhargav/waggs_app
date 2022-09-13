@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'package:get/get.dart';
@@ -429,39 +430,147 @@ class OrderDetailView extends GetWidget<OrderDetailController> {
                                     SizedBox(
                                       height: 40,
                                     ),
-                                    Container(
-                                      width: double.infinity,
-                                      padding: EdgeInsets.all(16),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(4),
-                                        border: Border.all(
-                                          color: Colors.grey,
-                                        ),
-                                      ),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Delivery address",
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                          SizedBox(
-                                            height: 6,
-                                          ),
-                                          Text(
-                                            "${controller.orderDetailModel!.data!.userId!.address}",
-                                            style: TextStyle(
+                                    controller.orderDetailModel!.data!.status ==
+                                            "COMPLETED"
+                                        ? Container(
+                                            width: double.infinity,
+                                            padding: EdgeInsets.all(16),
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(4),
+                                              border: Border.all(
                                                 color: Colors.grey,
-                                                fontSize: 17,
-                                                fontWeight: FontWeight.normal),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
+                                              ),
+                                            ),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  "Product rating",
+                                                  style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                                controller
+                                                            .orderDetailModel!
+                                                            .data!
+                                                            .isProductRated ==
+                                                        true
+                                                    ? Align(
+                                                        alignment:
+                                                            Alignment.topLeft,
+                                                        child: Container(
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(10.0),
+                                                            child: RatingBar
+                                                                .builder(
+                                                              glow: false,
+                                                              initialRating:
+                                                                  controller
+                                                                      .initialRating
+                                                                      .value,
+                                                              minRating: 0.0,
+                                                              direction: controller
+                                                                      .isVertical
+                                                                  ? Axis
+                                                                      .vertical
+                                                                  : Axis
+                                                                      .horizontal,
+                                                              allowHalfRating:
+                                                                  true,
+                                                              unratedColor:
+                                                                  Colors.amber
+                                                                      .withAlpha(
+                                                                          50),
+                                                              itemCount: 5,
+                                                              itemSize: 35.0,
+                                                              itemPadding: EdgeInsets
+                                                                  .symmetric(
+                                                                      horizontal:
+                                                                          4.0),
+                                                              itemBuilder:
+                                                                  (context,
+                                                                          _) =>
+                                                                      Icon(
+                                                                Icons.star,
+                                                                color: Colors
+                                                                    .amber,
+                                                              ),
+                                                              onRatingUpdate:
+                                                                  (rating) {
+                                                                // controller.orderDetailModel!.data!.rating = rating;
+                                                              },
+                                                              updateOnDrag:
+                                                                  false,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      )
+                                                    : Align(
+                                                        alignment:
+                                                            Alignment.topLeft,
+                                                        child: Container(
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(10.0),
+                                                            child: RatingBar
+                                                                .builder(
+                                                              glow: false,
+                                                              initialRating:
+                                                                  controller
+                                                                      .initialRating
+                                                                      .value,
+                                                              minRating: 0.0,
+                                                              direction: controller
+                                                                      .isVertical
+                                                                  ? Axis
+                                                                      .vertical
+                                                                  : Axis
+                                                                      .horizontal,
+                                                              allowHalfRating:
+                                                                  true,
+                                                              unratedColor:
+                                                                  Colors.amber
+                                                                      .withAlpha(
+                                                                          50),
+                                                              itemCount: 5,
+                                                              itemSize: 35.0,
+                                                              itemPadding: EdgeInsets
+                                                                  .symmetric(
+                                                                      horizontal:
+                                                                          4.0),
+                                                              itemBuilder:
+                                                                  (context,
+                                                                          _) =>
+                                                                      Icon(
+                                                                Icons.star,
+                                                                color: Colors
+                                                                    .amber,
+                                                              ),
+                                                              onRatingUpdate:
+                                                                  (rating) {
+                                                                controller
+                                                                        .rating
+                                                                        .value =
+                                                                    rating;
+                                                                controller
+                                                                    .ratingApi();
+                                                              },
+                                                              updateOnDrag:
+                                                                  true,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                              ],
+                                            ))
+                                        : Container(),
                                   ],
                                 )
                               ],
