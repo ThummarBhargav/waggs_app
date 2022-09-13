@@ -524,7 +524,10 @@ class OrderDetailView extends GetWidget<OrderDetailController> {
                                                         true
                                                     ? RatingBarIndicator(
                                                         rating: double.parse(
-                                                            controller.rating
+                                                            controller
+                                                                .orderDetailModel!
+                                                                .data!
+                                                                .rating
                                                                 .toString()),
                                                         itemBuilder:
                                                             (context, index) =>
@@ -533,7 +536,7 @@ class OrderDetailView extends GetWidget<OrderDetailController> {
                                                           color: Colors.amber,
                                                         ),
                                                         itemCount: 5,
-                                                        itemSize: 15.0,
+                                                        itemSize: 35.0,
                                                         direction:
                                                             Axis.horizontal,
                                                       )
