@@ -20,6 +20,10 @@ class ViewCartView extends GetView<ViewCartController> {
         child: Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(
+            title: Text(
+              "My Cart",
+              style: TextStyle(color: Colors.orange),
+            ),
             leading: IconButton(
                 onPressed: () {
                   Get.back();
@@ -354,11 +358,13 @@ class ViewCartView extends GetView<ViewCartController> {
                           Container(
                             height: 150,
                             width: double.maxFinite,
-                            padding: EdgeInsets.only(right: 10,left: 10,top: 10),
-                            margin: EdgeInsets.only(right: 20,left: 20),
+                            padding:
+                                EdgeInsets.only(right: 10, left: 10, top: 10),
+                            margin: EdgeInsets.only(right: 20, left: 20),
                             child: Text(
                               "${box.read(ArgumentConstant.address)}",
-                              style: TextStyle(color: Colors.black,fontSize: 20),
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 20),
                             ),
                             decoration: BoxDecoration(
                               borderRadius:

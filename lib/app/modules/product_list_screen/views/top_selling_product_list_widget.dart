@@ -1119,7 +1119,7 @@ class _TopSellingProductListWidgetState
                                             .size
                                             .width /
                                         (MediaQuery.of(context).size.height /
-                                            1.4),
+                                            1.3),
                                   )),
                             ),
                           ),

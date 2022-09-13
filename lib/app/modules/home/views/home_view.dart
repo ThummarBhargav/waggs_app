@@ -214,17 +214,6 @@ class HomeView extends GetWidget<HomeController> {
                                         ),
                                       ),
                                       InkWell(
-                                        onTap: () {},
-                                        child: ListTile(
-                                          leading: Icon(
-                                              Icons.favorite_border_outlined),
-                                          title: Text(
-                                            'My Wishlist',
-                                            style: TextStyle(fontSize: 15),
-                                          ),
-                                        ),
-                                      ),
-                                      InkWell(
                                         onTap: () {
                                           Get.defaultDialog(
                                             title: "Log Out",

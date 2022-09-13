@@ -153,7 +153,8 @@ class LoginScreenController extends GetxController {
         }
       }
     }).catchError((error) {
-      print("Error := $error");
+      DioError err = error;
+      print("Error := ${err.response}");
     });
     // Create a credential from the access token
     final OAuthCredential facebookAuthCredential =
@@ -207,10 +208,13 @@ class LoginScreenController extends GetxController {
       print("My Response :=  $value");
       if (!isNullEmptyOrFalse(value)) {
         box.write(ArgumentConstant.isUserLogin, true);
+        box.write(ArgumentConstant.token, value.data.val("token"));
+        print(
+            "token ====================== ${box.read(ArgumentConstant.token)}");
         Get.offAllNamed(Routes.HOME);
       }
     }).catchError((error) {
-      DioError dioError = error as DioError;
+      DioError dioError = error;
       print(dioError);
       if (!isNullEmptyOrFalse(dioError.response)) {
         if (dioError.response!.statusCode == 404) {
