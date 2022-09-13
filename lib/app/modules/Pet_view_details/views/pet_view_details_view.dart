@@ -619,7 +619,12 @@ class PetViewDetailsView extends GetWidget<PetViewDetailsController> {
                                                                       .appointmentslist[
                                                                           index]
                                                                       .status ==
-                                                                  "completed")
+                                                                  "completed" ||
+                                                              controller
+                                                                      .appointmentslist[
+                                                                          index]
+                                                                      .status ==
+                                                                  "rejected")
                                                           ? Container()
                                                           : controller
                                                               .cancelAppointment(
