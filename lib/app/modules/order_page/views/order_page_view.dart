@@ -319,7 +319,8 @@ class OrderPageView extends GetView<OrderPageController> {
                                                           top: 8),
                                                   child: Text(
                                                     "₹" +
-                                                        orderData.product!.price
+                                                        orderData.product!
+                                                            .discountedPrice
                                                             .toString() +
                                                         "/ unit",
                                                     style: TextStyle(
@@ -343,10 +344,7 @@ class OrderPageView extends GetView<OrderPageController> {
                                                                     .bold),
                                                       ),
                                                       Text(
-                                                        " ₹" +
-                                                            orderData.product!
-                                                                .discountedPrice
-                                                                .toString(),
+                                                        "\u{20B9}${orderData.product!.discountedPrice! * orderData.quantity!}.00",
                                                         style: TextStyle(
                                                             color: Colors.black,
                                                             fontWeight:

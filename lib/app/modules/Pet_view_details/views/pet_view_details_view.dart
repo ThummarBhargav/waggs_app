@@ -412,7 +412,7 @@ class PetViewDetailsView extends GetWidget<PetViewDetailsController> {
                                   backgroundColor: Colors.transparent,
                                   child: IconButton(
                                       onPressed: () {
-                                        controller.DeletedilogBox(context);
+                                        controller.deleteDialogBox(context);
                                       },
                                       icon: Icon(
                                         Icons.delete,
@@ -747,7 +747,12 @@ class PetViewDetailsView extends GetWidget<PetViewDetailsController> {
                                                         "completed"
                                                     ? Center(
                                                         child: InkWell(
-                                                        onTap: () {},
+                                                        onTap: () {
+                                                          controller.feedBackDialog(
+                                                              context: context,
+                                                              AppointmentId:
+                                                                  "${controller.appointmentslist[index].sId}");
+                                                        },
                                                         child: Container(
                                                           margin:
                                                               EdgeInsets.only(
