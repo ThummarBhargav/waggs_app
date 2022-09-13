@@ -151,7 +151,7 @@ class Reviews {
   User? user;
   String? vet;
   String? updatedAt;
-  int? rating;
+  double? rating;
   String? review;
 
   Reviews(
@@ -167,7 +167,7 @@ class Reviews {
     user = json['user'] != null ? new User.fromJson(json['user']) : null;
     vet = json['vet'];
     updatedAt = json['updatedAt'];
-    rating = json['rating'];
+    rating = (json['rating'].runtimeType==int)?double.parse(json['rating'].toString()):json['rating'];
     review = json['review'];
   }
 
