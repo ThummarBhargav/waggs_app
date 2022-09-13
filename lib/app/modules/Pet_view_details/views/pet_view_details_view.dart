@@ -578,7 +578,7 @@ class PetViewDetailsView extends GetWidget<PetViewDetailsController> {
                                                   margin: EdgeInsets.only(
                                                       left: 10, bottom: 3),
                                                   child: Text(
-                                                    "${controller.appointmentslist[index].vet!.address}.${controller.appointmentslist[index].vet!.city},${controller.appointmentslist[index].vet!.state},${controller.appointmentslist[index].vet!.country}",
+                                                    "${controller.appointmentslist[index].vet!.address}",
                                                     style: TextStyle(
                                                       color: Colors.grey[500],
                                                       fontSize: 15,
@@ -614,7 +614,12 @@ class PetViewDetailsView extends GetWidget<PetViewDetailsController> {
                                                                       .appointmentslist[
                                                                           index]
                                                                       .status ==
-                                                                  "accepted")
+                                                                  "accepted" ||
+                                                              controller
+                                                                      .appointmentslist[
+                                                                          index]
+                                                                      .status ==
+                                                                  "completed")
                                                           ? Container()
                                                           : controller
                                                               .cancelAppointment(
@@ -637,7 +642,12 @@ class PetViewDetailsView extends GetWidget<PetViewDetailsController> {
                                                                       .appointmentslist[
                                                                           index]
                                                                       .status ==
-                                                                  "rejected")
+                                                                  "rejected" ||
+                                                              controller
+                                                                      .appointmentslist[
+                                                                          index]
+                                                                      .status ==
+                                                                  "completed")
                                                           ? Container(
                                                               margin: EdgeInsets
                                                                   .only(
@@ -648,12 +658,15 @@ class PetViewDetailsView extends GetWidget<PetViewDetailsController> {
                                                                             .appointmentslist[
                                                                                 index]
                                                                             .status ==
-                                                                        "rejected"
-                                                                    ? "REJECTED"
+                                                                        "completed"
+                                                                    ? "COMPLETED"
                                                                     : (controller.appointmentslist[index].status ==
-                                                                            "accepted")
-                                                                        ? "ACCEPTED"
-                                                                        : "CANCELED",
+                                                                            "rejected"
+                                                                        ? "REJECTED"
+                                                                        : (controller.appointmentslist[index].status ==
+                                                                                "accepted")
+                                                                            ? "ACCEPTED"
+                                                                            : "CANCELED"),
                                                                 style: TextStyle(
                                                                     fontWeight:
                                                                         FontWeight
@@ -693,7 +706,12 @@ class PetViewDetailsView extends GetWidget<PetViewDetailsController> {
                                                                   .appointmentslist[
                                                                       index]
                                                                   .status ==
-                                                              "rejected")
+                                                              "rejected" ||
+                                                          controller
+                                                                  .appointmentslist[
+                                                                      index]
+                                                                  .status ==
+                                                              "completed")
                                                       ? (controller
                                                                   .appointmentslist[
                                                                       index]
@@ -722,6 +740,30 @@ class PetViewDetailsView extends GetWidget<PetViewDetailsController> {
                                                           child: Text(
                                                               "${controller.appointmentslist[index].status} confirmation"),
                                                         )),
+                                                controller
+                                                            .appointmentslist[
+                                                                index]
+                                                            .status ==
+                                                        "completed"
+                                                    ? Center(
+                                                        child: InkWell(
+                                                        onTap: () {},
+                                                        child: Container(
+                                                          margin:
+                                                              EdgeInsets.only(
+                                                                  bottom: 5),
+                                                          child: Text(
+                                                            "Add Feedback",
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .orange,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
+                                                          ),
+                                                        ),
+                                                      ))
+                                                    : Container(),
                                               ],
                                             ),
                                           );
