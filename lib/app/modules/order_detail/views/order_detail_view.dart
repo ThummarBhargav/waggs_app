@@ -533,7 +533,7 @@ class OrderDetailView extends GetWidget<OrderDetailController> {
     // set up the buttons
     Widget cancelButton = InkWell(
       child: Text(
-        "No",
+        "No  ",
         style: TextStyle(
           color: Color(0xff20C1F4),
           fontSize: 17,
@@ -546,7 +546,7 @@ class OrderDetailView extends GetWidget<OrderDetailController> {
     );
     Widget continueButton = InkWell(
       child: Text(
-        "Yes",
+        "Yes     ",
         style: TextStyle(
           color: Color(0xff20C1F4),
           fontSize: 17,
