@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
+import 'package:waggs_app/app/constant/Container.dart';
 
+import '../../../constant/SizeConstant.dart';
 import '../controllers/date_time_appoiment_controller.dart';
 
 class DateTimeAppoimentView extends GetWidget<DateTimeAppoimentController> {
@@ -160,27 +162,108 @@ class DateTimeAppoimentView extends GetWidget<DateTimeAppoimentController> {
                                 color: Colors.orange,
                               )),
                         ),
+                        SizedBox(height: 10,),
                         Container(
-                          margin: EdgeInsets.all(8),
-                          child: SfDateRangePicker(
-                            selectionMode: DateRangePickerSelectionMode.single,
-                            initialSelectedRange: PickerDateRange(
-                                DateTime.now().subtract(const Duration(days: 4)),
-                                DateTime.now().add(const Duration(days: 3))),
-                          ),
-                        ),
-                         Container(
-                          height: 50,
-                          width: 50,
-                          decoration: new BoxDecoration(color: Theme.of(context).primaryColor),
-                          child: new TabBar(
+                          margin: EdgeInsets.only(left: 15,right: 15),
+                          height: 280,
+                          width: MediaQuery.of(context).size.width,
+                          // color: Colors.cyan,
+                          child:  TabBarView(
                             controller: controller.tabController,
-                            tabs: [
-                                Tab(icon: Icon(Icons.directions_car)),
-                                Tab(icon: Icon(Icons.directions_bike)),
+                            children: [
+                              Container(
+                                margin: EdgeInsets.all(8),
+                                child: SfDateRangePicker(
+                                  selectionMode: DateRangePickerSelectionMode.single,
+                                  initialSelectedRange: PickerDateRange(
+                                      DateTime.now().subtract(const Duration(days: 4)),
+                                      DateTime.now().add(const Duration(days: 3))),
+                                ),
+                              ),
+                              Container(
+                                child: Icon(Icons.calendar_today),
+                                // child: controller.chooseTime(),
+                              ),
                             ],
                           ),
                         ),
+                        Container(
+                          height: 45,
+                          margin: EdgeInsets.all(15),
+                          decoration: BoxDecoration(
+                            color: Colors.grey.shade300,
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(15),
+                              bottomRight:
+                              Radius.circular(15),
+                              bottomLeft: Radius.circular(15),
+                               topLeft: Radius.circular(15)
+                            ),
+                          ),
+                          child: TabBar(
+                            controller: controller.tabController,
+                            indicator: BoxDecoration(
+                              borderRadius: BorderRadius.circular(
+                                15.0,
+                              ),
+                              color: Colors.cyan.shade400,
+                            ),
+                            labelColor: Colors.white,
+                            unselectedLabelColor: Colors.black,
+                            tabs: [
+                              Tab(
+                                icon: Icon(Icons.calendar_today),
+                              ),
+                              Tab(
+                                icon: Icon(Icons.watch_later),
+                              ),
+                            ],
+                          ),
+                        ),
+                         Container(
+                           height: 120,
+                          margin: EdgeInsets.only(left: 15, right: 15),
+                          padding: EdgeInsets.only(
+                            left: 15,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.grey[200],
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(10),
+                              topRight: Radius.circular(10),
+                              bottomRight: Radius.circular(10),
+                            ),
+                          ),
+                          child: TextFormField(
+                            // controller: controller.breed,
+                            keyboardType: TextInputType.text,
+                            maxLines: 10,
+                            validator: (val) {
+                              if (isNullEmptyOrFalse(val)) {
+                                return "Please enter breed";
+                              }
+                              return null;
+                            },
+                            decoration: const InputDecoration(
+                              border: InputBorder.none,
+                              labelText: 'Note for Vet',
+                              labelStyle: TextStyle(
+                                  fontSize: 15, color: Colors.cyan),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 50,),
+                        getcon(
+                          color: Colors.orange,
+                          width: MediaQuery.of(context).size.width*0.6,
+                          height: 50,
+                          alignment: Alignment.center,
+                          text: Text("BOOK APPOINMENT",style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold
+                          ),)
+                        )
                       ],
                     ),
                   )
