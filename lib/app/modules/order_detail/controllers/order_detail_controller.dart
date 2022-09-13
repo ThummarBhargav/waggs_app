@@ -62,11 +62,11 @@ class OrderDetailController extends GetxController {
     });
   }
 
-  Future<void> disputeOrder() async {
+  Future<void> disputeOrder(String status) async {
     var url = Uri.parse(baseUrl + ApiConstant.orderCancel + orderId!);
     var response;
     await http.put(url, body: {
-      'status': 'DISPUTED',
+      'status': status,
     }, headers: {
       'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
       // 'Content-Type': 'application/json'

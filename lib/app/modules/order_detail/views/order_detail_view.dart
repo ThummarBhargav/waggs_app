@@ -426,6 +426,42 @@ class OrderDetailView extends GetWidget<OrderDetailController> {
                                         ],
                                       ),
                                     ),
+                                    SizedBox(
+                                      height: 40,
+                                    ),
+                                    Container(
+                                      width: double.infinity,
+                                      padding: EdgeInsets.all(16),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(4),
+                                        border: Border.all(
+                                          color: Colors.grey,
+                                        ),
+                                      ),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "Delivery address",
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          SizedBox(
+                                            height: 6,
+                                          ),
+                                          Text(
+                                            "${controller.orderDetailModel!.data!.userId!.address}",
+                                            style: TextStyle(
+                                                color: Colors.grey,
+                                                fontSize: 17,
+                                                fontWeight: FontWeight.normal),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
                                   ],
                                 )
                               ],
@@ -557,7 +593,7 @@ class OrderDetailView extends GetWidget<OrderDetailController> {
         if ((controller.orderDetailModel!.data!.status == "CANCELED")) {
           Get.back();
 
-          controller.disputeOrder();
+          controller.disputeOrder("DISPUTED");
         } else {
           Get.back();
 
