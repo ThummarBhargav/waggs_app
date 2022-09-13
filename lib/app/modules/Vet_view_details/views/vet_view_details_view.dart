@@ -357,7 +357,7 @@ class VetViewDetailsView extends GetView<VetViewDetailsController> {
                                                 decoration: BoxDecoration(
                                                   image: DecorationImage(
                                                       image: AssetImage(
-                                                          "assets/facebook1.png"),
+                                                          "assets/fb.PNG"),
                                                       fit: BoxFit.fill),
                                                 ),
                                               ),
@@ -377,7 +377,7 @@ class VetViewDetailsView extends GetView<VetViewDetailsController> {
                                                 decoration: BoxDecoration(
                                                   image: DecorationImage(
                                                       image: AssetImage(
-                                                          "assets/twit1.png"),
+                                                          "assets/twitter.PNG"),
                                                       fit: BoxFit.fill),
                                                 ),
                                               ),
@@ -398,7 +398,7 @@ class VetViewDetailsView extends GetView<VetViewDetailsController> {
                                                 decoration: BoxDecoration(
                                                   image: DecorationImage(
                                                       image: AssetImage(
-                                                          "assets/insta1.png"),
+                                                          "assets/insta.PNG"),
                                                       fit: BoxFit.fill),
                                                 ),
                                               ),
@@ -419,7 +419,7 @@ class VetViewDetailsView extends GetView<VetViewDetailsController> {
                                                 decoration: BoxDecoration(
                                                   image: DecorationImage(
                                                       image: AssetImage(
-                                                          "assets/link1.png"),
+                                                          "assets/linkdin.PNG"),
                                                       fit: BoxFit.fill),
                                                 ),
                                               ),
@@ -646,148 +646,163 @@ class VetViewDetailsView extends GetView<VetViewDetailsController> {
                                           ),
                                         ),
                                         controller.isOpen2.value == false
-                                            ? ListView.builder(
-                                                physics:
-                                                    NeverScrollableScrollPhysics(),
-                                                itemCount: controller
-                                                    .vetData.reviews!.length,
-                                                shrinkWrap: true,
-                                                itemBuilder: ((context, index) {
-                                                  return Container(
-                                                      margin: EdgeInsets.only(
-                                                          top: 15,
-                                                          right: 15,
-                                                          left: 15),
-                                                      width:
-                                                          MediaQuery.of(context)
-                                                              .size
-                                                              .width,
-                                                      height: 200,
-                                                      padding: EdgeInsets.only(
-                                                          left: 30, top: 20),
-                                                      decoration: BoxDecoration(
-                                                        color: Colors
-                                                            .grey.shade200,
-                                                        borderRadius:
-                                                            BorderRadius.only(
-                                                          topRight:
-                                                              Radius.circular(
-                                                                  25),
-                                                          bottomRight:
-                                                              Radius.circular(
-                                                                  25),
-                                                          bottomLeft:
-                                                              Radius.circular(
-                                                                  25),
-                                                        ),
-                                                      ),
-                                                      child: Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
+                                            ? Column(
+                                                children: [
+                                                  ListView.builder(
+                                                    physics:
+                                                        NeverScrollableScrollPhysics(),
+                                                    itemCount: controller
+                                                        .vetData
+                                                        .reviews!
+                                                        .length,
+                                                    shrinkWrap: true,
+                                                    itemBuilder:
+                                                        ((context, index) {
+                                                      return Column(
                                                         children: [
                                                           Container(
-                                                            width: 60,
-                                                            height: 60,
-                                                            child: Center(
-                                                              child: Text(
-                                                                "${controller.vetData.reviews![index].user!.name![0]}",
-                                                                style:
-                                                                    TextStyle(
-                                                                  color: Colors
-                                                                      .white,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                  fontSize: 20,
-                                                                ),
-                                                              ),
-                                                            ),
-                                                            decoration: BoxDecoration(
-                                                                shape: BoxShape
-                                                                    .circle,
+                                                              margin: EdgeInsets
+                                                                  .only(
+                                                                      top: 15,
+                                                                      right: 15,
+                                                                      left: 15),
+                                                              padding: EdgeInsets
+                                                                  .only(
+                                                                      left: 30,
+                                                                      top: 20),
+                                                              decoration:
+                                                                  BoxDecoration(
                                                                 color: Colors
                                                                     .grey
-                                                                    .shade500),
-                                                          ),
-                                                          SizedBox(
-                                                            height: 15,
-                                                          ),
-                                                          Text(
-                                                            "${controller.vetData.reviews![index].user!.name!.toUpperCase()}",
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .black,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                                fontSize: 16),
-                                                          ),
-                                                          SizedBox(
-                                                            height: 8,
-                                                          ),
-                                                          Row(
-                                                            children: [
-                                                              Text(
-                                                                DateFormat(
-                                                                        "MM/dd/yyyy")
-                                                                    .format(
-                                                                  DateTime.parse(
-                                                                      "${controller.vetData.reviews![index].updatedAt}"),
+                                                                    .shade200,
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .only(
+                                                                  topRight: Radius
+                                                                      .circular(
+                                                                          25),
+                                                                  bottomRight: Radius
+                                                                      .circular(
+                                                                          25),
+                                                                  bottomLeft: Radius
+                                                                      .circular(
+                                                                          25),
                                                                 ),
-                                                                style: TextStyle(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                    color: Colors
-                                                                        .cyan,
-                                                                    fontSize:
-                                                                        18),
                                                               ),
-                                                              SizedBox(
-                                                                width: 10,
-                                                              ),
-                                                              RatingBarIndicator(
-                                                                rating: controller
-                                                                    .vetData
-                                                                    .reviews![
-                                                                        index]
-                                                                    .rating!
-                                                                    .toDouble(),
-                                                                itemBuilder:
-                                                                    (context,
-                                                                            index) =>
-                                                                        Icon(
-                                                                  Icons.star,
-                                                                  color: Colors
-                                                                      .amber,
-                                                                ),
-                                                                itemCount: 5,
-                                                                itemSize: 20.0,
-                                                                direction: Axis
-                                                                    .horizontal,
-                                                              ),
-                                                            ],
-                                                          ),
-                                                          SizedBox(
-                                                            height: 8,
-                                                          ),
-                                                          Flexible(
-                                                            child: Text(
-                                                              "${controller.vetData.reviews![index].review}",
-                                                              style: TextStyle(
-                                                                  color: Colors
-                                                                      .grey
-                                                                      .shade500,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w400,
-                                                                  fontSize: 16),
-                                                            ),
-                                                          ),
+                                                              child: Column(
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  Container(
+                                                                    width: 60,
+                                                                    height: 60,
+                                                                    child:
+                                                                        Center(
+                                                                      child:
+                                                                          Text(
+                                                                        "${controller.vetData.reviews![index].user!.name![0]}",
+                                                                        style:
+                                                                            TextStyle(
+                                                                          color:
+                                                                              Colors.white,
+                                                                          fontWeight:
+                                                                              FontWeight.w600,
+                                                                          fontSize:
+                                                                              20,
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    decoration: BoxDecoration(
+                                                                        shape: BoxShape
+                                                                            .circle,
+                                                                        color: Colors
+                                                                            .grey
+                                                                            .shade500),
+                                                                  ),
+                                                                  SizedBox(
+                                                                    height: 15,
+                                                                  ),
+                                                                  Text(
+                                                                    "${controller.vetData.reviews![index].user!.name!.toUpperCase()}",
+                                                                    style: TextStyle(
+                                                                        color: Colors
+                                                                            .black,
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .w600,
+                                                                        fontSize:
+                                                                            16),
+                                                                  ),
+                                                                  SizedBox(
+                                                                    height: 8,
+                                                                  ),
+                                                                  Row(
+                                                                    children: [
+                                                                      Text(
+                                                                        DateFormat("MM/dd/yyyy")
+                                                                            .format(
+                                                                          DateTime.parse(
+                                                                              "${controller.vetData.reviews![index].updatedAt}"),
+                                                                        ),
+                                                                        style: TextStyle(
+                                                                            fontWeight:
+                                                                                FontWeight.bold,
+                                                                            color: Colors.cyan,
+                                                                            fontSize: 18),
+                                                                      ),
+                                                                      SizedBox(
+                                                                        width:
+                                                                            10,
+                                                                      ),
+                                                                      RatingBarIndicator(
+                                                                        rating: controller
+                                                                            .vetData
+                                                                            .reviews![index]
+                                                                            .rating!
+                                                                            .toDouble(),
+                                                                        itemBuilder:
+                                                                            (context, index) =>
+                                                                                Icon(
+                                                                          Icons
+                                                                              .star,
+                                                                          color:
+                                                                              Colors.amber,
+                                                                        ),
+                                                                        itemCount:
+                                                                            5,
+                                                                        itemSize:
+                                                                            20.0,
+                                                                        direction:
+                                                                            Axis.horizontal,
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                  SizedBox(
+                                                                    height: 8,
+                                                                  ),
+                                                                  Text(
+                                                                    "${controller.vetData.reviews![index].review}",
+                                                                    style: TextStyle(
+                                                                        color: Colors
+                                                                            .grey
+                                                                            .shade500,
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .w400,
+                                                                        fontSize:
+                                                                            16),
+                                                                  ),
+                                                                  SizedBox(
+                                                                    height: 10,
+                                                                  ),
+                                                                ],
+                                                              )),
                                                         ],
-                                                      ));
-                                                }),
+                                                      );
+                                                    }),
+                                                  ),
+                                                ],
                                               )
                                             : Container(),
                                         SizedBox(
