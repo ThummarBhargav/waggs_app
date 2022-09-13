@@ -529,6 +529,9 @@ class OrderDetailView extends GetWidget<OrderDetailController> {
                                                                 .data!
                                                                 .rating
                                                                 .toString()),
+                                                        unratedColor: Colors
+                                                            .amber
+                                                            .withAlpha(50),
                                                         itemBuilder:
                                                             (context, index) =>
                                                                 Icon(
