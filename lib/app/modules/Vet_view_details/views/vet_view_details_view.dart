@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:waggs_app/app/constant/Container.dart';
+import 'package:waggs_app/app/routes/app_pages.dart';
 
 import '../../../constant/SizeConstant.dart';
 import '../controllers/vet_view_details_controller.dart';
@@ -243,29 +244,34 @@ class VetViewDetailsView extends GetView<VetViewDetailsController> {
                                      ],
                                    ),
                                  SizedBox(height: 20,),
-                                 Container(
-                                 width: 250,
-                                 height: 50,
-                                 padding: EdgeInsets.only(left: 8),
-                                 decoration: BoxDecoration(
-                                   color: Colors.orange,
-                                   borderRadius: BorderRadius.only(
-                                     topRight: Radius.circular(25),
-                                     bottomRight: Radius.circular(25),
-                                     bottomLeft: Radius.circular(25),
+                                 InkWell(
+                                   onTap: (){
+                                     Get.toNamed(Routes.DATE_TIME_APPOIMENT);
+                                   },
+                                   child: Container(
+                                   width: 250,
+                                   height: 50,
+                                   padding: EdgeInsets.only(left: 8),
+                                   decoration: BoxDecoration(
+                                     color: Colors.orange,
+                                     borderRadius: BorderRadius.only(
+                                       topRight: Radius.circular(25),
+                                       bottomRight: Radius.circular(25),
+                                       bottomLeft: Radius.circular(25),
+                                     ),
                                    ),
+                                   child: Row(
+                                     mainAxisAlignment: MainAxisAlignment.center,
+                                     children: [
+                                     Icon(Icons.date_range,color: Colors.white,),
+                                     SizedBox(width: 8,),
+                                     Text("BOOK APPOINMENT",style: TextStyle(
+                                       color: Colors.white,
+                                       fontWeight: FontWeight.w600,
+                                       fontSize: 16
+                                     ),)
+                                   ],)),
                                  ),
-                                 child: Row(
-                                   mainAxisAlignment: MainAxisAlignment.center,
-                                   children: [
-                                   Icon(Icons.date_range,color: Colors.white,),
-                                   SizedBox(width: 8,),
-                                   Text("BOOK APPOINMENT",style: TextStyle(
-                                     color: Colors.white,
-                                     fontWeight: FontWeight.w600,
-                                     fontSize: 16
-                                   ),)
-                                 ],)),
                                    SizedBox(height: 15,),
                                    Row(
                                      children: [
