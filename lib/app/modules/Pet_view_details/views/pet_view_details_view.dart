@@ -607,27 +607,55 @@ class PetViewDetailsView extends GetWidget<PetViewDetailsController> {
                                                 Center(
                                                   child: InkWell(
                                                     onTap: () {
-                                                      controller.cancelAppointment(
-                                                          context: context,
-                                                          AppointmentId:
-                                                              "${controller.appointmentslist[index].sId}");
+                                                      (controller
+                                                                      .appointmentslist[
+                                                                          index]
+                                                                      .status ==
+                                                                  "canceled" ||
+                                                              controller
+                                                                      .appointmentslist[
+                                                                          index]
+                                                                      .status ==
+                                                                  "accepted")
+                                                          ? Container()
+                                                          : controller
+                                                              .cancelAppointment(
+                                                                  context:
+                                                                      context,
+                                                                  AppointmentId:
+                                                                      "${controller.appointmentslist[index].sId}");
                                                     },
                                                     child: Padding(
                                                       padding:
                                                           const EdgeInsets.only(
                                                               left: 10, top: 5),
-                                                      child: controller
-                                                                  .appointmentslist[
-                                                                      index]
-                                                                  .status ==
-                                                              "canceled"
+                                                      child: (controller.appointmentslist[index].status == "canceled" ||
+                                                              controller
+                                                                      .appointmentslist[
+                                                                          index]
+                                                                      .status ==
+                                                                  "accepted" ||
+                                                              controller
+                                                                      .appointmentslist[
+                                                                          index]
+                                                                      .status ==
+                                                                  "rejected")
                                                           ? Container(
                                                               margin: EdgeInsets
                                                                   .only(
                                                                       bottom:
                                                                           5),
                                                               child: Text(
-                                                                "CANCELED",
+                                                                controller
+                                                                            .appointmentslist[
+                                                                                index]
+                                                                            .status ==
+                                                                        "rejected"
+                                                                    ? "REJECTED"
+                                                                    : (controller.appointmentslist[index].status ==
+                                                                            "accepted")
+                                                                        ? "ACCEPTED"
+                                                                        : "CANCELED",
                                                                 style: TextStyle(
                                                                     fontWeight:
                                                                         FontWeight
@@ -654,37 +682,48 @@ class PetViewDetailsView extends GetWidget<PetViewDetailsController> {
                                                     ),
                                                   ),
                                                 ),
-                                                controller
-                                                            .appointmentslist[
-                                                                index]
-                                                            .status ==
-                                                        "canceled"
-                                                    ? (controller
-                                                                .appointmentslist[
-                                                                    index]
-                                                                .reason ==
-                                                            ""
-                                                        ? Container()
-                                                        : Center(
-                                                            child: Container(
-                                                            margin:
-                                                                EdgeInsets.only(
-                                                                    bottom: 5,
-                                                                    left: 15),
-                                                            child: Text(
-                                                              "Reason : ${controller.appointmentslist[index].reason}",
-                                                              style: TextStyle(
-                                                                  color: Colors
-                                                                      .red),
-                                                            ),
-                                                          )))
-                                                    : Center(
-                                                        child: Container(
-                                                        margin: EdgeInsets.only(
-                                                            bottom: 5, top: 5),
-                                                        child: Text(
-                                                            "${controller.appointmentslist[index].status} confirmation"),
-                                                      )),
+                                                if (controller
+                                                        .appointmentslist[index]
+                                                        .status !=
+                                                    "accepted")
+                                                  (controller
+                                                                  .appointmentslist[
+                                                                      index]
+                                                                  .status ==
+                                                              "canceled" ||
+                                                          controller
+                                                                  .appointmentslist[
+                                                                      index]
+                                                                  .status ==
+                                                              "rejected")
+                                                      ? (controller
+                                                                  .appointmentslist[
+                                                                      index]
+                                                                  .reason ==
+                                                              ""
+                                                          ? Container()
+                                                          : Center(
+                                                              child: Container(
+                                                              margin: EdgeInsets
+                                                                  .only(
+                                                                      bottom: 5,
+                                                                      left: 15),
+                                                              child: Text(
+                                                                "Reason : ${controller.appointmentslist[index].reason}",
+                                                                style: TextStyle(
+                                                                    color: Colors
+                                                                        .red),
+                                                              ),
+                                                            )))
+                                                      : Center(
+                                                          child: Container(
+                                                          margin:
+                                                              EdgeInsets.only(
+                                                                  bottom: 5,
+                                                                  top: 5),
+                                                          child: Text(
+                                                              "${controller.appointmentslist[index].status} confirmation"),
+                                                        )),
                                               ],
                                             ),
                                           );

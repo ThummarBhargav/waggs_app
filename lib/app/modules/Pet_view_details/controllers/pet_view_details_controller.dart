@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:waggs_app/app/Modal/UpdateAppointmentModel.dart';
 import 'package:waggs_app/app/Modal/appointments_models.dart';
 import 'package:waggs_app/app/Modal/view_pet_details_models.dart';
 import 'package:waggs_app/app/constant/ConstantUrl.dart';
@@ -28,7 +27,7 @@ class PetViewDetailsController extends GetxController {
   @override
   void onInit() {
     MyPet(context: Get.context!);
-    appointmentApi(context: Get.context!);
+
     super.onInit();
   }
 
@@ -43,6 +42,7 @@ class PetViewDetailsController extends GetxController {
   }
 
   MyPet({required BuildContext context, bool isFromLoading = false}) async {
+    hasData.value = false;
     var url = Uri.parse(baseUrl + ApiConstant.getpet + "${Get.arguments}");
     var response = await http.get(url, headers: {
       'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
@@ -55,6 +55,7 @@ class PetViewDetailsController extends GetxController {
           petData = res.data!;
         }
       }
+      appointmentApi(context: Get.context!);
     }
   }
 
@@ -219,6 +220,8 @@ class PetViewDetailsController extends GetxController {
 
   appointmentApi(
       {required BuildContext context, bool isFromLoading = false}) async {
+    appointmentslist.clear();
+    hasData1.value = false;
     var url = Uri.parse(baseUrl +
         "appointment/list?skip=0&limit=15&petId=${Get.arguments}&status=&search=");
     var response = await http.get(url, headers: {
@@ -259,18 +262,23 @@ class PetViewDetailsController extends GetxController {
     await dio
         .put(
       URl,
-      data: {"status": "canceled", "reason": ""},
+      data: {
+        "status": "canceled",
+        "reason": '${reasonController.value.text.trim()}'
+      },
       options: option,
     )
         .then((value) {
       response = value;
       if (response.statusCode == 200 || response.statusCode == 201) {
-        Get.to(Routes.MY_PET);
+        Get.back();
+
+        MyPet(context: Get.context!);
         print(response.data);
       } else if (response.statusCode == 400) {
       } else {}
     }).catchError((error) {
-      DioError err = error;
+      DioError err = error as DioError;
       print("Error:==== ${err.response}");
     });
   }
