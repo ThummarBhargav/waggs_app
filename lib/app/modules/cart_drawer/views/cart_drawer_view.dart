@@ -23,8 +23,8 @@ class CartDrawerView extends GetWidget<CartDrawerController> {
           body: Obx(() {
             return Column(
               children: [
-                Expanded(
-                  flex: 1,
+                Container(
+                  height: 70,
                   child: DrawerHeader(
                       decoration:
                           BoxDecoration(color: Color.fromRGBO(32, 193, 244, 1)),
