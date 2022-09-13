@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -204,5 +205,4 @@ class OrderDetailController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
 }

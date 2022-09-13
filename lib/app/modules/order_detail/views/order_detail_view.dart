@@ -517,120 +517,52 @@ class OrderDetailView extends GetWidget<OrderDetailController> {
                                                       fontWeight:
                                                           FontWeight.bold),
                                                 ),
-                                                controller
-                                                            .orderDetailModel!
-                                                            .data!
-                                                            .isProductRated ==
-                                                        true
-                                                    ? Align(
-                                                        alignment:
-                                                            Alignment.topLeft,
-                                                        child: Container(
-                                                          child: Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                    .all(10.0),
-                                                            child: RatingBar
-                                                                .builder(
-                                                              glow: false,
-                                                              initialRating:
-                                                                  controller
-                                                                      .initialRating
-                                                                      .value,
-                                                              minRating: 0.0,
-                                                              direction: controller
-                                                                      .isVertical
-                                                                  ? Axis
-                                                                      .vertical
-                                                                  : Axis
-                                                                      .horizontal,
-                                                              allowHalfRating:
-                                                                  true,
-                                                              unratedColor:
-                                                                  Colors.amber
-                                                                      .withAlpha(
-                                                                          50),
-                                                              itemCount: 5,
-                                                              itemSize: 35.0,
-                                                              itemPadding: EdgeInsets
-                                                                  .symmetric(
-                                                                      horizontal:
-                                                                          4.0),
-                                                              itemBuilder:
-                                                                  (context,
-                                                                          _) =>
-                                                                      Icon(
-                                                                Icons.star,
-                                                                color: Colors
-                                                                    .amber,
-                                                              ),
-                                                              onRatingUpdate:
-                                                                  (rating) {
-                                                                // controller.orderDetailModel!.data!.rating = rating;
-                                                              },
-                                                              updateOnDrag:
-                                                                  false,
-                                                            ),
-                                                          ),
+                                                Align(
+                                                  alignment: Alignment.topLeft,
+                                                  child: Container(
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              10.0),
+                                                      child: RatingBar.builder(
+                                                        glow: false,
+                                                        initialRating:
+                                                            controller
+                                                                .initialRating
+                                                                .value,
+                                                        minRating: 0.0,
+                                                        direction: controller
+                                                                .isVertical
+                                                            ? Axis.vertical
+                                                            : Axis.horizontal,
+                                                        allowHalfRating: true,
+                                                        unratedColor: Colors
+                                                            .amber
+                                                            .withAlpha(50),
+                                                        itemCount: 5,
+                                                        itemSize: 35.0,
+                                                        itemPadding: EdgeInsets
+                                                            .symmetric(
+                                                                horizontal:
+                                                                    4.0),
+                                                        itemBuilder:
+                                                            (context, _) =>
+                                                                Icon(
+                                                          Icons.star,
+                                                          color: Colors.amber,
                                                         ),
-                                                      )
-                                                    : Align(
-                                                        alignment:
-                                                            Alignment.topLeft,
-                                                        child: Container(
-                                                          child: Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                    .all(10.0),
-                                                            child: RatingBar
-                                                                .builder(
-                                                              glow: false,
-                                                              initialRating:
-                                                                  controller
-                                                                      .initialRating
-                                                                      .value,
-                                                              minRating: 0.0,
-                                                              direction: controller
-                                                                      .isVertical
-                                                                  ? Axis
-                                                                      .vertical
-                                                                  : Axis
-                                                                      .horizontal,
-                                                              allowHalfRating:
-                                                                  true,
-                                                              unratedColor:
-                                                                  Colors.amber
-                                                                      .withAlpha(
-                                                                          50),
-                                                              itemCount: 5,
-                                                              itemSize: 35.0,
-                                                              itemPadding: EdgeInsets
-                                                                  .symmetric(
-                                                                      horizontal:
-                                                                          4.0),
-                                                              itemBuilder:
-                                                                  (context,
-                                                                          _) =>
-                                                                      Icon(
-                                                                Icons.star,
-                                                                color: Colors
-                                                                    .amber,
-                                                              ),
-                                                              onRatingUpdate:
-                                                                  (rating) {
-                                                                controller
-                                                                        .rating
-                                                                        .value =
-                                                                    rating;
-                                                                controller
-                                                                    .ratingApi();
-                                                              },
-                                                              updateOnDrag:
-                                                                  true,
-                                                            ),
-                                                          ),
-                                                        ),
+                                                        onRatingUpdate:
+                                                            (rating) {
+                                                          controller.rating
+                                                              .value = rating;
+                                                          controller
+                                                              .ratingApi();
+                                                        },
+                                                        updateOnDrag: true,
                                                       ),
+                                                    ),
+                                                  ),
+                                                ),
                                               ],
                                             ))
                                         : Container(),
