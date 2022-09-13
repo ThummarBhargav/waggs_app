@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../main.dart';
@@ -122,19 +123,57 @@ class OrderDetailController extends GetxController {
     } else {
       listOfPassedStatus = [""].obs;
     }
-    // if (!isNullEmptyOrFalse(bannerModel.data)) {
-    //   bannerModel.data!.forEach((element) {
-    //     bannerList.add(element);
-    //   }
-    //   );
-    //   getAllUserApi();
-    // }
+  }
+
+  dialogBox({String? message, String? status, required BuildContext context}) {
+    Widget cancelButton = InkWell(
+      child: Text(
+        "No  ",
+        style: TextStyle(
+          color: Color(0xff20C1F4),
+          fontSize: 17,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      onTap: () {
+        Get.back();
+      },
+    );
+    Widget continueButton = InkWell(
+      child: Text(
+        "Yes     ",
+        style: TextStyle(
+          color: Color(0xff20C1F4),
+          fontSize: 17,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      onTap: () {
+        Get.back();
+        disputeOrder(status!);
+      },
+    );
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          content: Text(
+            message!,
+            style: TextStyle(
+                color: Colors.black, fontSize: 16, fontWeight: FontWeight.w600),
+            textAlign: TextAlign.center,
+          ),
+          actions: [
+            continueButton,
+            cancelButton,
+          ],
+        );
+      },
+    );
   }
 
   @override
   void onClose() {
     super.onClose();
   }
-
-  void increment() => count.value++;
 }

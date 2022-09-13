@@ -94,7 +94,10 @@ class OrderDetailView extends GetWidget<OrderDetailController> {
                                   height: 15,
                                 ),
                                 (controller.orderDetailModel!.data!.status ==
-                                        "COMPLETED")
+                                            "COMPLETED" ||
+                                        controller.orderDetailModel!.data!
+                                                .status ==
+                                            "DISPUTED")
                                     ? Container()
                                     : Align(
                                         alignment: Alignment.centerRight,
@@ -178,9 +181,69 @@ class OrderDetailView extends GetWidget<OrderDetailController> {
                                         isDone: controller.listOfPassedStatus!
                                             .contains("COMPLETED"),
                                         no: 6),
-                                    if (controller
-                                            .orderDetailModel!.data!.status ==
-                                        "CANCELED") ...[
+                                    SizedBox(
+                                      height: 15,
+                                    ),
+                                    (controller.orderDetailModel!.data!
+                                                .status ==
+                                            "DELIVERED")
+                                        ? Column(
+                                            children: [
+                                              Text(
+                                                "Did you receive delivery?",
+                                                style: TextStyle(
+                                                    color: Colors.grey,
+                                                    fontSize: 18,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  ElevatedButton(
+                                                    onPressed: () {
+                                                      controller.dialogBox(
+                                                          context: context,
+                                                          message:
+                                                              "Are you sure you receive delivery?",
+                                                          status: "COMPLETED");
+                                                    },
+                                                    child: Text("Yes"),
+                                                  ),
+                                                  SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                  ElevatedButton(
+                                                    style: ElevatedButton
+                                                        .styleFrom(
+                                                      primary:
+                                                          Colors.transparent,
+                                                    ),
+                                                    onPressed: () {
+                                                      controller.dialogBox(
+                                                          context: context,
+                                                          message:
+                                                              "As you didn't receive delivery, do you want to create dispute?",
+                                                          status: "DISPUTED");
+                                                    },
+                                                    child: Text(
+                                                      "No",
+                                                      style: TextStyle(
+                                                          color: Colors.black),
+                                                    ),
+                                                  ),
+                                                ],
+                                              )
+                                            ],
+                                          )
+                                        : Container(),
+                                    if (controller.orderDetailModel!.data!
+                                                .status ==
+                                            "CANCELED" ||
+                                        controller.orderDetailModel!.data!
+                                                .status ==
+                                            "DISPUTED") ...[
                                       SizedBox(
                                         height: 15,
                                       ),

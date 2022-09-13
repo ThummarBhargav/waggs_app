@@ -51,7 +51,7 @@ class Data {
 class Products {
   String? sId;
   String? unit;
-  int? rating;
+  num? rating;
   int? ratedBy;
   List<String>? images;
   SellerId? sellerId;
@@ -75,28 +75,28 @@ class Products {
 
   Products(
       {this.sId,
-        this.unit,
-        this.rating,
-        this.ratedBy,
-        this.images,
-        this.sellerId,
-        this.title,
-        this.description,
-        this.category,
-        this.subCategory,
-        this.weight,
-        this.stock,
-        this.price,
-        this.discountedPrice,
-        this.lifeStage,
-        this.brand,
-        this.productType,
-        this.flavor,
-        this.breedSize,
-        this.vegNonveg,
-        this.discount,
-        this.color,
-        this.materialUsed});
+      this.unit,
+      this.rating,
+      this.ratedBy,
+      this.images,
+      this.sellerId,
+      this.title,
+      this.description,
+      this.category,
+      this.subCategory,
+      this.weight,
+      this.stock,
+      this.price,
+      this.discountedPrice,
+      this.lifeStage,
+      this.brand,
+      this.productType,
+      this.flavor,
+      this.breedSize,
+      this.vegNonveg,
+      this.discount,
+      this.color,
+      this.materialUsed});
 
   Products.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -125,7 +125,9 @@ class Products {
     flavor = json['flavor'];
     breedSize = json['breed_size'];
     vegNonveg = json['veg_nonveg'];
-    discount = (json['discount'].runtimeType == int )?double.parse(json['discount'].toString()):json['discount'];
+    discount = (json['discount'].runtimeType == int)
+        ? double.parse(json['discount'].toString())
+        : json['discount'];
     color = json['color'];
     materialUsed = json['material_used'];
   }
@@ -190,26 +192,26 @@ class SellerId {
 
   SellerId(
       {this.sId,
-        this.isEmailVerified,
-        this.isApproved,
-        this.waiveOffShipping,
-        this.name,
-        this.email,
-        this.mobile,
-        this.countryCode,
-        this.address,
-        this.latitude,
-        this.longitude,
-        this.city,
-        this.companyName,
-        this.country,
-        this.fssaiNumber,
-        this.gstNo,
-        this.logoUrl,
-        this.panNo,
-        this.pincode,
-        this.shippingLimit,
-        this.state});
+      this.isEmailVerified,
+      this.isApproved,
+      this.waiveOffShipping,
+      this.name,
+      this.email,
+      this.mobile,
+      this.countryCode,
+      this.address,
+      this.latitude,
+      this.longitude,
+      this.city,
+      this.companyName,
+      this.country,
+      this.fssaiNumber,
+      this.gstNo,
+      this.logoUrl,
+      this.panNo,
+      this.pincode,
+      this.shippingLimit,
+      this.state});
 
   SellerId.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -272,11 +274,11 @@ class Category {
 
   Category(
       {this.sId,
-        this.isDeleted,
-        this.name,
-        this.createdAt,
-        this.updatedAt,
-        this.iV});
+      this.isDeleted,
+      this.name,
+      this.createdAt,
+      this.updatedAt,
+      this.iV});
 
   Category.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -310,12 +312,12 @@ class SubCategory {
 
   SubCategory(
       {this.sId,
-        this.isDeleted,
-        this.name,
-        this.categoryId,
-        this.createdAt,
-        this.updatedAt,
-        this.iV});
+      this.isDeleted,
+      this.name,
+      this.categoryId,
+      this.createdAt,
+      this.updatedAt,
+      this.iV});
 
   SubCategory.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
