@@ -3,6 +3,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:waggs_app/app/constant/Container.dart';
 
 import '../../../constant/SizeConstant.dart';
@@ -16,6 +17,7 @@ class VetViewDetailsView extends GetView<VetViewDetailsController> {
       child:Obx((){
         return  Scaffold(
           body: Container(
+            color: Colors.white,
             child: (controller.hasData.isFalse)?
                 Center(child: CircularProgressIndicator(),)
                 :Column(
@@ -154,11 +156,12 @@ class VetViewDetailsView extends GetView<VetViewDetailsController> {
                               ],
                             ),
                             Container(
+                              // color: Colors.cyan,
                               padding: EdgeInsets.only(top: 25,left: 15,right: 15),
                            child: Column(
                              children: [
                                Container(
-                                  // color: Colors.cyan,
+                                   // color: Colors.cyan,
                                  margin: EdgeInsets.only(top: 10,right: 10),
                                  height: 180,
                                  width: 180,
@@ -263,21 +266,320 @@ class VetViewDetailsView extends GetView<VetViewDetailsController> {
                                      fontSize: 16
                                    ),)
                                  ],)),
+                                   SizedBox(height: 15,),
                                    Row(
                                      children: [
-                                       Container(
-                                         height: 200,
-                                         width: 200,
-                                         padding: EdgeInsets.all(100),
-                                         // width: double.infinity,
-                                         decoration: BoxDecoration(
-                                           image: DecorationImage(
-                                               image: AssetImage("assets/linkdin.png"),
-                                               fit: BoxFit.fill),
+                                       InkWell(
+                                         onTap:(){
+                                           controller.vetData.fbLink;
+                                           print("Fb===${controller.vetData.fbLink}");
+                                         },
+                                         child: Container(
+                                           height: 40,
+                                           width: 40,
+                                           padding: EdgeInsets.all(100),
+                                           decoration: BoxDecoration(
+                                             image: DecorationImage(
+                                                 image: AssetImage("assets/fb.PNG"),
+                                                 fit: BoxFit.fill),
+                                           ),
+                                         ),
+                                       ),
+                                       SizedBox(width: 20,),
+                                       InkWell(
+                                         onTap: (){
+                                           // controller.vetData.;
+                                           // print("insta===${controller.vetData.instaLink}");
+                                         },
+                                         child: Container(
+                                           height: 40,
+                                           width: 40,
+                                           padding: EdgeInsets.all(100),
+                                           decoration: BoxDecoration(
+                                             image: DecorationImage(
+                                                 image: AssetImage("assets/twitter.PNG"),
+                                                 fit: BoxFit.fill),
+                                           ),
+                                         ),
+                                       ),
+                                       SizedBox(width: 20,),
+                                       InkWell(
+                                         onTap: (){
+                                           controller.vetData.instaLink;
+                                           print("insta===${controller.vetData.instaLink}");
+                                         },
+                                         child: Container(
+                                           height: 40,
+                                           width: 40,
+                                           padding: EdgeInsets.all(100),
+                                           decoration: BoxDecoration(
+                                             image: DecorationImage(
+                                                 image: AssetImage("assets/insta.PNG"),
+                                                 fit: BoxFit.fill),
+                                           ),
+                                         ),
+                                       ),
+                                       SizedBox(width: 20,),
+                                       InkWell(
+                                         onTap: (){
+                                           controller.vetData.linkedinLink;
+                                           print("linkdin===${controller.vetData.linkedinLink}");
+                                         },
+                                         child: Container(
+                                           height: 40,
+                                           width: 40,
+                                           padding: EdgeInsets.all(100),
+                                           decoration: BoxDecoration(
+                                             image: DecorationImage(
+                                                 image: AssetImage("assets/linkdin.PNG"),
+                                                 fit: BoxFit.fill),
+                                           ),
                                          ),
                                        ),
                                      ],
                                    ),
+                                   SizedBox(height: 20,),
+                                   InkWell(
+                                     onTap: () {
+                                       controller.isOpen.value = !controller.isOpen.value;
+                                       print(controller.isOpen.value);
+                                     },
+                                     child: Container(
+                                       // margin: EdgeInsets.only(left: 15),
+                                       padding: EdgeInsets.all(15),
+                                       width: MediaQuery.of(context).size.width,
+                                       height: 50,
+                                       decoration: BoxDecoration(
+                                         color: Colors.orange,
+                                         borderRadius: BorderRadius.only(
+                                           topRight: Radius.circular(25),
+                                           bottomRight: Radius.circular(25),
+                                           bottomLeft: Radius.circular(25),
+                                         ),
+                                       ),
+                                       child: Row(
+                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                         children: [
+                                           Text(
+                                             "Overview",
+                                             style: GoogleFonts.roboto(
+                                                 color: Colors.white,
+                                                 fontWeight: FontWeight.w800,fontSize: 16),
+                                           ),
+                                           controller.isOpen.value == false
+                                               ? Icon(
+                                             Icons.keyboard_arrow_down_sharp,
+                                             color: Colors.white,
+                                           )
+                                               : Icon(
+                                             Icons.keyboard_arrow_up_sharp,
+                                             color: Colors.white,
+                                           )
+                                         ],
+                                       ),
+                                     ),
+                                   ),
+                                   controller.isOpen.value == false
+                                       ? Container(
+                                       margin: EdgeInsets.only(left: 20,right: 5),
+                                       padding: EdgeInsets.all(5),
+                                       width: MediaQuery.of(context).size.width,
+                                       child: Column(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: [
+                                           Text(" - ABOUT DOCTOR",style: GoogleFonts.actor(
+                                             fontSize: 18,
+                                             color: Colors.orange,
+                                             fontWeight: FontWeight.bold
+                                           ),),
+                                           SizedBox(height: 5,),
+                                           Text("${controller.vetData.description}",
+                                             style: TextStyle(
+                                               // fontSize: 18,
+                                               color: Colors.grey.shade500,
+                                               fontWeight: FontWeight.w500
+                                           ),)
+                                         ],
+                                       ))
+                                       : Container(),
+                                   SizedBox(height: 30,),
+                                   InkWell(
+                                     onTap: () {
+                                       controller.isOpen1.value = !controller.isOpen1.value;
+                                       print(controller.isOpen1.value);
+                                     },
+                                     child: Container(
+                                       // margin: EdgeInsets.only(left: 15),
+                                       padding: EdgeInsets.all(15),
+                                       width: MediaQuery.of(context).size.width,
+                                       height: 50,
+                                       decoration: BoxDecoration(
+                                         color: Colors.orange,
+                                         borderRadius: BorderRadius.only(
+                                           topRight: Radius.circular(25),
+                                           bottomRight: Radius.circular(25),
+                                           bottomLeft: Radius.circular(25),
+                                         ),
+                                       ),
+                                       child: Row(
+                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                         children: [
+                                           Text(
+                                             "Address",
+                                             style: GoogleFonts.roboto(
+                                                 color: Colors.white,
+                                                 fontWeight: FontWeight.w800,fontSize: 16),
+                                           ),
+                                           controller.isOpen1.value == false
+                                               ? Icon(
+                                             Icons.keyboard_arrow_down_sharp,
+                                             color: Colors.white,
+                                           )
+                                               : Icon(
+                                             Icons.keyboard_arrow_up_sharp,
+                                             color: Colors.white,
+                                           )
+                                         ],
+                                       ),
+                                     ),
+                                   ),
+                                   controller.isOpen1.value == false
+                                       ? Container(
+                                       margin: EdgeInsets.only(left: 20,right: 5,top: 5),
+                                       padding: EdgeInsets.all(5),
+                                       width: MediaQuery.of(context).size.width,
+                                       child: Column(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: [
+                                           Text("${controller.vetData.address}",style: GoogleFonts.lato(
+                                               color: Colors.grey.shade600,
+                                               fontWeight: FontWeight.w400
+                                           ),),
+                                         ],
+                                       ))
+                                       : Container(),
+                                   SizedBox(height: 30,),
+                                   InkWell(
+                                     onTap: () {
+                                       controller.isOpen2.value = !controller.isOpen2.value;
+                                       print(controller.isOpen2.value);
+                                     },
+                                     child: Container(
+                                       // margin: EdgeInsets.only(left: 15),
+                                       padding: EdgeInsets.all(15),
+                                       width: MediaQuery.of(context).size.width,
+                                       height: 50,
+                                       decoration: BoxDecoration(
+                                         color: Colors.orange,
+                                         borderRadius: BorderRadius.only(
+                                           topRight: Radius.circular(25),
+                                           bottomRight: Radius.circular(25),
+                                           bottomLeft: Radius.circular(25),
+                                         ),
+                                       ),
+                                       child: Row(
+                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                         children: [
+                                           Text(
+                                             "Reviews",
+                                             style: GoogleFonts.roboto(
+                                                 color: Colors.white,
+                                                 fontWeight: FontWeight.w800,fontSize: 16),
+                                           ),
+                                           controller.isOpen2.value == false
+                                               ? Icon(
+                                             Icons.keyboard_arrow_down_sharp,
+                                             color: Colors.white,
+                                           )
+                                               : Icon(
+                                             Icons.keyboard_arrow_up_sharp,
+                                             color: Colors.white,
+                                           )
+                                         ],
+                                       ),
+                                     ),
+                                   ),
+                                   controller.isOpen2.value == false
+                                       ? ListView.builder(
+                                     physics: NeverScrollableScrollPhysics(),
+                                           itemCount: controller.vetData.reviews!.length,
+                                     shrinkWrap: true,
+                                           itemBuilder: ((context, index) {
+                                             return Container(
+                                               margin: EdgeInsets.only(top: 15,right: 15,left: 15),
+                                                 width: MediaQuery.of(context).size.width,
+                                                 height: 200,
+                                                 padding: EdgeInsets.only(left: 30,top: 20),
+                                                 decoration: BoxDecoration(
+                                                   color: Colors.grey.shade200,
+                                                   borderRadius: BorderRadius.only(
+                                                     topRight: Radius.circular(25),
+                                                     bottomRight: Radius.circular(25),
+                                                     bottomLeft: Radius.circular(25),
+                                                   ),
+                                                 ),
+                                                 child: Column(
+                                                   crossAxisAlignment: CrossAxisAlignment.start,
+                                                   children: [
+                                                     Container(
+                                                       width: 60,
+                                                       height: 60,
+                                                         child: Center(
+                                                           child: Text("${controller.vetData.reviews![index].user!.name![0]}",
+                                                           style: TextStyle(color: Colors.white,
+                                                           fontWeight: FontWeight.w600,
+                                                             fontSize: 20,
+                                                           ),),
+                                                         ),
+                                                       decoration: BoxDecoration(
+                                                           shape: BoxShape.circle,
+                                                           color: Colors.grey.shade500),
+                                                     ),
+                                                     SizedBox(height: 15,),
+                                                     Text("${controller.vetData.reviews![index].user!.name!.toUpperCase()}",style: TextStyle(
+                                                         color: Colors.black,
+                                                         fontWeight: FontWeight.w600,
+                                                         fontSize: 16
+                                                     ),),
+                                                     SizedBox(height: 8,),
+                                                     Row(
+                                                       children: [
+                                                         Text(DateFormat("MM/dd/yyyy").format(
+                                                           DateTime.parse(
+                                                               "${controller.vetData.reviews![index].updatedAt}"),
+                                                         ),
+                                                           style: TextStyle(
+                                                               fontWeight: FontWeight.bold,
+                                                               color: Colors.cyan,
+                                                               fontSize: 18),
+                                                         ),
+                                                         SizedBox(width: 10,),
+                                                         RatingBarIndicator(
+                                                           rating:
+                                                           controller.vetData.reviews![index].rating!.toDouble(),
+                                                           itemBuilder: (context, index) => Icon(
+                                                             Icons.star,
+                                                             color: Colors.amber,
+                                                           ),
+                                                           itemCount: 5,
+                                                           itemSize: 20.0,
+                                                           direction: Axis.horizontal,
+                                                         ),
+                                                       ],
+                                                     ),
+                                                     SizedBox(height: 8,),
+                                                     Flexible(
+                                                       child: Text("${controller.vetData.reviews![index].review}",style: TextStyle(
+                                                           color: Colors.grey.shade500,
+                                                           fontWeight: FontWeight.w400,
+                                                           fontSize: 16
+                                                       ),),
+                                                     ),
+                                                   ],));
+                                           }),
+                                       )
+                                       : Container(),
+                                   SizedBox(height: 30,),
                                  ],
 
                                )

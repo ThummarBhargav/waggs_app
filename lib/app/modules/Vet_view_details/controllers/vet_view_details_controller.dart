@@ -12,6 +12,9 @@ class VetViewDetailsController extends GetxController {
 
   RxBool hasData = false.obs;
   VetData vetData = VetData();
+  RxBool isOpen = false.obs;
+  RxBool isOpen1 = false.obs;
+  RxBool isOpen2 = false.obs;
   @override
   void onInit() {
     VetDetails(context: Get.context!);
