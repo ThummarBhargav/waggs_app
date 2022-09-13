@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 class OrderDetailModel {
   int? responseCode;
   Data? data;
@@ -80,7 +82,9 @@ class Data {
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
     if (isProductRated) {
-      rating = json["rating"];
+      rating = (json["rating"].runtimeType == int)
+          ? double.parse(json["rating"].toString())
+          : json["rating"];
     }
   }
 

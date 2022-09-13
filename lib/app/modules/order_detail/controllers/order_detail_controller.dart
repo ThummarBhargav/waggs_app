@@ -191,7 +191,8 @@ class OrderDetailController extends GetxController {
         .then((value) {
       response = value;
       if (response.statusCode == 200 || response.statusCode == 201) {
-        Get.back();
+        getOrderDetails();
+        // Get.back();
         print(response.data);
       } else if (response.statusCode == 400) {
       } else {}
