@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:waggs_app/app/routes/app_pages.dart';
 
 import '../../../constant/Container.dart';
 import '../controllers/order_detail_controller.dart';
@@ -29,573 +30,597 @@ class OrderDetailView extends GetWidget<OrderDetailController> {
       //       )),
       // ),
       body: Obx(() {
-        return Container(
-          color: Colors.white,
-          padding: EdgeInsets.only(
-              top: MediaQuery.of(context).padding.top,
-              left: 15,
-              right: 15,
-              bottom: 20),
-          child: (controller.hasData.value)
-              ? (controller.orderDetailModel != null)
-                  ? SingleChildScrollView(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+        return WillPopScope(
+          onWillPop: () async {
+            Get.toNamed(Routes.ORDER_PAGE);
+            return await true;
+          },
+          child: Container(
+            color: Colors.white,
+            padding: EdgeInsets.only(
+                top: MediaQuery.of(context).padding.top,
+                left: 15,
+                right: 15,
+                bottom: 20),
+            child: (controller.hasData.value)
+                ? (controller.orderDetailModel != null)
+                    ? SingleChildScrollView(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    IconButton(
+                                        onPressed: () {
+                                          Get.back();
+                                        },
+                                        icon: Icon(
+                                          Icons.arrow_back,
+                                          color: Colors.black,
+                                        )),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "Order #${controller.orderDetailModel!.data!.orderId?.orderNo!}",
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 24,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        Text(
+                                          "Placed on ${DateFormat('MM/dd/yyyy').format(getDateFromString(controller.orderDetailModel!.data!.orderId?.createdAt ?? ""))}",
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.normal,
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 15),
+                              child: Column(
                                 children: [
-                                  IconButton(
-                                      onPressed: () {
-                                        Get.back();
-                                      },
-                                      icon: Icon(
-                                        Icons.arrow_back,
-                                        color: Colors.black,
-                                      )),
+                                  SizedBox(
+                                    height: 15,
+                                  ),
+                                  (controller.orderDetailModel!.data!.status ==
+                                              "COMPLETED" ||
+                                          controller.orderDetailModel!.data!
+                                                  .status ==
+                                              "DISPUTED")
+                                      ? Container()
+                                      : Align(
+                                          alignment: Alignment.centerRight,
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(
+                                                right: 0, top: 5, bottom: 10),
+                                            child: InkWell(
+                                              onTap: () {
+                                                showAlertDialog(context);
+                                              },
+                                              child: getcon(
+                                                  alignment: Alignment.center,
+                                                  color: Colors.orange,
+                                                  height: 48,
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width /
+                                                      2.5,
+                                                  text: Text(
+                                                    (controller.orderDetailModel!
+                                                                    .data!.status ==
+                                                                "CANCELED" ||
+                                                            controller
+                                                                    .orderDetailModel!
+                                                                    .data!
+                                                                    .status !=
+                                                                "PENDING")
+                                                        ? "Raise Dispute"
+                                                        : "Cancel Order",
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w800,
+                                                      color: Colors.white,
+                                                      fontSize: 15,
+                                                    ),
+                                                  )),
+                                            ),
+                                          ),
+                                        ),
                                   Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text(
-                                        "Order #${controller.orderDetailModel!.data!.orderId?.orderNo!}",
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 24,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      Text(
-                                        "Placed on ${DateFormat('MM/dd/yyyy').format(getDateFromString(controller.orderDetailModel!.data!.orderId?.createdAt ?? ""))}",
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.normal,
-                                          fontSize: 14,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 15),
-                            child: Column(
-                              children: [
-                                SizedBox(
-                                  height: 15,
-                                ),
-                                (controller.orderDetailModel!.data!.status ==
-                                            "COMPLETED" ||
-                                        controller.orderDetailModel!.data!
-                                                .status ==
-                                            "DISPUTED")
-                                    ? Container()
-                                    : Align(
-                                        alignment: Alignment.centerRight,
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(
-                                              right: 0, top: 5, bottom: 10),
-                                          child: InkWell(
-                                            onTap: () {
-                                              showAlertDialog(context);
-                                            },
-                                            child: getcon(
-                                                alignment: Alignment.center,
-                                                color: Colors.orange,
-                                                height: 48,
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width /
-                                                    2.5,
-                                                text: Text(
-                                                  (controller.orderDetailModel!
-                                                                  .data!.status ==
-                                                              "CANCELED" ||
-                                                          controller
-                                                                  .orderDetailModel!
-                                                                  .data!
-                                                                  .status !=
-                                                              "PENDING")
-                                                      ? "Raise Dispute"
-                                                      : "Cancel Order",
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.w800,
-                                                    color: Colors.white,
-                                                    fontSize: 15,
-                                                  ),
-                                                )),
-                                          ),
-                                        ),
-                                      ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    getStatusWidget(
-                                        orderStatus: "PENDING",
-                                        status: controller
-                                            .orderDetailModel!.data!.status!,
-                                        isDone: controller.listOfPassedStatus!
-                                            .contains("PENDING"),
-                                        no: 1),
-                                    getStatusWidget(
-                                        orderStatus: "ACCEPTED",
-                                        status: controller
-                                            .orderDetailModel!.data!.status!,
-                                        isDone: controller.listOfPassedStatus!
-                                            .contains("ACCEPTED"),
-                                        no: 2),
-                                    getStatusWidget(
-                                        orderStatus: "PROCESSING",
-                                        status: controller
-                                            .orderDetailModel!.data!.status!,
-                                        isDone: controller.listOfPassedStatus!
-                                            .contains("PROCESSING"),
-                                        no: 3),
-                                    getStatusWidget(
-                                        orderStatus: "DISPATCHED",
-                                        status: controller
-                                            .orderDetailModel!.data!.status!,
-                                        isDone: controller.listOfPassedStatus!
-                                            .contains("DISPATCHED"),
-                                        no: 4),
-                                    getStatusWidget(
-                                        orderStatus: "DELIVERED",
-                                        status: controller
-                                            .orderDetailModel!.data!.status!,
-                                        isDone: controller.listOfPassedStatus!
-                                            .contains("DELIVERED"),
-                                        no: 5),
-                                    getStatusWidget(
-                                        orderStatus: "COMPLETED",
-                                        status: controller
-                                            .orderDetailModel!.data!.status!,
-                                        isDone: controller.listOfPassedStatus!
-                                            .contains("COMPLETED"),
-                                        no: 6),
-                                    SizedBox(
-                                      height: 15,
-                                    ),
-                                    (controller.orderDetailModel!.data!
-                                                .status ==
-                                            "DELIVERED")
-                                        ? Column(
-                                            children: [
-                                              Text(
-                                                "Did you receive delivery?",
-                                                style: TextStyle(
-                                                    color: Colors.grey,
-                                                    fontSize: 18,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  ElevatedButton(
-                                                    onPressed: () {
-                                                      controller.dialogBox(
-                                                          context: context,
-                                                          message:
-                                                              "Are you sure you receive delivery?",
-                                                          status: "COMPLETED");
-                                                    },
-                                                    child: Text("Yes"),
-                                                  ),
-                                                  SizedBox(
-                                                    width: 10,
-                                                  ),
-                                                  ElevatedButton(
-                                                    style: ElevatedButton
-                                                        .styleFrom(
-                                                      primary:
-                                                          Colors.transparent,
-                                                    ),
-                                                    onPressed: () {
-                                                      controller.dialogBox(
-                                                          context: context,
-                                                          message:
-                                                              "As you didn't receive delivery, do you want to create dispute?",
-                                                          status: "DISPUTED");
-                                                    },
-                                                    child: Text(
-                                                      "No",
-                                                      style: TextStyle(
-                                                          color: Colors.black),
-                                                    ),
-                                                  ),
-                                                ],
-                                              )
-                                            ],
-                                          )
-                                        : Container(),
-                                    if (controller.orderDetailModel!.data!
-                                                .status ==
-                                            "CANCELED" ||
-                                        controller.orderDetailModel!.data!
-                                                .status ==
-                                            "DISPUTED") ...[
+                                      getStatusWidget(
+                                          orderStatus: "PENDING",
+                                          status: controller
+                                              .orderDetailModel!.data!.status!,
+                                          isDone: controller.listOfPassedStatus!
+                                              .contains("PENDING"),
+                                          no: 1),
+                                      getStatusWidget(
+                                          orderStatus: "ACCEPTED",
+                                          status: controller
+                                              .orderDetailModel!.data!.status!,
+                                          isDone: controller.listOfPassedStatus!
+                                              .contains("ACCEPTED"),
+                                          no: 2),
+                                      getStatusWidget(
+                                          orderStatus: "PROCESSING",
+                                          status: controller
+                                              .orderDetailModel!.data!.status!,
+                                          isDone: controller.listOfPassedStatus!
+                                              .contains("PROCESSING"),
+                                          no: 3),
+                                      getStatusWidget(
+                                          orderStatus: "DISPATCHED",
+                                          status: controller
+                                              .orderDetailModel!.data!.status!,
+                                          isDone: controller.listOfPassedStatus!
+                                              .contains("DISPATCHED"),
+                                          no: 4),
+                                      getStatusWidget(
+                                          orderStatus: "DELIVERED",
+                                          status: controller
+                                              .orderDetailModel!.data!.status!,
+                                          isDone: controller.listOfPassedStatus!
+                                              .contains("DELIVERED"),
+                                          no: 5),
+                                      getStatusWidget(
+                                          orderStatus: "COMPLETED",
+                                          status: controller
+                                              .orderDetailModel!.data!.status!,
+                                          isDone: controller.listOfPassedStatus!
+                                              .contains("COMPLETED"),
+                                          no: 6),
                                       SizedBox(
                                         height: 15,
                                       ),
-                                      Row(
-                                        children: [
-                                          Text(
-                                            "Status: ",
-                                            style: TextStyle(
-                                                color: Colors.grey,
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                          Text(
-                                            controller
-                                                .orderDetailModel!.data!.status
-                                                .toString(),
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                    SizedBox(
-                                      height: 40,
-                                    ),
-                                    Container(
-                                      width: double.infinity,
-                                      padding: EdgeInsets.all(16),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(4),
-                                        border: Border.all(
-                                          color: Colors.grey,
-                                        ),
-                                      ),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          CachedNetworkImage(
-                                              imageUrl: controller
-                                                  .orderDetailModel!
-                                                  .data!
-                                                  .product!
-                                                  .images![0],
-                                              imageBuilder: (context,
-                                                      imageProvider) =>
-                                                  Container(
-                                                    // margin: EdgeInsets.all(10),
-                                                    height: 100,
-                                                    width: 100,
-                                                    decoration: BoxDecoration(
-                                                      image: DecorationImage(
-                                                          image: imageProvider,
-                                                          fit: BoxFit.cover,
-                                                          colorFilter:
-                                                              ColorFilter.mode(
-                                                                  Colors
-                                                                      .transparent,
-                                                                  BlendMode
-                                                                      .colorBurn)),
-                                                    ),
-                                                  ),
-                                              placeholder: (context, url) =>
-                                                  CircularProgressIndicator(),
-                                              errorWidget:
-                                                  (context, url, error) =>
-                                                      Container(
-                                                        color: Colors.grey[100],
-                                                      )),
-                                          SizedBox(
-                                            height: 6,
-                                          ),
-                                          Text(
-                                            "${controller.orderDetailModel!.data!.product!.title}",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 17,
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            height: 6,
-                                          ),
-                                          Row(
-                                            children: [
-                                              Text(
-                                                "Qty:",
-                                                style: TextStyle(
-                                                    color: Colors.grey,
-                                                    fontSize: 17,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                              Text(
-                                                controller.orderDetailModel!
-                                                        .data!.quantity
-                                                        .toString() +
-                                                    " units",
-                                                style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 17,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                            ],
-                                          ),
-                                          SizedBox(
-                                            height: 6,
-                                          ),
-                                          Text(
-                                            " ₹" +
-                                                controller
-                                                    .orderDetailModel!
-                                                    .data!
-                                                    .product!
-                                                    .discountedPrice!
-                                                    .toStringAsFixed(2) +
-                                                " / unit",
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 17,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                          SizedBox(
-                                            height: 6,
-                                          ),
-                                          Row(
-                                            children: [
-                                              Text(
-                                                "Amt:",
-                                                style: TextStyle(
-                                                    color: Colors.grey,
-                                                    fontSize: 17,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                              Text(
-                                                " ₹" +
-                                                    (controller
-                                                                .orderDetailModel!
-                                                                .data!
-                                                                .quantity! *
-                                                            controller
-                                                                .orderDetailModel!
-                                                                .data!
-                                                                .product!
-                                                                .discountedPrice!)
-                                                        .toStringAsFixed(2),
-                                                style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 17,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                            ],
-                                          ),
-                                          SizedBox(
-                                            height: 6,
-                                          ),
-                                          Row(
-                                            children: [
-                                              Text(
-                                                "Shipping:",
-                                                style: TextStyle(
-                                                    color: Colors.grey,
-                                                    fontSize: 17,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                              Text(
-                                                " ₹" +
-                                                    controller.orderDetailModel!
-                                                        .data!.shippingCharge!
-                                                        .toStringAsFixed(2),
-                                                style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 17,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                            ],
-                                          ),
-                                          SizedBox(
-                                            height: 15,
-                                          ),
-                                          Text(
-                                            controller.orderDetailModel!.data!
-                                                .product!.sellerId!.companyName
-                                                .toString(),
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 17,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                          SizedBox(
-                                            height: 6,
-                                          ),
-                                          Text(
-                                            "${controller.orderDetailModel!.data!.sellerId!.city.toString()}, ${controller.orderDetailModel!.data!.sellerId!.state.toString()}, ${controller.orderDetailModel!.data!.sellerId!.country.toString()}",
-                                            style: TextStyle(
-                                                color: Colors.grey,
-                                                fontSize: 17,
-                                                fontWeight: FontWeight.normal),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 40,
-                                    ),
-                                    Container(
-                                      width: double.infinity,
-                                      padding: EdgeInsets.all(16),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(4),
-                                        border: Border.all(
-                                          color: Colors.grey,
-                                        ),
-                                      ),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Delivery address",
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                          SizedBox(
-                                            height: 6,
-                                          ),
-                                          Text(
-                                            "${controller.orderDetailModel!.data!.userId!.address}",
-                                            style: TextStyle(
-                                                color: Colors.grey,
-                                                fontSize: 17,
-                                                fontWeight: FontWeight.normal),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 40,
-                                    ),
-                                    controller.orderDetailModel!.data!.status ==
-                                            "COMPLETED"
-                                        ? Container(
-                                            width: double.infinity,
-                                            padding: EdgeInsets.all(16),
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(4),
-                                              border: Border.all(
-                                                color: Colors.grey,
-                                              ),
-                                            ),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
+                                      (controller.orderDetailModel!.data!
+                                                  .status ==
+                                              "DELIVERED")
+                                          ? Column(
                                               children: [
                                                 Text(
-                                                  "Product rating",
+                                                  "Did you receive delivery?",
                                                   style: TextStyle(
-                                                      color: Colors.black,
+                                                      color: Colors.grey,
                                                       fontSize: 18,
                                                       fontWeight:
                                                           FontWeight.bold),
                                                 ),
-                                                Align(
-                                                  alignment: Alignment.topLeft,
-                                                  child: Container(
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              10.0),
-                                                      child: RatingBar.builder(
-                                                        glow: false,
-                                                        initialRating:
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    ElevatedButton(
+                                                      onPressed: () {
+                                                        controller.dialogBox(
+                                                            context: context,
+                                                            message:
+                                                                "Are you sure you receive delivery?",
+                                                            status:
+                                                                "COMPLETED");
+                                                      },
+                                                      child: Text("Yes"),
+                                                    ),
+                                                    SizedBox(
+                                                      width: 10,
+                                                    ),
+                                                    ElevatedButton(
+                                                      style: ElevatedButton
+                                                          .styleFrom(
+                                                        primary:
+                                                            Colors.transparent,
+                                                      ),
+                                                      onPressed: () {
+                                                        controller.dialogBox(
+                                                            context: context,
+                                                            message:
+                                                                "As you didn't receive delivery, do you want to create dispute?",
+                                                            status: "DISPUTED");
+                                                      },
+                                                      child: Text(
+                                                        "No",
+                                                        style: TextStyle(
+                                                            color:
+                                                                Colors.black),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                )
+                                              ],
+                                            )
+                                          : Container(),
+                                      if (controller.orderDetailModel!.data!
+                                                  .status ==
+                                              "CANCELED" ||
+                                          controller.orderDetailModel!.data!
+                                                  .status ==
+                                              "DISPUTED") ...[
+                                        SizedBox(
+                                          height: 15,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              "Status: ",
+                                              style: TextStyle(
+                                                  color: Colors.grey,
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            Text(
+                                              controller.orderDetailModel!.data!
+                                                  .status
+                                                  .toString(),
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                      SizedBox(
+                                        height: 40,
+                                      ),
+                                      Container(
+                                        width: double.infinity,
+                                        padding: EdgeInsets.all(16),
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(4),
+                                          border: Border.all(
+                                            color: Colors.grey,
+                                          ),
+                                        ),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            CachedNetworkImage(
+                                                imageUrl: controller
+                                                    .orderDetailModel!
+                                                    .data!
+                                                    .product!
+                                                    .images![0],
+                                                imageBuilder: (context,
+                                                        imageProvider) =>
+                                                    Container(
+                                                      // margin: EdgeInsets.all(10),
+                                                      height: 100,
+                                                      width: 100,
+                                                      decoration: BoxDecoration(
+                                                        image: DecorationImage(
+                                                            image:
+                                                                imageProvider,
+                                                            fit: BoxFit.cover,
+                                                            colorFilter:
+                                                                ColorFilter.mode(
+                                                                    Colors
+                                                                        .transparent,
+                                                                    BlendMode
+                                                                        .colorBurn)),
+                                                      ),
+                                                    ),
+                                                placeholder: (context, url) =>
+                                                    CircularProgressIndicator(),
+                                                errorWidget: (context, url,
+                                                        error) =>
+                                                    Container(
+                                                      color: Colors.grey[100],
+                                                    )),
+                                            SizedBox(
+                                              height: 6,
+                                            ),
+                                            Text(
+                                              "${controller.orderDetailModel!.data!.product!.title}",
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: 17,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 6,
+                                            ),
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  "Qty:",
+                                                  style: TextStyle(
+                                                      color: Colors.grey,
+                                                      fontSize: 17,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                                Text(
+                                                  controller.orderDetailModel!
+                                                          .data!.quantity
+                                                          .toString() +
+                                                      " units",
+                                                  style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 17,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                              ],
+                                            ),
+                                            SizedBox(
+                                              height: 6,
+                                            ),
+                                            Text(
+                                              " ₹" +
+                                                  controller
+                                                      .orderDetailModel!
+                                                      .data!
+                                                      .product!
+                                                      .discountedPrice!
+                                                      .toStringAsFixed(2) +
+                                                  " / unit",
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 17,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            SizedBox(
+                                              height: 6,
+                                            ),
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  "Amt:",
+                                                  style: TextStyle(
+                                                      color: Colors.grey,
+                                                      fontSize: 17,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                                Text(
+                                                  " ₹" +
+                                                      (controller
+                                                                  .orderDetailModel!
+                                                                  .data!
+                                                                  .quantity! *
+                                                              controller
+                                                                  .orderDetailModel!
+                                                                  .data!
+                                                                  .product!
+                                                                  .discountedPrice!)
+                                                          .toStringAsFixed(2),
+                                                  style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 17,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                              ],
+                                            ),
+                                            SizedBox(
+                                              height: 6,
+                                            ),
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  "Shipping:",
+                                                  style: TextStyle(
+                                                      color: Colors.grey,
+                                                      fontSize: 17,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                                Text(
+                                                  " ₹" +
+                                                      controller
+                                                          .orderDetailModel!
+                                                          .data!
+                                                          .shippingCharge!
+                                                          .toStringAsFixed(2),
+                                                  style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 17,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                              ],
+                                            ),
+                                            SizedBox(
+                                              height: 15,
+                                            ),
+                                            Text(
+                                              controller
+                                                  .orderDetailModel!
+                                                  .data!
+                                                  .product!
+                                                  .sellerId!
+                                                  .companyName
+                                                  .toString(),
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 17,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            SizedBox(
+                                              height: 6,
+                                            ),
+                                            Text(
+                                              "${controller.orderDetailModel!.data!.sellerId!.city.toString()}, ${controller.orderDetailModel!.data!.sellerId!.state.toString()}, ${controller.orderDetailModel!.data!.sellerId!.country.toString()}",
+                                              style: TextStyle(
+                                                  color: Colors.grey,
+                                                  fontSize: 17,
+                                                  fontWeight:
+                                                      FontWeight.normal),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 40,
+                                      ),
+                                      Container(
+                                        width: double.infinity,
+                                        padding: EdgeInsets.all(16),
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(4),
+                                          border: Border.all(
+                                            color: Colors.grey,
+                                          ),
+                                        ),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "Delivery address",
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            SizedBox(
+                                              height: 6,
+                                            ),
+                                            Text(
+                                              "${controller.orderDetailModel!.data!.userId!.address}",
+                                              style: TextStyle(
+                                                  color: Colors.grey,
+                                                  fontSize: 17,
+                                                  fontWeight:
+                                                      FontWeight.normal),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 40,
+                                      ),
+                                      controller.orderDetailModel!.data!
+                                                  .status ==
+                                              "COMPLETED"
+                                          ? Container(
+                                              width: double.infinity,
+                                              padding: EdgeInsets.all(16),
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(4),
+                                                border: Border.all(
+                                                  color: Colors.grey,
+                                                ),
+                                              ),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    "Product rating",
+                                                    style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 18,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                  Align(
+                                                    alignment:
+                                                        Alignment.topLeft,
+                                                    child: Container(
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(10.0),
+                                                        child:
+                                                            RatingBar.builder(
+                                                          glow: false,
+                                                          initialRating:
+                                                              controller
+                                                                  .initialRating
+                                                                  .value,
+                                                          minRating: 0.0,
+                                                          direction: controller
+                                                                  .isVertical
+                                                              ? Axis.vertical
+                                                              : Axis.horizontal,
+                                                          allowHalfRating: true,
+                                                          unratedColor: Colors
+                                                              .amber
+                                                              .withAlpha(50),
+                                                          itemCount: 5,
+                                                          itemSize: 35.0,
+                                                          itemPadding: EdgeInsets
+                                                              .symmetric(
+                                                                  horizontal:
+                                                                      4.0),
+                                                          itemBuilder:
+                                                              (context, _) =>
+                                                                  Icon(
+                                                            Icons.star,
+                                                            color: Colors.amber,
+                                                          ),
+                                                          onRatingUpdate:
+                                                              (rating) {
+                                                            controller.rating
+                                                                .value = rating;
                                                             controller
-                                                                .initialRating
-                                                                .value,
-                                                        minRating: 0.0,
-                                                        direction: controller
-                                                                .isVertical
-                                                            ? Axis.vertical
-                                                            : Axis.horizontal,
-                                                        allowHalfRating: true,
-                                                        unratedColor: Colors
-                                                            .amber
-                                                            .withAlpha(50),
-                                                        itemCount: 5,
-                                                        itemSize: 35.0,
-                                                        itemPadding: EdgeInsets
-                                                            .symmetric(
-                                                                horizontal:
-                                                                    4.0),
-                                                        itemBuilder:
-                                                            (context, _) =>
-                                                                Icon(
-                                                          Icons.star,
-                                                          color: Colors.amber,
+                                                                .ratingApi();
+                                                          },
+                                                          updateOnDrag: true,
                                                         ),
-                                                        onRatingUpdate:
-                                                            (rating) {
-                                                          controller.rating
-                                                              .value = rating;
-                                                          controller
-                                                              .ratingApi();
-                                                        },
-                                                        updateOnDrag: true,
                                                       ),
                                                     ),
                                                   ),
-                                                ),
-                                              ],
-                                            ))
-                                        : Container(),
-                                  ],
-                                )
-                              ],
+                                                ],
+                                              ))
+                                          : Container(),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      )
+                    : Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              height: 300,
+                              width: 250,
+                              child: SvgPicture.asset("assets/NoData.svg"),
                             ),
-                          )
-                        ],
-                      ),
-                    )
-                  : Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            height: 300,
-                            width: 250,
-                            child: SvgPicture.asset("assets/NoData.svg"),
-                          ),
-                          Text(
-                            "No data found",
-                            style: GoogleFonts.raleway(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 20,
-                                color: Color.fromRGBO(33, 43, 54, 1)),
-                          ),
-                        ],
-                      ),
-                    )
-              : Center(
-                  child: CircularProgressIndicator(),
-                ),
+                            Text(
+                              "No data found",
+                              style: GoogleFonts.raleway(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 20,
+                                  color: Color.fromRGBO(33, 43, 54, 1)),
+                            ),
+                          ],
+                        ),
+                      )
+                : Center(
+                    child: CircularProgressIndicator(),
+                  ),
+          ),
         );
       }),
     );
