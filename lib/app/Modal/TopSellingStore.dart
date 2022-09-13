@@ -60,7 +60,7 @@ class product1 {
 class Products0 {
   String? sId;
   String? unit;
-  int? rating;
+  double? rating;
   int? ratedBy;
   List<String>? images;
   SellerId? sellerId;
@@ -84,33 +84,35 @@ class Products0 {
 
   Products0(
       {this.sId,
-        this.unit,
-        this.rating,
-        this.ratedBy,
-        this.images,
-        this.sellerId,
-        this.title,
-        this.description,
-        this.category,
-        this.subCategory,
-        this.weight,
-        this.stock,
-        this.price,
-        this.discountedPrice,
-        this.brand,
-        this.discount,
-        this.lifeStage,
-        this.productType,
-        this.flavor,
-        this.breedSize,
-        this.vegNonveg,
-        this.color,
-        this.materialUsed});
+      this.unit,
+      this.rating,
+      this.ratedBy,
+      this.images,
+      this.sellerId,
+      this.title,
+      this.description,
+      this.category,
+      this.subCategory,
+      this.weight,
+      this.stock,
+      this.price,
+      this.discountedPrice,
+      this.brand,
+      this.discount,
+      this.lifeStage,
+      this.productType,
+      this.flavor,
+      this.breedSize,
+      this.vegNonveg,
+      this.color,
+      this.materialUsed});
 
   Products0.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
     unit = json['unit'];
-    rating = json['rating'];
+    rating = (json['rating'].runtimeType == int)
+        ? double.parse(json['rating'].toString())
+        : json['rating'];
     ratedBy = json['ratedBy'];
     images = json['images'].cast<String>();
     sellerId = json['sellerId'] != null
@@ -126,10 +128,12 @@ class Products0 {
         : null;
     weight = json['weight'];
     stock = json['stock'];
-    price = (isNullEmptyOrFalse(json['price']))?0:json['price'];
+    price = (isNullEmptyOrFalse(json['price'])) ? 0 : json['price'];
     discountedPrice = json['discountedPrice'];
     brand = json['brand'];
-    discount = (json['discount'].runtimeType == int )?double.parse(json['discount'].toString()):json['discount'];
+    discount = (json['discount'].runtimeType == int)
+        ? double.parse(json['discount'].toString())
+        : json['discount'];
     lifeStage = json['life_stage'];
     productType = json['product_type'];
     flavor = json['flavor'];
@@ -199,26 +203,26 @@ class SellerId {
 
   SellerId(
       {this.sId,
-        this.isEmailVerified,
-        this.isApproved,
-        this.waiveOffShipping,
-        this.name,
-        this.email,
-        this.mobile,
-        this.countryCode,
-        this.address,
-        this.latitude,
-        this.longitude,
-        this.city,
-        this.companyName,
-        this.country,
-        this.fssaiNumber,
-        this.gstNo,
-        this.logoUrl,
-        this.panNo,
-        this.pincode,
-        this.shippingLimit,
-        this.state});
+      this.isEmailVerified,
+      this.isApproved,
+      this.waiveOffShipping,
+      this.name,
+      this.email,
+      this.mobile,
+      this.countryCode,
+      this.address,
+      this.latitude,
+      this.longitude,
+      this.city,
+      this.companyName,
+      this.country,
+      this.fssaiNumber,
+      this.gstNo,
+      this.logoUrl,
+      this.panNo,
+      this.pincode,
+      this.shippingLimit,
+      this.state});
 
   SellerId.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -281,11 +285,11 @@ class Category {
 
   Category(
       {this.sId,
-        this.isDeleted,
-        this.name,
-        this.createdAt,
-        this.updatedAt,
-        this.iV});
+      this.isDeleted,
+      this.name,
+      this.createdAt,
+      this.updatedAt,
+      this.iV});
 
   Category.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -319,12 +323,12 @@ class SubCategory {
 
   SubCategory(
       {this.sId,
-        this.isDeleted,
-        this.name,
-        this.categoryId,
-        this.createdAt,
-        this.updatedAt,
-        this.iV});
+      this.isDeleted,
+      this.name,
+      this.categoryId,
+      this.createdAt,
+      this.updatedAt,
+      this.iV});
 
   SubCategory.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -377,29 +381,29 @@ class Sellers {
 
   Sellers(
       {this.sId,
-        this.name,
-        this.email,
-        this.mobile,
-        this.countryCode,
-        this.isEmailVerified,
-        this.isApproved,
-        this.logoUrl,
-        this.companyName,
-        this.address,
-        this.city,
-        this.state,
-        this.country,
-        this.pincode,
-        this.fssaiNumber,
-        this.fssaiFileUrl,
-        this.gstNo,
-        this.gstFileUrl,
-        this.panNo,
-        this.panFileUrl,
-        this.shippingLimit,
-        this.waiveOffShipping,
-        this.latitude,
-        this.longitude});
+      this.name,
+      this.email,
+      this.mobile,
+      this.countryCode,
+      this.isEmailVerified,
+      this.isApproved,
+      this.logoUrl,
+      this.companyName,
+      this.address,
+      this.city,
+      this.state,
+      this.country,
+      this.pincode,
+      this.fssaiNumber,
+      this.fssaiFileUrl,
+      this.gstNo,
+      this.gstFileUrl,
+      this.panNo,
+      this.panFileUrl,
+      this.shippingLimit,
+      this.waiveOffShipping,
+      this.latitude,
+      this.longitude});
 
   Sellers.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
