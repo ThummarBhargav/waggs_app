@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -181,7 +182,23 @@ class DateTimeAppoimentView extends GetWidget<DateTimeAppoimentController> {
                                 ),
                               ),
                               Container(
-                                child: Icon(Icons.calendar_today),
+                                child: TimePickerSpinner(
+                                  is24HourMode: false,
+                                  normalTextStyle: TextStyle(
+                                      fontSize: 24,
+                                      color: Colors.grey
+                                  ),
+                                  highlightedTextStyle: TextStyle(
+                                      fontSize: 24,
+                                      color: Colors.black
+                                  ),
+                                  spacing: 50,
+                                  itemHeight: 80,
+                                  isForce2Digits: true,
+                                    // onTimeChange: (time){
+                                    // // controller.selectedTime.value=time.to;
+                                    // },
+                                ),
                                 // child: controller.chooseTime(),
                               ),
                             ],
