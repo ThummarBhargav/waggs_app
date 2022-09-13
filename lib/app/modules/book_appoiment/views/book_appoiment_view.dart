@@ -118,7 +118,7 @@ class BookAppoimentView extends GetView<BookAppoimentController> {
                         child: SmartRefresher(
                       controller: controller.refreshController,
                       enablePullDown: false,
-                      enablePullUp: true,
+                      enablePullUp: false,
                       onLoading: () {
                         controller.getAllVet(
                             context: context, isFromLoading: true);
@@ -206,197 +206,206 @@ class BookAppoimentView extends GetView<BookAppoimentController> {
                                 )
                               ],
                             ),
-                            Container(
-                              height: 600,
-                              width: 400,
-                              child: GridView.builder(
+                            Column(
+                              children: [
+                                SingleChildScrollView(
                                   scrollDirection: Axis.vertical,
-                                  shrinkWrap: true,
-                                  // physics: NeverScrollableScrollPhysics(),
-                                  itemCount: controller.vetList.length,
-                                  gridDelegate:
-                                      SliverGridDelegateWithFixedCrossAxisCount(
-                                          crossAxisCount: 1,
-                                          childAspectRatio: 0.8,
-                                          mainAxisSpacing: 15),
-                                  itemBuilder: (context, index) {
-                                    return Card(
-                                      margin:
-                                          EdgeInsets.only(right: 10, left: 10),
-                                      child: Container(
-                                        // color: Colors.green,
-                                        child: Column(
-                                          children: [
-                                            Stack(
-                                              children: [
-                                                Container(
-                                                  color: Colors.grey.shade200,
-                                                  margin: EdgeInsets.only(
-                                                      top: 10,
-                                                      right: 10,
-                                                      left: 10),
-                                                  height: 430,
-                                                  width: 400,
-                                                  child: getImageByLink(
-                                                    url: controller
-                                                        .vetList[index].logoUrl
-                                                        .toString(),
-                                                    boxFit: BoxFit.cover,
-                                                    height: 150,
-                                                    width: 150,
-                                                  ),
-                                                ),
-                                                Container(
-                                                    color: Colors.white,
-                                                    padding: EdgeInsets.only(
-                                                        right: 10, left: 10),
-                                                    margin: EdgeInsets.only(
-                                                        left: 35,
-                                                        right: 20,
-                                                        bottom: 10,
-                                                        top: 220),
-                                                    height: 200,
-                                                    width: 300,
-                                                    child: Column(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        Text(
-                                                          'DR.${controller.vetList[index].name}',
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.black,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                              fontSize: 16.0),
-                                                        ),
-                                                        SizedBox(
-                                                          height: 5,
-                                                        ),
-                                                        Text(
-                                                          '${controller.vetList[index].degree}',
-                                                          style: TextStyle(
-                                                              color: Colors.grey
-                                                                  .shade500,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400,
-                                                              fontSize: 15.0),
-                                                        ),
-                                                        RatingBarIndicator(
-                                                          rating: controller
+                                  child: Container(
+                                    // height: 480,
+                                    // width: 400,
+                                    child: GridView.builder(
+                                        shrinkWrap: true,
+                                        physics: NeverScrollableScrollPhysics(),
+                                        itemCount: controller.vetList.length,
+                                        gridDelegate:
+                                            SliverGridDelegateWithFixedCrossAxisCount(
+                                                crossAxisCount: 1,
+                                                childAspectRatio: 0.8,
+                                                mainAxisSpacing: 15),
+                                        itemBuilder: (context, index) {
+                                          return Card(
+                                            margin: EdgeInsets.only(
+                                                right: 10, left: 10),
+                                            child: Container(
+                                              // color: Colors.green,
+                                              child: Column(
+                                                children: [
+                                                  Stack(
+                                                    children: [
+                                                      Container(
+                                                        color: Colors
+                                                            .grey.shade200,
+                                                        margin: EdgeInsets.only(
+                                                            top: 10,
+                                                            right: 10,
+                                                            left: 10),
+                                                        height: 430,
+                                                        width: 400,
+                                                        child: getImageByLink(
+                                                          url: controller
                                                               .vetList[index]
-                                                              .rating!
-                                                              .toDouble(),
-                                                          itemBuilder: (context,
-                                                                  index) =>
-                                                              Icon(
-                                                            Icons.star,
-                                                            color: Colors.amber,
-                                                          ),
-                                                          itemCount: 5,
-                                                          itemSize: 18.0,
-                                                          direction:
-                                                              Axis.horizontal,
+                                                              .logoUrl
+                                                              .toString(),
+                                                          boxFit: BoxFit.cover,
+                                                          height: 150,
+                                                          width: 150,
                                                         ),
-                                                        SizedBox(
-                                                          height: 2,
-                                                        ),
-                                                        Text(
-                                                          '${controller.vetList[index].experience} years of professional experience',
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.black,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w800,
-                                                              fontSize: 15.0),
-                                                        ),
-                                                        SizedBox(
-                                                          height: 5,
-                                                        ),
-                                                        Text(
-                                                          '${controller.vetList[index].address}',
-                                                          style: GoogleFonts
-                                                              .abel(
-                                                                  color: Colors
-                                                                      .grey
-                                                                      .shade500,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                  fontSize:
-                                                                      15.0),
-                                                        ),
-                                                        SizedBox(
-                                                          height: 8,
-                                                        ),
-                                                        Row(
+                                                      ),
+                                                      Container(
+                                                          color: Colors.white,
+                                                          padding:
+                                                              EdgeInsets.only(
+                                                                  right: 10,
+                                                                  left: 10),
+                                                          margin:
+                                                              EdgeInsets.only(
+                                                                  left: 30,
+                                                                  right: 20,
+                                                                  bottom: 10,
+                                                                  top: 220),
+                                                          height: 200,
+                                                          width: 300,
+                                                          child: Column(
                                                             mainAxisAlignment:
                                                                 MainAxisAlignment
-                                                                    .spaceBetween,
+                                                                    .center,
                                                             children: [
-                                                              InkWell(
-                                                                onTap: () {
-                                                                  Get.toNamed(
-                                                                      Routes
-                                                                          .VET_VIEW_DETAILS,
-                                                                      arguments: controller
-                                                                          .vetList[
-                                                                              index]
-                                                                          .sId);
-                                                                },
-                                                                child: getcon(
+                                                              Text(
+                                                                'DR.${controller.vetList[index].name}',
+                                                                style: TextStyle(
                                                                     color: Colors
-                                                                        .orange,
-                                                                    width: 120,
-                                                                    height: 40,
-                                                                    alignment:
-                                                                        Alignment
-                                                                            .center,
-                                                                    text: Text(
-                                                                      "VIEW DETAILS",
-                                                                      style: TextStyle(
-                                                                          color: Colors
-                                                                              .white,
-                                                                          fontWeight:
-                                                                              FontWeight.w500),
-                                                                    )),
+                                                                        .black,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600,
+                                                                    fontSize:
+                                                                        16.0),
                                                               ),
-                                                              InkWell(
-                                                                onTap: () {
-                                                                  Get.toNamed(
-                                                                    Routes
-                                                                        .DATE_TIME_APPOIMENT,
-                                                                  );
-                                                                },
-                                                                child: getcon(
+                                                              SizedBox(
+                                                                height: 5,
+                                                              ),
+                                                              Text(
+                                                                '${controller.vetList[index].degree}',
+                                                                style: TextStyle(
                                                                     color: Colors
-                                                                        .cyan,
-                                                                    width: 100,
-                                                                    height: 40,
-                                                                    alignment:
-                                                                        Alignment
-                                                                            .center,
-                                                                    text: Text(
-                                                                        "SELECT",
-                                                                        style: TextStyle(
-                                                                            color:
-                                                                                Colors.white,
-                                                                            fontWeight: FontWeight.w500))),
-                                                              )
-                                                            ])
-                                                      ],
-                                                    )),
-                                              ],
+                                                                        .grey
+                                                                        .shade500,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w400,
+                                                                    fontSize:
+                                                                        15.0),
+                                                              ),
+                                                              RatingBarIndicator(
+                                                                rating: controller
+                                                                    .vetList[
+                                                                        index]
+                                                                    .rating!
+                                                                    .toDouble(),
+                                                                itemBuilder:
+                                                                    (context,
+                                                                            index) =>
+                                                                        Icon(
+                                                                  Icons.star,
+                                                                  color: Colors
+                                                                      .amber,
+                                                                ),
+                                                                itemCount: 5,
+                                                                itemSize: 18.0,
+                                                                direction: Axis
+                                                                    .horizontal,
+                                                              ),
+                                                              SizedBox(
+                                                                height: 2,
+                                                              ),
+                                                              Text(
+                                                                '${controller.vetList[index].experience} years of professional experience',
+                                                                style: TextStyle(
+                                                                    color: Colors
+                                                                        .black,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w800,
+                                                                    fontSize:
+                                                                        15.0),
+                                                              ),
+                                                              SizedBox(
+                                                                height: 5,
+                                                              ),
+                                                              Text(
+                                                                '${controller.vetList[index].address}',
+                                                                style: GoogleFonts.abel(
+                                                                    color: Colors
+                                                                        .grey
+                                                                        .shade500,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600,
+                                                                    fontSize:
+                                                                        15.0),
+                                                              ),
+                                                              SizedBox(
+                                                                height: 8,
+                                                              ),
+                                                              Row(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .spaceBetween,
+                                                                  children: [
+                                                                    InkWell(
+                                                                      onTap:
+                                                                          () {
+                                                                        Get.toNamed(
+                                                                            Routes
+                                                                                .VET_VIEW_DETAILS,
+                                                                            arguments:
+                                                                                controller.vetList[index].sId);
+                                                                      },
+                                                                      child: getcon(
+                                                                          color: Colors.orange,
+                                                                          width: 120,
+                                                                          height: 40,
+                                                                          alignment: Alignment.center,
+                                                                          text: Text(
+                                                                            "VIEW DETAILS",
+                                                                            style:
+                                                                                TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+                                                                          )),
+                                                                    ),
+                                                                    InkWell(
+                                                                      onTap:
+                                                                          () {
+                                                                        Get.toNamed(
+                                                                          Routes
+                                                                              .DATE_TIME_APPOIMENT,
+                                                                        );
+                                                                      },
+                                                                      child: getcon(
+                                                                          color: Colors
+                                                                              .cyan,
+                                                                          width:
+                                                                              100,
+                                                                          height:
+                                                                              40,
+                                                                          alignment: Alignment
+                                                                              .center,
+                                                                          text: Text(
+                                                                              "SELECT",
+                                                                              style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500))),
+                                                                    )
+                                                                  ])
+                                                            ],
+                                                          )),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
                                             ),
-                                          ],
-                                        ),
-                                      ),
-                                    );
-                                  }),
+                                          );
+                                        }),
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),

@@ -248,7 +248,7 @@ class PetViewDetailsController extends GetxController {
       'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
     });
     if (response.statusCode == 200) {
-      Get.offNamed(Routes.MY_PET);
+      Get.offAndToNamed(Routes.MY_PET);
     }
   }
 

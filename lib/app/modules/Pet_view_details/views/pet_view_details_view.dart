@@ -16,7 +16,7 @@ class PetViewDetailsView extends GetWidget<PetViewDetailsController> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return WillPopScope(child: SafeArea(
       child: Obx(() {
         return Scaffold(
             body: SingleChildScrollView(
@@ -42,7 +42,7 @@ class PetViewDetailsView extends GetWidget<PetViewDetailsController> {
                                 children: [
                                   IconButton(
                                       onPressed: () {
-                                        Get.back();
+                                        Get.offAndToNamed(Routes.MY_PET);
                                       },
                                       icon: Icon(
                                           Icons.keyboard_backspace_outlined))
@@ -390,12 +390,10 @@ class PetViewDetailsView extends GetWidget<PetViewDetailsController> {
                                   backgroundColor: Colors.transparent,
                                   child: IconButton(
                                       onPressed: () {
-                                        Get.offAllNamed(Routes.ADD_PET,
-                                            arguments: {
-                                              ArgumentConstant.patId: controller
-                                                  .petData.sId
-                                                  .toString()
-                                            });
+                                        Get.toNamed(Routes.ADD_PET, arguments: {
+                                          ArgumentConstant.patId:
+                                              controller.petData.sId.toString()
+                                        });
                                       },
                                       icon: Icon(
                                         Icons.edit,
@@ -737,6 +735,9 @@ class PetViewDetailsView extends GetWidget<PetViewDetailsController> {
                 ),
         ));
       }),
-    );
+    ), onWillPop: () async {
+      Get.offAndToNamed(Routes.MY_PET);
+      return await true;
+    });
   }
 }

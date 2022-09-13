@@ -18,6 +18,7 @@ class AddPetController extends GetxController {
   TextEditingController age = TextEditingController();
   TextEditingController breed = TextEditingController();
   RxList<String> gender = RxList<String>(["MALE", "FEMALE"]);
+  UpdatePet updatePet1 = UpdatePet();
   RxString select = 'MALE'.obs;
   RxString imageUrl = ''.obs;
   ImagePicker picker = ImagePicker();

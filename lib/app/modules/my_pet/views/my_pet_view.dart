@@ -364,7 +364,7 @@ class MyPetView extends GetWidget<MyPetController> {
                                             ),
                                             InkWell(
                                               onTap: () {
-                                                Get.toNamed(
+                                                Get.offAndToNamed(
                                                     Routes.PET_VIEW_DETAILS,
                                                     arguments: controller
                                                         .allPetList[index].sId);
