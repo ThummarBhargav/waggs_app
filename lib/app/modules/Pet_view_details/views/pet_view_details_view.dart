@@ -513,7 +513,8 @@ class PetViewDetailsView extends GetWidget<PetViewDetailsController> {
                                                 bottom: 10),
                                             width: double.infinity,
                                             decoration: BoxDecoration(
-                                                border: Border.all()),
+                                                border: Border.all(
+                                                    color: Colors.grey)),
                                             child: Column(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.start,
@@ -748,32 +749,40 @@ class PetViewDetailsView extends GetWidget<PetViewDetailsController> {
                                                 controller
                                                             .appointmentslist[
                                                                 index]
-                                                            .status ==
-                                                        "completed"
-                                                    ? Center(
-                                                        child: InkWell(
-                                                        onTap: () {
-                                                          controller.feedBackDialog(
-                                                              context: context,
-                                                              AppointmentId:
-                                                                  "${controller.appointmentslist[index].sId}");
-                                                        },
-                                                        child: Container(
-                                                          margin:
-                                                              EdgeInsets.only(
-                                                                  bottom: 5),
-                                                          child: Text(
-                                                            "Add Feedback",
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .orange,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                          ),
-                                                        ),
-                                                      ))
-                                                    : Container(),
+                                                            .isVetRated ==
+                                                        true
+                                                    ? Container()
+                                                    : (controller
+                                                                .appointmentslist[
+                                                                    index]
+                                                                .status ==
+                                                            "completed"
+                                                        ? Center(
+                                                            child: InkWell(
+                                                            onTap: () {
+                                                              controller.feedBackDialog(
+                                                                  context:
+                                                                      context,
+                                                                  AppointmentId:
+                                                                      "${controller.appointmentslist[index].sId}");
+                                                            },
+                                                            child: Container(
+                                                              margin: EdgeInsets
+                                                                  .only(
+                                                                      bottom:
+                                                                          5),
+                                                              child: Text(
+                                                                "Add Feedback",
+                                                                style: TextStyle(
+                                                                    color: Colors
+                                                                        .orange,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold),
+                                                              ),
+                                                            ),
+                                                          ))
+                                                        : Container())
                                               ],
                                             ),
                                           );
