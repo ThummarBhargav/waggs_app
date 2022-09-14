@@ -174,9 +174,16 @@ class HomeView extends GetWidget<HomeController> {
                                       ),
                                       InkWell(
                                         onTap: () {
-                                          Get.toNamed(Routes.MY_PET);
-                                          scaffoldKey.currentState!
-                                              .closeEndDrawer();
+                                          if ((box.read(ArgumentConstant
+                                                  .isUserLogin) ==
+                                              null)) {
+                                            Get.toNamed(Routes.MY_PET);
+                                            scaffoldKey.currentState!
+                                                .closeEndDrawer();
+                                          } else {
+                                            Get.offAndToNamed(
+                                                Routes.LOGIN_SCREEN);
+                                          }
                                         },
                                         child: ListTile(
                                           leading: Icon(Icons.pets_outlined),
@@ -210,22 +217,26 @@ class HomeView extends GetWidget<HomeController> {
                                           ),
                                         ),
                                       ),
-                                      InkWell(
-                                        onTap: () {
-                                          Get.offAndToNamed(
-                                              Routes.NOTIFICATION_PAGE);
-                                          scaffoldKey.currentState!
-                                              .closeEndDrawer();
-                                        },
-                                        child: ListTile(
-                                          leading: Icon(Icons
-                                              .notifications_none_outlined),
-                                          title: Text(
-                                            'My Notification',
-                                            style: TextStyle(fontSize: 15),
-                                          ),
-                                        ),
-                                      ),
+                                      box.read(ArgumentConstant.isUserLogin) ==
+                                              null
+                                          ? SizedBox()
+                                          : InkWell(
+                                              onTap: () {
+                                                Get.offAndToNamed(
+                                                    Routes.NOTIFICATION_PAGE);
+                                                scaffoldKey.currentState!
+                                                    .closeEndDrawer();
+                                              },
+                                              child: ListTile(
+                                                leading: Icon(Icons
+                                                    .notifications_none_outlined),
+                                                title: Text(
+                                                  'My Notification',
+                                                  style:
+                                                      TextStyle(fontSize: 15),
+                                                ),
+                                              ),
+                                            ),
                                       InkWell(
                                         onTap: () {
                                           Get.defaultDialog(
@@ -361,6 +372,15 @@ class HomeView extends GetWidget<HomeController> {
                                             child: TextFormField(
                                               controller:
                                                   controller.searchController,
+                                              onFieldSubmitted: (value) {
+                                                print("$value");
+                                                Get.offAndToNamed(
+                                                    Routes.SEARCH_PRODUCT_PAGE,
+                                                    arguments: {
+                                                      ArgumentConstant
+                                                          .searchProduct: value
+                                                    });
+                                              },
                                               decoration: InputDecoration(
                                                 hintText: "Search Product...",
                                                 hintStyle: GoogleFonts.roboto(
@@ -389,6 +409,10 @@ class HomeView extends GetWidget<HomeController> {
                                               children: [
                                                 IconButton(
                                                     onPressed: () {
+                                                      FocusManager
+                                                          .instance.primaryFocus
+                                                          ?.unfocus();
+
                                                       if ((box.read(
                                                               ArgumentConstant
                                                                   .isUserLogin) ==
@@ -454,6 +478,9 @@ class HomeView extends GetWidget<HomeController> {
                                                     .value = true;
                                                 scaffoldKey.currentState!
                                                     .openEndDrawer();
+                                                FocusManager
+                                                    .instance.primaryFocus
+                                                    ?.unfocus();
                                               },
                                               icon: Icon(
                                                 Icons.person,
@@ -480,6 +507,10 @@ class HomeView extends GetWidget<HomeController> {
                                         children: [
                                           TextButton(
                                               onPressed: () {
+                                                FocusManager
+                                                    .instance.primaryFocus
+                                                    ?.unfocus();
+
                                                 controller
                                                     .CatagoryList[index].sId;
                                                 print(
@@ -570,6 +601,12 @@ class HomeView extends GetWidget<HomeController> {
                                                   .width,
                                               fit: BoxFit.fitWidth,
                                               "${controller.bannerList[index].mobileImage}",
+                                              errorBuilder: (context, child,
+                                                  loadingProgress) {
+                                                return const Center(
+                                                    child:
+                                                        CircularProgressIndicator());
+                                              },
                                               loadingBuilder: (context, child,
                                                   loadingProgress) {
                                                 if (loadingProgress == null)
@@ -602,6 +639,9 @@ class HomeView extends GetWidget<HomeController> {
                                     ),
                                     InkWell(
                                       onTap: () {
+                                        FocusManager.instance.primaryFocus
+                                            ?.unfocus();
+
                                         Get.toNamed(Routes.PRODUCT_LIST_SCREEN,
                                             arguments: {
                                               ArgumentConstant
@@ -678,6 +718,9 @@ class HomeView extends GetWidget<HomeController> {
                                     ),
                                     InkWell(
                                       onTap: () {
+                                        FocusManager.instance.primaryFocus
+                                            ?.unfocus();
+
                                         Get.toNamed(Routes.PRODUCT_LIST_SCREEN,
                                             arguments: {
                                               ArgumentConstant
@@ -719,6 +762,10 @@ class HomeView extends GetWidget<HomeController> {
                                             itemBuilder: (context, index) {
                                               return productCard(
                                                 onTap: () {
+                                                  FocusManager
+                                                      .instance.primaryFocus
+                                                      ?.unfocus();
+
                                                   Get.toNamed(
                                                       Routes.VIEW_PRODUCT,
                                                       arguments: controller
@@ -757,6 +804,10 @@ class HomeView extends GetWidget<HomeController> {
                                                     .toString(),
                                                 ButtonText: "ADD TO CART",
                                                 ButtonTap: () {
+                                                  FocusManager
+                                                      .instance.primaryFocus
+                                                      ?.unfocus();
+
                                                   print(
                                                       "${controller.TopProductlist[index].sId}");
                                                   print(

@@ -46,6 +46,7 @@ abstract class Routes {
   static const VET_VIEW_DETAILS = _Paths.VET_VIEW_DETAILS;
   static const DATE_TIME_APPOIMENT = _Paths.DATE_TIME_APPOIMENT;
   static const NOTIFICATION_PAGE = _Paths.NOTIFICATION_PAGE;
+  static const SEARCH_PRODUCT_PAGE = _Paths.SEARCH_PRODUCT_PAGE;
 }
 
 abstract class _Paths {
@@ -93,4 +94,5 @@ abstract class _Paths {
   static const VET_VIEW_DETAILS = '/vet-view-details';
   static const DATE_TIME_APPOIMENT = '/date-time-appoiment';
   static const NOTIFICATION_PAGE = '/notification-page';
+  static const SEARCH_PRODUCT_PAGE = '/search-product-page';
 }

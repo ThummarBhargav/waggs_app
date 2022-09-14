@@ -50,6 +50,8 @@ import '../modules/product/bindings/product_binding.dart';
 import '../modules/product/views/product_view.dart';
 import '../modules/product_list_screen/bindings/product_list_screen_binding.dart';
 import '../modules/product_list_screen/views/product_list_screen_view.dart';
+import '../modules/search_product_page/bindings/search_product_page_binding.dart';
+import '../modules/search_product_page/views/search_product_page_view.dart';
 import '../modules/singup_screen/bindings/singup_screen_binding.dart';
 import '../modules/singup_screen/views/singup_screen_view.dart';
 import '../modules/splash_screen/bindings/splash_screen_binding.dart';
@@ -216,6 +218,11 @@ class AppPages {
       name: _Paths.NOTIFICATION_PAGE,
       page: () => const NotificationPageView(),
       binding: NotificationPageBinding(),
+    ),
+    GetPage(
+      name: _Paths.SEARCH_PRODUCT_PAGE,
+      page: () => const SearchProductPageView(),
+      binding: SearchProductPageBinding(),
     ),
   ];
 }

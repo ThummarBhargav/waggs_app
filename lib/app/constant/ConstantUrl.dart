@@ -79,6 +79,7 @@ class ArgumentConstant {
   static String orderId = "orderId";
   static String patId = "patId";
   static String isFromDrawer = "isFromDrawer";
+  static String searchProduct = "searchProduct";
 }
 
 getMySnackBar(
