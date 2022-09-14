@@ -22,6 +22,8 @@ class DateTimeAppoimentController extends GetxController
   dynamic Argument = Get.arguments;
   @override
   void onInit() {
+   print('${Argument[0]}');
+   print('${Argument[1]}');
     tabController = TabController(length: 2, vsync: this);
     super.onInit();
   }

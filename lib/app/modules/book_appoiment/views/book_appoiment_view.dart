@@ -355,7 +355,7 @@ class BookAppoimentView extends GetView<BookAppoimentController> {
                                                                     InkWell(
                                                                       onTap:
                                                                           () {
-                                                                        Get.toNamed(
+                                                                        Get.offNamed(
                                                                             Routes
                                                                                 .VET_VIEW_DETAILS,
                                                                             arguments:["${controller.petid}","${controller.vetList[index].sId}"]
