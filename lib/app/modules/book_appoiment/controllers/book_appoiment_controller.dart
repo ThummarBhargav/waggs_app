@@ -19,7 +19,6 @@ class BookAppoimentController extends GetxController {
 
   @override
   void onInit() {
-    String petid = Get.arguments;
     getAllVet(context: Get.context!);
     super.onInit();
   }

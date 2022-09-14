@@ -15,8 +15,16 @@ class VetViewDetailsController extends GetxController {
   RxBool isOpen = false.obs;
   RxBool isOpen1 = false.obs;
   RxBool isOpen2 = false.obs;
+  String petid = '';
+  String vetid= '';
   @override
   void onInit() {
+    if (!isNullEmptyOrFalse(Get.arguments)) {
+      if (!isNullEmptyOrFalse(Get.arguments[0][1])) {
+        petid = Get.arguments[0];
+        vetid = Get.arguments[1];
+      }
+    }
     VetDetails(context: Get.context!);
     super.onInit();
   }
@@ -32,7 +40,7 @@ class VetViewDetailsController extends GetxController {
   }
 
   VetDetails({required BuildContext context, bool isFromLoading = false}) async {
-    var url = Uri.parse(baseUrl + ApiConstant.vetdetail + "${Get.arguments}");
+    var url = Uri.parse(baseUrl + ApiConstant.vetdetail + "${vetid}");
     var response = await http.get(url, headers: {
       'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
     });

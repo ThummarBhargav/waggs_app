@@ -299,7 +299,7 @@ class AddPetView extends GetWidget<AddPetController> {
                             ),
                             child: TextFormField(
                               controller: controller.name,
-                              keyboardType: TextInputType.emailAddress,
+                              keyboardType: TextInputType.text,
                               // validator: (input) => !isNullEmptyOrFalse(input)
                               //     ? null
                               //     : "Please Enter Email Address",

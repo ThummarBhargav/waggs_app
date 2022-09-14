@@ -358,8 +358,8 @@ class BookAppoimentView extends GetView<BookAppoimentController> {
                                                                         Get.toNamed(
                                                                             Routes
                                                                                 .VET_VIEW_DETAILS,
-                                                                            arguments:
-                                                                                controller.vetList[index].sId);
+                                                                            arguments:["${controller.petid}","${controller.vetList[index].sId}"]
+                                                                                );
                                                                       },
                                                                       child: getcon(
                                                                           color: Colors.orange,
