@@ -1076,7 +1076,7 @@ class _TopSellingProductListWidgetState
                                           .mainProductList[index].images![0],
                                       discount: controller
                                           .mainProductList[index].discount!
-                                          .toStringAsFixed(2),
+                                          .toStringAsFixed(0),
                                       companyName: controller
                                           .mainProductList[index]
                                           .sellerId!
