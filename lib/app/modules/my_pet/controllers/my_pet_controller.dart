@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:waggs_app/app/Modal/AllPetModel.dart';
 import '../../../../main.dart';
+import '../../../Modal/CartCountModel.dart';
 import '../../../constant/ConstantUrl.dart';
 import '../../../constant/SizeConstant.dart';
 
@@ -13,6 +14,7 @@ class MyPetController extends GetxController {
   RxList<Pets> allPetList = RxList<Pets>([]);
   RxBool hasData = false.obs;
   RxInt itemCount = 0.obs;
+  Count1 count1 = Count1();
   @override
   void onInit() {
     getAllPet(context: Get.context!);
