@@ -28,8 +28,10 @@ class PetViewDetailsController extends GetxController {
   RxDouble _initialRating = 0.0.obs;
   bool _isVertical = false;
   RxDouble _rating = 0.0.obs;
+  String Argument = "";
   @override
   void onInit() {
+    Argument = Get.arguments;
     MyPet(context: Get.context!);
     super.onInit();
   }
@@ -46,7 +48,7 @@ class PetViewDetailsController extends GetxController {
 
   MyPet({required BuildContext context, bool isFromLoading = false}) async {
     hasData.value = false;
-    var url = Uri.parse(baseUrl + ApiConstant.getpet + "${Get.arguments}");
+    var url = Uri.parse(baseUrl + ApiConstant.getpet + "${Argument}");
     var response = await http.get(url, headers: {
       'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
     });
@@ -226,7 +228,7 @@ class PetViewDetailsController extends GetxController {
     appointmentslist.clear();
     hasData1.value = false;
     var url = Uri.parse(baseUrl +
-        "appointment/list?skip=0&limit=15&petId=${Get.arguments}&status=&search=");
+        "appointment/list?skip=0&limit=15&petId=${Argument}&status=&search=");
     var response = await http.get(url, headers: {
       'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
     });
@@ -274,8 +276,8 @@ class PetViewDetailsController extends GetxController {
         .then((value) {
       response = value;
       if (response.statusCode == 200 || response.statusCode == 201) {
+        reasonController.refresh();
         Get.back();
-
         MyPet(context: Get.context!);
         print(response.data);
       } else if (response.statusCode == 400) {

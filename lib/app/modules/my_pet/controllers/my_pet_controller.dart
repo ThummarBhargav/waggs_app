@@ -38,7 +38,7 @@ class MyPetController extends GetxController {
     hasData.value = true;
     if (response.statusCode == 200) {
       PetListModel res = PetListModel.fromJson(jsonDecode(response.body));
-      if (!isNullEmptyOrFalse(res))   {
+      if (!isNullEmptyOrFalse(res)) {
         if (!isNullEmptyOrFalse(res.data)) {
           if (!isNullEmptyOrFalse(res.data!.pets)) {
             res.data!.pets!.forEach((element) {
