@@ -556,7 +556,7 @@ class HomeView extends GetWidget<HomeController> {
                                                   .size
                                                   .width,
                                               fit: BoxFit.fill,
-                                              "${controller.bannerList[index].image}",
+                                              "${controller.bannerList[index].mobileImage}",
                                               loadingBuilder: (context, child,
                                                   loadingProgress) {
                                                 if (loadingProgress == null)

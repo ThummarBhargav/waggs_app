@@ -16,7 +16,7 @@ Card productCard({
   String? rating,
   String? ButtonText,
   IconData? icon,
-}){
+}) {
   return Card(
     elevation: 2,
     child: GestureDetector(
@@ -35,51 +35,28 @@ Card productCard({
                             Container(
                               width: 120,
                               height: 120,
-                              alignment:
-                              Alignment
-                                  .center,
-                              color: Colors
-                                  .white,
-                              margin: EdgeInsets
-                                  .only(
-                                  top:
-                                  25,
-                                  left:
-                                  20,
-                                  right:
-                                  10),
+                              alignment: Alignment.center,
+                              color: Colors.white,
+                              margin:
+                                  EdgeInsets.only(top: 25, left: 20, right: 10),
                               child: CachedNetworkImage(
                                   imageUrl: image.toString(),
-                                  imageBuilder: (
-                                      context,
-                                      imageProvider) =>
+                                  imageBuilder: (context, imageProvider) =>
                                       Container(
-                                        decoration:
-                                        BoxDecoration(
+                                        decoration: BoxDecoration(
                                           image: DecorationImage(
                                               image: imageProvider,
-                                              fit: BoxFit
-                                                  .cover,
-                                              colorFilter: ColorFilter
-                                                  .mode(
-                                                  Colors
-                                                      .transparent,
-                                                  BlendMode
-                                                      .colorBurn)),
+                                              fit: BoxFit.cover,
+                                              colorFilter: ColorFilter.mode(
+                                                  Colors.transparent,
+                                                  BlendMode.colorBurn)),
                                         ),
                                       ),
-                                  placeholder: (
-                                      context,
-                                      url) =>
+                                  placeholder: (context, url) =>
                                       CircularProgressIndicator(),
-                                  errorWidget: (
-                                      context,
-                                      url,
-                                      error) =>
+                                  errorWidget: (context, url, error) =>
                                       Container(
-                                        color:
-                                        Colors
-                                            .grey[100],
+                                        color: Colors.grey[100],
                                       )),
                             ),
                           ],
@@ -89,59 +66,30 @@ Card productCard({
                         child: Column(
                           children: [
                             Container(
-                              width: double
-                                  .maxFinite,
+                              width: double.maxFinite,
                               height: 80,
                               child: Row(
-                                mainAxisAlignment:
-                                MainAxisAlignment
-                                    .center,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Container(
-                                    margin: EdgeInsets
-                                        .only(
-                                        left:
-                                        45),
-                                    height:
-                                    20,
-                                    width:
-                                    70,
-                                    decoration:
-                                    BoxDecoration(
-                                      color:
-                                      Colors
-                                          .red,
-                                      borderRadius:
-                                      BorderRadius
-                                          .only(
-                                        topLeft:
-                                        Radius
-                                            .circular(
-                                            20),
-                                        topRight:
-                                        Radius
-                                            .circular(
-                                            20),
-                                        bottomRight:
-                                        Radius
-                                            .circular(
-                                            20),
-                                        bottomLeft:
-                                        Radius
-                                            .circular(
-                                            20),
+                                    margin: EdgeInsets.only(left: 45),
+                                    height: 20,
+                                    width: 70,
+                                    decoration: BoxDecoration(
+                                      color: Colors.red,
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(20),
+                                        topRight: Radius.circular(20),
+                                        bottomRight: Radius.circular(20),
+                                        bottomLeft: Radius.circular(20),
                                       ),
                                     ),
-                                    child:
-                                    Center(
-                                      child:
-                                      Text(
+                                    child: Center(
+                                      child: Text(
                                         "Save ${discount} %",
                                         style: TextStyle(
-                                            color: Colors
-                                                .white,
-                                            fontWeight: FontWeight
-                                                .bold,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
                                             fontSize: 9),
                                       ),
                                     ),
@@ -163,22 +111,13 @@ Card productCard({
                 top: 5, left: 5,
               ),
               child: Align(
-                  alignment:
-                  Alignment.center,
+                  alignment: Alignment.center,
                   child: Text(
                     "${companyName}",
-                    style:
-                    GoogleFonts.raleway(
-                        fontWeight:
-                        FontWeight
-                            .w700,
+                    style: GoogleFonts.raleway(
+                        fontWeight: FontWeight.w700,
                         fontSize: 13,
-                        color: Color
-                            .fromRGBO(
-                            32,
-                            193,
-                            244,
-                            1)),
+                        color: Color.fromRGBO(32, 193, 244, 1)),
                   )),
             ),
             Container(
@@ -186,39 +125,29 @@ Card productCard({
               width: 180,
               margin: EdgeInsets.only(),
               child: Align(
-                  alignment:
-                  Alignment.center,
+                  alignment: Alignment.center,
                   child: Padding(
-                    padding: const EdgeInsets.only(top:3.0,bottom: 3.0),
+                    padding: const EdgeInsets.only(top: 3.0, bottom: 3.0),
                     child: Text(
                       "${categoryName} - ${subCategoryName} ",
-                      style: TextStyle(
-                          fontSize: 10,
-                          color: Colors
-                              .grey),
+                      style: TextStyle(fontSize: 10, color: Colors.grey),
                       textAlign: TextAlign.center,
-
                     ),
                   )),
             ),
             Row(
-              mainAxisAlignment:
-              MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Container(
                   margin: EdgeInsets.only(
-                    left: 15,
+                    left: 10,
                   ),
                   child: Text(
                     "₹${price}",
-                    style: GoogleFonts
-                        .roboto(
-                        decoration:
-                        TextDecoration
-                            .lineThrough,
-                        color: Colors
-                            .grey,
-                        fontSize: 8),
+                    style: GoogleFonts.roboto(
+                        decoration: TextDecoration.lineThrough,
+                        color: Colors.grey,
+                        fontSize: 13),
                   ),
                 ),
                 SizedBox(
@@ -227,25 +156,18 @@ Card productCard({
                 Container(
                   child: Text(
                     "₹${discountedPrice}",
-                    style: TextStyle(
-                        fontSize: 9),
+                    style: TextStyle(fontSize: 13),
                   ),
                 ),
                 RatingBarIndicator(
-                  rating: double.parse(
-                      rating
-                          .toString()),
-                  itemBuilder:
-                      (context, index) =>
-                      Icon(
-                        Icons.star,
-                        color: Colors
-                            .amber,
-                      ),
+                  rating: double.parse(rating.toString()),
+                  itemBuilder: (context, index) => Icon(
+                    Icons.star,
+                    color: Colors.amber,
+                  ),
                   itemCount: 5,
                   itemSize: 15.0,
-                  direction:
-                  Axis.horizontal,
+                  direction: Axis.horizontal,
                 ),
               ],
             ),
@@ -257,19 +179,13 @@ Card productCard({
               child: Container(
                 width: 130,
                 height: 35,
-                alignment: Alignment
-                    .center,
+                alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  color: Color.fromRGBO(
-                      32, 193, 244, 1),
-                  borderRadius:
-                  BorderRadius.only(
-                    topRight:
-                    Radius.circular(25),
-                    bottomRight:
-                    Radius.circular(25),
-                    bottomLeft:
-                    Radius.circular(25),
+                  color: Color.fromRGBO(32, 193, 244, 1),
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(25),
+                    bottomRight: Radius.circular(25),
+                    bottomLeft: Radius.circular(25),
                   ),
                 ),
                 child: Row(
@@ -277,23 +193,16 @@ Card productCard({
                     SizedBox(
                       width: 10,
                     ),
-                    Icon(
-                        icon,
-                        color: Colors
-                            .white,
-                        size: 18),
+                    Icon(icon, color: Colors.white, size: 18),
                     SizedBox(
                       width: 10,
                     ),
                     Text(
                       ButtonText.toString(),
-                      style: GoogleFonts
-                          .raleway(
-                        fontWeight:
-                        FontWeight.w700,
+                      style: GoogleFonts.raleway(
+                        fontWeight: FontWeight.w700,
                         fontSize: 12,
-                        color: Colors
-                            .white,
+                        color: Colors.white,
                       ),
                     ),
                   ],

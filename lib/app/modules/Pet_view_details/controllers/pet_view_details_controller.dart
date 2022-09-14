@@ -31,7 +31,6 @@ class PetViewDetailsController extends GetxController {
   @override
   void onInit() {
     MyPet(context: Get.context!);
-
     super.onInit();
   }
 

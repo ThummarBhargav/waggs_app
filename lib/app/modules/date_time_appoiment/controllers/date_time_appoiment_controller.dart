@@ -10,18 +10,17 @@ import '../../../../utilities/custome_dialogs.dart';
 import '../../../constant/ConstantUrl.dart';
 import '../../../routes/app_pages.dart';
 
-class DateTimeAppoimentController extends GetxController with GetSingleTickerProviderStateMixin{
+class DateTimeAppoimentController extends GetxController
+    with GetSingleTickerProviderStateMixin {
   RxBool hasData = false.obs;
   TabController? tabController;
   TextEditingController des = TextEditingController();
   Dio dio = Dio();
   Rx<DateTime> time = DateTime.now().obs;
   Rx<DateTime> date = DateTime.now().obs;
-  dynamic pvid = Get.arguments;
+  dynamic Argument = Get.arguments;
   @override
   void onInit() {
-print("petid===>${pvid[0]}");
-print("Vetid===>${pvid[1]}");
     tabController = TabController(length: 2, vsync: this);
     super.onInit();
   }
@@ -42,9 +41,10 @@ print("Vetid===>${pvid[1]}");
     Map<String, dynamic> dict = {};
     dict["date"] = des.text;
     dict["note"] = des.text;
-    dict["pet"] = "${pvid[0]}";
-    dict["vet"] = "${pvid[1]}";
-    dio.put(
+    dict["pet"] = "${Argument[0]}";
+    dict["vet"] = "${Argument[1]}";
+    dio
+        .put(
       baseUrl + ApiConstant.bookvet,
       data: dict,
       options: Options(headers: {
@@ -57,10 +57,7 @@ print("Vetid===>${pvid[1]}");
       print("VALUE  : = ${value}");
     }).catchError((error) {
       getIt<CustomDialogs>().hideCircularDialog(context);
-
       print("ERROR : = $error");
     });
   }
-
-
 }

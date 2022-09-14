@@ -36,16 +36,18 @@ class BannerData {
   String? createdAt;
   String? updatedAt;
   int? iV;
+  String? portraitImage;
 
   BannerData(
       {this.sId,
-        this.order,
-        this.image,
-        this.mobileImage,
-        this.url,
-        this.createdAt,
-        this.updatedAt,
-        this.iV});
+      this.order,
+      this.image,
+      this.mobileImage,
+      this.url,
+      this.createdAt,
+      this.updatedAt,
+      this.iV,
+      this.portraitImage});
 
   BannerData.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -56,6 +58,7 @@ class BannerData {
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
     iV = json['__v'];
+    portraitImage = json['portraitImage'];
   }
 
   Map<String, dynamic> toJson() {
@@ -68,6 +71,7 @@ class BannerData {
     data['createdAt'] = this.createdAt;
     data['updatedAt'] = this.updatedAt;
     data['__v'] = this.iV;
+    data['portraitImage'] = this.portraitImage;
     return data;
   }
 }
