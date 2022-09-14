@@ -27,8 +27,14 @@ class PlaneController extends GetxController {
   Data1? data;
   static const platform = const MethodChannel("razorpay_flutter");
   late Razorpay _razorpay;
+  RxBool isFromDrawer = false.obs;
+  RxBool isDataAccepted = false.obs;
   @override
   void onInit() {
+    if (Get.arguments != null) {
+      isFromDrawer.value = Get.arguments[ArgumentConstant.isFromDrawer];
+      isDataAccepted.value = true;
+    }
     AllPlans();
     super.onInit();
   }

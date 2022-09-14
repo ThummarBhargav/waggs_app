@@ -109,11 +109,19 @@ class HomeView extends GetWidget<HomeController> {
                                       InkWell(
                                         onTap: () {
                                           if ((box.read(ArgumentConstant
-                                                  .isUserLogin) ==
+                                                  .isUserLogin) !=
                                               null)) {
-                                            Get.toNamed(Routes.PLANE);
+                                            Get.toNamed(Routes.PLANE,
+                                                arguments: {
+                                                  ArgumentConstant.isFromDrawer:
+                                                      true
+                                                });
+                                          } else {
+                                            Get.offAndToNamed(
+                                                Routes.LOGIN_SCREEN);
+                                            scaffoldKey.currentState!
+                                                .closeEndDrawer();
                                           }
-                                          Get.toNamed(Routes.PLANE);
                                         },
                                         child: ListTile(
                                           leading:
@@ -129,11 +137,14 @@ class HomeView extends GetWidget<HomeController> {
                                           if ((box.read(ArgumentConstant
                                                   .isUserLogin) ==
                                               null)) {
-                                            Get.toNamed(Routes.LOGIN_SCREEN);
+                                            Get.offAndToNamed(
+                                                Routes.LOGIN_SCREEN);
                                           } else {
                                             controller.CartProductApi();
                                             controller.CartCount();
                                             Get.toNamed(Routes.VIEW_CART);
+                                            scaffoldKey.currentState!
+                                                .closeEndDrawer();
                                           }
                                         },
                                         child: ListTile(
@@ -150,7 +161,8 @@ class HomeView extends GetWidget<HomeController> {
                                           if ((box.read(ArgumentConstant
                                                   .isUserLogin) ==
                                               null)) {
-                                            Get.toNamed(Routes.LOGIN_SCREEN);
+                                            Get.offAndToNamed(
+                                                Routes.LOGIN_SCREEN);
                                           } else {
                                             // controller.Allorder();
                                             Get.toNamed(Routes.ORDER_PAGE,
@@ -158,6 +170,8 @@ class HomeView extends GetWidget<HomeController> {
                                                   ArgumentConstant.orderData:
                                                       [],
                                                 });
+                                            scaffoldKey.currentState!
+                                                .closeEndDrawer();
                                           }
                                         },
                                         child: ListTile(
@@ -172,6 +186,8 @@ class HomeView extends GetWidget<HomeController> {
                                       InkWell(
                                         onTap: () {
                                           Get.toNamed(Routes.MY_PET);
+                                          scaffoldKey.currentState!
+                                              .closeEndDrawer();
                                         },
                                         child: ListTile(
                                           leading: Icon(Icons.pets_outlined),
@@ -190,7 +206,10 @@ class HomeView extends GetWidget<HomeController> {
                                           } else {
                                             controller.CartProductApi();
                                             controller.CartCount();
-                                            Get.toNamed(Routes.MY_ACCOUNT);
+                                            Get.offAndToNamed(
+                                                Routes.MY_ACCOUNT);
+                                            scaffoldKey.currentState!
+                                                .closeEndDrawer();
                                           }
                                         },
                                         child: ListTile(
@@ -204,7 +223,10 @@ class HomeView extends GetWidget<HomeController> {
                                       ),
                                       InkWell(
                                         onTap: () {
-                                          Get.toNamed(Routes.NOTIFICATION_PAGE);
+                                          Get.offAndToNamed(
+                                              Routes.NOTIFICATION_PAGE);
+                                          scaffoldKey.currentState!
+                                              .closeEndDrawer();
                                         },
                                         child: ListTile(
                                           leading: Icon(Icons

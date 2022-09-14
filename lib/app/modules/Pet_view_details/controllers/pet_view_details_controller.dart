@@ -13,6 +13,7 @@ import 'package:http/http.dart' as http;
 import 'package:waggs_app/app/constant/SizeConstant.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
 import 'package:waggs_app/main.dart';
+import 'package:waggs_app/utilities/custome_dialogs.dart';
 
 import '../../../constant/Container.dart';
 
@@ -31,7 +32,9 @@ class PetViewDetailsController extends GetxController {
   String Argument = "";
   @override
   void onInit() {
-    Argument = Get.arguments;
+    if (Get.arguments != null) {
+      Argument = Get.arguments;
+    }
     MyPet(context: Get.context!);
     super.onInit();
   }
@@ -248,11 +251,15 @@ class PetViewDetailsController extends GetxController {
 
   MyPetDelete(
       {required BuildContext context, bool isFromLoading = false}) async {
+    getIt<CustomDialogs>().showCircularDialog(context);
     var url = Uri.parse(baseUrl + ApiConstant.getpet + "${petData.sId}");
     var response = await http.delete(url, headers: {
       'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
     });
+    getIt<CustomDialogs>().hideCircularDialog(context);
+
     if (response.statusCode == 200) {
+      Get.back();
       Get.offAndToNamed(Routes.MY_PET);
     }
   }

@@ -50,6 +50,7 @@ class HomeController extends GetxController {
   List respons1 = [];
   final count = 0.obs;
   RxBool isOpen = false.obs;
+  RxBool isFromDrawer = false.obs;
   RxBool isOpen1 = false.obs;
   RxBool hasNotificationCount = false.obs;
   RxInt countNotification = 0.obs;

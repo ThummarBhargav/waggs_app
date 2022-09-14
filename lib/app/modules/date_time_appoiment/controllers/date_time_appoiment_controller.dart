@@ -57,7 +57,7 @@ class DateTimeAppoimentController extends GetxController
     )
         .then((value) {
       getIt<CustomDialogs>().hideCircularDialog(context);
-      Get.toNamed(Routes.PET_VIEW_DETAILS);
+      Get.offAndToNamed(Routes.PET_VIEW_DETAILS, arguments: Argument[0]);
       print("VALUE  : = ${value}");
     }).catchError((error) {
       getIt<CustomDialogs>().hideCircularDialog(context);

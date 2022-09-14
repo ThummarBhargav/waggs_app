@@ -14,197 +14,210 @@ class NotificationPageView extends GetWidget<NotificationPageController> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            "My Notifications",
-            style: TextStyle(
-                fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),
+    return WillPopScope(
+      onWillPop: () async {
+        Get.offAllNamed(Routes.HOME);
+        return await true;
+      },
+      child: Obx(() {
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(
+              "My Notifications",
+              style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black),
+            ),
+            leading: IconButton(
+                onPressed: () {
+                  Get.offAllNamed(Routes.HOME);
+                },
+                icon: Icon(
+                  Icons.arrow_back,
+                  color: Colors.black,
+                )),
+            backgroundColor: Colors.white,
+            elevation: 0,
           ),
-          leading: IconButton(
-              onPressed: () {
-                Get.offAllNamed(Routes.HOME);
-              },
-              icon: Icon(
-                Icons.arrow_back,
-                color: Colors.black,
-              )),
-          backgroundColor: Colors.white,
-          elevation: 0,
-        ),
-        body: Container(
-          margin: EdgeInsets.only(bottom: 10),
-          child: (controller.hasNotificationCount.value)
-              ? ((controller.notificationList.isEmpty)
-                  ? Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            height: 300,
-                            width: 250,
-                            child: SvgPicture.asset("assets/NoData.svg"),
-                          ),
-                          Text(
-                            "No data found",
-                            style: GoogleFonts.raleway(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 20,
-                                color: Color.fromRGBO(33, 43, 54, 1)),
-                          ),
-                        ],
-                      ),
-                    )
-                  : Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 15,
-                      ),
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Align(
-                            alignment: Alignment.centerRight,
-                            child: InkWell(
-                              onTap: () {
-                                controller.removeAllNotification(
-                                    context: context);
-                              },
-                              child: Text(
-                                "Dismiss All",
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.pink,
+          body: Container(
+            margin: EdgeInsets.only(bottom: 10),
+            child: (controller.hasNotificationCount.value)
+                ? ((controller.notificationList.isEmpty)
+                    ? Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              height: 300,
+                              width: 250,
+                              child: SvgPicture.asset("assets/NoData.svg"),
+                            ),
+                            Text(
+                              "No data found",
+                              style: GoogleFonts.raleway(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 20,
+                                  color: Color.fromRGBO(33, 43, 54, 1)),
+                            ),
+                          ],
+                        ),
+                      )
+                    : Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 15,
+                        ),
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Align(
+                              alignment: Alignment.centerRight,
+                              child: InkWell(
+                                onTap: () {
+                                  controller.removeAllNotification(
+                                      context: context);
+                                },
+                                child: Text(
+                                  "Dismiss All",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.pink,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          SizedBox(
-                            height: 12,
-                          ),
-                          Expanded(
-                            child: ListView.separated(
-                                itemBuilder: (context, i) {
-                                  Notifications notifications =
-                                      controller.notificationList[i];
-                                  return Container(
-                                    width: double.infinity,
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Expanded(
-                                          child: Row(
-                                            children: [
-                                              Container(
-                                                padding: EdgeInsets.all(16),
-                                                decoration: BoxDecoration(
-                                                  color: Colors.grey.shade400
-                                                      .withOpacity(0.8),
-                                                  borderRadius:
-                                                      BorderRadius.circular(4),
-                                                ),
-                                                child: Center(
-                                                  child: Icon(
-                                                    Icons.person,
-                                                    size: 30,
-                                                    color: Colors.white,
+                            SizedBox(
+                              height: 12,
+                            ),
+                            Expanded(
+                              child: ListView.separated(
+                                  itemBuilder: (context, i) {
+                                    Notifications notifications =
+                                        controller.notificationList[i];
+                                    return Container(
+                                      width: double.infinity,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Expanded(
+                                            child: Row(
+                                              children: [
+                                                Container(
+                                                  padding: EdgeInsets.all(16),
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.grey.shade400
+                                                        .withOpacity(0.8),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            4),
+                                                  ),
+                                                  child: Center(
+                                                    child: Icon(
+                                                      Icons.person,
+                                                      size: 30,
+                                                      color: Colors.white,
+                                                    ),
                                                   ),
                                                 ),
-                                              ),
-                                              SizedBox(
-                                                width: 10,
-                                              ),
-                                              Expanded(
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      notifications.title
-                                                          .toString(),
-                                                      style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w400,
-                                                        fontSize: 18,
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                      height: 10,
-                                                    ),
-                                                    Text(
-                                                      notifications.description
-                                                          .toString(),
-                                                      style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                        fontSize: 14,
-                                                        height: 1.6,
-                                                      ),
-                                                      maxLines: 5,
-                                                      softWrap: true,
-                                                    ),
-                                                    SizedBox(
-                                                      height: 10,
-                                                    ),
-                                                    Text(
-                                                      timeAgo(getDateFromString(
-                                                        notifications
-                                                                .createdAt ??
-                                                            "",
-                                                      )),
-                                                      style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                        fontSize: 14,
-                                                        height: 1.6,
-                                                      ),
-                                                      maxLines: 5,
-                                                      softWrap: true,
-                                                    )
-                                                  ],
+                                                SizedBox(
+                                                  width: 10,
                                                 ),
-                                              )
-                                            ],
+                                                Expanded(
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        notifications.title
+                                                            .toString(),
+                                                        style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.w400,
+                                                          fontSize: 18,
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        height: 10,
+                                                      ),
+                                                      Text(
+                                                        notifications
+                                                            .description
+                                                            .toString(),
+                                                        style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                          fontSize: 14,
+                                                          height: 1.6,
+                                                        ),
+                                                        maxLines: 5,
+                                                        softWrap: true,
+                                                      ),
+                                                      SizedBox(
+                                                        height: 10,
+                                                      ),
+                                                      Text(
+                                                        timeAgo(
+                                                            getDateFromString(
+                                                          notifications
+                                                                  .createdAt ??
+                                                              "",
+                                                        )),
+                                                        style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                          fontSize: 14,
+                                                          height: 1.6,
+                                                        ),
+                                                        maxLines: 5,
+                                                        softWrap: true,
+                                                      )
+                                                    ],
+                                                  ),
+                                                )
+                                              ],
+                                            ),
                                           ),
-                                        ),
-                                        InkWell(
-                                          child: Icon(
-                                            Icons.close,
-                                            color: Colors.pink,
+                                          InkWell(
+                                            child: Icon(
+                                              Icons.close,
+                                              color: Colors.pink,
+                                            ),
+                                            onTap: () {
+                                              controller.removeNotification(
+                                                  context: Get.context!,
+                                                  notificationId:
+                                                      notifications.sId!);
+                                            },
                                           ),
-                                          onTap: () {
-                                            controller.removeNotification(
-                                                context: Get.context!,
-                                                notificationId:
-                                                    notifications.sId!);
-                                          },
-                                        ),
-                                      ],
-                                    ),
-                                  );
-                                },
-                                separatorBuilder: (context, i) {
-                                  return SizedBox(
-                                    height: 20,
-                                  );
-                                },
-                                itemCount: controller.notificationList.length),
-                          ),
-                        ],
-                      ),
-                    ))
-              : Center(
-                  child: CircularProgressIndicator(),
-                ),
-        ),
-      );
-    });
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                  separatorBuilder: (context, i) {
+                                    return SizedBox(
+                                      height: 20,
+                                    );
+                                  },
+                                  itemCount:
+                                      controller.notificationList.length),
+                            ),
+                          ],
+                        ),
+                      ))
+                : Center(
+                    child: CircularProgressIndicator(),
+                  ),
+          ),
+        );
+      }),
+    );
   }
 
   String timeAgo(DateTime d) {
