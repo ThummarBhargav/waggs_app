@@ -335,7 +335,7 @@ class ViewCartController extends GetxController {
                       child: TextFormField(
                         validator: (input) => !isNullEmptyOrFalse(input)
                             ? null
-                            : "Please Enter Password",
+                            : "Please Enter Address",
                         decoration: InputDecoration(
                           hintText: "Search for area",
                           hintStyle: GoogleFonts.roboto(

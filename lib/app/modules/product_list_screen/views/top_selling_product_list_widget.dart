@@ -48,13 +48,6 @@ class _TopSellingProductListWidgetState
           key: scaffoldKey,
           backgroundColor: Colors.white,
           appBar: AppBar(
-            title: Text(
-              "TOP SELLING PRODUCTS",
-              style: GoogleFonts.roboto(
-                  color: Colors.orangeAccent,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 20),
-            ),
             elevation: 0.0,
             backgroundColor: Colors.white,
             leading: IconButton(
@@ -70,6 +63,7 @@ class _TopSellingProductListWidgetState
                 children: [
                   IconButton(
                       onPressed: () {
+                        controller.isFilterDrawer.value = false;
                         scaffoldKey.currentState!.openEndDrawer();
                         controller.CartCount();
                         controller.CartProductApi();
@@ -130,6 +124,10 @@ class _TopSellingProductListWidgetState
                               ),
                               InkWell(
                                 onTap: () {
+                                  controller.values4.value =
+                                      RangeValues(100, 30000);
+                                  controller.values1.value =
+                                      RangeValues(0, 100);
                                   controller.radioGValues.value = "";
                                   controller.isOp2.value = false;
                                   controller.isOp.value = false;
@@ -179,16 +177,14 @@ class _TopSellingProductListWidgetState
                                 Obx(
                                   () => RangeSlider(
                                     values: controller.values4.value,
-                                    min: 0,
-                                    max: 100,
-                                    divisions: 1,
+                                    activeColor: Colors.lightBlue[300],
+                                    inactiveColor: Colors.lightBlue[200],
+                                    min: 100,
+                                    max: 30000,
+                                    divisions: 10000,
                                     labels: RangeLabels(
-                                      controller.values4.value.start
-                                          .round()
-                                          .toString(),
-                                      controller.values4.value.end
-                                          .round()
-                                          .toString(),
+                                      "\u{20B9}${controller.values4.value.start.round().toString()}",
+                                      "\u{20B9}${controller.values4.value.end.round().toString()}",
                                     ),
                                     onChanged: (RangeValues values) {
                                       controller.values4.value = values;
@@ -231,12 +227,8 @@ class _TopSellingProductListWidgetState
                                     max: 100,
                                     values: controller.values1.value,
                                     labels: RangeLabels(
-                                        controller.values1.value.start
-                                            .round()
-                                            .toString(),
-                                        controller.values1.value.end
-                                            .round()
-                                            .toString()),
+                                        "${controller.values1.value.start.round().toString()}%",
+                                        "${controller.values1.value.end.round().toString()}%"),
                                     onChanged: (value) {
                                       controller.values1.value = value;
                                       print(
@@ -541,7 +533,8 @@ class _TopSellingProductListWidgetState
                                                                 value: controller
                                                                     .subData[
                                                                         index]
-                                                                    .name!,
+                                                                    .name
+                                                                    .toString(),
                                                                 groupValue:
                                                                     controller
                                                                         .radioGValues1
@@ -717,7 +710,7 @@ class _TopSellingProductListWidgetState
                             onTap: () {
                               List reqList = [];
                               if (controller.subData.isEmpty) {
-                                controller.TopSellingProductApi();
+                                // controller.getProduct();
                               } else {
                                 for (int i = 0;
                                     i <
@@ -773,29 +766,31 @@ class _TopSellingProductListWidgetState
 
                                   print(
                                       "${controller.subData[controller.subDataIndex.value].fields![i].values}==> ${controller.subData[controller.subDataIndex.value].fields![i].isChecked}");
-                                  controller.getTopFilterData(
-                                      reqList: reqList, context: context);
                                 }
+                                controller.getFilterData(
+                                    reqList: reqList, context: context);
                               }
-                              scaffoldKey.currentState!.closeEndDrawer();
+
+                              controller.values4.value =
+                                  RangeValues(100, 30000);
+                              controller.values1.value = RangeValues(0, 100);
                               controller.radioGValues.value = "";
                               controller.isOp2.value = false;
                               controller.isOp.value = false;
-                              controller.subData.forEach((ele) {
-                                ele.fields!.forEach((element) {
-                                  element.isExpanded!.value = false;
-                                  element.isChecked!.forEach((element) {
-                                    element = false;
-                                  });
-                                  element.isChecked!.refresh();
-                                  element.isExpanded!.refresh();
-                                  controller.refresh();
+                              controller.subData[controller.subDataIndex.value]
+                                  .fields!
+                                  .forEach((element) {
+                                element.isChecked!.forEach((element) {
+                                  element = false;
                                 });
+                                element.isChecked!.refresh();
                               });
-
                               controller.subData.clear();
                               controller.AllCategory();
                               controller.SubCategory();
+
+                              scaffoldKey.currentState!.closeEndDrawer();
+                              // Navigator.of(context).pop;
                             },
                             child: Container(
                               margin: EdgeInsets.only(

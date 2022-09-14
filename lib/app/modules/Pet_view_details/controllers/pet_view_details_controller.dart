@@ -198,6 +198,7 @@ class PetViewDetailsController extends GetxController {
                           InkWell(
                             onTap: () {
                               deleteAppointment(AppointmentId);
+                              reasonController.value.clear();
                             },
                             child: Padding(
                               padding: const EdgeInsets.only(left: 10, top: 5),
@@ -283,7 +284,7 @@ class PetViewDetailsController extends GetxController {
         .then((value) {
       response = value;
       if (response.statusCode == 200 || response.statusCode == 201) {
-        reasonController.refresh();
+        reasonController.value.clear();
         Get.back();
         MyPet(context: Get.context!);
         print(response.data);

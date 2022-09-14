@@ -478,9 +478,6 @@ class HomeView extends GetWidget<HomeController> {
                                                     .value = true;
                                                 scaffoldKey.currentState!
                                                     .openEndDrawer();
-                                                FocusManager
-                                                    .instance.primaryFocus
-                                                    ?.unfocus();
                                               },
                                               icon: Icon(
                                                 Icons.person,
@@ -507,10 +504,6 @@ class HomeView extends GetWidget<HomeController> {
                                         children: [
                                           TextButton(
                                               onPressed: () {
-                                                FocusManager
-                                                    .instance.primaryFocus
-                                                    ?.unfocus();
-
                                                 controller
                                                     .CatagoryList[index].sId;
                                                 print(
@@ -596,17 +589,17 @@ class HomeView extends GetWidget<HomeController> {
                                           itemBuilder: (BuildContext context,
                                               int index, int realIndex) {
                                             return Image.network(
+                                              errorBuilder:
+                                                  (context, error, stackTrace) {
+                                                return Center(
+                                                    child:
+                                                        CircularProgressIndicator());
+                                              },
                                               width: MediaQuery.of(context)
                                                   .size
                                                   .width,
                                               fit: BoxFit.fitWidth,
                                               "${controller.bannerList[index].mobileImage}",
-                                              errorBuilder: (context, child,
-                                                  loadingProgress) {
-                                                return const Center(
-                                                    child:
-                                                        CircularProgressIndicator());
-                                              },
                                               loadingBuilder: (context, child,
                                                   loadingProgress) {
                                                 if (loadingProgress == null)
@@ -639,9 +632,6 @@ class HomeView extends GetWidget<HomeController> {
                                     ),
                                     InkWell(
                                       onTap: () {
-                                        FocusManager.instance.primaryFocus
-                                            ?.unfocus();
-
                                         Get.toNamed(Routes.PRODUCT_LIST_SCREEN,
                                             arguments: {
                                               ArgumentConstant
@@ -718,9 +708,6 @@ class HomeView extends GetWidget<HomeController> {
                                     ),
                                     InkWell(
                                       onTap: () {
-                                        FocusManager.instance.primaryFocus
-                                            ?.unfocus();
-
                                         Get.toNamed(Routes.PRODUCT_LIST_SCREEN,
                                             arguments: {
                                               ArgumentConstant
@@ -762,10 +749,6 @@ class HomeView extends GetWidget<HomeController> {
                                             itemBuilder: (context, index) {
                                               return productCard(
                                                 onTap: () {
-                                                  FocusManager
-                                                      .instance.primaryFocus
-                                                      ?.unfocus();
-
                                                   Get.toNamed(
                                                       Routes.VIEW_PRODUCT,
                                                       arguments: controller
@@ -804,10 +787,6 @@ class HomeView extends GetWidget<HomeController> {
                                                     .toString(),
                                                 ButtonText: "ADD TO CART",
                                                 ButtonTap: () {
-                                                  FocusManager
-                                                      .instance.primaryFocus
-                                                      ?.unfocus();
-
                                                   print(
                                                       "${controller.TopProductlist[index].sId}");
                                                   print(

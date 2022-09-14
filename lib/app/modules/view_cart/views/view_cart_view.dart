@@ -52,8 +52,7 @@ class ViewCartView extends GetView<ViewCartController> {
                                 width: double.infinity,
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
-                                      image:
-                                      AssetImage("assets/catagory.jpg"),
+                                      image: AssetImage("assets/catagory.jpg"),
                                       fit: BoxFit.fill),
                                 ),
                               ),
@@ -61,8 +60,7 @@ class ViewCartView extends GetView<ViewCartController> {
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   Container(
-                                    margin:
-                                    EdgeInsets.only(top: 20, right: 20),
+                                    margin: EdgeInsets.only(top: 20, right: 20),
                                     width: 180,
                                     height: 180,
                                     decoration: BoxDecoration(
@@ -78,8 +76,8 @@ class ViewCartView extends GetView<ViewCartController> {
                                   Row(
                                     children: [
                                       Container(
-                                        margin: EdgeInsets.only(
-                                            top: 60, left: 25),
+                                        margin:
+                                            EdgeInsets.only(top: 60, left: 25),
                                         child: Text("My Cart",
                                             style: GoogleFonts.roboto(
                                               fontSize: 25,
@@ -92,8 +90,8 @@ class ViewCartView extends GetView<ViewCartController> {
                                   Row(
                                     children: [
                                       Container(
-                                        margin: EdgeInsets.only(
-                                            top: 5, left: 25),
+                                        margin:
+                                            EdgeInsets.only(top: 5, left: 25),
                                         child: Text("Home >",
                                             style: GoogleFonts.roboto(
                                                 fontSize: 15,
@@ -101,14 +99,13 @@ class ViewCartView extends GetView<ViewCartController> {
                                                 color: Colors.black)),
                                       ),
                                       Container(
-                                        margin: EdgeInsets.only(
-                                            top: 5, left: 2),
+                                        margin:
+                                            EdgeInsets.only(top: 5, left: 2),
                                         child: Text("My Cart",
                                             style: GoogleFonts.roboto(
                                                 fontSize: 12,
                                                 fontWeight: FontWeight.bold,
-                                                color:
-                                                Colors.grey.shade600)),
+                                                color: Colors.grey.shade600)),
                                       ),
                                     ],
                                   ),
@@ -433,11 +430,13 @@ class ViewCartView extends GetView<ViewCartController> {
                             padding:
                                 EdgeInsets.only(right: 10, left: 10, top: 10),
                             margin: EdgeInsets.only(right: 20, left: 20),
-                            child: Text(
-                              "${box.read(ArgumentConstant.address)}",
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 20),
-                            ),
+                            child: box.read(ArgumentConstant.address) == ""
+                                ? Container()
+                                : Text(
+                                    "${box.read(ArgumentConstant.address)}",
+                                    style: TextStyle(
+                                        color: Colors.black, fontSize: 20),
+                                  ),
                             decoration: BoxDecoration(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10)),

@@ -22,7 +22,6 @@ class ProductListScreenController extends GetxController {
   RxBool hasData = false.obs;
   List<Sellers> sellerList = [];
   RxBool isEnablePullUp = true.obs;
-
   RxBool isLoading = false.obs;
   RxList<Details> cartProductList = RxList<Details>([]);
   CartProduct cartProduct = CartProduct();
@@ -40,7 +39,6 @@ class ProductListScreenController extends GetxController {
   RxBool isOp1 = false.obs;
   RxInt productsCount = 0.obs;
   RefreshController refreshController = RefreshController();
-
   RxBool isOp2 = false.obs;
   RxBool isOp3 = false.obs;
   RxBool isOp4 = false.obs;
