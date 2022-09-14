@@ -108,20 +108,9 @@ class HomeView extends GetWidget<HomeController> {
                                     children: [
                                       InkWell(
                                         onTap: () {
-                                          if ((box.read(ArgumentConstant
-                                                  .isUserLogin) !=
-                                              null)) {
-                                            Get.toNamed(Routes.PLANE,
-                                                arguments: {
-                                                  ArgumentConstant.isFromDrawer:
-                                                      true
-                                                });
-                                          } else {
-                                            Get.offAndToNamed(
-                                                Routes.LOGIN_SCREEN);
-                                            scaffoldKey.currentState!
-                                                .closeEndDrawer();
-                                          }
+                                          Get.toNamed(Routes.PLANE, arguments: {
+                                            ArgumentConstant.isFromDrawer: true
+                                          });
                                         },
                                         child: ListTile(
                                           leading:
