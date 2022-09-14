@@ -541,7 +541,7 @@ class HomeView extends GetWidget<HomeController> {
                                           itemCount:
                                               controller.bannerList.length,
                                           options: CarouselOptions(
-                                            height: 180,
+                                            height: 200,
                                             enlargeCenterPage: true,
                                             autoPlay: true,
                                             autoPlayInterval:
@@ -555,7 +555,7 @@ class HomeView extends GetWidget<HomeController> {
                                               width: MediaQuery.of(context)
                                                   .size
                                                   .width,
-                                              fit: BoxFit.fill,
+                                              fit: BoxFit.fitWidth,
                                               "${controller.bannerList[index].mobileImage}",
                                               loadingBuilder: (context, child,
                                                   loadingProgress) {

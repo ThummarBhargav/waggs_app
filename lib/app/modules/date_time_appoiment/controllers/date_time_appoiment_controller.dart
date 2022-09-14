@@ -38,14 +38,17 @@ class DateTimeAppoimentController extends GetxController
   }
 
   bookvet({required BuildContext context}) {
+    DateTime selecteddateTime = DateTime(date.value.year, date.value.month,
+        date.value.day, time.value.hour, time.value.minute, time.value.second);
     getIt<CustomDialogs>().showCircularDialog(context);
     Map<String, dynamic> dict = {};
-    dict["date"] = des.text;
+    dict["date"] = selecteddateTime.toUtc().toString();
     dict["note"] = des.text;
     dict["pet"] = "${Argument[0]}";
     dict["vet"] = "${Argument[1]}";
+    print("My Map : = $dict");
     dio
-        .put(
+        .post(
       baseUrl + ApiConstant.bookvet,
       data: dict,
       options: Options(headers: {
