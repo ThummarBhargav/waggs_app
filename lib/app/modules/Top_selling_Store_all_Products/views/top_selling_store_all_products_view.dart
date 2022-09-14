@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -824,21 +826,6 @@ class TopSellingStoreAllProductsView
             backgroundColor: Colors.transparent,
             shadowColor: Colors.transparent,
             iconTheme: IconThemeData(color: Colors.black),
-            title: controller.data.companyName == null
-                ? Container(
-                    child: Text(
-                      "N/A",
-                      style:
-                          TextStyle(fontSize: 20, color: Colors.orangeAccent),
-                    ),
-                  )
-                : Text(
-                    controller.data.companyName.toString(),
-                    style: GoogleFonts.roboto(
-                        color: Colors.orangeAccent,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 20),
-                  ),
           ),
           body: Obx(
             () => (controller.hasData.isFalse)
@@ -848,6 +835,129 @@ class TopSellingStoreAllProductsView
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
+                            controller.data.companyName == null
+                                ? Container()
+                                : Stack(
+                                    children: [
+                                      Container(
+                                        height: 180,
+                                        padding: EdgeInsets.all(100),
+                                        width: double.infinity,
+                                        decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                              image: AssetImage(
+                                                  "assets/catagory.jpg"),
+                                              fit: BoxFit.fill),
+                                        ),
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          Container(
+                                            margin: EdgeInsets.only(
+                                                top: 25, right: 20),
+                                            width: 120,
+                                            height: 120,
+                                            child: CachedNetworkImage(
+                                                imageUrl: controller
+                                                    .data.logoUrl
+                                                    .toString(),
+                                                imageBuilder: (context,
+                                                        imageProvider) =>
+                                                    Container(
+                                                      decoration: BoxDecoration(
+                                                        image: DecorationImage(
+                                                            image:
+                                                                imageProvider,
+                                                            fit: BoxFit.cover,
+                                                            colorFilter:
+                                                                ColorFilter.mode(
+                                                                    Colors
+                                                                        .transparent,
+                                                                    BlendMode
+                                                                        .colorBurn)),
+                                                      ),
+                                                    ),
+                                                placeholder: (context, url) =>
+                                                    CircularProgressIndicator(),
+                                                errorWidget: (context, url,
+                                                        error) =>
+                                                    Container(
+                                                      color: Colors.grey[100],
+                                                    )),
+                                          ),
+                                        ],
+                                      ),
+                                      Column(
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Container(
+                                                margin: EdgeInsets.only(
+                                                    top: 20, left: 25),
+                                                child: Text(
+                                                  controller.data.companyName
+                                                      .toString(),
+                                                  style: GoogleFonts.roboto(
+                                                      color:
+                                                          Colors.orangeAccent,
+                                                      fontWeight:
+                                                          FontWeight.w700,
+                                                      fontSize: 22),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Container(
+                                                  margin:
+                                                      EdgeInsets.only(left: 25),
+                                                  child:
+                                                      Icon(Icons.location_on)),
+                                              Container(
+                                                height: 80,
+                                                width: 170,
+                                                // color: Colors.grey,
+                                                padding: EdgeInsets.only(
+                                                    left: 5, right: 5, top: 10),
+                                                margin: EdgeInsets.only(
+                                                    top: 10, left: 2),
+                                                child: Text(
+                                                    "${controller.data.address}",
+                                                    style: GoogleFonts.roboto(
+                                                        fontSize: 10,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors
+                                                            .grey.shade600)),
+                                              ),
+                                            ],
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 25.0),
+                                            child: Row(
+                                              children: [
+                                                RatingBarIndicator(
+                                                  rating: 0,
+                                                  itemBuilder:
+                                                      (context, index) => Icon(
+                                                    Icons.star,
+                                                    color: Colors.amber,
+                                                  ),
+                                                  itemCount: 5,
+                                                  itemSize: 18.0,
+                                                  direction: Axis.horizontal,
+                                                ),
+                                              ],
+                                            ),
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
@@ -962,6 +1072,112 @@ class TopSellingStoreAllProductsView
                       )
                     : Column(
                         children: [
+                          Stack(
+                            children: [
+                              Container(
+                                height: 180,
+                                padding: EdgeInsets.all(100),
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage("assets/catagory.jpg"),
+                                      fit: BoxFit.fill),
+                                ),
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Container(
+                                    margin: EdgeInsets.only(top: 25, right: 20),
+                                    width: 120,
+                                    height: 120,
+                                    child: CachedNetworkImage(
+                                        imageUrl:
+                                            controller.data.logoUrl.toString(),
+                                        imageBuilder: (context,
+                                                imageProvider) =>
+                                            Container(
+                                              decoration: BoxDecoration(
+                                                image: DecorationImage(
+                                                    image: imageProvider,
+                                                    fit: BoxFit.cover,
+                                                    colorFilter:
+                                                        ColorFilter.mode(
+                                                            Colors.transparent,
+                                                            BlendMode
+                                                                .colorBurn)),
+                                              ),
+                                            ),
+                                        placeholder: (context, url) =>
+                                            CircularProgressIndicator(),
+                                        errorWidget: (context, url, error) =>
+                                            Container(
+                                              color: Colors.grey[100],
+                                            )),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      Container(
+                                        margin:
+                                            EdgeInsets.only(top: 20, left: 25),
+                                        child: Text(
+                                          controller.data.companyName
+                                              .toString(),
+                                          style: GoogleFonts.roboto(
+                                              color: Colors.orangeAccent,
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: 22),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Container(
+                                          margin: EdgeInsets.only(left: 25),
+                                          child: Icon(Icons.location_on)),
+                                      Container(
+                                        height: 80,
+                                        width: 170,
+                                        // color: Colors.grey,
+                                        padding: EdgeInsets.only(
+                                            left: 5, right: 5, top: 10),
+                                        margin:
+                                            EdgeInsets.only(top: 10, left: 2),
+                                        child: Text(
+                                            "${controller.data.address}",
+                                            style: GoogleFonts.roboto(
+                                                fontSize: 10,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.grey.shade600)),
+                                      ),
+                                    ],
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 25.0),
+                                    child: Row(
+                                      children: [
+                                        RatingBarIndicator(
+                                          rating: 0,
+                                          itemBuilder: (context, index) => Icon(
+                                            Icons.star,
+                                            color: Colors.amber,
+                                          ),
+                                          itemCount: 5,
+                                          itemSize: 18.0,
+                                          direction: Axis.horizontal,
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [

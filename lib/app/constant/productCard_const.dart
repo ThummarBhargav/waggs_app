@@ -147,7 +147,7 @@ Card productCard({
                     style: GoogleFonts.roboto(
                         decoration: TextDecoration.lineThrough,
                         color: Colors.grey,
-                        fontSize: 13),
+                        fontSize: 12),
                   ),
                 ),
                 SizedBox(
@@ -156,7 +156,7 @@ Card productCard({
                 Container(
                   child: Text(
                     "₹${discountedPrice}",
-                    style: TextStyle(fontSize: 13),
+                    style: TextStyle(fontSize: 12),
                   ),
                 ),
                 RatingBarIndicator(

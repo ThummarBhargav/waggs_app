@@ -309,7 +309,7 @@ class VetViewDetailsView extends GetView<VetViewDetailsController> {
                                         InkWell(
                                           onTap: (){
                                             Get.toNamed(Routes.DATE_TIME_APPOIMENT,
-                                            arguments: ["${controller.petid},${controller.vetid}"]);
+                                            arguments: ["${controller.petid}","${controller.vetData.sId}"]);
                                           },
                                           child: Container(
                                               width: 250,
