@@ -95,8 +95,7 @@ class AddPetController extends GetxController {
     dict["breed"] = breed.text;
     dict["gender"] = select.value.toLowerCase();
     dict["image"] = imageUrl.value;
-    dio
-        .put(
+    dio.put(
       baseUrl + ApiConstant.updatePet + patId,
       data: dict,
       options: Options(headers: {

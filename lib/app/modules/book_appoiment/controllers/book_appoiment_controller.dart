@@ -10,13 +10,16 @@ import '../../../Modal/AllVetModel.dart';
 import '../../../constant/ConstantUrl.dart';
 import '../../../constant/SizeConstant.dart';
 class BookAppoimentController extends GetxController {
+
   RefreshController refreshController = RefreshController();
   RxInt itemCount = 0.obs;
   RxBool hasData = false.obs;
   RxList<Vets> vetList = RxList<Vets>([]);
+  String petid = Get.arguments;
 
   @override
   void onInit() {
+    String petid = Get.arguments;
     getAllVet(context: Get.context!);
     super.onInit();
   }

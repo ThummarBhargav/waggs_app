@@ -359,7 +359,7 @@ class PetViewDetailsView extends GetWidget<PetViewDetailsController> {
                           children: [
                             InkWell(
                               onTap: () {
-                                Get.toNamed(Routes.BOOK_APPOIMENT);
+                                Get.toNamed(Routes.BOOK_APPOIMENT,arguments: controller.petData.sId);
                               },
                               child: Padding(
                                 padding:

@@ -377,7 +377,8 @@ class BookAppoimentView extends GetView<BookAppoimentController> {
                                                                           () {
                                                                         Get.toNamed(
                                                                           Routes
-                                                                              .DATE_TIME_APPOIMENT,
+                                                                              .DATE_TIME_APPOIMENT,arguments: ["${controller.petid}",
+                                                                          "${controller.vetList[index].sId}" ],
                                                                         );
                                                                       },
                                                                       child: getcon(

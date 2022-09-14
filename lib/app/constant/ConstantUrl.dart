@@ -41,6 +41,7 @@ class ApiConstant {
   static const appointment = "appointment/";
   static const getvet = "vet";
   static const vetdetail = "vet/info/";
+  static const bookvet = "appointment/book";
 }
 
 class ArgumentConstant {

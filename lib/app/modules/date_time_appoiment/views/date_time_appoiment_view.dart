@@ -179,6 +179,11 @@ class DateTimeAppoimentView extends GetWidget<DateTimeAppoimentController> {
                                   initialSelectedRange: PickerDateRange(
                                       DateTime.now().subtract(const Duration(days: 4)),
                                       DateTime.now().add(const Duration(days: 3))),
+                                  onSelectionChanged: (DateRangePickerSelectionChangedArgs args) {
+                                    // print('${args.value}');
+                                    controller.date.value = args.value;
+                                    print('Date==>${controller.date.value}');
+                                  },
                                 ),
                               ),
                               Container(
@@ -195,9 +200,10 @@ class DateTimeAppoimentView extends GetWidget<DateTimeAppoimentController> {
                                   spacing: 50,
                                   itemHeight: 80,
                                   isForce2Digits: true,
-                                    // onTimeChange: (time){
-                                    // // controller.selectedTime.value=time.to;
-                                    // },
+                                    onTimeChange: (time){
+                                     controller.time.value=time;
+                                     print('Time===${controller.time.value}');
+                                    },
                                 ),
                                 // child: controller.chooseTime(),
                               ),
@@ -252,7 +258,7 @@ class DateTimeAppoimentView extends GetWidget<DateTimeAppoimentController> {
                             ),
                           ),
                           child: TextFormField(
-                            // controller: controller.breed,
+                             controller: controller.des,
                             keyboardType: TextInputType.text,
                             maxLines: 10,
                             validator: (val) {
