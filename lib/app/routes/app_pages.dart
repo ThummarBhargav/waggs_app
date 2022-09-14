@@ -36,6 +36,8 @@ import '../modules/my_account/bindings/my_account_binding.dart';
 import '../modules/my_account/views/my_account_view.dart';
 import '../modules/my_pet/bindings/my_pet_binding.dart';
 import '../modules/my_pet/views/my_pet_view.dart';
+import '../modules/notification_page/bindings/notification_page_binding.dart';
+import '../modules/notification_page/views/notification_page_view.dart';
 import '../modules/order_detail/bindings/order_detail_binding.dart';
 import '../modules/order_detail/views/order_detail_view.dart';
 import '../modules/order_page/bindings/order_page_binding.dart';
@@ -209,6 +211,11 @@ class AppPages {
       name: _Paths.DATE_TIME_APPOIMENT,
       page: () => const DateTimeAppoimentView(),
       binding: DateTimeAppoimentBinding(),
+    ),
+    GetPage(
+      name: _Paths.NOTIFICATION_PAGE,
+      page: () => const NotificationPageView(),
+      binding: NotificationPageBinding(),
     ),
   ];
 }

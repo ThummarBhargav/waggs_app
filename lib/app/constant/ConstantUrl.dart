@@ -26,6 +26,8 @@ class ApiConstant {
   static const Cart = "cart";
   static const pet = "pet";
   static const Count = "cart/count";
+  static const notificationCount = "notification/count";
+  static const notificationList = "notification/list";
   static const socialLogin = "users/socialLogin";
   static const orderlist = "order/list?skip=0&limit=15";
   static const checkout = "transaction/checkout";
@@ -35,10 +37,13 @@ class ApiConstant {
   static const AddPet = "pet/list?skip=0&limit=20";
   static const orderDetail = "order/find/";
   static const getpet = "pet/";
+  static const deleteNotifications = "notification/dismiss/";
+  static const deleteAllNotifications = "notification/all";
   static const createImageSlot = "file/";
   static const updatePet = "pet/";
   static const orderCancel = "order/";
   static const appointment = "appointment/";
+// static const getpet = "pet/list?skip=0&limit=20";
   static const getvet = "vet";
   static const vetdetail = "vet/info/";
   static const bookvet = "appointment/book";

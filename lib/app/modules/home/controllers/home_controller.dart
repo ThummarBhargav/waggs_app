@@ -51,6 +51,8 @@ class HomeController extends GetxController {
   final count = 0.obs;
   RxBool isOpen = false.obs;
   RxBool isOpen1 = false.obs;
+  RxBool hasNotificationCount = false.obs;
+  RxInt countNotification = 0.obs;
   RxString url = ''.obs;
   Orders1 orders1 = Orders1();
   RxList<Orders1> OrderList = RxList<Orders1>([]);
@@ -59,6 +61,7 @@ class HomeController extends GetxController {
   void onInit() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       bannerAllProduct();
+      getNotificationCount();
       AllCategory();
       SubCategory();
       TopSellingStoreApi();
@@ -144,6 +147,26 @@ class HomeController extends GetxController {
         bannerList.add(element);
       });
       getAllUserApi();
+    }
+  }
+
+  getNotificationCount() async {
+    // https://api-stg.waggs.in/api/v1/notification/list?skip=0&limit=10
+    hasNotificationCount.value = false;
+    var url = Uri.parse(baseUrl + ApiConstant.notificationCount);
+    var response = await http.get(url, headers: {
+      'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+      'Content-Type': 'application/json',
+    });
+    print('response status:${response.body}');
+    hasNotificationCount.value = true;
+
+    dynamic result = jsonDecode(response.body);
+    Count1 count1 = Count1.fromJson(result);
+    print(result);
+
+    if (!isNullEmptyOrFalse(count1.data)) {
+      countNotification.value = count1.data ?? 0;
     }
   }
 

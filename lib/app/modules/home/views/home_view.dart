@@ -203,7 +203,9 @@ class HomeView extends GetWidget<HomeController> {
                                         ),
                                       ),
                                       InkWell(
-                                        onTap: () {},
+                                        onTap: () {
+                                          Get.toNamed(Routes.NOTIFICATION_PAGE);
+                                        },
                                         child: ListTile(
                                           leading: Icon(Icons
                                               .notifications_none_outlined),
