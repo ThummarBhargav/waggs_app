@@ -215,7 +215,7 @@ class ViewProductView extends GetWidget<ViewProductController> {
                                       ),
                                     ),
                                     Text(
-                                      controller.data.rating.toString(),
+                                      controller.data.rating!.toStringAsFixed(1),
                                       style: TextStyle(fontSize: 10),
                                     ),
                                     Text(

@@ -6,17 +6,23 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:waggs_app/app/constant/ConstantUrl.dart';
 import 'package:waggs_app/app/constant/Container.dart';
 import 'package:waggs_app/app/constant/sizeConstant.dart';
+import 'package:waggs_app/app/modules/cart_drawer/views/cart_drawer_view.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
+import '../../../../main.dart';
 import '../controllers/my_pet_controller.dart';
 
 class MyPetView extends GetWidget<MyPetController> {
-  const MyPetView({Key? key}) : super(key: key);
+  var scaffoldKey = GlobalKey<ScaffoldState>();
+   MyPetView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
     return SafeArea(
       child: Obx(() {
         return Scaffold(
+          key: scaffoldKey,
+          endDrawer: Drawer(child: CartDrawerView(),),
           body: WillPopScope(
             onWillPop: () async {
               Get.offAllNamed(Routes.HOME);
@@ -68,46 +74,41 @@ class MyPetView extends GetWidget<MyPetController> {
                                       children: [
                                         IconButton(
                                             onPressed: () {
-                                              // if ((box.read(
-                                              //     ArgumentConstant.isUserLogin) ==
-                                              //     null)) {
-                                              //   Get.toNamed(Routes.LOGIN_SCREEN);
-                                              //   scaffoldKey.currentState!
-                                              //       .closeEndDrawer();
-                                              // }
-                                              // else {
-                                              //   controller.CartProductApi();
-                                              //   controller.CartCount();
-                                              //   scaffoldKey.currentState!
-                                              //       .openEndDrawer();
-                                              // }
+                                              if ((box.read(
+                                                  ArgumentConstant.isUserLogin) ==
+                                                  null)) {
+                                                Get.toNamed(Routes.LOGIN_SCREEN);
+                                              }
+                                              else {
+                                                scaffoldKey.currentState!.openEndDrawer();
+                                              }
                                             },
                                             icon: Icon(
                                               Icons.shopping_cart,
                                               size: 25,
                                               color: Colors.grey[500],
                                             )),
-                                        // controller.count1.data == null
-                                        //     ? Container()
-                                        //     : Positioned(
-                                        //     left: 22,
-                                        //     top: 2,
-                                        //     child: Container(
-                                        //       width: 18,
-                                        //       height: 18,
-                                        //       alignment: Alignment.center,
-                                        //       decoration: BoxDecoration(
-                                        //         color: Color.fromRGBO(
-                                        //             32, 193, 244, 1),
-                                        //         shape: BoxShape.circle,
-                                        //       ),
-                                        //       child: Text(
-                                        //         "${controller.count1.data}",
-                                        //         style: GoogleFonts.raleway(
-                                        //             fontWeight: FontWeight.bold,
-                                        //             color: Colors.white),
-                                        //       ),
-                                        //     )),
+                                        controller.count1.data == null
+                                            ? Container()
+                                            : Positioned(
+                                            left: 22,
+                                            top: 2,
+                                            child: Container(
+                                              width: 18,
+                                              height: 18,
+                                              alignment: Alignment.center,
+                                              decoration: BoxDecoration(
+                                                color: Color.fromRGBO(
+                                                    32, 193, 244, 1),
+                                                shape: BoxShape.circle,
+                                              ),
+                                              child: Text(
+                                                "${controller.count1.data}",
+                                                style: GoogleFonts.raleway(
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.white),
+                                              ),
+                                            )),
                                       ],
                                     ),
                                     SizedBox(

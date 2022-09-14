@@ -5,12 +5,15 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/constant/ConstantUrl.dart';
+import 'package:waggs_app/app/modules/cart_drawer/views/cart_drawer_view.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
 
+import '../../../../main.dart';
 import '../controllers/plane_controller.dart';
 
 class PlaneView extends GetWidget<PlaneController> {
-  const PlaneView({Key? key}) : super(key: key);
+  var scaffoldKey = GlobalKey<ScaffoldState>();
+   PlaneView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     if (controller.isDataAccepted.isFalse) {
@@ -36,6 +39,8 @@ class PlaneView extends GetWidget<PlaneController> {
             },
             child: SafeArea(child: Obx(() {
               return Scaffold(
+                endDrawer: Drawer(child: CartDrawerView(),),
+                key: scaffoldKey,
                 body: Column(
                   children: [
                     Container(
@@ -70,7 +75,16 @@ class PlaneView extends GetWidget<PlaneController> {
                                 children: [
                                   // SizedBox(width: 200,),
                                   IconButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        if ((box.read(
+                                            ArgumentConstant.isUserLogin) ==
+                                            null)) {
+                                          Get.toNamed(Routes.LOGIN_SCREEN);
+                                        }
+                                        else {
+                                          scaffoldKey.currentState!.openEndDrawer();
+                                        }
+                                      },
                                       icon: Icon(
                                         Icons.search,
                                         size: 25,
@@ -81,19 +95,15 @@ class PlaneView extends GetWidget<PlaneController> {
                                     children: [
                                       IconButton(
                                           onPressed: () {
-                                            // if ((box.read(
-                                            //     ArgumentConstant.isUserLogin) ==
-                                            //     null)) {
-                                            //   Get.toNamed(Routes.LOGIN_SCREEN);
-                                            //   scaffoldKey.currentState!
-                                            //       .closeEndDrawer();
-                                            // }
-                                            // else {
-                                            //   controller.CartProductApi();
-                                            //   controller.CartCount();
-                                            //   scaffoldKey.currentState!
-                                            //       .openEndDrawer();
-                                            // }
+                                            if ((box.read(
+                                                ArgumentConstant.isUserLogin) ==
+                                                null)) {
+                                              Get.toNamed(Routes.LOGIN_SCREEN);
+                                            }
+                                            else {
+                                              scaffoldKey.currentState!
+                                                  .openEndDrawer();
+                                            }
                                           },
                                           icon: Icon(
                                             Icons.shopping_cart,

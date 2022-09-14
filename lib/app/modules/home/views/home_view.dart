@@ -778,7 +778,7 @@ class HomeView extends GetWidget<HomeController> {
                                                 discount: controller
                                                     .TopProductlist[index]
                                                     .discount!
-                                                    .toStringAsFixed(2),
+                                                    .toStringAsFixed(0),
                                                 companyName: controller
                                                     .TopProductlist[index]
                                                     .sellerId!

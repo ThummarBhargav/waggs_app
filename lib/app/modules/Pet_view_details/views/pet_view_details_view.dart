@@ -55,7 +55,9 @@ class PetViewDetailsView extends GetWidget<PetViewDetailsController> {
                                     children: [
                                       // SizedBox(width: 200,),
                                       IconButton(
-                                          onPressed: () {},
+                                          onPressed: () {
+
+                                          },
                                           icon: Icon(
                                             Icons.search,
                                             size: 25,

@@ -141,7 +141,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.PLANE,
-      page: () => const PlaneView(),
+      page: () =>  PlaneView(),
       binding: PlaneBinding(),
     ),
     GetPage(
@@ -156,7 +156,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.MY_PET,
-      page: () => const MyPetView(),
+      page: () =>  MyPetView(),
       binding: MyPetBinding(),
     ),
     GetPage(

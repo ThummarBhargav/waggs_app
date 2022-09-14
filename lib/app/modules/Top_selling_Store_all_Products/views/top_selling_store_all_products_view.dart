@@ -919,9 +919,9 @@ class TopSellingStoreAllProductsView
                                               Container(
                                                 height: 80,
                                                 width: 170,
-                                                // color: Colors.grey,
+                                                 // color: Colors.grey,
                                                 padding: EdgeInsets.only(
-                                                    left: 5, right: 5, top: 10),
+                                                    left: 5, right: 5, top: 2),
                                                 margin: EdgeInsets.only(
                                                     top: 10, left: 2),
                                                 child: Text(

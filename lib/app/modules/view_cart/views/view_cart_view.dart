@@ -20,10 +20,10 @@ class ViewCartView extends GetView<ViewCartController> {
         child: Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(
-            title: Text(
-              "My Cart",
-              style: TextStyle(color: Colors.orange),
-            ),
+            // title: Text(
+            //   "My Cart",
+            //   style: TextStyle(color: Colors.orange),
+            // ),
             leading: IconButton(
                 onPressed: () {
                   Get.back();
@@ -44,6 +44,78 @@ class ViewCartView extends GetView<ViewCartController> {
                       key: controller.key,
                       child: Column(
                         children: [
+                          Stack(
+                            children: [
+                              Container(
+                                height: 180,
+                                padding: EdgeInsets.all(100),
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image:
+                                      AssetImage("assets/catagory.jpg"),
+                                      fit: BoxFit.fill),
+                                ),
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Container(
+                                    margin:
+                                    EdgeInsets.only(top: 20, right: 20),
+                                    width: 180,
+                                    height: 180,
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        image: AssetImage("assets/ca.png"),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      Container(
+                                        margin: EdgeInsets.only(
+                                            top: 60, left: 25),
+                                        child: Text("My Cart",
+                                            style: GoogleFonts.roboto(
+                                              fontSize: 25,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.orange,
+                                            )),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Container(
+                                        margin: EdgeInsets.only(
+                                            top: 5, left: 25),
+                                        child: Text("Home >",
+                                            style: GoogleFonts.roboto(
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.black)),
+                                      ),
+                                      Container(
+                                        margin: EdgeInsets.only(
+                                            top: 5, left: 2),
+                                        child: Text("My Cart",
+                                            style: GoogleFonts.roboto(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.bold,
+                                                color:
+                                                Colors.grey.shade600)),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
                           ListView.builder(
                             physics: NeverScrollableScrollPhysics(),
                             itemCount: controller.cartProductList.length,
