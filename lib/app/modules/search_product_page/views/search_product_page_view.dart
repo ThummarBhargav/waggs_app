@@ -1033,7 +1033,7 @@ class SearchProductPageView extends GetWidget<SearchProductPageController> {
                           Expanded(
                             child: Container(
                               margin: EdgeInsets.all(5),
-                              height: 670,
+                              height: MediaQuery.of(context).size.height * 0.37,
                               width: 400,
                               child: GridView.builder(
                                   itemCount: controller.mainProductList.length,
