@@ -1143,7 +1143,7 @@ class TopSellingStoreAllProductsView
                                       Container(
                                         height: 80,
                                         width: 170,
-                                         // color: Colors.grey,
+                                        // color: Colors.grey,
                                         padding: EdgeInsets.only(
                                             left: 5, right: 5, top: 5),
                                         margin:
@@ -1350,7 +1350,7 @@ class TopSellingStoreAllProductsView
                                   gridDelegate:
                                       SliverGridDelegateWithFixedCrossAxisCount(
                                           crossAxisCount: 2,
-                                          childAspectRatio: 0.65)),
+                                          childAspectRatio: 0.60)),
                             ),
                           ),
                         ],
