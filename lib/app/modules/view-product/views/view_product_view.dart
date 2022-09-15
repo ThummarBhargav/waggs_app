@@ -43,12 +43,9 @@ class ViewProductView extends GetWidget<ViewProductController> {
               children: [
                 IconButton(
                     onPressed: () {
-                      if ((box.read(
-                          ArgumentConstant.isUserLogin) ==
-                          null)) {
+                      if ((box.read(ArgumentConstant.isUserLogin) == null)) {
                         Get.toNamed(Routes.LOGIN_SCREEN);
-                      }
-                      else {
+                      } else {
                         scaffoldKey.currentState!.openEndDrawer();
                       }
                     },
@@ -224,7 +221,8 @@ class ViewProductView extends GetWidget<ViewProductController> {
                                       ),
                                     ),
                                     Text(
-                                      controller.data.rating!.toStringAsFixed(1),
+                                      controller.data.rating!
+                                          .toStringAsFixed(1),
                                       style: TextStyle(fontSize: 10),
                                     ),
                                     Text(
@@ -474,75 +472,6 @@ class ViewProductView extends GetWidget<ViewProductController> {
                             ),
                           ),
                         ),
-                        Flexible(
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 12.0, top: 15),
-                            child: getcon(
-                              text: Text(
-                                "BUY NOW",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.white),
-                              ),
-                              color: Colors.black,
-                              width: 120,
-                              height: 50,
-                              alignment: Alignment.center,
-                            ),
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.only(left: 10, right: 2, top: 8),
-                          height: 35,
-                          width: 35,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(25),
-                              topRight: Radius.circular(25),
-                              bottomRight: Radius.circular(25),
-                              bottomLeft: Radius.circular(25),
-                            ),
-                            border: Border.all(
-                              color: Colors.lightBlue.shade300,
-                              width: 2,
-                            ),
-                          ),
-                          child: IconButton(
-                            icon: Icon(
-                              Icons.favorite_border,
-                              size: 15,
-                              color: Colors.blue.shade300,
-                            ),
-                            onPressed: () {},
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.only(left: 6, right: 6, top: 8),
-                          height: 35,
-                          width: 35,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(25),
-                              topRight: Radius.circular(25),
-                              bottomRight: Radius.circular(25),
-                              bottomLeft: Radius.circular(25),
-                            ),
-                            border: Border.all(
-                              color: Colors.lightBlue.shade300,
-                              width: 2,
-                            ),
-                          ),
-                          child: Center(
-                            child: IconButton(
-                              icon: Icon(
-                                Icons.share_outlined,
-                                size: 17,
-                                color: Colors.blue.shade300,
-                              ),
-                              onPressed: () {},
-                            ),
-                          ),
-                        )
                       ],
                     ),
                   ),
