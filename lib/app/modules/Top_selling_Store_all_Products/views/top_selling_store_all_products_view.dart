@@ -1319,9 +1319,7 @@ class TopSellingStoreAllProductsView
                                           .mainProductList[index].discount!
                                           .toStringAsFixed(2),
                                       companyName: controller
-                                          .mainProductList[index]
-                                          .sellerId!
-                                          .companyName,
+                                          .mainProductList[index].title,
                                       categoryName: controller
                                           .mainProductList[index]
                                           .category!

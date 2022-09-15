@@ -77,11 +77,17 @@ class ViewCartController extends GetxController {
 
   _getAddressFromLatLng() async {
     try {
-      List<Placemark> placemarks = await placemarkFromCoordinates(
-          _currentPosition!.value.latitude, _currentPosition!.value.longitude);
+      List<Placemark> placemarks = [];
+      await placemarkFromCoordinates(_currentPosition!.value.latitude,
+              _currentPosition!.value.longitude)
+          .then((value) {
+        placemarks.clear();
+
+        placemarks.addAll(value);
+      });
       Placemark place = placemarks[0];
-      _currentAddress =
-          "${place.locality}, ${place.postalCode}, ${place.country}";
+      _currentAddress = place.toString();
+      //"${place.street} ${} ${place.locality}, ${place.postalCode}, ${place.country}";
       print("CurrentAddress====================" + _currentAddress);
     } catch (e) {
       print(e);

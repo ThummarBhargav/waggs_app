@@ -1113,9 +1113,7 @@ class _SubCategoryWidgetState extends State<SubCategoryWidget> {
                                             .mainProductList[index].discount!
                                             .toStringAsFixed(0),
                                         companyName: controller
-                                            .mainProductList[index]
-                                            .sellerId!
-                                            .companyName,
+                                            .mainProductList[index].title,
                                         categoryName: controller
                                             .mainProductList[index]
                                             .category!

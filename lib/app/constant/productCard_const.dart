@@ -116,6 +116,7 @@ Card productCard({
                   alignment: Alignment.center,
                   child: Text(
                     "${companyName}",
+                    textAlign: TextAlign.center,
                     style: GoogleFonts.raleway(
                         fontWeight: FontWeight.w700,
                         fontSize: 13,
@@ -173,9 +174,7 @@ Card productCard({
                 ),
               ],
             ),
-            SizedBox(
-              height: 10,
-            ),
+            Spacer(),
             InkWell(
               onTap: ButtonTap,
               child: Container(
@@ -211,6 +210,7 @@ Card productCard({
                 ),
               ),
             ),
+            Spacer(),
           ],
         ),
       ),

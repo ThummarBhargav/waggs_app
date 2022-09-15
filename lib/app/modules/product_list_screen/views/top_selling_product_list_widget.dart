@@ -1080,9 +1080,7 @@ class _TopSellingProductListWidgetState
                                           .mainProductList[index].discount!
                                           .toStringAsFixed(0),
                                       companyName: controller
-                                          .mainProductList[index]
-                                          .sellerId!
-                                          .companyName,
+                                          .mainProductList[index].title,
                                       categoryName: controller
                                           .mainProductList[index]
                                           .category!

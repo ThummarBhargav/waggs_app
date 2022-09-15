@@ -739,7 +739,9 @@ class HomeView extends GetWidget<HomeController> {
                                     children: [
                                       Container(
                                         margin: EdgeInsets.only(left: 5),
-                                        height: 270,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.37,
                                         width: 400,
                                         child: GridView.builder(
                                             itemCount: controller
@@ -764,8 +766,7 @@ class HomeView extends GetWidget<HomeController> {
                                                     .toStringAsFixed(0),
                                                 companyName: controller
                                                     .TopProductlist[index]
-                                                    .sellerId!
-                                                    .companyName,
+                                                    .title,
                                                 categoryName: controller
                                                     .TopProductlist[index]
                                                     .category!
