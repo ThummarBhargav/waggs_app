@@ -272,7 +272,7 @@ class BookAppoimentView extends GetView<BookAppoimentController> {
                                                                     left: 10),
                                                             margin:
                                                                 EdgeInsets.only(
-                                                                    left: 30,
+                                                                    left: 45,
                                                                     right: 20,
                                                                     bottom: 10,
                                                                     top: 220),
