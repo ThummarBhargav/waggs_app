@@ -15,6 +15,7 @@ import 'package:waggs_app/app/routes/app_pages.dart';
 import 'package:waggs_app/main.dart';
 import 'package:waggs_app/utilities/custome_dialogs.dart';
 
+import '../../../Modal/CartCountModel.dart';
 import '../../../constant/Container.dart';
 
 class PetViewDetailsController extends GetxController {
@@ -30,12 +31,16 @@ class PetViewDetailsController extends GetxController {
   bool _isVertical = false;
   RxDouble _rating = 0.0.obs;
   String Argument = "";
+  Count1 count1 = Count1();
+  RxList<Count1> Countlist = RxList([]);
   @override
   void onInit() {
+    CartCount();
     if (Get.arguments != null) {
       Argument = Get.arguments;
     }
     MyPet(context: Get.context!);
+
     super.onInit();
   }
 
@@ -273,8 +278,7 @@ class PetViewDetailsController extends GetxController {
     });
     var response;
     await dio
-        .put(
-      URl,
+        .put(URl,
       data: {
         "status": "canceled",
         "reason": '${reasonController.value.text.trim()}'
@@ -510,4 +514,24 @@ class PetViewDetailsController extends GetxController {
       },
     );
   }
+
+
+  CartCount() async {
+    Countlist.clear();
+    var url = Uri.parse(baseUrl + ApiConstant.Count);
+    var response = await http.get(url, headers: {
+      'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+      'Content-Type': 'application/json',
+    });
+    print('response status:${response.body}');
+    dynamic result = jsonDecode(response.body);
+    count1 = Count1.fromJson(result);
+    print(result);
+    if (!isNullEmptyOrFalse(count1.data)) {
+      Countlist.add(count1);
+    }
+    Countlist.refresh();
+  }
+
+
 }

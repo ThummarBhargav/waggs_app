@@ -196,22 +196,22 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.PET_VIEW_DETAILS,
-      page: () => const PetViewDetailsView(),
+      page: () =>  PetViewDetailsView(),
       binding: PetViewDetailsBinding(),
     ),
     GetPage(
       name: _Paths.BOOK_APPOIMENT,
-      page: () => const BookAppoimentView(),
+      page: () =>  BookAppoimentView(),
       binding: BookAppoimentBinding(),
     ),
     GetPage(
       name: _Paths.VET_VIEW_DETAILS,
-      page: () => const VetViewDetailsView(),
+      page: () =>  VetViewDetailsView(),
       binding: VetViewDetailsBinding(),
     ),
     GetPage(
       name: _Paths.DATE_TIME_APPOIMENT,
-      page: () => const DateTimeAppoimentView(),
+      page: () =>  DateTimeAppoimentView(),
       binding: DateTimeAppoimentBinding(),
     ),
     GetPage(
