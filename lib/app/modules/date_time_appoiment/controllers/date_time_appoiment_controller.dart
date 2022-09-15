@@ -73,7 +73,9 @@ class DateTimeAppoimentController extends GetxController
     }).catchError((error) {
       getIt<CustomDialogs>().hideCircularDialog(context);
       print("ERROR : = $error");
-      // Get.snackbar("All appoinment book", "Try again !",colorText: Colors.black,backgroundColor: Colors.red);
+       Get.snackbar("Error", "All appointments exausted. Please purchase new subscription",
+           colorText: Colors.black,backgroundColor: Colors.orangeAccent,
+       snackPosition: SnackPosition.BOTTOM);
     });
   }
 
