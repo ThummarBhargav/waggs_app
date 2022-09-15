@@ -10,6 +10,7 @@ import 'package:waggs_app/app/Modal/PlanModel.dart';
 import 'package:http/http.dart' as http;
 import 'package:waggs_app/app/Modal/SubscriptionModel.dart';
 import '../../../../main.dart';
+import '../../../Modal/CartCountModel.dart';
 import '../../../Modal/ErrorResponse.dart';
 import '../../../Modal/PlanModel.dart';
 import '../../../constant/ConstantUrl.dart';
@@ -29,6 +30,8 @@ class PlaneController extends GetxController {
   late Razorpay _razorpay;
   RxBool isFromDrawer = false.obs;
   RxBool isDataAccepted = false.obs;
+  Count1 count1 = Count1();
+  RxList<Count1> Countlist = RxList([]);
   @override
   void onInit() {
     if (Get.arguments != null) {
@@ -36,6 +39,7 @@ class PlaneController extends GetxController {
       isDataAccepted.value = true;
     }
     AllPlans();
+    CartCount();
     super.onInit();
   }
 
@@ -185,5 +189,23 @@ class PlaneController extends GetxController {
 
   void _handleExternalWallet(ExternalWalletResponse response) {
     print('External SDK Response: $response');
+  }
+
+
+  CartCount() async {
+    Countlist.clear();
+    var url = Uri.parse(baseUrl + ApiConstant.Count);
+    var response = await http.get(url, headers: {
+      'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+      'Content-Type': 'application/json',
+    });
+    print('response status:${response.body}');
+    dynamic result = jsonDecode(response.body);
+    count1 = Count1.fromJson(result);
+    print(result);
+    if (!isNullEmptyOrFalse(count1.data)) {
+      Countlist.add(count1);
+    }
+    Countlist.refresh();
   }
 }

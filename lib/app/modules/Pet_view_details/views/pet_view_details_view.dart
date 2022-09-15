@@ -7,18 +7,24 @@ import 'package:intl/intl.dart';
 import 'package:waggs_app/app/constant/ConstantUrl.dart';
 import 'package:waggs_app/app/constant/Container.dart';
 import 'package:waggs_app/app/constant/SizeConstant.dart';
+import 'package:waggs_app/app/modules/cart_drawer/views/cart_drawer_view.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
 
+import '../../../../main.dart';
 import '../controllers/pet_view_details_controller.dart';
 
 class PetViewDetailsView extends GetWidget<PetViewDetailsController> {
-  const PetViewDetailsView({Key? key}) : super(key: key);
+
+   var scaffoldKey = GlobalKey<ScaffoldState>();
+   PetViewDetailsView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return WillPopScope(child: SafeArea(
       child: Obx(() {
         return Scaffold(
+          key: scaffoldKey,
+            endDrawer: Drawer(child: CartDrawerView(),),
             body: (controller.hasData.isFalse)
                 ? Center(
                     child: CircularProgressIndicator(color: Colors.orange),
@@ -67,11 +73,41 @@ class PetViewDetailsView extends GetWidget<PetViewDetailsController> {
                                       Stack(
                                         children: [
                                           IconButton(
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                if ((box.read(
+                                                    ArgumentConstant.isUserLogin) ==
+                                                    null)) {
+                                                  Get.toNamed(Routes.LOGIN_SCREEN);
+                                                }
+                                                else {
+                                                  scaffoldKey.currentState!.openEndDrawer();
+                                                }
+                                              },
                                               icon: Icon(
                                                 Icons.shopping_cart,
                                                 size: 25,
                                                 color: Colors.grey[500],
+                                              )),
+                                          controller.count1.data == null
+                                              ? Container()
+                                              : Positioned(
+                                              left: 22,
+                                              top: 2,
+                                              child: Container(
+                                                width: 18,
+                                                height: 18,
+                                                alignment: Alignment.center,
+                                                decoration: BoxDecoration(
+                                                  color: Color.fromRGBO(
+                                                      32, 193, 244, 1),
+                                                  shape: BoxShape.circle,
+                                                ),
+                                                child: Text(
+                                                  "${controller.count1.data}",
+                                                  style: GoogleFonts.raleway(
+                                                      fontWeight: FontWeight.bold,
+                                                      color: Colors.white),
+                                                ),
                                               )),
                                         ],
                                       ),

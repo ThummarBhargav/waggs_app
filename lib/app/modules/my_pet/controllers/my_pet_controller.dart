@@ -15,9 +15,11 @@ class MyPetController extends GetxController {
   RxBool hasData = false.obs;
   RxInt itemCount = 0.obs;
   Count1 count1 = Count1();
+  RxList<Count1> Countlist = RxList<Count1>([]);
   @override
   void onInit() {
     getAllPet(context: Get.context!);
+    CartCount();
     super.onInit();
   }
 
@@ -56,5 +58,21 @@ class MyPetController extends GetxController {
     } else {
       refreshController.loadComplete();
     }
+  }
+
+  CartCount() async {
+    Countlist.clear();
+    var url = Uri.parse(baseUrl + ApiConstant.Count);
+    var response = await http.get(url, headers: {
+      'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+    });
+    print('response status:${response.body}');
+    dynamic result = jsonDecode(response.body);
+    count1 = Count1.fromJson(result);
+    print(result);
+    if (!isNullEmptyOrFalse(count1.data)) {
+      Countlist.add(count1);
+    }
+    Countlist.refresh();
   }
 }
