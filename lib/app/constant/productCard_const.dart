@@ -178,7 +178,7 @@ Card productCard({
             InkWell(
               onTap: ButtonTap,
               child: Container(
-                width: 130,
+                width: 140,
                 height: 35,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(

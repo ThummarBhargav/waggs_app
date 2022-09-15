@@ -31,8 +31,8 @@ class DateTimeAppoimentController extends GetxController
   void onInit() {
    print('${Argument[0]}');
    print('${Argument[1]}');
-    tabController = TabController(length: 2, vsync: this);
    CartCount();
+    tabController = TabController(length: 2, vsync: this);
     super.onInit();
   }
 
@@ -57,6 +57,7 @@ class DateTimeAppoimentController extends GetxController
     dict["pet"] = "${Argument[0]}";
     dict["vet"] = "${Argument[1]}";
     print("My Map : = $dict");
+    var response;
     dio
         .post(
       baseUrl + ApiConstant.bookvet,
@@ -66,9 +67,11 @@ class DateTimeAppoimentController extends GetxController
       }),
     )
         .then((value) {
+          response = value;
+          print("VALUE  : = ${response.statusCode}");
       getIt<CustomDialogs>().hideCircularDialog(context);
       Get.offAndToNamed(Routes.PET_VIEW_DETAILS, arguments: Argument[0]);
-      print("VALUE  : = ${value}");
+      print("VALUE  : = ${value.statusCode}");
 
     }).catchError((error) {
       getIt<CustomDialogs>().hideCircularDialog(context);

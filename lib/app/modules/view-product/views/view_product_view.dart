@@ -38,7 +38,7 @@ class ViewProductView extends GetWidget<ViewProductController> {
               icon: Icon(Icons.arrow_back_outlined)),
           centerTitle: true,
           actions: [
-            IconButton(onPressed: () {}, icon: Icon(Icons.search)),
+            IconButton(onPressed: () {}, icon: Icon(Icons.search,color: Colors.grey,size: 26,)),
             Stack(
               children: [
                 IconButton(
