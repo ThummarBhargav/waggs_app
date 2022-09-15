@@ -131,7 +131,7 @@ class SingupScreenController extends GetxController {
       'email': '${emailController.value.text.trim()}',
     });
     if (response.statusCode == 200) {
-      Get.toNamed(Routes.O_T_P_SCREEN);
+      Get.offAndToNamed(Routes.O_T_P_SCREEN);
     }
     print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');
@@ -192,7 +192,7 @@ class SingupScreenController extends GetxController {
                 actions: [
                   TextButton(
                       onPressed: () {
-                        Get.toNamed(Routes.LOGIN_SCREEN);
+                        Get.offAndToNamed(Routes.LOGIN_SCREEN);
                       },
                       child: Text(
                         "Login",
@@ -213,8 +213,5 @@ class SingupScreenController extends GetxController {
     }).catchError((error) {
       print(error);
     });
-
-    print('Response status: ${response.statusCode}');
-    print('Response body: ${response.body}');
   }
 }

@@ -297,18 +297,25 @@ class BookAppoimentView extends GetView<BookAppoimentController> {
                                                                 SizedBox(
                                                                   height: 5,
                                                                 ),
-                                                                Text(
-                                                                  '${controller.vetList[index].degree}',
-                                                                  style: TextStyle(
-                                                                      color: Colors
-                                                                          .grey
-                                                                          .shade500,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w400,
-                                                                      fontSize:
-                                                                          15.0),
-                                                                ),
+                                                                controller.vetList[index]
+                                                                            .degree ==
+                                                                        null
+                                                                    ? Text(
+                                                                        'N/A',
+                                                                        style: TextStyle(
+                                                                            color:
+                                                                                Colors.grey.shade500,
+                                                                            fontWeight: FontWeight.w400,
+                                                                            fontSize: 15.0),
+                                                                      )
+                                                                    : Text(
+                                                                        '${controller.vetList[index].degree}',
+                                                                        style: TextStyle(
+                                                                            color:
+                                                                                Colors.grey.shade500,
+                                                                            fontWeight: FontWeight.w400,
+                                                                            fontSize: 15.0),
+                                                                      ),
                                                                 RatingBarIndicator(
                                                                   rating: controller
                                                                       .vetList[
@@ -346,18 +353,25 @@ class BookAppoimentView extends GetView<BookAppoimentController> {
                                                                 SizedBox(
                                                                   height: 5,
                                                                 ),
-                                                                Text(
-                                                                  '${controller.vetList[index].address}',
-                                                                  style: GoogleFonts.abel(
-                                                                      color: Colors
-                                                                          .grey
-                                                                          .shade500,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w600,
-                                                                      fontSize:
-                                                                          15.0),
-                                                                ),
+                                                                controller.vetList[index]
+                                                                            .address ==
+                                                                        null
+                                                                    ? Text(
+                                                                        'N/A',
+                                                                        style: GoogleFonts.abel(
+                                                                            color:
+                                                                                Colors.grey.shade500,
+                                                                            fontWeight: FontWeight.w600,
+                                                                            fontSize: 15.0),
+                                                                      )
+                                                                    : Text(
+                                                                        '${controller.vetList[index].address}',
+                                                                        style: GoogleFonts.abel(
+                                                                            color:
+                                                                                Colors.grey.shade500,
+                                                                            fontWeight: FontWeight.w600,
+                                                                            fontSize: 15.0),
+                                                                      ),
                                                                 SizedBox(
                                                                   height: 8,
                                                                 ),
