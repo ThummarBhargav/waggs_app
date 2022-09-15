@@ -14,17 +14,18 @@ import '../../../../main.dart';
 import '../controllers/pet_view_details_controller.dart';
 
 class PetViewDetailsView extends GetWidget<PetViewDetailsController> {
-
-   var scaffoldKey = GlobalKey<ScaffoldState>();
-   PetViewDetailsView({Key? key}) : super(key: key);
+  var scaffoldKey = GlobalKey<ScaffoldState>();
+  PetViewDetailsView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return WillPopScope(child: SafeArea(
       child: Obx(() {
         return Scaffold(
-          key: scaffoldKey,
-            endDrawer: Drawer(child: CartDrawerView(),),
+            key: scaffoldKey,
+            endDrawer: Drawer(
+              child: CartDrawerView(),
+            ),
             body: (controller.hasData.isFalse)
                 ? Center(
                     child: CircularProgressIndicator(color: Colors.orange),
@@ -61,9 +62,7 @@ class PetViewDetailsView extends GetWidget<PetViewDetailsController> {
                                     children: [
                                       // SizedBox(width: 200,),
                                       IconButton(
-                                          onPressed: () {
-
-                                          },
+                                          onPressed: () {},
                                           icon: Icon(
                                             Icons.search,
                                             size: 25,
@@ -74,13 +73,14 @@ class PetViewDetailsView extends GetWidget<PetViewDetailsController> {
                                         children: [
                                           IconButton(
                                               onPressed: () {
-                                                if ((box.read(
-                                                    ArgumentConstant.isUserLogin) ==
+                                                if ((box.read(ArgumentConstant
+                                                        .isUserLogin) ==
                                                     null)) {
-                                                  Get.toNamed(Routes.LOGIN_SCREEN);
-                                                }
-                                                else {
-                                                  scaffoldKey.currentState!.openEndDrawer();
+                                                  Get.toNamed(
+                                                      Routes.LOGIN_SCREEN);
+                                                } else {
+                                                  scaffoldKey.currentState!
+                                                      .openEndDrawer();
                                                 }
                                               },
                                               icon: Icon(
@@ -91,24 +91,28 @@ class PetViewDetailsView extends GetWidget<PetViewDetailsController> {
                                           controller.count1.data == null
                                               ? Container()
                                               : Positioned(
-                                              left: 22,
-                                              top: 2,
-                                              child: Container(
-                                                width: 18,
-                                                height: 18,
-                                                alignment: Alignment.center,
-                                                decoration: BoxDecoration(
-                                                  color: Color.fromRGBO(
-                                                      32, 193, 244, 1),
-                                                  shape: BoxShape.circle,
-                                                ),
-                                                child: Text(
-                                                  "${controller.count1.data}",
-                                                  style: GoogleFonts.raleway(
-                                                      fontWeight: FontWeight.bold,
-                                                      color: Colors.white),
-                                                ),
-                                              )),
+                                                  left: 22,
+                                                  top: 2,
+                                                  child: Container(
+                                                    width: 18,
+                                                    height: 18,
+                                                    alignment: Alignment.center,
+                                                    decoration: BoxDecoration(
+                                                      color: Color.fromRGBO(
+                                                          32, 193, 244, 1),
+                                                      shape: BoxShape.circle,
+                                                    ),
+                                                    child: Text(
+                                                      "${controller.count1.data}",
+                                                      style:
+                                                          GoogleFonts.raleway(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              color:
+                                                                  Colors.white),
+                                                    ),
+                                                  )),
                                         ],
                                       ),
                                       SizedBox(
@@ -602,53 +606,124 @@ class PetViewDetailsView extends GetWidget<PetViewDetailsController> {
                                                     Container(
                                                       margin: EdgeInsets.only(
                                                           left: 10, bottom: 5),
-                                                      child: Text(
-                                                        "Dr.${controller.appointmentslist[index].vet!.name}",
-                                                        style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          color: Colors.black,
-                                                          fontSize: 15,
-                                                        ),
-                                                      ),
+                                                      child: controller
+                                                                  .appointmentslist[
+                                                                      index]
+                                                                  .vet!
+                                                                  .name ==
+                                                              null
+                                                          ? Text(
+                                                              "N/A",
+                                                              style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                color: Colors
+                                                                    .black,
+                                                                fontSize: 15,
+                                                              ),
+                                                            )
+                                                          : Text(
+                                                              "Dr.${controller.appointmentslist[index].vet!.name}",
+                                                              style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                color: Colors
+                                                                    .black,
+                                                                fontSize: 15,
+                                                              ),
+                                                            ),
                                                     ),
                                                     Container(
                                                       margin: EdgeInsets.only(
                                                           left: 10, bottom: 0),
-                                                      child: Text(
-                                                        "${controller.appointmentslist[index].vet!.degree}",
-                                                        style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          color: Colors.black,
-                                                          fontSize: 15,
-                                                        ),
-                                                      ),
+                                                      child: controller
+                                                                  .appointmentslist[
+                                                                      index]
+                                                                  .vet!
+                                                                  .degree ==
+                                                              null
+                                                          ? Text(
+                                                              "N/A",
+                                                              style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                color: Colors
+                                                                    .black,
+                                                                fontSize: 15,
+                                                              ),
+                                                            )
+                                                          : Text(
+                                                              "${controller.appointmentslist[index].vet!.degree}",
+                                                              style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                color: Colors
+                                                                    .black,
+                                                                fontSize: 15,
+                                                              ),
+                                                            ),
                                                     ),
                                                     Container(
                                                       margin: EdgeInsets.only(
                                                           left: 10, bottom: 0),
-                                                      child: Text(
-                                                        "${controller.appointmentslist[index].vet!.experience} years of experience",
-                                                        style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          color: Colors.black,
-                                                          fontSize: 15,
-                                                        ),
-                                                      ),
+                                                      child: controller
+                                                                  .appointmentslist[
+                                                                      index]
+                                                                  .vet!
+                                                                  .experience ==
+                                                              null
+                                                          ? Text(
+                                                              "0 years of experience",
+                                                              style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                color: Colors
+                                                                    .black,
+                                                                fontSize: 15,
+                                                              ),
+                                                            )
+                                                          : Text(
+                                                              "${controller.appointmentslist[index].vet!.experience} years of experience",
+                                                              style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                color: Colors
+                                                                    .black,
+                                                                fontSize: 15,
+                                                              ),
+                                                            ),
                                                     ),
                                                     Container(
                                                       margin: EdgeInsets.only(
                                                           left: 10, bottom: 3),
-                                                      child: Text(
-                                                        "${controller.appointmentslist[index].vet!.address}",
-                                                        style: TextStyle(
-                                                          color:
-                                                              Colors.grey[500],
-                                                          fontSize: 15,
-                                                        ),
-                                                      ),
+                                                      child: controller
+                                                                  .appointmentslist[
+                                                                      index]
+                                                                  .vet!
+                                                                  .address ==
+                                                              null
+                                                          ? Text(
+                                                              "N/A",
+                                                              style: TextStyle(
+                                                                color: Colors
+                                                                    .grey[500],
+                                                                fontSize: 15,
+                                                              ),
+                                                            )
+                                                          : Text(
+                                                              "${controller.appointmentslist[index].vet!.address}",
+                                                              style: TextStyle(
+                                                                color: Colors
+                                                                    .grey[500],
+                                                                fontSize: 15,
+                                                              ),
+                                                            ),
                                                     ),
                                                     Container(
                                                       margin: EdgeInsets.only(

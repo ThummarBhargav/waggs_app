@@ -15,18 +15,20 @@ import '../controllers/vet_view_details_controller.dart';
 
 class VetViewDetailsView extends GetView<VetViewDetailsController> {
   var scaffoldKey = GlobalKey<ScaffoldState>();
-   VetViewDetailsView({Key? key}) : super(key: key);
+  VetViewDetailsView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        Get.offAndToNamed(Routes.BOOK_APPOIMENT,arguments: controller.petid);
+        Get.offAndToNamed(Routes.BOOK_APPOIMENT, arguments: controller.petid);
         return await true;
       },
       child: SafeArea(child: Obx(() {
         return Scaffold(
           key: scaffoldKey,
-          endDrawer: Drawer(child: CartDrawerView(),),
+          endDrawer: Drawer(
+            child: CartDrawerView(),
+          ),
           body: Container(
               color: Colors.white,
               child: (controller.hasData.isFalse)
@@ -52,7 +54,8 @@ class VetViewDetailsView extends GetView<VetViewDetailsController> {
                                       IconButton(
                                           onPressed: () {
                                             Get.offAndToNamed(
-                                                Routes.BOOK_APPOIMENT,arguments: controller.petid);
+                                                Routes.BOOK_APPOIMENT,
+                                                arguments: controller.petid);
                                           },
                                           icon: Icon(Icons
                                               .keyboard_backspace_outlined))
@@ -76,13 +79,14 @@ class VetViewDetailsView extends GetView<VetViewDetailsController> {
                                         children: [
                                           IconButton(
                                               onPressed: () {
-                                                if ((box.read(
-                                                    ArgumentConstant.isUserLogin) ==
+                                                if ((box.read(ArgumentConstant
+                                                        .isUserLogin) ==
                                                     null)) {
-                                                  Get.toNamed(Routes.LOGIN_SCREEN);
-                                                }
-                                                else {
-                                                  scaffoldKey.currentState!.openEndDrawer();
+                                                  Get.toNamed(
+                                                      Routes.LOGIN_SCREEN);
+                                                } else {
+                                                  scaffoldKey.currentState!
+                                                      .openEndDrawer();
                                                 }
                                               },
                                               icon: Icon(
@@ -93,24 +97,28 @@ class VetViewDetailsView extends GetView<VetViewDetailsController> {
                                           controller.count1.data == null
                                               ? Container()
                                               : Positioned(
-                                              left: 22,
-                                              top: 2,
-                                              child: Container(
-                                                width: 18,
-                                                height: 18,
-                                                alignment: Alignment.center,
-                                                decoration: BoxDecoration(
-                                                  color: Color.fromRGBO(
-                                                      32, 193, 244, 1),
-                                                  shape: BoxShape.circle,
-                                                ),
-                                                child: Text(
-                                                  "${controller.count1.data}",
-                                                  style: GoogleFonts.raleway(
-                                                      fontWeight: FontWeight.bold,
-                                                      color: Colors.white),
-                                                ),
-                                              )),
+                                                  left: 22,
+                                                  top: 2,
+                                                  child: Container(
+                                                    width: 18,
+                                                    height: 18,
+                                                    alignment: Alignment.center,
+                                                    decoration: BoxDecoration(
+                                                      color: Color.fromRGBO(
+                                                          32, 193, 244, 1),
+                                                      shape: BoxShape.circle,
+                                                    ),
+                                                    child: Text(
+                                                      "${controller.count1.data}",
+                                                      style:
+                                                          GoogleFonts.raleway(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              color:
+                                                                  Colors.white),
+                                                    ),
+                                                  )),
                                         ],
                                       ),
                                       SizedBox(
