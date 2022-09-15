@@ -177,12 +177,12 @@ class HomeView extends GetWidget<HomeController> {
                                           if ((box.read(ArgumentConstant
                                                   .isUserLogin) ==
                                               null)) {
-                                            Get.toNamed(Routes.MY_PET);
+                                            Get.offAndToNamed(
+                                                Routes.LOGIN_SCREEN);
                                             scaffoldKey.currentState!
                                                 .closeEndDrawer();
                                           } else {
-                                            Get.offAndToNamed(
-                                                Routes.LOGIN_SCREEN);
+                                            Get.toNamed(Routes.MY_PET);
                                           }
                                         },
                                         child: ListTile(
@@ -589,12 +589,12 @@ class HomeView extends GetWidget<HomeController> {
                                           itemBuilder: (BuildContext context,
                                               int index, int realIndex) {
                                             return Image.network(
-                                              errorBuilder:
-                                                  (context, error, stackTrace) {
-                                                return Center(
-                                                    child:
-                                                        CircularProgressIndicator());
-                                              },
+                                              // errorBuilder:
+                                              //     (context, error, stackTrace) {
+                                              //   return Center(
+                                              //       child:
+                                              //           CircularProgressIndicator());
+                                              // },
                                               width: MediaQuery.of(context)
                                                   .size
                                                   .width,
@@ -787,10 +787,6 @@ class HomeView extends GetWidget<HomeController> {
                                                     .toString(),
                                                 ButtonText: "ADD TO CART",
                                                 ButtonTap: () {
-                                                  print(
-                                                      "${controller.TopProductlist[index].sId}");
-                                                  print(
-                                                      "Bearer ${box.read(ArgumentConstant.token)}");
                                                   controller.addToCart(
                                                       data: controller
                                                               .TopProductlist[

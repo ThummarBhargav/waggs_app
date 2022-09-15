@@ -58,6 +58,13 @@ class _TopSellingProductListWidgetState
                   Icons.arrow_back,
                   color: Colors.black,
                 )),
+            title: Text(
+              "TOP SELLING PRODUCTS",
+              style: GoogleFonts.roboto(
+                  color: Colors.orangeAccent,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 20),
+            ),
             actions: [
               Stack(
                 children: [
