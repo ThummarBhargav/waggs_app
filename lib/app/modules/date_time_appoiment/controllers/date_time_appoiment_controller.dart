@@ -69,9 +69,11 @@ class DateTimeAppoimentController extends GetxController
       getIt<CustomDialogs>().hideCircularDialog(context);
       Get.offAndToNamed(Routes.PET_VIEW_DETAILS, arguments: Argument[0]);
       print("VALUE  : = ${value}");
+
     }).catchError((error) {
       getIt<CustomDialogs>().hideCircularDialog(context);
       print("ERROR : = $error");
+      // Get.snackbar("All appoinment book", "Try again !",colorText: Colors.black,backgroundColor: Colors.red);
     });
   }
 
