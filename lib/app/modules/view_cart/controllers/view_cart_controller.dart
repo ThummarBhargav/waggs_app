@@ -64,10 +64,11 @@ class ViewCartController extends GetxController {
 
   getCurrentLocation() {
     Geolocator.getCurrentPosition(
-            desiredAccuracy: LocationAccuracy.best,
+            desiredAccuracy: LocationAccuracy.high,
             forceAndroidLocationManager: true)
         .then((Position position) {
       _currentPosition = position.obs;
+      print("position: ====== $position");
       _getAddressFromLatLng();
     }).catchError((e) {
       print(e);
