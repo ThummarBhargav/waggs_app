@@ -32,32 +32,34 @@ Card productCard({
                       Container(
                         child: Column(
                           children: [
-                            Container(
-                              width: 120,
-                              height: 120,
-                              alignment: Alignment.center,
-                              color: Colors.white,
-                              margin:
-                                  EdgeInsets.only(top: 25, left: 20, right: 10),
-                              child: CachedNetworkImage(
-                                  imageUrl: image.toString(),
-                                  imageBuilder: (context, imageProvider) =>
-                                      Container(
-                                        decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                              image: imageProvider,
-                                              fit: BoxFit.cover,
-                                              colorFilter: ColorFilter.mode(
-                                                  Colors.transparent,
-                                                  BlendMode.colorBurn)),
+                            Center(
+                              child: Container(
+                                width: 120,
+                                height: 120,
+                                alignment: Alignment.center,
+                                color: Colors.white,
+                                margin: EdgeInsets.only(
+                                    top: 25, left: 20, right: 10),
+                                child: CachedNetworkImage(
+                                    imageUrl: image.toString(),
+                                    imageBuilder: (context, imageProvider) =>
+                                        Container(
+                                          decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                                image: imageProvider,
+                                                fit: BoxFit.cover,
+                                                colorFilter: ColorFilter.mode(
+                                                    Colors.transparent,
+                                                    BlendMode.colorBurn)),
+                                          ),
                                         ),
-                                      ),
-                                  placeholder: (context, url) =>
-                                      CircularProgressIndicator(),
-                                  errorWidget: (context, url, error) =>
-                                      Container(
-                                        color: Colors.grey[100],
-                                      )),
+                                    placeholder: (context, url) =>
+                                        CircularProgressIndicator(),
+                                    errorWidget: (context, url, error) =>
+                                        Container(
+                                          color: Colors.grey[100],
+                                        )),
+                              ),
                             ),
                           ],
                         ),
@@ -136,7 +138,7 @@ Card productCard({
                   )),
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
                   margin: EdgeInsets.only(

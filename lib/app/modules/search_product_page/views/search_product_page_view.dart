@@ -1037,7 +1037,6 @@ class SearchProductPageView extends GetWidget<SearchProductPageController> {
                               width: 400,
                               child: GridView.builder(
                                   itemCount: controller.mainProductList.length,
-                                  scrollDirection: Axis.vertical,
                                   shrinkWrap: true,
                                   itemBuilder: (context, index) {
                                     return productCard(
@@ -1052,9 +1051,7 @@ class SearchProductPageView extends GetWidget<SearchProductPageController> {
                                           .mainProductList[index].discount!
                                           .toStringAsFixed(0),
                                       companyName: controller
-                                          .mainProductList[index]
-                                          .sellerId!
-                                          .companyName,
+                                          .mainProductList[index].title,
                                       categoryName: controller
                                           .mainProductList[index]
                                           .category!
@@ -1075,10 +1072,6 @@ class SearchProductPageView extends GetWidget<SearchProductPageController> {
                                           .toString(),
                                       ButtonText: "ADD TO CART",
                                       ButtonTap: () {
-                                        print(
-                                            "${controller.mainProductList[index].sId}");
-                                        print(
-                                            "Bearer ${box.read(ArgumentConstant.token)}");
                                         controller.addToCart(
                                             data: controller
                                                 .mainProductList[index]);
@@ -1088,13 +1081,8 @@ class SearchProductPageView extends GetWidget<SearchProductPageController> {
                                   },
                                   gridDelegate:
                                       SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 2,
-                                    childAspectRatio: MediaQuery.of(context)
-                                            .size
-                                            .width /
-                                        (MediaQuery.of(context).size.height /
-                                            1.3),
-                                  )),
+                                          crossAxisCount: 2,
+                                          childAspectRatio: 0.70)),
                             ),
                           ),
                         ],
