@@ -96,7 +96,6 @@ class ProductListScreenController extends GetxController {
         sellerList = Get.arguments[ArgumentConstant.sellerList];
       }
       if (isFromTopProducts) {
-        // TopProductlist = Get.arguments[ArgumentConstant.TopProductlist];
         TopSellingProductApi();
       }
       if (isFromSubCategory) {
@@ -525,8 +524,8 @@ class ProductListScreenController extends GetxController {
       mainProductList.clear();
     }
     var URl = Uri.parse(baseUrl +
-        ApiConstant.TopStore +
-        "?sellerId=&skip=${productsCount.value}&limit=10&sort=$sort");
+        ApiConstant.getAllProductUsers +
+        "?sellerId=&skip=${productsCount.value}&limit=30&sort=$sort");
     var response;
     await http.get(URl).then((value) {
       hasData.value = true;

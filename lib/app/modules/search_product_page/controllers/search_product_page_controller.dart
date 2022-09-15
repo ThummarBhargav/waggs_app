@@ -99,47 +99,47 @@ class SearchProductPageController extends GetxController {
     super.onClose();
   }
 
-  // getProduct({bool isForLoading = false, String sort = ""}) async {
-  //   if (!isForLoading) {
-  //     hasData.value = false;
-  //     isEnablePullUp.value = true;
-  //     productsCount.value = 0;
-  //     mainProductList.clear();
-  //   }
-  //   var URl = Uri.parse(baseUrl +
-  //       ApiConstant.getAllProductUsers +
-  //       "?sellerId=${data.sId}&skip=${productsCount.value}&limit=10&sort=$sort");
-  //   var response;
-  //   await http.get(URl).then((value) {
-  //     hasData.value = true;
-  //     response = value;
-  //   }).catchError((err) {
-  //     hasData.value = false;
-  //   });
-  //   print(response.body);
-  //   dynamic result = jsonDecode(response.body);
-  //   storeModule = StoreModule.fromJson(result);
-  //   if (storeModule.responseCode == 404) {
-  //     if (isForLoading) {
-  //       refreshController.loadComplete();
-  //       isEnablePullUp.value = false;
-  //     }
-  //   } else {
-  //     if (!isNullEmptyOrFalse(storeModule.data)) {
-  //       if (!isNullEmptyOrFalse(storeModule.data!.products)) {
-  //         storeModule.data!.products!.forEach((element) {
-  //           mainProductList.add(element);
-  //         });
-  //         productsCount.value = mainProductList.length;
-  //         if (isForLoading) {
-  //           refreshController.loadComplete();
-  //         }
-  //       }
-  //     }
-  //   }
-  //
-  //   mainProductList.refresh();
-  // }
+  getProduct({bool isForLoading = false, String sort = ""}) async {
+    if (!isForLoading) {
+      hasData.value = false;
+      isEnablePullUp.value = true;
+      productsCount.value = 0;
+      mainProductList.clear();
+    }
+    var URl = Uri.parse(baseUrl +
+        ApiConstant.getAllProductUsers +
+        "?sellerId=&skip=${productsCount.value}&limit=10&sort=$sort");
+    var response;
+    await http.get(URl).then((value) {
+      hasData.value = true;
+      response = value;
+    }).catchError((err) {
+      hasData.value = false;
+    });
+    print(response.body);
+    dynamic result = jsonDecode(response.body);
+    storeModule = StoreModule.fromJson(result);
+    if (storeModule.responseCode == 404) {
+      if (isForLoading) {
+        refreshController.loadComplete();
+        isEnablePullUp.value = false;
+      }
+    } else {
+      if (!isNullEmptyOrFalse(storeModule.data)) {
+        if (!isNullEmptyOrFalse(storeModule.data!.products)) {
+          storeModule.data!.products!.forEach((element) {
+            mainProductList.add(element);
+          });
+          productsCount.value = mainProductList.length;
+          if (isForLoading) {
+            refreshController.loadComplete();
+          }
+        }
+      }
+    }
+
+    mainProductList.refresh();
+  }
 
   CartProductApi() async {
     hasData.value = false;
@@ -528,8 +528,8 @@ class SearchProductPageController extends GetxController {
       mainProductList.clear();
     }
     var URl = Uri.parse(baseUrl +
-        ApiConstant.TopStore +
-        "?sellerId=&skip=${productsCount.value}&limit=10&sort=$sort");
+        ApiConstant.alsoLike +
+        "?sellerId=&search=${searchProduct}&skip=${productsCount.value}&limit=10&sort=$sort");
     var response;
     await http.get(URl).then((value) {
       hasData.value = true;

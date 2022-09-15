@@ -589,12 +589,12 @@ class HomeView extends GetWidget<HomeController> {
                                           itemBuilder: (BuildContext context,
                                               int index, int realIndex) {
                                             return Image.network(
-                                              // errorBuilder:
-                                              //     (context, error, stackTrace) {
-                                              //   return Center(
-                                              //       child:
-                                              //           CircularProgressIndicator());
-                                              // },
+                                              errorBuilder:
+                                                  (context, error, stackTrace) {
+                                                return Center(
+                                                    child:
+                                                        CircularProgressIndicator());
+                                              },
                                               width: MediaQuery.of(context)
                                                   .size
                                                   .width,
