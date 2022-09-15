@@ -56,14 +56,14 @@ class User1 {
 
   User1(
       {this.sId,
-        this.name,
-        this.email,
-        this.mobile,
-        this.countryCode,
-        this.isEmailVerified,
-        this.address,
-        this.latitude,
-        this.longitude});
+      this.name,
+      this.email,
+      this.mobile,
+      this.countryCode,
+      this.isEmailVerified,
+      this.address,
+      this.latitude,
+      this.longitude});
 
   User1.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -73,8 +73,12 @@ class User1 {
     countryCode = json['countryCode'];
     isEmailVerified = json['isEmailVerified'];
     address = json['address'];
-    latitude = json['latitude'];
-    longitude = json['longitude'];
+    latitude = (json['latitude'].runtimeType == int)
+        ? double.parse(json['latitude'].toString())
+        : json['latitude'];
+    longitude = (json['longitude'].runtimeType == int)
+        ? double.parse(json['longitude'].toString())
+        : json['longitude'];
   }
 
   Map<String, dynamic> toJson() {

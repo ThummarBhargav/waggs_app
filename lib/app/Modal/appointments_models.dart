@@ -153,8 +153,12 @@ class User {
     mobile = json['mobile'];
     countryCode = json['countryCode'];
     address = json['address'];
-    latitude = json['latitude'];
-    longitude = json['longitude'];
+    latitude = (json['latitude'].runtimeType == int)
+        ? double.parse(json['latitude'].toString())
+        : json['latitude'];
+    longitude = (json['longitude'].runtimeType == int)
+        ? double.parse(json['longitude'].toString())
+        : json['longitude'];
   }
 
   Map<String, dynamic> toJson() {

@@ -16,7 +16,7 @@ class VetViewDetailsView extends GetView<VetViewDetailsController> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        Get.offAndToNamed(Routes.BOOK_APPOIMENT);
+        Get.offAndToNamed(Routes.BOOK_APPOIMENT, arguments: controller.petid);
         return await true;
       },
       child: SafeArea(child: Obx(() {
@@ -46,7 +46,8 @@ class VetViewDetailsView extends GetView<VetViewDetailsController> {
                                       IconButton(
                                           onPressed: () {
                                             Get.offAndToNamed(
-                                                Routes.BOOK_APPOIMENT);
+                                                Routes.BOOK_APPOIMENT,
+                                                arguments: controller.petid);
                                           },
                                           icon: Icon(Icons
                                               .keyboard_backspace_outlined))
@@ -251,21 +252,39 @@ class VetViewDetailsView extends GetView<VetViewDetailsController> {
                                           SizedBox(
                                             height: 10,
                                           ),
-                                          Text(
-                                            "${controller.vetData.degree}",
-                                            style: TextStyle(
-                                                color: Colors.grey.shade600,
-                                                fontSize: 15),
-                                          ),
+                                          controller.vetData.degree == null
+                                              ? Text(
+                                                  "N/A",
+                                                  style: TextStyle(
+                                                      color:
+                                                          Colors.grey.shade600,
+                                                      fontSize: 15),
+                                                )
+                                              : Text(
+                                                  "${controller.vetData.degree}",
+                                                  style: TextStyle(
+                                                      color:
+                                                          Colors.grey.shade600,
+                                                      fontSize: 15),
+                                                ),
                                           SizedBox(
                                             height: 10,
                                           ),
-                                          Text(
-                                            "${controller.vetData.experience} years of professional experience",
-                                            style: GoogleFonts.lato(
-                                                fontWeight: FontWeight.w800,
-                                                fontSize: 16),
-                                          ),
+                                          controller.vetData.experience == null
+                                              ? Text(
+                                                  "years of professional experience",
+                                                  style: GoogleFonts.lato(
+                                                      fontWeight:
+                                                          FontWeight.w800,
+                                                      fontSize: 16),
+                                                )
+                                              : Text(
+                                                  "${controller.vetData.experience} years of professional experience",
+                                                  style: GoogleFonts.lato(
+                                                      fontWeight:
+                                                          FontWeight.w800,
+                                                      fontSize: 16),
+                                                ),
                                           SizedBox(
                                             height: 5,
                                           ),
@@ -537,16 +556,31 @@ class VetViewDetailsView extends GetView<VetViewDetailsController> {
                                                       SizedBox(
                                                         height: 5,
                                                       ),
-                                                      Text(
-                                                        "${controller.vetData.description}",
-                                                        style: TextStyle(
-                                                            // fontSize: 18,
-                                                            color: Colors
-                                                                .grey.shade500,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w500),
-                                                      )
+                                                      controller.vetData
+                                                                  .description ==
+                                                              null
+                                                          ? Text(
+                                                              "N/A",
+                                                              style: TextStyle(
+                                                                  // fontSize: 18,
+                                                                  color: Colors
+                                                                      .grey
+                                                                      .shade500,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500),
+                                                            )
+                                                          : Text(
+                                                              "${controller.vetData.description}",
+                                                              style: TextStyle(
+                                                                  // fontSize: 18,
+                                                                  color: Colors
+                                                                      .grey
+                                                                      .shade500,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500),
+                                                            )
                                                     ],
                                                   ))
                                               : Container(),
@@ -620,15 +654,29 @@ class VetViewDetailsView extends GetView<VetViewDetailsController> {
                                                         CrossAxisAlignment
                                                             .start,
                                                     children: [
-                                                      Text(
-                                                        "${controller.vetData.address}",
-                                                        style: GoogleFonts.lato(
-                                                            color: Colors
-                                                                .grey.shade600,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w400),
-                                                      ),
+                                                      controller.vetData
+                                                                  .address ==
+                                                              null
+                                                          ? Text(
+                                                              "N/A",
+                                                              style: GoogleFonts.lato(
+                                                                  color: Colors
+                                                                      .grey
+                                                                      .shade600,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w400),
+                                                            )
+                                                          : Text(
+                                                              "${controller.vetData.address}",
+                                                              style: GoogleFonts.lato(
+                                                                  color: Colors
+                                                                      .grey
+                                                                      .shade600,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w400),
+                                                            ),
                                                     ],
                                                   ))
                                               : Container(),
