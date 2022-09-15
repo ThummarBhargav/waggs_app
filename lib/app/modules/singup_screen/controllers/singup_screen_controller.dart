@@ -101,7 +101,7 @@ class SingupScreenController extends GetxController {
       } else {
         isEmailExist.value = true;
         ErrorResponse res = ErrorResponse.fromJson(jsonDecode(value.body));
-        // Get.snackbar("Error", res.message.toString(),snackPosition: SnackPosition.TOP);
+        // Get.snackbar("Error", res.message.toString(),snackPosition: SnackPosition.BOTTOM);
       }
     });
   }
