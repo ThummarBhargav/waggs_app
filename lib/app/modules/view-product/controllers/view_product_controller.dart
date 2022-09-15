@@ -29,9 +29,10 @@ class ViewProductController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    CartCount();
     getData();
     CartProductApi();
-    CartCount();
+
   }
 
   @override

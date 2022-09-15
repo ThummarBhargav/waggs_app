@@ -31,15 +31,15 @@ class PlaneController extends GetxController {
   RxBool isFromDrawer = false.obs;
   RxBool isDataAccepted = false.obs;
   Count1 count1 = Count1();
-  RxList<Count1> Countlist = RxList([]);
+  RxList<Count1> Countlist = RxList<Count1>([]);
   @override
   void onInit() {
+    CartCount();
     if (Get.arguments != null) {
       isFromDrawer.value = Get.arguments[ArgumentConstant.isFromDrawer];
       isDataAccepted.value = true;
     }
     AllPlans();
-    CartCount();
     super.onInit();
   }
 
