@@ -457,18 +457,38 @@ class ViewProductView extends GetWidget<ViewProductController> {
                               onTap: () {
                                 controller.addToCart(data: controller.data);
                               },
-                              child: getcon(
-                                text: Text(
-                                  "ADD TO CART",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w500),
+                              child:  Container(
+                              width: 250,
+                              height: 45,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                color:  Color(0xffDE8701),
+                                borderRadius: BorderRadius
+                                    .only(
+                                  topRight: Radius.circular(
+                                      25),
+                                  bottomRight:
+                                  Radius.circular(25),
+                                  bottomLeft:
+                                  Radius.circular(25),
                                 ),
-                                color: Color(0xffDE8701),
-                                width: 140,
-                                height: 50,
-                                alignment: Alignment.center,
                               ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.add_shopping_cart,color: Colors.white,),
+                                  SizedBox(width: 10,),
+                                  Text(
+                                    "ADD TO CART",
+                                    style: GoogleFonts.raleway(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 13,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                             ),
                           ),
                         ),
