@@ -68,7 +68,7 @@ class ViewCartController extends GetxController {
             forceAndroidLocationManager: true)
         .then((Position position) {
       _currentPosition = position.obs;
-      print("position: ====== $position");
+      print("position: ====== ${position.latitude} ==> ${position.longitude}");
       _getAddressFromLatLng();
     }).catchError((e) {
       print(e);

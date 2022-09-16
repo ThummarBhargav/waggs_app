@@ -150,6 +150,24 @@ class CartDrawerView extends GetWidget<CartDrawerController> {
                                                           fontWeight:
                                                               FontWeight.w800),
                                                     ),
+                                                    SizedBox(
+                                                      height: 8,
+                                                    ),
+                                                    controller
+                                                                .cartProductList[
+                                                                    index]
+                                                                .product!
+                                                                .sellerId!
+                                                                .waiveOffShipping ==
+                                                            false
+                                                        ? Container()
+                                                        : Text(
+                                                            "Not delivering in your area",
+                                                            style: TextStyle(
+                                                                color:
+                                                                    Colors.red,
+                                                                fontSize: 10),
+                                                          ),
                                                   ],
                                                 ),
                                               ),

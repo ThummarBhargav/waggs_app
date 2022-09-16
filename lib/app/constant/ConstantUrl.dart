@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 
 const baseUrl = "https://api-stg.waggs.in/api/v1/";
@@ -7,6 +8,7 @@ const baseUrl3 = "https://api-stg.waggs.in/api/v1/users/";
 
 class ApiConstant {
   static const signUpUsers = "signup";
+  static const shipping = "app-settings";
   static const socialLoginApi = "https://api.waggs.in/api/v1/users/socialLogin";
   static const paymentKey = "rzp_test_pfJrUULLPTmEYK";
   static const loginUsers = "login";
@@ -80,6 +82,24 @@ class ArgumentConstant {
   static String patId = "patId";
   static String isFromDrawer = "isFromDrawer";
   static String searchProduct = "searchProduct";
+}
+
+Rx<Position>? _currentPosition;
+
+Future<Position?> getCurrentLocation() async {
+  Position? currentPositionData;
+  await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high,
+          forceAndroidLocationManager: true)
+      .then((Position position) {
+    _currentPosition = position.obs;
+    currentPositionData = position;
+    print("position: ====== ${position.latitude} ==> ${position.longitude}");
+  }).catchError((e) {
+    print(e);
+  });
+
+  return currentPositionData;
 }
 
 getMySnackBar(

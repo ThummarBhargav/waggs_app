@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'dart:math';
 
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 
 import '../../../../main.dart';
@@ -7,6 +9,7 @@ import '../../../Modal/CartProductModel.dart';
 import '../../../Modal/CategoryModel.dart';
 import '../../../Modal/GetAllProductModule.dart';
 import '../../../Modal/OrderModel.dart';
+import '../../../Modal/shippingModel.dart';
 import '../../../constant/ConstantUrl.dart';
 import '../../../routes/app_pages.dart';
 import 'package:http/http.dart' as http;
@@ -26,6 +29,7 @@ import '../../../Modal/bannerAllProductModel.dart';
 class CartDrawerController extends GetxController {
   GetAllproduct getAllproduct = GetAllproduct();
   CategoryModel categoryModel = CategoryModel();
+  Shipping1 shipping1 = Shipping1();
   bannerModels bannerModel = bannerModels();
   StoreModule storeModule = StoreModule();
   Count1 count1 = Count1();
@@ -72,6 +76,7 @@ class CartDrawerController extends GetxController {
       TopSellingProductApi();
       CartCount();
       CartProductApi();
+      ShippingApi();
       super.onInit();
     });
   }
@@ -98,6 +103,21 @@ class CartDrawerController extends GetxController {
         CatagoryList.add(element);
       });
       getAllUserApi();
+    }
+  }
+
+  ShippingApi() async {
+    var url = Uri.parse(baseUrl + ApiConstant.shipping);
+    var response = await http.get(url);
+    print('response status:${response.request}');
+    dynamic result = jsonDecode(response.body);
+    print(result);
+    if (response.statusCode == 200) {
+      ShippingModel res = ShippingModel.fromJson(jsonDecode(response.body));
+      if (!isNullEmptyOrFalse(res)) {
+        shipping1 = res.data!;
+        print(shipping1);
+      }
     }
   }
 
@@ -379,9 +399,34 @@ class CartDrawerController extends GetxController {
     dynamic result = jsonDecode(response.body);
     cartProduct = CartProduct.fromJson(result);
     print(result);
+    Position? currentPositionData = await getCurrentLocation();
     if (!isNullEmptyOrFalse(cartProduct.data)) {
       if (!isNullEmptyOrFalse(cartProduct.data!.details)) {
         cartProduct.data!.details!.forEach((element) {
+          if (!isNullEmptyOrFalse(element.product)) {
+            if (!isNullEmptyOrFalse(element.product!.sellerId)) {
+              if (!isNullEmptyOrFalse(currentPositionData)) {
+                if (!isNullEmptyOrFalse(element.product!.sellerId!.latitude) &&
+                    !isNullEmptyOrFalse(element.product!.sellerId!.longitude) &&
+                    !isNullEmptyOrFalse(currentPositionData!.latitude) &&
+                    !isNullEmptyOrFalse(currentPositionData.longitude)) {
+                  double lat2 = element.product!.sellerId!.latitude!;
+                  double lat1 = currentPositionData.latitude;
+                  double lon2 = element.product!.sellerId!.longitude!;
+                  double lon1 = currentPositionData.longitude;
+                  var p = 0.017453292519943295;
+                  var c = cos;
+                  var a = 0.5 -
+                      c((lat2 - lat1) * p) / 2 +
+                      c(lat1 * p) *
+                          c(lat2 * p) *
+                          (1 - c((lon2 - lon1) * p)) /
+                          2;
+                  print("My Distance := ${12742 * asin(sqrt(a))}");
+                }
+              }
+            }
+          }
           cartProductList.add(element);
         });
       }
