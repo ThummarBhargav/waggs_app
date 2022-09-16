@@ -1040,44 +1040,47 @@ class SearchProductPageView extends GetWidget<SearchProductPageController> {
                                   shrinkWrap: true,
                                   itemBuilder: (context, index) {
                                     return productCard(
-                                      onTap: () {
-                                        Get.toNamed(Routes.VIEW_PRODUCT,
-                                            arguments: controller
-                                                .mainProductList[index]);
-                                      },
-                                      image: controller
-                                          .mainProductList[index].images![0],
-                                      discount: controller
-                                          .mainProductList[index].discount!
-                                          .toStringAsFixed(0),
-                                      companyName: controller
-                                          .mainProductList[index].title,
-                                      categoryName: controller
-                                          .mainProductList[index]
-                                          .category!
-                                          .name,
-                                      subCategoryName: controller
-                                          .mainProductList[index]
-                                          .subCategory!
-                                          .name,
-                                      price: controller
-                                          .mainProductList[index].price
-                                          .toString(),
-                                      discountedPrice: controller
-                                          .mainProductList[index]
-                                          .discountedPrice
-                                          .toString(),
-                                      rating: controller
-                                          .mainProductList[index].rating
-                                          .toString(),
-                                      ButtonText: "ADD TO CART",
-                                      ButtonTap: () {
-                                        controller.addToCart(
-                                            data: controller
-                                                .mainProductList[index]);
-                                      },
-                                      icon: Icons.add_shopping_cart,
-                                    );
+                                        onTap: () {
+                                          Get.toNamed(Routes.VIEW_PRODUCT,
+                                              arguments: controller
+                                                  .mainProductList[index]);
+                                        },
+                                        image: controller
+                                            .mainProductList[index].images![0],
+                                        discount: controller
+                                            .mainProductList[index].discount!
+                                            .toStringAsFixed(0),
+                                        companyName: controller
+                                            .mainProductList[index].title,
+                                        categoryName: controller
+                                            .mainProductList[index]
+                                            .category!
+                                            .name,
+                                        subCategoryName: controller
+                                            .mainProductList[index]
+                                            .subCategory!
+                                            .name,
+                                        price: controller
+                                            .mainProductList[index].price
+                                            .toString(),
+                                        discountedPrice: controller
+                                            .mainProductList[index]
+                                            .discountedPrice
+                                            .toString(),
+                                        rating: controller
+                                            .mainProductList[index].rating
+                                            .toString(),
+                                        ButtonText: "ADD TO CART",
+                                        ButtonTap: () {
+                                          controller.addToCart(
+                                              data: controller
+                                                  .mainProductList[index]);
+                                        },
+                                        icon: Icons.add_shopping_cart,
+                                        isShipping: controller
+                                            .mainProductList[index]
+                                            .sellerId!
+                                            .waiveOffShipping);
                                   },
                                   gridDelegate:
                                       SliverGridDelegateWithFixedCrossAxisCount(

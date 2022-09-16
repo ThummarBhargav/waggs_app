@@ -16,6 +16,7 @@ Card productCard({
   String? rating,
   String? ButtonText,
   IconData? icon,
+  bool? isShipping,
 }) {
   return Card(
     elevation: 2,
@@ -176,13 +177,15 @@ Card productCard({
             ),
             Spacer(),
             InkWell(
-              onTap: ButtonTap,
+              onTap: (isShipping == true) ? () {} : ButtonTap,
               child: Container(
                 width: 140,
                 height: 35,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  color: Color.fromRGBO(32, 193, 244, 1),
+                  color: (isShipping == true)
+                      ? Colors.grey.shade300
+                      : Color.fromRGBO(32, 193, 244, 1),
                   borderRadius: BorderRadius.only(
                     topRight: Radius.circular(25),
                     bottomRight: Radius.circular(25),
@@ -194,7 +197,10 @@ Card productCard({
                     SizedBox(
                       width: 10,
                     ),
-                    Icon(icon, color: Colors.white, size: 18),
+                    Icon(icon,
+                        color:
+                            (isShipping == true) ? Colors.grey : Colors.white,
+                        size: 18),
                     SizedBox(
                       width: 10,
                     ),
@@ -203,13 +209,21 @@ Card productCard({
                       style: GoogleFonts.raleway(
                         fontWeight: FontWeight.w700,
                         fontSize: 12,
-                        color: Colors.white,
+                        color:
+                            (isShipping == true) ? Colors.grey : Colors.white,
                       ),
                     ),
                   ],
                 ),
               ),
             ),
+            Spacer(),
+            (isShipping == true)
+                ? Text(
+                    "Not delivering in your area",
+                    style: TextStyle(fontSize: 10, color: Colors.red),
+                  )
+                : Container(),
             Spacer(),
           ],
         ),

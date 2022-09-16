@@ -1,10 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:waggs_app/app/constant/Container.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
 
 import '../../../../main.dart';
@@ -1102,48 +1099,52 @@ class _SubCategoryWidgetState extends State<SubCategoryWidget> {
                                     shrinkWrap: true,
                                     itemBuilder: (context, index) {
                                       return productCard(
-                                        onTap: () {
-                                          Get.toNamed(Routes.VIEW_PRODUCT,
-                                              arguments: controller
-                                                  .mainProductList[index]);
-                                        },
-                                        image: controller
-                                            .mainProductList[index].images![0],
-                                        discount: controller
-                                            .mainProductList[index].discount!
-                                            .toStringAsFixed(0),
-                                        companyName: controller
-                                            .mainProductList[index].title,
-                                        categoryName: controller
-                                            .mainProductList[index]
-                                            .category!
-                                            .name,
-                                        subCategoryName: controller
-                                            .mainProductList[index]
-                                            .subCategory!
-                                            .name,
-                                        price: controller
-                                            .mainProductList[index].price
-                                            .toString(),
-                                        discountedPrice: controller
-                                            .mainProductList[index]
-                                            .discountedPrice
-                                            .toString(),
-                                        rating: controller
-                                            .mainProductList[index].rating
-                                            .toString(),
-                                        ButtonText: "ADD TO CART",
-                                        ButtonTap: () {
-                                          print(
-                                              "${controller.mainProductList[index].sId}");
-                                          print(
-                                              "Bearer ${box.read(ArgumentConstant.token)}");
-                                          controller.addToCart(
-                                              data: controller
-                                                  .mainProductList[index]);
-                                        },
-                                        icon: Icons.add_shopping_cart,
-                                      );
+                                          onTap: () {
+                                            Get.toNamed(Routes.VIEW_PRODUCT,
+                                                arguments: controller
+                                                    .mainProductList[index]);
+                                          },
+                                          image: controller
+                                              .mainProductList[index]
+                                              .images![0],
+                                          discount: controller
+                                              .mainProductList[index].discount!
+                                              .toStringAsFixed(0),
+                                          companyName: controller
+                                              .mainProductList[index].title,
+                                          categoryName: controller
+                                              .mainProductList[index]
+                                              .category!
+                                              .name,
+                                          subCategoryName: controller
+                                              .mainProductList[index]
+                                              .subCategory!
+                                              .name,
+                                          price: controller
+                                              .mainProductList[index].price
+                                              .toString(),
+                                          discountedPrice: controller
+                                              .mainProductList[index]
+                                              .discountedPrice
+                                              .toString(),
+                                          rating: controller
+                                              .mainProductList[index].rating
+                                              .toString(),
+                                          ButtonText: "ADD TO CART",
+                                          ButtonTap: () {
+                                            print(
+                                                "${controller.mainProductList[index].sId}");
+                                            print(
+                                                "Bearer ${box.read(ArgumentConstant.token)}");
+                                            controller.addToCart(
+                                                data: controller
+                                                    .mainProductList[index]);
+                                          },
+                                          icon: Icons.add_shopping_cart,
+                                          isShipping: controller
+                                              .mainProductList[index]
+                                              .sellerId!
+                                              .waiveOffShipping);
                                     },
                                     gridDelegate:
                                         SliverGridDelegateWithFixedCrossAxisCount(

@@ -772,6 +772,10 @@ class HomeView extends GetWidget<HomeController> {
                                                         .TopProductlist[index]);
                                               },
                                               icon: Icons.add_shopping_cart,
+                                              isShipping: controller
+                                                  .TopProductlist[index]
+                                                  .sellerId!
+                                                  .waiveOffShipping,
                                             );
                                           },
                                           gridDelegate:
