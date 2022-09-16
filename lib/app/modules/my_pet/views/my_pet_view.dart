@@ -13,16 +13,17 @@ import '../controllers/my_pet_controller.dart';
 
 class MyPetView extends GetWidget<MyPetController> {
   var scaffoldKey = GlobalKey<ScaffoldState>();
-   MyPetView({Key? key}) : super(key: key);
+  MyPetView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     return SafeArea(
       child: Obx(() {
         return Scaffold(
           key: scaffoldKey,
-          endDrawer: Drawer(child: CartDrawerView(),),
+          endDrawer: Drawer(
+            child: CartDrawerView(),
+          ),
           body: WillPopScope(
             onWillPop: () async {
               Get.offAllNamed(Routes.HOME);
@@ -74,13 +75,14 @@ class MyPetView extends GetWidget<MyPetController> {
                                       children: [
                                         IconButton(
                                             onPressed: () {
-                                              if ((box.read(
-                                                  ArgumentConstant.isUserLogin) ==
+                                              if ((box.read(ArgumentConstant
+                                                      .isUserLogin) ==
                                                   null)) {
-                                                Get.toNamed(Routes.LOGIN_SCREEN);
-                                              }
-                                              else {
-                                                scaffoldKey.currentState!.openEndDrawer();
+                                                Get.toNamed(
+                                                    Routes.LOGIN_SCREEN);
+                                              } else {
+                                                scaffoldKey.currentState!
+                                                    .openEndDrawer();
                                               }
                                             },
                                             icon: Icon(
@@ -88,27 +90,28 @@ class MyPetView extends GetWidget<MyPetController> {
                                               size: 25,
                                               color: Colors.grey[500],
                                             )),
-                                        controller.count1.data == null
+                                        controller.count1.data == 0
                                             ? Container()
                                             : Positioned(
-                                            left: 22,
-                                            top: 2,
-                                            child: Container(
-                                              width: 18,
-                                              height: 18,
-                                              alignment: Alignment.center,
-                                              decoration: BoxDecoration(
-                                                color: Color.fromRGBO(
-                                                    32, 193, 244, 1),
-                                                shape: BoxShape.circle,
-                                              ),
-                                              child: Text(
-                                                "${controller.count1.data}",
-                                                style: GoogleFonts.raleway(
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Colors.white),
-                                              ),
-                                            )),
+                                                left: 22,
+                                                top: 2,
+                                                child: Container(
+                                                  width: 18,
+                                                  height: 18,
+                                                  alignment: Alignment.center,
+                                                  decoration: BoxDecoration(
+                                                    color: Color.fromRGBO(
+                                                        32, 193, 244, 1),
+                                                    shape: BoxShape.circle,
+                                                  ),
+                                                  child: Text(
+                                                    "${controller.count1.data}",
+                                                    style: GoogleFonts.raleway(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.white),
+                                                  ),
+                                                )),
                                       ],
                                     ),
                                     SizedBox(
