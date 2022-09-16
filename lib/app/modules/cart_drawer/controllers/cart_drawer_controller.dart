@@ -164,8 +164,6 @@ class CartDrawerController extends GetxController {
       });
 
       if (response!.statusCode == 200) {
-        Get.snackbar("Success", "Qunatity Updated",
-            snackPosition: SnackPosition.BOTTOM);
         cartProductList.forEach((element) {
           if (element.productId == data.productId) {
             element.quantity = element.quantity! - 1;
