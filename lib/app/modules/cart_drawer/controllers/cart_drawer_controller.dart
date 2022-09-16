@@ -27,53 +27,17 @@ import 'package:waggs_app/app/routes/app_pages.dart';
 import '../../../Modal/bannerAllProductModel.dart';
 
 class CartDrawerController extends GetxController {
-  GetAllproduct getAllproduct = GetAllproduct();
-  CategoryModel categoryModel = CategoryModel();
   Shipping1 shipping1 = Shipping1();
-  bannerModels bannerModel = bannerModels();
-  StoreModule storeModule = StoreModule();
   Count1 count1 = Count1();
   RxBool hasData = false.obs;
   RxBool isLoading = false.obs;
   CartProduct cartProduct = CartProduct();
-  SubCategorymodel subCategorymodel = SubCategorymodel();
   GlobalKey<ScaffoldState> key = GlobalKey<ScaffoldState>();
-  RxList<Products> mainProductList = RxList<Products>([]);
   RxList<Details> cartProductList = RxList<Details>([]);
-  RxList<Products> productList = RxList<Products>([]);
-  RxList<CategoryData> CatagoryList = RxList<CategoryData>([]);
-  RxList<SubCategoryData> SubCatagoryList = RxList<SubCategoryData>([]);
-  RxList<SubCategoryData> subData = RxList<SubCategoryData>([]);
-  RxList<BannerData> bannerList = RxList<BannerData>([]);
-  TextEditingController searchController = TextEditingController();
-  RxList<Products0> TopProductlist = RxList<Products0>([]);
-  RxList<Sellers> SellersList = RxList<Sellers>([]);
   RxList<Count1> Countlist = RxList<Count1>([]);
-  RxBool isFilterDrawer = false.obs;
-  List<String> imageList = [
-    'assets/category01.jpg',
-    'assets/category02.jpg',
-    'assets/category03.jpg',
-    'assets/category04.jpg',
-    'assets/category05.jpg'
-  ].obs;
-  List respons = [];
-  List respons1 = [];
-  final count = 0.obs;
-  RxBool isOpen = false.obs;
-  RxBool isOpen1 = false.obs;
-  RxString url = ''.obs;
-  Orders1 orders1 = Orders1();
-  RxList<Orders1> OrderList = RxList<Orders1>([]);
-  RxList<Map<String, dynamic>> orderData = RxList<Map<String, dynamic>>([]);
   @override
   void onInit() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      bannerAllProduct();
-      AllCategory();
-      SubCategory();
-      TopSellingStoreApi();
-      TopSellingProductApi();
       CartCount();
       CartProductApi();
       ShippingApi();
@@ -91,21 +55,6 @@ class CartDrawerController extends GetxController {
     super.onClose();
   }
 
-  AllCategory() async {
-    var url = Uri.parse(baseUrl + ApiConstant.AllCategory);
-    var response = await http.get(url);
-    print('response status:${response.request}');
-    dynamic result = jsonDecode(response.body);
-    categoryModel = CategoryModel.fromJson(result);
-    print(result);
-    if (!isNullEmptyOrFalse(categoryModel.catagoryData)) {
-      categoryModel.catagoryData!.forEach((element) {
-        CatagoryList.add(element);
-      });
-      getAllUserApi();
-    }
-  }
-
   ShippingApi() async {
     var url = Uri.parse(baseUrl + ApiConstant.shipping);
     var response = await http.get(url);
@@ -117,133 +66,6 @@ class CartDrawerController extends GetxController {
       if (!isNullEmptyOrFalse(res)) {
         shipping1 = res.data!;
         print(shipping1);
-      }
-    }
-  }
-
-  SubCategory() async {
-    var url = Uri.parse(baseUrl + ApiConstant.AllSubCategory);
-    var response = await http.get(url);
-    print('response status:${response.request}');
-    dynamic result = jsonDecode(response.body);
-    subCategorymodel = SubCategorymodel.fromJson(result);
-    print(result);
-    if (!isNullEmptyOrFalse(subCategorymodel.data)) {
-      subCategorymodel.data!.forEach((element) {
-        SubCatagoryList.add(element);
-      });
-      getAllUserApi();
-    }
-  }
-
-  getAllUserApi() async {
-    var url = Uri.parse(baseUrl + ApiConstant.getAllProductUsers);
-    var response = await http.get(url);
-    print('Response status: ${response.statusCode}');
-    print('Response body: ${response.body}');
-    dynamic result = jsonDecode(response.body);
-    getAllproduct = GetAllproduct.fromJson(result);
-    if (!isNullEmptyOrFalse(getAllproduct.data)) {
-      if (!isNullEmptyOrFalse(getAllproduct.data!.products)) {
-        getAllproduct.data!.products!.forEach((element) {
-          mainProductList.add(element);
-        });
-        mainProductList.forEach((element) {
-          if (element.category!.sId == CatagoryList[0].sId &&
-              element.subCategory!.categoryId == CatagoryList[0].sId) {
-            productList.add(element);
-          }
-        });
-        productList.refresh();
-      }
-    }
-  }
-
-  bannerAllProduct() async {
-    var url = Uri.parse(baseUrl + ApiConstant.bannerProductUsers);
-    var response = await http.get(url);
-    print('Response status: ${response.statusCode}');
-    print('Response body: ${response.body}');
-    dynamic result = jsonDecode(response.body);
-    bannerModel = bannerModels.fromJson(result);
-    if (!isNullEmptyOrFalse(bannerModel.data)) {
-      bannerModel.data!.forEach((element) {
-        bannerList.add(element);
-      });
-      getAllUserApi();
-    }
-  }
-
-  TopSellingStoreApi() async {
-    var url = Uri.parse(baseUrl + ApiConstant.TopStore);
-    var response = await http.get(url);
-    print('Response status: ${response.statusCode}');
-    print('Response body: ${response.body}');
-    dynamic result = jsonDecode(response.body);
-    storeModule = StoreModule.fromJson(result);
-    print(result);
-    if (!isNullEmptyOrFalse(storeModule.data)) {
-      if (!isNullEmptyOrFalse(storeModule.data!.sellers)) {
-        storeModule.data!.sellers!.forEach((element) {
-          SellersList.add(element);
-        });
-        getAllUserApi();
-      }
-    }
-  }
-
-  TopSellingProductApi() async {
-    var url = Uri.parse(baseUrl + ApiConstant.TopStore);
-    var response = await http.get(url);
-    print('Response status: ${response.statusCode}');
-    print('Response body: ${response.body}');
-    dynamic result = jsonDecode(response.body);
-    storeModule = StoreModule.fromJson(result);
-    print(result);
-    if (!isNullEmptyOrFalse(storeModule.data)) {
-      if (!isNullEmptyOrFalse(storeModule.data!.products)) {
-        storeModule.data!.products!.forEach((element) {
-          TopProductlist.add(element);
-        });
-        getAllUserApi();
-      }
-    }
-  }
-
-  Future<void> addToCart({required Products0 data}) async {
-    if ((box.read(ArgumentConstant.isUserLogin) == null)) {
-      Get.toNamed(Routes.LOGIN_SCREEN);
-    } else {
-      print('Bearer ${box.read(ArgumentConstant.token)}');
-      try {
-        var url = Uri.parse(baseUrl + ApiConstant.Cart);
-        var response;
-        await http.post(url, body: {
-          'productId': '${data.sId}',
-        }, headers: {
-          'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
-        }).then((value) {
-          response = value;
-          CartProductApi();
-          CartCount();
-        });
-        respons.add(response.body);
-        print(jsonDecode(response.body).runtimeType);
-        print('Response status: ${response.statusCode}');
-        print('Response body: ${response.body}');
-        if (response.statusCode == 200) {
-          Get.snackbar("Success", "Product Successfully add to cart",
-              snackPosition: SnackPosition.BOTTOM,
-              backgroundColor: Colors.green);
-        } else {
-          Get.snackbar("Error", "Product already in cart",
-              snackPosition: SnackPosition.BOTTOM,
-              backgroundColor: Colors.orangeAccent);
-        }
-      } catch (e) {
-        Get.snackbar("Error", e.toString(),
-            snackPosition: SnackPosition.BOTTOM,
-            backgroundColor: Colors.orangeAccent);
       }
     }
   }
@@ -269,7 +91,9 @@ class CartDrawerController extends GetxController {
       });
       if (response!.statusCode == 200) {
         Get.snackbar("Success", "Product Remove From Your Cart ",
-            snackPosition: SnackPosition.BOTTOM);
+            snackPosition: SnackPosition.BOTTOM,
+            colorText: Colors.white,
+            backgroundColor: Colors.red);
       } else {
         print(response!.reasonPhrase);
       }
@@ -298,8 +122,6 @@ class CartDrawerController extends GetxController {
       http.StreamedResponse? response;
       await request.send().then((value) {
         response = value;
-        // isLoading.value = true;
-        // CartProductApi();
         CartCount();
       });
 
@@ -310,8 +132,6 @@ class CartDrawerController extends GetxController {
           }
         });
         cartProductList.refresh();
-        Get.snackbar("Success", "Qunatity Updated",
-            snackPosition: SnackPosition.BOTTOM);
       } else {
         print(response!.reasonPhrase);
       }
@@ -340,8 +160,6 @@ class CartDrawerController extends GetxController {
       http.StreamedResponse? response;
       await request.send().then((value) {
         response = value;
-        // isLoading.value = true;
-        // CartProductApi();
         CartCount();
       });
 
@@ -357,10 +175,7 @@ class CartDrawerController extends GetxController {
       } else {
         print(response!.reasonPhrase);
       }
-    } catch (e) {
-      Get.snackbar("Error", e.toString(),
-          snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.red);
-    }
+    } catch (e) {}
   }
 
   CartCount() async {
@@ -432,40 +247,5 @@ class CartDrawerController extends GetxController {
       }
     }
     cartProductList.refresh();
-  }
-
-  Future<void> Allorder() async {
-    var url = Uri.parse(baseUrl + ApiConstant.orderlist);
-    var response = await http.get(url, headers: {
-      'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
-    });
-    print('response status:${response.request}');
-    dynamic result = jsonDecode(response.body);
-    orders1 = Orders1.fromJson(result);
-    print(result);
-    if (!isNullEmptyOrFalse(orders1.data)) {
-      OrderList.add(orders1);
-
-      print(OrderList);
-
-      if (!isNullEmptyOrFalse(OrderList)) {
-        if (!isNullEmptyOrFalse(OrderList[0].data)) {
-          if (!isNullEmptyOrFalse(OrderList[0].data!.orderDetails)) {
-            OrderList[0].data!.orderDetails!.forEach((element) {
-              Map<String, dynamic> dict = {};
-              dict["GroupBy"] = element.orderNo! + "_" + element.createdAt!;
-              dict["OrderData"] = element;
-              print(element.createdAt!);
-              orderData.add(dict);
-            });
-          }
-        }
-        print(orderData);
-        Get.toNamed(Routes.ORDER_PAGE, arguments: {
-          ArgumentConstant.orderData: orderData,
-        });
-      }
-    } else {}
-    OrderList.refresh();
   }
 }
