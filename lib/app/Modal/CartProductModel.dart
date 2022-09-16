@@ -6,7 +6,9 @@ class CartProduct {
   CartProduct({this.responseCode, this.data, this.message});
 
   CartProduct.fromJson(Map<String, dynamic> json) {
-    responseCode = (json['responseCode'].runtimeType == double )?int.parse(json['responseCode']):json['responseCode'];
+    responseCode = (json['responseCode'].runtimeType == double)
+        ? int.parse(json['responseCode'])
+        : json['responseCode'];
     data = json['data'] != null ? new Data.fromJson(json['data']) : null;
     message = json['message'];
   }
@@ -55,14 +57,17 @@ class Details {
   int? quantity;
   String? productId;
   Product2? product;
+  String? shippingCharge;
 
-  Details({this.quantity, this.productId, this.product});
+  Details(
+      {this.quantity, this.productId, this.product, this.shippingCharge = "0"});
 
   Details.fromJson(Map<String, dynamic> json) {
     quantity = json['quantity'];
     productId = json['productId'];
     product =
-    json['product'] != null ? new Product2.fromJson(json['product']) : null;
+        json['product'] != null ? new Product2.fromJson(json['product']) : null;
+    shippingCharge = "0";
   }
 
   Map<String, dynamic> toJson() {
@@ -100,25 +105,25 @@ class Product2 {
 
   Product2(
       {this.sId,
-        this.sellerId,
-        this.title,
-        this.description,
-        this.category,
-        this.subCategory,
-        this.weight,
-        this.unit,
-        this.color,
-        this.price,
-        this.discountedPrice,
-        this.discount,
-        this.lifeStage,
-        this.brand,
-        this.breedSize,
-        this.flavor,
-        this.productType,
-        this.materialUsed,
-        this.vegNonveg,
-        this.images});
+      this.sellerId,
+      this.title,
+      this.description,
+      this.category,
+      this.subCategory,
+      this.weight,
+      this.unit,
+      this.color,
+      this.price,
+      this.discountedPrice,
+      this.discount,
+      this.lifeStage,
+      this.brand,
+      this.breedSize,
+      this.flavor,
+      this.productType,
+      this.materialUsed,
+      this.vegNonveg,
+      this.images});
 
   Product2.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -134,7 +139,9 @@ class Product2 {
     color = json['color'];
     price = json['price'];
     discountedPrice = json['discountedPrice'];
-    discount = (json['discount'].runtimeType == int )?double.tryParse(json['discount'].toString()):json['discount'];
+    discount = (json['discount'].runtimeType == int)
+        ? double.tryParse(json['discount'].toString())
+        : json['discount'];
     lifeStage = json['life_stage'];
     brand = json['brand'];
     breedSize = json['breed_size'];
@@ -198,26 +205,26 @@ class SellerId {
 
   SellerId(
       {this.sId,
-        this.isEmailVerified,
-        this.isApproved,
-        this.waiveOffShipping,
-        this.name,
-        this.email,
-        this.mobile,
-        this.countryCode,
-        this.address,
-        this.latitude,
-        this.longitude,
-        this.city,
-        this.companyName,
-        this.country,
-        this.fssaiNumber,
-        this.gstNo,
-        this.logoUrl,
-        this.panNo,
-        this.pincode,
-        this.shippingLimit,
-        this.state});
+      this.isEmailVerified,
+      this.isApproved,
+      this.waiveOffShipping,
+      this.name,
+      this.email,
+      this.mobile,
+      this.countryCode,
+      this.address,
+      this.latitude,
+      this.longitude,
+      this.city,
+      this.companyName,
+      this.country,
+      this.fssaiNumber,
+      this.gstNo,
+      this.logoUrl,
+      this.panNo,
+      this.pincode,
+      this.shippingLimit,
+      this.state});
 
   SellerId.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
