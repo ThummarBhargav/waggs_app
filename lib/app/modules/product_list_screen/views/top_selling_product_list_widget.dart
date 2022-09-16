@@ -80,7 +80,8 @@ class _TopSellingProductListWidgetState
                         size: 25,
                         color: Colors.grey[500],
                       )),
-                  controller.count1.data == 0
+                  (controller.count1.data == 0 ||
+                          controller.count1.data == null)
                       ? Container()
                       : Positioned(
                           left: 22,
