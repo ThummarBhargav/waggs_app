@@ -82,7 +82,6 @@ class ViewCartController extends GetxController {
               _currentPosition!.value.longitude)
           .then((value) {
         placemarks.clear();
-
         placemarks.addAll(value);
       });
       Placemark place = placemarks[0];
@@ -360,6 +359,7 @@ class ViewCartController extends GetxController {
                   ),
                   GestureDetector(
                     onTap: () {
+                       // getCurrentLocation();
                       print(
                           "latitude===============${_currentPosition!.value.latitude}");
                       print(
