@@ -202,50 +202,52 @@ class CartDrawerController extends GetxController {
     var response;
     await http.get(url, headers: {
       'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
-    }).then((value) {
-      hasData.value = true;
+    }).then((value) async {
       print(value);
       response = value;
-    }).catchError((error) {
-      hasData.value = false;
-    });
-    print('Response status: ${response.statusCode}');
-    print('Response body: ${response.body}');
-    dynamic result = jsonDecode(response.body);
-    cartProduct = CartProduct.fromJson(result);
-    print(result);
-    Position? currentPositionData = await getCurrentLocation();
-    if (!isNullEmptyOrFalse(cartProduct.data)) {
-      if (!isNullEmptyOrFalse(cartProduct.data!.details)) {
-        cartProduct.data!.details!.forEach((element) {
-          if (!isNullEmptyOrFalse(element.product)) {
-            if (!isNullEmptyOrFalse(element.product!.sellerId)) {
-              if (!isNullEmptyOrFalse(currentPositionData)) {
-                if (!isNullEmptyOrFalse(element.product!.sellerId!.latitude) &&
-                    !isNullEmptyOrFalse(element.product!.sellerId!.longitude) &&
-                    !isNullEmptyOrFalse(currentPositionData!.latitude) &&
-                    !isNullEmptyOrFalse(currentPositionData.longitude)) {
-                  double lat2 = element.product!.sellerId!.latitude!;
-                  double lat1 = currentPositionData.latitude;
-                  double lon2 = element.product!.sellerId!.longitude!;
-                  double lon1 = currentPositionData.longitude;
-                  var p = 0.017453292519943295;
-                  var c = cos;
-                  var a = 0.5 -
-                      c((lat2 - lat1) * p) / 2 +
-                      c(lat1 * p) *
-                          c(lat2 * p) *
-                          (1 - c((lon2 - lon1) * p)) /
-                          2;
-                  print("My Distance := ${12742 * asin(sqrt(a))}");
+      print('Response status: ${response.statusCode}');
+      print('Response body: ${response.body}');
+      dynamic result = jsonDecode(response.body);
+      cartProduct = CartProduct.fromJson(result);
+      print(result);
+      Position? currentPositionData = await getCurrentLocation();
+      if (!isNullEmptyOrFalse(cartProduct.data)) {
+        if (!isNullEmptyOrFalse(cartProduct.data!.details)) {
+          cartProduct.data!.details!.forEach((element) {
+            if (!isNullEmptyOrFalse(element.product)) {
+              if (!isNullEmptyOrFalse(element.product!.sellerId)) {
+                if (!isNullEmptyOrFalse(currentPositionData)) {
+                  if (!isNullEmptyOrFalse(
+                          element.product!.sellerId!.latitude) &&
+                      !isNullEmptyOrFalse(
+                          element.product!.sellerId!.longitude) &&
+                      !isNullEmptyOrFalse(currentPositionData!.latitude) &&
+                      !isNullEmptyOrFalse(currentPositionData.longitude)) {
+                    double lat2 = element.product!.sellerId!.latitude!;
+                    double lat1 = currentPositionData.latitude;
+                    double lon2 = element.product!.sellerId!.longitude!;
+                    double lon1 = currentPositionData.longitude;
+                    var p = 0.017453292519943295;
+                    var c = cos;
+                    var a = 0.5 -
+                        c((lat2 - lat1) * p) / 2 +
+                        c(lat1 * p) *
+                            c(lat2 * p) *
+                            (1 - c((lon2 - lon1) * p)) /
+                            2;
+                    print("My Distance := ${12742 * asin(sqrt(a))}");
+                  }
                 }
               }
             }
-          }
-          cartProductList.add(element);
-        });
+            cartProductList.add(element);
+          });
+        }
       }
-    }
-    cartProductList.refresh();
+      hasData.value = true;
+      cartProductList.refresh();
+    }).catchError((error) {
+      hasData.value = false;
+    });
   }
 }
