@@ -12,6 +12,8 @@ import '../../../constant/SizeConstant.dart';
 
 class ViewProductController extends GetxController {
   //TODO: Implement ViewProductController
+
+  var scaffoldKey = GlobalKey<ScaffoldState>();
   Products0 data = Get.arguments;
   RxString url = ''.obs;
   final count = 0.obs;
@@ -28,10 +30,11 @@ class ViewProductController extends GetxController {
 
   @override
   void onInit() {
-    super.onInit();
     CartCount();
-    getData();
-    CartProductApi();
+   getData();
+   CartProductApi();
+    super.onInit();
+
 
   }
 

@@ -79,11 +79,12 @@ class AddPetController extends GetxController {
       }
     }).catchError((error) {
       hasData.value = true;
-      getMySnackBar(
-          context: context,
-          title: "Error",
-          message: "Something Went Wrong....",
-          backColor: Colors.red);
+      print("error===${error.toString()}");
+      // getMySnackBar(
+      //     context: context,
+      //     title: "Error",
+      //     message: "Something Went Wrong....",
+      //     backColor: Colors.red);
     });
   }
 

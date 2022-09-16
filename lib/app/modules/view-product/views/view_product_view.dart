@@ -22,10 +22,10 @@ class ViewProductView extends GetWidget<ViewProductController> {
   CarouselController carouselController = CarouselController();
 
   Widget build(BuildContext context) {
-    var scaffoldKey = GlobalKey<ScaffoldState>();
+
     return SafeArea(
       child: Scaffold(
-        key: scaffoldKey,
+        key: controller.scaffoldKey,
         endDrawer: Drawer(width: 250, child: CartDrawerView()),
         appBar: AppBar(
           elevation: 0,
@@ -46,7 +46,7 @@ class ViewProductView extends GetWidget<ViewProductController> {
                       if ((box.read(ArgumentConstant.isUserLogin) == null)) {
                         Get.toNamed(Routes.LOGIN_SCREEN);
                       } else {
-                        scaffoldKey.currentState!.openEndDrawer();
+                        controller.scaffoldKey.currentState!.openEndDrawer();
                       }
                     },
                     icon: Icon(
@@ -78,8 +78,7 @@ class ViewProductView extends GetWidget<ViewProductController> {
             )
           ],
         ),
-        body: Obx(
-          () => SingleChildScrollView(
+        body:  SingleChildScrollView(
             child: Container(
               child: Column(
                 children: [
@@ -1043,7 +1042,6 @@ class ViewProductView extends GetWidget<ViewProductController> {
             ),
           ),
         ),
-      ),
     );
   }
 }
