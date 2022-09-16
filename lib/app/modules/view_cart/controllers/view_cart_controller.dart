@@ -177,8 +177,8 @@ class ViewCartController extends GetxController {
           }
         });
         cartProductList.refresh();
-        Get.snackbar("Success", "Qunatity Updated",
-            snackPosition: SnackPosition.BOTTOM);
+        // Get.snackbar("Success", "Qunatity Updated",
+        //     snackPosition: SnackPosition.BOTTOM);
       } else {
         print(response!.reasonPhrase);
       }
@@ -213,8 +213,8 @@ class ViewCartController extends GetxController {
       });
 
       if (response!.statusCode == 200) {
-        Get.snackbar("Success", "Qunatity Updated",
-            snackPosition: SnackPosition.BOTTOM);
+        // Get.snackbar("Success", "Qunatity Updated",
+        //     snackPosition: SnackPosition.BOTTOM);
         cartProductList.forEach((element) {
           if (element.productId == data.productId) {
             element.quantity = element.quantity! - 1;

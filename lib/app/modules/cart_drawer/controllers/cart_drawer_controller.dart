@@ -162,7 +162,6 @@ class CartDrawerController extends GetxController {
         response = value;
         CartCount();
       });
-
       if (response!.statusCode == 200) {
         cartProductList.forEach((element) {
           if (element.productId == data.productId) {
