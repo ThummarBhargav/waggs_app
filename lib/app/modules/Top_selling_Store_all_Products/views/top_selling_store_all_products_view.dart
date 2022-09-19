@@ -23,7 +23,6 @@ class TopSellingStoreAllProductsView
   Widget build(BuildContext context) {
     return SafeArea(
       child: Obx(() {
-        controller.Countlist.refresh();
         return Scaffold(
           key: ScaffoldKey2,
           drawerEdgeDragWidth: 0,
@@ -829,264 +828,244 @@ class TopSellingStoreAllProductsView
             () => (controller.hasData.isFalse)
                 ? Center(child: CircularProgressIndicator())
                 : (isNullEmptyOrFalse(controller.mainProductList))
-                    ? Column(
-                        children: [
-                          Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                controller.data.companyName == null
-                                    ? Container()
-                                    : Stack(
+                    ? Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            controller.data.companyName == null
+                                ? Container()
+                                : Stack(
+                                    children: [
+                                      Container(
+                                        height: 180,
+                                        padding: EdgeInsets.all(100),
+                                        width: double.infinity,
+                                        decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                              image: AssetImage(
+                                                  "assets/catagory.jpg"),
+                                              fit: BoxFit.fill),
+                                        ),
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
                                         children: [
                                           Container(
-                                            height: 180,
-                                            padding: EdgeInsets.all(100),
-                                            width: double.infinity,
-                                            decoration: BoxDecoration(
-                                              image: DecorationImage(
-                                                  image: AssetImage(
-                                                      "assets/catagory.jpg"),
-                                                  fit: BoxFit.fill),
-                                            ),
-                                          ),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.end,
-                                            children: [
-                                              Container(
-                                                margin: EdgeInsets.only(
-                                                    top: 25, right: 20),
-                                                width: 120,
-                                                height: 120,
-                                                child: CachedNetworkImage(
-                                                    imageUrl: controller
-                                                        .data.logoUrl
-                                                        .toString(),
-                                                    imageBuilder: (context,
-                                                            imageProvider) =>
-                                                        Container(
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            image: DecorationImage(
-                                                                image:
-                                                                    imageProvider,
-                                                                fit: BoxFit
-                                                                    .cover,
-                                                                colorFilter: ColorFilter.mode(
+                                            margin: EdgeInsets.only(
+                                                top: 25, right: 20),
+                                            width: 120,
+                                            height: 120,
+                                            child: CachedNetworkImage(
+                                                imageUrl: controller
+                                                    .data.logoUrl
+                                                    .toString(),
+                                                imageBuilder: (context,
+                                                        imageProvider) =>
+                                                    Container(
+                                                      decoration: BoxDecoration(
+                                                        image: DecorationImage(
+                                                            image:
+                                                                imageProvider,
+                                                            fit: BoxFit.cover,
+                                                            colorFilter:
+                                                                ColorFilter.mode(
                                                                     Colors
                                                                         .transparent,
                                                                     BlendMode
                                                                         .colorBurn)),
-                                                          ),
-                                                        ),
-                                                    placeholder: (context,
-                                                            url) =>
-                                                        CircularProgressIndicator(),
-                                                    errorWidget: (context, url,
-                                                            error) =>
-                                                        Container(
-                                                          color:
-                                                              Colors.grey[100],
-                                                        )),
-                                              ),
-                                            ],
-                                          ),
-                                          Column(
-                                            children: [
-                                              Row(
-                                                children: [
-                                                  Container(
-                                                    margin: EdgeInsets.only(
-                                                        top: 20, left: 25),
-                                                    child: Text(
-                                                      controller
-                                                          .data.companyName
-                                                          .toString(),
-                                                      style: GoogleFonts.roboto(
-                                                          color: Colors
-                                                              .orangeAccent,
-                                                          fontWeight:
-                                                              FontWeight.w700,
-                                                          fontSize: 22),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              Row(
-                                                children: [
-                                                  Container(
-                                                      margin: EdgeInsets.only(
-                                                          left: 25),
-                                                      child: Icon(
-                                                          Icons.location_on)),
-                                                  Container(
-                                                    height: 80,
-                                                    width: 170,
-                                                    // color: Colors.grey,
-                                                    padding: EdgeInsets.only(
-                                                        left: 5,
-                                                        right: 5,
-                                                        top: 2),
-                                                    margin: EdgeInsets.only(
-                                                        top: 10, left: 2),
-                                                    child: Text(
-                                                        "${controller.data.address}",
-                                                        style:
-                                                            GoogleFonts.roboto(
-                                                                fontSize: 10,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                color: Colors
-                                                                    .grey
-                                                                    .shade600)),
-                                                  ),
-                                                ],
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 25.0),
-                                                child: Row(
-                                                  children: [
-                                                    RatingBarIndicator(
-                                                      rating: 0,
-                                                      itemBuilder:
-                                                          (context, index) =>
-                                                              Icon(
-                                                        Icons.star,
-                                                        color: Colors.amber,
                                                       ),
-                                                      itemCount: 5,
-                                                      itemSize: 18.0,
-                                                      direction:
-                                                          Axis.horizontal,
                                                     ),
-                                                  ],
+                                                placeholder: (context, url) =>
+                                                    CircularProgressIndicator(),
+                                                errorWidget: (context, url,
+                                                        error) =>
+                                                    Container(
+                                                      color: Colors.grey[100],
+                                                    )),
+                                          ),
+                                        ],
+                                      ),
+                                      Column(
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Container(
+                                                margin: EdgeInsets.only(
+                                                    top: 20, left: 25),
+                                                child: Text(
+                                                  controller.data.companyName
+                                                      .toString(),
+                                                  style: GoogleFonts.roboto(
+                                                      color:
+                                                          Colors.orangeAccent,
+                                                      fontWeight:
+                                                          FontWeight.w700,
+                                                      fontSize: 22),
                                                 ),
-                                              )
+                                              ),
                                             ],
-                                          )
-                                        ],
-                                      ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    TextButton(
-                                      onPressed: () {
-                                        controller.isFilterDrawer.value = true;
-                                        ;
-                                        ScaffoldKey2.currentState!
-                                            .openEndDrawer();
-                                      },
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Container(
-                                            child: Text(
-                                              "Filters",
-                                              style: GoogleFonts.raleway(
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.black,
-                                              ),
-                                            ),
                                           ),
-                                          SizedBox(
-                                            width: 5,
-                                          ),
-                                          Icon(
-                                            Icons.filter_list,
-                                            color: Colors.black,
-                                            size: 18,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    TextButton(
-                                      onPressed: () {},
-                                      child: Row(
-                                        children: [
-                                          Container(
-                                            child: Text(
-                                              "Sort By: ",
-                                              style: GoogleFonts.raleway(
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.black,
-                                              ),
-                                            ),
-                                          ),
-                                          PopupMenuButton<int>(
-                                            itemBuilder: (context) {
-                                              return List.generate(
-                                                  controller.location.length,
-                                                  (index) => PopupMenuItem(
-                                                        child: Text(controller
-                                                            .location[index]),
-                                                        onTap: () {
-                                                          controller
-                                                                  .price.value =
-                                                              controller
-                                                                      .location[
-                                                                  index];
-                                                          controller.price
-                                                              .refresh();
-                                                        },
-                                                      ));
-                                            },
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceAround,
-                                              children: [
-                                                Container(
-                                                  child: Text(
-                                                    "${controller.price.value}",
-                                                    style: GoogleFonts.raleway(
+                                          Row(
+                                            children: [
+                                              Container(
+                                                  margin:
+                                                      EdgeInsets.only(left: 25),
+                                                  child:
+                                                      Icon(Icons.location_on)),
+                                              Container(
+                                                height: 80,
+                                                width: 170,
+                                                // color: Colors.grey,
+                                                padding: EdgeInsets.only(
+                                                    left: 5, right: 5, top: 2),
+                                                margin: EdgeInsets.only(
+                                                    top: 10, left: 2),
+                                                child: Text(
+                                                    "${controller.data.address}",
+                                                    style: GoogleFonts.roboto(
+                                                        fontSize: 10,
                                                         fontWeight:
-                                                            FontWeight.w600,
-                                                        color: Colors.black,
-                                                        fontSize: 15),
+                                                            FontWeight.bold,
+                                                        color: Colors
+                                                            .grey.shade600)),
+                                              ),
+                                            ],
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 25.0),
+                                            child: Row(
+                                              children: [
+                                                RatingBarIndicator(
+                                                  rating: 0,
+                                                  itemBuilder:
+                                                      (context, index) => Icon(
+                                                    Icons.star,
+                                                    color: Colors.amber,
                                                   ),
+                                                  itemCount: 5,
+                                                  itemSize: 18.0,
+                                                  direction: Axis.horizontal,
                                                 ),
-                                                SizedBox(
-                                                  width: 10,
-                                                ),
-                                                Container(
-                                                  child: Icon(
-                                                    Icons
-                                                        .keyboard_arrow_down_outlined,
-                                                    color: Colors.black,
-                                                  ),
-                                                )
                                               ],
                                             ),
-                                          ),
+                                          )
                                         ],
+                                      )
+                                    ],
+                                  ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                TextButton(
+                                  onPressed: () {
+                                    controller.isFilterDrawer.value = true;
+                                    ;
+                                    ScaffoldKey2.currentState!.openEndDrawer();
+                                  },
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        child: Text(
+                                          "Filters",
+                                          style: GoogleFonts.raleway(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      Icon(
+                                        Icons.filter_list,
+                                        color: Colors.black,
+                                        size: 18,
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                                Spacer(),
-                                Container(
-                                  height: 300,
-                                  width: 250,
-                                  child: SvgPicture.asset("assets/NoData.svg"),
+                                SizedBox(
+                                  width: 10,
                                 ),
-                                Text(
-                                  "No data found",
-                                  style: GoogleFonts.raleway(
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 20,
-                                      color: Color.fromRGBO(33, 43, 54, 1)),
+                                TextButton(
+                                  onPressed: () {},
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        child: Text(
+                                          "Sort By: ",
+                                          style: GoogleFonts.raleway(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                      ),
+                                      PopupMenuButton<int>(
+                                        itemBuilder: (context) {
+                                          return List.generate(
+                                              controller.location.length,
+                                              (index) => PopupMenuItem(
+                                                    child: Text(controller
+                                                        .location[index]),
+                                                    onTap: () {
+                                                      controller.price.value =
+                                                          controller
+                                                              .location[index];
+                                                      controller.price
+                                                          .refresh();
+                                                    },
+                                                  ));
+                                        },
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          children: [
+                                            Container(
+                                              child: Text(
+                                                "${controller.price.value}",
+                                                style: GoogleFonts.raleway(
+                                                    fontWeight: FontWeight.w600,
+                                                    color: Colors.black,
+                                                    fontSize: 15),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: 10,
+                                            ),
+                                            Container(
+                                              child: Icon(
+                                                Icons
+                                                    .keyboard_arrow_down_outlined,
+                                                color: Colors.black,
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                                Spacer(),
                               ],
                             ),
-                          ),
-                        ],
+                            Spacer(),
+                            Container(
+                              height: 300,
+                              width: 250,
+                              child: SvgPicture.asset("assets/NoData.svg"),
+                            ),
+                            Text(
+                              "No data found",
+                              style: GoogleFonts.raleway(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 20,
+                                  color: Color.fromRGBO(33, 43, 54, 1)),
+                            ),
+                            Spacer(),
+                          ],
+                        ),
                       )
                     : Column(
                         children: [

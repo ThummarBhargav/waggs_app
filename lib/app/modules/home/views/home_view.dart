@@ -402,9 +402,9 @@ class HomeView extends GetWidget<HomeController> {
                                             children: [
                                               IconButton(
                                                   onPressed: () {
-                                                    // FocusManager
-                                                    //     .instance.primaryFocus
-                                                    //     ?.unfocus();
+                                                    FocusManager
+                                                        .instance.primaryFocus
+                                                        ?.unfocus();
 
                                                     if ((box.read(
                                                             ArgumentConstant
