@@ -13,7 +13,6 @@ import '../controllers/home_controller.dart';
 
 class HomeView extends GetWidget<HomeController> {
   const HomeView({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(

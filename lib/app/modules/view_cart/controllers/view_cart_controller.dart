@@ -85,9 +85,10 @@ class ViewCartController extends GetxController {
         placemarks.addAll(value);
       });
       Placemark place = placemarks[0];
-      _currentAddress = place.toString();
-      //"${place.street} ${} ${place.locality}, ${place.postalCode}, ${place.country}";
-      print("CurrentAddress====================" + _currentAddress);
+      _currentAddress =
+          "${place.street} ${place.subLocality} ${place.locality}, ${place.postalCode}, ${place.country}";
+      print("CurrentAddress====================" +
+          "${place.street} ${place.subLocality} ${place.locality}, ${place.postalCode}, ${place.country}");
     } catch (e) {
       print(e);
     }
@@ -359,12 +360,13 @@ class ViewCartController extends GetxController {
                   ),
                   GestureDetector(
                     onTap: () {
-                       // getCurrentLocation();
+                      // getCurrentLocation();
                       print(
                           "latitude===============${_currentPosition!.value.latitude}");
                       print(
                           "longitude===============${_currentPosition!.value.longitude}");
                       _getAddressFromLatLng();
+                      Address1(context);
                     },
                     child: Container(
                       height: 75,
@@ -412,6 +414,59 @@ class ViewCartController extends GetxController {
                         ],
                       ),
                     ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Align(
+                      alignment: Alignment.bottomRight,
+                      child: Container(
+                        child: Text(
+                          "Cancel",
+                          style: GoogleFonts.publicSans(
+                              fontWeight: FontWeight.w700,
+                              color: Color.fromRGBO(31, 193, 244, 1),
+                              fontSize: 14),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
+  }
+
+  Address1(BuildContext context) {
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) {
+          return AlertDialog(
+            content: Container(
+              height: 300,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      "Enter full address",
+                      style: GoogleFonts.publicSans(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 18,
+                          color: Colors.black),
+                    ),
+                  ),
+                  Spacer(),
+                  Row(
+                    children: [
+                      Icon(Icons.location_on),
+                      // Wrap(Text("${_currentAddress}"));
+                      //   (child: ),
+                    ],
                   ),
                   GestureDetector(
                     onTap: () {

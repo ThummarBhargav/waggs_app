@@ -110,8 +110,8 @@ Card productCard({
             ),
             Container(
               margin: EdgeInsets.only(
-                // left: 20,
-                top: 5, left: 5,
+                top: 5,
+                left: 5,
               ),
               child: Align(
                   alignment: Alignment.center,
@@ -131,7 +131,7 @@ Card productCard({
               child: Align(
                   alignment: Alignment.center,
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 3.0, bottom: 3.0),
+                    padding: const EdgeInsets.only(top: 3.0),
                     child: Text(
                       "${categoryName} - ${subCategoryName} ",
                       style: TextStyle(fontSize: 10, color: Colors.grey),
@@ -139,6 +139,7 @@ Card productCard({
                     ),
                   )),
             ),
+            Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

@@ -1086,7 +1086,11 @@ class SearchProductPageView extends GetWidget<SearchProductPageController> {
                                   gridDelegate:
                                       SliverGridDelegateWithFixedCrossAxisCount(
                                           crossAxisCount: 2,
-                                          childAspectRatio: 0.65)),
+                                          childAspectRatio:
+                                              MediaQuery.of(context)
+                                                      .size
+                                                      .height /
+                                                  1300)),
                             ),
                           ),
                         ],
