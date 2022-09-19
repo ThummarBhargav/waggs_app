@@ -396,17 +396,13 @@ class ViewCartView extends GetWidget<ViewCartController> {
                                                               Expanded(
                                                                 child: InkWell(
                                                                     onTap: () {
-                                                                      if (controller
-                                                                              .cartProductList[index]
-                                                                              .quantity ==
-                                                                          1) {
-                                                                      } else {
-                                                                        controller
-                                                                            .UpdateCartRemove(
-                                                                          data:
-                                                                              controller.cartProductList[index],
-                                                                        );
-                                                                      }
+                                                                      (controller.cartProductList[index].quantity ==
+                                                                              1)
+                                                                          ? controller.CartDeleteApi(
+                                                                              data: controller.cartProductList[index])
+                                                                          : controller.UpdateCartRemove(
+                                                                              data: controller.cartProductList[index],
+                                                                            );
                                                                     },
                                                                     child:
                                                                         Padding(
