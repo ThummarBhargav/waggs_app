@@ -52,7 +52,8 @@ class SearchProductPageView extends GetWidget<SearchProductPageController> {
                         size: 25,
                         color: Colors.grey[500],
                       )),
-                  controller.count1.data == 0
+                  (controller.count1.data == 0 ||
+                          controller.count1.data == null)
                       ? Container()
                       : Positioned(
                           left: 22,
@@ -1085,7 +1086,11 @@ class SearchProductPageView extends GetWidget<SearchProductPageController> {
                                   gridDelegate:
                                       SliverGridDelegateWithFixedCrossAxisCount(
                                           crossAxisCount: 2,
-                                          childAspectRatio: 0.65)),
+                                          childAspectRatio:
+                                              MediaQuery.of(context)
+                                                      .size
+                                                      .height /
+                                                  1300)),
                             ),
                           ),
                         ],

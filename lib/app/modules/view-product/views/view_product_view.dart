@@ -22,8 +22,8 @@ class ViewProductView extends GetWidget<ViewProductController> {
   CarouselController carouselController = CarouselController();
 
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Obx(()=>Scaffold(
+    return SafeArea(child: Obx(() {
+      return Scaffold(
         key: controller.scaffoldKey,
         endDrawer: Drawer(width: 250, child: CartDrawerView()),
         appBar: AppBar(
@@ -37,13 +37,6 @@ class ViewProductView extends GetWidget<ViewProductController> {
               icon: Icon(Icons.arrow_back_outlined)),
           centerTitle: true,
           actions: [
-            IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.search,
-                  color: Colors.grey,
-                  size: 26,
-                )),
             Stack(
               children: [
                 IconButton(
@@ -59,26 +52,27 @@ class ViewProductView extends GetWidget<ViewProductController> {
                       size: 25,
                       color: Colors.grey[500],
                     )),
-                controller.count1.data == 0
+                (controller.countData.value == 0 ||
+                        controller.countData.value == null)
                     ? Container()
                     : Positioned(
-                    left: 22,
-                    top: 2,
-                    child: Container(
-                      width: 18,
-                      height: 18,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: Color.fromRGBO(32, 193, 244, 1),
-                        shape: BoxShape.circle,
-                      ),
-                      child: Text(
-                        "${controller.count1.data}",
-                        style: GoogleFonts.raleway(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                      ),
-                    )),
+                        left: 22,
+                        top: 2,
+                        child: Container(
+                          width: 18,
+                          height: 18,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            color: Color.fromRGBO(32, 193, 244, 1),
+                            shape: BoxShape.circle,
+                          ),
+                          child: Text(
+                            "${controller.countData.value}",
+                            style: GoogleFonts.raleway(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                        )),
               ],
             )
           ],
@@ -179,98 +173,98 @@ class ViewProductView extends GetWidget<ViewProductController> {
                                       ))),
                           Expanded(
                               child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(right: 6.0, left: 6),
+                                child: Text(
+                                  "${controller.data.title}",
+                                  style: TextStyle(
+                                      color: Colors.lightBlueAccent,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    right: 6.0, left: 6, top: 10),
+                                child: Text(
+                                  "${controller.data.description}",
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: GoogleFonts.lato(
+                                      color: Colors.grey.shade500,
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 12),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Row(
                                 children: [
                                   Padding(
-                                    padding:
-                                    const EdgeInsets.only(right: 6.0, left: 6),
-                                    child: Text(
-                                      "${controller.data.title}",
-                                      style: TextStyle(
-                                          color: Colors.lightBlueAccent,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 16),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        right: 6.0, left: 6, top: 10),
-                                    child: Text(
-                                      "${controller.data.description}",
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: GoogleFonts.lato(
-                                          color: Colors.grey.shade500,
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 12),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(left: 6),
-                                        child: RatingBarIndicator(
-                                          rating:
+                                    padding: const EdgeInsets.only(left: 6),
+                                    child: RatingBarIndicator(
+                                      rating:
                                           controller.data.rating!.toDouble(),
-                                          itemBuilder: (context, index) => Icon(
-                                            Icons.star,
-                                            color: Colors.amber,
-                                          ),
-                                          itemCount: 5,
-                                          itemSize: 18.0,
-                                          direction: Axis.horizontal,
-                                        ),
+                                      itemBuilder: (context, index) => Icon(
+                                        Icons.star,
+                                        color: Colors.amber,
                                       ),
-                                      Text(
-                                        controller.data.rating!.toStringAsFixed(1),
-                                        style: TextStyle(fontSize: 10),
-                                      ),
-                                      Text(" | ${controller.data.ratedBy} Rating ",
-                                          style: TextStyle(fontSize: 10)),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 8.0),
-                                    child: Row(
-                                      children: [
-                                        Text(
-                                          "\u{20B9}${controller.data.discountedPrice}.00",
-                                          style: TextStyle(fontSize: 12),
-                                        ),
-                                        Text(
-                                          " - \u{20B9}",
-                                          style: TextStyle(
-                                              fontSize: 12, color: Colors.grey),
-                                        ),
-                                        Text("${controller.data.price}.00",
-                                            style: TextStyle(
-                                                decoration:
-                                                TextDecoration.lineThrough,
-                                                fontSize: 12,
-                                                color: Colors.grey)),
-                                      ],
+                                      itemCount: 5,
+                                      itemSize: 18.0,
+                                      direction: Axis.horizontal,
                                     ),
                                   ),
-                                  SizedBox(
-                                    height: 10,
+                                  Text(
+                                    controller.data.rating!.toStringAsFixed(1),
+                                    style: TextStyle(fontSize: 10),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 8.0),
-                                    child: Text(
-                                      "You Save : \u{20B9}${controller.data.price! - controller.data.discountedPrice!}"
-                                          "(${controller.data.discount!.toStringAsFixed(0)}%)",
-                                      style: TextStyle(
-                                          color: Colors.orange, fontSize: 12),
-                                    ),
-                                  ),
+                                  Text(" | ${controller.data.ratedBy} Rating ",
+                                      style: TextStyle(fontSize: 10)),
                                 ],
-                              ))
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      "\u{20B9}${controller.data.discountedPrice}.00",
+                                      style: TextStyle(fontSize: 12),
+                                    ),
+                                    Text(
+                                      " - \u{20B9}",
+                                      style: TextStyle(
+                                          fontSize: 12, color: Colors.grey),
+                                    ),
+                                    Text("${controller.data.price}.00",
+                                        style: TextStyle(
+                                            decoration:
+                                                TextDecoration.lineThrough,
+                                            fontSize: 12,
+                                            color: Colors.grey)),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Text(
+                                  "You Save : \u{20B9}${controller.data.price! - controller.data.discountedPrice!}"
+                                  "(${controller.data.discount!.toStringAsFixed(0)}%)",
+                                  style: TextStyle(
+                                      color: Colors.orange, fontSize: 12),
+                                ),
+                              ),
+                            ],
+                          ))
                         ],
                       ),
                     ],
@@ -288,7 +282,7 @@ class ViewProductView extends GetWidget<ViewProductController> {
                               InkWell(
                                 onTap: () {
                                   controller.url.value =
-                                  controller.data.images![index];
+                                      controller.data.images![index];
                                 },
                                 child: Container(
                                     margin: EdgeInsets.all(10),
@@ -304,200 +298,119 @@ class ViewProductView extends GetWidget<ViewProductController> {
                             ],
                           );
                         })),
-                // Row(
-                //   children: [
-                //     Padding(
-                //       padding: const EdgeInsets.symmetric(
-                //           horizontal: 15.0, vertical: 10),
-                //       child: Text(
-                //         "Quantity",
-                //         style: TextStyle(
-                //             fontSize: 20,
-                //             color: Colors.lightBlue.shade300,
-                //             fontWeight: FontWeight.w600),
-                //       ),
-                //     ),
-                //   ],
-                // ),
-                // Container(
-                //   height: 40,
-                //   width: 400,
-                //   child: ListView.builder(
-                //     itemCount: 1,
-                //     itemBuilder: (context, index) {
-                //       return Align(
-                //         alignment: Alignment.topLeft,
-                //         child: Container(
-                //           height: 34,
-                //           margin: EdgeInsets.only(
-                //               left: 8),
-                //           width:
-                //           MediaQuery.of(context)
-                //               .size
-                //               .width *
-                //               0.3,
-                //           padding: EdgeInsets.all(0),
-                //           decoration: BoxDecoration(
-                //             color: Colors.white,
-                //             borderRadius:
-                //             BorderRadius.only(
-                //               topLeft:
-                //               Radius.circular(20),
-                //               topRight:
-                //               Radius.circular(20),
-                //               bottomRight:
-                //               Radius.circular(20),
-                //               bottomLeft:
-                //               Radius.circular(20),
-                //             ),
-                //             border: Border.all(
-                //               color: Colors
-                //                   .grey.shade400,
-                //               width: 1,
-                //             ),
-                //           ),
-                //           child: Row(
-                //             children: [
-                //               Expanded(
-                //                 child: InkWell(
-                //                     onTap: () {
-                //                       controller
-                //                           .UpdateCartRemove(
-                //                         data: controller
-                //                             .cartProductList[
-                //                         index],
-                //                       );
-                //                     },
-                //                     child: Padding(
-                //                       padding:
-                //                       const EdgeInsets
-                //                           .only(
-                //                           left:
-                //                           8.0,
-                //                           right:
-                //                           5),
-                //                       child: Icon(
-                //                         Icons.remove,
-                //                         color: Colors
-                //                             .black,
-                //                         size: 22,
-                //                       ),
-                //                     )),
-                //               ),
-                //               Expanded(
-                //                   child: Container(
-                //                     height: 75,
-                //                     width: 75,
-                //                     padding: EdgeInsets
-                //                         .symmetric(
-                //                         horizontal: 3,
-                //                         vertical: 2),
-                //                     decoration:
-                //                     BoxDecoration(
-                //                       color: Colors
-                //                           .grey.shade300,
-                //                       border: Border(
-                //                         left: BorderSide(
-                //                           color:
-                //                           Colors.grey,
-                //                           width: 1.0,
-                //                         ),
-                //                         right: BorderSide(
-                //                           color:
-                //                           Colors.grey,
-                //                           width: 1.0,
-                //                         ),
-                //                       ),
-                //                     ),
-                //                     child: Center(
-                //                         child: Text(
-                //                           "${controller.cartProductList[index].quantity}",
-                //                           style: TextStyle(
-                //                               color: Colors
-                //                                   .grey
-                //                                   .shade500,
-                //                               fontSize: 18,
-                //                               fontWeight:
-                //                               FontWeight
-                //                                   .w500),
-                //                         )),
-                //                   )),
-                //               Expanded(
-                //                 child: InkWell(
-                //                     onTap: () {
-                //                       controller
-                //                           .UpdateCartAdd(
-                //                         data: controller
-                //                             .cartProductList[
-                //                         index],
-                //                       );
-                //                     },
-                //                     child: Icon(
-                //                       Icons.add,
-                //                       color: Colors
-                //                           .black,
-                //                       size: 22,
-                //                     )),
-                //               )
-                //             ],
-                //           ),
-                //         ),
-                //       );
-                //     },
-                //   ),
-                // ),
                 SizedBox(
                   height: 8,
                 ),
-                Container(
-                  child: Row(
-                    children: [
-                      Flexible(
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 18.0, top: 15),
-                          child: GestureDetector(
-                            onTap: () {
-                              controller.addToCart(data: controller.data);
-                            },
-                            child: Container(
-                              width: 250,
-                              height: 45,
-                              alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                color: Color(0xffDE8701),
-                                borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(25),
-                                  bottomRight: Radius.circular(25),
-                                  bottomLeft: Radius.circular(25),
-                                ),
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.add_shopping_cart,
-                                    color: Colors.white,
-                                  ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Text(
-                                    "ADD TO CART",
-                                    style: GoogleFonts.raleway(
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 13,
-                                      color: Colors.white,
+                (controller.data.sellerId!.waiveOffShipping == true)
+                    ? Container(
+                        child: Row(
+                          children: [
+                            Flexible(
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 18.0, top: 15),
+                                child: GestureDetector(
+                                  onTap: () {},
+                                  child: Container(
+                                    width: 250,
+                                    height: 45,
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                      color: Colors.grey,
+                                      borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(25),
+                                        bottomRight: Radius.circular(25),
+                                        bottomLeft: Radius.circular(25),
+                                      ),
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Icon(
+                                          Icons.add_shopping_cart,
+                                          color: Colors.white,
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text(
+                                          "ADD TO CART",
+                                          style: GoogleFonts.raleway(
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 13,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                ],
+                                ),
                               ),
                             ),
-                          ),
+                          ],
+                        ),
+                      )
+                    : Container(
+                        child: Row(
+                          children: [
+                            Flexible(
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 18.0, top: 15),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    controller.addToCart(data: controller.data);
+                                  },
+                                  child: Container(
+                                    width: 250,
+                                    height: 45,
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                      color: Color(0xffDE8701),
+                                      borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(25),
+                                        bottomRight: Radius.circular(25),
+                                        bottomLeft: Radius.circular(25),
+                                      ),
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Icon(
+                                          Icons.add_shopping_cart,
+                                          color: Colors.white,
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text(
+                                          "ADD TO CART",
+                                          style: GoogleFonts.raleway(
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 13,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                    ],
-                  ),
+                SizedBox(
+                  height: 10,
                 ),
+                controller.data.sellerId!.waiveOffShipping == false
+                    ? Container()
+                    : Text(
+                        "Not delivering in your area",
+                        style: TextStyle(color: Colors.red, fontSize: 15),
+                      ),
                 InkWell(
                   onTap: () {
                     controller.isOpen.value = !controller.isOpen.value;
@@ -526,13 +439,13 @@ class ViewProductView extends GetWidget<ViewProductController> {
                         ),
                         controller.isOpen.value == false
                             ? Icon(
-                          Icons.keyboard_arrow_down_sharp,
-                          color: Colors.white,
-                        )
+                                Icons.keyboard_arrow_down_sharp,
+                                color: Colors.white,
+                              )
                             : Icon(
-                          Icons.keyboard_arrow_up_sharp,
-                          color: Colors.white,
-                        )
+                                Icons.keyboard_arrow_up_sharp,
+                                color: Colors.white,
+                              )
                       ],
                     ),
                   ),
@@ -540,120 +453,120 @@ class ViewProductView extends GetWidget<ViewProductController> {
                 controller.isOpen.value == false
                     ? Container()
                     : Container(
-                    margin: EdgeInsets.only(left: 22),
-                    padding: EdgeInsets.all(5),
-                    width: MediaQuery.of(context).size.width,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
+                        margin: EdgeInsets.only(left: 22),
+                        padding: EdgeInsets.all(5),
+                        width: MediaQuery.of(context).size.width,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("Brand :  ",
-                                style:
-                                TextStyle(color: Colors.grey.shade600)),
-                            Text("${controller.data.brand}",
-                                style:
-                                TextStyle(fontWeight: FontWeight.w600)),
+                            Row(
+                              children: [
+                                Text("Brand :  ",
+                                    style:
+                                        TextStyle(color: Colors.grey.shade600)),
+                                Text("${controller.data.brand}",
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.w600)),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            controller.data.lifeStage == null
+                                ? Container()
+                                : Row(
+                                    children: [
+                                      Text("Life Stage : ",
+                                          style: TextStyle(
+                                              color: Colors.grey.shade600)),
+                                      Text("${controller.data.lifeStage}",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600)),
+                                    ],
+                                  ),
+                            controller.data.productType == null
+                                ? Container()
+                                : SizedBox(
+                                    height: 5,
+                                  ),
+                            controller.data.productType == null
+                                ? Container()
+                                : Row(
+                                    children: [
+                                      Text("Product Type :  ",
+                                          style: TextStyle(
+                                              color: Colors.grey.shade600)),
+                                      Text("${controller.data.productType}",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600)),
+                                    ],
+                                  ),
+                            controller.data.flavor == null
+                                ? Container()
+                                : SizedBox(
+                                    height: 5,
+                                  ),
+                            controller.data.flavor == null
+                                ? Container()
+                                : Row(
+                                    children: [
+                                      Text("Flavour :  ",
+                                          style: TextStyle(
+                                              color: Colors.grey.shade600)),
+                                      Text("${controller.data.flavor}",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600)),
+                                    ],
+                                  ),
+                            controller.data.breedSize == null
+                                ? Container()
+                                : SizedBox(
+                                    height: 5,
+                                  ),
+                            controller.data.breedSize == null
+                                ? Container()
+                                : Row(
+                                    children: [
+                                      Text("Breed Size  :  ",
+                                          style: TextStyle(
+                                              color: Colors.grey.shade600)),
+                                      Text("${controller.data.breedSize}",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600)),
+                                    ],
+                                  ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            controller.data.vegNonveg == null
+                                ? Container()
+                                : Row(
+                                    children: [
+                                      Text("Veg / Non Veg :  ",
+                                          style: TextStyle(
+                                              color: Colors.grey.shade600)),
+                                      Text("${controller.data.vegNonveg}",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600)),
+                                    ],
+                                  ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            controller.data.color == null
+                                ? Container()
+                                : Row(
+                                    children: [
+                                      Text("Color :  ",
+                                          style: TextStyle(
+                                              color: Colors.grey.shade600)),
+                                      Text("${controller.data.color}",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600)),
+                                    ],
+                                  ),
                           ],
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        controller.data.lifeStage == null
-                            ? Container()
-                            : Row(
-                          children: [
-                            Text("Life Stage : ",
-                                style: TextStyle(
-                                    color: Colors.grey.shade600)),
-                            Text("${controller.data.lifeStage}",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w600)),
-                          ],
-                        ),
-                        controller.data.productType == null
-                            ? Container()
-                            : SizedBox(
-                          height: 5,
-                        ),
-                        controller.data.productType == null
-                            ? Container()
-                            : Row(
-                          children: [
-                            Text("Product Type :  ",
-                                style: TextStyle(
-                                    color: Colors.grey.shade600)),
-                            Text("${controller.data.productType}",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w600)),
-                          ],
-                        ),
-                        controller.data.flavor == null
-                            ? Container()
-                            : SizedBox(
-                          height: 5,
-                        ),
-                        controller.data.flavor == null
-                            ? Container()
-                            : Row(
-                          children: [
-                            Text("Flavour :  ",
-                                style: TextStyle(
-                                    color: Colors.grey.shade600)),
-                            Text("${controller.data.flavor}",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w600)),
-                          ],
-                        ),
-                        controller.data.breedSize == null
-                            ? Container()
-                            : SizedBox(
-                          height: 5,
-                        ),
-                        controller.data.breedSize == null
-                            ? Container()
-                            : Row(
-                          children: [
-                            Text("Breed Size  :  ",
-                                style: TextStyle(
-                                    color: Colors.grey.shade600)),
-                            Text("${controller.data.breedSize}",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w600)),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        controller.data.vegNonveg == null
-                            ? Container()
-                            : Row(
-                          children: [
-                            Text("Veg / Non Veg :  ",
-                                style: TextStyle(
-                                    color: Colors.grey.shade600)),
-                            Text("${controller.data.vegNonveg}",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w600)),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        controller.data.color == null
-                            ? Container()
-                            : Row(
-                          children: [
-                            Text("Color :  ",
-                                style: TextStyle(
-                                    color: Colors.grey.shade600)),
-                            Text("${controller.data.color}",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w600)),
-                          ],
-                        ),
-                      ],
-                    )),
+                        )),
 
                 InkWell(
                   onTap: () {
@@ -683,13 +596,13 @@ class ViewProductView extends GetWidget<ViewProductController> {
                         ),
                         controller.isOpen1.value == false
                             ? Icon(
-                          Icons.keyboard_arrow_down_sharp,
-                          color: Colors.white,
-                        )
+                                Icons.keyboard_arrow_down_sharp,
+                                color: Colors.white,
+                              )
                             : Icon(
-                          Icons.keyboard_arrow_up_sharp,
-                          color: Colors.white,
-                        )
+                                Icons.keyboard_arrow_up_sharp,
+                                color: Colors.white,
+                              )
                       ],
                     ),
                   ),
@@ -697,18 +610,18 @@ class ViewProductView extends GetWidget<ViewProductController> {
                 controller.isOpen1.value == false
                     ? Container()
                     : Container(
-                    margin: EdgeInsets.only(left: 22),
-                    padding: EdgeInsets.all(5),
-                    width: MediaQuery.of(context).size.width,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("${controller.data.sellerId!.companyName}",
-                            style: TextStyle(fontWeight: FontWeight.w500)),
-                        Text("${controller.data.sellerId!.address}",
-                            style: TextStyle(color: Colors.grey.shade600)),
-                      ],
-                    )),
+                        margin: EdgeInsets.only(left: 22),
+                        padding: EdgeInsets.all(5),
+                        width: MediaQuery.of(context).size.width,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("${controller.data.sellerId!.companyName}",
+                                style: TextStyle(fontWeight: FontWeight.w500)),
+                            Text("${controller.data.sellerId!.address}",
+                                style: TextStyle(color: Colors.grey.shade600)),
+                          ],
+                        )),
                 //
                 // SizedBox(height: 30),
                 // Container(
@@ -1041,7 +954,7 @@ class ViewProductView extends GetWidget<ViewProductController> {
             ),
           ),
         ),
-      )),
-    );
+      );
+    }));
   }
 }

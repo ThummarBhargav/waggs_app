@@ -23,9 +23,9 @@ dependencies:
   otp_timer_button: ^1.1.0
   flutter_time_picker_spinner: ^2.0.0
   flutter_image_slideshow: ^0.1.2
-  firebase_auth:
+  firebase_auth: ^3.6.4
+  firebase_core: ^1.21.0
   syncfusion_flutter_datepicker: ^20.2.48
-  firebase_core:
   google_sign_in:
   carousel_slider:
   linkedin_login: ^2.2.1

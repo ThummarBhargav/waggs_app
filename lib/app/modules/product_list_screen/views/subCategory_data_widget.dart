@@ -812,7 +812,8 @@ class _SubCategoryWidgetState extends State<SubCategoryWidget> {
                             size: 25,
                             color: Colors.grey[500],
                           )),
-                      controller.count1.data == 0
+                      (controller.count1.data == 0 ||
+                              controller.count1.data == null)
                           ? Container()
                           : Positioned(
                               left: 22,
@@ -1149,7 +1150,11 @@ class _SubCategoryWidgetState extends State<SubCategoryWidget> {
                                     gridDelegate:
                                         SliverGridDelegateWithFixedCrossAxisCount(
                                             crossAxisCount: 2,
-                                            childAspectRatio: 0.67)),
+                                            childAspectRatio:
+                                                MediaQuery.of(context)
+                                                        .size
+                                                        .height /
+                                                    1280)),
                               ),
                             ],
                           ),

@@ -6,25 +6,16 @@ import 'package:get/get.dart';
 
 import '../../../../main.dart';
 import '../../../Modal/CartProductModel.dart';
-import '../../../Modal/CategoryModel.dart';
-import '../../../Modal/GetAllProductModule.dart';
-import '../../../Modal/OrderModel.dart';
+
 import '../../../Modal/shippingModel.dart';
 import '../../../constant/ConstantUrl.dart';
-import '../../../routes/app_pages.dart';
+
 import 'package:http/http.dart' as http;
-import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:waggs_app/app/Modal/CartCountModel.dart';
-import 'package:waggs_app/app/Modal/CartProductModel.dart';
-import 'package:waggs_app/app/Modal/CategoryModel.dart';
-import 'package:waggs_app/app/Modal/OrderModel.dart';
-import 'package:waggs_app/app/Modal/SubCategoryModel.dart';
-import 'package:waggs_app/app/Modal/TopSellingStore.dart';
+
 import 'package:waggs_app/app/constant/sizeConstant.dart';
-import 'package:waggs_app/app/routes/app_pages.dart';
-import '../../../Modal/bannerAllProductModel.dart';
 
 class CartDrawerController extends GetxController {
   Shipping1 shipping1 = Shipping1();

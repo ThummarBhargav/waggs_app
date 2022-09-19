@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>312438667205-iohljq0rbcgcmk4d0680u2cbd6no6idg.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.312438667205-iohljq0rbcgcmk4d0680u2cbd6no6idg</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>312438667205-adggnrvebv90oo8pue4n6mvmcf2kgse6.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA-acigTylSKC2nTb9UQ_GdvIIxA0xNqoE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>312438667205</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.waggsApp</string>
+	<key>PROJECT_ID</key>
+	<string>waggs-cf353</string>
+	<key>STORAGE_BUCKET</key>
+	<string>waggs-cf353.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:312438667205:ios:2fd828d68aad41dd4d3dac</string>
+</dict>
+</plist>

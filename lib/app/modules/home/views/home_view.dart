@@ -13,7 +13,6 @@ import '../controllers/home_controller.dart';
 
 class HomeView extends GetWidget<HomeController> {
   const HomeView({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(
@@ -402,9 +401,9 @@ class HomeView extends GetWidget<HomeController> {
                                             children: [
                                               IconButton(
                                                   onPressed: () {
-                                                    // FocusManager
-                                                    //     .instance.primaryFocus
-                                                    //     ?.unfocus();
+                                                    FocusManager
+                                                        .instance.primaryFocus
+                                                        ?.unfocus();
 
                                                     if ((box.read(
                                                             ArgumentConstant
@@ -428,7 +427,9 @@ class HomeView extends GetWidget<HomeController> {
                                                     size: 25,
                                                     color: Colors.grey[500],
                                                   )),
-                                              controller.count1.data == 0
+                                              (controller.count1.data == 0 ||
+                                                      controller.count1.data ==
+                                                          null)
                                                   ? Container()
                                                   : Positioned(
                                                       left: 22,

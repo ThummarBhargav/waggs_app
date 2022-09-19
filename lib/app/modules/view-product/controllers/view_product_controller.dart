@@ -24,6 +24,7 @@ class ViewProductController extends GetxController {
   RxList<Products0> mainProductList = RxList<Products0>([]);
   StoreModule storeModule = StoreModule();
   Count1 count1 = Count1();
+  RxInt countData = 0.obs;
   CartProduct cartProduct = CartProduct();
   RxList<Count1> Countlist = RxList<Count1>([]);
   RxList<Details> cartProductList = RxList<Details>([]);
@@ -31,11 +32,9 @@ class ViewProductController extends GetxController {
   @override
   void onInit() {
     CartCount();
-   getData();
-   CartProductApi();
+    getData();
+    CartProductApi();
     super.onInit();
-
-
   }
 
   @override
@@ -236,8 +235,11 @@ class ViewProductController extends GetxController {
     print(result);
     if (!isNullEmptyOrFalse(count1.data)) {
       Countlist.add(count1);
+      countData.value = count1.data ?? 0;
     }
     Countlist.refresh();
+    countData.refresh();
+    update();
   }
 
   CartProductApi() async {
