@@ -45,7 +45,6 @@ class ApiConstant {
   static const updatePet = "pet/";
   static const orderCancel = "order/";
   static const appointment = "appointment/";
-// static const getpet = "pet/list?skip=0&limit=20";
   static const getvet = "vet";
   static const vetdetail = "vet/info/";
   static const bookvet = "appointment/book";
