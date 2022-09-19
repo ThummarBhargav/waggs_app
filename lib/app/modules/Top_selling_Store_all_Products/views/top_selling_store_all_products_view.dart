@@ -1328,15 +1328,13 @@ class TopSellingStoreAllProductsView
                                             .mainProductList[index]
                                             .subCategory!
                                             .name,
-                                        price: controller
-                                            .mainProductList[index].price
+                                        price: controller.mainProductList[index].price
                                             .toString(),
                                         discountedPrice: controller
                                             .mainProductList[index]
                                             .discountedPrice
                                             .toString(),
-                                        rating: controller
-                                            .mainProductList[index].rating
+                                        rating: controller.mainProductList[index].rating
                                             .toString(),
                                         ButtonText: "ADD TO CART",
                                         ButtonTap: () {
@@ -1345,10 +1343,13 @@ class TopSellingStoreAllProductsView
                                                   .mainProductList[index]);
                                         },
                                         icon: Icons.add_shopping_cart,
-                                        isShipping: controller
-                                            .mainProductList[index]
-                                            .sellerId!
-                                            .waiveOffShipping);
+                                        isShipping: (int.parse(controller.mainProductList[index].sellerId!.shippingLimit.toString()) >
+                                                controller
+                                                    .mainProductList[index]
+                                                    .sellerId!
+                                                    .distance)
+                                            ? false
+                                            : true);
                                   },
                                   gridDelegate:
                                       SliverGridDelegateWithFixedCrossAxisCount(

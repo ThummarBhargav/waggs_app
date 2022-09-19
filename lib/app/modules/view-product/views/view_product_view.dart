@@ -301,7 +301,8 @@ class ViewProductView extends GetWidget<ViewProductController> {
                 SizedBox(
                   height: 8,
                 ),
-                (controller.data.sellerId!.waiveOffShipping == true)
+                (int.parse(controller.data.sellerId!.shippingLimit.toString()) <
+                        controller.data.sellerId!.distance)
                     ? Container(
                         child: Row(
                           children: [
@@ -405,7 +406,8 @@ class ViewProductView extends GetWidget<ViewProductController> {
                 SizedBox(
                   height: 10,
                 ),
-                controller.data.sellerId!.waiveOffShipping == false
+                (int.parse(controller.data.sellerId!.shippingLimit.toString()) >
+                        controller.data.sellerId!.distance)
                     ? Container()
                     : Text(
                         "Not delivering in your area",

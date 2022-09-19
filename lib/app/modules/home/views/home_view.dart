@@ -734,50 +734,53 @@ class HomeView extends GetWidget<HomeController> {
                                           shrinkWrap: true,
                                           itemBuilder: (context, index) {
                                             return productCard(
-                                              onTap: () {
-                                                Get.toNamed(Routes.VIEW_PRODUCT,
-                                                    arguments: controller
-                                                        .TopProductlist[index]);
-                                              },
-                                              image: controller
-                                                  .TopProductlist[index]
-                                                  .images![0],
-                                              discount: controller
-                                                  .TopProductlist[index]
-                                                  .discount!
-                                                  .toStringAsFixed(0),
-                                              companyName: controller
-                                                  .TopProductlist[index].title,
-                                              categoryName: controller
-                                                  .TopProductlist[index]
-                                                  .category!
-                                                  .name,
-                                              subCategoryName: controller
-                                                  .TopProductlist[index]
-                                                  .subCategory!
-                                                  .name,
-                                              price: controller
-                                                  .TopProductlist[index].price
-                                                  .toString(),
-                                              discountedPrice: controller
-                                                  .TopProductlist[index]
-                                                  .discountedPrice
-                                                  .toString(),
-                                              rating: controller
-                                                  .TopProductlist[index].rating
-                                                  .toString(),
-                                              ButtonText: "ADD TO CART",
-                                              ButtonTap: () {
-                                                controller.addToCart(
-                                                    data: controller
-                                                        .TopProductlist[index]);
-                                              },
-                                              icon: Icons.add_shopping_cart,
-                                              isShipping: controller
-                                                  .TopProductlist[index]
-                                                  .sellerId!
-                                                  .waiveOffShipping,
-                                            );
+                                                onTap: () {
+                                                  Get.toNamed(
+                                                      Routes.VIEW_PRODUCT,
+                                                      arguments: controller
+                                                              .TopProductlist[
+                                                          index]);
+                                                },
+                                                image: controller
+                                                    .TopProductlist[index]
+                                                    .images![0],
+                                                discount: controller
+                                                    .TopProductlist[index]
+                                                    .discount!
+                                                    .toStringAsFixed(0),
+                                                companyName: controller
+                                                    .TopProductlist[index]
+                                                    .title,
+                                                categoryName: controller
+                                                    .TopProductlist[index]
+                                                    .category!
+                                                    .name,
+                                                subCategoryName: controller
+                                                    .TopProductlist[index]
+                                                    .subCategory!
+                                                    .name,
+                                                price: controller
+                                                    .TopProductlist[index].price
+                                                    .toString(),
+                                                discountedPrice: controller
+                                                    .TopProductlist[index]
+                                                    .discountedPrice
+                                                    .toString(),
+                                                rating: controller
+                                                    .TopProductlist[index]
+                                                    .rating
+                                                    .toString(),
+                                                ButtonText: "ADD TO CART",
+                                                ButtonTap: () {
+                                                  controller.addToCart(
+                                                      data: controller
+                                                              .TopProductlist[
+                                                          index]);
+                                                },
+                                                icon: Icons.add_shopping_cart,
+                                                isShipping: (int.parse(controller.TopProductlist[index].sellerId!.shippingLimit.toString()) > controller.TopProductlist[index].sellerId!.distance)
+                                                    ? false
+                                                    : true);
                                           },
                                           gridDelegate:
                                               SliverGridDelegateWithFixedCrossAxisCount(

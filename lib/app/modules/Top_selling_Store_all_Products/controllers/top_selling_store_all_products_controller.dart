@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
@@ -122,9 +124,41 @@ class TopSellingStoreAllProductsController extends GetxController {
         isEnablePullUp.value = false;
       }
     } else {
+      Position? currentPositionData = await getCurrentLocation();
       if (!isNullEmptyOrFalse(storeModule.data)) {
         if (!isNullEmptyOrFalse(storeModule.data!.products)) {
           storeModule.data!.products!.forEach((element) {
+            if (!isNullEmptyOrFalse(element)) {
+              if (!isNullEmptyOrFalse(element.sellerId)) {
+                if (!isNullEmptyOrFalse(currentPositionData)) {
+                  if (!isNullEmptyOrFalse(element.sellerId!.latitude) &&
+                      !isNullEmptyOrFalse(element.sellerId!.longitude) &&
+                      !isNullEmptyOrFalse(currentPositionData!.latitude) &&
+                      !isNullEmptyOrFalse(currentPositionData.longitude)) {
+                    double lat2 = element.sellerId!.latitude!;
+                    double lat1 = currentPositionData.latitude;
+                    double lon2 = element.sellerId!.longitude!;
+                    double lon1 = currentPositionData.longitude;
+                    print("lat1========${lat1}");
+                    print("lon1========${lon1}");
+                    print("lat2========${lat2}");
+                    print("lon2========${lon2}");
+                    var p = 0.017453292519943295;
+                    var c = cos;
+                    var a = 0.5 -
+                        c((lat2 - lat1) * p) / 2 +
+                        c(lat1 * p) *
+                            c(lat2 * p) *
+                            (1 - c((lon2 - lon1) * p)) /
+                            2;
+                    double distance = 12742 * asin(sqrt(a));
+                    element.sellerId!.distance = distance;
+                    print("My Distance := ${distance}");
+                  }
+                }
+              }
+            }
+
             mainProductList.add(element);
           });
           productsCount.value = mainProductList.length;

@@ -203,6 +203,7 @@ class SellerId {
   int? shippingLimit;
   String? state;
   double shippingCharge = 0.0;
+  double distance = 0.0;
 
   SellerId(
       {this.sId,
@@ -226,7 +227,8 @@ class SellerId {
       this.pincode,
       this.shippingLimit,
       this.state,
-      this.shippingCharge = 0.0});
+      this.shippingCharge = 0.0,
+      this.distance = 0.0});
 
   SellerId.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
