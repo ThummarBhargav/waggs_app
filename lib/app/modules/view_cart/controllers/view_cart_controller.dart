@@ -509,7 +509,6 @@ class ViewCartController extends GetxController {
 
   Future<void> updateAddressApi() async {
     var url = Uri.parse(baseUrl3 + ApiConstant.addressUpdate);
-    var response;
     await http.put(url, body: {
       'address': shopController.value.text +
           " " +
@@ -635,7 +634,6 @@ class ViewCartController extends GetxController {
                             if (formkey.currentState!.validate()) {
                               Get.back();
                               Get.back();
-
                               updateAddressApi();
                             }
                           },
