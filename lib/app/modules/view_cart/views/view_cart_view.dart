@@ -540,16 +540,24 @@ class ViewCartView extends GetView<ViewCartController> {
                                               right: 10, left: 10, top: 10),
                                           margin: EdgeInsets.only(
                                               right: 20, left: 20),
-                                          child: box.read(ArgumentConstant
-                                                      .address) ==
-                                                  ""
-                                              ? Container()
-                                              : Text(
-                                                  "${box.read(ArgumentConstant.address)}",
+                                          child: (controller
+                                                  .isLocationChanged.isTrue)
+                                              ? Text(
+                                                  "${controller.newLocation.value}",
                                                   style: TextStyle(
                                                       color: Colors.black,
                                                       fontSize: 20),
-                                                ),
+                                                )
+                                              : box.read(ArgumentConstant
+                                                          .address) ==
+                                                      ""
+                                                  ? Container()
+                                                  : Text(
+                                                      "${box.read(ArgumentConstant.address)}",
+                                                      style: TextStyle(
+                                                          color: Colors.black,
+                                                          fontSize: 20),
+                                                    ),
                                           decoration: BoxDecoration(
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(10)),
