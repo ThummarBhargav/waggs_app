@@ -476,7 +476,7 @@ class ViewCartController extends GetxController {
       print(error);
     });
   }
-2
+
   Address1(BuildContext context) {
     showDialog(
         context: context,
