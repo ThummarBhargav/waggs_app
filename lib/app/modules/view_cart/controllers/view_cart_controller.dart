@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'package:dio/dio.dart';
 import 'package:geocoding/geocoding.dart';
@@ -17,6 +18,7 @@ import 'package:waggs_app/app/routes/app_pages.dart';
 import '../../../../main.dart';
 import '../../../Modal/CartCountModel.dart';
 import '../../../Modal/CartProductModel.dart';
+import '../../../Modal/shippingModel.dart';
 import '../../../Modal/updateAddressResponseModel.dart';
 import '../../../constant/ConstantUrl.dart';
 import '../../../constant/SizeConstant.dart';
@@ -53,6 +55,9 @@ class ViewCartController extends GetxController {
   RxBool emailCheckBox = false.obs;
   RxBool detailCheckBox = false.obs;
   Rx<Position>? _currentPosition;
+  double shippingCharge = 0;
+  Shipping1 shipping1 = Shipping1();
+
   String _currentAddress = '';
   Geolocator geolocator = Geolocator();
   late Razorpay _razorpay;
@@ -65,21 +70,25 @@ class ViewCartController extends GetxController {
   void onInit() {
     super.onInit();
     CartProductApi();
+    ShippingApi();
     getCurrentLocation();
     CartCount();
   }
 
-  getCurrentLocation() {
-    Geolocator.getCurrentPosition(
+  Future<Position?> getCurrentLocation() async {
+    Position? currentPositionData;
+    await Geolocator.getCurrentPosition(
             desiredAccuracy: LocationAccuracy.high,
             forceAndroidLocationManager: true)
         .then((Position position) {
       _currentPosition = position.obs;
+      currentPositionData = position;
       print("position: ====== ${position.latitude} ==> ${position.longitude}");
-      _getAddressFromLatLng();
     }).catchError((e) {
       print(e);
     });
+
+    return currentPositionData;
   }
 
   _getAddressFromLatLng() async {
@@ -111,6 +120,24 @@ class ViewCartController extends GetxController {
     super.onClose();
   }
 
+  ShippingApi() async {
+    var url = Uri.parse(baseUrl + ApiConstant.shipping);
+    var response = await http.get(url);
+    print('response status:${response.request}');
+    dynamic result = jsonDecode(response.body);
+    print(result);
+    if (response.statusCode == 200) {
+      ShippingModel res = ShippingModel.fromJson(jsonDecode(response.body));
+      if (!isNullEmptyOrFalse(res)) {
+        shipping1 = res.data!;
+        if (!isNullEmptyOrFalse(shipping1.shippingCharge)) {
+          shippingCharge = double.parse(shipping1.shippingCharge.toString());
+        }
+        print(shipping1);
+      }
+    }
+  }
+
   CartProductApi() async {
     hasData.value = false;
     cartProductList.clear();
@@ -118,26 +145,60 @@ class ViewCartController extends GetxController {
     var response;
     await http.get(url, headers: {
       'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
-    }).then((value) {
-      hasData.value = true;
+    }).then((value) async {
       print(value);
       response = value;
+      print('Response status: ${response.statusCode}');
+      print('Response body: ${response.body}');
+      dynamic result = jsonDecode(response.body);
+      cartProduct = CartProduct.fromJson(result);
+      print(result);
+      Position? currentPositionData = await getCurrentLocation();
+      if (!isNullEmptyOrFalse(cartProduct.data)) {
+        if (!isNullEmptyOrFalse(cartProduct.data!.details)) {
+          cartProduct.data!.details!.forEach((element) {
+            if (!isNullEmptyOrFalse(element.product)) {
+              if (!isNullEmptyOrFalse(element.product!.sellerId)) {
+                if (!isNullEmptyOrFalse(currentPositionData)) {
+                  if (!isNullEmptyOrFalse(
+                          element.product!.sellerId!.latitude) &&
+                      !isNullEmptyOrFalse(
+                          element.product!.sellerId!.longitude) &&
+                      !isNullEmptyOrFalse(currentPositionData!.latitude) &&
+                      !isNullEmptyOrFalse(currentPositionData.longitude)) {
+                    double lat2 = element.product!.sellerId!.latitude!;
+                    double lat1 = currentPositionData.latitude;
+                    double lon2 = element.product!.sellerId!.longitude!;
+                    double lon1 = currentPositionData.longitude;
+                    print("lat1========${lat1}");
+                    print("lon1========${lon1}");
+                    print("lat2========${lat2}");
+                    print("lon2========${lon2}");
+                    var p = 0.017453292519943295;
+                    var c = cos;
+                    var a = 0.5 -
+                        c((lat2 - lat1) * p) / 2 +
+                        c(lat1 * p) *
+                            c(lat2 * p) *
+                            (1 - c((lon2 - lon1) * p)) /
+                            2;
+                    double shippingCost =
+                        12742 * asin(sqrt(a)) * shippingCharge;
+                    element.product!.sellerId!.shippingCharge = shippingCost;
+                    print("My Distance := ${shippingCost}");
+                  }
+                }
+              }
+            }
+            cartProductList.add(element);
+          });
+        }
+      }
+      hasData.value = true;
+      cartProductList.refresh();
     }).catchError((error) {
       hasData.value = false;
     });
-    print('Response status: ${response.statusCode}');
-    print('Response body: ${response.body}');
-    dynamic result = jsonDecode(response.body);
-    cartProduct = CartProduct.fromJson(result);
-    print(result);
-    if (!isNullEmptyOrFalse(cartProduct.data)) {
-      if (!isNullEmptyOrFalse(cartProduct.data!.details)) {
-        cartProduct.data!.details!.forEach((element) {
-          cartProductList.add(element);
-        });
-      }
-    }
-    cartProductList.refresh();
   }
 
   CartCount() async {
@@ -476,7 +537,7 @@ class ViewCartController extends GetxController {
       print(error);
     });
   }
-2
+
   Address1(BuildContext context) {
     showDialog(
         context: context,

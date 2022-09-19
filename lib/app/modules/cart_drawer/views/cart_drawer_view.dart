@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:waggs_app/app/constant/ConstantUrl.dart';
 
 import '../../../constant/Container.dart';
 import '../../../constant/SizeConstant.dart';
@@ -318,16 +319,38 @@ class CartDrawerView extends GetWidget<CartDrawerController> {
                                                 ),
                                               ),
                                             ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: Text(
-                                                "\u{20B9}${controller.cartProductList[index].product!.discountedPrice! * controller.cartProductList[index].quantity!}.00",
-                                                style: TextStyle(
-                                                    color: Colors.orange,
-                                                    fontWeight:
-                                                        FontWeight.w800),
-                                              ),
+                                            Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.end,
+                                              children: [
+                                                Text(
+                                                  "\u{20B9}${controller.cartProductList[index].product!.discountedPrice! * controller.cartProductList[index].quantity!}.00",
+                                                  style: TextStyle(
+                                                      color: Colors.orange,
+                                                      fontWeight:
+                                                          FontWeight.w800),
+                                                ),
+                                                SizedBox(
+                                                  height: 10,
+                                                ),
+                                                (controller
+                                                            .cartProductList[
+                                                                index]
+                                                            .product!
+                                                            .sellerId!
+                                                            .shippingCharge !=
+                                                        0.00)
+                                                    ? Container()
+                                                    : Text(
+                                                        "+ \u{20B9}${controller.cartProductList[index].product!.sellerId!.shippingCharge.toStringAsFixed(0)}.00" +
+                                                            " Shipping",
+                                                        style: TextStyle(
+                                                          color: Colors.black,
+                                                        ),
+                                                      ),
+                                              ],
                                             )
                                           ],
                                         ),

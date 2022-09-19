@@ -1081,11 +1081,15 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                                       shrinkWrap: true,
                                       itemBuilder: (context, index) {
                                         var sum = 0;
+                                        double shippingCost = 0;
                                         controller.cartProductList
                                             .forEach((element) {
                                           sum += element
                                                   .product!.discountedPrice! *
                                               element.quantity!;
+
+                                          shippingCost += element.product!
+                                              .sellerId!.shippingCharge;
                                         });
                                         return Container(
                                           margin: EdgeInsets.all(20),
@@ -1159,7 +1163,7 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                                                           top: 20,
                                                           bottom: 15),
                                                       child: Text(
-                                                        "Calculated At Next Step",
+                                                        shippingCost.toString(),
                                                         style: TextStyle(
                                                             fontSize: 16,
                                                             color: Colors
