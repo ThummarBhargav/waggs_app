@@ -158,7 +158,6 @@ class HomeController extends GetxController {
   }
 
   getNotificationCount() async {
-    // https://api-stg.waggs.in/api/v1/notification/list?skip=0&limit=10
     hasNotificationCount.value = false;
     var url = Uri.parse(baseUrl + ApiConstant.notificationCount);
     var response = await http.get(url, headers: {

@@ -110,7 +110,6 @@ class TopSellingStoreAllProductsController extends GetxController {
         "?sellerId=${data.sId}&skip=${productsCount.value}&limit=10&sort=$sort");
     var response;
     await http.get(URl).then((value) {
-      hasData.value = true;
       response = value;
     }).catchError((err) {
       hasData.value = false;
@@ -158,9 +157,10 @@ class TopSellingStoreAllProductsController extends GetxController {
                 }
               }
             }
-
             mainProductList.add(element);
+            hasData.value = true;
           });
+
           productsCount.value = mainProductList.length;
           if (isForLoading) {
             refreshController.loadComplete();

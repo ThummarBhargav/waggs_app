@@ -120,6 +120,7 @@ class ProductListScreenController extends GetxController {
 
   TopSellingProductApi() async {
     mainProductList.clear();
+    hasData.value == false;
     var url = Uri.parse(baseUrl + ApiConstant.TopStore);
     var response = await http.get(url);
     print('Response status: ${response.statusCode}');
@@ -162,6 +163,7 @@ class ProductListScreenController extends GetxController {
             }
           }
           mainProductList.add(element);
+          hasData.value == true;
         });
       }
     }
@@ -319,6 +321,7 @@ class ProductListScreenController extends GetxController {
 
   AllCategory() async {
     CatagoryList.clear();
+    hasData.value == false;
     var url = Uri.parse(baseUrl + ApiConstant.AllCategory);
     var response = await http.get(url);
     print('response status:${response.request}');
@@ -328,12 +331,14 @@ class ProductListScreenController extends GetxController {
     if (!isNullEmptyOrFalse(categoryModel.catagoryData)) {
       categoryModel.catagoryData!.forEach((element) {
         CatagoryList.add(element);
+        hasData.value == true;
       });
     }
   }
 
   SubCategory() async {
     SubCatagoryList.clear();
+    hasData.value == false;
     var url = Uri.parse(baseUrl + ApiConstant.AllSubCategory);
     var response = await http.get(url);
     print('response status:${response.request}');
@@ -343,6 +348,7 @@ class ProductListScreenController extends GetxController {
     if (!isNullEmptyOrFalse(subCategorymodel.data)) {
       subCategorymodel.data!.forEach((element) {
         SubCatagoryList.add(element);
+        hasData.value == true;
       });
     }
   }
@@ -356,7 +362,6 @@ class ProductListScreenController extends GetxController {
     print(URl);
     var response;
     await http.get(URl).then((value) {
-      hasData.value = true;
       response = value;
     }).catchError((error) {
       hasData.value = true;
@@ -398,8 +403,8 @@ class ProductListScreenController extends GetxController {
               }
             }
           }
-
           mainProductList.add(element);
+          hasData.value = true;
         });
       }
     }

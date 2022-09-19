@@ -368,15 +368,12 @@ class HomeView extends GetWidget<HomeController> {
                                                 controller.searchController,
                                             // focusNode: controller.titleFocus.value,
                                             onFieldSubmitted: (value) {
-                                              print("$value");
-                                              print("${controller.titleFocus.value}");
                                               Get.offAndToNamed(
                                                   Routes.SEARCH_PRODUCT_PAGE,
                                                   arguments: {
                                                     ArgumentConstant
                                                         .searchProduct: value
                                                   });
-
                                             },
                                             decoration: InputDecoration(
                                               hintText: "Search Product...",
@@ -553,7 +550,7 @@ class HomeView extends GetWidget<HomeController> {
                       ),
                       Expanded(
                         child: SingleChildScrollView(
-                           // keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+                          // keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
                           child: Column(
                             children: [
                               controller.bannerList.isEmpty

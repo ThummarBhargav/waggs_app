@@ -122,41 +122,21 @@ class TopSellingStoreAllProductsView
                                     ),
                                   ),
                                 ),
-                                Obx(
-                                  () => RangeSlider(
-                                    values: controller.values4.value,
-                                    activeColor: Colors.lightBlue[300],
-                                    inactiveColor: Colors.lightBlue[200],
-                                    min: 100,
-                                    max: 30000,
-                                    divisions: 10000,
-                                    labels: RangeLabels(
-                                      "\u{20B9}${controller.values4.value.start.round().toString()}",
-                                      "\u{20B9}${controller.values4.value.end.round().toString()}",
-                                    ),
-                                    onChanged: (RangeValues values) {
-                                      controller.values4.value = values;
-                                    },
-                                  ),
-                                  //         RangeSlider(
-                                  //     divisions: 300,
-                                  //   activeColor: Colors.lightBlue[300],
-                                  //   inactiveColor: Colors.lightBlue[200],
-                                  //   min: 100,
-                                  //   max: 30000,
-                                  //   values: controller.values4.value,
-                                  //     labels: RangeLabels(controller.values4.value.start.round().toString()
-                                  //         ,controller.values4.value.end.round().toString()),
-                                  //    onChanged: (value) {
-                                  //     controller.values4.value = value;
-                                  //     print('value=>${controller.values4.value}');
-                                  //     print('${RangeLabels(
-                                  //         controller.values4.value.start.round().toString()
-                                  //         ,controller.values4.value.end.round().toString())}');
-                                  //    },
-                                  //
-                                  // ),
-                                ),
+                                Obx(() => RangeSlider(
+                                      values: controller.values4.value,
+                                      activeColor: Colors.lightBlue[300],
+                                      inactiveColor: Colors.lightBlue[200],
+                                      min: 100,
+                                      max: 30000,
+                                      divisions: 10000,
+                                      labels: RangeLabels(
+                                        "\u{20B9}${controller.values4.value.start.round().toString()}",
+                                        "\u{20B9}${controller.values4.value.end.round().toString()}",
+                                      ),
+                                      onChanged: (RangeValues values) {
+                                        controller.values4.value = values;
+                                      },
+                                    )),
                                 ListTile(
                                   title: Text(
                                     "Discount",
