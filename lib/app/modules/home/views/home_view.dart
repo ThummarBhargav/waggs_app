@@ -553,6 +553,7 @@ class HomeView extends GetWidget<HomeController> {
                       ),
                       Expanded(
                         child: SingleChildScrollView(
+                          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
                           child: Column(
                             children: [
                               controller.bannerList.isEmpty
