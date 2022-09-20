@@ -10,7 +10,6 @@ import '../controllers/singup_screen_controller.dart';
 
 class SingupScreenView extends GetWidget<SingupScreenController> {
   const SingupScreenView({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
