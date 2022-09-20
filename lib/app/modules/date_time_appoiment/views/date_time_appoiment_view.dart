@@ -61,14 +61,6 @@ class DateTimeAppoimentView extends GetWidget<DateTimeAppoimentController> {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           // SizedBox(width: 200,),
-                          IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.search,
-                                size: 25,
-                                color: Colors.grey,
-                              )),
-
                           Stack(
                             children: [
                               IconButton(
