@@ -7,6 +7,7 @@ import 'package:waggs_app/app/modules/mobileVerify/views/mobile_verify_view.dart
 import 'package:waggs_app/app/routes/app_pages.dart';
 import 'package:waggs_app/main.dart';
 import '../../../constant/ConstantUrl.dart';
+import '../../../constant/text_field.dart';
 import '../controllers/login_screen_controller.dart';
 
 // ignore: must_be_immutable
@@ -89,22 +90,13 @@ class LoginScreenView extends GetWidget<LoginScreenController> {
                         bottomRight: Radius.circular(10),
                       ),
                     ),
-                    child: TextFormField(
-                      controller: controller.emailController.value,
-                      keyboardType: TextInputType.emailAddress,
-                      validator: (input) => !isNullEmptyOrFalse(input)
-                          ? null
-                          : "Please Enter Email Address",
-                      decoration: InputDecoration(
-                        hintText: "Enter Your Email ",
-                        hintStyle: GoogleFonts.roboto(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        ),
-                        enabledBorder: InputBorder.none,
-                        focusedBorder: InputBorder.none,
-                      ),
-                    ),
+                    child: getTextField(
+                        textEditingController: controller.emailController.value,
+                        textInputType: TextInputType.name,
+                        validator: (input) => !isNullEmptyOrFalse(input)
+                            ? null
+                            : "Please Enter Your Email Address",
+                        hintText: "Enter Your Email Address"),
                   ),
                   SizedBox(
                     height: 20,
@@ -128,47 +120,41 @@ class LoginScreenView extends GetWidget<LoginScreenController> {
                   ),
                   Obx(() {
                     return Container(
-                      margin: EdgeInsets.only(left: 15, right: 15),
-                      padding: EdgeInsets.only(
-                        left: 15,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.grey[300],
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(10),
-                          topRight: Radius.circular(10),
-                          bottomRight: Radius.circular(10),
+                        margin: EdgeInsets.only(left: 15, right: 15),
+                        padding: EdgeInsets.only(
+                          left: 15,
                         ),
-                      ),
-                      child: TextFormField(
-                        controller: controller.passController.value,
-                        validator: (input) => !isNullEmptyOrFalse(input)
-                            ? null
-                            : "Please Enter Password",
-                        obscureText: controller.passwordVisible.value,
-                        decoration: InputDecoration(
-                            hintText: "Enter Your Password",
-                            hintStyle: GoogleFonts.roboto(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                            ),
-                            enabledBorder: InputBorder.none,
-                            focusedBorder: InputBorder.none,
-                            suffixIcon: IconButton(
-                                onPressed: () {
-                                  controller.passwordVisible.toggle();
-                                },
-                                icon: (!controller.passwordVisible.value)
-                                    ? Icon(
-                                        Icons.visibility_off,
-                                        color: Colors.grey,
-                                      )
-                                    : Icon(
-                                        Icons.visibility,
-                                        color: Colors.grey,
-                                      ))),
-                      ),
-                    );
+                        decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(10),
+                            topRight: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
+                          ),
+                        ),
+                        child: getTextField(
+                          textEditingController:
+                              controller.passController.value,
+                          textInputType: TextInputType.name,
+                          validator: (input) => !isNullEmptyOrFalse(input)
+                              ? null
+                              : "Please Enter password",
+                          hintText: "Enter Your password",
+                          textVisible: controller.passwordVisible.value,
+                          suffixIcon: IconButton(
+                              onPressed: () {
+                                controller.passwordVisible.toggle();
+                              },
+                              icon: (!controller.passwordVisible.value)
+                                  ? Icon(
+                                      Icons.visibility_off,
+                                      color: Colors.grey,
+                                    )
+                                  : Icon(
+                                      Icons.visibility,
+                                      color: Colors.grey,
+                                    )),
+                        ));
                   }),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
