@@ -198,24 +198,6 @@ class _TopSellingProductListWidgetState
                                       controller.values4.value = values;
                                     },
                                   ),
-                                  //         RangeSlider(
-                                  //     divisions: 300,
-                                  //   activeColor: Colors.lightBlue[300],
-                                  //   inactiveColor: Colors.lightBlue[200],
-                                  //   min: 100,
-                                  //   max: 30000,
-                                  //   values: controller.values4.value,
-                                  //     labels: RangeLabels(controller.values4.value.start.round().toString()
-                                  //         ,controller.values4.value.end.round().toString()),
-                                  //    onChanged: (value) {
-                                  //     controller.values4.value = value;
-                                  //     print('value=>${controller.values4.value}');
-                                  //     print('${RangeLabels(
-                                  //         controller.values4.value.start.round().toString()
-                                  //         ,controller.values4.value.end.round().toString())}');
-                                  //    },
-                                  //
-                                  // ),
                                 ),
                                 ListTile(
                                   title: Text(
@@ -828,7 +810,7 @@ class _TopSellingProductListWidgetState
             ),
           ),
           body: Obx(
-            () => (controller.hasData.isFalse)
+            () => (controller.hastopproduct.isFalse)
                 ? Center(child: CircularProgressIndicator())
                 : (isNullEmptyOrFalse(controller.mainProductList))
                     ? Center(
@@ -880,6 +862,7 @@ class _TopSellingProductListWidgetState
                                                       controller.price.value =
                                                           controller
                                                               .location[index];
+
                                                       controller.price
                                                           .refresh();
                                                     },
@@ -1090,15 +1073,13 @@ class _TopSellingProductListWidgetState
                                             .mainProductList[index]
                                             .subCategory!
                                             .name,
-                                        price: controller
-                                            .mainProductList[index].price
+                                        price: controller.mainProductList[index].price
                                             .toString(),
                                         discountedPrice: controller
                                             .mainProductList[index]
                                             .discountedPrice
                                             .toString(),
-                                        rating: controller
-                                            .mainProductList[index].rating
+                                        rating: controller.mainProductList[index].rating
                                             .toString(),
                                         ButtonText: "ADD TO CART",
                                         ButtonTap: () {
@@ -1111,10 +1092,13 @@ class _TopSellingProductListWidgetState
                                                   .mainProductList[index]);
                                         },
                                         icon: Icons.add_shopping_cart,
-                                        isShipping: controller
-                                            .mainProductList[index]
-                                            .sellerId!
-                                            .waiveOffShipping);
+                                        isShipping: (int.parse(controller.mainProductList[index].sellerId!.shippingLimit.toString()) >
+                                                controller
+                                                    .mainProductList[index]
+                                                    .sellerId!
+                                                    .distance)
+                                            ? false
+                                            : true);
                                   },
                                   gridDelegate:
                                       SliverGridDelegateWithFixedCrossAxisCount(
@@ -1123,7 +1107,7 @@ class _TopSellingProductListWidgetState
                                             .size
                                             .width /
                                         (MediaQuery.of(context).size.height /
-                                            1.3),
+                                            1.2),
                                   )),
                             ),
                           ),

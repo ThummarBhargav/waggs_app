@@ -76,22 +76,22 @@ class PlaneView extends GetWidget<PlaneController> {
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   // SizedBox(width: 200,),
-                                  IconButton(
-                                      onPressed: () {
-                                        if ((box.read(
-                                                ArgumentConstant.isUserLogin) ==
-                                            null)) {
-                                          Get.toNamed(Routes.LOGIN_SCREEN);
-                                        } else {
-                                          scaffoldKey.currentState!
-                                              .openEndDrawer();
-                                        }
-                                      },
-                                      icon: Icon(
-                                        Icons.search,
-                                        size: 25,
-                                        color: Colors.grey,
-                                      )),
+                                  // IconButton(
+                                  //     onPressed: () {
+                                  //       if ((box.read(
+                                  //               ArgumentConstant.isUserLogin) ==
+                                  //           null)) {
+                                  //         Get.toNamed(Routes.LOGIN_SCREEN);
+                                  //       } else {
+                                  //         scaffoldKey.currentState!
+                                  //             .openEndDrawer();
+                                  //       }
+                                  //     },
+                                  //     icon: Icon(
+                                  //       Icons.search,
+                                  //       size: 25,
+                                  //       color: Colors.grey,
+                                  //     )),
                                   Stack(
                                     children: [
                                       IconButton(

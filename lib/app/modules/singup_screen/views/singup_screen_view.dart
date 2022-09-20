@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:waggs_app/app/constant/SizeConstant.dart';
+import 'package:waggs_app/app/constant/text_field.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
 import '../controllers/singup_screen_controller.dart';
 
@@ -85,21 +86,14 @@ class SingupScreenView extends GetWidget<SingupScreenController> {
                           bottomRight: Radius.circular(10),
                         ),
                       ),
-                      child: TextFormField(
-                        controller: controller.firstnameController.value,
-                        keyboardType: TextInputType.name,
+                      child: getTextField(
+                        textEditingController:
+                            controller.firstnameController.value,
+                        textInputType: TextInputType.name,
                         validator: (input) => !isNullEmptyOrFalse(input)
                             ? null
                             : "Please Enter Your First Name",
-                        decoration: InputDecoration(
-                          hintText: "Enter Your First Name",
-                          hintStyle: GoogleFonts.roboto(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                          ),
-                          enabledBorder: InputBorder.none,
-                          focusedBorder: InputBorder.none,
-                        ),
+                        hintText: "Enter Your First Name",
                       ),
                     ),
                     SizedBox(
@@ -139,30 +133,23 @@ class SingupScreenView extends GetWidget<SingupScreenController> {
                         onFocusChange: (val) {
                           controller.verifyEmail(context);
                         },
-                        child: TextFormField(
-                          controller: controller.emailController.value,
-                          keyboardType: TextInputType.emailAddress,
-                          validator: (input) => !isNullEmptyOrFalse(input)
-                              ? null
-                              : "Please Enter Your Email Address",
-                          decoration: InputDecoration(
-                              hintText: "Enter Your Email Address",
-                              hintStyle: GoogleFonts.roboto(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                              ),
-                              enabledBorder: InputBorder.none,
-                              focusedBorder: InputBorder.none,
-                              errorText: (controller.isEmailExist.isTrue)
-                                  ? "Email already registered"
-                                  : null),
-                          onChanged: (val) {
-                            controller.isEmailExist.value = false;
-                          },
-                          onFieldSubmitted: (val) {
-                            controller.verifyEmail(context);
-                          },
-                        ),
+                        child: getTextField(
+                            textEditingController:
+                                controller.emailController.value,
+                            textInputType: TextInputType.name,
+                            validator: (input) => !isNullEmptyOrFalse(input)
+                                ? null
+                                : "Please Enter Your Email Address",
+                            hintText: "Enter Your Email Address",
+                            onChanged: (val) {
+                              controller.isEmailExist.value = false;
+                            },
+                            onSubmitted: (val) {
+                              controller.verifyEmail(context);
+                            },
+                            errortext: (controller.isEmailExist.isTrue)
+                                ? "Email already registered"
+                                : null),
                       ),
                     ),
                     SizedBox(
@@ -203,21 +190,14 @@ class SingupScreenView extends GetWidget<SingupScreenController> {
                                 bottomRight: Radius.circular(10),
                               ),
                             ),
-                            child: TextFormField(
-                              controller: controller.countryController.value,
-                              keyboardType: TextInputType.phone,
+                            child: getTextField(
+                              textEditingController:
+                                  controller.countryController.value,
+                              textInputType: TextInputType.name,
                               validator: (input) => !isNullEmptyOrFalse(input)
                                   ? null
                                   : "Please Enter Your Country Code",
-                              decoration: InputDecoration(
-                                hintText: "+91",
-                                hintStyle: GoogleFonts.roboto(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                                enabledBorder: InputBorder.none,
-                                focusedBorder: InputBorder.none,
-                              ),
+                              hintText: "+91",
                             ),
                           ),
                         ),
@@ -236,37 +216,28 @@ class SingupScreenView extends GetWidget<SingupScreenController> {
                                 bottomRight: Radius.circular(10),
                               ),
                             ),
-                            child: TextFormField(
-                              keyboardType: TextInputType.number,
-                              inputFormatters: [
-                                FilteringTextInputFormatter.digitsOnly,
-                                LengthLimitingTextInputFormatter(
-                                  10,
-                                ),
-                                //n is maximum number of characters you want in textfield
-                              ],
-                              controller: controller.mobileController.value,
-                              validator: (input) => !isNullEmptyOrFalse(input)
-                                  ? null
-                                  : "Please Enter Your Phone Number",
-                              decoration: InputDecoration(
-                                  hintText: "Enter Your Phone Number",
-                                  hintStyle: GoogleFonts.roboto(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
+                            child: getTextField(
+                                textEditingController:
+                                    controller.mobileController.value,
+                                textInputType: TextInputType.number,
+                                validator: (input) => !isNullEmptyOrFalse(input)
+                                    ? null
+                                    : "Please Enter Your Phone Number",
+                                hintText: "Enter Your Phone Number",
+                                onChanged: (val) {
+                                  if (val.length == 10) {
+                                    controller.verifyPhone(context);
+                                  }
+                                },
+                                textInputFormatter: [
+                                  FilteringTextInputFormatter.digitsOnly,
+                                  LengthLimitingTextInputFormatter(
+                                    10,
                                   ),
-                                  enabledBorder: InputBorder.none,
-                                  focusedBorder: InputBorder.none,
-                                  errorText: (controller.isNumberExist.isTrue)
-                                      ? "Mobile number already registered"
-                                      : null),
-                              onChanged: (val) {
-                                controller.isNumberExist.value = false;
-                                if (val.length == 10) {
-                                  controller.verifyPhone(context);
-                                }
-                              },
-                            ),
+                                ],
+                                errortext: (controller.isNumberExist.isTrue)
+                                    ? "Mobile number already registered"
+                                    : null),
                           ),
                         ),
                       ],
@@ -293,47 +264,41 @@ class SingupScreenView extends GetWidget<SingupScreenController> {
                     ),
                     Obx(() {
                       return Container(
-                        margin: EdgeInsets.only(left: 15, right: 15),
-                        padding: EdgeInsets.only(
-                          left: 15,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.grey[300],
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(10),
-                            topRight: Radius.circular(10),
-                            bottomRight: Radius.circular(10),
+                          margin: EdgeInsets.only(left: 15, right: 15),
+                          padding: EdgeInsets.only(
+                            left: 15,
                           ),
-                        ),
-                        child: TextFormField(
-                          controller: controller.passController.value,
-                          validator: (input) => !isNullEmptyOrFalse(input)
-                              ? null
-                              : "Please Enter Password",
-                          obscureText: controller.passwordVisible.value,
-                          decoration: InputDecoration(
-                              hintText: "Enter Your Password",
-                              hintStyle: GoogleFonts.roboto(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                              ),
-                              enabledBorder: InputBorder.none,
-                              focusedBorder: InputBorder.none,
-                              suffixIcon: IconButton(
-                                  onPressed: () {
-                                    controller.passwordVisible.toggle();
-                                  },
-                                  icon: (!controller.passwordVisible.value)
-                                      ? Icon(
-                                          Icons.visibility_off,
-                                          color: Colors.grey,
-                                        )
-                                      : Icon(
-                                          Icons.visibility,
-                                          color: Colors.grey,
-                                        ))),
-                        ),
-                      );
+                          decoration: BoxDecoration(
+                            color: Colors.grey[300],
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(10),
+                              topRight: Radius.circular(10),
+                              bottomRight: Radius.circular(10),
+                            ),
+                          ),
+                          child: getTextField(
+                            textEditingController:
+                                controller.passController.value,
+                            textInputType: TextInputType.name,
+                            validator: (input) => !isNullEmptyOrFalse(input)
+                                ? null
+                                : "Please Enter password",
+                            hintText: "Enter Your password",
+                            textVisible: controller.passwordVisible.value,
+                            suffixIcon: IconButton(
+                                onPressed: () {
+                                  controller.passwordVisible.toggle();
+                                },
+                                icon: (!controller.passwordVisible.value)
+                                    ? Icon(
+                                        Icons.visibility_off,
+                                        color: Colors.grey,
+                                      )
+                                    : Icon(
+                                        Icons.visibility,
+                                        color: Colors.grey,
+                                      )),
+                          ));
                     }),
                     SizedBox(
                       height: 20,
@@ -357,62 +322,55 @@ class SingupScreenView extends GetWidget<SingupScreenController> {
                     ),
                     Obx(() {
                       return Container(
-                        margin: EdgeInsets.only(left: 15, right: 15),
-                        padding: EdgeInsets.only(
-                          left: 15,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.grey[300],
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(10),
-                            topRight: Radius.circular(10),
-                            bottomRight: Radius.circular(10),
+                          margin: EdgeInsets.only(left: 15, right: 15),
+                          padding: EdgeInsets.only(
+                            left: 15,
                           ),
-                        ),
-                        child: TextFormField(
-                          controller: controller.confirmPassController.value,
-                          validator: (input) => !isNullEmptyOrFalse(input)
-                              ? null
-                              : "Please Confirm Enter Password",
-                          obscureText: controller.passwordVisible.value,
-                          keyboardType: TextInputType.visiblePassword,
-                          decoration: InputDecoration(
-                              hintText: "Enter Your Confirm Password",
-                              hintStyle: GoogleFonts.roboto(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                              ),
-                              enabledBorder: InputBorder.none,
-                              focusedBorder: InputBorder.none,
-                              errorText: (controller.ispass.isTrue)
-                                  ? "Does not match password"
-                                  : null,
-                              suffixIcon: IconButton(
-                                  onPressed: () {
-                                    controller.passwordVisible.toggle();
-                                  },
-                                  icon: (!controller.passwordVisible.value)
-                                      ? Icon(
-                                          Icons.visibility_off,
-                                          color: Colors.grey,
-                                        )
-                                      : Icon(
-                                          Icons.visibility,
-                                          color: Colors.grey,
-                                        ))),
-                          onChanged: (val) {
-                            controller.ispass.value = false;
-                          },
-                          onFieldSubmitted: (val) {
-                            if (controller.passController.value.text ==
-                                controller.confirmPassController.value.text) {
+                          decoration: BoxDecoration(
+                            color: Colors.grey[300],
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(10),
+                              topRight: Radius.circular(10),
+                              bottomRight: Radius.circular(10),
+                            ),
+                          ),
+                          child: getTextField(
+                            textEditingController:
+                                controller.confirmPassController.value,
+                            textInputType: TextInputType.name,
+                            validator: (input) => !isNullEmptyOrFalse(input)
+                                ? null
+                                : "Please Enter confirm password",
+                            hintText: "Enter Your Confirm password",
+                            onChanged: (val) {
                               controller.ispass.value = false;
-                            } else {
-                              controller.ispass.value = true;
-                            }
-                          },
-                        ),
-                      );
+                            },
+                            onSubmitted: (val) {
+                              if (controller.passController.value.text ==
+                                  controller.confirmPassController.value.text) {
+                                controller.ispass.value = false;
+                              } else {
+                                controller.ispass.value = true;
+                              }
+                            },
+                            errortext: (controller.ispass.isTrue)
+                                ? "Does not match password"
+                                : null,
+                            textVisible: controller.passwordVisible.value,
+                            suffixIcon: IconButton(
+                                onPressed: () {
+                                  controller.passwordVisible.toggle();
+                                },
+                                icon: (!controller.passwordVisible.value)
+                                    ? Icon(
+                                        Icons.visibility_off,
+                                        color: Colors.grey,
+                                      )
+                                    : Icon(
+                                        Icons.visibility,
+                                        color: Colors.grey,
+                                      )),
+                          ));
                     }),
                     SizedBox(
                       height: 20,
@@ -480,12 +438,6 @@ class SingupScreenView extends GetWidget<SingupScreenController> {
                       children: [
                         InkWell(
                           onTap: () {
-                            controller.firstnameController.value.clear();
-                            controller.passController.value.clear();
-                            controller.mobileController.value.clear();
-                            controller.confirmPassController.value.clear();
-                            controller.emailController.value.clear();
-                            controller.countryController.value.clear();
                             controller.verifyEmail(context).then((value) {
                               if (controller.formKey.currentState!.validate()) {
                                 if (controller.isNumberExist.isFalse &&

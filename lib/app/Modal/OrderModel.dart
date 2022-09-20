@@ -1,3 +1,5 @@
+import 'CartProductModel.dart';
+
 class Orders1 {
   int? responseCode;
   Data? data;
@@ -302,99 +304,99 @@ class Product {
   }
 }
 
-class SellerId {
-  String? sId;
-  bool? isEmailVerified;
-  bool? isApproved;
-  bool? waiveOffShipping;
-  String? name;
-  String? email;
-  String? mobile;
-  String? countryCode;
-  String? address;
-  double? latitude;
-  double? longitude;
-  String? city;
-  String? companyName;
-  String? country;
-  String? fssaiNumber;
-  String? gstNo;
-  String? logoUrl;
-  String? panNo;
-  String? pincode;
-  int? shippingLimit;
-  String? state;
-
-  SellerId(
-      {this.sId,
-      this.isEmailVerified,
-      this.isApproved,
-      this.waiveOffShipping,
-      this.name,
-      this.email,
-      this.mobile,
-      this.countryCode,
-      this.address,
-      this.latitude,
-      this.longitude,
-      this.city,
-      this.companyName,
-      this.country,
-      this.fssaiNumber,
-      this.gstNo,
-      this.logoUrl,
-      this.panNo,
-      this.pincode,
-      this.shippingLimit,
-      this.state});
-
-  SellerId.fromJson(Map<String, dynamic> json) {
-    sId = json['_id'];
-    isEmailVerified = json['isEmailVerified'];
-    isApproved = json['isApproved'];
-    waiveOffShipping = json['waiveOffShipping'];
-    name = json['name'];
-    email = json['email'];
-    mobile = json['mobile'];
-    countryCode = json['countryCode'];
-    address = json['address'];
-    latitude = json['latitude'];
-    longitude = json['longitude'];
-    city = json['city'];
-    companyName = json['companyName'];
-    country = json['country'];
-    fssaiNumber = json['fssaiNumber'];
-    gstNo = json['gstNo'];
-    logoUrl = json['logoUrl'];
-    panNo = json['panNo'];
-    pincode = json['pincode'];
-    shippingLimit = json['shippingLimit'];
-    state = json['state'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['isEmailVerified'] = this.isEmailVerified;
-    data['isApproved'] = this.isApproved;
-    data['waiveOffShipping'] = this.waiveOffShipping;
-    data['name'] = this.name;
-    data['email'] = this.email;
-    data['mobile'] = this.mobile;
-    data['countryCode'] = this.countryCode;
-    data['address'] = this.address;
-    data['latitude'] = this.latitude;
-    data['longitude'] = this.longitude;
-    data['city'] = this.city;
-    data['companyName'] = this.companyName;
-    data['country'] = this.country;
-    data['fssaiNumber'] = this.fssaiNumber;
-    data['gstNo'] = this.gstNo;
-    data['logoUrl'] = this.logoUrl;
-    data['panNo'] = this.panNo;
-    data['pincode'] = this.pincode;
-    data['shippingLimit'] = this.shippingLimit;
-    data['state'] = this.state;
-    return data;
-  }
-}
+// class SellerId {
+//   String? sId;
+//   bool? isEmailVerified;
+//   bool? isApproved;
+//   bool? waiveOffShipping;
+//   String? name;
+//   String? email;
+//   String? mobile;
+//   String? countryCode;
+//   String? address;
+//   double? latitude;
+//   double? longitude;
+//   String? city;
+//   String? companyName;
+//   String? country;
+//   String? fssaiNumber;
+//   String? gstNo;
+//   String? logoUrl;
+//   String? panNo;
+//   String? pincode;
+//   int? shippingLimit;
+//   String? state;
+//
+//   SellerId(
+//       {this.sId,
+//       this.isEmailVerified,
+//       this.isApproved,
+//       this.waiveOffShipping,
+//       this.name,
+//       this.email,
+//       this.mobile,
+//       this.countryCode,
+//       this.address,
+//       this.latitude,
+//       this.longitude,
+//       this.city,
+//       this.companyName,
+//       this.country,
+//       this.fssaiNumber,
+//       this.gstNo,
+//       this.logoUrl,
+//       this.panNo,
+//       this.pincode,
+//       this.shippingLimit,
+//       this.state});
+//
+//   SellerId.fromJson(Map<String, dynamic> json) {
+//     sId = json['_id'];
+//     isEmailVerified = json['isEmailVerified'];
+//     isApproved = json['isApproved'];
+//     waiveOffShipping = json['waiveOffShipping'];
+//     name = json['name'];
+//     email = json['email'];
+//     mobile = json['mobile'];
+//     countryCode = json['countryCode'];
+//     address = json['address'];
+//     latitude = json['latitude'];
+//     longitude = json['longitude'];
+//     city = json['city'];
+//     companyName = json['companyName'];
+//     country = json['country'];
+//     fssaiNumber = json['fssaiNumber'];
+//     gstNo = json['gstNo'];
+//     logoUrl = json['logoUrl'];
+//     panNo = json['panNo'];
+//     pincode = json['pincode'];
+//     shippingLimit = json['shippingLimit'];
+//     state = json['state'];
+//   }
+//
+//   Map<String, dynamic> toJson() {
+//     final Map<String, dynamic> data = new Map<String, dynamic>();
+//     data['_id'] = this.sId;
+//     data['isEmailVerified'] = this.isEmailVerified;
+//     data['isApproved'] = this.isApproved;
+//     data['waiveOffShipping'] = this.waiveOffShipping;
+//     data['name'] = this.name;
+//     data['email'] = this.email;
+//     data['mobile'] = this.mobile;
+//     data['countryCode'] = this.countryCode;
+//     data['address'] = this.address;
+//     data['latitude'] = this.latitude;
+//     data['longitude'] = this.longitude;
+//     data['city'] = this.city;
+//     data['companyName'] = this.companyName;
+//     data['country'] = this.country;
+//     data['fssaiNumber'] = this.fssaiNumber;
+//     data['gstNo'] = this.gstNo;
+//     data['logoUrl'] = this.logoUrl;
+//     data['panNo'] = this.panNo;
+//     data['pincode'] = this.pincode;
+//     data['shippingLimit'] = this.shippingLimit;
+//     data['state'] = this.state;
+//     return data;
+//   }
+// }

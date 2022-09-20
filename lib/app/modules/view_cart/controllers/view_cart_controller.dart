@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'package:dio/dio.dart';
 import 'package:geocoding/geocoding.dart';
@@ -17,6 +18,8 @@ import 'package:waggs_app/app/routes/app_pages.dart';
 import '../../../../main.dart';
 import '../../../Modal/CartCountModel.dart';
 import '../../../Modal/CartProductModel.dart';
+import '../../../Modal/shippingModel.dart';
+import '../../../Modal/updateAddressResponseModel.dart';
 import '../../../constant/ConstantUrl.dart';
 import '../../../constant/SizeConstant.dart';
 import 'package:http/http.dart' as http;
@@ -31,6 +34,9 @@ class ViewCartController extends GetxController {
   Order? Checkoutlist;
   RxBool isLoading = false.obs;
   RxBool isChange = false.obs;
+  RxBool isLocationChanged = false.obs;
+  RxString newLocation = "".obs;
+  GlobalKey<FormState> formkey = GlobalKey<FormState>();
   Rx<TextEditingController> emailController = TextEditingController().obs;
   Rx<TextEditingController> nameController = TextEditingController().obs;
   Rx<TextEditingController> lastNameController = TextEditingController().obs;
@@ -38,6 +44,9 @@ class ViewCartController extends GetxController {
   Rx<TextEditingController> apartmentController = TextEditingController().obs;
   Rx<TextEditingController> cityController = TextEditingController().obs;
   Rx<TextEditingController> pinCodeController = TextEditingController().obs;
+  Rx<TextEditingController> shopController = TextEditingController().obs;
+  Rx<TextEditingController> buildingNameController =
+      TextEditingController().obs;
   Rx<TextEditingController> mobileNumberController =
       TextEditingController().obs;
   Rx<TextEditingController> couponController = TextEditingController().obs;
@@ -46,6 +55,9 @@ class ViewCartController extends GetxController {
   RxBool emailCheckBox = false.obs;
   RxBool detailCheckBox = false.obs;
   Rx<Position>? _currentPosition;
+  double shippingCharge = 0;
+  Shipping1 shipping1 = Shipping1();
+
   String _currentAddress = '';
   Geolocator geolocator = Geolocator();
   late Razorpay _razorpay;
@@ -58,21 +70,25 @@ class ViewCartController extends GetxController {
   void onInit() {
     super.onInit();
     CartProductApi();
+    ShippingApi();
     getCurrentLocation();
     CartCount();
   }
 
-  getCurrentLocation() {
-    Geolocator.getCurrentPosition(
+  Future<Position?> getCurrentLocation() async {
+    Position? currentPositionData;
+    await Geolocator.getCurrentPosition(
             desiredAccuracy: LocationAccuracy.high,
             forceAndroidLocationManager: true)
         .then((Position position) {
       _currentPosition = position.obs;
+      currentPositionData = position;
       print("position: ====== ${position.latitude} ==> ${position.longitude}");
-      _getAddressFromLatLng();
     }).catchError((e) {
       print(e);
     });
+
+    return currentPositionData;
   }
 
   _getAddressFromLatLng() async {
@@ -104,6 +120,24 @@ class ViewCartController extends GetxController {
     super.onClose();
   }
 
+  ShippingApi() async {
+    var url = Uri.parse(baseUrl + ApiConstant.shipping);
+    var response = await http.get(url);
+    print('response status:${response.request}');
+    dynamic result = jsonDecode(response.body);
+    print(result);
+    if (response.statusCode == 200) {
+      ShippingModel res = ShippingModel.fromJson(jsonDecode(response.body));
+      if (!isNullEmptyOrFalse(res)) {
+        shipping1 = res.data!;
+        if (!isNullEmptyOrFalse(shipping1.shippingCharge)) {
+          shippingCharge = double.parse(shipping1.shippingCharge.toString());
+        }
+        print(shipping1);
+      }
+    }
+  }
+
   CartProductApi() async {
     hasData.value = false;
     cartProductList.clear();
@@ -111,26 +145,60 @@ class ViewCartController extends GetxController {
     var response;
     await http.get(url, headers: {
       'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
-    }).then((value) {
-      hasData.value = true;
+    }).then((value) async {
       print(value);
       response = value;
+      print('Response status: ${response.statusCode}');
+      print('Response body: ${response.body}');
+      dynamic result = jsonDecode(response.body);
+      cartProduct = CartProduct.fromJson(result);
+      print(result);
+      Position? currentPositionData = await getCurrentLocation();
+      if (!isNullEmptyOrFalse(cartProduct.data)) {
+        if (!isNullEmptyOrFalse(cartProduct.data!.details)) {
+          cartProduct.data!.details!.forEach((element) {
+            if (!isNullEmptyOrFalse(element.product)) {
+              if (!isNullEmptyOrFalse(element.product!.sellerId)) {
+                if (!isNullEmptyOrFalse(currentPositionData)) {
+                  if (!isNullEmptyOrFalse(
+                          element.product!.sellerId!.latitude) &&
+                      !isNullEmptyOrFalse(
+                          element.product!.sellerId!.longitude) &&
+                      !isNullEmptyOrFalse(currentPositionData!.latitude) &&
+                      !isNullEmptyOrFalse(currentPositionData.longitude)) {
+                    double lat2 = element.product!.sellerId!.latitude!;
+                    double lat1 = currentPositionData.latitude;
+                    double lon2 = element.product!.sellerId!.longitude!;
+                    double lon1 = currentPositionData.longitude;
+                    print("lat1========${lat1}");
+                    print("lon1========${lon1}");
+                    print("lat2========${lat2}");
+                    print("lon2========${lon2}");
+                    var p = 0.017453292519943295;
+                    var c = cos;
+                    var a = 0.5 -
+                        c((lat2 - lat1) * p) / 2 +
+                        c(lat1 * p) *
+                            c(lat2 * p) *
+                            (1 - c((lon2 - lon1) * p)) /
+                            2;
+                    double shippingCost =
+                        12742 * asin(sqrt(a)) * shippingCharge;
+                    element.product!.sellerId!.shippingCharge = shippingCost;
+                    print("My Distance := ${shippingCost}");
+                  }
+                }
+              }
+            }
+            cartProductList.add(element);
+          });
+        }
+      }
+      hasData.value = true;
+      cartProductList.refresh();
     }).catchError((error) {
       hasData.value = false;
     });
-    print('Response status: ${response.statusCode}');
-    print('Response body: ${response.body}');
-    dynamic result = jsonDecode(response.body);
-    cartProduct = CartProduct.fromJson(result);
-    print(result);
-    if (!isNullEmptyOrFalse(cartProduct.data)) {
-      if (!isNullEmptyOrFalse(cartProduct.data!.details)) {
-        cartProduct.data!.details!.forEach((element) {
-          cartProductList.add(element);
-        });
-      }
-    }
-    cartProductList.refresh();
   }
 
   CartCount() async {
@@ -439,6 +507,36 @@ class ViewCartController extends GetxController {
         });
   }
 
+  Future<void> updateAddressApi() async {
+    var url = Uri.parse(baseUrl3 + ApiConstant.addressUpdate);
+    await http.put(url, body: {
+      'address': shopController.value.text +
+          " " +
+          buildingNameController.value.text +
+          " " +
+          _currentAddress,
+      'latitude': _currentPosition!.value.latitude.toString(),
+      'longitude': _currentPosition!.value.longitude.toString(),
+    }, headers: {
+      'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+      // 'Content-Type': 'application/json'
+    }).then((value) {
+      shopController.value.clear();
+      buildingNameController.value.clear();
+      if (value.statusCode == 200) {
+        UpdateAddressModel res =
+            UpdateAddressModel.fromJson(jsonDecode(value.body));
+        box.write(ArgumentConstant.address, res.data!.address ?? "");
+        newLocation.value = res.data!.address ?? "";
+        isLocationChanged.value = true;
+      }
+      print('Response status: ${value.statusCode}');
+      print('Response body: ${value.body}');
+    }).catchError((error) {
+      print(error);
+    });
+  }
+
   Address1(BuildContext context) {
     showDialog(
         context: context,
@@ -447,45 +545,115 @@ class ViewCartController extends GetxController {
           return AlertDialog(
             content: Container(
               height: 300,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      "Enter full address",
-                      style: GoogleFonts.publicSans(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 18,
-                          color: Colors.black),
-                    ),
-                  ),
-                  Spacer(),
-                  Row(
-                    children: [
-                      Icon(Icons.location_on),
-                      // Wrap(Text("${_currentAddress}"));
-                      //   (child: ),
-                    ],
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: Align(
-                      alignment: Alignment.bottomRight,
-                      child: Container(
-                        child: Text(
-                          "Cancel",
-                          style: GoogleFonts.publicSans(
-                              fontWeight: FontWeight.w700,
-                              color: Color.fromRGBO(31, 193, 244, 1),
-                              fontSize: 14),
-                        ),
+              child: Form(
+                key: formkey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        "Enter full address",
+                        style: GoogleFonts.publicSans(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 18,
+                            color: Colors.black),
                       ),
                     ),
-                  ),
-                ],
+                    SizedBox(
+                      height: 20,
+                    ),
+                    // Spacer(),
+                    Row(
+                      children: [
+                        Icon(Icons.location_on),
+                        Expanded(
+                          child: Text(
+                            "${_currentAddress}",
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextFormField(
+                      controller: shopController.value,
+                      validator: (val) {
+                        if (val!.isEmpty) {
+                          return "Please enter shop no";
+                        }
+                        return null;
+                      },
+                      decoration: InputDecoration(
+                        hintText: "Enter Shop / Building / Flat no.",
+                        labelText: "Shop / Building / Flat no.*",
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextFormField(
+                      controller: buildingNameController.value,
+                      decoration: InputDecoration(
+                        hintText:
+                            "Shop / Building Name / Society Name (Optional)",
+                        labelText: "Shop / Building Name / Society Name",
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Align(
+                            alignment: Alignment.bottomRight,
+                            child: Container(
+                              child: Text(
+                                "Cancel",
+                                style: GoogleFonts.publicSans(
+                                    fontWeight: FontWeight.w700,
+                                    color: Color.fromRGBO(31, 193, 244, 1),
+                                    fontSize: 14),
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            // Navigator.pop(context);
+                            if (formkey.currentState!.validate()) {
+                              Get.back();
+                              Get.back();
+                              updateAddressApi();
+                            }
+                          },
+                          child: Align(
+                            alignment: Alignment.bottomRight,
+                            child: Container(
+                              child: Text(
+                                "Save",
+                                style: GoogleFonts.publicSans(
+                                    fontWeight: FontWeight.w700,
+                                    color: Color.fromRGBO(31, 193, 244, 1),
+                                    fontSize: 14),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           );

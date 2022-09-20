@@ -837,7 +837,7 @@ class _SubCategoryWidgetState extends State<SubCategoryWidget> {
                   )
                 ],
               ),
-              body: (controller.hasData.isFalse)
+              body: (controller.hassubcatagoryData.isFalse)
                   ? Center(
                       child: CircularProgressIndicator(),
                     )
@@ -1121,8 +1121,7 @@ class _SubCategoryWidgetState extends State<SubCategoryWidget> {
                                               .mainProductList[index]
                                               .subCategory!
                                               .name,
-                                          price: controller
-                                              .mainProductList[index].price
+                                          price: controller.mainProductList[index].price
                                               .toString(),
                                           discountedPrice: controller
                                               .mainProductList[index]
@@ -1142,10 +1141,10 @@ class _SubCategoryWidgetState extends State<SubCategoryWidget> {
                                                     .mainProductList[index]);
                                           },
                                           icon: Icons.add_shopping_cart,
-                                          isShipping: controller
-                                              .mainProductList[index]
-                                              .sellerId!
-                                              .waiveOffShipping);
+                                          isShipping: (int.parse(controller.mainProductList[index].sellerId!.shippingLimit.toString()) >
+                                                  controller.mainProductList[index].sellerId!.distance)
+                                              ? false
+                                              : true);
                                     },
                                     gridDelegate:
                                         SliverGridDelegateWithFixedCrossAxisCount(

@@ -50,6 +50,7 @@ class ApiConstant {
   static const getvet = "vet";
   static const vetdetail = "vet/info/";
   static const bookvet = "appointment/book";
+  static const addressUpdate = "address";
 }
 
 class ArgumentConstant {
@@ -86,7 +87,6 @@ class ArgumentConstant {
 }
 
 Rx<Position>? _currentPosition;
-
 Future<Position?> getCurrentLocation() async {
   Position? currentPositionData;
   await Geolocator.getCurrentPosition(

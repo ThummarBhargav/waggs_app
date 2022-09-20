@@ -11,7 +11,7 @@ import 'package:waggs_app/main.dart';
 
 import '../controllers/view_cart_controller.dart';
 
-class ViewCartView extends GetView<ViewCartController> {
+class ViewCartView extends GetWidget<ViewCartController> {
   const ViewCartView({Key? key}) : super(key: key);
 
   @override
@@ -396,17 +396,13 @@ class ViewCartView extends GetView<ViewCartController> {
                                                               Expanded(
                                                                 child: InkWell(
                                                                     onTap: () {
-                                                                      if (controller
-                                                                              .cartProductList[index]
-                                                                              .quantity ==
-                                                                          1) {
-                                                                      } else {
-                                                                        controller
-                                                                            .UpdateCartRemove(
-                                                                          data:
-                                                                              controller.cartProductList[index],
-                                                                        );
-                                                                      }
+                                                                      (controller.cartProductList[index].quantity ==
+                                                                              1)
+                                                                          ? controller.CartDeleteApi(
+                                                                              data: controller.cartProductList[index])
+                                                                          : controller.UpdateCartRemove(
+                                                                              data: controller.cartProductList[index],
+                                                                            );
                                                                     },
                                                                     child:
                                                                         Padding(
@@ -491,19 +487,44 @@ class ViewCartView extends GetView<ViewCartController> {
                                                           ),
                                                         ),
                                                       ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(8.0),
-                                                        child: Text(
-                                                          "\u{20B9}${controller.cartProductList[index].product!.discountedPrice! * controller.cartProductList[index].quantity!}.00",
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.orange,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w800),
-                                                        ),
+                                                      Column(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .end,
+                                                        children: [
+                                                          Text(
+                                                            "\u{20B9}${controller.cartProductList[index].product!.discountedPrice! * controller.cartProductList[index].quantity!}.00",
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .orange,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w800),
+                                                          ),
+                                                          SizedBox(
+                                                            height: 10,
+                                                          ),
+                                                          (controller
+                                                                      .cartProductList[
+                                                                          index]
+                                                                      .product!
+                                                                      .sellerId!
+                                                                      .shippingCharge !=
+                                                                  0.00)
+                                                              ? Container()
+                                                              : Text(
+                                                                  "+ \u{20B9}${controller.cartProductList[index].product!.sellerId!.shippingCharge.toStringAsFixed(0)}.00" +
+                                                                      " Shipping",
+                                                                  style:
+                                                                      TextStyle(
+                                                                    color: Colors
+                                                                        .black,
+                                                                  ),
+                                                                ),
+                                                        ],
                                                       )
                                                     ],
                                                   ),
@@ -540,16 +561,24 @@ class ViewCartView extends GetView<ViewCartController> {
                                               right: 10, left: 10, top: 10),
                                           margin: EdgeInsets.only(
                                               right: 20, left: 20),
-                                          child: box.read(ArgumentConstant
-                                                      .address) ==
-                                                  ""
-                                              ? Container()
-                                              : Text(
-                                                  "${box.read(ArgumentConstant.address)}",
+                                          child: (controller
+                                                  .isLocationChanged.isTrue)
+                                              ? Text(
+                                                  "${controller.newLocation.value}",
                                                   style: TextStyle(
                                                       color: Colors.black,
                                                       fontSize: 20),
-                                                ),
+                                                )
+                                              : box.read(ArgumentConstant
+                                                          .address) ==
+                                                      ""
+                                                  ? Container()
+                                                  : Text(
+                                                      "${box.read(ArgumentConstant.address)}",
+                                                      style: TextStyle(
+                                                          color: Colors.black,
+                                                          fontSize: 20),
+                                                    ),
                                           decoration: BoxDecoration(
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(10)),
@@ -701,11 +730,14 @@ class ViewCartView extends GetView<ViewCartController> {
                                           shrinkWrap: true,
                                           itemBuilder: (context, index) {
                                             var sum = 0;
+                                            double shippingCharge = 0;
                                             controller.cartProductList
                                                 .forEach((element) {
                                               sum += element.product!
                                                       .discountedPrice! *
                                                   element.quantity!;
+                                              shippingCharge += element.product!
+                                                  .sellerId!.shippingCharge;
                                             });
                                             return Container(
                                               margin: EdgeInsets.only(
@@ -786,24 +818,55 @@ class ViewCartView extends GetView<ViewCartController> {
                                                                     .shade500),
                                                           ),
                                                         ),
-                                                        Container(
-                                                          margin:
-                                                              EdgeInsets.only(
-                                                                  right: 10,
-                                                                  top: 20,
-                                                                  bottom: 15),
-                                                          child: Text(
-                                                            "Calculated At Next Step",
-                                                            style: TextStyle(
-                                                                fontSize: 16,
-                                                                color: Colors
-                                                                    .grey
-                                                                    .shade500,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500),
-                                                          ),
-                                                        )
+                                                        (controller
+                                                                    .cartProductList[
+                                                                        index]
+                                                                    .product!
+                                                                    .sellerId!
+                                                                    .shippingCharge !=
+                                                                0.00)
+                                                            ? Container(
+                                                                margin: EdgeInsets
+                                                                    .only(
+                                                                        right:
+                                                                            10,
+                                                                        top: 20,
+                                                                        bottom:
+                                                                            15),
+                                                                child: Text(
+                                                                  "\u{20B9} 0.00",
+                                                                  style: TextStyle(
+                                                                      fontSize:
+                                                                          16,
+                                                                      color: Colors
+                                                                          .grey
+                                                                          .shade500,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w500),
+                                                                ),
+                                                              )
+                                                            : Container(
+                                                                margin: EdgeInsets
+                                                                    .only(
+                                                                        right:
+                                                                            10,
+                                                                        top: 20,
+                                                                        bottom:
+                                                                            15),
+                                                                child: Text(
+                                                                  "${shippingCharge}",
+                                                                  style: TextStyle(
+                                                                      fontSize:
+                                                                          16,
+                                                                      color: Colors
+                                                                          .grey
+                                                                          .shade500,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w500),
+                                                                ),
+                                                              )
                                                       ],
                                                     ),
                                                     Container(

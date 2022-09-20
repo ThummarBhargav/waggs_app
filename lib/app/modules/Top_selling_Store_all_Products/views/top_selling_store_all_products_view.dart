@@ -122,41 +122,21 @@ class TopSellingStoreAllProductsView
                                     ),
                                   ),
                                 ),
-                                Obx(
-                                  () => RangeSlider(
-                                    values: controller.values4.value,
-                                    activeColor: Colors.lightBlue[300],
-                                    inactiveColor: Colors.lightBlue[200],
-                                    min: 100,
-                                    max: 30000,
-                                    divisions: 10000,
-                                    labels: RangeLabels(
-                                      "\u{20B9}${controller.values4.value.start.round().toString()}",
-                                      "\u{20B9}${controller.values4.value.end.round().toString()}",
-                                    ),
-                                    onChanged: (RangeValues values) {
-                                      controller.values4.value = values;
-                                    },
-                                  ),
-                                  //         RangeSlider(
-                                  //     divisions: 300,
-                                  //   activeColor: Colors.lightBlue[300],
-                                  //   inactiveColor: Colors.lightBlue[200],
-                                  //   min: 100,
-                                  //   max: 30000,
-                                  //   values: controller.values4.value,
-                                  //     labels: RangeLabels(controller.values4.value.start.round().toString()
-                                  //         ,controller.values4.value.end.round().toString()),
-                                  //    onChanged: (value) {
-                                  //     controller.values4.value = value;
-                                  //     print('value=>${controller.values4.value}');
-                                  //     print('${RangeLabels(
-                                  //         controller.values4.value.start.round().toString()
-                                  //         ,controller.values4.value.end.round().toString())}');
-                                  //    },
-                                  //
-                                  // ),
-                                ),
+                                Obx(() => RangeSlider(
+                                      values: controller.values4.value,
+                                      activeColor: Colors.lightBlue[300],
+                                      inactiveColor: Colors.lightBlue[200],
+                                      min: 100,
+                                      max: 30000,
+                                      divisions: 10000,
+                                      labels: RangeLabels(
+                                        "\u{20B9}${controller.values4.value.start.round().toString()}",
+                                        "\u{20B9}${controller.values4.value.end.round().toString()}",
+                                      ),
+                                      onChanged: (RangeValues values) {
+                                        controller.values4.value = values;
+                                      },
+                                    )),
                                 ListTile(
                                   title: Text(
                                     "Discount",
@@ -775,8 +755,7 @@ class TopSellingStoreAllProductsView
                 },
                 icon: Icon(
                   Icons.arrow_back,
-                  size: 20,
-                  color: Colors.grey,
+                  size: 22,
                 )),
             // this will hide Drawer hamburger icon
             actions: [
@@ -825,9 +804,9 @@ class TopSellingStoreAllProductsView
             iconTheme: IconThemeData(color: Colors.black),
           ),
           body: Obx(
-            () => (controller.hasData.isFalse)
+            () => (controller.hastopData.isFalse)
                 ? Center(child: CircularProgressIndicator())
-                : (isNullEmptyOrFalse(controller.mainProductList))
+                : (controller.mainProductList.isEmpty)
                     ? Center(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -1328,15 +1307,13 @@ class TopSellingStoreAllProductsView
                                             .mainProductList[index]
                                             .subCategory!
                                             .name,
-                                        price: controller
-                                            .mainProductList[index].price
+                                        price: controller.mainProductList[index].price
                                             .toString(),
                                         discountedPrice: controller
                                             .mainProductList[index]
                                             .discountedPrice
                                             .toString(),
-                                        rating: controller
-                                            .mainProductList[index].rating
+                                        rating: controller.mainProductList[index].rating
                                             .toString(),
                                         ButtonText: "ADD TO CART",
                                         ButtonTap: () {
@@ -1345,10 +1322,13 @@ class TopSellingStoreAllProductsView
                                                   .mainProductList[index]);
                                         },
                                         icon: Icons.add_shopping_cart,
-                                        isShipping: controller
-                                            .mainProductList[index]
-                                            .sellerId!
-                                            .waiveOffShipping);
+                                        isShipping: (int.parse(controller.mainProductList[index].sellerId!.shippingLimit.toString()) >
+                                                controller
+                                                    .mainProductList[index]
+                                                    .sellerId!
+                                                    .distance)
+                                            ? false
+                                            : true);
                                   },
                                   gridDelegate:
                                       SliverGridDelegateWithFixedCrossAxisCount(

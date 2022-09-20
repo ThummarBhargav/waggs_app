@@ -1,11 +1,14 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 
 import '../../../../main.dart';
 import '../../../Modal/CartCountModel.dart';
 import '../../../Modal/CartProductModel.dart';
+import '../../../Modal/shippingModel.dart';
 import '../../../constant/ConstantUrl.dart';
 import '../../../constant/SizeConstant.dart';
 import 'package:http/http.dart' as http;
@@ -16,6 +19,8 @@ class ViewAllMyCartController extends GetxController {
   CartProduct cartProduct = CartProduct();
   RxList<Count1> Countlist = RxList<Count1>([]);
   Count1 count1 = Count1();
+  Shipping1 shipping1 = Shipping1();
+
   RxBool isLoading = false.obs;
   Rx<TextEditingController> emailController = TextEditingController().obs;
   Rx<TextEditingController> nameController = TextEditingController().obs;
@@ -31,6 +36,7 @@ class ViewAllMyCartController extends GetxController {
   RxBool nameVisible = true.obs;
   RxBool emailCheckBox = false.obs;
   RxBool detailCheckBox = false.obs;
+  double shippingCharge = 0;
 
   final key = GlobalKey<FormState>();
 
@@ -51,6 +57,24 @@ class ViewAllMyCartController extends GetxController {
     super.onClose();
   }
 
+  ShippingApi() async {
+    var url = Uri.parse(baseUrl + ApiConstant.shipping);
+    var response = await http.get(url);
+    print('response status:${response.request}');
+    dynamic result = jsonDecode(response.body);
+    print(result);
+    if (response.statusCode == 200) {
+      ShippingModel res = ShippingModel.fromJson(jsonDecode(response.body));
+      if (!isNullEmptyOrFalse(res)) {
+        shipping1 = res.data!;
+        if (!isNullEmptyOrFalse(shipping1.shippingCharge)) {
+          shippingCharge = double.parse(shipping1.shippingCharge.toString());
+        }
+        print(shipping1);
+      }
+    }
+  }
+
   CartProductApi() async {
     hasData.value = false;
     cartProductList.clear();
@@ -58,27 +82,60 @@ class ViewAllMyCartController extends GetxController {
     var response;
     await http.get(url, headers: {
       'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
-    }).then((value) {
-      hasData.value = true;
+    }).then((value) async {
       print(value);
       response = value;
-      // respons = value as List;
+      print('Response status: ${response.statusCode}');
+      print('Response body: ${response.body}');
+      dynamic result = jsonDecode(response.body);
+      cartProduct = CartProduct.fromJson(result);
+      print(result);
+      Position? currentPositionData = await getCurrentLocation();
+      if (!isNullEmptyOrFalse(cartProduct.data)) {
+        if (!isNullEmptyOrFalse(cartProduct.data!.details)) {
+          cartProduct.data!.details!.forEach((element) {
+            if (!isNullEmptyOrFalse(element.product)) {
+              if (!isNullEmptyOrFalse(element.product!.sellerId)) {
+                if (!isNullEmptyOrFalse(currentPositionData)) {
+                  if (!isNullEmptyOrFalse(
+                          element.product!.sellerId!.latitude) &&
+                      !isNullEmptyOrFalse(
+                          element.product!.sellerId!.longitude) &&
+                      !isNullEmptyOrFalse(currentPositionData!.latitude) &&
+                      !isNullEmptyOrFalse(currentPositionData.longitude)) {
+                    double lat2 = element.product!.sellerId!.latitude!;
+                    double lat1 = currentPositionData.latitude;
+                    double lon2 = element.product!.sellerId!.longitude!;
+                    double lon1 = currentPositionData.longitude;
+                    print("lat1========${lat1}");
+                    print("lon1========${lon1}");
+                    print("lat2========${lat2}");
+                    print("lon2========${lon2}");
+                    var p = 0.017453292519943295;
+                    var c = cos;
+                    var a = 0.5 -
+                        c((lat2 - lat1) * p) / 2 +
+                        c(lat1 * p) *
+                            c(lat2 * p) *
+                            (1 - c((lon2 - lon1) * p)) /
+                            2;
+                    double shippingCost =
+                        12742 * asin(sqrt(a)) * shippingCharge;
+                    element.product!.sellerId!.shippingCharge = shippingCost;
+                    print("My Distance := ${shippingCost}");
+                  }
+                }
+              }
+            }
+            cartProductList.add(element);
+          });
+        }
+      }
+      hasData.value = true;
+      cartProductList.refresh();
     }).catchError((error) {
       hasData.value = false;
     });
-    print('Response status: ${response.statusCode}');
-    print('Response body: ${response.body}');
-    dynamic result = jsonDecode(response.body);
-    cartProduct = CartProduct.fromJson(result);
-    print(result);
-    if (!isNullEmptyOrFalse(cartProduct.data)) {
-      if (!isNullEmptyOrFalse(cartProduct.data!.details)) {
-        cartProduct.data!.details!.forEach((element) {
-          cartProductList.add(element);
-        });
-      }
-    }
-    cartProductList.refresh();
   }
 
   CartCount() async {

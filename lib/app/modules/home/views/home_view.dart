@@ -1,10 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/constant/ConstantUrl.dart';
 import 'package:waggs_app/app/constant/productCard_const.dart';
 import 'package:waggs_app/app/constant/shopcard_const.dart';
+import 'package:waggs_app/app/constant/sizeConstant.dart';
 import 'package:waggs_app/app/modules/Catagory_Page/views/catagory_page_view.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
 import 'package:waggs_app/main.dart';
@@ -366,8 +368,8 @@ class HomeView extends GetWidget<HomeController> {
                                           child: TextFormField(
                                             controller:
                                                 controller.searchController,
+                                             // focusNode: controller.myFocusNode,
                                             onFieldSubmitted: (value) {
-                                              print("$value");
                                               Get.offAndToNamed(
                                                   Routes.SEARCH_PRODUCT_PAGE,
                                                   arguments: {
@@ -404,7 +406,6 @@ class HomeView extends GetWidget<HomeController> {
                                                     FocusManager
                                                         .instance.primaryFocus
                                                         ?.unfocus();
-
                                                     if ((box.read(
                                                             ArgumentConstant
                                                                 .isUserLogin) ==
@@ -551,6 +552,7 @@ class HomeView extends GetWidget<HomeController> {
                       ),
                       Expanded(
                         child: SingleChildScrollView(
+                          // keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
                           child: Column(
                             children: [
                               controller.bannerList.isEmpty
@@ -718,75 +720,116 @@ class HomeView extends GetWidget<HomeController> {
                                   ),
                                 ],
                               ),
-                              Container(
-                                child: Column(
-                                  children: [
-                                    Container(
-                                      margin: EdgeInsets.only(left: 5),
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.37,
-                                      width: 400,
-                                      child: GridView.builder(
-                                          itemCount:
-                                              controller.TopProductlist.length,
-                                          scrollDirection: Axis.horizontal,
-                                          shrinkWrap: true,
-                                          itemBuilder: (context, index) {
-                                            return productCard(
-                                              onTap: () {
-                                                Get.toNamed(Routes.VIEW_PRODUCT,
-                                                    arguments: controller
-                                                        .TopProductlist[index]);
-                                              },
-                                              image: controller
-                                                  .TopProductlist[index]
-                                                  .images![0],
-                                              discount: controller
-                                                  .TopProductlist[index]
-                                                  .discount!
-                                                  .toStringAsFixed(0),
-                                              companyName: controller
-                                                  .TopProductlist[index].title,
-                                              categoryName: controller
-                                                  .TopProductlist[index]
-                                                  .category!
-                                                  .name,
-                                              subCategoryName: controller
-                                                  .TopProductlist[index]
-                                                  .subCategory!
-                                                  .name,
-                                              price: controller
-                                                  .TopProductlist[index].price
-                                                  .toString(),
-                                              discountedPrice: controller
-                                                  .TopProductlist[index]
-                                                  .discountedPrice
-                                                  .toString(),
-                                              rating: controller
-                                                  .TopProductlist[index].rating
-                                                  .toString(),
-                                              ButtonText: "ADD TO CART",
-                                              ButtonTap: () {
-                                                controller.addToCart(
-                                                    data: controller
-                                                        .TopProductlist[index]);
-                                              },
-                                              icon: Icons.add_shopping_cart,
-                                              isShipping: controller
-                                                  .TopProductlist[index]
-                                                  .sellerId!
-                                                  .waiveOffShipping,
-                                            );
-                                          },
-                                          gridDelegate:
-                                              SliverGridDelegateWithFixedCrossAxisCount(
-                                                  crossAxisCount: 1,
-                                                  childAspectRatio: 1.54)),
-                                    ),
-                                  ],
-                                ),
-                              ),
+                              (controller.hastopproduct.isFalse)
+                                  ? Container(
+                                      child: Center(
+                                        child: CircularProgressIndicator(),
+                                      ),
+                                    )
+                                  : (controller.TopProductlist.isEmpty)
+                                      ? Center(
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                height: 300,
+                                                width: 250,
+                                                child: SvgPicture.asset(
+                                                    "assets/NoData.svg"),
+                                              ),
+                                              Text(
+                                                "No data found",
+                                                style: GoogleFonts.raleway(
+                                                    fontWeight: FontWeight.w700,
+                                                    fontSize: 20,
+                                                    color: Color.fromRGBO(
+                                                        33, 43, 54, 1)),
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      : Container(
+                                          child: Column(
+                                            children: [
+                                              Container(
+                                                margin:
+                                                    EdgeInsets.only(left: 5),
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    0.37,
+                                                width: 400,
+                                                child: GridView.builder(
+                                                    itemCount: controller
+                                                        .TopProductlist.length,
+                                                    scrollDirection:
+                                                        Axis.horizontal,
+                                                    shrinkWrap: true,
+                                                    itemBuilder:
+                                                        (context, index) {
+                                                      return productCard(
+                                                          onTap: () {
+                                                            Get.toNamed(
+                                                                Routes
+                                                                    .VIEW_PRODUCT,
+                                                                arguments:
+                                                                    controller
+                                                                            .TopProductlist[
+                                                                        index]);
+                                                          },
+                                                          image: controller
+                                                              .TopProductlist[
+                                                                  index]
+                                                              .images![0],
+                                                          discount: controller
+                                                              .TopProductlist[
+                                                                  index]
+                                                              .discount!
+                                                              .toStringAsFixed(
+                                                                  0),
+                                                          companyName: controller
+                                                              .TopProductlist[
+                                                                  index]
+                                                              .title,
+                                                          categoryName: controller
+                                                              .TopProductlist[
+                                                                  index]
+                                                              .category!
+                                                              .name,
+                                                          subCategoryName: controller
+                                                              .TopProductlist[
+                                                                  index]
+                                                              .subCategory!
+                                                              .name,
+                                                          price: controller.TopProductlist[index].price
+                                                              .toString(),
+                                                          discountedPrice:
+                                                              controller.TopProductlist[index].discountedPrice
+                                                                  .toString(),
+                                                          rating: controller
+                                                              .TopProductlist[index]
+                                                              .rating
+                                                              .toString(),
+                                                          ButtonText: "ADD TO CART",
+                                                          ButtonTap: () {
+                                                            controller.addToCart(
+                                                                data: controller
+                                                                        .TopProductlist[
+                                                                    index]);
+                                                          },
+                                                          icon: Icons.add_shopping_cart,
+                                                          isShipping: (int.parse(controller.TopProductlist[index].sellerId!.shippingLimit.toString()) > controller.TopProductlist[index].sellerId!.distance) ? false : true);
+                                                    },
+                                                    gridDelegate:
+                                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                                            crossAxisCount: 1,
+                                                            childAspectRatio:
+                                                                1.54)),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
                             ],
                           ),
                         ),

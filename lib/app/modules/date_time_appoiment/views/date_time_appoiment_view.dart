@@ -61,14 +61,6 @@ class DateTimeAppoimentView extends GetWidget<DateTimeAppoimentController> {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           // SizedBox(width: 200,),
-                          IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.search,
-                                size: 25,
-                                color: Colors.grey,
-                              )),
-
                           Stack(
                             children: [
                               IconButton(
@@ -86,7 +78,7 @@ class DateTimeAppoimentView extends GetWidget<DateTimeAppoimentController> {
                                     size: 25,
                                     color: Colors.grey[500],
                                   )),
-                              controller.count1.data == 0
+                              (controller.count1.data == 0||controller.count1.data==null)
                                   ? Container()
                                   : Positioned(
                                       left: 22,
