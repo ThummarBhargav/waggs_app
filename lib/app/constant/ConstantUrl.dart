@@ -85,7 +85,6 @@ class ArgumentConstant {
 }
 
 Rx<Position>? _currentPosition;
-
 Future<Position?> getCurrentLocation() async {
   Position? currentPositionData;
   await Geolocator.getCurrentPosition(
