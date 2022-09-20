@@ -755,8 +755,7 @@ class TopSellingStoreAllProductsView
                 },
                 icon: Icon(
                   Icons.arrow_back,
-                  size: 20,
-                  color: Colors.grey,
+                  size: 22,
                 )),
             // this will hide Drawer hamburger icon
             actions: [
