@@ -43,7 +43,7 @@ class HomeController extends GetxController {
   RxList<Sellers> SellersList = RxList<Sellers>([]);
   RxList<Count1> Countlist = RxList<Count1>([]);
   RxBool isFilterDrawer = false.obs;
-  final Rx<FocusNode> titleFocus = FocusNode().obs;
+  // final Rx<FocusNode> titleFocus = FocusNode().obs;
   List<String> imageList = [
     'assets/category01.jpg',
     'assets/category02.jpg',
@@ -63,6 +63,7 @@ class HomeController extends GetxController {
   Orders1 orders1 = Orders1();
   RxList<Orders1> OrderList = RxList<Orders1>([]);
   RxList<Map<String, dynamic>> orderData = RxList<Map<String, dynamic>>([]);
+
   @override
   void onInit() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
@@ -86,7 +87,6 @@ class HomeController extends GetxController {
   @override
   void onClose() {
     super.onClose();
-    titleFocus.close();
   }
 
   AllCategory() async {

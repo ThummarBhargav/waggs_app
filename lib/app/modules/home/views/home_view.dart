@@ -366,7 +366,7 @@ class HomeView extends GetWidget<HomeController> {
                                           child: TextFormField(
                                             controller:
                                                 controller.searchController,
-                                            // focusNode: controller.titleFocus.value,
+                                             // focusNode: controller.myFocusNode,
                                             onFieldSubmitted: (value) {
                                               Get.offAndToNamed(
                                                   Routes.SEARCH_PRODUCT_PAGE,
