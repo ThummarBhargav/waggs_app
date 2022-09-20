@@ -168,8 +168,6 @@ class TopSellingStoreAllProductsController extends GetxController {
       hastopData.value = false;
       refreshController.loadComplete();
     });
-    if (storeModule.responseCode == 404) {
-    } else {}
     mainProductList.refresh();
   }
 
