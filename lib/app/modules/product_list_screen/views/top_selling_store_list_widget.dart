@@ -849,7 +849,7 @@ class _TopSellingStoreWidgetState extends State<TopSellingStoreWidget> {
                                 gridDelegate:
                                     SliverGridDelegateWithFixedCrossAxisCount(
                                         crossAxisCount: 2,
-                                        childAspectRatio: 0.65)),
+                                        childAspectRatio: 0.70)),
                           ),
                         ],
                       ),
