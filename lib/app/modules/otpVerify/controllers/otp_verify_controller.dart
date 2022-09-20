@@ -1,11 +1,14 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
+import 'package:waggs_app/main.dart';
 import '../../../Modal/ErrorResponse.dart';
+import '../../../Modal/my_sign_up_model.dart';
 import '../../../Modal/sign_up_response_model.dart';
 import '../../../constant/ConstantUrl.dart';
 import '../../../constant/SizeConstant.dart';
@@ -70,6 +73,7 @@ class OtpVerifyController extends GetxController {
     await http.post(url, body: {
       'countryCode': countryCode,
       'mobile': mobileNumber,
+      'email': email,
       'otp': '${otpController.value.text.trim()}'
     }).then((value) async {
       print(value.statusCode);
@@ -99,62 +103,15 @@ class OtpVerifyController extends GetxController {
         print(value.body);
         response = value;
         if (response.statusCode == 200) {
-          SignUpResponseModel res =
-              SignUpResponseModel.fromJson(jsonDecode(response.body));
-          showDialog(
-              barrierDismissible: false,
-              builder: (context) {
-                return AlertDialog(
-                  title: Column(
-                    children: [
-                      Container(
-                        height: 40,
-                        width: 40,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage("assets/tick.png"),
-                          ),
-                        ),
-                      ),
-                      Text(
-                        "Success",
-                        style: GoogleFonts.raleway(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ],
-                  ),
-                  content: Text(
-                      "Sign up Successful. Check email for email verification."),
-                  titleTextStyle: GoogleFonts.raleway(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
-                  contentTextStyle: GoogleFonts.raleway(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
-                  actions: [
-                    TextButton(
-                        onPressed: () {
-                          Get.offAllNamed(Routes.LOGIN_SCREEN);
-                        },
-                        child: Text(
-                          "Login",
-                          style: GoogleFonts.raleway(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                            color: Color.fromRGBO(32, 193, 244, 1),
-                          ),
-                        ))
-                  ],
-                );
-              },
-              context: context);
+          MySignUpModel res = MySignUpModel.fromJson(jsonDecode(response.body));
+          if (!isNullEmptyOrFalse(res.data)) {
+            if (!isNullEmptyOrFalse(res.data!.token!)) {
+              box.write(ArgumentConstant.token, res.data!.token!);
+              box.write(ArgumentConstant.isUserLogin, true);
+              box.write(ArgumentConstant.email, email);
+              Get.offAllNamed(Routes.HOME);
+            }
+          }
         } else {
           ErrorResponse res = ErrorResponse.fromJson(jsonDecode(response.body));
           Get.snackbar("Error", res.message.toString(),

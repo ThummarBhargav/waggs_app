@@ -9,7 +9,7 @@ const baseUrl3 = "https://api-stg.waggs.in/api/v1/users/";
 class ApiConstant {
   static const signUpUsers = "signup";
   static const shipping = "app-settings";
-  static const socialLoginApi = "https://api.waggs.in/api/v1/users/socialLogin";
+  static const socialLoginApi = "socialLogin";
   static const paymentKey = "rzp_test_pfJrUULLPTmEYK";
   static const loginUsers = "login";
   static const logoutUsers = "logout";
@@ -45,6 +45,7 @@ class ApiConstant {
   static const updatePet = "pet/";
   static const orderCancel = "order/";
   static const appointment = "appointment/";
+  static const linkedLoginApi = "linkedIn-login";
 // static const getpet = "pet/list?skip=0&limit=20";
   static const getvet = "vet";
   static const vetdetail = "vet/info/";
