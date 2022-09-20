@@ -55,6 +55,7 @@ class PlaneController extends GetxController {
   }
 
   AllPlans() async {
+    planList.clear();
     var url = Uri.parse(baseUrl + ApiConstant.Plans);
     var response = await http.get(url);
     print('Response status: ${response.statusCode}');
@@ -190,7 +191,6 @@ class PlaneController extends GetxController {
   void _handleExternalWallet(ExternalWalletResponse response) {
     print('External SDK Response: $response');
   }
-
 
   CartCount() async {
     Countlist.clear();

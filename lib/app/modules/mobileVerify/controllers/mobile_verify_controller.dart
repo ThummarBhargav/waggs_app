@@ -90,7 +90,6 @@ class MobileVerifyController extends GetxController {
 
   Future<void> sendOtp() async {
     var url = Uri.parse(baseUrl3 + ApiConstant.sendOtpUsers);
-    var response;
     await http.post(url, body: {
       "countryCode": "${countryController.value.text.trim()}",
       "email": email,

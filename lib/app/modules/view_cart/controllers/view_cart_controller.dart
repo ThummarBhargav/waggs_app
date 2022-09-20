@@ -740,6 +740,7 @@ class ViewCartController extends GetxController {
     print('Success Response: $response');
     updateTrans(response.paymentId.toString(), response.orderId.toString(),
         response.signature.toString());
+    Get.offAndToNamed(Routes.ORDER_PAGE);
     Allorder();
 
     Get.snackbar("Success", "Payment Done",
