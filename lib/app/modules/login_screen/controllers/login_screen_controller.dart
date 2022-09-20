@@ -17,6 +17,7 @@ import 'package:waggs_app/app/constant/sizeConstant.dart';
 import 'package:waggs_app/app/modules/home/views/home_view.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
 import 'package:waggs_app/main.dart';
+import 'package:waggs_app/utilities/custome_dialogs.dart';
 import '../../../Modal/ErrorResponse.dart';
 import '../../../Modal/sign_up_response_model.dart';
 import '../../../constant/ConstantUrl.dart';
@@ -87,10 +88,10 @@ class LoginScreenController extends GetxController {
   //     );
   // }
 
-  Future<User?> signInWithGoogle() async {
+  Future<User?> signInWithGoogle({required BuildContext context}) async {
     FirebaseAuth auth = FirebaseAuth.instance;
     User? user;
-    auth.signOut();
+
     final GoogleSignIn googleSignIn = GoogleSignIn();
 
     final GoogleSignInAccount? googleSignInAccount =
@@ -106,36 +107,52 @@ class LoginScreenController extends GetxController {
       );
 
       try {
-        UserCredential? userCredential;
-        await auth.signInWithCredential(credential).then((value) async {
-          userCredential = value;
+        final UserCredential userCredential =
+            await auth.signInWithCredential(credential);
 
-          user = userCredential!.user;
-
+        user = userCredential.user;
+        final token = await user!.getIdToken();
+        print(token);
+        if (!isNullEmptyOrFalse(token)) {
+          box.write(ArgumentConstant.token, token);
           await socialLoginApi(
-              socialId: value.user!.uid,
-              socialType: "facebook",
+              socialId: user.uid,
+              socialType: "google",
               isForGoogle: true,
+              context: context,
               userGoogleData: user);
-        });
+        }
       } on FirebaseAuthException catch (e) {
         if (e.code == 'account-exists-with-different-credential') {
-          Get.snackbar("Sign in Failed",
-              "The account already exists with a different credential.");
+          ScaffoldMessenger.of(context).showSnackBar(
+            getSnackBar(
+              context: context,
+              text: 'The account already exists with a different credential',
+            ),
+          );
         } else if (e.code == 'invalid-credential') {
-          Get.snackbar("Sign in Failed",
-              "Error occurred while accessing credentials. Try again.");
+          ScaffoldMessenger.of(context).showSnackBar(
+            getSnackBar(
+              context: context,
+              text: 'Error occurred while accessing credentials. Try again.',
+            ),
+          );
         }
       } catch (e) {
-        Get.snackbar("Sign in Failed",
-            "Error occurred using Google Sign-In. Try again.");
+        ScaffoldMessenger.of(context).showSnackBar(
+          getSnackBar(
+            context: context,
+            text: 'Error occurred using Google Sign In. Try again.',
+          ),
+        );
       }
     }
 
     return user;
   }
 
-  Future<UserCredential> signInWithFacebook() async {
+  Future<UserCredential> signInWithFacebook(
+      {required BuildContext context}) async {
     // Trigger the sign-in flow
     late LoginResult loginResult;
     await FacebookAuth.instance
@@ -145,11 +162,6 @@ class LoginScreenController extends GetxController {
         if (!isNullEmptyOrFalse(loginResult.accessToken!.userId)) {
           box.write(
               ArgumentConstant.facebookUserId, loginResult.accessToken!.userId);
-          await socialLoginApi(
-              socialId: loginResult.accessToken!.userId,
-              socialType: "facebook",
-              isForFacebook: true,
-              userFacebookData: loginResult);
         }
       }
     }).catchError((error) {
@@ -161,7 +173,8 @@ class LoginScreenController extends GetxController {
         FacebookAuthProvider.credential(loginResult.accessToken!.token);
 
     // Once signed in, return the UserCredential
-    return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
+    return await FirebaseAuth.instance
+        .signInWithCredential(facebookAuthCredential);
   }
 
   linkedInLogin({required BuildContext context}) async {
@@ -178,11 +191,12 @@ class LoginScreenController extends GetxController {
           onGetUserProfile: (UserSucceededAction linkedInUser) async {
             print("Maja response := ${linkedInUser.user.userId}");
             if (!isNullEmptyOrFalse(linkedInUser.user.userId)) {
-              await socialLoginApi(
-                  socialId: linkedInUser.user.userId!,
-                  socialType: "linkedin",
-                  isForLinkedIn: true,
-                  userLinkedInData: linkedInUser);
+              await linkedLoginApiCall(
+                socialId: linkedInUser.user.userId!,
+                code: linkedInUser.user.token.accessToken!,
+                context: context,
+                linkedInUser: linkedInUser,
+              );
             }
           },
         ),
@@ -191,29 +205,72 @@ class LoginScreenController extends GetxController {
     );
   }
 
+  Future linkedLoginApiCall(
+      {required String code,
+      required String socialId,
+      required BuildContext context,
+      required UserSucceededAction linkedInUser}) async {
+    getIt<CustomDialogs>().showCircularDialog(context);
+    Dio dio = Dio();
+    await dio.post(baseUrl + ApiConstant.linkedLoginApi, data: {
+      "code": code,
+    }).then((value) async {
+      getIt<CustomDialogs>().hideCircularDialog(context);
+
+      print("My Response :=  $value");
+      if (!isNullEmptyOrFalse(value)) {
+        // box.write(ArgumentConstant.token, value.data.val("token"));
+        if (value.data["responseCode"] == 200) {
+          print(
+              "token ====================== ${box.read(ArgumentConstant.token)}");
+          await socialLoginApi(
+              socialId: socialId,
+              socialType: "linkedin",
+              context: context,
+              isForLinkedIn: true,
+              userLinkedInData: linkedInUser);
+        }
+      }
+    }).catchError((error) {
+      getIt<CustomDialogs>().hideCircularDialog(context);
+      DioError dioError = error;
+      print(dioError);
+      if (!isNullEmptyOrFalse(dioError.response)) {
+        if (dioError.response!.statusCode == 404) {}
+      }
+
+      print("Error := $error");
+    });
+  }
+
   socialLoginApi(
-      {required String socialId,
+      {required BuildContext context,
+      required String socialId,
       required String socialType,
       UserSucceededAction? userLinkedInData,
-      LoginResult? userFacebookData,
+      UserCredential? userFacebookData,
       User? userGoogleData,
       bool isForFacebook = false,
       bool isForLinkedIn = false,
       bool isForGoogle = false}) async {
     Dio dio = Dio();
-    await dio.post(ApiConstant.socialLoginApi, data: {
+    getIt<CustomDialogs>().showCircularDialog(context);
+
+    await dio.post(baseUrl3 + ApiConstant.socialLoginApi, data: {
       "socialId": socialId,
       "socialType": socialType,
     }).then((value) {
+      getIt<CustomDialogs>().hideCircularDialog(context);
       print("My Response :=  $value");
       if (!isNullEmptyOrFalse(value)) {
         box.write(ArgumentConstant.isUserLogin, true);
-        box.write(ArgumentConstant.token, value.data.val("token"));
+        box.write(ArgumentConstant.token, value.data["data"]["token"]);
         print(
             "token ====================== ${box.read(ArgumentConstant.token)}");
         Get.offAllNamed(Routes.HOME);
       }
     }).catchError((error) {
+      getIt<CustomDialogs>().hideCircularDialog(context);
       DioError dioError = error;
       print(dioError);
       if (!isNullEmptyOrFalse(dioError.response)) {

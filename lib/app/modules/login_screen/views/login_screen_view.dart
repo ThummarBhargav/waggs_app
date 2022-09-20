@@ -5,6 +5,7 @@ import 'package:linkedin_login/linkedin_login.dart';
 import 'package:waggs_app/app/constant/SizeConstant.dart';
 import 'package:waggs_app/app/modules/mobileVerify/views/mobile_verify_view.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
+import 'package:waggs_app/main.dart';
 import '../../../constant/ConstantUrl.dart';
 import '../controllers/login_screen_controller.dart';
 
@@ -213,7 +214,20 @@ class LoginScreenView extends GetWidget<LoginScreenController> {
                     children: [
                       InkWell(
                         onTap: () {
-                          controller.signInWithFacebook();
+                          controller
+                              .signInWithFacebook(context: context)
+                              .then((value) async {
+                            await controller.socialLoginApi(
+                                socialId: (!isNullEmptyOrFalse(box
+                                        .read(ArgumentConstant.facebookUserId)))
+                                    ? box.read(ArgumentConstant.facebookUserId)
+                                    : "",
+                                socialType: "facebook",
+                                isForFacebook: true,
+                                context: context,
+                                userFacebookData: value);
+                            print("Value := $value");
+                          });
                         },
                         child: Container(
                           height: 40,
@@ -230,7 +244,7 @@ class LoginScreenView extends GetWidget<LoginScreenController> {
                       ),
                       InkWell(
                         onTap: () {
-                          controller.signInWithGoogle();
+                          controller.signInWithGoogle(context: context);
                         },
                         child: Container(
                           height: 40,

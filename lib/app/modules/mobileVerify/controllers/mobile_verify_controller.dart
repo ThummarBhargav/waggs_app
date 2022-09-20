@@ -93,6 +93,7 @@ class MobileVerifyController extends GetxController {
     var response;
     await http.post(url, body: {
       "countryCode": "${countryController.value.text.trim()}",
+      "email": email,
       "mobile": "${mobileController.value.text.trim()}"
     }).then((value) {
       if (value.statusCode == 200) {
@@ -100,7 +101,8 @@ class MobileVerifyController extends GetxController {
             ? userDataFaceBook!.user!.displayName.toString()
             : (isFromGoogle)
                 ? userDataGoogle!.displayName.toString()
-                : userDataLinkedIn!.user.localizedFirstName.toString();
+                : userDataLinkedIn!.user.localizedFirstName.toString() +
+                    userDataLinkedIn!.user.localizedLastName.toString();
         email = (isFromFacebook)
             ? userDataFaceBook!.user!.email.toString()
             : (isFromGoogle)
