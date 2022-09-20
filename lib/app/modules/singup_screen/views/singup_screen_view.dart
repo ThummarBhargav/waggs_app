@@ -480,12 +480,6 @@ class SingupScreenView extends GetWidget<SingupScreenController> {
                       children: [
                         InkWell(
                           onTap: () {
-                            controller.firstnameController.value.clear();
-                            controller.passController.value.clear();
-                            controller.mobileController.value.clear();
-                            controller.confirmPassController.value.clear();
-                            controller.emailController.value.clear();
-                            controller.countryController.value.clear();
                             controller.verifyEmail(context).then((value) {
                               if (controller.formKey.currentState!.validate()) {
                                 if (controller.isNumberExist.isFalse &&

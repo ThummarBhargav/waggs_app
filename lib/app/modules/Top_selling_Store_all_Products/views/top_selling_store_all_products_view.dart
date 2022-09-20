@@ -805,9 +805,9 @@ class TopSellingStoreAllProductsView
             iconTheme: IconThemeData(color: Colors.black),
           ),
           body: Obx(
-            () => (controller.hasData.isFalse)
+            () => (controller.hastopData.isFalse)
                 ? Center(child: CircularProgressIndicator())
-                : (isNullEmptyOrFalse(controller.mainProductList))
+                : (controller.mainProductList.isEmpty)
                     ? Center(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,

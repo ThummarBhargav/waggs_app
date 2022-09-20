@@ -800,7 +800,7 @@ class SearchProductPageView extends GetWidget<SearchProductPageController> {
             ),
           ),
           body: Obx(
-            () => (controller.hasData.isFalse)
+            () => (controller.hasSerchdata.isFalse)
                 ? Center(child: CircularProgressIndicator())
                 : (isNullEmptyOrFalse(controller.mainProductList))
                     ? Center(

@@ -837,7 +837,7 @@ class _SubCategoryWidgetState extends State<SubCategoryWidget> {
                   )
                 ],
               ),
-              body: (controller.hasData.isFalse)
+              body: (controller.hassubcatagoryData.isFalse)
                   ? Center(
                       child: CircularProgressIndicator(),
                     )

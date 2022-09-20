@@ -193,6 +193,12 @@ class SingupScreenController extends GetxController {
                   TextButton(
                       onPressed: () {
                         Get.offAndToNamed(Routes.LOGIN_SCREEN);
+                        firstnameController.value.clear();
+                        passController.value.clear();
+                        mobileController.value.clear();
+                        confirmPassController.value.clear();
+                        emailController.value.clear();
+                        countryController.value.clear();
                       },
                       child: Text(
                         "Login",

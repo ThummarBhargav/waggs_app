@@ -22,6 +22,7 @@ class ProductListScreenController extends GetxController {
   bool isFromTopProducts = false;
   bool isFromSubCategory = false;
   RxBool hasData = false.obs;
+  RxBool hassubcatagoryData = false.obs;
   List<Sellers> sellerList = [];
   RxBool isEnablePullUp = true.obs;
   RxBool isLoading = false.obs;
@@ -40,6 +41,7 @@ class ProductListScreenController extends GetxController {
   RxBool isOp = false.obs;
   RxBool isOp1 = false.obs;
   RxInt productsCount = 0.obs;
+  RxBool hastopproduct = false.obs;
   RefreshController refreshController = RefreshController();
   RxBool isOp2 = false.obs;
   RxBool isOp3 = false.obs;
@@ -120,53 +122,55 @@ class ProductListScreenController extends GetxController {
 
   TopSellingProductApi() async {
     mainProductList.clear();
-    hasData.value == false;
+    hastopproduct.value = false;
     var url = Uri.parse(baseUrl + ApiConstant.TopStore);
-    var response = await http.get(url);
-    print('Response status: ${response.statusCode}');
-    print('Response body: ${response.body}');
-    dynamic result = jsonDecode(response.body);
-    storeModule = StoreModule.fromJson(result);
-    print(result);
-    Position? currentPositionData = await getCurrentLocation();
-    if (!isNullEmptyOrFalse(storeModule.data)) {
-      if (!isNullEmptyOrFalse(storeModule.data!.products)) {
-        storeModule.data!.products!.forEach((element) {
-          if (!isNullEmptyOrFalse(element)) {
-            if (!isNullEmptyOrFalse(element.sellerId)) {
-              if (!isNullEmptyOrFalse(currentPositionData)) {
-                if (!isNullEmptyOrFalse(element.sellerId!.latitude) &&
-                    !isNullEmptyOrFalse(element.sellerId!.longitude) &&
-                    !isNullEmptyOrFalse(currentPositionData!.latitude) &&
-                    !isNullEmptyOrFalse(currentPositionData.longitude)) {
-                  double lat2 = element.sellerId!.latitude!;
-                  double lat1 = currentPositionData.latitude;
-                  double lon2 = element.sellerId!.longitude!;
-                  double lon1 = currentPositionData.longitude;
-                  print("lat1========${lat1}");
-                  print("lon1========${lon1}");
-                  print("lat2========${lat2}");
-                  print("lon2========${lon2}");
-                  var p = 0.017453292519943295;
-                  var c = cos;
-                  var a = 0.5 -
-                      c((lat2 - lat1) * p) / 2 +
-                      c(lat1 * p) *
-                          c(lat2 * p) *
-                          (1 - c((lon2 - lon1) * p)) /
-                          2;
-                  double distance = 12742 * asin(sqrt(a));
-                  element.sellerId!.distance = distance;
-                  print("My Distance := ${distance}");
+    var response;
+    await http.get(url).then((value) async {
+      dynamic result = jsonDecode(value.body);
+      storeModule = StoreModule.fromJson(result);
+      response = value;
+      Position? currentPositionData = await getCurrentLocation();
+      if (!isNullEmptyOrFalse(storeModule.data)) {
+        if (!isNullEmptyOrFalse(storeModule.data!.products)) {
+          storeModule.data!.products!.forEach((element) {
+            if (!isNullEmptyOrFalse(element)) {
+              if (!isNullEmptyOrFalse(element.sellerId)) {
+                if (!isNullEmptyOrFalse(currentPositionData)) {
+                  if (!isNullEmptyOrFalse(element.sellerId!.latitude) &&
+                      !isNullEmptyOrFalse(element.sellerId!.longitude) &&
+                      !isNullEmptyOrFalse(currentPositionData!.latitude) &&
+                      !isNullEmptyOrFalse(currentPositionData.longitude)) {
+                    double lat2 = element.sellerId!.latitude!;
+                    double lat1 = currentPositionData.latitude;
+                    double lon2 = element.sellerId!.longitude!;
+                    double lon1 = currentPositionData.longitude;
+                    print("lat1========${lat1}");
+                    print("lon1========${lon1}");
+                    print("lat2========${lat2}");
+                    print("lon2========${lon2}");
+                    var p = 0.017453292519943295;
+                    var c = cos;
+                    var a = 0.5 -
+                        c((lat2 - lat1) * p) / 2 +
+                        c(lat1 * p) *
+                            c(lat2 * p) *
+                            (1 - c((lon2 - lon1) * p)) /
+                            2;
+                    double distance = 12742 * asin(sqrt(a));
+                    element.sellerId!.distance = distance;
+                    print("My Distance := ${distance}");
+                  }
                 }
               }
             }
-          }
-          mainProductList.add(element);
-          hasData.value == true;
-        });
+            mainProductList.add(element);
+            hastopproduct.value = true;
+          });
+        }
       }
-    }
+    }).catchError((error) {
+      hastopproduct.value = false;
+    });
   }
 
   getFilterData({required List reqList, required BuildContext context}) async {
@@ -331,7 +335,7 @@ class ProductListScreenController extends GetxController {
     if (!isNullEmptyOrFalse(categoryModel.catagoryData)) {
       categoryModel.catagoryData!.forEach((element) {
         CatagoryList.add(element);
-        hasData.value == true;
+        hasData.value = true;
       });
     }
   }
@@ -354,60 +358,64 @@ class ProductListScreenController extends GetxController {
   }
 
   getProduct() async {
-    hasData.value = false;
+    hassubcatagoryData.value = false;
     mainProductList.clear();
     var URl = Uri.parse(baseUrl +
         ApiConstant.getAllProductUsers +
         "?subCategory=${subCategoryData.sId}");
     print(URl);
     var response;
-    await http.get(URl).then((value) {
-      response = value;
-    }).catchError((error) {
-      hasData.value = true;
-    });
-    print(response.body);
-    dynamic result = jsonDecode(response.body);
-    storeModule = StoreModule.fromJson(result);
-    Position? currentPositionData = await getCurrentLocation();
-    if (!isNullEmptyOrFalse(storeModule.data)) {
-      if (!isNullEmptyOrFalse(storeModule.data!.products)) {
-        storeModule.data!.products!.forEach((element) {
-          if (!isNullEmptyOrFalse(element)) {
-            if (!isNullEmptyOrFalse(element.sellerId)) {
-              if (!isNullEmptyOrFalse(currentPositionData)) {
-                if (!isNullEmptyOrFalse(element.sellerId!.latitude) &&
-                    !isNullEmptyOrFalse(element.sellerId!.longitude) &&
-                    !isNullEmptyOrFalse(currentPositionData!.latitude) &&
-                    !isNullEmptyOrFalse(currentPositionData.longitude)) {
-                  double lat2 = element.sellerId!.latitude!;
-                  double lat1 = currentPositionData.latitude;
-                  double lon2 = element.sellerId!.longitude!;
-                  double lon1 = currentPositionData.longitude;
-                  print("lat1========${lat1}");
-                  print("lon1========${lon1}");
-                  print("lat2========${lat2}");
-                  print("lon2========${lon2}");
-                  var p = 0.017453292519943295;
-                  var c = cos;
-                  var a = 0.5 -
-                      c((lat2 - lat1) * p) / 2 +
-                      c(lat1 * p) *
-                          c(lat2 * p) *
-                          (1 - c((lon2 - lon1) * p)) /
-                          2;
-                  double distance = 12742 * asin(sqrt(a));
-                  element.sellerId!.distance = distance;
-                  print("My Distance := ${distance}");
+    await http.get(URl).then((value) async {
+      if (value.statusCode == 200) {
+        response = value;
+        print(response.body);
+        dynamic result = jsonDecode(value.body);
+        storeModule = StoreModule.fromJson(result);
+        Position? currentPositionData = await getCurrentLocation();
+        if (!isNullEmptyOrFalse(storeModule.data)) {
+          if (!isNullEmptyOrFalse(storeModule.data!.products)) {
+            storeModule.data!.products!.forEach((element) {
+              if (!isNullEmptyOrFalse(element)) {
+                if (!isNullEmptyOrFalse(element.sellerId)) {
+                  if (!isNullEmptyOrFalse(currentPositionData)) {
+                    if (!isNullEmptyOrFalse(element.sellerId!.latitude) &&
+                        !isNullEmptyOrFalse(element.sellerId!.longitude) &&
+                        !isNullEmptyOrFalse(currentPositionData!.latitude) &&
+                        !isNullEmptyOrFalse(currentPositionData.longitude)) {
+                      double lat2 = element.sellerId!.latitude!;
+                      double lat1 = currentPositionData.latitude;
+                      double lon2 = element.sellerId!.longitude!;
+                      double lon1 = currentPositionData.longitude;
+                      print("lat1========${lat1}");
+                      print("lon1========${lon1}");
+                      print("lat2========${lat2}");
+                      print("lon2========${lon2}");
+                      var p = 0.017453292519943295;
+                      var c = cos;
+                      var a = 0.5 -
+                          c((lat2 - lat1) * p) / 2 +
+                          c(lat1 * p) *
+                              c(lat2 * p) *
+                              (1 - c((lon2 - lon1) * p)) /
+                              2;
+                      double distance = 12742 * asin(sqrt(a));
+                      element.sellerId!.distance = distance;
+                      print("My Distance := ${distance}");
+                    }
+                  }
                 }
               }
-            }
+              mainProductList.add(element);
+              hassubcatagoryData.value = true;
+            });
           }
-          mainProductList.add(element);
-          hasData.value = true;
-        });
+        }
+      } else {
+        hassubcatagoryData.value = true;
       }
-    }
+    }).catchError((error) {
+      hassubcatagoryData.value = true;
+    });
     mainProductList.refresh();
   }
 
@@ -584,8 +592,9 @@ class ProductListScreenController extends GetxController {
   }
 
   getFillterProduct({bool isForLoading = false, String sort = ""}) async {
+    hastopproduct.value = false;
     if (!isForLoading) {
-      hasData.value = false;
+      hastopproduct.value = false;
       isEnablePullUp.value = true;
       productsCount.value = 0;
       mainProductList.clear();
@@ -594,66 +603,65 @@ class ProductListScreenController extends GetxController {
         ApiConstant.getAllProductUsers +
         "?sellerId=&skip=${productsCount.value}&limit=30&sort=$sort");
     var response;
-    await http.get(URl).then((value) {
-      hasData.value = true;
-      response = value;
-    }).catchError((err) {
-      hasData.value = false;
-    });
-    print(response.body);
-    dynamic result = jsonDecode(response.body);
-    storeModule = StoreModule.fromJson(result);
-    if (storeModule.responseCode == 404) {
-      if (isForLoading) {
-        refreshController.loadComplete();
-        isEnablePullUp.value = false;
-      }
-    } else {
-      Position? currentPositionData = await getCurrentLocation();
-
-      if (!isNullEmptyOrFalse(storeModule.data)) {
-        if (!isNullEmptyOrFalse(storeModule.data!.products)) {
-          storeModule.data!.products!.forEach((element) {
-            if (!isNullEmptyOrFalse(element)) {
-              if (!isNullEmptyOrFalse(element.sellerId)) {
-                if (!isNullEmptyOrFalse(currentPositionData)) {
-                  if (!isNullEmptyOrFalse(element.sellerId!.latitude) &&
-                      !isNullEmptyOrFalse(element.sellerId!.longitude) &&
-                      !isNullEmptyOrFalse(currentPositionData!.latitude) &&
-                      !isNullEmptyOrFalse(currentPositionData.longitude)) {
-                    double lat2 = element.sellerId!.latitude!;
-                    double lat1 = currentPositionData.latitude;
-                    double lon2 = element.sellerId!.longitude!;
-                    double lon1 = currentPositionData.longitude;
-                    print("lat1========${lat1}");
-                    print("lon1========${lon1}");
-                    print("lat2========${lat2}");
-                    print("lon2========${lon2}");
-                    var p = 0.017453292519943295;
-                    var c = cos;
-                    var a = 0.5 -
-                        c((lat2 - lat1) * p) / 2 +
-                        c(lat1 * p) *
-                            c(lat2 * p) *
-                            (1 - c((lon2 - lon1) * p)) /
-                            2;
-                    double distance = 12742 * asin(sqrt(a));
-                    element.sellerId!.distance = distance;
-                    print("My Distance := ${distance}");
+    await http.get(URl).then((value) async {
+      if (value.statusCode == 200) {
+        response = value;
+        print(response.body);
+        dynamic result = jsonDecode(value.body);
+        storeModule = StoreModule.fromJson(result);
+        Position? currentPositionData = await getCurrentLocation();
+        if (!isNullEmptyOrFalse(storeModule.data)) {
+          if (!isNullEmptyOrFalse(storeModule.data!.products)) {
+            storeModule.data!.products!.forEach((element) {
+              if (!isNullEmptyOrFalse(element)) {
+                if (!isNullEmptyOrFalse(element.sellerId)) {
+                  if (!isNullEmptyOrFalse(currentPositionData)) {
+                    if (!isNullEmptyOrFalse(element.sellerId!.latitude) &&
+                        !isNullEmptyOrFalse(element.sellerId!.longitude) &&
+                        !isNullEmptyOrFalse(currentPositionData!.latitude) &&
+                        !isNullEmptyOrFalse(currentPositionData.longitude)) {
+                      double lat2 = element.sellerId!.latitude!;
+                      double lat1 = currentPositionData.latitude;
+                      double lon2 = element.sellerId!.longitude!;
+                      double lon1 = currentPositionData.longitude;
+                      print("lat1========${lat1}");
+                      print("lon1========${lon1}");
+                      print("lat2========${lat2}");
+                      print("lon2========${lon2}");
+                      var p = 0.017453292519943295;
+                      var c = cos;
+                      var a = 0.5 -
+                          c((lat2 - lat1) * p) / 2 +
+                          c(lat1 * p) *
+                              c(lat2 * p) *
+                              (1 - c((lon2 - lon1) * p)) /
+                              2;
+                      double distance = 12742 * asin(sqrt(a));
+                      element.sellerId!.distance = distance;
+                      print("My Distance := ${distance}");
+                    }
                   }
                 }
               }
+              mainProductList.add(element);
+              hastopproduct.value = true;
+            });
+            productsCount.value = mainProductList.length;
+            if (isForLoading) {
+              refreshController.loadComplete();
             }
-
-            mainProductList.add(element);
-          });
-          productsCount.value = mainProductList.length;
-          if (isForLoading) {
-            refreshController.loadComplete();
           }
         }
+      } else {
+        hastopproduct.value = true;
+        if (isForLoading) {
+          refreshController.loadComplete();
+          isEnablePullUp.value = false;
+        }
       }
-    }
+    }).catchError((err) {
+      hastopproduct.value = false;
+    });
 
     mainProductList.refresh();
   }

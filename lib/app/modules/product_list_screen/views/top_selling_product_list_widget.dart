@@ -198,24 +198,6 @@ class _TopSellingProductListWidgetState
                                       controller.values4.value = values;
                                     },
                                   ),
-                                  //         RangeSlider(
-                                  //     divisions: 300,
-                                  //   activeColor: Colors.lightBlue[300],
-                                  //   inactiveColor: Colors.lightBlue[200],
-                                  //   min: 100,
-                                  //   max: 30000,
-                                  //   values: controller.values4.value,
-                                  //     labels: RangeLabels(controller.values4.value.start.round().toString()
-                                  //         ,controller.values4.value.end.round().toString()),
-                                  //    onChanged: (value) {
-                                  //     controller.values4.value = value;
-                                  //     print('value=>${controller.values4.value}');
-                                  //     print('${RangeLabels(
-                                  //         controller.values4.value.start.round().toString()
-                                  //         ,controller.values4.value.end.round().toString())}');
-                                  //    },
-                                  //
-                                  // ),
                                 ),
                                 ListTile(
                                   title: Text(
@@ -828,7 +810,7 @@ class _TopSellingProductListWidgetState
             ),
           ),
           body: Obx(
-            () => (controller.hasData.isFalse)
+            () => (controller.hastopproduct.isFalse)
                 ? Center(child: CircularProgressIndicator())
                 : (isNullEmptyOrFalse(controller.mainProductList))
                     ? Center(
@@ -880,6 +862,7 @@ class _TopSellingProductListWidgetState
                                                       controller.price.value =
                                                           controller
                                                               .location[index];
+
                                                       controller.price
                                                           .refresh();
                                                     },
