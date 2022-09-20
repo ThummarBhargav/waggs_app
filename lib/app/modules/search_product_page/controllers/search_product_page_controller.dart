@@ -592,7 +592,7 @@ class SearchProductPageController extends GetxController {
 
   getFillterProduct({bool isForLoading = false, String sort = ""}) async {
     if (!isForLoading) {
-      hasData.value = false;
+      hasSerchdata.value = false;
       isEnablePullUp.value = true;
       productsCount.value = 0;
       mainProductList.clear();
@@ -602,10 +602,10 @@ class SearchProductPageController extends GetxController {
         "?sellerId=&search=${searchProduct}&skip=${productsCount.value}&limit=10&sort=$sort");
     var response;
     await http.get(URl).then((value) {
-      hasData.value = true;
+      hasSerchdata.value = true;
       response = value;
     }).catchError((err) {
-      hasData.value = false;
+      hasData.value = true;
     });
     print(response.body);
     dynamic result = jsonDecode(response.body);
