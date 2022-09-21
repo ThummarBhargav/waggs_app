@@ -378,8 +378,6 @@ class HomeController extends GetxController {
       http.StreamedResponse? response;
       await request.send().then((value) {
         response = value;
-        // isLoading.value = true;
-        // CartProductApi();
         CartCount();
       });
 
