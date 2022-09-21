@@ -832,8 +832,18 @@ class VetViewDetailsView extends GetView<VetViewDetailsController> {
                                                                       child:
                                                                           Center(
                                                                         child:
-                                                                            Text(
-                                                                          "${controller.vetData.reviews![index].user!.name![0]}",
+                                                                        controller.vetData.reviews![index].user?.name?[0]==null
+                                                                            ? Text("-", style:
+                                                                        TextStyle(
+                                                                          color:
+                                                                          Colors.white,
+                                                                          fontWeight:
+                                                                          FontWeight.w600,
+                                                                          fontSize:
+                                                                          20,
+                                                                        ),)
+                                                                            : Text(
+                                                                          "${controller.vetData.reviews![index].user?.name?[0]}",
                                                                           style:
                                                                               TextStyle(
                                                                             color:
@@ -856,8 +866,10 @@ class VetViewDetailsView extends GetView<VetViewDetailsController> {
                                                                       height:
                                                                           15,
                                                                     ),
-                                                                    Text(
-                                                                      "${controller.vetData.reviews![index].user!.name!.toUpperCase()}",
+                                                                    controller.vetData.reviews![index].user?.name?.toUpperCase()==null
+                                                                        ?Container()
+                                                                    :Text(
+                                                                      "${controller.vetData.reviews![index].user?.name?.toUpperCase()}",
                                                                       style: TextStyle(
                                                                           color: Colors
                                                                               .black,
