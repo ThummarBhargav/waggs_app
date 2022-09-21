@@ -18,6 +18,7 @@ import 'package:waggs_app/app/routes/app_pages.dart';
 import '../../../../main.dart';
 import '../../../Modal/CartCountModel.dart';
 import '../../../Modal/CartProductModel.dart';
+import '../../../Modal/couponModel.dart';
 import '../../../Modal/shippingModel.dart';
 import '../../../Modal/updateAddressResponseModel.dart';
 import '../../../constant/ConstantUrl.dart';
@@ -54,10 +55,12 @@ class ViewCartController extends GetxController {
   RxBool nameVisible = true.obs;
   RxBool emailCheckBox = false.obs;
   RxBool detailCheckBox = false.obs;
+  RxBool hasCoupanValid = false.obs;
+  RxDouble coupon = 0.0.obs;
   Rx<Position>? _currentPosition;
   double shippingCharge = 0;
   Shipping1 shipping1 = Shipping1();
-
+  couponModal modal = couponModal();
   String _currentAddress = '';
   Geolocator geolocator = Geolocator();
   late Razorpay _razorpay;
@@ -118,6 +121,37 @@ class ViewCartController extends GetxController {
   @override
   void onClose() {
     super.onClose();
+  }
+
+  couponApi() async {
+    var url =
+        Uri.parse(baseUrl + ApiConstant.coupon + couponController.value.text);
+    var response = await http.get(url, headers: {
+      'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+    });
+    print('response status:${response.request}');
+    dynamic result = jsonDecode(response.body);
+    print(result);
+    if (response.statusCode == 200) {
+      couponModal res = couponModal.fromJson(jsonDecode(response.body));
+      if (!isNullEmptyOrFalse(res)) {
+        coupon.value = res.data ?? 0.00;
+        hasCoupanValid.value = true;
+        hasCoupanValid.refresh();
+        coupon.refresh();
+        update();
+        Get.snackbar("sucsses ", res.message.toString(),
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.green,
+            colorText: Colors.white);
+      }
+    } else {
+      couponModal res = couponModal.fromJson(jsonDecode(response.body));
+      Get.snackbar("Error", res.message.toString(),
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white);
+    }
   }
 
   ShippingApi() async {
@@ -294,11 +328,10 @@ class ViewCartController extends GetxController {
         print(response!.reasonPhrase);
       }
     } catch (e) {
-      Get.snackbar(
-        "Error",
-        e.toString(),
-        snackPosition: SnackPosition.BOTTOM,
-      );
+      Get.snackbar("Error", e.toString(),
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white);
     }
   }
 
@@ -328,11 +361,10 @@ class ViewCartController extends GetxController {
         print(response!.reasonPhrase);
       }
     } catch (e) {
-      Get.snackbar(
-        "Error",
-        e.toString(),
-        snackPosition: SnackPosition.BOTTOM,
-      );
+      Get.snackbar("Error", e.toString(),
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white);
     }
   }
 
@@ -666,9 +698,13 @@ class ViewCartController extends GetxController {
     _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
     _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
     var url = Uri.parse(baseUrl + ApiConstant.checkout);
-    var response = await http.post(url, body: {}, headers: {
-      'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
-    });
+    var response = await http.post(url,
+        body: (hasCoupanValid.isTrue)
+            ? {"coupon": couponController.value.text}
+            : {},
+        headers: {
+          'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+        });
     dynamic result = jsonDecode(response.body);
     checkout = Checkout.fromJson(result);
     if (response.statusCode == 200) {
@@ -681,9 +717,7 @@ class ViewCartController extends GetxController {
         "amount": "${checkout.data!.order!.amount}",
         "name": "Waggs",
         "order_id": "${checkout.data!.order!.id}",
-        // "timeout": "180",
         "currency": "INR",
-        // 'send_sms_hash': true,
         "prefill": {
           "contact": "${box.read(ArgumentConstant.phone)}",
           "email": "${box.read(ArgumentConstant.email)}",

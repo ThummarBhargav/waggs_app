@@ -1087,7 +1087,6 @@ class ViewAllMyCartView extends GetView<ViewAllMyCartController> {
                                           sum += element
                                                   .product!.discountedPrice! *
                                               element.quantity!;
-
                                           shippingCost += element.product!
                                               .sellerId!.shippingCharge;
                                         });

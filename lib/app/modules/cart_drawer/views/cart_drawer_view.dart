@@ -340,8 +340,9 @@ class CartDrawerView extends GetWidget<CartDrawerController> {
                                                                 index]
                                                             .product!
                                                             .sellerId!
-                                                            .shippingCharge !=
-                                                        0.00)
+                                                            .shippingCharge
+                                                            .floor() ==
+                                                        0)
                                                     ? Container()
                                                     : Text(
                                                         "+ \u{20B9}${controller.cartProductList[index].product!.sellerId!.shippingCharge.toStringAsFixed(0)}.00" +

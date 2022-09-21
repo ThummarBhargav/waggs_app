@@ -512,11 +512,12 @@ class ViewCartView extends GetWidget<ViewCartController> {
                                                                           index]
                                                                       .product!
                                                                       .sellerId!
-                                                                      .shippingCharge !=
+                                                                      .shippingCharge
+                                                                      .floor() ==
                                                                   0.00)
                                                               ? Container()
                                                               : Text(
-                                                                  "+ \u{20B9}${controller.cartProductList[index].product!.sellerId!.shippingCharge.toStringAsFixed(0)}.00" +
+                                                                  "+ \u{20B9}${controller.cartProductList[index].product!.sellerId!.shippingCharge.toStringAsFixed(2)}" +
                                                                       " Shipping",
                                                                   style:
                                                                       TextStyle(
@@ -682,7 +683,9 @@ class ViewCartView extends GetWidget<ViewCartController> {
                                                 Expanded(
                                                   flex: 2,
                                                   child: InkWell(
-                                                    onTap: () {},
+                                                    onTap: () {
+                                                      controller.couponApi();
+                                                    },
                                                     child: Container(
                                                       padding: EdgeInsets.only(
                                                           top: 13, bottom: 13),
@@ -795,6 +798,51 @@ class ViewCartView extends GetWidget<ViewCartController> {
                                                         )
                                                       ],
                                                     ),
+                                                    if (controller
+                                                        .hasCoupanValid.value)
+                                                      Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          Container(
+                                                            margin:
+                                                                EdgeInsets.only(
+                                                                    left: 10,
+                                                                    top: 20,
+                                                                    bottom: 10),
+                                                            child: Text(
+                                                              "Discount Applied",
+                                                              style: TextStyle(
+                                                                  fontSize: 18,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                  color: Colors
+                                                                      .grey
+                                                                      .shade500),
+                                                            ),
+                                                          ),
+                                                          Container(
+                                                            margin:
+                                                                EdgeInsets.only(
+                                                                    right: 10,
+                                                                    top: 20,
+                                                                    bottom: 15),
+                                                            child: Text(
+                                                              "-\u{20B9} ${controller.coupon.value.toStringAsFixed(2)}",
+                                                              style: TextStyle(
+                                                                  fontSize: 16,
+                                                                  color: Colors
+                                                                      .grey
+                                                                      .shade500,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500),
+                                                            ),
+                                                          )
+                                                        ],
+                                                      ),
                                                     Row(
                                                       mainAxisAlignment:
                                                           MainAxisAlignment
@@ -823,7 +871,7 @@ class ViewCartView extends GetWidget<ViewCartController> {
                                                                         index]
                                                                     .product!
                                                                     .sellerId!
-                                                                    .shippingCharge !=
+                                                                    .shippingCharge ==
                                                                 0.00)
                                                             ? Container(
                                                                 margin: EdgeInsets
@@ -855,7 +903,7 @@ class ViewCartView extends GetWidget<ViewCartController> {
                                                                         bottom:
                                                                             15),
                                                                 child: Text(
-                                                                  "${shippingCharge}",
+                                                                  "${shippingCharge.floor().toStringAsFixed(2)}",
                                                                   style: TextStyle(
                                                                       fontSize:
                                                                           16,
@@ -908,7 +956,7 @@ class ViewCartView extends GetWidget<ViewCartController> {
                                                                   right: 10,
                                                                   top: 10),
                                                           child: Text(
-                                                            "\u{20B9}${sum}.00",
+                                                            "\u{20B9}${((sum + shippingCharge.floor()) - controller.coupon.value).toStringAsFixed(2)}",
                                                             style: TextStyle(
                                                                 fontSize: 16,
                                                                 color: Colors
