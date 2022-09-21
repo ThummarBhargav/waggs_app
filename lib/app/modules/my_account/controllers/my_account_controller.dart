@@ -34,7 +34,6 @@ class MyAccountController extends GetxController {
 
   Future<void>sendOtp() async {
     var url = Uri.parse(baseUrl3+ApiConstant.sendOtpUsers);
-    var response;
     await http.post(url, body: {
       'countryCode': '${box.read(ArgumentConstant.countryCode)}',
       'email': 'forgot',

@@ -68,7 +68,7 @@ class MyAccountChangePasswordView
                   Container(
                     margin: EdgeInsets.only(left: 15),
                     child: Text(
-                      "We have sent a 6-digit confirmation code to your mobile, please rnter the code "
+                      "We have sent a 6-digit confirmation code to your mobile, please enter the code "
                       "in below box to verify your mobile.",
                       style: GoogleFonts.roboto(
                         fontSize: 16,
