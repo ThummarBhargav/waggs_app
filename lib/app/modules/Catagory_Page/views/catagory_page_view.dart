@@ -363,10 +363,10 @@ class CatagoryPageView extends GetWidget<HomeController> {
                                   children: [
                                     Container(
                                       margin:
-                                          EdgeInsets.only(top: 45, left: 30),
+                                          EdgeInsets.only(top: 45, left: 22),
                                       child: Text(data.name.toString(),
                                           style: GoogleFonts.roboto(
-                                              fontSize: 28,
+                                              fontSize: 25,
                                               fontWeight: FontWeight.bold,
                                               color: Color(0xffeb9d4f))),
                                     ),
