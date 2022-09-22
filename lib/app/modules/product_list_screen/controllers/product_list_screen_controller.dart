@@ -32,7 +32,6 @@ class ProductListScreenController extends GetxController {
   RxList<Products0> mainProductList = RxList<Products0>([]);
   RxList<Products> SellerProductList = RxList<Products>([]);
   GetAllproduct getAllproduct = GetAllproduct();
-  // RxList<Products0> TopProductlist = RxList<Products0>([]);
   late SubCategoryData subCategoryData;
   late Sellers data;
   List respons = [];
@@ -186,9 +185,8 @@ class ProductListScreenController extends GetxController {
     queryParameters["priceMax"] = "";
     queryParameters["discountMin"] = "0";
     queryParameters["discountMax"] = "0";
-    queryParameters["sellerId"] = "62dd1f3f8fc27b7077099db4";
-    queryParameters["latitude"] = "21.1702401";
-    queryParameters["longitude"] = "72.83106070000001";
+    queryParameters["sellerId"] = "";
+
     if (!isNullEmptyOrFalse(reqList)) {
       reqList.forEach((element) {
         queryParameters[element[0]] = (isNullEmptyOrFalse(element[1]))
@@ -199,10 +197,7 @@ class ProductListScreenController extends GetxController {
 
     print("Query Parameter := ${queryParameters}");
     print("Query Parameter := ${queryParameters}");
-
-    // var url = Uri.https(baseUrl,ApiConstant.getAllProductUsers,queryParameters);
-
-    var uri = Uri.https("api.waggs.in", '/api/v1/products', queryParameters);
+    var uri = Uri.https(baseUrl1, "/api/v1/products", queryParameters);
     print(uri);
     var response;
     await http.get(uri).then((value) {
