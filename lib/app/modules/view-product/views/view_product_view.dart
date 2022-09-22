@@ -361,7 +361,11 @@ class ViewProductView extends GetWidget<ViewProductController> {
                                     const EdgeInsets.only(left: 18.0, top: 15),
                                 child: GestureDetector(
                                   onTap: () {
-                                    controller.addToCart(data: controller.data);
+                                    (box.read(ArgumentConstant.isUserLogin) ==
+                                            null)
+                                        ? Get.toNamed(Routes.LOGIN_SCREEN)
+                                        : controller.addToCart(
+                                            data: controller.data);
                                   },
                                   child: Container(
                                     width: 250,
