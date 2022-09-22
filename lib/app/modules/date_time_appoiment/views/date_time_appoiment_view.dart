@@ -58,20 +58,20 @@ class DateTimeAppoimentView extends GetWidget<DateTimeAppoimentController> {
                       Spacer(),
                       Stack(
                         children: [
-                          IconButton(
-                              onPressed: () {
-                                if ((box.read(ArgumentConstant.isUserLogin) ==
-                                    null)) {
-                                  Get.toNamed(Routes.LOGIN_SCREEN);
-                                } else {
-                                  scaffoldKey.currentState!.openEndDrawer();
-                                }
-                              },
-                              icon: Icon(
-                                Icons.shopping_cart,
-                                size: 25,
-                                color: Colors.grey[500],
-                              )),
+                          // IconButton(
+                          //     onPressed: () {
+                          //       if ((box.read(ArgumentConstant.isUserLogin) ==
+                          //           null)) {
+                          //         Get.toNamed(Routes.LOGIN_SCREEN);
+                          //       } else {
+                          //         scaffoldKey.currentState!.openEndDrawer();
+                          //       }
+                          //     },
+                          //     icon: Icon(
+                          //       Icons.shopping_cart,
+                          //       size: 25,
+                          //       color: Colors.grey[500],
+                          //     )),
                           (controller.count1.data == 0 ||
                                   controller.count1.data == null)
                               ? Container()
