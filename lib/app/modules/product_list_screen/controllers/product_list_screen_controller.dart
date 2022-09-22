@@ -675,7 +675,7 @@ class ProductListScreenController extends GetxController {
 
   getSubcategoryProduct({bool isForLoading = false, String sort = ""}) async {
     if (!isForLoading) {
-      hasData.value = false;
+      hassubcatagoryData.value = false;
       isEnablePullUp.value = true;
       productsCount.value = 0;
       mainProductList.clear();
@@ -685,10 +685,10 @@ class ProductListScreenController extends GetxController {
         "?sellerId=&skip=${productsCount.value}&limit=10&sort=$sort&subCategory=${subCategoryData.sId}");
     var response;
     await http.get(URl).then((value) {
-      hasData.value = true;
+      hassubcatagoryData.value = true;
       response = value;
     }).catchError((err) {
-      hasData.value = false;
+      hassubcatagoryData.value = false;
     });
     print(response.body);
     dynamic result = jsonDecode(response.body);
