@@ -55,47 +55,26 @@ class AddPetView extends GetWidget<AddPetController> {
                                   // SizedBox(width: 200,),
                                   Stack(
                                     children: [
-                                      IconButton(
-                                          onPressed: () {
-                                            // if ((box.read(
-                                            //     ArgumentConstant.isUserLogin) ==
-                                            //     null)) {
-                                            //   Get.toNamed(Routes.LOGIN_SCREEN);
-                                            //   scaffoldKey.currentState!
-                                            //       .closeEndDrawer();
-                                            // }
-                                            // else {
-                                            //   controller.CartProductApi();
-                                            //   controller.CartCount();
-                                            //   scaffoldKey.currentState!
-                                            //       .openEndDrawer();
-                                            // }
-                                          },
-                                          icon: Icon(
-                                            Icons.shopping_cart,
-                                            size: 25,
-                                            color: Colors.grey[500],
-                                          )),
-                                      // controller.count1.data == null
-                                      //     ? Container()
-                                      //     : Positioned(
-                                      //     left: 22,
-                                      //     top: 2,
-                                      //     child: Container(
-                                      //       width: 18,
-                                      //       height: 18,
-                                      //       alignment: Alignment.center,
-                                      //       decoration: BoxDecoration(
-                                      //         color: Color.fromRGBO(
-                                      //             32, 193, 244, 1),
-                                      //         shape: BoxShape.circle,
-                                      //       ),
-                                      //       child: Text(
-                                      //         "${controller.count1.data}",
-                                      //         style: GoogleFonts.raleway(
-                                      //             fontWeight: FontWeight.bold,
-                                      //             color: Colors.white),
-                                      //       ),
+                                      // IconButton(
+                                      //     onPressed: () {
+                                      //       // if ((box.read(
+                                      //       //     ArgumentConstant.isUserLogin) ==
+                                      //       //     null)) {
+                                      //       //   Get.toNamed(Routes.LOGIN_SCREEN);
+                                      //       //   scaffoldKey.currentState!
+                                      //       //       .closeEndDrawer();
+                                      //       // }
+                                      //       // else {
+                                      //       //   controller.CartProductApi();
+                                      //       //   controller.CartCount();
+                                      //       //   scaffoldKey.currentState!
+                                      //       //       .openEndDrawer();
+                                      //       // }
+                                      //     },
+                                      //     icon: Icon(
+                                      //       Icons.shopping_cart,
+                                      //       size: 25,
+                                      //       color: Colors.grey[500],
                                       //     )),
                                     ],
                                   ),
