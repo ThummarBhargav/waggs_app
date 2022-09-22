@@ -174,6 +174,7 @@ class ProductListScreenController extends GetxController {
   }
 
   getFilterData({required List reqList, required BuildContext context}) async {
+    hassubcatagoryData.value = false;
     Map<String, dynamic> queryParameters = {};
     queryParameters["skip"] = "0";
     queryParameters["limit"] = "10";
@@ -218,6 +219,7 @@ class ProductListScreenController extends GetxController {
         if (!isNullEmptyOrFalse(storeModule.data!.products)) {
           storeModule.data!.products!.forEach((element) {
             mainProductList.add(element);
+            hassubcatagoryData.value = true;
           });
         }
       }
@@ -226,15 +228,18 @@ class ProductListScreenController extends GetxController {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text("Product Not Found")));
       print("Product Not Found");
+      hassubcatagoryData.value = true;
     } else {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text("Something went wrong.......")));
       print("Something went wrong.......");
+      hassubcatagoryData.value = true;
     }
   }
 
   getTopFilterData(
       {required List reqList, required BuildContext context}) async {
+    hassubcatagoryData.value = false;
     Map<String, dynamic> queryParameters = {};
     queryParameters["skip"] = "0";
     queryParameters["limit"] = "10";
@@ -271,7 +276,6 @@ class ProductListScreenController extends GetxController {
     });
     dynamic result = jsonDecode(response.body);
     storeModule = StoreModule.fromJson(result);
-
     if (response.statusCode == 200) {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text("Success.......")));
@@ -279,6 +283,7 @@ class ProductListScreenController extends GetxController {
         if (!isNullEmptyOrFalse(storeModule.data!.products)) {
           storeModule.data!.products!.forEach((element) {
             mainProductList.add(element);
+            hassubcatagoryData.value = true;
           });
         }
       }
@@ -287,10 +292,12 @@ class ProductListScreenController extends GetxController {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text("Product Not Found")));
       print("Product Not Found");
+      hassubcatagoryData.value = true;
     } else {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text("Something went wrong.......")));
       print("Something went wrong.......");
+      hassubcatagoryData.value = true;
     }
   }
 

@@ -290,11 +290,11 @@ class SingupScreenView extends GetWidget<SingupScreenController> {
                                 },
                                 icon: (!controller.passwordVisible.value)
                                     ? Icon(
-                                        Icons.visibility_off,
+                                        Icons.visibility,
                                         color: Colors.grey,
                                       )
                                     : Icon(
-                                        Icons.visibility,
+                                        Icons.visibility_off,
                                         color: Colors.grey,
                                       )),
                           ));
@@ -362,11 +362,11 @@ class SingupScreenView extends GetWidget<SingupScreenController> {
                                 },
                                 icon: (!controller.passwordVisible.value)
                                     ? Icon(
-                                        Icons.visibility_off,
+                                        Icons.visibility,
                                         color: Colors.grey,
                                       )
                                     : Icon(
-                                        Icons.visibility,
+                                        Icons.visibility_off,
                                         color: Colors.grey,
                                       )),
                           ));

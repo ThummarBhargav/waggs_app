@@ -810,21 +810,35 @@ class SearchProductPageView extends GetWidget<SearchProductPageController> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                IconButton(
-                                    onPressed: () {
-                                      if ((box.read(
-                                              ArgumentConstant.isUserLogin) ==
-                                          null)) {
-                                        Get.toNamed(Routes.LOGIN_SCREEN);
-                                      }
-                                      controller.isFilterDrawer.value = false;
-                                      scaffoldKey.currentState!.openEndDrawer();
-                                    },
-                                    icon: Icon(
-                                      Icons.shopping_cart,
-                                      size: 25,
-                                      color: Colors.grey[500],
-                                    )),
+                                TextButton(
+                                  onPressed: () {
+                                    controller.isFilterDrawer.value = true;
+                                    ;
+                                    scaffoldKey.currentState!.openEndDrawer();
+                                  },
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        child: Text(
+                                          "Filters",
+                                          style: GoogleFonts.raleway(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      Icon(
+                                        Icons.filter_list,
+                                        color: Colors.black,
+                                        size: 18,
+                                      ),
+                                    ],
+                                  ),
+                                ),
                                 SizedBox(
                                   width: 10,
                                 ),

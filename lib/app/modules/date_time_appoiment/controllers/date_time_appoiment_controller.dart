@@ -18,7 +18,7 @@ import '../../../routes/app_pages.dart';
 
 class DateTimeAppoimentController extends GetxController
     with GetSingleTickerProviderStateMixin {
-  RxBool hasData = false.obs;
+  RxBool hasData1 = false.obs;
   TabController? tabController;
   TextEditingController des = TextEditingController();
   Dio dio = Dio();
@@ -29,9 +29,9 @@ class DateTimeAppoimentController extends GetxController
   RxList<Count1> Countlist = RxList([]);
   @override
   void onInit() {
-   print('${Argument[0]}');
-   print('${Argument[1]}');
-   CartCount();
+    print('${Argument[0]}');
+    print('${Argument[1]}');
+    CartCount();
     tabController = TabController(length: 2, vsync: this);
     super.onInit();
   }
@@ -67,22 +67,24 @@ class DateTimeAppoimentController extends GetxController
       }),
     )
         .then((value) {
-          response = value;
-          print("VALUE  : = ${response.statusCode}");
+      response = value;
+      print("VALUE  : = ${response.statusCode}");
       getIt<CustomDialogs>().hideCircularDialog(context);
       Get.offAndToNamed(Routes.PET_VIEW_DETAILS, arguments: Argument[0]);
       print("VALUE  : = ${value.statusCode}");
-
     }).catchError((error) {
       getIt<CustomDialogs>().hideCircularDialog(context);
       print("ERROR : = $error");
-       Get.snackbar("Error", "All appointments exausted. Please purchase new subscription",
-           colorText: Colors.black,backgroundColor: Colors.orangeAccent,
-       snackPosition: SnackPosition.BOTTOM);
+      Get.snackbar("Error",
+          "All appointments exausted. Please purchase new subscription",
+          colorText: Colors.black,
+          backgroundColor: Colors.orangeAccent,
+          snackPosition: SnackPosition.BOTTOM);
     });
   }
 
   CartCount() async {
+    hasData1.value = false;
     Countlist.clear();
     var url = Uri.parse(baseUrl + ApiConstant.Count);
     var response = await http.get(url, headers: {
@@ -95,6 +97,7 @@ class DateTimeAppoimentController extends GetxController
     print(result);
     if (!isNullEmptyOrFalse(count1.data)) {
       Countlist.add(count1);
+      hasData1.value = true;
     }
     Countlist.refresh();
   }
