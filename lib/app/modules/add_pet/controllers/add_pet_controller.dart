@@ -96,7 +96,8 @@ class AddPetController extends GetxController {
     dict["breed"] = breed.text;
     dict["gender"] = select.value.toLowerCase();
     dict["image"] = imageUrl.value;
-    dio.put(
+    dio
+        .put(
       baseUrl + ApiConstant.updatePet + patId,
       data: dict,
       options: Options(headers: {
@@ -105,7 +106,8 @@ class AddPetController extends GetxController {
     )
         .then((value) {
       getIt<CustomDialogs>().hideCircularDialog(context);
-      Get.toNamed(Routes.MY_PET);
+      Get.back();
+      Get.offAndToNamed(Routes.MY_PET);
       print("VALUE  : = ${value}");
     }).catchError((error) {
       getIt<CustomDialogs>().hideCircularDialog(context);

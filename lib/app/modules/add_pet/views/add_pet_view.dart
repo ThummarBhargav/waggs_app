@@ -361,7 +361,7 @@ class AddPetView extends GetWidget<AddPetController> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Flexible(
+                              Expanded(
                                 child: Container(
                                   margin: EdgeInsets.only(left: 15, right: 5),
                                   padding: EdgeInsets.only(
@@ -399,7 +399,7 @@ class AddPetView extends GetWidget<AddPetController> {
                               SizedBox(
                                 width: 20.0,
                               ),
-                              Flexible(
+                              Expanded(
                                 child: Container(
                                   margin: EdgeInsets.only(left: 5, right: 15),
                                   padding: EdgeInsets.only(
