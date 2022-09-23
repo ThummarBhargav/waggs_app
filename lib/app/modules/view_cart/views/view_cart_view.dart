@@ -734,8 +734,7 @@ class ViewCartView extends GetWidget<ViewCartController> {
                                           itemBuilder: (context, index) {
                                             var sum = 0;
                                             double shippingCharge = 0;
-                                            controller.cartProductList
-                                                .forEach((element) {
+                                            controller.cartProductList.forEach((element) {
                                               sum += element.product!
                                                       .discountedPrice! *
                                                   element.quantity!;
@@ -798,51 +797,51 @@ class ViewCartView extends GetWidget<ViewCartController> {
                                                         )
                                                       ],
                                                     ),
-                                                    if (controller
-                                                        .hasCoupanValid.value)
-                                                      Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        children: [
-                                                          Container(
-                                                            margin:
-                                                                EdgeInsets.only(
-                                                                    left: 10,
-                                                                    top: 20,
-                                                                    bottom: 10),
-                                                            child: Text(
-                                                              "Discount Applied",
-                                                              style: TextStyle(
-                                                                  fontSize: 18,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                  color: Colors
-                                                                      .grey
-                                                                      .shade500),
-                                                            ),
-                                                          ),
-                                                          Container(
-                                                            margin:
-                                                                EdgeInsets.only(
-                                                                    right: 10,
-                                                                    top: 20,
-                                                                    bottom: 15),
-                                                            child: Text(
-                                                              "-\u{20B9} ${controller.coupon.value.toStringAsFixed(2)}",
-                                                              style: TextStyle(
-                                                                  fontSize: 16,
-                                                                  color: Colors
-                                                                      .grey
-                                                                      .shade500,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500),
-                                                            ),
-                                                          )
-                                                        ],
-                                                      ),
+                                                   Obx(()=> controller
+                                                       .hasCoupanValid.value?
+                                                   Row(
+                                                     mainAxisAlignment:
+                                                     MainAxisAlignment
+                                                         .spaceBetween,
+                                                     children: [
+                                                       Container(
+                                                         margin:
+                                                         EdgeInsets.only(
+                                                             left: 10,
+                                                             top: 20,
+                                                             bottom: 10),
+                                                         child: Text(
+                                                           "Discount Applied",
+                                                           style: TextStyle(
+                                                               fontSize: 18,
+                                                               fontWeight:
+                                                               FontWeight
+                                                                   .w500,
+                                                               color: Colors
+                                                                   .grey
+                                                                   .shade500),
+                                                         ),
+                                                       ),
+                                                       Container(
+                                                         margin:
+                                                         EdgeInsets.only(
+                                                             right: 10,
+                                                             top: 20,
+                                                             bottom: 15),
+                                                         child: Text(
+                                                           "-\u{20B9} ${controller.coupon.value.toStringAsFixed(2)}",
+                                                           style: TextStyle(
+                                                               fontSize: 16,
+                                                               color: Colors
+                                                                   .grey
+                                                                   .shade500,
+                                                               fontWeight:
+                                                               FontWeight
+                                                                   .w500),
+                                                         ),
+                                                       )
+                                                     ],
+                                                   ):Container(),),
                                                     Row(
                                                       mainAxisAlignment:
                                                           MainAxisAlignment

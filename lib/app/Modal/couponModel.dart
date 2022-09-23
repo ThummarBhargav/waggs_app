@@ -7,7 +7,9 @@ class couponModal {
 
   couponModal.fromJson(Map<String, dynamic> json) {
     responseCode = json['responseCode'];
-    data = json['data'];
+    data = (json['data'].runtimeType == int)
+        ? double.parse(json['data'].toString())
+        : json['data'];
     message = json['message'];
   }
 

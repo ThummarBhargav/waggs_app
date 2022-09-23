@@ -431,6 +431,8 @@ class LoginScreenController extends GetxController {
       );
     }
   }
+
+
 }
 
 class UserObject {
