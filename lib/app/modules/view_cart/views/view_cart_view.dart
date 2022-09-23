@@ -954,8 +954,7 @@ class ViewCartView extends GetWidget<ViewCartController> {
                                                           EdgeInsets.only(
                                                               right: 10,
                                                               top: 10),
-                                                          child: controller.hasCoupanValid.value
-                                                              ? Text(
+                                                          child:controller.hasCoupanValid.value?Text(
                                                             "\u{20B9}${((sum + shippingCharge.floor()) - controller.coupon.value).toStringAsFixed(2)}",
                                                             style: TextStyle(
                                                                 fontSize: 16,
@@ -964,9 +963,8 @@ class ViewCartView extends GetWidget<ViewCartController> {
                                                                 fontWeight:
                                                                 FontWeight
                                                                     .w800),
-                                                          )
-                                                              :Text(
-                                                            "\u{20B9}${((sum + shippingCharge.floor()).toStringAsFixed(2))}",
+                                                          ):Text(
+                                                            "\u{20B9}${(sum + shippingCharge.floor()).toStringAsFixed(2)}",
                                                             style: TextStyle(
                                                                 fontSize: 16,
                                                                 color: Colors
@@ -975,6 +973,7 @@ class ViewCartView extends GetWidget<ViewCartController> {
                                                                 FontWeight
                                                                     .w800),
                                                           )
+
                                                         )
                                                       ],
                                                     ),
