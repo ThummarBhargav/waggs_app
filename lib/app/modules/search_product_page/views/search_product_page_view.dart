@@ -1069,6 +1069,8 @@ class SearchProductPageView extends GetWidget<SearchProductPageController> {
                                     isForLoading: true,
                                     sort: controller.soringType.value,
                                   );
+                                } else {
+                                  controller.refreshController.loadComplete();
                                 }
                               },
                               child: GridView.builder(

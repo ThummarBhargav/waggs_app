@@ -301,7 +301,6 @@ class SearchProductPageController extends GetxController {
             }
 
             mainProductList.add(element);
-            pagenation.value = false;
           });
         }
       }
