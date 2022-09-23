@@ -157,6 +157,7 @@ class SearchProductPageController extends GetxController {
       productsCount.value = 0;
       mainProductList.clear();
     }
+    pagenation.value = false;
     var url = Uri.parse(baseUrl +
         ApiConstant.getAllProductUsers +
         "?search=${searchProduct}&skip=${productsCount.value}&limit=10&sort=$sort");
