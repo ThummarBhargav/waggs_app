@@ -60,6 +60,7 @@ class SearchProductPageController extends GetxController {
   RxBool isOp6 = false.obs;
   RxBool isOp7 = false.obs;
   RxBool checkBox = false.obs;
+  RxBool pagenation = false.obs;
   RxBool colorCheckBox = false.obs;
   String selectedValue = "New Arrivals";
   RxInt subDataIndex = 0.obs;
@@ -223,6 +224,8 @@ class SearchProductPageController extends GetxController {
   }
 
   getFilterData({required List reqList, required BuildContext context}) async {
+    pagenation.value = true;
+    mainProductList.clear();
     Map<String, dynamic> queryParameters = {};
     queryParameters["skip"] = "0";
     queryParameters["limit"] = "10";
