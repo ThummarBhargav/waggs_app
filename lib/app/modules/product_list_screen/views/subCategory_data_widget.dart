@@ -42,6 +42,8 @@ class _SubCategoryWidgetState extends State<SubCategoryWidget> {
               key: scaffoldKey,
               drawerEdgeDragWidth: 0,
               onEndDrawerChanged: (val) {
+                controller.values4.value=RangeValues(100, 30000);
+                controller.values1.value=RangeValues(0, 100);
                 controller.radioGValues.value = "";
                 controller.isOp2.value = false;
                 controller.isOp.value = false;
