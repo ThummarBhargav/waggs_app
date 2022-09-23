@@ -147,6 +147,7 @@ class ViewCartController extends GetxController {
       }
     } else {
       couponModal res = couponModal.fromJson(jsonDecode(response.body));
+      hasCoupanValid.value = false;
       Get.snackbar("Error", res.message.toString(),
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.red,
