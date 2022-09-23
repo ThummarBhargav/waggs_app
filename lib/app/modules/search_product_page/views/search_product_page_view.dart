@@ -980,30 +980,43 @@ class SearchProductPageView extends GetWidget<SearchProductPageController> {
                                                           .getFillterProduct(
                                                               sort:
                                                                   "newArrivals");
+                                                      controller.soringType
+                                                              .value =
+                                                          "newArrivals";
                                                     }
                                                     if (index == 1) {
                                                       controller
                                                           .getFillterProduct(
                                                               sort:
                                                                   "priceAsec");
+                                                      controller.soringType
+                                                          .value = "priceAsec";
                                                     }
                                                     if (index == 2) {
                                                       controller
                                                           .getFillterProduct(
                                                               sort:
                                                                   "priceDesc");
+                                                      controller.soringType
+                                                          .value = "priceDesc";
                                                     }
                                                     if (index == 3) {
                                                       controller
                                                           .getFillterProduct(
                                                               sort:
                                                                   "discountAsec");
+                                                      controller.soringType
+                                                              .value =
+                                                          "discountAsec";
                                                     }
                                                     if (index == 4) {
                                                       controller
                                                           .getFillterProduct(
                                                               sort:
                                                                   "discountDesc");
+                                                      controller.soringType
+                                                              .value =
+                                                          "discountDesc";
                                                     }
                                                     controller.price.value =
                                                         controller
@@ -1051,6 +1064,7 @@ class SearchProductPageView extends GetWidget<SearchProductPageController> {
                               onLoading: () {
                                 controller.searchProductApi(
                                   isForLoading: true,
+                                  sort: controller.soringType.value,
                                 );
                               },
                               child: GridView.builder(
