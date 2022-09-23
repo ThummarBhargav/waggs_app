@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
-
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:waggs_app/app/Modal/CartCountModel.dart';
@@ -11,7 +10,6 @@ import 'package:waggs_app/app/Modal/CartProductModel.dart';
 import 'package:waggs_app/app/Modal/GetAllProductModule.dart';
 import 'package:waggs_app/app/constant/ConstantUrl.dart';
 import 'package:waggs_app/main.dart';
-
 import '../../../Modal/CategoryModel.dart';
 import '../../../Modal/SubCategoryModel.dart';
 import '../../../Modal/TopSellingStore.dart';
@@ -88,7 +86,6 @@ class SearchProductPageController extends GetxController {
     CartProductApi();
     AllCategory();
     SubCategory();
-    // getProduct();
     super.onInit();
   }
 
