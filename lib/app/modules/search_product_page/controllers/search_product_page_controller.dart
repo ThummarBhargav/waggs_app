@@ -224,6 +224,7 @@ class SearchProductPageController extends GetxController {
   }
 
   getFilterData({required List reqList, required BuildContext context}) async {
+    hasSerchdata.value = false;
     Map<String, dynamic> queryParameters = {};
     queryParameters["skip"] = "0";
     queryParameters["limit"] = "10";
@@ -258,12 +259,10 @@ class SearchProductPageController extends GetxController {
     });
     dynamic result = jsonDecode(response.body);
     storeModule = StoreModule.fromJson(result);
-
     if (response.statusCode == 200) {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text("Success.......")));
       Position? currentPositionData = await getCurrentLocation();
-
       if (!isNullEmptyOrFalse(storeModule.data)) {
         if (!isNullEmptyOrFalse(storeModule.data!.products)) {
           storeModule.data!.products!.forEach((element) {
@@ -297,9 +296,9 @@ class SearchProductPageController extends GetxController {
                 }
               }
             }
-
             mainProductList.add(element);
-            pagenation.value = false;
+            pagenation.value = true;
+            hasSerchdata.value = true;
           });
         }
       }
@@ -308,10 +307,12 @@ class SearchProductPageController extends GetxController {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text("Product Not Found")));
       print("Product Not Found");
+      hasSerchdata.value = true;
     } else {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text("Something went wrong.......")));
       print("Something went wrong.......");
+      hasSerchdata.value = true;
     }
   }
 

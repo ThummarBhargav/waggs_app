@@ -1060,13 +1060,15 @@ class SearchProductPageView extends GetWidget<SearchProductPageController> {
                             child: SmartRefresher(
                               controller: controller.refreshController,
                               enablePullDown: false,
-                              enablePullUp: true,
+                              enablePullUp: controller.isEnablePullUp.value,
                               onLoading: () {
-                                if (controller.pagenation.value == false) {
+                                if (controller.pagenation.isFalse) {
                                   controller.searchProductApi(
                                     isForLoading: true,
                                     sort: controller.soringType.value,
                                   );
+                                } else {
+                                  controller.refreshController.loadComplete();
                                 }
                               },
                               child: GridView.builder(
