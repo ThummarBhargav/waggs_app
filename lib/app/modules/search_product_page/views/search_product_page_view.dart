@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
-
-import '../../../../main.dart';
-import '../../../constant/ConstantUrl.dart';
 import '../../../constant/SizeConstant.dart';
 import '../../../constant/productCard_const.dart';
 import '../../cart_drawer/views/cart_drawer_view.dart';
@@ -1046,12 +1044,18 @@ class SearchProductPageView extends GetWidget<SearchProductPageController> {
                             ],
                           ),
                           Expanded(
-                            child: Container(
-                              margin: EdgeInsets.all(5),
-                              height: MediaQuery.of(context).size.height * 0.37,
-                              width: 400,
+                            child: SmartRefresher(
+                              controller: controller.refreshController,
+                              enablePullDown: false,
+                              enablePullUp: controller.isEnablePullUp.value,
+                              onLoading: () {
+                                controller.searchProductApi(
+                                  isForLoading: true,
+                                );
+                              },
                               child: GridView.builder(
                                   itemCount: controller.mainProductList.length,
+                                  scrollDirection: Axis.vertical,
                                   shrinkWrap: true,
                                   itemBuilder: (context, index) {
                                     return productCard(
@@ -1064,7 +1068,7 @@ class SearchProductPageView extends GetWidget<SearchProductPageController> {
                                             .mainProductList[index].images![0],
                                         discount: controller
                                             .mainProductList[index].discount!
-                                            .toStringAsFixed(0),
+                                            .toStringAsFixed(2),
                                         companyName: controller
                                             .mainProductList[index].title,
                                         categoryName: controller
@@ -1105,7 +1109,7 @@ class SearchProductPageView extends GetWidget<SearchProductPageController> {
                                               MediaQuery.of(context)
                                                       .size
                                                       .height /
-                                                  1300)),
+                                                  1250)),
                             ),
                           ),
                         ],

@@ -208,8 +208,6 @@ class ProductListScreenController extends GetxController {
     storeModule = StoreModule.fromJson(result);
 
     if (response.statusCode == 200) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text("Success.......")));
       if (!isNullEmptyOrFalse(storeModule.data)) {
         if (!isNullEmptyOrFalse(storeModule.data!.products)) {
           storeModule.data!.products!.forEach((element) {
@@ -220,13 +218,9 @@ class ProductListScreenController extends GetxController {
       }
       mainProductList.refresh();
     } else if (response.statusCode == 404) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text("Product Not Found")));
       print("Product Not Found");
       hassubcatagoryData.value = true;
     } else {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text("Something went wrong.......")));
       print("Something went wrong.......");
       hassubcatagoryData.value = true;
     }

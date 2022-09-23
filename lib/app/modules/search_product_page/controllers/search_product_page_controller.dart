@@ -102,80 +102,6 @@ class SearchProductPageController extends GetxController {
     super.onClose();
   }
 
-  getProduct({bool isForLoading = false, String sort = ""}) async {
-    if (!isForLoading) {
-      hasData.value = false;
-      isEnablePullUp.value = true;
-      productsCount.value = 0;
-      mainProductList.clear();
-    }
-    var URl = Uri.parse(baseUrl +
-        ApiConstant.getAllProductUsers +
-        "?sellerId=&skip=${productsCount.value}&limit=10&sort=$sort");
-    var response;
-    await http.get(URl).then((value) {
-      hasData.value = true;
-      response = value;
-    }).catchError((err) {
-      hasData.value = false;
-    });
-    print(response.body);
-    dynamic result = jsonDecode(response.body);
-    storeModule = StoreModule.fromJson(result);
-    if (storeModule.responseCode == 404) {
-      if (isForLoading) {
-        refreshController.loadComplete();
-        isEnablePullUp.value = false;
-      }
-    } else {
-      if (!isNullEmptyOrFalse(storeModule.data)) {
-        if (!isNullEmptyOrFalse(storeModule.data!.products)) {
-          storeModule.data!.products!.forEach((element) async {
-            Position? currentPositionData = await getCurrentLocation();
-            if (!isNullEmptyOrFalse(element)) {
-              if (!isNullEmptyOrFalse(element.sellerId)) {
-                if (!isNullEmptyOrFalse(currentPositionData)) {
-                  if (!isNullEmptyOrFalse(element.sellerId!.latitude) &&
-                      !isNullEmptyOrFalse(element.sellerId!.longitude) &&
-                      !isNullEmptyOrFalse(currentPositionData!.latitude) &&
-                      !isNullEmptyOrFalse(currentPositionData.longitude)) {
-                    double lat2 = element.sellerId!.latitude!;
-                    double lat1 = currentPositionData.latitude;
-                    double lon2 = element.sellerId!.longitude!;
-                    double lon1 = currentPositionData.longitude;
-                    print("lat1========${lat1}");
-                    print("lon1========${lon1}");
-                    print("lat2========${lat2}");
-                    print("lon2========${lon2}");
-                    var p = 0.017453292519943295;
-                    var c = cos;
-                    var a = 0.5 -
-                        c((lat2 - lat1) * p) / 2 +
-                        c(lat1 * p) *
-                            c(lat2 * p) *
-                            (1 - c((lon2 - lon1) * p)) /
-                            2;
-                    double distance = 12742 * asin(sqrt(a));
-                    element.sellerId!.distance = distance;
-                    print("My Distance := ${distance}");
-                  }
-                }
-              }
-            }
-
-            mainProductList.add(element);
-          });
-          productsCount.value = mainProductList.length;
-          if (isForLoading) {
-            refreshController.loadComplete();
-          }
-        }
-      }
-    }
-
-    mainProductList.refresh();
-  }
-
   CartProductApi() async {
     hasData.value = false;
     cartProductList.clear();
@@ -221,11 +147,16 @@ class SearchProductPageController extends GetxController {
     Countlist.refresh();
   }
 
-  searchProductApi() async {
-    hasSerchdata.value = false;
-    mainProductList.clear();
-    var url = Uri.parse(
-        baseUrl + ApiConstant.getAllProductUsers + "?search=${searchProduct}");
+  searchProductApi({bool isForLoading = false, String sort = ""}) async {
+    if (!isForLoading) {
+      hasSerchdata.value = false;
+      isEnablePullUp.value = true;
+      productsCount.value = 0;
+      mainProductList.clear();
+    }
+    var url = Uri.parse(baseUrl +
+        ApiConstant.getAllProductUsers +
+        "?search=${searchProduct}&skip=${productsCount.value}&limit=10&sort=$sort");
     var response;
     await http.get(url).then((value) async {
       if (value.statusCode == 200) {
@@ -272,9 +203,17 @@ class SearchProductPageController extends GetxController {
               mainProductList.add(element);
               hasSerchdata.value = true;
             });
+            productsCount.value = mainProductList.length;
+            if (isForLoading) {
+              refreshController.loadComplete();
+            }
           }
         }
       } else {
+        if (isForLoading) {
+          refreshController.loadComplete();
+          isEnablePullUp.value = false;
+        }
         hasSerchdata.value = true;
       }
     }).catchError((error) {
@@ -295,7 +234,7 @@ class SearchProductPageController extends GetxController {
     queryParameters["priceMax"] = "";
     queryParameters["discountMin"] = "0";
     queryParameters["discountMax"] = "0";
-    queryParameters["sellerId"] = "62dd1f3f8fc27b7077099db4";
+    queryParameters["sellerId"] = "          ";
     queryParameters["latitude"] = "21.1702401";
     queryParameters["longitude"] = "72.83106070000001";
     if (!isNullEmptyOrFalse(reqList)) {
@@ -306,12 +245,7 @@ class SearchProductPageController extends GetxController {
       });
     }
 
-    print("Query Parameter := ${queryParameters}");
-    print("Query Parameter := ${queryParameters}");
-
-    // var url = Uri.https(baseUrl,ApiConstant.getAllProductUsers,queryParameters);
-
-    var uri = Uri.https("api.waggs.in", '/api/v1/products', queryParameters);
+    var uri = Uri.https(baseUrl1, '/api/v1/products', queryParameters);
     print(uri);
     var response;
     await http.get(uri).then((value) {
@@ -372,7 +306,7 @@ class SearchProductPageController extends GetxController {
 
     // var url = Uri.https(baseUrl,ApiConstant.getAllProductUsers,queryParameters);
 
-    var uri = Uri.https("api.waggs.in", '/api/v1/products', queryParameters);
+    var uri = Uri.https(baseUrl1, '/api/v1/products', queryParameters);
     print(uri);
     var response;
     await http.get(uri).then((value) {
