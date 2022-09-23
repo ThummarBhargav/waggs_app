@@ -155,6 +155,7 @@ class SearchProductPageController extends GetxController {
       productsCount.value = 0;
       mainProductList.clear();
     }
+    pagenation.value = false;
     var url = Uri.parse(baseUrl +
         ApiConstant.getAllProductUsers +
         "?search=${searchProduct}&skip=${productsCount.value}&limit=10&sort=$sort");
@@ -297,7 +298,6 @@ class SearchProductPageController extends GetxController {
               }
             }
             mainProductList.add(element);
-            pagenation.value = true;
             hasSerchdata.value = true;
           });
         }
@@ -514,7 +514,6 @@ class SearchProductPageController extends GetxController {
         "?sellerId=&search=${searchProduct}&skip=${productsCount.value}&limit=10&sort=$sort");
     var response;
     await http.get(URl).then((value) {
-      hasSerchdata.value = true;
       response = value;
     }).catchError((err) {
       hasData.value = true;
@@ -529,7 +528,6 @@ class SearchProductPageController extends GetxController {
       }
     } else {
       Position? currentPositionData = await getCurrentLocation();
-
       if (!isNullEmptyOrFalse(storeModule.data)) {
         if (!isNullEmptyOrFalse(storeModule.data!.products)) {
           storeModule.data!.products!.forEach((element) {
@@ -565,6 +563,7 @@ class SearchProductPageController extends GetxController {
             }
 
             mainProductList.add(element);
+            hasSerchdata.value = true;
           });
           productsCount.value = mainProductList.length;
           if (isForLoading) {
@@ -573,7 +572,6 @@ class SearchProductPageController extends GetxController {
         }
       }
     }
-
     mainProductList.refresh();
   }
 }

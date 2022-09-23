@@ -13,6 +13,7 @@ class SearchProductPageView extends GetWidget<SearchProductPageController> {
   const SearchProductPageView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    var scaffoldKey = GlobalKey<ScaffoldState>();
     return WillPopScope(onWillPop: () async {
       Get.offAndToNamed(Routes.HOME);
       return await true;
@@ -21,7 +22,7 @@ class SearchProductPageView extends GetWidget<SearchProductPageController> {
         controller.Countlist.refresh();
         controller.cartProductList.refresh();
         return Scaffold(
-          key: controller.scaffoldKey,
+          key: scaffoldKey,
           backgroundColor: Colors.white,
           appBar: AppBar(
             elevation: 0.0,
@@ -40,7 +41,7 @@ class SearchProductPageView extends GetWidget<SearchProductPageController> {
                   IconButton(
                       onPressed: () {
                         controller.isFilterDrawer.value = false;
-                        controller.scaffoldKey.currentState!.openEndDrawer();
+                        scaffoldKey.currentState!.openEndDrawer();
                         controller.CartCount();
                         controller.CartProductApi();
                       },
@@ -766,8 +767,7 @@ class SearchProductPageView extends GetWidget<SearchProductPageController> {
                               controller.AllCategory();
                               controller.SubCategory();
 
-                              controller.scaffoldKey.currentState!
-                                  .closeEndDrawer();
+                              scaffoldKey.currentState!.closeEndDrawer();
                               // Navigator.of(context).pop;
                             },
                             child: Container(
@@ -812,8 +812,7 @@ class SearchProductPageView extends GetWidget<SearchProductPageController> {
                                   onPressed: () {
                                     controller.isFilterDrawer.value = true;
                                     ;
-                                    controller.scaffoldKey.currentState!
-                                        .openEndDrawer();
+                                    scaffoldKey.currentState!.openEndDrawer();
                                   },
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
@@ -927,8 +926,7 @@ class SearchProductPageView extends GetWidget<SearchProductPageController> {
                                 onPressed: () {
                                   controller.isFilterDrawer.value = true;
                                   ;
-                                  controller.scaffoldKey.currentState!
-                                      .openEndDrawer();
+                                  scaffoldKey.currentState!.openEndDrawer();
                                 },
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
