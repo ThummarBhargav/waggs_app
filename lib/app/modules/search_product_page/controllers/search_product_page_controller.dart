@@ -20,6 +20,8 @@ import '../../../routes/app_pages.dart';
 class SearchProductPageController extends GetxController {
   //TODO: Implement SearchProductPageController
   List respons = [];
+  var scaffoldKey = GlobalKey<ScaffoldState>();
+
   RxBool isLoading = false.obs;
   late SubCategoryData subCategoryData;
   RxBool isEnablePullUp = true.obs;
