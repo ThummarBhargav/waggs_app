@@ -224,8 +224,6 @@ class SearchProductPageController extends GetxController {
   }
 
   getFilterData({required List reqList, required BuildContext context}) async {
-    pagenation.value = true;
-    mainProductList.clear();
     Map<String, dynamic> queryParameters = {};
     queryParameters["skip"] = "0";
     queryParameters["limit"] = "10";
@@ -252,6 +250,8 @@ class SearchProductPageController extends GetxController {
     var uri = Uri.https(baseUrl1, '/api/v1/products', queryParameters);
     print(uri);
     var response;
+    pagenation.value = true;
+    mainProductList.clear();
     await http.get(uri).then((value) {
       response = value;
       mainProductList.clear();
@@ -262,10 +262,44 @@ class SearchProductPageController extends GetxController {
     if (response.statusCode == 200) {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text("Success.......")));
+      Position? currentPositionData = await getCurrentLocation();
+
       if (!isNullEmptyOrFalse(storeModule.data)) {
         if (!isNullEmptyOrFalse(storeModule.data!.products)) {
           storeModule.data!.products!.forEach((element) {
+            if (!isNullEmptyOrFalse(element)) {
+              if (!isNullEmptyOrFalse(element.sellerId)) {
+                if (!isNullEmptyOrFalse(currentPositionData)) {
+                  if (!isNullEmptyOrFalse(element.sellerId!.latitude) &&
+                      !isNullEmptyOrFalse(element.sellerId!.longitude) &&
+                      !isNullEmptyOrFalse(currentPositionData!.latitude) &&
+                      !isNullEmptyOrFalse(currentPositionData.longitude)) {
+                    double lat2 = element.sellerId!.latitude!;
+                    double lat1 = currentPositionData.latitude;
+                    double lon2 = element.sellerId!.longitude!;
+                    double lon1 = currentPositionData.longitude;
+                    print("lat1========${lat1}");
+                    print("lon1========${lon1}");
+                    print("lat2========${lat2}");
+                    print("lon2========${lon2}");
+                    var p = 0.017453292519943295;
+                    var c = cos;
+                    var a = 0.5 -
+                        c((lat2 - lat1) * p) / 2 +
+                        c(lat1 * p) *
+                            c(lat2 * p) *
+                            (1 - c((lon2 - lon1) * p)) /
+                            2;
+                    double distance = 12742 * asin(sqrt(a));
+                    element.sellerId!.distance = distance;
+                    print("My Distance := ${distance}");
+                  }
+                }
+              }
+            }
+
             mainProductList.add(element);
+            pagenation.value = false;
           });
         }
       }
@@ -493,9 +527,42 @@ class SearchProductPageController extends GetxController {
         isEnablePullUp.value = false;
       }
     } else {
+      Position? currentPositionData = await getCurrentLocation();
+
       if (!isNullEmptyOrFalse(storeModule.data)) {
         if (!isNullEmptyOrFalse(storeModule.data!.products)) {
           storeModule.data!.products!.forEach((element) {
+            if (!isNullEmptyOrFalse(element)) {
+              if (!isNullEmptyOrFalse(element.sellerId)) {
+                if (!isNullEmptyOrFalse(currentPositionData)) {
+                  if (!isNullEmptyOrFalse(element.sellerId!.latitude) &&
+                      !isNullEmptyOrFalse(element.sellerId!.longitude) &&
+                      !isNullEmptyOrFalse(currentPositionData!.latitude) &&
+                      !isNullEmptyOrFalse(currentPositionData.longitude)) {
+                    double lat2 = element.sellerId!.latitude!;
+                    double lat1 = currentPositionData.latitude;
+                    double lon2 = element.sellerId!.longitude!;
+                    double lon1 = currentPositionData.longitude;
+                    print("lat1========${lat1}");
+                    print("lon1========${lon1}");
+                    print("lat2========${lat2}");
+                    print("lon2========${lon2}");
+                    var p = 0.017453292519943295;
+                    var c = cos;
+                    var a = 0.5 -
+                        c((lat2 - lat1) * p) / 2 +
+                        c(lat1 * p) *
+                            c(lat2 * p) *
+                            (1 - c((lon2 - lon1) * p)) /
+                            2;
+                    double distance = 12742 * asin(sqrt(a));
+                    element.sellerId!.distance = distance;
+                    print("My Distance := ${distance}");
+                  }
+                }
+              }
+            }
+
             mainProductList.add(element);
           });
           productsCount.value = mainProductList.length;
