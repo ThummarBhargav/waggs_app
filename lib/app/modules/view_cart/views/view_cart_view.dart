@@ -21,10 +21,6 @@ class ViewCartView extends GetWidget<ViewCartController> {
         child: Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(
-            // title: Text(
-            //   "My Cart",
-            //   style: TextStyle(color: Colors.orange),
-            // ),
             leading: IconButton(
                 onPressed: () {
                   Get.back();

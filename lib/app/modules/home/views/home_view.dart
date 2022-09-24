@@ -354,10 +354,8 @@ class HomeView extends GetWidget<HomeController> {
                                           flex: 5,
                                           child: Container(
                                             height: 50,
-                                            // width: ,
                                             margin: EdgeInsets.only(left: 15),
                                             padding: EdgeInsets.only(bottom: 10
-                                                // left: 10,
                                                 ),
                                             decoration: BoxDecoration(
                                               color: Colors.grey[300],
@@ -370,7 +368,6 @@ class HomeView extends GetWidget<HomeController> {
                                             child: TextFormField(
                                               controller:
                                                   controller.searchController,
-                                               // focusNode: controller.myFocusNode,
                                               onFieldSubmitted: (value) {
                                                 Get.offAndToNamed(
                                                     Routes.SEARCH_PRODUCT_PAGE,
@@ -554,7 +551,6 @@ class HomeView extends GetWidget<HomeController> {
                         ),
                         Expanded(
                           child: SingleChildScrollView(
-                             // keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
                             child: Column(
                               children: [
                                 controller.bannerList.isEmpty
