@@ -64,7 +64,6 @@ class BookAppoimentView extends GetView<BookAppoimentController> {
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
-                                    // SizedBox(width: 200,),
                                     Stack(
                                       children: [
                                         IconButton(
@@ -218,8 +217,6 @@ class BookAppoimentView extends GetView<BookAppoimentController> {
                                   SingleChildScrollView(
                                     scrollDirection: Axis.vertical,
                                     child: Container(
-                                      // height: 480,
-                                      // width: 400,
                                       child: GridView.builder(
                                           shrinkWrap: true,
                                           physics:
@@ -235,7 +232,6 @@ class BookAppoimentView extends GetView<BookAppoimentController> {
                                               margin: EdgeInsets.only(
                                                   right: 10, left: 10),
                                               child: Container(
-                                                // color: Colors.green,
                                                 child: Column(
                                                   children: [
                                                     Stack(

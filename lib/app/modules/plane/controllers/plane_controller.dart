@@ -155,9 +155,7 @@ class PlaneController extends GetxController {
       print("UPDATE=========>" + response.toString());
       if (response.statusCode == 200 || response.statusCode == 201) {
         print(response.data);
-        // print(jsonDecode(response.data).runtimeType);
-        // dynamic result = jsonDecode(response.data);
-        // print('${result}');
+
         petModel = PetModel.fromJson(response.data);
         data = petModel.data;
         print('petid=====${petModel.data!.pet}');

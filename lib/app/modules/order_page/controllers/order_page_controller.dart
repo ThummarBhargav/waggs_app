@@ -18,9 +18,6 @@ class OrderPageController extends GetxController {
   @override
   void onInit() {
     orderData.clear();
-    // if (Get.arguments != null) {
-    //   orderData = Get.arguments[ArgumentConstant.orderData];
-    // }
     Allorder();
 
     super.onInit();

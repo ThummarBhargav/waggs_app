@@ -94,7 +94,6 @@ class MobileVerifyView extends GetWidget<MobileVerifyController> {
                               LengthLimitingTextInputFormatter(
                                 10,
                               ),
-                              //n is maximum number of characters you want in textfield
                             ],
                             controller: controller.mobileController.value,
                             validator: (input) => !isNullEmptyOrFalse(input)

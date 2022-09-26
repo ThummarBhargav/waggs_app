@@ -64,7 +64,6 @@ class ForgotSendOtpView extends GetWidget<ForgotPasswordController> {
                             LengthLimitingTextInputFormatter(
                               6,
                             ),
-                            //n is maximum number of characters you want in textfield
                           ],
                           controller: controller.otpController.value,
                           keyboardType: TextInputType.phone,
