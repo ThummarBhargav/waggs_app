@@ -15,7 +15,6 @@ import '../../../constant/SizeConstant.dart';
 import '../../../routes/app_pages.dart';
 
 class OtpVerifyController extends GetxController {
-  //TODO: Implement OtpVerifyController
   final GlobalKey<FormState> formKey2 = GlobalKey<FormState>();
   Rx<TextEditingController> otpController = TextEditingController().obs;
   RxBool enableResend = false.obs;

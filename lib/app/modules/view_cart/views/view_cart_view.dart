@@ -21,10 +21,6 @@ class ViewCartView extends GetWidget<ViewCartController> {
         child: Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(
-            // title: Text(
-            //   "My Cart",
-            //   style: TextStyle(color: Colors.orange),
-            // ),
             leading: IconButton(
                 onPressed: () {
                   Get.back();
@@ -734,7 +730,8 @@ class ViewCartView extends GetWidget<ViewCartController> {
                                           itemBuilder: (context, index) {
                                             var sum = 0;
                                             double shippingCharge = 0;
-                                            controller.cartProductList.forEach((element) {
+                                            controller.cartProductList
+                                                .forEach((element) {
                                               sum += element.product!
                                                       .discountedPrice! *
                                                   element.quantity!;
@@ -754,232 +751,240 @@ class ViewCartView extends GetWidget<ViewCartController> {
                                                   borderRadius:
                                                       BorderRadius.all(
                                                           Radius.circular(10))),
-                                              child: Obx(()=>Container(
-                                                child: Column(
-                                                  children: [
-                                                    Row(
-                                                      mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
+                                              child: Obx(() => Container(
+                                                    child: Column(
                                                       children: [
-                                                        Container(
-                                                          margin:
-                                                          EdgeInsets.only(
-                                                              left: 10,
-                                                              top: 25),
-                                                          child: Text(
-                                                            "Subtotal",
-                                                            style: TextStyle(
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                FontWeight
-                                                                    .w500,
-                                                                color: Colors
-                                                                    .grey
-                                                                    .shade500),
-                                                          ),
+                                                        Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            Container(
+                                                              margin: EdgeInsets
+                                                                  .only(
+                                                                      left: 10,
+                                                                      top: 25),
+                                                              child: Text(
+                                                                "Subtotal",
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        18,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
+                                                                    color: Colors
+                                                                        .grey
+                                                                        .shade500),
+                                                              ),
+                                                            ),
+                                                            Container(
+                                                              margin: EdgeInsets
+                                                                  .only(
+                                                                      right: 10,
+                                                                      top: 25),
+                                                              child: Text(
+                                                                "\u{20B9}${sum}.00",
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        16,
+                                                                    color: Colors
+                                                                        .orange,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w800),
+                                                              ),
+                                                            )
+                                                          ],
+                                                        ),
+                                                        controller
+                                                                .hasCoupanValid
+                                                                .value
+                                                            ? Row(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .spaceBetween,
+                                                                children: [
+                                                                  Container(
+                                                                    margin: EdgeInsets.only(
+                                                                        left:
+                                                                            10,
+                                                                        top: 20,
+                                                                        bottom:
+                                                                            10),
+                                                                    child: Text(
+                                                                      "Discount Applied",
+                                                                      style: TextStyle(
+                                                                          fontSize:
+                                                                              18,
+                                                                          fontWeight: FontWeight
+                                                                              .w500,
+                                                                          color: Colors
+                                                                              .grey
+                                                                              .shade500),
+                                                                    ),
+                                                                  ),
+                                                                  Container(
+                                                                    margin: EdgeInsets.only(
+                                                                        right:
+                                                                            10,
+                                                                        top: 20,
+                                                                        bottom:
+                                                                            15),
+                                                                    child: Text(
+                                                                      "-\u{20B9} ${controller.coupon.value.toStringAsFixed(2)}",
+                                                                      style: TextStyle(
+                                                                          fontSize:
+                                                                              16,
+                                                                          color: Colors
+                                                                              .grey
+                                                                              .shade500,
+                                                                          fontWeight:
+                                                                              FontWeight.w500),
+                                                                    ),
+                                                                  )
+                                                                ],
+                                                              )
+                                                            : Container(),
+                                                        Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            Container(
+                                                              margin: EdgeInsets
+                                                                  .only(
+                                                                      left: 10,
+                                                                      top: 20,
+                                                                      bottom:
+                                                                          15),
+                                                              child: Text(
+                                                                "Shipping",
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        18,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
+                                                                    color: Colors
+                                                                        .grey
+                                                                        .shade500),
+                                                              ),
+                                                            ),
+                                                            (controller
+                                                                        .cartProductList[
+                                                                            index]
+                                                                        .product!
+                                                                        .sellerId!
+                                                                        .shippingCharge ==
+                                                                    0.00)
+                                                                ? Container(
+                                                                    margin: EdgeInsets.only(
+                                                                        right:
+                                                                            10,
+                                                                        top: 20,
+                                                                        bottom:
+                                                                            15),
+                                                                    child: Text(
+                                                                      "\u{20B9} 0.00",
+                                                                      style: TextStyle(
+                                                                          fontSize:
+                                                                              16,
+                                                                          color: Colors
+                                                                              .grey
+                                                                              .shade500,
+                                                                          fontWeight:
+                                                                              FontWeight.w500),
+                                                                    ),
+                                                                  )
+                                                                : Container(
+                                                                    margin: EdgeInsets.only(
+                                                                        right:
+                                                                            10,
+                                                                        top: 20,
+                                                                        bottom:
+                                                                            15),
+                                                                    child: Text(
+                                                                      "${shippingCharge.floor().toStringAsFixed(2)}",
+                                                                      style: TextStyle(
+                                                                          fontSize:
+                                                                              16,
+                                                                          color: Colors
+                                                                              .grey
+                                                                              .shade500,
+                                                                          fontWeight:
+                                                                              FontWeight.w500),
+                                                                    ),
+                                                                  )
+                                                          ],
                                                         ),
                                                         Container(
-                                                          margin:
-                                                          EdgeInsets.only(
-                                                              right: 10,
-                                                              top: 25),
-                                                          child: Text(
-                                                            "\u{20B9}${sum}.00",
-                                                            style: TextStyle(
-                                                                fontSize: 16,
-                                                                color: Colors
-                                                                    .orange,
-                                                                fontWeight:
-                                                                FontWeight
-                                                                    .w800),
-                                                          ),
-                                                        )
-                                                      ],
-                                                    ),
-                                                    controller
-                                                        .hasCoupanValid.value?
-                                                    Row(
-                                                      mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                      children: [
-                                                        Container(
-                                                          margin:
-                                                          EdgeInsets.only(
-                                                              left: 10,
-                                                              top: 20,
-                                                              bottom: 10),
-                                                          child: Text(
-                                                            "Discount Applied",
-                                                            style: TextStyle(
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                FontWeight
-                                                                    .w500,
-                                                                color: Colors
-                                                                    .grey
-                                                                    .shade500),
+                                                          width:
+                                                              double.infinity,
+                                                          child: Divider(
+                                                            height: 5,
+                                                            indent: 0,
+                                                            endIndent: 0,
+                                                            thickness: 1,
+                                                            color: Colors
+                                                                .grey.shade400,
                                                           ),
                                                         ),
-                                                        Container(
-                                                          margin:
-                                                          EdgeInsets.only(
-                                                              right: 10,
-                                                              top: 20,
-                                                              bottom: 15),
-                                                          child: Text(
-                                                            "-\u{20B9} ${controller.coupon.value.toStringAsFixed(2)}",
-                                                            style: TextStyle(
-                                                                fontSize: 16,
-                                                                color: Colors
-                                                                    .grey
-                                                                    .shade500,
-                                                                fontWeight:
-                                                                FontWeight
-                                                                    .w500),
-                                                          ),
-                                                        )
-                                                      ],
-                                                    ):Container(),
-                                                    Row(
-                                                      mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                      children: [
-                                                        Container(
-                                                          margin:
-                                                          EdgeInsets.only(
-                                                              left: 10,
-                                                              top: 20,
-                                                              bottom: 15),
-                                                          child: Text(
-                                                            "Shipping",
-                                                            style: TextStyle(
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                FontWeight
-                                                                    .w500,
-                                                                color: Colors
-                                                                    .grey
-                                                                    .shade500),
-                                                          ),
+                                                        Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            Container(
+                                                              margin: EdgeInsets
+                                                                  .only(
+                                                                      left: 10,
+                                                                      top: 10),
+                                                              child: Text(
+                                                                "Total",
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        18,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
+                                                                    color: Colors
+                                                                        .grey
+                                                                        .shade500),
+                                                              ),
+                                                            ),
+                                                            Container(
+                                                                margin: EdgeInsets
+                                                                    .only(
+                                                                        right:
+                                                                            10,
+                                                                        top:
+                                                                            10),
+                                                                child: controller
+                                                                        .hasCoupanValid
+                                                                        .value
+                                                                    ? Text(
+                                                                        "\u{20B9}${((sum + shippingCharge.floor()) - controller.coupon.value).toStringAsFixed(2)}",
+                                                                        style: TextStyle(
+                                                                            fontSize:
+                                                                                16,
+                                                                            color:
+                                                                                Colors.orange,
+                                                                            fontWeight: FontWeight.w800),
+                                                                      )
+                                                                    : Text(
+                                                                        "\u{20B9}${(sum + shippingCharge.floor()).toStringAsFixed(2)}",
+                                                                        style: TextStyle(
+                                                                            fontSize:
+                                                                                16,
+                                                                            color:
+                                                                                Colors.orange,
+                                                                            fontWeight: FontWeight.w800),
+                                                                      ))
+                                                          ],
                                                         ),
-                                                        (controller
-                                                            .cartProductList[
-                                                        index]
-                                                            .product!
-                                                            .sellerId!
-                                                            .shippingCharge ==
-                                                            0.00)
-                                                            ? Container(
-                                                          margin: EdgeInsets
-                                                              .only(
-                                                              right:
-                                                              10,
-                                                              top: 20,
-                                                              bottom:
-                                                              15),
-                                                          child: Text(
-                                                            "\u{20B9} 0.00",
-                                                            style: TextStyle(
-                                                                fontSize:
-                                                                16,
-                                                                color: Colors
-                                                                    .grey
-                                                                    .shade500,
-                                                                fontWeight:
-                                                                FontWeight
-                                                                    .w500),
-                                                          ),
-                                                        )
-                                                            : Container(
-                                                          margin: EdgeInsets
-                                                              .only(
-                                                              right:
-                                                              10,
-                                                              top: 20,
-                                                              bottom:
-                                                              15),
-                                                          child: Text(
-                                                            "${shippingCharge.floor().toStringAsFixed(2)}",
-                                                            style: TextStyle(
-                                                                fontSize:
-                                                                16,
-                                                                color: Colors
-                                                                    .grey
-                                                                    .shade500,
-                                                                fontWeight:
-                                                                FontWeight
-                                                                    .w500),
-                                                          ),
-                                                        )
                                                       ],
                                                     ),
-                                                    Container(
-                                                      width: double.infinity,
-                                                      child: Divider(
-                                                        height: 5,
-                                                        indent: 0,
-                                                        endIndent: 0,
-                                                        thickness: 1,
-                                                        color: Colors
-                                                            .grey.shade400,
-                                                      ),
-                                                    ),
-                                                    Row(
-                                                      mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                      children: [
-                                                        Container(
-                                                          margin:
-                                                          EdgeInsets.only(
-                                                              left: 10,
-                                                              top: 10),
-                                                          child: Text(
-                                                            "Total",
-                                                            style: TextStyle(
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                FontWeight
-                                                                    .w500,
-                                                                color: Colors
-                                                                    .grey
-                                                                    .shade500),
-                                                          ),
-                                                        ),
-                                                        Container(
-                                                          margin:
-                                                          EdgeInsets.only(
-                                                              right: 10,
-                                                              top: 10),
-                                                          child:controller.hasCoupanValid.value?Text(
-                                                            "\u{20B9}${((sum + shippingCharge.floor()) - controller.coupon.value).toStringAsFixed(2)}",
-                                                            style: TextStyle(
-                                                                fontSize: 16,
-                                                                color: Colors
-                                                                    .orange,
-                                                                fontWeight:
-                                                                FontWeight
-                                                                    .w800),
-                                                          ):Text(
-                                                            "\u{20B9}${(sum + shippingCharge.floor()).toStringAsFixed(2)}",
-                                                            style: TextStyle(
-                                                                fontSize: 16,
-                                                                color: Colors
-                                                                    .orange,
-                                                                fontWeight:
-                                                                FontWeight
-                                                                    .w800),
-                                                          )
-
-                                                        )
-                                                      ],
-                                                    ),
-                                                  ],
-                                                ),
-                                              )),
+                                                  )),
                                             );
                                           },
                                         ),

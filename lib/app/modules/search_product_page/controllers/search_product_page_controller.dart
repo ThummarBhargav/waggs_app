@@ -18,8 +18,8 @@ import '../../../constant/SizeConstant.dart';
 import '../../../routes/app_pages.dart';
 
 class SearchProductPageController extends GetxController {
-  //TODO: Implement SearchProductPageController
   List respons = [];
+  var scaffoldKey = GlobalKey<ScaffoldState>();
   RxBool isLoading = false.obs;
   late SubCategoryData subCategoryData;
   RxBool isEnablePullUp = true.obs;
@@ -72,7 +72,6 @@ class SearchProductPageController extends GetxController {
   RxString price = "New Arrivals".obs;
   RxString soringType = "newArrivals".obs;
 
-  // Sellers data = Get.arguments;
   RxList<String> location = RxList<String>([
     "New Arrivals",
     "Price: Low-High",
@@ -434,8 +433,6 @@ class SearchProductPageController extends GetxController {
       http.StreamedResponse? response;
       await request.send().then((value) {
         response = value;
-        // isLoading.value = true;
-        // CartProductApi();
         CartCount();
       });
 
@@ -476,8 +473,7 @@ class SearchProductPageController extends GetxController {
       http.StreamedResponse? response;
       await request.send().then((value) {
         response = value;
-        // isLoading.value = true;
-        // CartProductApi();
+
         CartCount();
       });
 

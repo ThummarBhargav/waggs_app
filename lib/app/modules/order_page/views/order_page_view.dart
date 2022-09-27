@@ -133,19 +133,6 @@ class OrderPageView extends GetView<OrderPageController> {
                                         ),
                                       ),
                                       Spacer(),
-                                      // Padding(
-                                      //   padding: const EdgeInsets.all(8.0),
-                                      //   child: Text(
-                                      //     "Placed on:" +
-                                      //         DateFormat("MM/dd/yyyy").format(
-                                      //             DateTime.parse(value
-                                      //                 .toString()
-                                      //                 .split("_")[0])),
-                                      //     style: TextStyle(
-                                      //         fontWeight: FontWeight.bold,
-                                      //         fontSize: 15),
-                                      //   ),
-                                      // ),
                                     ],
                                   ),
                                   decoration: BoxDecoration(

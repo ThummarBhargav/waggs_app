@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:waggs_app/app/constant/ConstantUrl.dart';
 import 'package:waggs_app/app/constant/productCard_const.dart';
 import 'package:waggs_app/app/constant/shopcard_const.dart';
+import 'package:waggs_app/app/constant/sizeConstant.dart';
 import 'package:waggs_app/app/modules/Catagory_Page/views/catagory_page_view.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
 import 'package:waggs_app/main.dart';
@@ -317,8 +318,7 @@ class HomeView extends GetWidget<HomeController> {
                               ],
                             )),
                   body: GestureDetector(
-                    onTap: () =>
-                        FocusScope.of(context).requestFocus(new FocusNode()),
+                    onTap: ()=>FocusScope.of(context).requestFocus(new FocusNode()),
                     child: Column(
                       children: [
                         Container(
@@ -364,14 +364,13 @@ class HomeView extends GetWidget<HomeController> {
                                               borderRadius: BorderRadius.only(
                                                 bottomLeft: Radius.circular(10),
                                                 topRight: Radius.circular(10),
-                                                bottomRight:
-                                                    Radius.circular(10),
+                                                bottomRight: Radius.circular(10),
                                               ),
                                             ),
                                             child: TextFormField(
                                               controller:
                                                   controller.searchController,
-                                              // focusNode: controller.myFocusNode,
+                                               // focusNode: controller.myFocusNode,
                                               onFieldSubmitted: (value) {
                                                 Get.offAndToNamed(
                                                     Routes.SEARCH_PRODUCT_PAGE,
@@ -389,13 +388,11 @@ class HomeView extends GetWidget<HomeController> {
                                                 enabledBorder: InputBorder.none,
                                                 focusedBorder: InputBorder.none,
                                                 prefixIcon: Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          top: 10.0),
+                                                  padding: const EdgeInsets.only(
+                                                      top: 10.0),
                                                   child: Icon(Icons.search),
                                                 ),
-                                                prefixIconColor:
-                                                    Colors.grey[200],
+                                                prefixIconColor: Colors.grey[200],
                                                 focusColor: Colors.grey,
                                               ),
                                             ),
@@ -415,14 +412,13 @@ class HomeView extends GetWidget<HomeController> {
                                                               ArgumentConstant
                                                                   .isUserLogin) ==
                                                           null)) {
-                                                        Get.toNamed(Routes
-                                                            .LOGIN_SCREEN);
+                                                        Get.toNamed(
+                                                            Routes.LOGIN_SCREEN);
                                                       } else {
                                                         controller
                                                             .CartProductApi();
                                                         controller.CartCount();
-                                                        controller
-                                                            .isFilterDrawer
+                                                        controller.isFilterDrawer
                                                             .value = false;
                                                         controller.scaffoldKey
                                                             .currentState!
@@ -435,8 +431,7 @@ class HomeView extends GetWidget<HomeController> {
                                                       color: Colors.grey[500],
                                                     )),
                                                 (controller.count1.data == 0 ||
-                                                        controller
-                                                                .count1.data ==
+                                                        controller.count1.data ==
                                                             null)
                                                     ? Container()
                                                     : Positioned(
@@ -449,12 +444,8 @@ class HomeView extends GetWidget<HomeController> {
                                                               Alignment.center,
                                                           decoration:
                                                               BoxDecoration(
-                                                            color:
-                                                                Color.fromRGBO(
-                                                                    32,
-                                                                    193,
-                                                                    244,
-                                                                    1),
+                                                            color: Color.fromRGBO(
+                                                                32, 193, 244, 1),
                                                             shape:
                                                                 BoxShape.circle,
                                                           ),
@@ -475,8 +466,8 @@ class HomeView extends GetWidget<HomeController> {
                                           flex: 1,
                                           child: IconButton(
                                               onPressed: () {
-                                                controller.isFilterDrawer
-                                                    .value = true;
+                                                controller.isFilterDrawer.value =
+                                                    true;
                                                 controller
                                                     .scaffoldKey.currentState!
                                                     .openEndDrawer();
@@ -500,8 +491,7 @@ class HomeView extends GetWidget<HomeController> {
                                   color: Color.fromRGBO(32, 193, 244, 1),
                                   child: Row(
                                     children: List.generate(
-                                        controller.CatagoryList.length,
-                                        (index) {
+                                        controller.CatagoryList.length, (index) {
                                       return Row(
                                         children: [
                                           TextButton(
@@ -515,14 +505,12 @@ class HomeView extends GetWidget<HomeController> {
                                                     .forEach((element) {
                                                   if (element.category!.sId ==
                                                           controller
-                                                              .CatagoryList[
-                                                                  index]
+                                                              .CatagoryList[index]
                                                               .sId &&
                                                       element.subCategory!
                                                               .categoryId ==
                                                           controller
-                                                              .CatagoryList[
-                                                                  index]
+                                                              .CatagoryList[index]
                                                               .sId) {
                                                     controller.productList
                                                         .add(element);
@@ -538,12 +526,10 @@ class HomeView extends GetWidget<HomeController> {
                                                     controller.subData
                                                         .add(element);
                                                     print("Data" +
-                                                        element.name
-                                                            .toString());
+                                                        element.name.toString());
                                                   } else {}
                                                 });
-                                                controller.productList
-                                                    .refresh();
+                                                controller.productList.refresh();
                                                 Get.to(CatagoryPageView(
                                                   data: controller
                                                       .CatagoryList[index],
@@ -568,18 +554,17 @@ class HomeView extends GetWidget<HomeController> {
                         ),
                         Expanded(
                           child: SingleChildScrollView(
-                            // keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+                             // keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
                             child: Column(
                               children: [
                                 controller.bannerList.isEmpty
                                     ? CircularProgressIndicator()
                                     : Container(
-                                        padding: EdgeInsets.only(
-                                            top: 25, bottom: 15),
+                                        padding:
+                                            EdgeInsets.only(top: 25, bottom: 15),
                                         // color: Colors.greenAccent,
                                         child: CarouselSlider.builder(
-                                          itemCount:
-                                              controller.bannerList.length,
+                                          itemCount: controller.bannerList.length,
                                           options: CarouselOptions(
                                             height: 200,
                                             enlargeCenterPage: true,
@@ -637,12 +622,12 @@ class HomeView extends GetWidget<HomeController> {
                                       onTap: () {
                                         Get.toNamed(Routes.PRODUCT_LIST_SCREEN,
                                             arguments: {
-                                              ArgumentConstant
-                                                  .isFromSellingStore: true,
-                                              ArgumentConstant
-                                                  .isFromSubCategory: false,
-                                              ArgumentConstant
-                                                  .isFromTopProducts: false,
+                                              ArgumentConstant.isFromSellingStore:
+                                                  true,
+                                              ArgumentConstant.isFromSubCategory:
+                                                  false,
+                                              ArgumentConstant.isFromTopProducts:
+                                                  false,
                                               ArgumentConstant.sellerList:
                                                   controller.SellersList,
                                             });
@@ -713,12 +698,12 @@ class HomeView extends GetWidget<HomeController> {
                                       onTap: () {
                                         Get.toNamed(Routes.PRODUCT_LIST_SCREEN,
                                             arguments: {
-                                              ArgumentConstant
-                                                  .isFromSellingStore: false,
-                                              ArgumentConstant
-                                                  .isFromSubCategory: false,
-                                              ArgumentConstant
-                                                  .isFromTopProducts: true,
+                                              ArgumentConstant.isFromSellingStore:
+                                                  false,
+                                              ArgumentConstant.isFromSubCategory:
+                                                  false,
+                                              ArgumentConstant.isFromTopProducts:
+                                                  true,
                                               ArgumentConstant.TopProductlist:
                                                   controller.TopProductlist,
                                             });
@@ -758,8 +743,7 @@ class HomeView extends GetWidget<HomeController> {
                                                 Text(
                                                   "No data found",
                                                   style: GoogleFonts.raleway(
-                                                      fontWeight:
-                                                          FontWeight.w700,
+                                                      fontWeight: FontWeight.w700,
                                                       fontSize: 20,
                                                       color: Color.fromRGBO(
                                                           33, 43, 54, 1)),
@@ -780,8 +764,7 @@ class HomeView extends GetWidget<HomeController> {
                                                   width: 400,
                                                   child: GridView.builder(
                                                       itemCount: controller
-                                                          .TopProductlist
-                                                          .length,
+                                                          .TopProductlist.length,
                                                       scrollDirection:
                                                           Axis.horizontal,
                                                       shrinkWrap: true,
@@ -821,14 +804,15 @@ class HomeView extends GetWidget<HomeController> {
                                                                     index]
                                                                 .subCategory!
                                                                 .name,
-                                                            price:
-                                                                controller.TopProductlist[index].price
-                                                                    .toString(),
-                                                            discountedPrice: controller
-                                                                .TopProductlist[index]
-                                                                .discountedPrice
+                                                            price: controller.TopProductlist[index].price
                                                                 .toString(),
-                                                            rating: controller.TopProductlist[index].rating.toString(),
+                                                            discountedPrice:
+                                                                controller.TopProductlist[index].discountedPrice
+                                                                    .toString(),
+                                                            rating: controller
+                                                                .TopProductlist[index]
+                                                                .rating
+                                                                .toString(),
                                                             ButtonText: "ADD TO CART",
                                                             ButtonTap: () {
                                                               controller.addToCart(
