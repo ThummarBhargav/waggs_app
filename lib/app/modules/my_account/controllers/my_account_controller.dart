@@ -25,7 +25,7 @@ class MyAccountController extends GetxController {
   Rx<TextEditingController> buildingNameController =
       TextEditingController().obs;
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
-  List respons =[];
+  List respons = [];
   Rx<Position>? _currentPosition;
   String _currentAddress = '';
   RxString newLocation = "".obs;
@@ -40,8 +40,8 @@ class MyAccountController extends GetxController {
   Future<Position?> getCurrentLocation() async {
     Position? currentPositionData;
     await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high,
-        forceAndroidLocationManager: true)
+            desiredAccuracy: LocationAccuracy.high,
+            forceAndroidLocationManager: true)
         .then((Position position) {
       _currentPosition = position.obs;
       currentPositionData = position;
@@ -57,20 +57,21 @@ class MyAccountController extends GetxController {
     try {
       List<Placemark> placemarks = [];
       await placemarkFromCoordinates(_currentPosition!.value.latitude,
-          _currentPosition!.value.longitude)
+              _currentPosition!.value.longitude)
           .then((value) {
         placemarks.clear();
         placemarks.addAll(value);
       });
       Placemark place = placemarks[0];
       _currentAddress =
-      "${place.street} ${place.subLocality} ${place.locality}, ${place.postalCode}, ${place.country}";
+          "${place.street} ${place.subLocality} ${place.locality}, ${place.postalCode}, ${place.country}";
       print("CurrentAddress====================" +
           "${place.street} ${place.subLocality} ${place.locality}, ${place.postalCode}, ${place.country}");
     } catch (e) {
       print(e);
     }
   }
+
   @override
   void onReady() {
     super.onReady();
@@ -81,29 +82,28 @@ class MyAccountController extends GetxController {
     super.onClose();
   }
 
-  Future<void>sendOtp() async {
-    var url = Uri.parse(baseUrl3+ApiConstant.sendOtpUsers);
+  Future<void> sendOtp() async {
+    var url = Uri.parse(baseUrl3 + ApiConstant.sendOtpUsers);
     await http.post(url, body: {
       'countryCode': '${box.read(ArgumentConstant.countryCode)}',
       'email': 'forgot',
       'mobile': '${box.read(ArgumentConstant.phone)}',
     }).then((value) {
-      if(value.statusCode == 200){
+      if (value.statusCode == 200) {
         Get.toNamed(Routes.MY_ACCOUNT_CHANGE_PASSWORD);
-      }
-      else
-      {
+      } else {
         ErrorResponse res = ErrorResponse.fromJson(jsonDecode(value.body));
-        Get.snackbar("Error", res.message.toString(),snackPosition: SnackPosition.BOTTOM,colorText: Colors.white,backgroundColor: Colors.red);
+        Get.snackbar("Error", res.message.toString(),
+            snackPosition: SnackPosition.BOTTOM,
+            colorText: Colors.white,
+            backgroundColor: Colors.red);
       }
       print('Response status: ${value.statusCode}');
       print('Response body: ${value.body}');
-    }).catchError((error){
+    }).catchError((error) {
       print(error);
     });
   }
-
-
 
   dialogBox(BuildContext context) {
     showDialog(
@@ -258,7 +258,7 @@ class MyAccountController extends GetxController {
       buildingNameController.value.clear();
       if (value.statusCode == 200) {
         UpdateAddressModel res =
-        UpdateAddressModel.fromJson(jsonDecode(value.body));
+            UpdateAddressModel.fromJson(jsonDecode(value.body));
         box.write(ArgumentConstant.address, res.data!.address ?? "");
         newLocation.value = res.data!.address ?? "";
         isLocationChanged.value = true;
@@ -331,13 +331,11 @@ class MyAccountController extends GetxController {
                       controller: buildingNameController.value,
                       decoration: InputDecoration(
                         hintText:
-                        "Shop / Building Name / Society Name (Optional)",
+                            "Shop / Building Name / Society Name (Optional)",
                         labelText: "Shop / Building Name / Society Name",
                       ),
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
+                    Spacer(),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [

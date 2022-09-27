@@ -42,8 +42,8 @@ class _SubCategoryWidgetState extends State<SubCategoryWidget> {
               key: scaffoldKey,
               drawerEdgeDragWidth: 0,
               onEndDrawerChanged: (val) {
-                controller.values4.value=RangeValues(100, 30000);
-                controller.values1.value=RangeValues(0, 100);
+                controller.values4.value = RangeValues(100, 30000);
+                controller.values1.value = RangeValues(0, 100);
                 controller.radioGValues.value = "";
                 controller.isOp2.value = false;
                 controller.isOp.value = false;
@@ -1026,30 +1026,45 @@ class _SubCategoryWidgetState extends State<SubCategoryWidget> {
                                                               .getSubcategoryProduct(
                                                                   sort:
                                                                       "newArrivals");
+                                                          controller.soringType
+                                                                  .value =
+                                                              "newArrivals";
                                                         }
                                                         if (index == 1) {
                                                           controller
                                                               .getSubcategoryProduct(
                                                                   sort:
                                                                       "priceAsec");
+                                                          controller.soringType
+                                                                  .value =
+                                                              "priceAsec";
                                                         }
                                                         if (index == 2) {
                                                           controller
                                                               .getSubcategoryProduct(
                                                                   sort:
                                                                       "priceDesc");
+                                                          controller.soringType
+                                                                  .value =
+                                                              "priceDesc";
                                                         }
                                                         if (index == 3) {
                                                           controller
                                                               .getSubcategoryProduct(
                                                                   sort:
                                                                       "discountAsec");
+                                                          controller.soringType
+                                                                  .value =
+                                                              "discountAsec";
                                                         }
                                                         if (index == 4) {
                                                           controller
                                                               .getSubcategoryProduct(
                                                                   sort:
                                                                       "discountDesc");
+                                                          controller.soringType
+                                                                  .value =
+                                                              "discountDesc";
                                                         }
                                                         controller.price.value =
                                                             controller.location[
