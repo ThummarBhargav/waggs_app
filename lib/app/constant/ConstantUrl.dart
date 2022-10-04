@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 
-const baseUrl = "https://api-stg.waggs.in/api/v1/";
-const baseUrl1 = "api-stg.waggs.in";
-const baseUrl3 = "https://api-stg.waggs.in/api/v1/users/";
+const baseUrl = "https://api.waggs.in/api/v1/";
+const baseUrl1 = "api.waggs.in";
+const baseUrl3 = "https://api.waggs.in/api/v1/users/";
 
 class ApiConstant {
   static const signUpUsers = "signup";
