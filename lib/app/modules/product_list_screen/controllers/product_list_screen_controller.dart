@@ -256,7 +256,7 @@ class ProductListScreenController extends GetxController {
 
     // var url = Uri.https(baseUrl,ApiConstant.getAllProductUsers,queryParameters);
 
-    var uri = Uri.https("api.waggs.in", '/api/v1/products', queryParameters);
+    var uri = Uri.https(baseUrl1, '/api/v1/products', queryParameters);
     print(uri);
     var response;
     await http.get(uri).then((value) {
