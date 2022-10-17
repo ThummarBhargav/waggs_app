@@ -288,32 +288,32 @@ class ViewCartView extends GetWidget<ViewCartController> {
                                                               ],
                                                             ),
                                                           ),
-                                                          Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                        .only(
-                                                                    left: 20.0,
-                                                                    bottom:
-                                                                        10.0),
-                                                            child: Column(
-                                                              children: [
-                                                                Text(
-                                                                  // overflow:
-                                                                  //     TextOverflow
-                                                                  //         .ellipsis,
-                                                                  "${controller.cartProductList[index].product!.description}",
-                                                                  style:
-                                                                      TextStyle(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w400,
-                                                                    color: Colors
-                                                                        .black,
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ),
+                                                          // Padding(
+                                                          //   padding:
+                                                          //       const EdgeInsets
+                                                          //               .only(
+                                                          //           left: 20.0,
+                                                          //           bottom:
+                                                          //               10.0),
+                                                          //   child: Column(
+                                                          //     children: [
+                                                          //       Text(
+                                                          //         // overflow:
+                                                          //         //     TextOverflow
+                                                          //         //         .ellipsis,
+                                                          //         "${controller.cartProductList[index].product!.description}",
+                                                          //         style:
+                                                          //             TextStyle(
+                                                          //           fontWeight:
+                                                          //               FontWeight
+                                                          //                   .w400,
+                                                          //           color: Colors
+                                                          //               .black,
+                                                          //         ),
+                                                          //       ),
+                                                          //     ],
+                                                          //   ),
+                                                          // ),
                                                           Padding(
                                                             padding:
                                                                 const EdgeInsets
@@ -406,7 +406,7 @@ class ViewCartView extends GetWidget<ViewCartController> {
                                                                       onTap: () {
                                                                         (controller.cartProductList[index].quantity ==
                                                                                 1)
-                                                                            ? controller.CartDeleteApi(data: controller.cartProductList[index])
+                                                                            ? null
                                                                             : controller.UpdateCartRemove(
                                                                                 data: controller.cartProductList[index],
                                                                               );

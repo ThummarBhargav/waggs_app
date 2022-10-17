@@ -237,10 +237,7 @@ class CartDrawerView extends GetWidget<CartDrawerController> {
                                                                             index]
                                                                         .quantity ==
                                                                     1)
-                                                                ? controller.CartDeleteApi(
-                                                                    data: controller
-                                                                            .cartProductList[
-                                                                        index])
+                                                                ? null
                                                                 : controller
                                                                     .UpdateCartRemove(
                                                                     data: controller
