@@ -167,6 +167,9 @@ class ViewCartView extends GetWidget<ViewCartController> {
                                               child: Column(
                                                 children: [
                                                   Row(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
                                                     children: [
                                                       Column(
                                                         children: [
@@ -295,9 +298,9 @@ class ViewCartView extends GetWidget<ViewCartController> {
                                                             child: Column(
                                                               children: [
                                                                 Text(
-                                                                  overflow:
-                                                                      TextOverflow
-                                                                          .ellipsis,
+                                                                  // overflow:
+                                                                  //     TextOverflow
+                                                                  //         .ellipsis,
                                                                   "${controller.cartProductList[index].product!.description}",
                                                                   style:
                                                                       TextStyle(
@@ -344,186 +347,195 @@ class ViewCartView extends GetWidget<ViewCartController> {
                                                     color: Colors.grey.shade500,
                                                     endIndent: 3,
                                                   ),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Align(
-                                                        alignment:
-                                                            Alignment.topLeft,
-                                                        child: Container(
-                                                          height: 34,
-                                                          margin:
-                                                              EdgeInsets.only(
-                                                                  left: 8),
-                                                          width: MediaQuery.of(
-                                                                      context)
-                                                                  .size
-                                                                  .width *
-                                                              0.3,
-                                                          padding:
-                                                              EdgeInsets.all(0),
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            color: Colors.white,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .only(
-                                                              topLeft: Radius
-                                                                  .circular(20),
-                                                              topRight: Radius
-                                                                  .circular(20),
-                                                              bottomRight:
-                                                                  Radius
-                                                                      .circular(
-                                                                          20),
-                                                              bottomLeft: Radius
-                                                                  .circular(20),
+                                                  Padding(
+                                                    padding: EdgeInsets.only(
+                                                        right: 10),
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Align(
+                                                          alignment:
+                                                              Alignment.topLeft,
+                                                          child: Container(
+                                                            height: 34,
+                                                            margin:
+                                                                EdgeInsets.only(
+                                                                    left: 8),
+                                                            width: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width *
+                                                                0.3,
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    0),
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              color:
+                                                                  Colors.white,
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .only(
+                                                                topLeft: Radius
+                                                                    .circular(
+                                                                        20),
+                                                                topRight: Radius
+                                                                    .circular(
+                                                                        20),
+                                                                bottomRight:
+                                                                    Radius
+                                                                        .circular(
+                                                                            20),
+                                                                bottomLeft: Radius
+                                                                    .circular(
+                                                                        20),
+                                                              ),
+                                                              border:
+                                                                  Border.all(
+                                                                color: Colors
+                                                                    .black54,
+                                                                width: 1,
+                                                              ),
                                                             ),
-                                                            border: Border.all(
-                                                              color: Colors
-                                                                  .black54,
-                                                              width: 1,
-                                                            ),
-                                                          ),
-                                                          child: Row(
-                                                            children: [
-                                                              Expanded(
-                                                                child: InkWell(
-                                                                    onTap: () {
-                                                                      (controller.cartProductList[index].quantity ==
-                                                                              1)
-                                                                          ? controller.CartDeleteApi(
-                                                                              data: controller.cartProductList[index])
-                                                                          : controller.UpdateCartRemove(
-                                                                              data: controller.cartProductList[index],
-                                                                            );
-                                                                    },
+                                                            child: Row(
+                                                              children: [
+                                                                Expanded(
+                                                                  child: InkWell(
+                                                                      onTap: () {
+                                                                        (controller.cartProductList[index].quantity ==
+                                                                                1)
+                                                                            ? controller.CartDeleteApi(data: controller.cartProductList[index])
+                                                                            : controller.UpdateCartRemove(
+                                                                                data: controller.cartProductList[index],
+                                                                              );
+                                                                      },
+                                                                      child: Padding(
+                                                                        padding: const EdgeInsets.only(
+                                                                            left:
+                                                                                8.0,
+                                                                            right:
+                                                                                5),
+                                                                        child:
+                                                                            Icon(
+                                                                          Icons
+                                                                              .remove,
+                                                                          color:
+                                                                              Colors.black,
+                                                                          size:
+                                                                              22,
+                                                                        ),
+                                                                      )),
+                                                                ),
+                                                                Expanded(
                                                                     child:
-                                                                        Padding(
-                                                                      padding: const EdgeInsets
-                                                                              .only(
-                                                                          left:
-                                                                              8.0,
-                                                                          right:
-                                                                              5),
+                                                                        Container(
+                                                                  height: 75,
+                                                                  width: 75,
+                                                                  padding: EdgeInsets
+                                                                      .symmetric(
+                                                                          horizontal:
+                                                                              3,
+                                                                          vertical:
+                                                                              2),
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    border:
+                                                                        Border(
+                                                                      left:
+                                                                          BorderSide(
+                                                                        color: Colors
+                                                                            .black54,
+                                                                        width:
+                                                                            1.0,
+                                                                      ),
+                                                                      right:
+                                                                          BorderSide(
+                                                                        color: Colors
+                                                                            .black54,
+                                                                        width:
+                                                                            1.0,
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                  child: Center(
                                                                       child:
-                                                                          Icon(
+                                                                          Text(
+                                                                    "${controller.cartProductList[index].quantity}",
+                                                                    style: TextStyle(
+                                                                        color: Colors
+                                                                            .black,
+                                                                        fontSize:
+                                                                            14,
+                                                                        fontWeight:
+                                                                            FontWeight.w500),
+                                                                  )),
+                                                                )),
+                                                                Expanded(
+                                                                  child: InkWell(
+                                                                      onTap: () {
+                                                                        controller
+                                                                            .UpdateCartAdd(
+                                                                          data:
+                                                                              controller.cartProductList[index],
+                                                                        );
+                                                                      },
+                                                                      child: Icon(
                                                                         Icons
-                                                                            .remove,
+                                                                            .add,
                                                                         color: Colors
                                                                             .black,
                                                                         size:
                                                                             22,
-                                                                      ),
-                                                                    )),
-                                                              ),
-                                                              Expanded(
-                                                                  child:
-                                                                      Container(
-                                                                height: 75,
-                                                                width: 75,
-                                                                padding: EdgeInsets
-                                                                    .symmetric(
-                                                                        horizontal:
-                                                                            3,
-                                                                        vertical:
-                                                                            2),
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  border:
-                                                                      Border(
-                                                                    left:
-                                                                        BorderSide(
-                                                                      color: Colors
-                                                                          .black54,
-                                                                      width:
-                                                                          1.0,
-                                                                    ),
-                                                                    right:
-                                                                        BorderSide(
-                                                                      color: Colors
-                                                                          .black54,
-                                                                      width:
-                                                                          1.0,
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                child: Center(
-                                                                    child: Text(
-                                                                  "${controller.cartProductList[index].quantity}",
-                                                                  style: TextStyle(
-                                                                      color: Colors
-                                                                          .black,
-                                                                      fontSize:
-                                                                          14,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w500),
-                                                                )),
-                                                              )),
-                                                              Expanded(
-                                                                child: InkWell(
-                                                                    onTap: () {
-                                                                      controller
-                                                                          .UpdateCartAdd(
-                                                                        data: controller
-                                                                            .cartProductList[index],
-                                                                      );
-                                                                    },
-                                                                    child: Icon(
-                                                                      Icons.add,
-                                                                      color: Colors
-                                                                          .black,
-                                                                      size: 22,
-                                                                    )),
-                                                              )
-                                                            ],
+                                                                      )),
+                                                                )
+                                                              ],
+                                                            ),
                                                           ),
                                                         ),
-                                                      ),
-                                                      Column(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .end,
-                                                        children: [
-                                                          Text(
-                                                            "\u{20B9}${controller.cartProductList[index].product!.discountedPrice! * controller.cartProductList[index].quantity!}.00",
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .orange,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w800),
-                                                          ),
-                                                          SizedBox(
-                                                            height: 10,
-                                                          ),
-                                                          (controller
-                                                                      .cartProductList[
-                                                                          index]
-                                                                      .product!
-                                                                      .sellerId!
-                                                                      .shippingCharge
-                                                                      .floor() ==
-                                                                  0.00)
-                                                              ? Container()
-                                                              : Text(
-                                                                  "+ \u{20B9}${controller.cartProductList[index].product!.sellerId!.shippingCharge.toStringAsFixed(2)}" +
-                                                                      " Shipping",
-                                                                  style:
-                                                                      TextStyle(
-                                                                    color: Colors
-                                                                        .black,
+                                                        Column(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .end,
+                                                          children: [
+                                                            Text(
+                                                              "\u{20B9}${controller.cartProductList[index].product!.discountedPrice! * controller.cartProductList[index].quantity!}.00",
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .orange,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w800),
+                                                            ),
+                                                            SizedBox(
+                                                              height: 10,
+                                                            ),
+                                                            (controller
+                                                                        .cartProductList[
+                                                                            index]
+                                                                        .product!
+                                                                        .sellerId!
+                                                                        .shippingCharge
+                                                                        .floor() ==
+                                                                    0.00)
+                                                                ? Container()
+                                                                : Text(
+                                                                    "+ \u{20B9}${controller.cartProductList[index].product!.sellerId!.shippingCharge.toStringAsFixed(2)}" +
+                                                                        " Shipping",
+                                                                    style:
+                                                                        TextStyle(
+                                                                      color: Colors
+                                                                          .black,
+                                                                    ),
                                                                   ),
-                                                                ),
-                                                        ],
-                                                      )
-                                                    ],
+                                                          ],
+                                                        )
+                                                      ],
+                                                    ),
                                                   ),
                                                 ],
                                               ),

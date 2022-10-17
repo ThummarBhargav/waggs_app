@@ -6,6 +6,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:waggs_app/app/constant/SizeConstant.dart';
 import 'package:waggs_app/app/constant/text_field.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
+import '../../../constant/ConstantUrl.dart';
 import '../controllers/singup_screen_controller.dart';
 
 class SingupScreenView extends GetWidget<SingupScreenController> {
@@ -135,10 +136,8 @@ class SingupScreenView extends GetWidget<SingupScreenController> {
                         child: getTextField(
                             textEditingController:
                                 controller.emailController.value,
-                            textInputType: TextInputType.name,
-                            validator: (input) => !isNullEmptyOrFalse(input)
-                                ? null
-                                : "Please Enter Your Email Address",
+                            textInputType: TextInputType.emailAddress,
+                            validator: (input) => validateEmail(input),
                             hintText: "Enter Your Email Address",
                             onChanged: (val) {
                               controller.isEmailExist.value = false;
