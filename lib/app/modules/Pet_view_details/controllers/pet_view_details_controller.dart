@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -248,6 +249,7 @@ class PetViewDetailsController extends GetxController {
       if (!isNullEmptyOrFalse(appointments1)) {
         if (!isNullEmptyOrFalse(appointments1.data!.appointments)) {
           appointments1.data!.appointments!.forEach((element) {
+            print(response.body);
             appointmentslist.add(element);
           });
         }
@@ -278,7 +280,8 @@ class PetViewDetailsController extends GetxController {
     });
     var response;
     await dio
-        .put(URl,
+        .put(
+      URl,
       data: {
         "status": "canceled",
         "reason": '${reasonController.value.text.trim()}'
@@ -515,7 +518,6 @@ class PetViewDetailsController extends GetxController {
     );
   }
 
-
   CartCount() async {
     Countlist.clear();
     var url = Uri.parse(baseUrl + ApiConstant.Count);
@@ -532,6 +534,4 @@ class PetViewDetailsController extends GetxController {
     }
     Countlist.refresh();
   }
-
-
 }

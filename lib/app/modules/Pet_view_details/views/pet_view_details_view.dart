@@ -597,128 +597,183 @@ class PetViewDetailsView extends GetWidget<PetViewDetailsController> {
                                                                     .bold),
                                                       ),
                                                     ),
-                                                    Container(
-                                                      margin: EdgeInsets.only(
-                                                          left: 10, bottom: 5),
-                                                      child: controller
-                                                                  .appointmentslist[
-                                                                      index]
-                                                                  .vet!
-                                                                  .name ==
-                                                              null
-                                                          ? Text(
-                                                              "N/A",
-                                                              style: TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                color: Colors
-                                                                    .black,
-                                                                fontSize: 15,
-                                                              ),
-                                                            )
-                                                          : Text(
-                                                              "Dr.${controller.appointmentslist[index].vet!.name}",
-                                                              style: TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                color: Colors
-                                                                    .black,
-                                                                fontSize: 15,
-                                                              ),
-                                                            ),
-                                                    ),
-                                                    Container(
-                                                      margin: EdgeInsets.only(
-                                                          left: 10, bottom: 0),
-                                                      child: controller
-                                                                  .appointmentslist[
-                                                                      index]
-                                                                  .vet!
-                                                                  .degree ==
-                                                              null
-                                                          ? Text(
-                                                              "N/A",
-                                                              style: TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                color: Colors
-                                                                    .black,
-                                                                fontSize: 15,
-                                                              ),
-                                                            )
-                                                          : Text(
-                                                              "${controller.appointmentslist[index].vet!.degree}",
-                                                              style: TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                color: Colors
-                                                                    .black,
-                                                                fontSize: 15,
-                                                              ),
-                                                            ),
-                                                    ),
-                                                    Container(
-                                                      margin: EdgeInsets.only(
-                                                          left: 10, bottom: 0),
-                                                      child: controller
-                                                                  .appointmentslist[
-                                                                      index]
-                                                                  .vet!
-                                                                  .experience ==
-                                                              null
-                                                          ? Text(
-                                                              "0 years of experience",
-                                                              style: TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                color: Colors
-                                                                    .black,
-                                                                fontSize: 15,
-                                                              ),
-                                                            )
-                                                          : Text(
-                                                              "${controller.appointmentslist[index].vet!.experience} years of experience",
-                                                              style: TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                color: Colors
-                                                                    .black,
-                                                                fontSize: 15,
-                                                              ),
-                                                            ),
-                                                    ),
-                                                    Container(
-                                                      margin: EdgeInsets.only(
-                                                          left: 10, bottom: 3),
-                                                      child: controller
-                                                                  .appointmentslist[
-                                                                      index]
-                                                                  .vet!
-                                                                  .address ==
-                                                              null
-                                                          ? Text(
-                                                              "N/A",
-                                                              style: TextStyle(
-                                                                color: Colors
-                                                                    .grey[500],
-                                                                fontSize: 15,
-                                                              ),
-                                                            )
-                                                          : Text(
-                                                              "${controller.appointmentslist[index].vet!.address}",
-                                                              style: TextStyle(
-                                                                color: Colors
-                                                                    .grey[500],
-                                                                fontSize: 15,
-                                                              ),
-                                                            ),
-                                                    ),
+                                                    if (!isNullEmptyOrFalse(
+                                                        controller
+                                                            .appointmentslist[
+                                                                index]
+                                                            .vet))
+                                                      Column(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .start,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Container(
+                                                            margin:
+                                                                EdgeInsets.only(
+                                                                    left: 10,
+                                                                    bottom: 5),
+                                                            child: controller
+                                                                        .appointmentslist[
+                                                                            index]
+                                                                        .vet!
+                                                                        .name ==
+                                                                    null
+                                                                ? Text(
+                                                                    "N/A",
+                                                                    style:
+                                                                        TextStyle(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      color: Colors
+                                                                          .black,
+                                                                      fontSize:
+                                                                          15,
+                                                                    ),
+                                                                  )
+                                                                : Text(
+                                                                    "Dr.${controller.appointmentslist[index].vet!.name}",
+                                                                    style:
+                                                                        TextStyle(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      color: Colors
+                                                                          .black,
+                                                                      fontSize:
+                                                                          15,
+                                                                    ),
+                                                                  ),
+                                                          ),
+                                                          Container(
+                                                            margin:
+                                                                EdgeInsets.only(
+                                                                    left: 10,
+                                                                    bottom: 0),
+                                                            child: controller
+                                                                        .appointmentslist[
+                                                                            index]
+                                                                        .vet!
+                                                                        .degree ==
+                                                                    null
+                                                                ? Text(
+                                                                    "N/A",
+                                                                    style:
+                                                                        TextStyle(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      color: Colors
+                                                                          .black,
+                                                                      fontSize:
+                                                                          15,
+                                                                    ),
+                                                                  )
+                                                                : Text(
+                                                                    "${controller.appointmentslist[index].vet!.degree}",
+                                                                    style:
+                                                                        TextStyle(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      color: Colors
+                                                                          .black,
+                                                                      fontSize:
+                                                                          15,
+                                                                    ),
+                                                                  ),
+                                                          ),
+                                                          Container(
+                                                            margin:
+                                                                EdgeInsets.only(
+                                                                    left: 10,
+                                                                    bottom: 0),
+                                                            child: controller
+                                                                        .appointmentslist[
+                                                                            index]
+                                                                        .vet!
+                                                                        .experience ==
+                                                                    null
+                                                                ? Text(
+                                                                    "0 years of experience",
+                                                                    style:
+                                                                        TextStyle(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      color: Colors
+                                                                          .black,
+                                                                      fontSize:
+                                                                          15,
+                                                                    ),
+                                                                  )
+                                                                : Text(
+                                                                    "${controller.appointmentslist[index].vet!.experience} years of experience",
+                                                                    style:
+                                                                        TextStyle(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      color: Colors
+                                                                          .black,
+                                                                      fontSize:
+                                                                          15,
+                                                                    ),
+                                                                  ),
+                                                          ),
+                                                          Container(
+                                                            margin:
+                                                                EdgeInsets.only(
+                                                                    left: 10,
+                                                                    bottom: 3),
+                                                            child: controller
+                                                                        .appointmentslist[
+                                                                            index]
+                                                                        .vet!
+                                                                        .address ==
+                                                                    null
+                                                                ? Text(
+                                                                    "N/A",
+                                                                    style:
+                                                                        TextStyle(
+                                                                      color: Colors
+                                                                              .grey[
+                                                                          500],
+                                                                      fontSize:
+                                                                          15,
+                                                                    ),
+                                                                  )
+                                                                : Text(
+                                                                    "${controller.appointmentslist[index].vet!.address}",
+                                                                    style:
+                                                                        TextStyle(
+                                                                      color: Colors
+                                                                              .grey[
+                                                                          500],
+                                                                      fontSize:
+                                                                          15,
+                                                                    ),
+                                                                  ),
+                                                          ),
+                                                        ],
+                                                      )
+                                                    else
+                                                      Container(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                left: 10),
+                                                        child: Text(
+                                                          "Vet Deleted",
+                                                          style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            color: Colors.red,
+                                                          ),
+                                                        ),
+                                                      ),
                                                     Container(
                                                       margin: EdgeInsets.only(
                                                           left: 10, top: 0),
