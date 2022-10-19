@@ -410,7 +410,8 @@ class ViewProductView extends GetWidget<ViewProductController> {
                 SizedBox(
                   height: 10,
                 ),
-                (int.parse(controller.data.sellerId!.shippingLimit.toString()) >
+                (int.parse(controller.data.sellerId!.shippingLimit
+                            .toString()) <=
                         controller.data.sellerId!.distance)
                     ? Container()
                     : Text(
