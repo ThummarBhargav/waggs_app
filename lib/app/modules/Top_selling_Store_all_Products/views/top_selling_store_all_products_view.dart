@@ -1327,8 +1327,8 @@ class TopSellingStoreAllProductsView
                                                     .mainProductList[index]
                                                     .sellerId!
                                                     .distance)
-                                            ? false
-                                            : true);
+                                            ? true
+                                            : false);
                                   },
                                   gridDelegate:
                                       SliverGridDelegateWithFixedCrossAxisCount(

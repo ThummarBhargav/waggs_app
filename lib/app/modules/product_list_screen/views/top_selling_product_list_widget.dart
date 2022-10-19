@@ -1097,8 +1097,8 @@ class _TopSellingProductListWidgetState
                                                     .mainProductList[index]
                                                     .sellerId!
                                                     .distance)
-                                            ? false
-                                            : true);
+                                            ? true
+                                            : false);
                                   },
                                   gridDelegate:
                                       SliverGridDelegateWithFixedCrossAxisCount(
