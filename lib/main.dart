@@ -17,7 +17,11 @@ void main() async {
   if (permission == LocationPermission.denied ||
       permission == LocationPermission.deniedForever ||
       permission == LocationPermission.unableToDetermine) {
-    await Geolocator.requestPermission();
+    await Geolocator.requestPermission().then((value) {
+      print(value.name);
+    }).catchError((error) {
+      print(error);
+    });
   }
 
   await GetStorage.init();

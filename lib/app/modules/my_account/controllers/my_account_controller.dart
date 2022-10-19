@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:location/location.dart' as loc;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
@@ -37,20 +37,33 @@ class MyAccountController extends GetxController {
     super.onInit();
   }
 
-  Future<Position?> getCurrentLocation() async {
+  Future<Position> getCurrentLocation() async {
+    loc.Location location = loc.Location();
+    loc.LocationData data = await location.getLocation();
+    print(data.latitude);
     Position? currentPositionData;
-    await Geolocator.getCurrentPosition(
-            desiredAccuracy: LocationAccuracy.high,
-            forceAndroidLocationManager: true)
-        .then((Position position) {
-      _currentPosition = position.obs;
-      currentPositionData = position;
-      print("position: ====== ${position.latitude} ==> ${position.longitude}");
-    }).catchError((e) {
-      print(e);
-    });
-
-    return currentPositionData;
+    // await Geolocator.getCurrentPosition(
+    //         desiredAccuracy: LocationAccuracy.high,
+    //         forceAndroidLocationManager: true)
+    //     .then((Position position) {
+    //   _currentPosition = position.obs;
+    //   currentPositionData = position;
+    //   print("position: ====== ${position.latitude} ==> ${position.longitude}");
+    // }).catchError((e) {
+    //   print(e);
+    // });
+    if (isNullEmptyOrFalse(currentPositionData)) {
+      currentPositionData = Position(
+          longitude: data.longitude!,
+          latitude: data.latitude!,
+          timestamp: DateTime.now(),
+          accuracy: data.accuracy!,
+          altitude: data.altitude!,
+          heading: data.heading!,
+          speed: data.speed!,
+          speedAccuracy: data.speedAccuracy!);
+    }
+    return await currentPositionData!;
   }
 
   _getAddressFromLatLng() async {
