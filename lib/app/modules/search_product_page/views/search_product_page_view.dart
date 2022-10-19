@@ -1099,8 +1099,8 @@ class SearchProductPageView extends GetWidget<SearchProductPageController> {
                                                     .mainProductList[index]
                                                     .sellerId!
                                                     .distance)
-                                            ? false
-                                            : true);
+                                            ? true
+                                            : false);
                                   },
                                   gridDelegate:
                                       SliverGridDelegateWithFixedCrossAxisCount(

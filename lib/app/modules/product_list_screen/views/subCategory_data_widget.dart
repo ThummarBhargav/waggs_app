@@ -1160,8 +1160,8 @@ class _SubCategoryWidgetState extends State<SubCategoryWidget> {
                                           icon: Icons.add_shopping_cart,
                                           isShipping: (int.parse(controller.mainProductList[index].sellerId!.shippingLimit.toString()) <=
                                                   controller.mainProductList[index].sellerId!.distance)
-                                              ? false
-                                              : true);
+                                              ? true
+                                              : false);
                                     },
                                     gridDelegate:
                                         SliverGridDelegateWithFixedCrossAxisCount(

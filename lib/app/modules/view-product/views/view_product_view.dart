@@ -413,11 +413,11 @@ class ViewProductView extends GetWidget<ViewProductController> {
                 (int.parse(controller.data.sellerId!.shippingLimit
                             .toString()) <=
                         controller.data.sellerId!.distance)
-                    ? Container()
-                    : Text(
+                    ? Text(
                         "Not delivering in your area",
                         style: TextStyle(color: Colors.red, fontSize: 15),
-                      ),
+                      )
+                    : Container(),
                 InkWell(
                   onTap: () {
                     controller.isOpen.value = !controller.isOpen.value;
