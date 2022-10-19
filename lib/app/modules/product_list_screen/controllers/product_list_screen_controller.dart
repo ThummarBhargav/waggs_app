@@ -15,6 +15,7 @@ import '../../../Modal/CategoryModel.dart';
 import '../../../Modal/GetAllProductModule.dart';
 import '../../../Modal/SubCategoryModel.dart';
 import '../../../Modal/TopSellingStore.dart';
+import '../../../Modal/shippingModel.dart';
 import '../../../constant/SizeConstant.dart';
 
 class ProductListScreenController extends GetxController {
@@ -82,6 +83,7 @@ class ProductListScreenController extends GetxController {
   Rx<RangeValues> values4 = RangeValues(100, 30000).obs;
   String CategoriId = "";
   String SubCategoriId = "";
+  Rx<double> shippingCharge = 0.0.obs;
   @override
   void onInit() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
@@ -120,6 +122,23 @@ class ProductListScreenController extends GetxController {
     super.onClose();
   }
 
+  Future ShippingApi() async {
+    var url = Uri.parse(baseUrl + ApiConstant.shipping);
+    var response = await http.get(url);
+    print('response status:${response.request}');
+    dynamic result = jsonDecode(response.body);
+    print(result);
+    if (response.statusCode == 200) {
+      ShippingModel res = ShippingModel.fromJson(jsonDecode(response.body));
+      if (!isNullEmptyOrFalse(res)) {
+        if (!isNullEmptyOrFalse(res.data!.shippingCharge)) {
+          shippingCharge.value =
+              double.parse(res.data!.shippingCharge.toString());
+        }
+      }
+    }
+  }
+
   TopSellingProductApi() async {
     hastopproduct.value = false;
     mainProductList.clear();
@@ -130,6 +149,7 @@ class ProductListScreenController extends GetxController {
       dynamic result = jsonDecode(value.body);
       storeModule = StoreModule.fromJson(result);
       response = value;
+      await ShippingApi();
       Position? currentPositionData = await getCurrentLocation();
       if (!isNullEmptyOrFalse(storeModule.data)) {
         if (!isNullEmptyOrFalse(storeModule.data!.products)) {
@@ -157,7 +177,8 @@ class ProductListScreenController extends GetxController {
                             c(lat2 * p) *
                             (1 - c((lon2 - lon1) * p)) /
                             2;
-                    double distance = 12742 * asin(sqrt(a));
+                    double distance =
+                        12742 * asin(sqrt(a)) * shippingCharge.value;
                     element.sellerId!.distance = distance;
                     print("My Distance := ${distance}");
                   }
@@ -367,6 +388,7 @@ class ProductListScreenController extends GetxController {
         response = value;
         print(response.body);
         dynamic result = jsonDecode(value.body);
+        await ShippingApi();
         storeModule = StoreModule.fromJson(result);
         Position? currentPositionData = await getCurrentLocation();
         if (!isNullEmptyOrFalse(storeModule.data)) {
@@ -395,7 +417,8 @@ class ProductListScreenController extends GetxController {
                               c(lat2 * p) *
                               (1 - c((lon2 - lon1) * p)) /
                               2;
-                      double distance = 12742 * asin(sqrt(a));
+                      double distance =
+                          12742 * asin(sqrt(a)) * shippingCharge.value;
                       element.sellerId!.distance = distance;
                       print("My Distance := ${distance}");
                     }
@@ -633,7 +656,8 @@ class ProductListScreenController extends GetxController {
                               c(lat2 * p) *
                               (1 - c((lon2 - lon1) * p)) /
                               2;
-                      double distance = 12742 * asin(sqrt(a));
+                      double distance =
+                          12742 * asin(sqrt(a)) * shippingCharge.value;
                       element.sellerId!.distance = distance;
                       print("My Distance := ${distance}");
                     }
@@ -706,7 +730,8 @@ class ProductListScreenController extends GetxController {
                               c(lat2 * p) *
                               (1 - c((lon2 - lon1) * p)) /
                               2;
-                      double distance = 12742 * asin(sqrt(a));
+                      double distance =
+                          12742 * asin(sqrt(a)) * shippingCharge.value;
                       element.sellerId!.distance = distance;
                       print("My Distance := ${distance}");
                     }
