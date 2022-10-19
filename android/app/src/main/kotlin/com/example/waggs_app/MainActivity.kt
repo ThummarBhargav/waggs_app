@@ -1,4 +1,4 @@
-package com.example.waggs_application
+package com.example.waggs_app
 
 import io.flutter.embedding.android.FlutterActivity
 
