@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'CartProductModel.dart';
 
 class OrderDetailModel {
