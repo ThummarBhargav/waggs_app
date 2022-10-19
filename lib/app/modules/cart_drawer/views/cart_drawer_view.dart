@@ -164,14 +164,14 @@ class CartDrawerView extends GetWidget<CartDrawerController> {
                                                                 .product!
                                                                 .sellerId!
                                                                 .distance)
-                                                        ? Container()
-                                                        : Text(
+                                                        ? Text(
                                                             "Not delivering in your area",
                                                             style: TextStyle(
                                                                 color:
                                                                     Colors.red,
                                                                 fontSize: 10),
-                                                          ),
+                                                          )
+                                                        : Container(),
                                                   ],
                                                 ),
                                               ),
