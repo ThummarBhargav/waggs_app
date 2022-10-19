@@ -14,6 +14,7 @@ import 'package:waggs_app/app/routes/app_pages.dart';
 import '../../../../main.dart';
 import '../../../Modal/GetAllProductModule.dart';
 import '../../../Modal/bannerAllProductModel.dart';
+import '../../../Modal/shippingModel.dart';
 import '../../../constant/ConstantUrl.dart';
 import 'package:http/http.dart' as http;
 
@@ -44,6 +45,7 @@ class HomeController extends GetxController {
   RxList<Sellers> SellersList = RxList<Sellers>([]);
   RxList<Count1> Countlist = RxList<Count1>([]);
   RxBool isFilterDrawer = false.obs;
+  Rx<double> shippingCharge = 0.0.obs;
   // final Rx<FocusNode> titleFocus = FocusNode().obs;
   List<String> imageList = [
     'assets/category01.jpg',
@@ -68,6 +70,7 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      ShippingApi();
       bannerAllProduct();
       getNotificationCount();
       AllCategory();
@@ -88,6 +91,23 @@ class HomeController extends GetxController {
   @override
   void onClose() {
     super.onClose();
+  }
+
+  ShippingApi() async {
+    var url = Uri.parse(baseUrl + ApiConstant.shipping);
+    var response = await http.get(url);
+    print('response status:${response.request}');
+    dynamic result = jsonDecode(response.body);
+    print(result);
+    if (response.statusCode == 200) {
+      ShippingModel res = ShippingModel.fromJson(jsonDecode(response.body));
+      if (!isNullEmptyOrFalse(res)) {
+        if (!isNullEmptyOrFalse(res.data!.shippingCharge)) {
+          shippingCharge.value =
+              double.parse(res.data!.shippingCharge.toString());
+        }
+      }
+    }
   }
 
   AllCategory() async {
@@ -218,10 +238,6 @@ class HomeController extends GetxController {
                     double lat1 = currentPositionData.latitude;
                     double lon2 = element.sellerId!.longitude!;
                     double lon1 = currentPositionData.longitude;
-                    print("lat1========${lat1}");
-                    print("lon1========${lon1}");
-                    print("lat2========${lat2}");
-                    print("lon2========${lon2}");
                     var p = 0.017453292519943295;
                     var c = cos;
                     var a = 0.5 -
@@ -230,9 +246,11 @@ class HomeController extends GetxController {
                             c(lat2 * p) *
                             (1 - c((lon2 - lon1) * p)) /
                             2;
-                    double distance = 12742 * asin(sqrt(a));
+                    double distance =
+                        12742 * asin(sqrt(a)) * shippingCharge.value;
                     element.sellerId!.distance = distance;
-                    print("My Distance := ${distance}");
+                    print(
+                        "Id : = ${element.sId}  My Distance := ${distance} : = limit := ${element.sellerId!.shippingLimit}");
                   }
                 }
               }

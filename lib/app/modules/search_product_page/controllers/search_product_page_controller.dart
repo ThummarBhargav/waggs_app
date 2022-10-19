@@ -14,6 +14,7 @@ import 'package:waggs_app/main.dart';
 import '../../../Modal/CategoryModel.dart';
 import '../../../Modal/SubCategoryModel.dart';
 import '../../../Modal/TopSellingStore.dart';
+import '../../../Modal/shippingModel.dart';
 import '../../../constant/SizeConstant.dart';
 import '../../../routes/app_pages.dart';
 
@@ -71,7 +72,7 @@ class SearchProductPageController extends GetxController {
   RxList<Fields> fieldData = RxList<Fields>([]);
   RxString price = "New Arrivals".obs;
   RxString soringType = "newArrivals".obs;
-
+  Rx<double> shippingCharge = 0.0.obs;
   RxList<String> location = RxList<String>([
     "New Arrivals",
     "Price: Low-High",
@@ -147,6 +148,23 @@ class SearchProductPageController extends GetxController {
     Countlist.refresh();
   }
 
+  Future ShippingApi() async {
+    var url = Uri.parse(baseUrl + ApiConstant.shipping);
+    var response = await http.get(url);
+    print('response status:${response.request}');
+    dynamic result = jsonDecode(response.body);
+    print(result);
+    if (response.statusCode == 200) {
+      ShippingModel res = ShippingModel.fromJson(jsonDecode(response.body));
+      if (!isNullEmptyOrFalse(res)) {
+        if (!isNullEmptyOrFalse(res.data!.shippingCharge)) {
+          shippingCharge.value =
+              double.parse(res.data!.shippingCharge.toString());
+        }
+      }
+    }
+  }
+
   searchProductApi({bool isForLoading = false, String sort = ""}) async {
     if (!isForLoading) {
       hasSerchdata.value = false;
@@ -162,6 +180,7 @@ class SearchProductPageController extends GetxController {
     await http.get(url).then((value) async {
       if (value.statusCode == 200) {
         response = value;
+        await ShippingApi();
         print('Response status: ${response.statusCode}');
         print('Response body: ${response.body}');
         dynamic result = jsonDecode(response.body);
@@ -182,10 +201,7 @@ class SearchProductPageController extends GetxController {
                       double lat1 = currentPositionData.latitude;
                       double lon2 = element.sellerId!.longitude!;
                       double lon1 = currentPositionData.longitude;
-                      print("lat1========${lat1}");
-                      print("lon1========${lon1}");
-                      print("lat2========${lat2}");
-                      print("lon2========${lon2}");
+
                       var p = 0.017453292519943295;
                       var c = cos;
                       var a = 0.5 -
@@ -194,7 +210,8 @@ class SearchProductPageController extends GetxController {
                               c(lat2 * p) *
                               (1 - c((lon2 - lon1) * p)) /
                               2;
-                      double distance = 12742 * asin(sqrt(a));
+                      double distance =
+                          12742 * asin(sqrt(a)) * shippingCharge.value;
                       element.sellerId!.distance = distance;
                       print("My Distance := ${distance}");
                     }
@@ -289,7 +306,8 @@ class SearchProductPageController extends GetxController {
                             c(lat2 * p) *
                             (1 - c((lon2 - lon1) * p)) /
                             2;
-                    double distance = 12742 * asin(sqrt(a));
+                    double distance =
+                        12742 * asin(sqrt(a)) * shippingCharge.value;
                     element.sellerId!.distance = distance;
                     print("My Distance := ${distance}");
                   }
@@ -550,7 +568,8 @@ class SearchProductPageController extends GetxController {
                             c(lat2 * p) *
                             (1 - c((lon2 - lon1) * p)) /
                             2;
-                    double distance = 12742 * asin(sqrt(a));
+                    double distance =
+                        12742 * asin(sqrt(a)) * shippingCharge.value;
                     element.sellerId!.distance = distance;
                     print("My Distance := ${distance}");
                   }

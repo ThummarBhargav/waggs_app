@@ -10,6 +10,7 @@ import 'package:waggs_app/app/Modal/TopSellingStore.dart';
 import 'package:waggs_app/app/constant/ConstantUrl.dart';
 import 'package:http/http.dart' as http;
 import 'package:waggs_app/main.dart';
+import '../../../Modal/shippingModel.dart';
 import '../../../constant/SizeConstant.dart';
 
 class ViewProductController extends GetxController {
@@ -30,7 +31,7 @@ class ViewProductController extends GetxController {
   CartProduct cartProduct = CartProduct();
   RxList<Count1> Countlist = RxList<Count1>([]);
   RxList<Details> cartProductList = RxList<Details>([]);
-
+  Rx<double> shippingCharge = 0.0.obs;
   @override
   void onInit() {
     CartCount();
@@ -49,6 +50,23 @@ class ViewProductController extends GetxController {
     super.onClose();
   }
 
+  Future ShippingApi() async {
+    var url = Uri.parse(baseUrl + ApiConstant.shipping);
+    var response = await http.get(url);
+    print('response status:${response.request}');
+    dynamic result = jsonDecode(response.body);
+    print(result);
+    if (response.statusCode == 200) {
+      ShippingModel res = ShippingModel.fromJson(jsonDecode(response.body));
+      if (!isNullEmptyOrFalse(res)) {
+        if (!isNullEmptyOrFalse(res.data!.shippingCharge)) {
+          shippingCharge.value =
+              double.parse(res.data!.shippingCharge.toString());
+        }
+      }
+    }
+  }
+
   getData() async {
     hasData.value = false;
     mainProductList.clear();
@@ -65,6 +83,7 @@ class ViewProductController extends GetxController {
     dynamic result = jsonDecode(response.body);
     storeModule = StoreModule.fromJson(result);
     Position? currentPositionData = await getCurrentLocation();
+    await ShippingApi();
 
     if (!isNullEmptyOrFalse(storeModule.data)) {
       if (!isNullEmptyOrFalse(storeModule.data!.products)) {
@@ -80,10 +99,7 @@ class ViewProductController extends GetxController {
                   double lat1 = currentPositionData.latitude;
                   double lon2 = element.sellerId!.longitude!;
                   double lon1 = currentPositionData.longitude;
-                  print("lat1========${lat1}");
-                  print("lon1========${lon1}");
-                  print("lat2========${lat2}");
-                  print("lon2========${lon2}");
+
                   var p = 0.017453292519943295;
                   var c = cos;
                   var a = 0.5 -
@@ -92,7 +108,8 @@ class ViewProductController extends GetxController {
                           c(lat2 * p) *
                           (1 - c((lon2 - lon1) * p)) /
                           2;
-                  double distance = 12742 * asin(sqrt(a));
+                  double distance =
+                      12742 * asin(sqrt(a)) * shippingCharge.value;
                   element.sellerId!.distance = distance;
                   print("My Distance := ${distance}");
                 }
