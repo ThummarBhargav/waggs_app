@@ -121,6 +121,7 @@ class ProductListScreenController extends GetxController {
   }
 
   TopSellingProductApi() async {
+    hastopproduct.value = false;
     mainProductList.clear();
     hassubcatagoryData.value = false;
     var url = Uri.parse(baseUrl + ApiConstant.TopStore);
@@ -164,7 +165,7 @@ class ProductListScreenController extends GetxController {
               }
             }
             mainProductList.add(element);
-            hassubcatagoryData.value = true;
+            hastopproduct.value = true;
           });
         }
       }

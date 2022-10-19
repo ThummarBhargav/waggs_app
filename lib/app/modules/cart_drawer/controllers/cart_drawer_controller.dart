@@ -219,10 +219,6 @@ class CartDrawerController extends GetxController {
                     double lat1 = currentPositionData.latitude;
                     double lon2 = element.product!.sellerId!.longitude!;
                     double lon1 = currentPositionData.longitude;
-                    print("lat1========${lat1}");
-                    print("lon1========${lon1}");
-                    print("lat2========${lat2}");
-                    print("lon2========${lon2}");
                     var p = 0.017453292519943295;
                     var c = cos;
                     var a = 0.5 -
@@ -234,7 +230,8 @@ class CartDrawerController extends GetxController {
                     double shippingCost =
                         12742 * asin(sqrt(a)) * shippingCharge;
                     element.product!.sellerId!.shippingCharge = shippingCost;
-                    print("My Distance := ${shippingCost}");
+                    print(
+                        " Id:= ${element.productId}   My Distance := ${shippingCost} ,,   Value2 ==>  ${element.product!.sellerId!.shippingLimit}");
                   }
                 }
               }
