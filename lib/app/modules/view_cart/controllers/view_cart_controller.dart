@@ -1,15 +1,13 @@
 import 'dart:io';
 import 'dart:math';
-
 import 'package:dio/dio.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
-
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:location/location.dart' as loc;
 import 'package:waggs_app/app/Modal/OrderModel.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:waggs_app/app/Modal/ErrorResponse.dart';
@@ -78,20 +76,34 @@ class ViewCartController extends GetxController {
     CartCount();
   }
 
-  Future<Position?> getCurrentLocation() async {
-    Position? currentPositionData;
-    await Geolocator.getCurrentPosition(
-            desiredAccuracy: LocationAccuracy.high,
-            forceAndroidLocationManager: true)
-        .then((Position position) {
-      _currentPosition = position.obs;
-      currentPositionData = position;
-      print("position: ====== ${position.latitude} ==> ${position.longitude}");
-    }).catchError((e) {
-      print(e);
-    });
+  Future<Position> getCurrentLocation() async {
+    loc.Location location = loc.Location();
+    loc.LocationData data = await location.getLocation();
+    print(data.latitude);
 
-    return currentPositionData;
+    Position? currentPositionData;
+    // await Geolocator.getCurrentPosition(
+    //         desiredAccuracy: LocationAccuracy.high,
+    //         forceAndroidLocationManager: true)
+    //     .then((Position position) {
+    //   _currentPosition = position.obs;
+    //   currentPositionData = position;
+    //   print("position: ====== ${position.latitude} ==> ${position.longitude}");
+    // }).catchError((e) {
+    //   print(e);
+    // });
+    if (isNullEmptyOrFalse(currentPositionData)) {
+      currentPositionData = Position(
+          longitude: data.longitude!,
+          latitude: data.latitude!,
+          timestamp: DateTime.now(),
+          accuracy: data.accuracy!,
+          altitude: data.altitude!,
+          heading: data.heading!,
+          speed: data.speed!,
+          speedAccuracy: data.speedAccuracy!);
+    }
+    return await currentPositionData!;
   }
 
   _getAddressFromLatLng() async {

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:location/location.dart' as loc;
+import 'package:waggs_app/app/constant/SizeConstant.dart';
 
 const baseUrl = "https://api.waggs.in/api/v1/";
 const baseUrl1 = "api.waggs.in";
@@ -87,20 +89,37 @@ class ArgumentConstant {
 }
 
 Rx<Position>? _currentPosition;
-Future<Position?> getCurrentLocation() async {
-  Position? currentPositionData;
-  await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.high,
-          forceAndroidLocationManager: true)
-      .then((Position position) {
-    _currentPosition = position.obs;
-    currentPositionData = position;
-    print("position: ====== ${position.latitude} ==> ${position.longitude}");
-  }).catchError((e) {
-    print(e);
-  });
+Future<Position> getCurrentLocation() async {
+  loc.Location location = loc.Location();
+  loc.LocationData data = await location.getLocation();
+  print(data.latitude);
 
-  return currentPositionData;
+  Position? currentPositionData;
+  // await Geolocator.getCurrentPosition(
+  //         desiredAccuracy: LocationAccuracy.high,
+  //         forceAndroidLocationManager: true)
+  //     .whenComplete(() {
+  //   print("object");
+  // }).then((Position position) {
+  //   _currentPosition = position.obs;
+  //   currentPositionData = position;
+  //   print("position: ====== ${position.latitude} ==> ${position.longitude}");
+  // }).catchError((e) {
+  //   print(e);
+  // });
+  if (isNullEmptyOrFalse(currentPositionData)) {
+    currentPositionData = Position(
+        longitude: data.longitude!,
+        latitude: data.latitude!,
+        timestamp: DateTime.now(),
+        accuracy: data.accuracy!,
+        altitude: data.altitude!,
+        heading: data.heading!,
+        speed: data.speed!,
+        speedAccuracy: data.speedAccuracy!);
+  }
+
+  return currentPositionData!;
 }
 
 getMySnackBar(

@@ -849,6 +849,7 @@ class HomeView extends GetWidget<HomeController> {
                                               ],
                                             ),
                                           ),
+                                SizedBox(height: 20),
                               ],
                             ),
                           ),

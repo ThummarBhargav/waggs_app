@@ -514,24 +514,24 @@ class ViewCartView extends GetWidget<ViewCartController> {
                                                             SizedBox(
                                                               height: 10,
                                                             ),
-                                                            (controller
-                                                                        .cartProductList[
-                                                                            index]
-                                                                        .product!
-                                                                        .sellerId!
-                                                                        .shippingCharge
-                                                                        .floor() ==
-                                                                    0.00)
-                                                                ? Container()
-                                                                : Text(
-                                                                    "+ \u{20B9}${controller.cartProductList[index].product!.sellerId!.shippingCharge.toStringAsFixed(2)}" +
-                                                                        " Shipping",
-                                                                    style:
-                                                                        TextStyle(
-                                                                      color: Colors
-                                                                          .black,
-                                                                    ),
-                                                                  ),
+                                                            // (controller
+                                                            //             .cartProductList[
+                                                            //                 index]
+                                                            //             .product!
+                                                            //             .sellerId!
+                                                            //             .shippingCharge
+                                                            //             .floor() ==
+                                                            //         0.00)
+                                                            //     ? Container()
+                                                            //     : Text(
+                                                            //         "+ \u{20B9}${controller.cartProductList[index].product!.sellerId!.shippingCharge.toStringAsFixed(2)}" +
+                                                            //             " Shipping",
+                                                            //         style:
+                                                            //             TextStyle(
+                                                            //           color: Colors
+                                                            //               .black,
+                                                            //         ),
+                                                            //       ),
                                                           ],
                                                         )
                                                       ],

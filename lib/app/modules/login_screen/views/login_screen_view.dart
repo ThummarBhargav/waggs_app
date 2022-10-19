@@ -92,7 +92,7 @@ class LoginScreenView extends GetWidget<LoginScreenController> {
                     ),
                     child: getTextField(
                         textEditingController: controller.emailController.value,
-                        textInputType: TextInputType.name,
+                        textInputType: TextInputType.emailAddress,
                         validator: (input) => !isNullEmptyOrFalse(input)
                             ? null
                             : "Please Enter Your Email Address",
