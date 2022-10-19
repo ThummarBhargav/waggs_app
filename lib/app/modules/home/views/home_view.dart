@@ -71,10 +71,7 @@ class HomeView extends GetWidget<HomeController> {
                                                       size: 28,
                                                     )),
                                               ),
-                                              Container(
-                                                height: 30,
-                                                margin: EdgeInsets.only(
-                                                    top: 10, left: 25),
+                                              Expanded(
                                                 child: box.read(ArgumentConstant
                                                             .isUserLogin) ==
                                                         null

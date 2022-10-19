@@ -151,13 +151,19 @@ class CartDrawerView extends GetWidget<CartDrawerController> {
                                                     SizedBox(
                                                       height: 8,
                                                     ),
-                                                    controller
+                                                    (int.parse(controller
                                                                 .cartProductList[
                                                                     index]
                                                                 .product!
                                                                 .sellerId!
-                                                                .waiveOffShipping ==
-                                                            false
+                                                                .shippingLimit
+                                                                .toString()) >
+                                                            controller
+                                                                .cartProductList[
+                                                                    index]
+                                                                .product!
+                                                                .sellerId!
+                                                                .distance)
                                                         ? Container()
                                                         : Text(
                                                             "Not delivering in your area",
@@ -313,6 +319,7 @@ class CartDrawerView extends GetWidget<CartDrawerController> {
                                                 ),
                                               ),
                                             ),
+                                            // Spacer(),
                                             Column(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
@@ -329,22 +336,31 @@ class CartDrawerView extends GetWidget<CartDrawerController> {
                                                 SizedBox(
                                                   height: 10,
                                                 ),
-                                                (controller
-                                                            .cartProductList[
-                                                                index]
-                                                            .product!
-                                                            .sellerId!
-                                                            .shippingCharge
-                                                            .floor() ==
-                                                        0)
-                                                    ? Container()
-                                                    : Text(
-                                                        "+ \u{20B9}${controller.cartProductList[index].product!.sellerId!.shippingCharge.toStringAsFixed(0)}.00" +
-                                                            " Shipping",
-                                                        style: TextStyle(
-                                                          color: Colors.black,
+                                                Container(
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width /
+                                                      3,
+                                                  child: (controller
+                                                              .cartProductList[
+                                                                  index]
+                                                              .product!
+                                                              .sellerId!
+                                                              .shippingCharge
+                                                              .floor() ==
+                                                          0)
+                                                      ? Container()
+                                                      : Text(
+                                                          "+ \u{20B9}${controller.cartProductList[index].product!.sellerId!.shippingCharge.toStringAsFixed(0)}.00" +
+                                                              " Shipping",
+                                                          style: TextStyle(
+                                                            // fontSize: 10,
+                                                            color: Colors.black,
+                                                          ),
+                                                          textAlign:
+                                                              TextAlign.end,
                                                         ),
-                                                      ),
+                                                ),
                                               ],
                                             )
                                           ],
