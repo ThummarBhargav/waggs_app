@@ -9,8 +9,8 @@ import 'app/routes/app_pages.dart';
 
 final getIt = GetIt.instance;
 GetStorage box = GetStorage();
+WidgetsFlutterBinding.ensureInitialized();
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   setUp();
   LocationPermission permission = await Geolocator.checkPermission();
