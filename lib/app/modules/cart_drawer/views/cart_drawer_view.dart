@@ -157,7 +157,7 @@ class CartDrawerView extends GetWidget<CartDrawerController> {
                                                                 .product!
                                                                 .sellerId!
                                                                 .shippingLimit
-                                                                .toString()) >
+                                                                .toString()) <=
                                                             controller
                                                                 .cartProductList[
                                                                     index]

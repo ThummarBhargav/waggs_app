@@ -835,7 +835,7 @@ class HomeView extends GetWidget<HomeController> {
                                                                       index]);
                                                             },
                                                             icon: Icons.add_shopping_cart,
-                                                            isShipping: (int.parse(controller.TopProductlist[index].sellerId!.shippingLimit.toString()) > controller.TopProductlist[index].sellerId!.distance) ? false : true);
+                                                            isShipping: (int.parse(controller.TopProductlist[index].sellerId!.shippingLimit.toString()) <= controller.TopProductlist[index].sellerId!.distance) ? false : true);
                                                       },
                                                       gridDelegate:
                                                           SliverGridDelegateWithFixedCrossAxisCount(

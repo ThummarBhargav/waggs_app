@@ -1322,7 +1322,7 @@ class TopSellingStoreAllProductsView
                                                   .mainProductList[index]);
                                         },
                                         icon: Icons.add_shopping_cart,
-                                        isShipping: (int.parse(controller.mainProductList[index].sellerId!.shippingLimit.toString()) >
+                                        isShipping: (int.parse(controller.mainProductList[index].sellerId!.shippingLimit.toString()) <=
                                                 controller
                                                     .mainProductList[index]
                                                     .sellerId!
