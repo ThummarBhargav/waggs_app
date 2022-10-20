@@ -12,7 +12,7 @@ class ApiConstant {
   static const signUpUsers = "signup";
   static const shipping = "app-settings";
   static const socialLoginApi = "socialLogin";
-  static const paymentKey = "rzp_test_pfJrUULLPTmEYK";
+  static const paymentKey = "rzp_live_Xq7fXupLzqC8rT";
   static const loginUsers = "login";
   static const logoutUsers = "logout";
   static const verifyEmailUsers = "verifyEmail";
