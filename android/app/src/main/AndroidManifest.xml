@@ -29,7 +29,7 @@
 
     <application
         android:usesCleartextTraffic="true"
-        android:label="waggs_app"
+        android:label="Waggs"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity
