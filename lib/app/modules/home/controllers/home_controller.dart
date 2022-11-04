@@ -223,6 +223,7 @@ class HomeController extends GetxController {
       dynamic result = jsonDecode(value.body);
       storeModule = StoreModule.fromJson(result);
       response = value;
+      // hastopproduct.value = true;
       Position? currentPositionData = await getCurrentLocation();
       if (!isNullEmptyOrFalse(storeModule.data)) {
         if (!isNullEmptyOrFalse(storeModule.data!.products)) {
@@ -232,7 +233,7 @@ class HomeController extends GetxController {
                 if (!isNullEmptyOrFalse(currentPositionData)) {
                   if (!isNullEmptyOrFalse(element.sellerId!.latitude) &&
                       !isNullEmptyOrFalse(element.sellerId!.longitude) &&
-                      !isNullEmptyOrFalse(currentPositionData!.latitude) &&
+                      !isNullEmptyOrFalse(currentPositionData.latitude) &&
                       !isNullEmptyOrFalse(currentPositionData.longitude)) {
                     double lat2 = element.sellerId!.latitude!;
                     double lat1 = currentPositionData.latitude;
@@ -262,7 +263,7 @@ class HomeController extends GetxController {
         }
       }
     }).catchError((error) {
-      hastopproduct.value = false;
+      hastopproduct.value = true;
     });
   }
 
