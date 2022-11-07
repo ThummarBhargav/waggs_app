@@ -223,7 +223,7 @@ class HomeController extends GetxController {
       dynamic result = jsonDecode(value.body);
       storeModule = StoreModule.fromJson(result);
       response = value;
-      // hastopproduct.value = true;
+      hastopproduct.value = true;
       Position? currentPositionData = await getCurrentLocation();
       if (!isNullEmptyOrFalse(storeModule.data)) {
         if (!isNullEmptyOrFalse(storeModule.data!.products)) {

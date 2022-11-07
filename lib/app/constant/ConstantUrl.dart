@@ -93,7 +93,6 @@ Future<Position> getCurrentLocation() async {
   loc.Location location = loc.Location();
   loc.LocationData data = await location.getLocation();
   print(data.latitude);
-
   Position? currentPositionData;
   // await Geolocator.getCurrentPosition(
   //         desiredAccuracy: LocationAccuracy.high,
