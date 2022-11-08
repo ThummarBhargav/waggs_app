@@ -251,8 +251,7 @@ class HomeView extends GetWidget<HomeController> {
                                               Get.back();
                                             },
                                             onConfirm: () {
-                                              // box.erase();
-                                              // Get.offAllNamed(Routes.HOME);
+                                              controller.deleteUserApi(context);
                                             },
                                           );
                                         },
