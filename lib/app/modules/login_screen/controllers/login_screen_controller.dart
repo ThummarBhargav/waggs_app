@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'package:crypto/crypto.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,6 +13,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 import 'package:linkedin_login/linkedin_login.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:waggs_app/app/Modal/login_model.dart';
 import 'package:waggs_app/app/constant/sizeConstant.dart';
 import 'package:waggs_app/app/modules/home/views/home_view.dart';
@@ -38,6 +40,7 @@ class LoginScreenController extends GetxController {
   GoogleSignIn googleSignIn = GoogleSignIn(scopes: ['email']);
   Rx<User>? _firebaseUser;
   User? user;
+  final _firebaseAuth = FirebaseAuth.instance;
   List respons = [];
   @override
   void onInit() {
@@ -52,6 +55,34 @@ class LoginScreenController extends GetxController {
   @override
   void onClose() {
     super.onClose();
+  }
+
+  String sha256ofString(String input) {
+    final bytes = utf8.encode(input);
+    final digest = sha256.convert(bytes);
+    return digest.toString();
+  }
+
+  Future<User> signInWithApple() async {
+    final rawNonce = generateNonce();
+    final nonce = sha256ofString(rawNonce);
+
+    // 1. perform the sign-in request
+    final credential = await SignInWithApple.getAppleIDCredential(scopes: [
+      AppleIDAuthorizationScopes.email,
+      AppleIDAuthorizationScopes.fullName,
+    ], nonce: nonce);
+
+    final oauthCredential = OAuthProvider("apple.com").credential(
+      idToken: credential.identityToken,
+      rawNonce: rawNonce,
+    );
+    final userCredential =
+        await _firebaseAuth.signInWithCredential(oauthCredential);
+
+    final firebaseUser = userCredential.user!;
+
+    return firebaseUser;
   }
 
   // signInWithLinkedin()async{
@@ -431,8 +462,6 @@ class LoginScreenController extends GetxController {
       );
     }
   }
-
-
 }
 
 class UserObject {

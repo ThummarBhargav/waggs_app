@@ -270,8 +270,10 @@ class LoginScreenView extends GetWidget<LoginScreenController> {
                       InkWell(
                         onTap: () {
                           FocusScope.of(context).unfocus();
+                          controller.signInWithApple();
+
                           if (controller.formKey2.currentState!.validate()) {
-                            controller.LoginUser();
+                            // controller.LoginUser();
                           }
                         },
                         child: Container(

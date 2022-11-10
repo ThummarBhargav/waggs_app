@@ -43,6 +43,8 @@ dependencies:
   location: ^4.2.0
   intl:
   url_launcher:
+  sign_in_with_apple: ^4.2.0
+  crypto: ^3.0.1
   flutter:
     sdk: flutter
 dev_dependencies:
