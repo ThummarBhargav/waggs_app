@@ -86,6 +86,7 @@ class HomeView extends GetWidget<HomeController> {
                                                       )
                                                     : Text(
                                                         "${box.read(ArgumentConstant.email)}",
+                                                        maxLines: 2,
                                                         style: GoogleFonts.aleo(
                                                           fontWeight:
                                                               FontWeight.w400,
@@ -238,10 +239,42 @@ class HomeView extends GetWidget<HomeController> {
                                       InkWell(
                                         onTap: () {
                                           Get.defaultDialog(
+                                            title: "Delete Account",
+                                            middleText:
+                                                'Are you sure you want to delete your account ?',
+                                            textCancel: "Cancel",
+                                            textConfirm: "Confirm",
+                                            confirmTextColor: Colors.white,
+                                            cancelTextColor: Colors.cyan,
+                                            buttonColor: Colors.cyan,
+                                            onCancel: () {
+                                              Get.back();
+                                            },
+                                            onConfirm: () {
+                                              controller.deleteUserApi(context);
+                                            },
+                                          );
+                                        },
+                                        child: box.read(ArgumentConstant
+                                                    .isUserLogin) ==
+                                                null
+                                            ? SizedBox()
+                                            : ListTile(
+                                                leading: Icon(Icons.delete),
+                                                title: Text(
+                                                  'Delete Account',
+                                                  style:
+                                                      TextStyle(fontSize: 15),
+                                                ),
+                                              ),
+                                      ),
+                                      InkWell(
+                                        onTap: () {
+                                          Get.defaultDialog(
                                             title: "Log Out",
                                             middleText:
                                                 'Are You Sure To Log Out ?',
-                                            textCancel: "cancle",
+                                            textCancel: "cancel",
                                             textConfirm: "Confirm",
                                             confirmTextColor: Colors.white,
                                             cancelTextColor: Colors.cyan,

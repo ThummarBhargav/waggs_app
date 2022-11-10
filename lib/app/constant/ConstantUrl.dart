@@ -4,9 +4,15 @@ import 'package:get/get.dart';
 import 'package:location/location.dart' as loc;
 import 'package:waggs_app/app/constant/SizeConstant.dart';
 
+// Live
 const baseUrl = "https://api.waggs.in/api/v1/";
 const baseUrl1 = "api.waggs.in";
 const baseUrl3 = "https://api.waggs.in/api/v1/users/";
+
+// Stg
+// const baseUrl = "https://api-stg.waggs.in/api/v1/";
+// const baseUrl1 = "api-stg.waggs.in";
+// const baseUrl3 = "https://api-stg.waggs.in/api/v1/users/";
 
 class ApiConstant {
   static const signUpUsers = "signup";
@@ -53,6 +59,7 @@ class ApiConstant {
   static const vetdetail = "vet/info/";
   static const bookvet = "appointment/book";
   static const addressUpdate = "address";
+  static const deleteUser = "account";
 }
 
 class ArgumentConstant {

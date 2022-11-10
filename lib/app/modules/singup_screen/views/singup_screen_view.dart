@@ -8,7 +8,6 @@ import 'package:waggs_app/app/constant/text_field.dart';
 import 'package:waggs_app/app/routes/app_pages.dart';
 import '../../../constant/ConstantUrl.dart';
 import '../controllers/singup_screen_controller.dart';
-
 class SingupScreenView extends GetWidget<SingupScreenController> {
   const SingupScreenView({Key? key}) : super(key: key);
   @override

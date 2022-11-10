@@ -501,4 +501,17 @@ class HomeController extends GetxController {
     } else {}
     OrderList.refresh();
   }
+
+  deleteUserApi(BuildContext context) async {
+    var url = Uri.parse(baseUrl3 + ApiConstant.deleteUser);
+    var response = await http.delete(url, headers: {
+      'Authorization': 'Bearer ${box.read(ArgumentConstant.token)}',
+    }).then((value) {
+      print(box.read(ArgumentConstant.token));
+      box.erase();
+      Get.offAllNamed(Routes.HOME);
+    }).catchError((error) {
+      print(error);
+    });
+  }
 }
