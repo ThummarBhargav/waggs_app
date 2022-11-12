@@ -71,7 +71,9 @@ class LoginScreenController extends GetxController {
     final credential = await SignInWithApple.getAppleIDCredential(scopes: [
       AppleIDAuthorizationScopes.email,
       AppleIDAuthorizationScopes.fullName,
-    ], nonce: nonce);
+    ], nonce: nonce).catchError((error){
+      print("Error 1:=$error");
+    });
 
     final oauthCredential = OAuthProvider("apple.com").credential(
       idToken: credential.identityToken,
@@ -81,7 +83,8 @@ class LoginScreenController extends GetxController {
         await _firebaseAuth.signInWithCredential(oauthCredential);
 
     final firebaseUser = userCredential.user!;
-
+    String token = await firebaseUser.getIdToken();
+     print("Firebase token :=  ${token}");
     return firebaseUser;
   }
 

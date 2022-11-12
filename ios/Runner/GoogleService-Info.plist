@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>312438667205-iohljq0rbcgcmk4d0680u2cbd6no6idg.apps.googleusercontent.com</string>
+	<string>312438667205-7t6prcfbohpggc8s06ndpua72teqsp2o.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.312438667205-iohljq0rbcgcmk4d0680u2cbd6no6idg</string>
+	<string>com.googleusercontent.apps.312438667205-7t6prcfbohpggc8s06ndpua72teqsp2o</string>
 	<key>ANDROID_CLIENT_ID</key>
 	<string>312438667205-adggnrvebv90oo8pue4n6mvmcf2kgse6.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
@@ -15,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.waggsApp</string>
+	<string>com.waggs.waggsApp</string>
 	<key>PROJECT_ID</key>
 	<string>waggs-cf353</string>
 	<key>STORAGE_BUCKET</key>
@@ -31,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:312438667205:ios:2fd828d68aad41dd4d3dac</string>
+	<string>1:312438667205:ios:d2db28678a3c02dd4d3dac</string>
 </dict>
 </plist>
