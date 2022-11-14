@@ -92,7 +92,12 @@ class MobileVerifyController extends GetxController {
     var url = Uri.parse(baseUrl3 + ApiConstant.sendOtpUsers);
     await http.post(url, body: {
       "countryCode": "${countryController.value.text.trim()}",
-      "email": email,
+      "email": (isFromFacebook)
+          ? userDataFaceBook!.user!.email.toString()
+          : (isFromGoogle)
+              ? userDataGoogle!.email.toString()
+              : userDataLinkedIn!
+                  .user.email!.elements![0].handleDeep!.emailAddress!,
       "mobile": "${mobileController.value.text.trim()}"
     }).then((value) {
       if (value.statusCode == 200) {
