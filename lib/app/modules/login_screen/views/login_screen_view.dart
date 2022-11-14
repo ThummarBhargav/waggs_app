@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -255,42 +257,43 @@ class LoginScreenView extends GetWidget<LoginScreenController> {
                           decoration: BoxDecoration(
                             image: DecorationImage(
                               image: AssetImage("assets/indeed.png"),
-
                             ),
-
                           ),
                         ),
-                      ), SizedBox(
+                      ),
+                      SizedBox(
                         width: 10,
                       ),
-                      InkWell(
-                        onTap: () {
-                          controller.signInWithApple().then((value) async{
-                            String token = await value.getIdToken();
-                            if(!isNullEmptyOrFalse(token)){
-                              box.write(ArgumentConstant.token, token);
-                              await controller.socialLoginApi(
-                                  socialId: value.uid,
-                                  socialType: "google",
-                                  isForGoogle: true,
-                                  context: context,
-                                  userGoogleData: value);
-                            }
-                          });
-                        },
-                        child: Container(
-                          height: 40,
-                          width: 50,
-
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                             color: Colors.black12,
-                            image: DecorationImage(
-                              image: AssetImage("assets/apple_logo.png",),
+                      if (Platform.isIOS)
+                        InkWell(
+                          onTap: () {
+                            controller.signInWithApple().then((value) async {
+                              String token = await value.getIdToken();
+                              if (!isNullEmptyOrFalse(token)) {
+                                box.write(ArgumentConstant.token, token);
+                                await controller.socialLoginApi(
+                                    socialId: value.uid,
+                                    socialType: "google",
+                                    isForGoogle: true,
+                                    context: context,
+                                    userGoogleData: value);
+                              }
+                            });
+                          },
+                          child: Container(
+                            height: 40,
+                            width: 50,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.black12,
+                              image: DecorationImage(
+                                image: AssetImage(
+                                  "assets/apple_logo.png",
+                                ),
+                              ),
                             ),
                           ),
                         ),
-                      ),
                     ],
                   ),
                   SizedBox(
