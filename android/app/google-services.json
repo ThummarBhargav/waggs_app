@@ -7,66 +7,6 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:312438667205:android:779ef02a130755eb4d3dac",
-        "android_client_info": {
-          "package_name": "com.example.waggs_app"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "312438667205-0luva17qbnpgs0fqa9noc2g303tgg070.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.waggs_app",
-            "certificate_hash": "09d7da1f3afaf9badf123dd90a4811b3e265a7ca"
-          }
-        },
-        {
-          "client_id": "312438667205-96h0kcoudurhqm7cdq1b9dmpql671sg1.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.waggs_app",
-            "certificate_hash": "8b7e010d654d5fb738333e8af101e9e19f9482b1"
-          }
-        },
-        {
-          "client_id": "312438667205-adggnrvebv90oo8pue4n6mvmcf2kgse6.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.waggs_app",
-            "certificate_hash": "e8b10cda7f325a7bd7da94e5302c001e0899004a"
-          }
-        },
-        {
-          "client_id": "312438667205-bs451it5kkc3h1rsu0phkvbmbodatttt.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAtTu0h3q4RpLvb4_pTEJkwSK0fIgPIEGk"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "312438667205-bs451it5kkc3h1rsu0phkvbmbodatttt.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "312438667205-7t6prcfbohpggc8s06ndpua72teqsp2o.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.waggs.waggsApp"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:312438667205:android:7ef41600298c11014d3dac",
         "android_client_info": {
           "package_name": "com.waggs.waggsApp"

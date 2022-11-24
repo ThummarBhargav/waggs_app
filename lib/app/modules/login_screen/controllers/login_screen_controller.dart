@@ -71,7 +71,8 @@ class LoginScreenController extends GetxController {
     final credential = await SignInWithApple.getAppleIDCredential(scopes: [
       AppleIDAuthorizationScopes.email,
       AppleIDAuthorizationScopes.fullName,
-    ], nonce: nonce).catchError((error){
+    ], nonce: nonce)
+        .catchError((error) {
       print("Error 1:=$error");
     });
 
@@ -84,7 +85,7 @@ class LoginScreenController extends GetxController {
 
     final firebaseUser = userCredential.user!;
     String token = await firebaseUser.getIdToken();
-     print("Firebase token :=  ${token}");
+    print("Firebase token :=  ${token}");
     return firebaseUser;
   }
 
@@ -129,7 +130,9 @@ class LoginScreenController extends GetxController {
     final GoogleSignIn googleSignIn = GoogleSignIn();
 
     final GoogleSignInAccount? googleSignInAccount =
-        await googleSignIn.signIn();
+        await googleSignIn.signIn().catchError((error) {
+      print(error);
+    });
 
     if (googleSignInAccount != null) {
       final GoogleSignInAuthentication googleSignInAuthentication =
