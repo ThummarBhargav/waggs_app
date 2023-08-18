@@ -24,7 +24,7 @@ dependencies:
   flutter_time_picker_spinner: ^2.0.0
   flutter_image_slideshow: ^0.1.2
   firebase_auth: ^3.6.4
-  firebase_core: ^1.21.0
+  firebase_core: ^1.24.0
   syncfusion_flutter_datepicker: ^20.2.48
   google_sign_in:
   carousel_slider:
@@ -48,6 +48,8 @@ dependencies:
   crypto: ^3.0.1
   flutter:
     sdk: flutter
+dependency_overrides:
+  firebase_core_platform_interface: 4.5.1
 dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_test: 

@@ -61,7 +61,7 @@ class Products {
   String? description;
   Category? category;
   SubCategory? subCategory;
-  int? weight;
+  double? weight;
   int? stock;
   int? price;
   int? discountedPrice;
@@ -117,7 +117,9 @@ class Products {
     subCategory = json['subCategory'] != null
         ? new SubCategory.fromJson(json['subCategory'])
         : null;
-    weight = json['weight'];
+    weight = (json['weight'].runtimeType == int)
+        ? double.parse(json['weight'].toString())
+        : json['weight'];
     stock = json['stock'];
     price = json['price'];
     discountedPrice = json['discountedPrice'];
